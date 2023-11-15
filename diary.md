@@ -29,5 +29,6 @@ there are 2 ways to scrape github:
 
    i found 2 alternative paths:
 
-    - using the `system size:>100000` query to filter out by the largest repositories to get a huge number of files at once.
-    - scraping the topic pages (ie. https://github.com/topics/c) to get access to thousands of repositories within the same github page, simply by clicking the "load more..." button.
+    - using the `system size:>100000` query to filter out by the largest repositories to get a huge number of files at once. i did this manually.
+    - scraping the topic pages for c/c++ (ie. https://github.com/topics/c) to get access to thousands of repositories within the same github page, simply by clicking the "load more..." button. i managed to scrape around 2000 repository addresses this way.
+  
