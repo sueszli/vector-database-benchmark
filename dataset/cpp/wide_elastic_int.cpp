@@ -1,0 +1,117 @@
+
+//          Copyright John McFarlane 2018.
+// Distributed under the Boost Software License, Version 1.0.
+//    (See accompanying file ../LICENSE_1_0.txt or copy at
+//          http://www.boost.org/LICENSE_1_0.txt)
+
+#include <cnl/elastic_integer.h>
+#include <cnl/wide_integer.h>
+
+#include <cnl/_impl/type_traits/identical.h>
+
+#include <gtest/gtest.h>
+
+#include <type_traits>
+
+namespace {
+    using cnl::_impl::identical;
+
+    template<int Digits = cnl::digits_v<int>, typename Narrowest = int>
+    using wide_elastic_integer = cnl::elastic_integer<
+            Digits, cnl::wide_integer<cnl::digits_v<Narrowest>, Narrowest>>;
+
+    namespace default_parameters {
+        using cnl::_impl::rep_of_t;
+        static_assert(std::is_same_v<int, rep_of_t<rep_of_t<wide_elastic_integer<>>>>);
+        static_assert(
+                std::is_same_v<
+                        rep_of_t<cnl::elastic_integer<>>, rep_of_t<rep_of_t<wide_elastic_integer<>>>>);
+    }
+
+    namespace test_conversion {
+        static_assert(identical(wide_elastic_integer<2>{-1}, wide_elastic_integer<2>{-1.500}));
+        static_assert(identical(wide_elastic_integer<2>{-1}, wide_elastic_integer<2>{-1.499}));
+        static_assert(identical(wide_elastic_integer<2>{-0}, wide_elastic_integer<2>{-.500}));
+        static_assert(identical(wide_elastic_integer<2>{0}, wide_elastic_integer<2>{.499}));
+        static_assert(identical(wide_elastic_integer<2>{0}, wide_elastic_integer<2>{.500}));
+        static_assert(identical(wide_elastic_integer<2>{1}, wide_elastic_integer<2>{1.499}));
+        static_assert(identical(wide_elastic_integer<2>{1}, wide_elastic_integer<2>{1.500}));
+        static_assert(identical(wide_elastic_integer<2>{2}, wide_elastic_integer<2>{2.499}));
+        static_assert(identical(wide_elastic_integer<2>{2}, wide_elastic_integer<2>{2.500}));
+    }
+
+    namespace test_division {
+        static_assert(
+                identical(
+                        wide_elastic_integer<2>{3 / 4},
+                        wide_elastic_integer<2>{3} / wide_elastic_integer<3>{4}));
+        static_assert(identical(wide_elastic_integer<31>{0}, -9 / wide_elastic_integer<4>{10}));
+        static_assert(identical(wide_elastic_integer<2>{0}, wide_elastic_integer<2>{-2} / 3));
+        static_assert(identical(wide_elastic_integer<2>{0}, wide_elastic_integer<2>{1} / -3));
+    }
+
+    namespace test_multiply {
+        static_assert(
+                identical(
+                        wide_elastic_integer<6>{7} * wide_elastic_integer<13>{321},
+                        wide_elastic_integer<19>{2247}));
+    }
+
+    namespace test_shift_right {
+        static_assert(
+                identical(
+                        wide_elastic_integer<1>{1},
+                        wide_elastic_integer<3>{7} >> cnl::constant<2>{}));
+        static_assert(identical(wide_elastic_integer<3>{1}, wide_elastic_integer<3>{7} >> 2));
+        static_assert(
+                identical(
+                        wide_elastic_integer<4>{1},
+                        cnl::custom_operator<
+                                cnl::_impl::shift_right_op,
+                                cnl::op_value<wide_elastic_integer<4>>,
+                                cnl::op_value<cnl::elastic_integer<2>>>{}(
+                                wide_elastic_integer<4>{12}, cnl::elastic_integer<2>{3})));
+        static_assert(
+                identical(
+                        wide_elastic_integer<4>{1},
+                        wide_elastic_integer<4>{12} >> cnl::elastic_integer<2>{3}));
+    }
+
+    TEST(wide_elastic_integer, pre_increment)  // NOLINT
+    {
+        auto a = wide_elastic_integer<3>{6};
+        auto& b = ++a;
+        static_assert(std::is_same_v<decltype(b), wide_elastic_integer<3>&>);
+        ASSERT_EQ(&b, &a) << "wide_elastic_integer pre-increment return address";
+        ASSERT_EQ(7, b) << "wide_elastic_integer pre-increment";
+    }
+
+    TEST(wide_elastic_integer, pre_decrement)  // NOLINT
+    {
+        auto a = wide_elastic_integer<3>{-6};
+        auto& b = --a;
+        static_assert(std::is_same_v<decltype(b), wide_elastic_integer<3>&>);
+        ASSERT_EQ(&b, &a) << "wide_elastic_integer pre-increment return address";
+        ASSERT_EQ(-7, b) << "wide_elastic_integer pre-increment";
+    }
+
+    TEST(wide_elastic_integer, post_increment)  // NOLINT
+    {
+        auto a = wide_elastic_integer<3>{6};
+        auto const& b = a++;
+        static_assert(std::is_same_v<decltype(b), wide_elastic_integer<3> const&>);
+        ASSERT_NE(&b, &a) << "wide_elastic_integer pre-increment return address";
+        ASSERT_EQ(7, a) << "wide_elastic_integer pre-increment";
+        ASSERT_EQ(6, b) << "wide_elastic_integer pre-increment";
+    }
+
+    TEST(wide_elastic_integer, post_decrement)  // NOLINT
+    {
+        auto a = wide_elastic_integer<3>{-6};
+        auto const& b = a--;
+        static_assert(std::is_same_v<decltype(b), wide_elastic_integer<3> const&>);
+        ASSERT_NE(&b, &a) << "wide_elastic_integer pre-increment return address";
+        ASSERT_EQ(-7, a) << "wide_elastic_integer pre-increment";
+        ASSERT_EQ(-6, b) << "wide_elastic_integer pre-increment";
+    }
+}
