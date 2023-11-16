@@ -1,0 +1,59 @@
+#include "global.h"
+#include "rom_8077ABC.h"
+#include "trig.h"
+#include "battle_anim.h"
+#include "sound.h"
+
+extern s16 gBattleAnimArgs[];
+extern u8 gBattleAnimAttacker;
+extern u8 gBattleAnimTarget;
+
+void sub_80D09C0(struct Sprite* sprite);
+
+// anger (anger emotes, usually above the Pokemon's head, indicating annoyed emotions.)
+// Used in Frustration, Rage, Swagger, Torment, and Taunt.
+
+const union AffineAnimCmd gSpriteAffineAnim_83D777C[] =
+{
+    AFFINEANIMCMD_FRAME(0xB, 0xB, 0, 8),
+    AFFINEANIMCMD_FRAME(0xFFF5, 0xFFF5, 0, 8),
+    AFFINEANIMCMD_END,
+};
+
+const union AffineAnimCmd *const gSpriteAffineAnimTable_83D7794[] =
+{
+    gSpriteAffineAnim_83D777C,
+};
+
+const struct SpriteTemplate gBattleAnimSpriteTemplate_83D7798 =
+{
+    .tileTag = ANIM_TAG_ANGER,
+    .paletteTag = ANIM_TAG_ANGER,
+    .oam = &gOamData_837DF8C,
+    .anims = gDummySpriteAnimTable,
+    .images = NULL,
+    .affineAnims = gSpriteAffineAnimTable_83D7794,
+    .callback = sub_80D09C0,
+};
+
+void sub_80D09C0(struct Sprite* sprite)
+{
+    u8 bank;
+    if (gBattleAnimArgs[0] == 0)
+        bank = gBattleAnimAttacker;
+    else
+        bank = gBattleAnimTarget;
+
+    if (GetBattlerSide(bank) == 1)
+    {
+        gBattleAnimArgs[1] *= -1;
+    }
+
+    sprite->x = GetBattlerSpriteCoord(bank, 2) + gBattleAnimArgs[1];
+    sprite->y = GetBattlerSpriteCoord(bank, 3) + gBattleAnimArgs[2];
+    if (sprite->y <= 7)
+        sprite->y = 8;
+
+    StoreSpriteCallbackInData(sprite, DestroySpriteAndMatrix);
+    sprite->callback = sub_80785E4;
+}
