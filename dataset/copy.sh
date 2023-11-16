@@ -7,9 +7,9 @@ while [ "$(ls -A $src_dir)" ]; do
     cd $src_dir
 
     # we can't upload everything at once, because of github's commit size limit
-    for file in $(ls | head -5000)
+    for file in $(ls | head -10)
     do
-        mv "$file" "$target_dir"
+        mv "$file" "$target_dir" 
     done
 
     cd $target_dir
