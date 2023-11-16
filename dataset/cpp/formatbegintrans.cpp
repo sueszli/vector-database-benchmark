@@ -1,0 +1,25 @@
+#include "formatbegintrans.h"
+#include "parser/ast/sqlitebegintrans.h"
+
+FormatBeginTrans::FormatBeginTrans(SqliteBeginTrans* bt) :
+    bt(bt)
+{
+}
+
+void FormatBeginTrans::formatInternal()
+{
+    handleExplainQuery(bt);
+    withKeyword("BEGIN");
+
+    if (bt->type != SqliteBeginTrans::Type::null)
+        withKeyword(SqliteBeginTrans::typeToString(bt->type));
+
+    if (bt->transactionKw)
+    {
+        withKeyword("TRANSACTION");
+        if (!bt->name.isNull())
+            withId(bt->name);
+    }
+
+    withSemicolon();
+}
