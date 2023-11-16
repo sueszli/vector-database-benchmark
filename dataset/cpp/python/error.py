@@ -1,0 +1,2 @@
+class NoInputError(Exception):
+    pass

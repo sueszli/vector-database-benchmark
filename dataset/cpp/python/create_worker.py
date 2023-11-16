@@ -1,0 +1,250 @@
+# This file is part of Buildbot.  Buildbot is free software: you can
+# redistribute it and/or modify it under the terms of the GNU General Public
+# License as published by the Free Software Foundation, version 2.
+#
+# This program is distributed in the hope that it will be useful, but WITHOUT
+# ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+# FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more
+# details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program; if not, write to the Free Software Foundation, Inc., 51
+# Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+#
+# Copyright Buildbot Team Members
+
+from __future__ import absolute_import
+from __future__ import division
+from __future__ import print_function
+
+import os
+
+workerTACTemplate = [
+    """
+import os
+
+from buildbot_worker.bot import Worker
+from twisted.application import service
+
+basedir = %(basedir)r
+rotateLength = %(log-size)d
+maxRotatedFiles = %(log-count)s
+
+# if this is a relocatable tac file, get the directory containing the TAC
+if basedir == '.':
+    import os.path
+    basedir = os.path.abspath(os.path.dirname(__file__))
+
+# note: this line is matched against to check that this is a worker
+# directory; do not edit it.
+application = service.Application('buildbot-worker')
+""",
+    """
+from twisted.python.logfile import LogFile
+from twisted.python.log import ILogObserver, FileLogObserver
+logfile = LogFile.fromFullPath(
+    os.path.join(basedir, "twistd.log"), rotateLength=rotateLength,
+    maxRotatedFiles=maxRotatedFiles)
+application.setComponent(ILogObserver, FileLogObserver(logfile).emit)
+""",
+    """
+buildmaster_host = %(host)r
+port = %(port)d
+connection_string = None
+""",
+    """
+buildmaster_host = None  # %(host)r
+port = None  # %(port)d
+connection_string = %(connection-string)r
+""",
+    """
+workername = %(name)r
+passwd = %(passwd)r
+keepalive = %(keepalive)d
+umask = %(umask)s
+maxdelay = %(maxdelay)d
+numcpus = %(numcpus)s
+allow_shutdown = %(allow-shutdown)r
+maxretries = %(maxretries)s
+use_tls = %(use-tls)s
+delete_leftover_dirs = %(delete-leftover-dirs)s
+proxy_connection_string = %(proxy-connection-string)r
+protocol = %(protocol)r
+
+s = Worker(buildmaster_host, port, workername, passwd, basedir,
+           keepalive, umask=umask, maxdelay=maxdelay,
+           numcpus=numcpus, allow_shutdown=allow_shutdown,
+           maxRetries=maxretries, protocol=protocol, useTls=use_tls,
+           delete_leftover_dirs=delete_leftover_dirs,
+           connection_string=connection_string,
+           proxy_connection_string=proxy_connection_string)
+s.setServiceParent(application)
+"""]
+
+
+class CreateWorkerError(Exception):
+
+    """
+    Raised on errors while setting up worker directory.
+    """
+
+
+def _make_tac(config):
+    if config['relocatable']:
+        config['basedir'] = '.'
+
+    workerTAC = [workerTACTemplate[0]]
+
+    if not config['no-logrotate']:
+        workerTAC.append(workerTACTemplate[1])
+
+    if not config['connection-string']:
+        workerTAC.append(workerTACTemplate[2])
+    else:
+        workerTAC.append(workerTACTemplate[3])
+
+    workerTAC.extend(workerTACTemplate[4:])
+
+    return "".join(workerTAC) % config
+
+
+def _makeBaseDir(basedir, quiet):
+    """
+    Make worker base directory if needed.
+
+    @param basedir: worker base directory relative path
+    @param   quiet: if True, don't print info messages
+
+    @raise CreateWorkerError: on error making base directory
+    """
+    if os.path.exists(basedir):
+        if not quiet:
+            print("updating existing installation")
+        return
+
+    if not quiet:
+        print("mkdir", basedir)
+
+    try:
+        os.mkdir(basedir)
+    except OSError as exception:
+        raise CreateWorkerError("error creating directory {0}: {1}".format(
+                                basedir, exception.strerror))
+
+
+def _makeBuildbotTac(basedir, tac_file_contents, quiet):
+    """
+    Create buildbot.tac file. If buildbot.tac file already exists with
+    different contents, create buildbot.tac.new instead.
+
+    @param basedir: worker base directory relative path
+    @param tac_file_contents: contents of buildbot.tac file to write
+    @param quiet: if True, don't print info messages
+
+    @raise CreateWorkerError: on error reading or writing tac file
+    """
+    tacfile = os.path.join(basedir, "buildbot.tac")
+
+    if os.path.exists(tacfile):
+        try:
+            with open(tacfile, "rt") as f:
+                oldcontents = f.read()
+        except IOError as exception:
+            raise CreateWorkerError("error reading {0}: {1}".format(
+                                    tacfile, exception.strerror))
+
+        if oldcontents == tac_file_contents:
+            if not quiet:
+                print("buildbot.tac already exists and is correct")
+            return
+
+        if not quiet:
+            print("not touching existing buildbot.tac")
+            print("creating buildbot.tac.new instead")
+
+        tacfile = os.path.join(basedir, "buildbot.tac.new")
+
+    try:
+        with open(tacfile, "wt") as f:
+            f.write(tac_file_contents)
+        os.chmod(tacfile, 0o600)
+    except IOError as exception:
+        raise CreateWorkerError("could not write {0}: {1}".format(
+                                tacfile, exception.strerror))
+
+
+def _makeInfoFiles(basedir, quiet):
+    """
+    Create info/* files inside basedir.
+
+    @param basedir: worker base directory relative path
+    @param   quiet: if True, don't print info messages
+
+    @raise CreateWorkerError: on error making info directory or
+                             writing info files
+    """
+    def createFile(path, file, contents):
+        filepath = os.path.join(path, file)
+
+        if os.path.exists(filepath):
+            return False
+
+        if not quiet:
+            print("Creating {0}, you need to edit it appropriately.".format(
+                  os.path.join("info", file)))
+
+        try:
+            open(filepath, "wt").write(contents)
+        except IOError as exception:
+            raise CreateWorkerError("could not write {0}: {1}".format(
+                                    filepath, exception.strerror))
+        return True
+
+    path = os.path.join(basedir, "info")
+    if not os.path.exists(path):
+        if not quiet:
+            print("mkdir", path)
+        try:
+            os.mkdir(path)
+        except OSError as exception:
+            raise CreateWorkerError("error creating directory {0}: {1}".format(
+                                    path, exception.strerror))
+
+    # create 'info/admin' file
+    created = createFile(path, "admin",
+                         "Your Name Here <admin@youraddress.invalid>\n")
+
+    # create 'info/host' file
+    created = createFile(path, "host",
+                         "Please put a description of this build host here\n")
+
+    access_uri = os.path.join(path, "access_uri")
+
+    if not os.path.exists(access_uri):
+        if not quiet:
+            print("Not creating {0} - add it if you wish".format(
+                  os.path.join("info", "access_uri")))
+
+    if created and not quiet:
+        print("Please edit the files in {0} appropriately.".format(path))
+
+
+def createWorker(config):
+    basedir = config['basedir']
+    quiet = config['quiet']
+
+    contents = _make_tac(config)
+
+    try:
+        _makeBaseDir(basedir, quiet)
+        _makeBuildbotTac(basedir, contents, quiet)
+        _makeInfoFiles(basedir, quiet)
+    except CreateWorkerError as exception:
+        print("{0}\nfailed to configure worker in {1}".format(
+              exception, config['basedir']))
+        return 1
+
+    if not quiet:
+        print("worker configured in {0}".format(basedir))
+
+    return 0
