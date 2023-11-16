@@ -1,0 +1,2175 @@
+/* IBM_PROLOG_BEGIN_TAG                                                   */
+/* This is an automatically generated prolog.                             */
+/*                                                                        */
+/* $Source: src/usr/pldm/extended/hb_fru.C $                              */
+/*                                                                        */
+/* OpenPOWER HostBoot Project                                             */
+/*                                                                        */
+/* Contributors Listed Below - COPYRIGHT 2020,2023                        */
+/* [+] 867314078@qq.com                                                   */
+/* [+] International Business Machines Corp.                              */
+/*                                                                        */
+/*                                                                        */
+/* Licensed under the Apache License, Version 2.0 (the "License");        */
+/* you may not use this file except in compliance with the License.       */
+/* You may obtain a copy of the License at                                */
+/*                                                                        */
+/*     http://www.apache.org/licenses/LICENSE-2.0                         */
+/*                                                                        */
+/* Unless required by applicable law or agreed to in writing, software    */
+/* distributed under the License is distributed on an "AS IS" BASIS,      */
+/* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or        */
+/* implied. See the License for the specific language governing           */
+/* permissions and limitations under the License.                         */
+/*                                                                        */
+/* IBM_PROLOG_END_TAG                                                     */
+
+/**
+ *  @file hb_fru.C
+ *  @brief Source code of utility functions that manipulate PLDM
+ *         fru record table info
+ */
+
+// System Headers
+#include <cstdlib>
+#include <map>
+#include <memory>
+#include <cstring>
+#include <stdio.h>
+#include <string.h>
+#include <util/align.H>
+
+#include "pldm_fru_to_ipz_mapping.H"
+// non-pldm userspace headers
+#include <eeprom/eepromif.H>
+#include <eeprom/eeprom_const.H>
+#include <targeting/common/target.H>
+#include <targeting/common/targetservice.H>
+#include <util/align.H>
+#include <vpd/ipz_vpd_consts.H>
+#include <errl/errlmanager.H>
+
+// pldm userspace /src/ headers
+#include <pldm/extended/hb_fru.H>
+
+// pldm userspace /include/ headers
+#include <pldm/pldm_errl.H>
+#include <pldm/pldm_reasoncodes.H>
+#include <pldm/extended/pdr_manager.H>
+#include <pldm/requests/pldm_fru_requests.H>
+#include <pldm/pldm_trace.H>
+#include <pldm/pldmif.H>
+#include <pldm/requests/pldm_fileio_requests.H>
+#include <oem/ibm/libpldm/file_io.h>
+
+// libpldm subtree headers
+#include <openbmc/pldm/libpldm/include/libpldm/fru.h>
+
+// getAllChips
+#include <targeting/common/utilFilter.H>
+
+#include <targeting/common/trace.H>
+
+#include <console/consoleif.H>
+
+using namespace ERRORLOG;
+using namespace TARGETING;
+
+namespace PLDM
+{
+
+// Create a map of valid record/keyword combinations that can be used to
+// convert PLDM Fru Record Field Type Numbers to IPZ Keywords.
+// The doc describing this is titled "PLDM_FRU_IPZ_Keyword_Mapping"
+const std::map<uint32_t, std::vector<uint16_t> > record_keyword_field_map {
+  { VINI, { std::begin(valid_vini_keywords), std::end(valid_vini_keywords) } },
+  { VSYS, { std::begin(valid_vsys_keywords), std::end(valid_vsys_keywords) } },
+  { LXR0, { std::begin(valid_lxr0_keywords), std::end(valid_lxr0_keywords) } },
+  { PSPD, { std::begin(valid_pspd_keywords), std::end(valid_pspd_keywords) } },
+  { UTIL, { std::begin(valid_util_keywords), std::end(valid_util_keywords) } },
+};
+
+// Map to identify the list of pound keywords to ADD
+// special_add_pspd_keywords (and any future changes) will iterate
+// over the list as whitelisted keywords to be added for the RECORD,
+// i.e. in this case the RECORD is PSPD
+const std::map<uint32_t, std::vector<uint16_t> > special_record_keywords_map {
+  { PSPD, { std::begin(special_add_pspd_keywords), std::end(special_add_pspd_keywords) } },
+};
+
+// Map of parameters to help abstract the call to getLidFileFromOffset
+// Needs a unique key to pull parms
+const std::map<uint64_t, vpdParms> special_record_keyword_parm_map {
+  //   For debug, you can add filehandle equal to the lid you want to load with 0x0 type
+  //   For debug, place the lid in /usr/local/share/hostfw/running
+  //   One-off design for PLDM is the filehandle will be zero for special pound keywords
+  //   Key in this map are the upper 32 bits are the RECORD name, lower 32 bits are the KEYWORD name
+  //   PSPD=0x50535044  #D=0x2344
+  //   parm_index                     filehandle  type                             record keyword -> struct vpdParms
+  { (((uint64_t) PSPD << 32) | pdD), {0x00000000,PLDM_FILE_TYPE_PSPD_VPD_PDD_KEYWORD,PSPD,pdD} }, // PSPD #D
+};
+
+/**
+ * @brief Used with hbstd::deduplicate to uniquify a container with
+ * multiple instances of targets that should be represented by the
+ * same entity instance PDR. Note that each PDR doesn't necessarily
+ * correspond with a FRU; on DCM systems, two processors can be in the
+ * same FRU, but they still each get an entity instance PDR.
+ *
+ * Currently this is done by deduplicating LOGICAL_CARDs by their
+ * PRD_ENTITY_INSTANCE.
+ */
+struct unique_by_pdr_entity_instance
+{
+    bool operator()(const Target* const i_lhs, const Target* const i_rhs) const
+    {
+        const auto lhs_class = i_lhs->getAttr<ATTR_CLASS>(),
+                   rhs_class = i_rhs->getAttr<ATTR_CLASS>();
+
+        // Only logical cards get deduplicated.
+        if (lhs_class != CLASS_LOGICAL_CARD || rhs_class != CLASS_LOGICAL_CARD)
+        {
+            return false;
+        }
+
+        // If the targets have the same type and PDR_ENTITY_INSTANCE number, only keep one.
+        return (i_lhs->getAttr<ATTR_TYPE>() == i_rhs->getAttr<ATTR_TYPE>())
+            && (i_lhs->getAttr<ATTR_PDR_ENTITY_INSTANCE>() == i_rhs->getAttr<ATTR_PDR_ENTITY_INSTANCE>());
+    }
+};
+
+struct sort_by_huid
+{
+    bool operator()(const Target* const i_lhs, const Target* const i_rhs) const
+    {
+        return get_huid(i_lhs) < get_huid(i_rhs);
+    }
+};
+
+/**
+ * @brief Get targets of the given class, type, and state, that are
+ * represented by PLDM entity instance PDRs.
+ */
+void getPdrResources(TargetHandleList& o_list,
+                     const CLASS i_targetClass,
+                     const TYPE i_targetType,
+                     const ResourceState i_state)
+{
+    getClassResources(o_list, i_targetClass, i_targetType, i_state);
+
+    o_list = hbstd::deduplicate(move(o_list), sort_by_huid{}, unique_by_pdr_entity_instance{});
+}
+
+/**
+ *  @brief Given a complete fru record table's set of records, filter the
+ *        set of records for a given record set id / record type.
+ *        See https://www.dmtf.org/standards/pmci for references
+ *
+ * @param[in] i_pldm_fru_table_buf  Pointer to a buffer which contains all of
+ *                                  Fru Records related to an Entity's Record
+ *                                  Set ID
+ * @param[in] i_record_count        Number of records in the fru record table
+ * @param[in] i_fru_record_type     FRU record type to search for
+ * @param[in] i_field_type          FRU field type to search for
+ * @param[in] o_value               Null-terminated string containing the
+ *                                  value associated with this record
+ *
+ * @return bool                     True if the record was found, false otherwise
+ */
+bool getRecordSetRecordValue(const uint8_t* const i_pldm_fru_table_buf,
+                             const uint16_t i_record_count,
+                             const uint8_t i_fru_record_type,
+                             const uint8_t i_fru_field_type,
+                             std::vector<uint8_t>& o_value)
+{
+    assert( i_pldm_fru_table_buf != nullptr,
+            "getRecordSetRecordValue: i_pldm_fru_table_buf is a nullptr!");
+
+    // copy the pointer provided by the caller into
+    // a local variable so we can do some ptr arithmetic
+    // on it without messing up the caller
+    const uint8_t* in_table_cur_ptr = i_pldm_fru_table_buf;
+
+    o_value.clear();
+
+    for(uint16_t i = 0; i < i_record_count; i++)
+    {
+        const pldm_fru_record_data_format *record_data =
+            reinterpret_cast<const pldm_fru_record_data_format *>(in_table_cur_ptr);
+
+        size_t offset_of_cur_pldm_record_entry = offsetof(pldm_fru_record_data_format, tlvs);
+
+        for(uint8_t j = 0; j < record_data->num_fru_fields; j++)
+        {
+            const pldm_fru_record_tlv *fru_tlv =
+                reinterpret_cast<const pldm_fru_record_tlv *>(in_table_cur_ptr +
+                                                              offset_of_cur_pldm_record_entry);
+
+            if((fru_tlv->type == i_fru_field_type)
+               && (record_data->record_type == i_fru_record_type))
+            {
+                o_value.insert(o_value.begin(),
+                               fru_tlv->value,
+                               fru_tlv->value + fru_tlv->length);
+
+                // PLDM FRU Record Fields of type string are not null terminated
+                // (see DSP0257 1.0.0 section 7.4)
+                o_value.push_back('\0');
+
+                // if we found the key we can break out
+                break;
+            }
+
+            offset_of_cur_pldm_record_entry  += (offsetof(pldm_fru_record_tlv, value) +
+                                                 fru_tlv->length);
+        }
+
+        // if we found the key we can break out
+        if(o_value.size()) { break; }
+
+        // otherwise move to the next record in hopes of finding the key
+        in_table_cur_ptr += offset_of_cur_pldm_record_entry;
+    }
+
+    return !o_value.empty();
+}
+
+/**
+ * @brief Retrieves the # keyword data payload, content only
+ *
+ * @param[in/out] io_lid_content byte vector to contain the # keyword content
+ * @param[in/out] io_vpd_parms  parmaeters to use for the file i/o,
+ *                              length will be output
+ *
+ * @return returns error log if error occurs, otherwise returns nullptr
+ */
+
+errlHndl_t retrieve_pound_keyword(std::vector<uint8_t>& io_lid_content,
+                             vpdParms& io_vpd_parms)
+{
+    errlHndl_t errl = nullptr;
+    // BMC's implementation for pound keyword requires passing in a value larger than the
+    // keyword size.  The returned size will be truncated to the actual size
+    const size_t READ_CHUNK_SIZE = 16384;
+    io_lid_content.clear();
+    io_lid_content.resize(READ_CHUNK_SIZE);
+    uint32_t offset = 0;
+    PLDM_INF("retrieve_pound_keyword io_vpd_parms.filehandle=0x%X io_vpd_parms.type=0x%X", io_vpd_parms.filehandle, io_vpd_parms.type);
+    while (true)
+    {
+        uint32_t bytes_read = READ_CHUNK_SIZE;
+
+        bool eof = false;
+        // Need to LOOP to get full content
+        errl = PLDM::getLidFileFromOffset(io_vpd_parms.filehandle,
+                                           offset,
+                                           bytes_read,
+                                           io_lid_content.data() + offset,
+                                           &eof,
+                                           io_vpd_parms.type);
+        if (errl)
+        {
+            // bytes_read should reflect either zero
+            // or value to handle cases below
+            delete errl;
+            errl = nullptr;
+        }
+        offset += bytes_read;
+        if (offset > MAX_RECORD_SIZE)
+        {
+            PLDM_INF("retrieve_pound_keyword FILE TOO BIG !! bytes_read=0x%X offset=0x%X", bytes_read, offset);
+            bytes_read = 0;
+            offset = 0;
+        }
+        if (bytes_read < READ_CHUNK_SIZE)
+        {
+            // if problem reading, bytes_read will be smaller than READ_CHUNK_SIZE
+            // so the resize will make adjustments for the caller, even in zero cases
+            io_lid_content.resize(offset); // adjust vector to what we read
+            break;
+        }
+
+        io_lid_content.resize(io_lid_content.size() + READ_CHUNK_SIZE); // add another chunk
+
+    } // while true
+
+    // Caller will get length retrieved from the size of the io_lid_content
+    PLDM_INF("retrieve_pound_keyword oi_lid_content.size()=0x%X", io_lid_content.size());
+    return errl;
+}
+
+/**
+ * @brief Append special # keywords in IPZ format to the record vector
+ *
+ * @param[in/out] io_record_bytes byte vector to contain the special keyword
+ *                                in IPZ format
+ * @param[in] i_record_name record name (ASCII) of the IPZ keyword to be appended to
+ *
+ * @return returns error log if error occurs, otherwise returns nullptr
+ */
+
+errlHndl_t append_keywords( std::vector<uint8_t>& io_record_bytes,
+                            uint32_t i_record_name)
+{
+    errlHndl_t errl = nullptr;
+    uint64_t parm_index = 0;
+    std::vector<uint8_t> pound_keyword_lid_content;
+    const auto& add_me_keywords = special_record_keywords_map.at(i_record_name);
+    for (const auto special_keyword : add_me_keywords)
+    {
+        pound_keyword_lid_content.clear();
+        parm_index = (uint64_t) i_record_name << 32 | special_keyword;
+        vpdParms parm_values = {};
+        PLDM_INF("append_keywords CHECKING parm_index=0x%X", parm_index);
+        const auto special_parms = special_record_keyword_parm_map.find(parm_index);
+        if (special_parms != special_record_keyword_parm_map.end())
+        {
+            parm_values = special_parms->second;
+            errl = retrieve_pound_keyword(pound_keyword_lid_content, parm_values);
+            if (errl)
+            {
+                PLDM_INF("append_keywords UNEXPECTED errl from retrieve_pound_keyword");
+                delete errl;
+                errl = nullptr;
+            }
+            if (!pound_keyword_lid_content.size())
+            {
+                // We thought there should have been something and we got nothing
+                PLDM_ERR("append_keywords CAUTION EXPECTED SOMETHING and GOT NOTHING !"
+                         " pound_keyword_lid_content.size()=0x%X i_record_name=0x%X special_keyword=0x%X",
+                         pound_keyword_lid_content.size(), i_record_name, special_keyword);
+                /*@
+                 * @errortype  ERRL_SEV_PREDICTIVE
+                 * @moduleid   MOD_APPEND_KEYWORDS
+                 * @reasoncode RC_FILE_IO_PROBLEM
+                 * @userdata1  i_record_name
+                 * @userdata2  special_keyword
+                 * @devdesc    Possible issue with retrieving PLDM file
+                 * @custdesc   A software error occurred during system boot
+                 */
+                 errl = new ErrlEntry(ERRL_SEV_PREDICTIVE,
+                                      MOD_APPEND_KEYWORDS,
+                                      RC_FILE_IO_PROBLEM,
+                                      i_record_name,
+                                      special_keyword,
+                                      ErrlEntry::NO_SW_CALLOUT);
+                 addBmcErrorCallouts(errl);
+                 addPldmFrData(errl);
+                 errlCommit(errl, PLDM_COMP_ID);
+            }
+        }
+
+        if (pound_keyword_lid_content.size())
+        {
+            PLDM_INF("append_keywords ADDING record=0x%X keyword=0x%X length=0x%X (%d)",
+                     i_record_name, special_keyword, pound_keyword_lid_content.size(), pound_keyword_lid_content.size());
+            // ONLY length is little endian swapped in the io_record_bytes
+            io_record_bytes.push_back(parm_values.keyword >> 8);   // MSB keyword
+            io_record_bytes.push_back(parm_values.keyword & 0xFF); // LSB keyword
+
+            // push back in little endian order
+            io_record_bytes.push_back(pound_keyword_lid_content.size() & 0xFF); // LSB length
+            io_record_bytes.push_back(pound_keyword_lid_content.size() >> 8);   // MSB length
+
+            io_record_bytes.insert(io_record_bytes.end(),
+                                  pound_keyword_lid_content.begin(),
+                                  pound_keyword_lid_content.end());
+       }
+    }
+
+    return errl;
+}
+
+/**
+ *  @brief Given a complete fru record table's set of records, find the location
+ *         code record.
+ *
+ * @param[in] i_pldm_fru_table_buf  Pointer to a buffer which contains all of
+ *                                  Fru Records related to an Entity's Record
+ *                                  Set ID
+ * @param[in] i_record_count        Number of records in the fru record table
+ * @param[in] i_record_type         FRU Record Type
+ * @param[in] o_location_code       Null-terminated string containing the
+ *                                  location code associated with this
+ *                                  record
+ *
+ * @return returns error log if error occurs, otherwise returns nullptr
+ */
+errlHndl_t getRecordSetLocationCode(const uint8_t* const i_pldm_fru_table_buf,
+                                    const uint16_t i_record_count,
+                                    const uint8_t i_record_type,
+                                    std::vector<uint8_t>& o_location_code)
+{
+    // Location code is a record with a single TLV that has the location code
+    // associated with the record set id
+    constexpr uint8_t LOCATION_CODE_FIELD_ID = 254;
+
+    errlHndl_t errl = nullptr;
+
+    if(!getRecordSetRecordValue(i_pldm_fru_table_buf,
+                                i_record_count,
+                                i_record_type,
+                                LOCATION_CODE_FIELD_ID,
+                                o_location_code))
+    {
+        const auto record_data =
+            reinterpret_cast<const pldm_fru_record_data_format *>(i_pldm_fru_table_buf);
+
+        const uint64_t record_set_id = (i_record_count > 0
+                                        ? record_data->record_set_id
+                                        : 0xFFFFFFFFu);
+
+        PLDM_ERR("getRecordSetLocationCode: failed to find location code in "
+                 "records associated with RSI 0x%04x",
+                 record_set_id);
+
+        /*@
+         * @errortype  ERRL_SEV_UNRECOVERABLE
+         * @moduleid   MOD_GET_LOCATION_CODE
+         * @reasoncode RC_INVALID_LENGTH
+         * @userdata1  record set id of record set passed by caller
+         *             (or 0xFFFFFFFF if the record set is empty)
+         * @userdata2  unused
+         * @devdesc    Unable to find the location code in the record
+         *             set provided by caller
+         * @custdesc   A software error occurred during system boot
+         */
+        errl = new ErrlEntry(ERRL_SEV_UNRECOVERABLE,
+                             MOD_GET_LOCATION_CODE,
+                             RC_INVALID_LENGTH,
+                             record_set_id,
+                             0,
+                             ERRORLOG::ErrlEntry::NO_SW_CALLOUT);
+        addBmcErrorCallouts(errl);
+    }
+
+    return errl;
+}
+
+/* @brief Verify if a string ends with another string
+ *
+ * @param[in] str       The string to search in (must be null terminated)
+ * @param[in] suffix    The string to search for (must be null terminated)
+ * @return              false if no match, true otherwise
+ */
+bool locationEndsWith(const char *str, const char *suffix)
+{
+    bool retVal = false;
+    if (str && suffix)
+    {
+        size_t lenstr = strlen(str);
+        size_t lensuffix = strlen(suffix);
+
+        if (lensuffix <= lenstr)
+        {
+            if (strncmp(str + lenstr - lensuffix, suffix, lensuffix) == 0)
+            {
+                retVal = true;
+            }
+        }
+    }
+
+    return retVal;
+}
+
+/**
+ *  @brief Given a complete fru record table's set of records, filter the
+ *         set of records for a given location code.
+ *         See https://www.dmtf.org/standards/pmci for references
+ *
+ *  @param[in] i_pldm_fru_table_buf   Pointer to a buffer which contains data
+ *                                    defined in Table 7 of DSP0257 v1.0.0
+ *  @param[in] i_record_count         Number of records in the fru record table
+ *  @param[in] i_location_code        The location code the caller  would like
+ *                                    the records returned to have
+ *  @param[out] o_rsi                 Record Set ID associated with the found
+ *                                    location code
+ *  @param[out] o_found               Determines if a record is found or not with
+ *                                    the requested location code
+ *  @return void
+ */
+void getRecordSetByLocationCode(const uint8_t* i_pldm_fru_table_buf,
+                                const uint16_t i_record_count,
+                                const char* i_location_code,
+                                uint16_t& o_rsi,
+                                bool& o_found)
+{
+    PLDM_ENTER("getRecordSetByLocationCode: i_pldm_fru_table_buf = %p  i_location_code = 0x%s",
+               i_pldm_fru_table_buf,
+               i_location_code);
+
+    assert(i_pldm_fru_table_buf != nullptr,
+           "getRecordSetByLocationCode: i_pldm_fru_table_buf is a nullptr!");
+
+    o_rsi = 0;
+    o_found = false;
+
+    // Loop through all of the records looking for the ones that match i_location_code
+    for (uint16_t record = 0; record < i_record_count; record++)
+    {
+        const pldm_fru_record_data_format *record_data =
+            reinterpret_cast<const pldm_fru_record_data_format *>(i_pldm_fru_table_buf);
+
+        // We need to keep a running total of the size of the record as we process
+        // the entries in the record because the size of each entry is variable.
+        // Start the record size count at the offset of the TLVs.
+        // (TLV == Type, Length, Value .. see fru.h for details)
+        size_t record_size = offsetof(pldm_fru_record_data_format, tlvs);
+
+        // Iterate through the TLVs contained in this record, read the
+        // length from each TLV and add it to the record_size along with
+        // the size of the T and L (type and length) of the TLV struct.
+        for (uint8_t tlv = 0; tlv < record_data->num_fru_fields; tlv++)
+        {
+            const pldm_fru_record_tlv *fru_tlv =
+                reinterpret_cast<const pldm_fru_record_tlv *>(i_pldm_fru_table_buf +
+                                                              record_size);
+            // Look for the location code i_location_code
+            record_size += (offsetof(pldm_fru_record_tlv, value) +
+                            fru_tlv->length);
+
+            if (fru_tlv->type == LOCATION_CODE_FIELD_ID &&
+                    record_data->record_type == PLDM_FRU_RECORD_TYPE_OEM)
+            {
+                char l_locationCodeNullTerm[PEL_LOC_CODE_SIZE];
+                memset(l_locationCodeNullTerm, 0, sizeof(l_locationCodeNullTerm));
+                const char* l_location_code = reinterpret_cast<const char*>(fru_tlv->value);
+
+                // Length + 1 check to account for null terminator
+                if ((static_cast<size_t>(fru_tlv->length) + 1) > sizeof(l_locationCodeNullTerm))
+                {
+                    errlHndl_t errl = nullptr;
+
+                    PLDM_ERR("cacheRemoteFruVpd: getRecordSetByLocationCode found "
+                        "a location code TLV with length greater than the maximum "
+                        "allowed size");
+
+                    /*@
+                     * @errortype   ERRL_SEV_PREDICTIVE
+                     * @moduleid    MOD_CACHE_REMOTE_FRU_VPD
+                     * @reasoncode  RC_INVALID_LENGTH
+                     * @userdata1   Fru record TLV length
+                     * @userdata2   Size of location code buffer
+                     * @devdesc     Location code length found from the FRU Record Table
+                     *              exceeds the maximum size set for the location code
+                     * @custdesc    A software error occurred during system boot
+                     */
+                    errl = new ErrlEntry(ERRL_SEV_PREDICTIVE,
+                                         MOD_CACHE_REMOTE_FRU_VPD,
+                                         RC_INVALID_LENGTH,
+                                         fru_tlv->length,
+                                         sizeof(l_locationCodeNullTerm),
+                                         ERRORLOG::ErrlEntry::NO_SW_CALLOUT);
+                    addBmcErrorCallouts(errl);
+                    errlCommit(errl, PLDM_COMP_ID);
+                    continue;
+                }
+
+                memcpy(l_locationCodeNullTerm, l_location_code, fru_tlv->length);
+
+                // Match the ending of the location code string with
+                // the input location code
+                if (locationEndsWith(l_locationCodeNullTerm, i_location_code))
+                {
+                    o_rsi = record_data->record_set_id;
+                    o_found = true;
+                    break;
+                }
+            }
+        }
+
+        if (o_found)
+        {
+            break;
+        }
+
+        // increment ptr to input fru table by record size
+        // so we are ready to process the next record
+        i_pldm_fru_table_buf += record_size;
+    }
+
+    PLDM_EXIT("getRecordSetByLocationCode: found: %d, rsi if found: %d", o_found, o_rsi);
+}
+
+/**
+ *  @brief Given a complete fru record table's set of records, filter the
+ *        set of records for a given record set id / record type.
+ *        See https://www.dmtf.org/standards/pmci for references
+ *
+ * @param[in] i_pldm_fru_table_buf  Pointer to a buffer which contains data
+ *                                  defined in Table 7 of DSP0257 v1.0.0
+ * @param[in] i_record_count        Number of records in the fru record table
+ * @param[in] i_record_set_id       The record set id we would like the records
+ *                                  returned to have
+ * @param[in] i_record_type         The record type we would like the records
+ *                                  returned to have
+ * @param[out] o_pldm_fru_table_buf Byte vector which will be filled in with the
+ *                                  filtered out pldmn fru records we want. The
+ *                                  vector passed in is cleared at func start.
+ *                                  Note: this will not contain the Pad or
+ *                                  FRUDataStructureIntegrityChecksum defined in
+ *                                  DSP0257
+ * @param[out] o_records_in_output_table Number of records contained in
+ *                                       o_pldm_fru_table_buf
+ *
+ * @note If no records matching i_recordSetId and i_recordType are found then
+ *       o_records_in_output_table will return 0 and o_pldm_fru_table_buf.size()
+ *       will be 0
+ *
+ * @return void
+ */
+void getRecordSetByIdAndType(const uint8_t* const i_pldm_fru_table_buf,
+                             const uint16_t i_record_count,
+                             const uint16_t i_record_set_id,
+                             const uint8_t  i_record_type,
+                             std::vector<uint8_t>& o_pldm_fru_table_buf,
+                             uint16_t & o_records_in_output_table)
+{
+  PLDM_ENTER("getRecordSetByIdAndType: o_pldm_fru_table_buf = %p  i_record_set_id = 0x%x  i_record_type = 0x%x",
+             o_pldm_fru_table_buf.data(),
+             i_record_set_id,
+             i_record_type);
+
+  assert( i_pldm_fru_table_buf != nullptr,
+        "getRecordSetByIdAndType: i_pldm_fru_table_buf is a nullptr!");
+
+  o_pldm_fru_table_buf.clear();
+
+  // copy the pointers provided by the caller into
+  // local variables so we can do some ptr arithmetic
+  // on them without messing up the caller
+  const uint8_t * in_table_cur_ptr =
+        const_cast<const uint8_t*>(i_pldm_fru_table_buf);
+
+  o_records_in_output_table = 0;
+
+  // Loop through all of the records looking for the ones that match
+  // i_record_set_id, and i_record_type
+  for( uint16_t i = 0; i < i_record_count; i++)
+  {
+      const pldm_fru_record_data_format *record_data =
+        reinterpret_cast<const pldm_fru_record_data_format *>(in_table_cur_ptr);
+
+      // We need to keep a running total of the size of the record as we process
+      // the entries in the record because the size of each entry is variable.
+      // Start the record size count at the offset at of the TLVs.
+      // (TLV == Type, Length, Value .. see fru.h for details)
+      size_t record_size = offsetof(pldm_fru_record_data_format, tlvs);
+
+      // Iterate through the TLVs contained in this record, read the
+      // length from each TLV and add it to the record_size along with
+      // the size of the T and L (type and length) of the TLV struct.
+      for( uint8_t j = 0; j < record_data->num_fru_fields; j++)
+      {
+          const pldm_fru_record_tlv *fru_tlv =
+              reinterpret_cast<const pldm_fru_record_tlv *>(in_table_cur_ptr +
+                                                            record_size);
+          record_size  += (offsetof(pldm_fru_record_tlv, value) +
+                           fru_tlv->length);
+      }
+
+      // Only copy records into out_table_cur_ptr if they match the
+      // record set id and type we desire
+      if(le16toh(record_data->record_set_id) == i_record_set_id &&
+         record_data->record_type == i_record_type )
+      {
+          o_pldm_fru_table_buf.insert(o_pldm_fru_table_buf.end(),
+                                      in_table_cur_ptr,
+                                      in_table_cur_ptr + record_size);
+          o_records_in_output_table++;
+      }
+
+      // increment local ptr to input fru table by record size
+      // so we are ready to process the next record
+      in_table_cur_ptr += record_size;
+  }
+  PLDM_EXIT("getRecordSetByIdAndType: records found: %d  buffer length  0x%llx",
+            o_records_in_output_table, o_pldm_fru_table_buf.size());
+}
+
+/**
+* @brief Build up a vector of pt_entry objects by iterating on
+*        a vector of byte vectors containing IPZ records.
+*
+* @param[in]  i_ipz_records  Vector of byte vectors where each byte vector
+*                            contains a IPZ formated VPD Record.
+* @param[in]  i_vtoc_length  Total length of the VTOC record, needed for
+                             calcuating record offsets.
+* @param[out] o_pt_entries  Vector of pt_entry structs which will be
+*                            cleared at the start of this function and
+*                            filled in as we process the ipz_records
+*
+* @return returns error log if error occurs, otherwise returns nullptr
+*/
+errlHndl_t generate_pt_entries(const std::vector<std::vector<uint8_t>>& i_ipz_records,
+                               const size_t i_vtoc_length,
+                               std::vector<pt_entry>& o_pt_entries)
+{
+  errlHndl_t errl = nullptr;
+
+  o_pt_entries.clear();
+
+  // While building the table of contents we need to know the offset
+  // of each IPZ record. Create a variable that will keep track of our
+  // "current" offset in the final IPZ file. This will start after the VHDR
+  // and VTOC records, which are always first in IPZ formated data and will
+  // be incremented as we iterate throught the ipz_records.
+  size_t ipz_record_offset = sizeof(vhdr_record) + i_vtoc_length;
+
+  for(auto ipz_record : i_ipz_records)
+  {
+      standard_ipz_record_hdr * record_hdr_ptr =
+        reinterpret_cast<standard_ipz_record_hdr *>(ipz_record.data());
+
+      if(ipz_record.size() < sizeof(standard_ipz_record_hdr))
+      {
+          PLDM_ERR("generate_pt_entries:: IPZ record size is 0x%x bytes when we expect at least 0x%x bytes",
+                   ipz_record.size(),
+                   sizeof(standard_ipz_record_hdr));
+          /*@
+          * @errortype  ERRL_SEV_UNRECOVERABLE
+          * @moduleid   MOD_GENERATE_PT_ENTRIES
+          * @reasoncode RC_INVALID_LENGTH
+          * @userdata1  Expected Size
+          * @userdata2  Actual Size
+          * @devdesc    Software problem during fru record table translation
+          * @custdesc   A software error occurred during system boot
+          */
+          errl = new ErrlEntry(ERRL_SEV_UNRECOVERABLE,
+                               MOD_GENERATE_PT_ENTRIES,
+                               RC_INVALID_LENGTH,
+                               sizeof(standard_ipz_record_hdr),
+                               ipz_record.size(),
+                               ErrlEntry::ADD_SW_CALLOUT);
+          // Hostboot should have caught a problem sooner but the problem
+          // could have originated from the BMC
+          errl->addProcedureCallout(HWAS::EPUB_PRC_SP_CODE,
+                                      HWAS::SRCI_PRIORITY_MED);
+          break;
+      }
+
+      if(record_hdr_ptr->rt_kw_name != ASCII_RT)
+      {
+          PLDM_ERR("generate_pt_entries:: IPZ record is not in the format we expect. Could not find RT keyword");
+          /*@
+          * @errortype  ERRL_SEV_UNRECOVERABLE
+          * @moduleid   MOD_GENERATE_PT_ENTRIES
+          * @reasoncode RC_INVALID_IPZ_FORMAT
+          * @userdata1  Bytes 0:7 of ipz_record
+          * @userdata2  IPZ record size
+          * @devdesc    Software problem during fru record table translation
+          * @custdesc   A software error occurred during system boot
+          */
+          errl = new ErrlEntry(ERRL_SEV_UNRECOVERABLE,
+                               MOD_GENERATE_PT_ENTRIES,
+                               RC_INVALID_IPZ_FORMAT,
+                               *reinterpret_cast<uint64_t *>(
+                                                       ipz_record.data()),
+                               ipz_record.size(),
+                               ErrlEntry::ADD_SW_CALLOUT);
+          // Hostboot should have caught a problem sooner but the problem
+          // could have originated from the BMC
+          errl->addProcedureCallout(HWAS::EPUB_PRC_SP_CODE,
+                                    HWAS::SRCI_PRIORITY_MED);
+          break;
+      }
+
+      pt_entry cur_entry = { };
+
+
+      // Copy the value of the RT keyword into the pt_entry.record_name
+      memcpy(&cur_entry.record_name,
+             &record_hdr_ptr->rt_kw_val,
+             sizeof(record_hdr_ptr->rt_kw_val));
+
+      cur_entry.record_length = htole16(ipz_record.size());
+      cur_entry.record_offset = htole16(ipz_record_offset);
+
+      // increment our "current" ipz_record_offset ptr by this records size
+      // (see above for more details)
+      ipz_record_offset += ipz_record.size();
+
+      o_pt_entries.push_back(cur_entry);
+  }
+
+  if(errl)
+  {
+      PLDM_ERR("generate_pt_entries:: returning with error after generating %d pt entries",
+               o_pt_entries.size());
+  }
+
+  return errl;
+}
+
+/**
+* @brief Fully populate a byte vector with an IPZ-styled VTOC Record
+*
+* @param[out]    o_vtoc_buf      Byte vector that will be filled with a fully populated
+*                                VTOC record
+* @param[in]     i_ipz_records   A vector of byte vectors. Each byte vector contains
+*                                a fully populated IPZ record.
+* @param[in]     i_pad_bytes     Number of pad bytes we need to add in the PF keyword
+*
+* See Common VPD Architecture document for details (search "VPD Table Of Contents")
+*
+* @return returns error log if error occurs, otherwise returns nullptr
+*/
+//     ==============================================================================
+//                                V T O C  (EXAMPLE)
+//     ==============================================================================
+//     Field             Size  Content                                         Format
+//     ==============================================================================
+//     Large Resource       1  '84'x                                           Hex
+//     -----------------------------------------------------------------------------
+//     Record Length        2  '3800'x  (=56, little endian)                   Hex
+//     -----------------------------------------------------------------------------
+//     Keyword              2  "RT"                             Record Name
+//     Length               1  '04'x  (=4)
+//     Data                 4  "VTOC"                                          ASCII
+//     -----------------------------------------------------------------------------
+//     Keyword              2  "PT"                       Table of Contents
+//     Length               1  '2A'x  (=42)
+//     Data                 4  "VINI"                                          ASCII
+//                          2  '????'x  (Record Type, little endian)           Hex
+//                          2  '????'x  (Record Offset, little endian)         Hex
+//                          2  '????'x  (Record Length, little endian)         Hex
+//                          2  '????'x  (ECC Offset, little endian)            Hex
+//                          2  '????'x  (ECC Length, little endian)            Hex
+//                          4  "VMSC"                                          ASCII
+//                          2  '????'x  (Record Type, little endian)           Hex
+//                          2  '????'x  (Record Offset, little endian)         Hex
+//                          2  '????'x  (Record Length, little endian)         Hex
+//                          2  '????'x  (ECC Offset, little endian)            Hex
+//                          2  '????'x  (ECC Length, little endian)            Hex
+//                          4  "VRTN"                                          ASCII
+//                          2  '????'x  (Record Type, little endian)           Hex
+//                          2  '????'x  (Record Offset, little endian)         Hex
+//                          2  '????'x  (Record Length, little endian)         Hex
+//                          2  '????'x  (ECC Offset, little endian)            Hex
+//                          2  '????'x  (ECC Length, little endian)            Hex
+//     -----------------------------------------------------------------------------
+//     Keyword              2  "PF"                                Pad Fill
+//     Length               1  '01'x  (=1) (calculated by VPD tool, may vary)
+//     Data                 1  '00'x                                           Hex
+//     -----------------------------------------------------------------------------
+//     Small Resource       1  '78'x                                           Hex
+//     ==============================================================================
+//     Total Byte Count: 60*
+//     ==============================================================================
+errlHndl_t generate_vtoc_record(std::vector<uint8_t>& o_vtoc_buf,
+                                const std::vector<std::vector<uint8_t>>& i_ipz_records,
+                                const uint8_t i_pad_bytes)
+{
+    PLDM_ENTER("generate_vtoc_record");
+    errlHndl_t errl = nullptr;
+    do{
+
+    if( (sizeof(pt_entry)*i_ipz_records.size()) > UINT8_MAX ||
+        i_ipz_records.size() == 0 )
+    {
+        PLDM_ERR("generate_vtoc_record:: estimated PT kw size 0x%x will exceed max size for a pt keyword, or is 0 and is invalid",
+                 sizeof(pt_entry)*i_ipz_records.size());
+        /*@
+        * @errortype  ERRL_SEV_UNRECOVERABLE
+        * @moduleid   MOD_GENERATE_VTOC_RECORD
+        * @reasoncode RC_INVALID_LENGTH
+        * @userdata1  Estimated size of the PT entry
+        * @userdata2  unused
+        * @devdesc    Software problem, unable to translate PLDM
+        *             Fru Table from BMC to IPZ format
+        * @custdesc   A software error occurred during system boot
+        */
+        errl = new ErrlEntry(ERRL_SEV_UNRECOVERABLE,
+                             MOD_GENERATE_VTOC_RECORD,
+                             RC_INVALID_LENGTH,
+                             sizeof(pt_entry)*i_ipz_records.size(),
+                             0,
+                             ErrlEntry::NO_SW_CALLOUT);
+        addBmcErrorCallouts(errl);
+        break;
+    }
+
+    uint8_t pt_kw_len = (sizeof(pt_entry)*i_ipz_records.size());
+
+    // This structure represents the start of the vtoc record up to but not
+    // including the value of its pt keyword.
+    struct vtoc_first_part
+    {
+      uint8_t  vtoc_rec_start = VPD_RECORD_START_MAGIC_NUM;
+      uint16_t vtoc_rec_len;            // variable
+      uint16_t rt_kw_name = 0x5254;     // ascii "RT"
+      uint8_t  rt_kw_len  = 0x04;       // always 4 bytes
+      uint32_t rt_kw_val  = 0x56544F43; // ascii "VTOC"
+      uint16_t pt_kw_name = 0x5054;     // ascii "PT"
+      uint8_t  pt_kw_len;               // variable
+
+      vtoc_first_part(uint16_t vtoc_len, uint8_t pt_len) {
+        vtoc_rec_len = htole16(vtoc_len);
+        pt_kw_len = pt_len;
+      }
+    } PACKED;
+
+    // Note: this vtoc_len DOES NOT include the Large/Small Resources,
+    // nor the Record Size fields
+    uint16_t vtoc_len = offsetof(vtoc_first_part, pt_kw_len) +
+                        pt_kw_len +              // (see above)
+                        KEYWORD_BYTE_SIZE +      // 2 bytes ('PF')
+                        KEYWORD_SIZE_BYTE_SIZE + // 2 bytes (variable);
+                        i_pad_bytes;
+
+    // subtract off the parts of the struct that are not included  in the
+    // vtoc record length field
+    vtoc_len = vtoc_len -
+             sizeof(((vtoc_first_part *)0)->vtoc_rec_start) - // large resource
+             sizeof(((vtoc_first_part *)0)->vtoc_rec_len);    // record size bytes
+    // make sure the vector the called passed us is empty
+    o_vtoc_buf.clear();
+
+    // resize the vtoc buffer to the actual size the buffer will be
+    // including the Large/Small Resources and the Record Size fields
+    o_vtoc_buf.resize(vtoc_len +
+                      (RESOURCE_ID_SIZE * 2) + // Large/Small Resources
+                      RECORD_SIZE_BYTE_SIZE,   // Record Size fields
+                      0);
+
+
+    // create a struct to help fill in everything in a vtoc record
+    // up to (but not including) the value of its pt keyword
+    auto vtoc_start_ptr =
+              reinterpret_cast<vtoc_first_part*>(o_vtoc_buf.data());
+    *vtoc_start_ptr = vtoc_first_part(vtoc_len, pt_kw_len);
+
+    std::vector<pt_entry> pt_entries;
+    errl = generate_pt_entries(i_ipz_records, o_vtoc_buf.size(), pt_entries);
+
+    if(errl)
+    {
+        PLDM_ERR("generate_vtoc_record: error occurred during generate_pt_entries, see error for details");
+        break;
+    }
+
+    assert(pt_kw_len == (pt_entries.size() * sizeof(pt_entries[0])),
+          "generate_vtoc_record: the len of the pt kw we calculated %u did not match the size of the pt kw we generated %ull",
+           pt_kw_len,
+           (pt_entries.size() * sizeof(pt_entries[0])));
+
+    // copy the pt keyword data we generated after the vtoc_first_part struct
+    memcpy(reinterpret_cast<void*>(&o_vtoc_buf.at(sizeof(vtoc_first_part))),
+           reinterpret_cast<const void*>(pt_entries.data()),
+           pt_kw_len);
+
+    // We must fill in the PF keyword which comes after the PT keyword.
+    // The PF kw is the padding keyword -- the idea is to allow for some
+    // variable amount of bytes to ensure we get the VTOC record 4 byte aligned
+    size_t pf_kw_offset = sizeof(vtoc_first_part) + pt_kw_len;
+
+    o_vtoc_buf[pf_kw_offset]   = 0x50; // ascii "P"
+    o_vtoc_buf[pf_kw_offset+1] = 0x46; // ascii "F"
+    o_vtoc_buf[pf_kw_offset+2] = i_pad_bytes;
+    // pad bytes already accounted for and set to 0 by vector resize above
+
+    // write the magic number that signifies the end of the record
+    auto vtoc_rec_end = &o_vtoc_buf.back();
+    *vtoc_rec_end = VPD_RECORD_END_MAGIC_NUM;
+
+    }while(0);
+
+    PLDM_EXIT("generate_vtoc_record");
+
+    return errl;
+}
+
+/**
+* @brief Fully populate a byte vector with an IPZ-styled VHDR Record
+*
+* @param[out] o_vhdr_buf      Byte vector that will be filled with a fully
+*                             populated VHDR record. Note that any elements
+*                             of the vector that get passed in are cleared.
+* @param[in]  i_vtoc_len      The length of the VTOC record that will follow
+*                             this VHDR record.
+*
+* See Common VPD Architecture document for details (search "VPD Header")
+*
+* @return void
+*/
+void generate_vhdr_record(std::vector<uint8_t>& o_vhdr_buf,
+                       const uint8_t i_vtoc_len)
+{
+    PLDM_ENTER("generate_vhdr_record");
+
+    // setup the vector to the appropriate size for a VHDR record
+    o_vhdr_buf.clear();
+    o_vhdr_buf.resize(sizeof(vhdr_record));
+
+    // Use the specialized vhdr_record struct ctor to fill in the first
+    // sizeof(vhdr_record) bytes of o_ipz_vpd_buf
+    auto vhdr_ptr = reinterpret_cast<vhdr_record*>(o_vhdr_buf.data());
+    *vhdr_ptr = vhdr_record(i_vtoc_len);
+    PLDM_EXIT("generate_vhdr_record");
+}
+
+/**
+* @brief Parse through a pointer containing a PLDM-styled Fru Record Table
+*        and convert each PLDM Fru record into a fully populated IPZ-styled
+*        record.
+*
+* @param[in]     i_pldm_fru_table_buf    Ptr to PLDM-styled FRU record table
+*                                        that contains OEM type Fru Records.
+* @param[in]     i_pldm_fru_record_count Number of records in
+*                                        i_pldm_fru_table_buf
+* @param[out]    o_ipz_records           Vector of byte vectors where each
+*                                        byte vector will contain a fully
+*                                        populated IPZ-style record. Note
+*                                        that any elements the vector that
+*                                        gets passed in are cleared.
+*
+* See Common VPD Architecture document for details
+*
+* @return returns error log if error occurs, otherwise returns nullptr
+*/
+errlHndl_t generate_ipz_formatted_vpd(const uint8_t* const i_pldm_fru_table_buf,
+                                      const uint16_t i_pldm_fru_record_count,
+                                      std::vector<std::vector<uint8_t>>& o_ipz_records)
+{
+    PLDM_ENTER("generate_ipz_formatted_vpd i_pldm_fru_table_buf = %p  i_pldm_fru_record_count = %d",
+               i_pldm_fru_table_buf,
+               i_pldm_fru_record_count);
+
+    assert(i_pldm_fru_table_buf != nullptr,
+           "generate_ipz_formatted_vpd passed a nullptr");
+    errlHndl_t errl = nullptr;
+    // We will be iterating through the input pldm_record buffer we were
+    // passed in. To avoid messing up the caller's ptr create a local copy
+    // of the ptr to do ptr math on.
+    const uint8_t * cur_pldm_rec_ptr =
+          const_cast<const uint8_t*>(i_pldm_fru_table_buf);
+
+    o_ipz_records.clear();
+
+    // Loop through all of the pldm records in i_pldm_fru_table_buf.
+    // On each loop, translate the pldm fru record into IPZ format and copy
+    // it to the output buffer
+    for( uint16_t i = 0; i < i_pldm_fru_record_count; i++)
+    {
+        const pldm_fru_record_data_format *record_data =
+            reinterpret_cast<const pldm_fru_record_data_format *>(cur_pldm_rec_ptr);
+
+        if(record_data->record_type != PLDM_FRU_RECORD_TYPE_OEM)
+        {
+            PLDM_ERR("generate_ipz_formatted_vpd: cannot process non-oem type 0x%02x in pldmFruRecordSetToIPZ. "
+                     "Note: this is also a sanity check, this will be the first fail we hit if contents of"
+                     " i_pldm_fru_table_buf is junk.", record_data->record_type);
+            /*@
+            * @errortype  ERRL_SEV_UNRECOVERABLE
+            * @moduleid   MOD_PLDM_FRU_TO_IPZ
+            * @reasoncode RC_UNSUPPORTED_TYPE
+            * @userdata1[0:15]  Record set ID of current record "i"
+            * @userdata1[16:31] Record type of current record "i"
+            * @userdata2  unused
+            * @devdesc    Software problem, failed to encode PLDM message
+            * @custdesc   A software error occurred during system boot
+            */
+            errl = new ErrlEntry(ERRL_SEV_UNRECOVERABLE,
+                                   MOD_PLDM_FRU_TO_IPZ,
+                                   RC_UNSUPPORTED_TYPE,
+                                   TWO_UINT16_TO_UINT32(
+                                      record_data->record_set_id,
+                                      TO_UINT16(record_data->record_type)),
+                                   0,
+                                   ErrlEntry::ADD_SW_CALLOUT);
+            errl->collectTrace(PLDM_COMP_NAME);
+            break;
+        }
+
+        // We must keep a running total of the size of the record as we process
+        // the entries because the size of each entry is variable.
+        // Start the record size count at the offset at of the TLVs.
+        // (TLV == Type, Length, Value .. see fru.h for details)
+        size_t offset_of_cur_pldm_record_entry = offsetof(pldm_fru_record_data_format, tlvs);
+
+        // Start filling the in vpd record data by writing the
+        // VPD_RECORD_START_MAGIC_NUM and leaving 2 bytes for the size
+        // to be written after the entries have been processed
+        std::vector<uint8_t> record_bytes{VPD_RECORD_START_MAGIC_NUM, 0x00, 0x00};
+
+        // we are not sure yet if the PLDM Fru record contains IPZ data or not
+        // so for now be safe and assume its not IPZ data
+        bool is_ipz_record = false;
+        bool is_known_ipz_record = false;
+
+        uint32_t record_name = 0;
+
+        // Walk through the TLVs in this PLDM Fru Record
+        // NOTE: as we iterate through the TLVs below offset_of_cur_pldm_record_entry can be
+        //       viewed as the offset of the current TLV from the start of the
+        //       PLDM Fru Record
+        for(uint8_t j = 0; j < record_data->num_fru_fields; j++)
+        {
+            const pldm_fru_record_tlv *fru_tlv =
+                reinterpret_cast<const pldm_fru_record_tlv *>(cur_pldm_rec_ptr +
+                                                              offset_of_cur_pldm_record_entry);
+
+            // Following value is from the PLDM_FRU_IPZ_Keyword_Mapping doc
+            // RT keyword is first TLV for IPZ records
+            constexpr uint8_t RT_KEYWORD_FIELD_ID = 2;
+            // The RT keyword mapping is the same for each IPZ VPD record.
+            // The RT keyword tells us what the IPZ VPD record is.
+            // We need to keep track of the RT keyword's value so we know
+            // what the other fru record entry's FIELD_IDs represent
+            if(fru_tlv->type == RT_KEYWORD_FIELD_ID)
+            {
+                assert(RECORD_BYTE_SIZE == fru_tlv->length,
+                       "generate_ipz_formatted_vpd: unexepcted field length 0x%.02x or RT keyword",
+                       fru_tlv->length);
+                record_name = *reinterpret_cast<const uint32_t *>(fru_tlv->value);
+                is_ipz_record = true;
+                PLDM_INF("generate_ipz_formatted_vpd: CANDIDATE MATCH found record_name=0x%X", record_name);
+            }
+
+
+            is_known_ipz_record = (record_keyword_field_map.find(record_name) !=
+                                   record_keyword_field_map.end());
+
+            // If we do not find RT_KEYWORD_FIELD_ID to be the first entry in
+            // a given fru record, then it is safe to assume that this record
+            // does not represent IPZ VPD data
+            if( is_known_ipz_record )
+            {
+                std::vector<uint16_t> record_keywords = record_keyword_field_map.at(record_name);
+
+                if(fru_tlv->type < RT_FIELD_TYPE ||
+                   fru_tlv->type >= record_keywords.size())
+                {
+                    PLDM_ERR("generate_ipz_formatted_vpd: Unsupported PLDM Fru Record Field Type %u for record 0x%08x found",
+                             fru_tlv->type, record_name)
+                    /*@
+                    * @errortype  ERRL_SEV_UNRECOVERABLE
+                    * @moduleid   MOD_PLDM_FRU_TO_IPZ
+                    * @reasoncode RC_UNSUPPORTED_FIELD
+                    * @userdata1  record name (ascii)
+                    * @userdata2  PLDM Fru field type
+                    * @devdesc    BMC sent fru info host does not understand
+                    * @custdesc   A software error occurred during system boot
+                    */
+                    errl = new ErrlEntry(ERRL_SEV_UNRECOVERABLE,
+                                         MOD_PLDM_FRU_TO_IPZ,
+                                         RC_UNSUPPORTED_FIELD,
+                                         record_name,
+                                         fru_tlv->type,
+                                         ErrlEntry::NO_SW_CALLOUT);
+                    addBmcErrorCallouts(errl);
+                    break;
+                }
+
+                auto keyword_name_ptr =
+                      reinterpret_cast<uint8_t *>(&record_keywords[fru_tlv->type]);
+
+                PLDM_DBG("generate_ipz_formatted_vpd: found record 0x%.08x  keyword 0x%.04x",
+                         record_name,
+                         record_keywords[fru_tlv->type]);
+
+                // Add the keyword name, length, and value to the ipz_record
+                // we are building
+                record_bytes.push_back(*keyword_name_ptr);
+                record_bytes.push_back(*(keyword_name_ptr + 1));
+
+                record_bytes.push_back(fru_tlv->length);
+
+                std::copy(fru_tlv->value,
+                          fru_tlv->value + fru_tlv->length,
+                          back_inserter(record_bytes));
+                // We need to NOT handle anything before the first RT keyword and ONLY if we have extra keywords to add
+                if (j == (record_data->num_fru_fields-1)) // last time thru and any new keywords
+                {
+                    if (special_record_keywords_map.count(record_name) != 0)
+                    {
+                        PLDM_INF("generate_ipz_formatted_vpd: ADD SPECIAL keywords for record_name=0x%X", record_name);
+                        errl = append_keywords(record_bytes, record_name);
+                        if (errl)
+                        {
+                            delete errl;
+                            errl = nullptr;
+                        }
+                    }
+                }
+            }
+
+            if(is_ipz_record && !is_known_ipz_record)
+            {
+                PLDM_INF("BMC sent us the IPZ record 0x%.08x which Hostboot does not know how to process, skipping it", record_name);
+            }
+
+            // increment the offset_of_cur_pldm_record_entry variable by the total size of
+            // this TLV
+            offset_of_cur_pldm_record_entry +=  (offsetof(pldm_fru_record_tlv, value) +
+                                                fru_tlv->length);
+        } // end loop through TLVs
+
+        if(errl)
+        {
+            break;
+        }
+
+        // Increment the cur_pldm_rec_ptr by offset_of_cur_pldm_record_entry
+        // now that we have completed processing the TLVs. Do this regardless
+        // of whether or not the fru record was IPZ data in order to get to the
+        // next pldm fru record if there is one.
+        cur_pldm_rec_ptr += offset_of_cur_pldm_record_entry;
+
+        if(is_known_ipz_record)
+        {
+            // The last byte in the IPZ record is the END MAGIC NUM 0x78
+            record_bytes.push_back(VPD_RECORD_END_MAGIC_NUM);
+
+            // Now that we have the total size of the record we can set
+            // the record size ptr
+            // NOTE : field is little-endian and we don't include the size of
+            // the resource ids (2 bytes) nor the record length (2 bytes)
+            // according to the Common VPD specification
+            //
+            auto record_hdr_ptr =
+              reinterpret_cast<standard_ipz_record_hdr *>(record_bytes.data());
+            record_hdr_ptr->record_length = htole16(record_bytes.size() -
+                                                    (2 * RESOURCE_ID_SIZE) -
+                                                    RECORD_SIZE_BYTE_SIZE);
+
+            o_ipz_records.push_back(record_bytes);
+        }
+    }  // end loop through i_pldm_fru_record_count records
+
+    return errl;
+}
+
+/**
+ * @brief Convert a serialized fru record set in IPZ style VPD
+ *        See https://www.dmtf.org/standards/pmci for references
+ *
+ * @param[in]  i_pldm_fru_table_buf     Pointer to a buffer which is a series
+ *                                      of PLDM fru records of type
+ *                                      FRU_RECORD_TYPE_OEM
+ *                                      (See Table 2 & 3 of DSP0257 v1.0.0)
+ * @param[in]  i_pldm_fru_record_count  Number of records in i_pldm_fru_table_buf
+ * @param[out] o_ipz_vpd_buf            Vector which will be populated with a completeIPD VPD translated from
+ *                                      the data in i_pldm_fru_table_buf
+ *
+ * @return returns error log if error occurs, otherwise returns nullptr
+ */
+errlHndl_t pldmFruRecordSetToIPZ(const uint8_t* const i_pldm_fru_table_buf,
+                                 const uint16_t i_pldm_fru_record_count,
+                                 std::vector<uint8_t>& o_ipz_vpd_buf)
+{
+    PLDM_ENTER("pldmFruRecordSetToIPZ: input fru record count %d   i_pldm_fru_table_buf = %p",
+               i_pldm_fru_record_count,
+               i_pldm_fru_table_buf);
+    errlHndl_t errl = nullptr;
+
+    do{
+    // ******* IPZ BUFFER LAYOUT *************
+    // VHDR record (contains ptr to VTOC)
+    // VTOC record (contains table of contents)
+    // <PLDM Fru Records from BMC converted to IPZ format>
+    // ***************************************
+
+    // first process the input PLDM Fru records and translate them into
+    // IPZ formated VPD Records
+    std::vector<std::vector<uint8_t>> ipz_records;
+
+    errl = generate_ipz_formatted_vpd(i_pldm_fru_table_buf,
+                                      i_pldm_fru_record_count,
+                                      ipz_records);
+    if(errl)
+    {
+        PLDM_ERR("pldmFruRecordSetToIPZ: error returned from generate_ipz_formatted_vpd");
+        break;
+    }
+
+    // vtoc_len is needed for vhdr generation
+    // Note: this vtoc_len DOES include the Large/Small Resources,
+    // and the Record Length fields, but DOES NOT include
+    // the padding byte, which is calculated below.
+    // calculations from VTOC layout example above
+    size_t vtoc_len = RESOURCE_ID_SIZE +       // 1 byte  (0x84)
+                      RECORD_SIZE_BYTE_SIZE +  // 2 bytes (variable)
+                      KEYWORD_BYTE_SIZE +      // 2 bytes ('RT')
+                      KEYWORD_SIZE_BYTE_SIZE + // 2 bytes (0x04)
+                      RECORD_BYTE_SIZE +       // 4 bytes ('VTOC')
+                      KEYWORD_BYTE_SIZE +      // 2 bytes ('PT')
+                      KEYWORD_SIZE_BYTE_SIZE + // 2 bytes (variable)
+                      // 14 bytes/entry * pt entry count
+                      (sizeof(pt_entry) * ipz_records.size()) +
+                      KEYWORD_BYTE_SIZE +      // 2 bytes ('PF')
+                      KEYWORD_SIZE_BYTE_SIZE + // 2 bytes (variable);
+                      RESOURCE_ID_SIZE;        // 1 byte  (0x78)
+
+    // VTOC record must be 4 byte aligned, calculate the pad bytes required
+    // to make this happen.
+    uint8_t vtoc_pad_bytes = ALIGN_4(vtoc_len) - vtoc_len;
+
+    // create a byte vector containing a fully populated VHDR record
+    std::vector<uint8_t> vhdr_record_bytes;
+    generate_vhdr_record(vhdr_record_bytes,
+                         vtoc_len + vtoc_pad_bytes);
+
+    assert(!vhdr_record_bytes.empty(),
+           "generated empty vhdr record during pldm fru->ipz translation");
+
+    // create a byte vector containing a fully populated VTOC record
+    std::vector<uint8_t> vtoc_record_bytes;
+    errl = generate_vtoc_record(vtoc_record_bytes,
+                                ipz_records,
+                                vtoc_pad_bytes );
+    if(errl)
+    {
+        PLDM_ERR("pldmFruRecordSetToIPZ: error returned from generate_vtoc_record");
+        break;
+    }
+
+    PLDM_DBG("pldmFruRecordSetToIPZ: start copying generated/translated data into output buffer");
+
+    o_ipz_vpd_buf.clear();
+
+    // copy the VHDR record into the output buffer
+    std::copy(vhdr_record_bytes.begin(),
+              vhdr_record_bytes.end(),
+              back_inserter(o_ipz_vpd_buf));
+    PLDM_DBG("pldmFruRecordSetToIPZ: o_ipz_vpd_buf size after copying vhdr record: %d", o_ipz_vpd_buf.size());
+
+    // copy the VTOC record into the output buffer
+    std::copy(vtoc_record_bytes.begin(),
+              vtoc_record_bytes.end(),
+              back_inserter(o_ipz_vpd_buf));
+    PLDM_DBG("pldmFruRecordSetToIPZ: o_ipz_vpd_buf size after copying vtoc record: %d", o_ipz_vpd_buf.size());
+
+    // copy each of the translated IPZ records into the output buffer
+    for(size_t i = 0; i < ipz_records.size(); i++)
+    {
+        std::copy(ipz_records[i].begin(),
+                  ipz_records[i].end(),
+                  back_inserter(o_ipz_vpd_buf));
+
+        PLDM_DBG("pldmFruRecordSetToIPZ: o_ipz_vpd_buf size after copying ipz record %d : %d",
+                 i, o_ipz_vpd_buf.size());
+    }
+
+    }while(0);
+
+    PLDM_EXIT("pldmFruRecordSetToIPZ");
+    return errl;
+}
+
+/* @brief Sets an attribute on a Target to a given string value
+ *
+ * @param[in] i_target  The target
+ * @param[in] i_value   The attribute value
+ * @return errlHndl_t   Error if the string is too long for the attribute
+ *
+ * @note The attribute to set is given in the template parameter
+ */
+template<TARGETING::ATTRIBUTE_ID AttrID>
+errlHndl_t setAttribute(TARGETING::Target* const i_target, const char* const i_value)
+{
+    errlHndl_t errl = nullptr;
+
+    do {
+        typename TARGETING::AttributeTraits<AttrID>::Type value = { };
+
+        // subtract 1 for the terminator
+        if (strlen(i_value) > sizeof(value) - 1)
+        {
+            PLDM_ERR("Location code from BMC is too long "
+                     "(expected no longer than %llu bytes, got %llu)",
+                     sizeof(value) - 1,
+                     strlen(i_value));
+
+            /*@
+             * @errortype  ERRL_SEV_UNRECOVERABLE
+             * @moduleid   MOD_CACHE_REMOTE_FRU_VPD
+             * @reasoncode RC_OVERLONG_LOCATION_CODE
+             * @userdata1  Max length of location codes
+             * @userdata2  Length of location code
+             * @devdesc    Location code from BMC is too long to store in attribute
+             * @custdesc   A software error occurred during system boot
+             */
+            errl = new ErrlEntry(ERRL_SEV_UNRECOVERABLE,
+                                 MOD_CACHE_REMOTE_FRU_VPD,
+                                 RC_OVERLONG_LOCATION_CODE,
+                                 sizeof(value) - 1,
+                                 strlen(i_value),
+                                 ERRORLOG::ErrlEntry::NO_SW_CALLOUT);
+            addBmcErrorCallouts(errl);
+            break;
+        }
+
+        strcpy(value, i_value);
+        i_target->setAttr<AttrID>(value);
+    } while (false);
+
+    return errl;
+}
+
+/**
+ * @brief Parse through a PLDM-styled Fru Record Table and grab a specific
+ *        record's specific keyword data
+ *
+ * @param[in]   i_pldm_fru_table_buf    Ptr to PLDM-styled FRU record table
+ * @param[in]   i_pldm_fru_record_count Number of records in
+ *                                      i_pldm_fru_table_buf
+ * @param[in]   i_record_name           Name of record (VINI, VSYS, etc)
+ * @param[in]   i_keyword               Field type keyword
+ * @param[out]  o_kwdata                Output value matching a specific record/keyword
+ *                                      This output is cleared at the start of the function
+ *
+ * @return bool                         True if the record was found, false otherwise
+ */
+bool get_vpd_kw_from_recordset(const uint8_t* i_pldm_fru_table_buf,
+                               const uint16_t i_pldm_fru_record_count,
+                               const valid_records i_record_name,
+                               const uint8_t i_keyword,
+                               std::vector<uint8_t>& o_kwdata)
+{
+    PLDM_ENTER("get_vpd_kw_from_recordset i_pldm_fru_table_buf = %p i_pldm_fru_record_count = %d",
+            i_pldm_fru_table_buf,
+            i_pldm_fru_record_count);
+
+    assert(i_pldm_fru_table_buf != nullptr,
+            "get_vpd_kw_from_recordset passed a nullptr");
+
+    o_kwdata.clear();
+
+    // Loop through all of the pldm records in i_pldm_fru_table_buf.
+    bool found_kw = false;
+    for (uint16_t record = 0; record < i_pldm_fru_record_count; record++)
+    {
+        const pldm_fru_record_data_format *record_data =
+            reinterpret_cast<const pldm_fru_record_data_format *>(i_pldm_fru_table_buf);
+
+        // We must keep a running total of the size of the record as we process
+        // the entries because the size of each entry is a variable.
+        // Start the record size count at the offset at of the TLVs.
+        // (TLV == Type, Length, Value .. see fru.h for details)
+        size_t offset_of_cur_pldm_record_entry = offsetof(pldm_fru_record_data_format, tlvs);
+
+        // we are not sure yet if the PLDM Fru record contains IPZ data or not
+        // so for now be safe and assume it's not IPZ data
+        bool is_known_ipz_record = false;
+
+        uint32_t record_name = 0;
+
+        // Walk through the TLVs in this PLDM Fru Record
+        // NOTE: as we iterate through the TLVs below offset_of_cur_pldm_record_entry can be
+        // viewed as the offset of the current TLV from the start of the PLDM Fru Record
+        for (uint8_t tlv = 0; tlv < record_data->num_fru_fields; tlv++)
+        {
+            const pldm_fru_record_tlv *fru_tlv =
+                reinterpret_cast<const pldm_fru_record_tlv *>(i_pldm_fru_table_buf +
+                                                              offset_of_cur_pldm_record_entry);
+
+            // increment the offset_of_cur_pldm_record_entry variable by the total size of
+            // this TLV. Important that this must be done to preserve the record offset
+            offset_of_cur_pldm_record_entry += (offsetof(pldm_fru_record_tlv, value) +
+                                                fru_tlv->length);
+
+            // Must be OEM fru record type to check for RT keywords
+            if (record_data->record_type != PLDM_FRU_RECORD_TYPE_OEM)
+            {
+                continue;
+            }
+
+            // Following value is from the PLDM_FRU_IPZ_Keyword_Mapping doc
+            // RT keyword is first TLV for IPZ records
+            constexpr uint8_t RT_KEYWORD_FIELD_ID = 2;
+            // The RT keyword mapping is the same for each IPZ VPD record.
+            // The RT keyword tells us what the IPZ VPD record is.
+            // We need to keep track of the RT keyword's value so we know
+            // what the other fru record entry's FIELD_IDs represent
+            if (fru_tlv->type == RT_KEYWORD_FIELD_ID)
+            {
+                assert(RECORD_BYTE_SIZE == fru_tlv->length,
+                        "get_vpd_kw_from_recordset: unexpected field length 0x%.02x or RT keyword",
+                        fru_tlv->length);
+                record_name = *reinterpret_cast<const uint32_t *>(fru_tlv->value);
+                // This trace will show which RECORD RT's are processed in case PDR exchange
+                // does -NOT- send everything expected (aide in debugging any future issues)
+                // See record_keyword_field_map for expected RECORDs
+                PLDM_INF("get_vpd_kw_from_recordset: CANDIDATE MATCH found record 0x%X RT", record_name);
+            }
+
+            is_known_ipz_record = (record_keyword_field_map.find(record_name) !=
+                                   record_keyword_field_map.end());
+
+            // Continue if we're not dealing with a known IPZ record
+            // or if the VPD Record name does not match the one we're looking for
+            if (!is_known_ipz_record || record_name != i_record_name)
+            {
+                continue;
+            }
+
+            // Check if the TLV type matches the keyword we're looking for
+            if (fru_tlv->type == i_keyword)
+            {
+                o_kwdata.insert(o_kwdata.begin(),
+                                fru_tlv->value,
+                                fru_tlv->value + fru_tlv->length);
+
+                // PLDM FRU Record Fields of type string are not null terminated
+                // (see DSP0257 1.0.0 sectionn 7.4
+                o_kwdata.push_back('\0');
+                found_kw = true;
+                break;
+            }
+        }
+
+        if (found_kw)
+        {
+            break;
+        }
+
+        // Increment the i_pldm_fru_table_buf by offset_of_cur_pldm_record_entry
+        // now that we have completed processing the TLVs. Do this regardless
+        // of whether or not the fru record was IPZ data in order to get to the
+        // next pldm fru record if there is one.
+        i_pldm_fru_table_buf += offset_of_cur_pldm_record_entry;
+    }
+
+    return found_kw;
+}
+
+/* @brief Pop last element in vector and copy the vector contents to a pointer
+ *
+ * @param[in] i_vector   Vector to copy elements from
+ * @param[in] i_location Pointer to copy into
+ * @return void
+ */
+void popAndCopy(std::vector<uint8_t>& i_vector,
+                uint8_t* i_location)
+{
+    i_vector.pop_back();
+    std::copy(i_vector.begin(), i_vector.end(), i_location);
+}
+
+using location_code_setter_t = errlHndl_t(*)(TARGETING::Target*, const char*);
+
+// see hb_fru.H for doxygen
+errlHndl_t cacheRemoteFruVpd()
+{
+    using namespace TARGETING;
+
+    PLDM_ENTER("cacheRemoteFruVpd");
+    errlHndl_t errl = nullptr;
+    do{
+
+    pldm_get_fru_record_table_metadata_resp table_metadata;
+    errl =  getFruRecordTableMetaData(table_metadata);
+    if(errl) { break; }
+
+    /* The fruTableSize returned for the getFruRecordTableMetaData will NOT
+       include the size for the crc32 checksum or the padding to force 4 byte
+       alignment */
+    const auto fru_table_len = ALIGN_4(table_metadata.fru_table_length + sizeof(uint32_t));
+
+    std::vector<uint8_t> fru_table;
+    errl = getFruRecordTable(fru_table_len, fru_table);
+    if(errl) { break; }
+
+    static const bool CACHE_VPD = true;
+    static const bool NO_CACHE_VPD = false;
+
+    enum extra_fru_data_t : uint8_t
+    {
+        NO_EXTRA_FRU_INFO   = 0,
+        HAS_FW_VERSION_INFO = 1 << 0,
+        HAS_SERIAL_NUMBER   = 1 << 1,
+        HAS_MODEL_NUMBER    = 1 << 2,
+
+        // Add combination enums here to avoid casting issues below
+        HAS_FW_VERSION_INFO_OR_SERIAL_NUMBER = HAS_FW_VERSION_INFO | HAS_SERIAL_NUMBER ,
+    };
+
+    struct pldm_entity_to_targeting_mapping
+    {
+        entity_type pldm_entity_type;
+        pldm_fru_record_type fru_record_type;
+        TARGETING::TYPE targeting_type;
+        EEPROM::EEPROM_ROLE device_role;
+        size_t max_expected_records;
+        extra_fru_data_t extra_fru_info = NO_EXTRA_FRU_INFO;
+        bool cache_vpd = CACHE_VPD;
+        location_code_setter_t location_code_setter = nullptr;
+        bool fail_on_missing_pdr = true;
+    };
+
+    static const pldm_entity_to_targeting_mapping pldm_entity_to_targeting_map[] = {
+        { ENTITY_TYPE_BACKPLANE,
+          PLDM_FRU_RECORD_TYPE_OEM,
+          TYPE_NODE,
+          EEPROM::VPD_PRIMARY,
+          1,
+          NO_EXTRA_FRU_INFO },
+        { ENTITY_TYPE_CHASSIS,
+          PLDM_FRU_RECORD_TYPE_OEM,
+          TYPE_SYS,
+          EEPROM::VPD_PRIMARY,
+          1,
+          NO_EXTRA_FRU_INFO,
+          NO_CACHE_VPD,
+          setAttribute<ATTR_CHASSIS_LOCATION_CODE> },
+        { ENTITY_TYPE_LOGICAL_SYSTEM,
+          PLDM_FRU_RECORD_TYPE_OEM,
+          TYPE_SYS,
+          EEPROM::VPD_PRIMARY,
+          1,
+          HAS_FW_VERSION_INFO_OR_SERIAL_NUMBER,
+          NO_CACHE_VPD,
+          setAttribute<ATTR_SYS_LOCATION_CODE> },
+        { ENTITY_TYPE_TPM,
+          PLDM_FRU_RECORD_TYPE_OEM,
+          TYPE_TPM,
+          EEPROM::VPD_PRIMARY,
+          1,
+          HAS_SERIAL_NUMBER,
+          CACHE_VPD,
+          nullptr,
+          false },
+        // Needed to get system Model and Serial Number from non-OEM FRU
+        { ENTITY_TYPE_LOGICAL_SYSTEM,
+          PLDM_FRU_RECORD_TYPE_GENERAL,
+          TYPE_SYS,
+          EEPROM::VPD_PRIMARY,
+          1,
+          HAS_MODEL_NUMBER,
+          NO_CACHE_VPD,
+          nullptr,
+          false },
+    };
+
+    // Grab the proc attribute BUS_RAIL_LOCATION_MAP and grab the
+    // attribute fields to get the location codes
+    TargetHandleList l_procTargetList;
+    getAllChips(l_procTargetList, TYPE_PROC, false);
+
+    // Loop through all  proc chips
+    for (const auto & curproc: l_procTargetList)
+    {
+        auto l_bus_rail_loc = curproc->getAttrAsStdArr<ATTR_BUS_RAIL_LOCATION_MAP>();
+
+        // Attribute storing VRM location codes
+        bus_rail_loc_map* vrmLocation = reinterpret_cast<bus_rail_loc_map*>(l_bus_rail_loc.data());
+        uint16_t l_rsi = 0;
+        uint8_t l_records_in_map = sizeof(l_bus_rail_loc)/sizeof(bus_rail_loc_map);
+
+        static_assert(sizeof(l_bus_rail_loc) % sizeof(bus_rail_loc_map) == 0,
+                "Size of bus_rail_loc_map must divide evenly into ATTR_BUS_RAIL_LOCATION_MAP");
+
+        ATTR_LOCATION_PN_SN_CCIN_MAP_typeStdArr final_attr;
+
+        // Attribute to write into for mapping location codes to part#/serial#/ccin
+        loc_pn_sn_ccin_map* fruInfo = reinterpret_cast<loc_pn_sn_ccin_map*>(final_attr.data());
+
+        std::vector<uint16_t> unique_rsis;
+
+        // Clear out attribute on MPIPL in case of lingering data
+        TARGETING::Target* l_pTopLevel = TARGETING::UTIL::assertGetToplevelTarget();
+        if (l_pTopLevel->getAttr<TARGETING::ATTR_IS_MPIPL_HB>())
+        {
+            curproc->setAttrFromStdArr<ATTR_LOCATION_PN_SN_CCIN_MAP>({});
+        }
+
+        // Loop through every map entry in ATTR_BUS_RAIL_LOCATION_MAP and
+        // get all VRM location codes
+        uint8_t vrmOffset = 0;
+        uint8_t fruOffset = 0;
+        while (vrmOffset < l_records_in_map)
+        {
+            if (strlen(vrmLocation[vrmOffset].location) != 0)
+            {
+                // Get the unique RSIs associated with the VRM location code entry
+                bool l_found = false;
+                PLDM::getRecordSetByLocationCode(fru_table.data(), table_metadata.total_table_records,
+                    vrmLocation[vrmOffset].location, l_rsi, l_found);
+
+                if (l_found && std::find(unique_rsis.begin(), unique_rsis.end(), l_rsi) == unique_rsis.end())
+                {
+                    strncpy(fruInfo[fruOffset].location, vrmLocation[vrmOffset].location, VRM_LOCATION_SIZE);
+                    unique_rsis.push_back(l_rsi);
+                    fruOffset++;
+                }
+            }
+
+            vrmOffset++;
+        }
+
+        for (size_t i = 0; i < unique_rsis.size(); i++)
+        {
+            uint16_t l_rsi = unique_rsis[i];
+
+            std::vector<uint8_t> l_pn, l_sn, l_ccin;
+
+            // Use the found location code RSI to find all RSI in the FRU record table
+            // The RSI expected as input should be in little endian
+            uint16_t records_in_set = 0;
+            std::vector<uint8_t> device_fru_records;
+            PLDM::getRecordSetByIdAndType(fru_table.data(), table_metadata.total_table_records,
+                le16toh(l_rsi), PLDM_FRU_RECORD_TYPE_OEM, device_fru_records, records_in_set);
+
+            if (records_in_set > 0)
+            {
+                // Check for +1 of size because the vectors returned are null terminated
+                if (!get_vpd_kw_from_recordset(device_fru_records.data(),
+                                               records_in_set,
+                                               VINI,
+                                               PN_FIELD_ID,
+                                               l_pn) ||
+                    l_pn.size() != VRM_PN_SIZE + 1)
+                {
+                    PLDM_ERR("cacheRemoteFruVpd: getRecordSetRecordValue failed to get part number");
+
+                    /*@
+                     * @errortype   ERRL_SEV_PREDICTIVE
+                     * @moduleid    MOD_CACHE_REMOTE_FRU_VPD
+                     * @reasoncode  RC_PN_NOT_FOUND
+                     * @userdata1   Record Set Index
+                     * @userdata2   Size of part number vector
+                     * @devdesc     Part number from BMC was not found from the FRU Record Table
+                     * @custdesc    A software error occurred during system boot
+                     */
+                    errl = new ErrlEntry(ERRL_SEV_PREDICTIVE,
+                                         MOD_CACHE_REMOTE_FRU_VPD,
+                                         RC_PN_NOT_FOUND,
+                                         l_rsi,
+                                         l_pn.size(),
+                                         ERRORLOG::ErrlEntry::NO_SW_CALLOUT);
+                    addBmcErrorCallouts(errl);
+                    errlCommit(errl, PLDM_COMP_ID);
+                }
+
+                if (!get_vpd_kw_from_recordset(device_fru_records.data(),
+                                               records_in_set,
+                                               VINI,
+                                               SN_FIELD_ID,
+                                               l_sn) ||
+                    l_sn.size() != VRM_SN_SIZE + 1)
+                {
+                    PLDM_ERR("cacheRemoteFruVpd: getRecordSetRecordValue failed to get serial number");
+
+                    /*@
+                     * @errortype   ERRL_SEV_PREDICTIVE
+                     * @moduleid    MOD_CACHE_REMOTE_FRU_VPD
+                     * @reasoncode  RC_SN_NOT_FOUND
+                     * @userdata1   Record Set Index
+                     * @userdata2   Size of serial number vector
+                     * @devdesc     Serial number from BMC was not found from the FRU Record Table
+                     * @custdesc    A software error occurred during system boot
+                     */
+                    errl = new ErrlEntry(ERRL_SEV_PREDICTIVE,
+                                         MOD_CACHE_REMOTE_FRU_VPD,
+                                         RC_SN_NOT_FOUND,
+                                         l_rsi,
+                                         l_sn.size(),
+                                         ERRORLOG::ErrlEntry::NO_SW_CALLOUT);
+                    addBmcErrorCallouts(errl);
+                    errlCommit(errl, PLDM_COMP_ID);
+                }
+
+                if (!get_vpd_kw_from_recordset(device_fru_records.data(),
+                                               records_in_set,
+                                               VINI,
+                                               CCIN_FIELD_ID,
+                                               l_ccin) ||
+                         l_ccin.size() != VRM_CCIN_SIZE + 1)
+                {
+                    PLDM_ERR("cacheRemoteFruVpd: getRecordSetRecordValue failed to get ccin");
+
+                    /*@
+                     * @errortype   ERRL_SEV_PREDICTIVE
+                     * @moduleid    MOD_CACHE_REMOTE_FRU_VPD
+                     * @reasoncode  RC_CCIN_NOT_FOUND
+                     * @userdata1   Record Set Index
+                     * @userdata2   Size of ccin vector
+                     * @devdesc     CCIN from BMC was not found from the FRU Record Table
+                     * @custdesc    A software error occurred during system boot
+                     */
+                    errl = new ErrlEntry(ERRL_SEV_PREDICTIVE,
+                                         MOD_CACHE_REMOTE_FRU_VPD,
+                                         RC_CCIN_NOT_FOUND,
+                                         l_rsi,
+                                         l_ccin.size(),
+                                         ERRORLOG::ErrlEntry::NO_SW_CALLOUT);
+                    addBmcErrorCallouts(errl);
+                    errlCommit(errl, PLDM_COMP_ID);
+                }
+
+                // Store the found pn/sn/ccin values in their respective
+                // struct values. Pop the end of the vector because it
+                // is null terminated and ATTR_LOCATION_PN_SN_CCIN_MAP
+                // expects no null termination
+                popAndCopy(l_pn, &fruInfo[i].pn[0]);
+                popAndCopy(l_sn, &fruInfo[i].sn[0]);
+                popAndCopy(l_ccin, &fruInfo[i].ccin[0]);
+            }
+        }
+
+        curproc->setAttrFromStdArr<ATTR_LOCATION_PN_SN_CCIN_MAP>(final_attr);
+    }
+
+    for(const auto& map_entry : pldm_entity_to_targeting_map)
+    {
+         auto device_rsis
+             = thePdrManager().findFruRecordSetIdsByType(map_entry.pldm_entity_type);
+
+        if ((device_rsis.empty() && map_entry.fail_on_missing_pdr)
+                || device_rsis.size() > map_entry.max_expected_records)
+        {
+
+            if (!map_entry.fail_on_missing_pdr)
+            {
+                // It's not required that this map entry have a pdr with which to extract data. Just move on.
+                PLDM_INF("cacheRemoteFruVpd: Found %d record set IDs matching"
+                         "entity type 0x%.02x and expected at least 1 and a max of %d but that's allowed, moving on.",
+                         device_rsis.size(),
+                         map_entry.pldm_entity_type,
+                         map_entry.max_expected_records);
+                continue;
+            }
+            // error, expected at least 1 RSI associated with a device
+            PLDM_ERR("cacheRemoteFruVpd: Found %d record set IDs matching"
+                     "entity type 0x%.02x and expected at least 1 and a max of %d",
+                     device_rsis.size(),
+                     map_entry.pldm_entity_type,
+                     map_entry.max_expected_records);
+            /*@
+            * @errortype  ERRL_SEV_UNRECOVERABLE
+            * @moduleid   MOD_CACHE_REMOTE_FRU_VPD
+            * @reasoncode RC_INVALID_RSI_COUNT
+            * @userdata1  # of Record Set Ids found
+            * @userdata2  Entity Type
+            * @devdesc    Unable to find correct record set ID(s) for
+            *             PLDM entity
+            * @custdesc   A software error occurred during system boot
+            */
+            errl = new ErrlEntry(ERRL_SEV_UNRECOVERABLE,
+                                 MOD_CACHE_REMOTE_FRU_VPD,
+                                 RC_INVALID_RSI_COUNT,
+                                 device_rsis.size(),
+                                 map_entry.pldm_entity_type,
+                                 ERRORLOG::ErrlEntry::NO_SW_CALLOUT);
+            addBmcErrorCallouts(errl);
+            break;
+        }
+
+        for(const auto device_rsi : device_rsis)
+        {
+            uint16_t records_in_set = 0;
+            std::vector<uint8_t> device_fru_records;
+            PLDM::getRecordSetByIdAndType(fru_table.data(), table_metadata.total_table_records,
+                                          device_rsi, map_entry.fru_record_type,
+                                          device_fru_records, records_in_set);
+
+            if(device_fru_records.empty() ||
+               records_in_set == 0)
+            {
+                if (!map_entry.fail_on_missing_pdr)
+                {
+                    // It's not required that this map entry have a pdr with which to extract data. Just move on.
+                    PLDM_INF("cacheRemoteFruVpd: Couldn't find any FRU records matching record set "
+                             "id 0x%.4x entity type 0x%.02x fru record type 0x%.02x but that's "
+                             "allowed, moving on.",
+                             device_rsi, map_entry.pldm_entity_type, map_entry.fru_record_type);
+                    continue;
+                }
+
+                PLDM_ERR("cacheRemoteFruVpd: Failed to find any Fru records matching "
+                         "record set id 0x%.4x entity type 0x%.02x fru record type 0x%.02x",
+                         device_rsi, map_entry.pldm_entity_type, map_entry.fru_record_type);
+                /*@
+                * @errortype         ERRL_SEV_UNRECOVERABLE
+                * @moduleid          MOD_CACHE_REMOTE_FRU_VPD
+                * @reasoncode        RC_INVALID_RECORD_COUNT
+                * @userdata1         record set id we are looking up
+                * @userdata2[0:31]   entity type
+                * @userdata2[32:64]  fru record type
+                * @devdesc    Unable to find records associated with record
+                *             set id in fru record table
+                * @custdesc   A software error occurred during system boot
+                */
+                errl = new ErrlEntry(ERRL_SEV_UNRECOVERABLE,
+                                     MOD_CACHE_REMOTE_FRU_VPD,
+                                     RC_INVALID_RECORD_COUNT,
+                                     device_rsi,
+                                     TWO_UINT32_TO_UINT64(
+                                       map_entry.pldm_entity_type,
+                                       map_entry.fru_record_type),
+                                     ERRORLOG::ErrlEntry::NO_SW_CALLOUT);
+                addBmcErrorCallouts(errl);
+                break;
+            }
+
+            TargetHandle_t entity_target = nullptr;
+
+            // Only PLDM_FRU_RECORD_TYPE_OEM FRUs have location codes
+            if (map_entry.fru_record_type == PLDM_FRU_RECORD_TYPE_OEM)
+            {
+                // lookup the location code in the fru records associated with this RSI
+                std::vector<uint8_t> location_code;
+                errl = PLDM::getRecordSetLocationCode(device_fru_records.data(),
+                                                      records_in_set,
+                                                      map_entry.fru_record_type,
+                                                      location_code);
+
+                if(errl)
+                {
+                    PLDM_ERR("cacheRemoteFruVpd: Failed to find location code");
+                    break;
+                }
+
+                entity_target =
+                    getTargetFromLocationCode(location_code,
+                                              map_entry.targeting_type);
+
+                if(entity_target == nullptr)
+                {
+                    PLDM_ERR("cacheRemoteFruVpd: Failed to find target associated w/ location code found");
+                    /*@
+                     * @errortype  ERRL_SEV_UNRECOVERABLE
+                     * @moduleid   MOD_CACHE_REMOTE_FRU_VPD
+                     * @reasoncode RC_INVALID_LOCATION_CODE
+                     * @userdata1  record set id we are looking up
+                     * @userdata2  entity type
+                     * @devdesc    Unable to find records associated with record
+                     *             set id in fru record table
+                     * @custdesc   A software error occurred during system boot
+                     */
+                    errl = new ErrlEntry(ERRL_SEV_UNRECOVERABLE,
+                                         MOD_CACHE_REMOTE_FRU_VPD,
+                                         RC_INVALID_LOCATION_CODE,
+                                         device_rsi,
+                                         map_entry.pldm_entity_type,
+                                         ERRORLOG::ErrlEntry::NO_SW_CALLOUT);
+                    addBmcErrorCallouts(errl);
+                    break;
+                }
+
+                /* Set the location code of the target if necessary */
+
+                if (map_entry.location_code_setter)
+                {
+                    errl =
+                        map_entry.location_code_setter(
+                                  entity_target,
+                                  reinterpret_cast<const char*>(location_code.data()));
+
+                    if (errl)
+                    {
+                        PLDM_ERR("Failed to set location code attribute on %s target (HUID 0x%08x)",
+                                 attrToString<ATTR_TYPE>(entity_target->getAttr<ATTR_TYPE>()),
+                                 get_huid(entity_target));
+                        break;
+                    }
+                }
+            }
+            else
+            {
+                // Skipping location code processing, but still need to set entity_target
+                // Only supporting map_entry.targeting_type == TYPE_SYS) at this time
+                assert(map_entry.targeting_type == TYPE_SYS, "cacheRemoteFruVpd: Expecting TYPE_SYS");
+
+                // set entity_target to system target
+                entity_target = UTIL::assertGetToplevelTarget();
+
+                PLDM_DBG("cacheRemoteFruVpd: Skipping location code processing; setting "
+                         "entity_target to 0x%.08X", get_huid(entity_target));
+            } // end of PLDM_FRU_RECORD_TYPE_OEM/location code check
+
+
+            // If not in MPIPL then cache VPD if necessary.
+            // It is unnecessary to cache the VPD we get from the BMC during MPIPL. We will
+            // assume the copy we read on the previous boot is valid. Re-caching the data
+            // here will disrupt the logic that walks the existing eecache in the MPIPL
+            // path to build up some virtual address mappings that the EECACHE module uses.
+            TargetHandle_t sys = TARGETING::UTIL::assertGetToplevelTarget();
+            auto is_mpipl = sys->getAttr<ATTR_IS_MPIPL_HB>();
+            if ( !is_mpipl && (map_entry.cache_vpd == CACHE_VPD) )
+            {
+                std::vector<uint8_t> ipz_record;
+                errl = PLDM::pldmFruRecordSetToIPZ(device_fru_records.data(),
+                                                   records_in_set,
+                                                   ipz_record);
+                if(errl)
+                {
+                    PLDM_ERR("cacheRemoteFruVpd: An error occurred during pldmFruRecordSetToIPZ");
+                    break;
+                }
+
+                // Dump out the possible IPZ Records being looked for, compare to records_in_set.
+                // records_in_set does -NOT- necessarily match, PDRs may contain IPZ RECORDs
+                // that we do -NOT- care about and we may -NOT- get all the record_keyword_field_map KEYs
+                // in the table, e.g. PSPD KEY will only be populated on Bonnell systems.
+                for (auto it = record_keyword_field_map.begin(); it != record_keyword_field_map.end(); it++)
+                {
+                    // See the other CANDIDATE MATCH to compare if results from append_keywords unexpected
+                    PLDM_INF("cacheRemoveFruVpd CANDIDATE MATCH record_keyword_field_map IPZ KEY=0x%X HUID=0x%X", it->first, get_huid(entity_target));
+                }
+
+                errl = EEPROM::cacheEepromBuffer(entity_target,
+                                                 true,
+                                                 ipz_record);
+
+                if(errl)
+                {
+                    PLDM_ERR("cacheRemoteFruVpd: An error occurred during EEPROM::cacheEepromBuffer");
+                    break;
+                }
+
+                // Mark that vpd was collected remotely for this target
+                auto vpd_switch = entity_target->getAttr<TARGETING::ATTR_VPD_SWITCHES>();
+                vpd_switch.vpdCollectedRemotely = 1;
+                entity_target->setAttr<TARGETING::ATTR_VPD_SWITCHES>(vpd_switch);
+            }
+
+            /* Read and store other FRU info if necessary */
+
+            const auto getrecord = [&](const uint8_t fru_field_type,
+                                       void* const buffer, const size_t bufsize,
+                                       const char* const field_name)
+            {
+                std::vector<uint8_t> record_data;
+                if (getRecordSetRecordValue(device_fru_records.data(),
+                                            records_in_set,
+                                            map_entry.fru_record_type,
+                                            fru_field_type,
+                                            record_data))
+                {
+                    memcpy(buffer,
+                           record_data.data(),
+                           std::min(bufsize, record_data.size()) - 1); // subtract 1 for terminator
+                }
+                else
+                {
+                    PLDM_INF("cacheRemoteFruVpd: Can't find %s in FRU data for HUID 0x%08x",
+                             field_name,
+                             get_huid(entity_target));
+                }
+            };
+
+            if (map_entry.extra_fru_info & HAS_FW_VERSION_INFO)
+            {
+                ATTR_FW_RELEASE_VERSION_type fw_release_string = { };
+
+                // Get the FW release string
+                size_t l_miKeywordSize(sizeof(fw_release_string));
+                char   l_miKeyword[l_miKeywordSize] = { 0 };
+
+#ifndef __HOSTBOOT_RUNTIME
+                errl = ErrlManager::getMarkerLidMiKeyword(l_miKeywordSize, l_miKeyword);
+                if (errl)
+                {
+                    PLDM_ERR("cacheRemoteFruVpd: getMarkerLidMiKeyword failed");
+                    break;
+                }
+#endif
+
+                memcpy(fw_release_string, l_miKeyword, l_miKeywordSize);
+
+                entity_target->setAttr<ATTR_FW_RELEASE_VERSION>(fw_release_string);
+            }
+
+            if (map_entry.extra_fru_info & HAS_SERIAL_NUMBER)
+            {
+                ATTR_SERIAL_NUMBER_type serial_number = { };
+
+                getrecord(PLDM::VSYS_KEYWORDS_SE,
+                          serial_number, sizeof(serial_number),
+                          "serial number");
+
+                entity_target->setAttr<ATTR_SERIAL_NUMBER>(serial_number);
+            }
+
+            if (map_entry.extra_fru_info & HAS_MODEL_NUMBER)
+            {
+                TARGETING::ATTR_RAW_MTM_type model = {};
+
+                getrecord(PLDM_FRU_FIELD_TYPE_MODEL,
+                          model, sizeof(model),
+                          "model");
+
+                entity_target->setAttr<ATTR_RAW_MTM>(model);
+            }
+        }
+
+        if(errl)
+        {
+            PLDM_ERR("cacheRemoteFruVpd: An error while caching remote eeprom w/"
+                     "entity type 0x%.02x target type 0x%.04x device role 0x%.02x",
+                     map_entry.pldm_entity_type,
+                     map_entry.targeting_type,
+                     map_entry.device_role);
+            break;
+        }
+    }
+
+    }while(0);
+
+    // checks for PLDM error and adds flight recorder data to log
+    addPldmFrData(errl);
+
+    PLDM_EXIT("cacheRemoteFruVpd");
+    return errl;
+}
+
+
+// see hb_fru.H for doxygen
+void printFruRecordTable(const uint8_t* const  i_pldm_fru_table_buf,
+                         const uint16_t i_record_count)
+{
+    PLDM_ENTER("printFruRecordTable");
+    assert( i_pldm_fru_table_buf != nullptr,
+            "i_pldm_fru_table_buf is a nullptr!");
+    // copy the pointer provided by the caller into
+    // a local variable so we can do some ptr arithmatic
+    // on it without messing up the caller
+    const uint8_t * in_table_cur_ptr =
+        const_cast<const uint8_t*>(i_pldm_fru_table_buf);
+
+    // loop through the PLDM Fru Records in this PLDM Fru Record Table
+    for( uint16_t i = 0; i < i_record_count; i++)
+    {
+        const pldm_fru_record_data_format *record_data =
+            reinterpret_cast<const pldm_fru_record_data_format *>(in_table_cur_ptr);
+
+        PLDM_INF("record set id  0x%.04x  "
+                 "record type: 0x%.02x  "
+                 "num fru fields: 0x%.02x  "
+                 "encoding type: 0x%.02x  ",
+                 record_data->record_set_id,
+                 record_data->record_type,
+                 record_data->num_fru_fields,
+                 record_data->encoding_type);
+
+        // we will need to keep a running count of the size of this record as we
+        // process the TLVs associated with it. To start set the size as the start
+        // of the TLV structs
+        size_t record_size = offsetof(pldm_fru_record_data_format, tlvs);
+
+        // loop through the TLVs which describe the entries of this PLDM Fru Record
+        for( uint8_t j = 0; j < record_data->num_fru_fields; j++)
+        {
+            const pldm_fru_record_tlv *fru_tlv =
+                reinterpret_cast<const pldm_fru_record_tlv *>(in_table_cur_ptr + record_size);
+            PLDM_INF("field type 0x%.02x  "
+                     "field len: 0x%.02x  ",
+                      fru_tlv->type,
+                      fru_tlv->length);
+            PLDM_INF_BIN("Fru Field Value:",
+                      fru_tlv->value,
+                      fru_tlv->length);
+
+            // increment record_size by total size of this TLV
+            record_size += (offsetof(pldm_fru_record_tlv, value) +
+                           fru_tlv->length);
+        }
+        // increment the in_table_cur_ptr to the next record
+        in_table_cur_ptr += record_size;
+    }
+    PLDM_EXIT("printFruRecordTable");
+}
+
+}
