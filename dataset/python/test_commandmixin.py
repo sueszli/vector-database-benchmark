@@ -1,0 +1,102 @@
+# This file is part of Buildbot.  Buildbot is free software: you can
+# redistribute it and/or modify it under the terms of the GNU General Public
+# License as published by the Free Software Foundation, version 2.
+#
+# This program is distributed in the hope that it will be useful, but WITHOUT
+# ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+# FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more
+# details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program; if not, write to the Free Software Foundation, Inc., 51
+# Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+#
+# Copyright Buildbot Team Members
+
+
+from twisted.internet import defer
+
+from buildbot.process import results
+from buildbot.process.buildstep import BuildStep
+from buildbot.process.buildstep import CommandMixin
+from buildbot.test.util.integration import RunMasterBase
+
+
+# This integration test creates a master and worker environment,
+# and makes sure the command mixin is working.
+class CommandMixinMaster(RunMasterBase):
+
+    @defer.inlineCallbacks
+    def setup_config(self):
+        c = {}
+        from buildbot.config import BuilderConfig
+        from buildbot.plugins import schedulers
+        from buildbot.process.factory import BuildFactory
+
+        c['schedulers'] = [
+            schedulers.AnyBranchScheduler(name="sched", builderNames=["testy"])
+        ]
+
+        f = BuildFactory()
+        f.addStep(TestCommandMixinStep())
+        c['builders'] = [
+            BuilderConfig(name="testy", workernames=["local1"], factory=f)
+        ]
+        yield self.setup_master(c)
+
+    @defer.inlineCallbacks
+    def test_commandmixin(self):
+        yield self.setup_config()
+
+        change = {
+            "branch": "master",
+            "files": ["foo.c"],
+            "author": "me@foo.com",
+            "committer": "me@foo.com",
+            "comments": "good stuff",
+            "revision": "HEAD",
+            "project": "none"
+        }
+        build = yield self.doForceBuild(wantSteps=True, useChange=change,
+                                        wantLogs=True)
+        self.assertEqual(build['buildid'], 1)
+        self.assertEqual(build['results'], results.SUCCESS)
+
+
+class CommandMixinMasterPB(CommandMixinMaster):
+    proto = "pb"
+
+
+class CommandMixinMasterMsgPack(CommandMixinMaster):
+    proto = "msgpack"
+
+
+class TestCommandMixinStep(BuildStep, CommandMixin):
+
+    @defer.inlineCallbacks
+    def run(self):
+        contents = yield self.runGlob('*')
+        if contents != []:
+            return results.FAILURE
+
+        hasPath = yield self.pathExists('composite_mixin_test')
+        if hasPath:
+            return results.FAILURE
+
+        yield self.runMkdir('composite_mixin_test')
+
+        hasPath = yield self.pathExists('composite_mixin_test')
+        if not hasPath:
+            return results.FAILURE
+
+        contents = yield self.runGlob('*')
+        if not contents[0].endswith('composite_mixin_test'):
+            return results.FAILURE
+
+        yield self.runRmdir('composite_mixin_test')
+
+        hasPath = yield self.pathExists('composite_mixin_test')
+        if hasPath:
+            return results.FAILURE
+
+        return results.SUCCESS
