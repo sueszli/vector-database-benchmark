@@ -36,4 +36,4 @@ after collecting a bunch of links to repositories i merged and sorted the files:
 
 i then did the same thing again, but this time with python code which lead to 1154 original lines.
 
-next i cloned all repositories, unzipped them, and removed all unrelated files.
+next i cloned all repositories and filtered out the unrelated files.
