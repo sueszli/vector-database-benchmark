@@ -1,0 +1,29 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int comp(const void *a, const void *b)
+{
+	return *(int*)a - *(int*)b;
+}
+
+int main()
+{
+	int N, p, data[100000];
+	int max = 0, first = 0, last = 0;
+
+	scanf("%d %d", &N, &p);                               /* read */
+	for (int i = 0; i < N; i++)
+		scanf("%d", data + i);
+
+	qsort(data, N, sizeof(int), comp);                    /* sort */
+
+	for (; last < N && max < N - first; first++) {        /* find */
+		while (last < N && data[last] <= 1L * data[first] * p)
+			last++;
+		if (max < last - first)
+			max = last - first;
+	}
+	printf("%d", max);
+
+	return 0;
+}
