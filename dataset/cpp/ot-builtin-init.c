@@ -1,0 +1,66 @@
+/*
+ * Copyright (C) 2011 Colin Walters <walters@verbum.org>
+ *
+ * SPDX-License-Identifier: LGPL-2.0+
+ *
+ * This library is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Lesser General Public
+ * License as published by the Free Software Foundation; either
+ * version 2 of the License, or (at your option) any later version.
+ *
+ * This library is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with this library. If not, see <https://www.gnu.org/licenses/>.
+ *
+ * Author: Colin Walters <walters@verbum.org>
+ */
+
+#include "config.h"
+
+#include "ostree.h"
+#include "ot-builtins.h"
+#include "ot-main.h"
+
+static char *opt_mode = "bare";
+static char *opt_collection_id = NULL;
+
+/* ATTENTION:
+ * Please remember to update the bash-completion script (bash/ostree) and
+ * man page (man/ostree-init.xml) when changing the option list.
+ */
+
+static GOptionEntry options[]
+    = { { "mode", 0, 0, G_OPTION_ARG_STRING, &opt_mode,
+          "Initialize repository in given mode (bare, bare-user, bare-user-only, archive)", NULL },
+        { "collection-id", 0, 0, G_OPTION_ARG_STRING, &opt_collection_id,
+          "Globally unique ID for this repository as an collection of refs for redistribution to "
+          "other repositories",
+          "COLLECTION-ID" },
+        { NULL } };
+
+gboolean
+ostree_builtin_init (int argc, char **argv, OstreeCommandInvocation *invocation,
+                     GCancellable *cancellable, GError **error)
+{
+  g_autoptr (GOptionContext) context = g_option_context_new ("");
+
+  g_autoptr (OstreeRepo) repo = NULL;
+  if (!ostree_option_context_parse (context, options, &argc, &argv, invocation, &repo, cancellable,
+                                    error))
+    return FALSE;
+
+  OstreeRepoMode mode;
+  if (!ostree_repo_mode_from_string (opt_mode, &mode, error))
+    return FALSE;
+  if (!ostree_repo_set_collection_id (repo, opt_collection_id, error))
+    return FALSE;
+
+  if (!ostree_repo_create (repo, mode, NULL, error))
+    return FALSE;
+
+  return TRUE;
+}
