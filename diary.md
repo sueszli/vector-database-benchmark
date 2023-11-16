@@ -38,4 +38,6 @@ i then repeated the whole process again, but for python code which lead to 1154 
 
 next i cloned cloned all repositories from the links i collected and ran a script to extract all the files from the repositories and put them into a single folder. i then ran a script to remove all the files that weren't c/c++ or python files.
 
-next i uploaded the files by splitting them into 5000 files each, because github has a size limit per commit.
+next i uploaded the files by splitting them into 5000-10000 files each, because github has a size limit per commit.
+
+final resul
