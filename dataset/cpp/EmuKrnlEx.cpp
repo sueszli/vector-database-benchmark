@@ -1,0 +1,825 @@
+// This is an open source non-commercial project. Dear PVS-Studio, please check it.
+// PVS-Studio Static Code Analyzer for C, C++ and C#: http://www.viva64.com
+// ******************************************************************
+// *
+// *  This file is part of the Cxbx project.
+// *
+// *  Cxbx and Cxbe are free software; you can redistribute them
+// *  and/or modify them under the terms of the GNU General Public
+// *  License as published by the Free Software Foundation; either
+// *  version 2 of the license, or (at your option) any later version.
+// *
+// *  This program is distributed in the hope that it will be useful,
+// *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+// *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+// *  GNU General Public License for more details.
+// *
+// *  You should have recieved a copy of the GNU General Public License
+// *  along with this program; see the file COPYING.
+// *  If not, write to the Free Software Foundation, Inc.,
+// *  59 Temple Place - Suite 330, Bostom, MA 02111-1307, USA.
+// *
+// *  (c) 2002-2003 Aaron Robinson <caustik@caustik.com>
+// *  (c) 2016 Patrick van Logchem <pvanlogchem@gmail.com>
+// *
+// *  All rights reserved
+// *
+// ******************************************************************
+
+#define LOG_PREFIX CXBXR_MODULE::EX
+
+
+#include <core\kernel\exports\xboxkrnl.h> // For ExAllocatePool, etc.
+#include "Logging.h" // For LOG_FUNC()
+#include "EmuEEPROM.h" // For EmuFindEEPROMInfo, EEPROM, XboxFactoryGameRegion
+#include "EmuKrnlLogging.h"
+#include "core\kernel\memory-manager\PoolManager.h"
+
+// prevent name collisions
+namespace NtDll
+{
+	#include "core\kernel\support\EmuNtDll.h" // For NtDelayExecution(), etc.
+};
+
+#include "core\kernel\init\CxbxKrnl.h" // For CxbxrAbort
+#include "core\kernel\support\Emu.h" // For EmuLog(LOG_LEVEL::WARNING, )
+#include "EmuKrnl.h" // For InsertHeadList, InsertTailList, RemoveHeadList
+
+#include <atomic> // for std::atomic
+#pragma warning(disable:4005) // Ignore redefined status values
+#include <ntstatus.h> // For X_STATUS_BUFFER_TOO_SMALL
+#pragma warning(default:4005)
+
+static CRITICAL_SECTION eeprom_crit_section;
+
+static PCRITICAL_SECTION get_eeprom_crit_section()
+{
+    static PCRITICAL_SECTION crit_sec_ptr = nullptr;
+    if(crit_sec_ptr == nullptr) {
+        crit_sec_ptr = &eeprom_crit_section;
+		InitializeCriticalSectionAndSpinCount(crit_sec_ptr, 0x400);
+    }
+    return crit_sec_ptr;
+}
+
+void LockEeprom()
+{
+	EnterCriticalSection(get_eeprom_crit_section());
+}
+
+void UnlockEeprom()
+{
+	LeaveCriticalSection(get_eeprom_crit_section());
+}
+
+static bool section_does_not_require_checksum(
+    xbox::XC_VALUE_INDEX index
+)
+{
+    switch(index) {
+        case xbox::XC_FACTORY_GAME_REGION:
+            return true;
+        case xbox::XC_ENCRYPTED_SECTION:
+            return true;
+        case xbox::XC_MAX_ALL:
+            return true;
+        default:
+            return false;
+    }
+}
+
+static uint32_t eeprom_section_checksum(
+    const uint32_t* section_data,
+    uint32_t section_data_length
+)
+{
+    const uint32_t bitmask = 0xFFFFFFFF;
+    const uint32_t num_dwords = section_data_length >> 2;
+    uint64_t checksum = 0;
+    uint32_t carry_count = 0;
+
+    for(uint32_t loop_count = num_dwords; loop_count > 0; loop_count--) {
+        checksum += *section_data;
+        if(checksum > bitmask) {
+            carry_count++;
+            checksum &= bitmask;
+        }
+        section_data++;
+    }
+    checksum += carry_count;
+    if(checksum > bitmask) {
+        checksum += 1;
+    }
+    return (uint32_t)(checksum & bitmask);
+}
+
+static bool eeprom_data_is_valid(xbox::XC_VALUE_INDEX index)
+{
+    const ULONG valid_checksum = 0xFFFFFFFF;
+    const uint32_t* UserSettings_data = (uint32_t*)&EEPROM->UserSettings;
+    const uint32_t* FactorySettings_data = (uint32_t*)&EEPROM->FactorySettings;
+    ULONG checksum = 0;
+
+    if(section_does_not_require_checksum(index)) {
+        return true;
+    }
+
+    if((index >= xbox::XC_TIMEZONE_BIAS) && (index <= xbox::XC_MAX_OS)) {
+        checksum = eeprom_section_checksum(UserSettings_data, sizeof(EEPROM->UserSettings));
+    }
+    else if((index >= xbox::XC_FACTORY_START_INDEX) && (index <= xbox::XC_MAX_FACTORY)) {
+        checksum = eeprom_section_checksum(FactorySettings_data, sizeof(EEPROM->FactorySettings));
+    }
+    else {
+        EmuLog(LOG_LEVEL::WARNING, "Eeprom ValueIndex 0x%X does not have a checksum\n", index);
+    }
+    return checksum == valid_checksum;
+}
+
+// ******************************************************************
+// * 0x000C - ExAcquireReadWriteLockExclusive()
+// ******************************************************************
+// Source:APILogger - Uncertain
+XBSYSAPI EXPORTNUM(12) xbox::void_xt NTAPI xbox::ExAcquireReadWriteLockExclusive
+(
+	IN PERWLOCK ReadWriteLock
+)
+{
+	LOG_FUNC_ONE_ARG(ReadWriteLock);
+
+	bool interrupt_mode = DisableInterrupts();
+	if (InterlockedIncrement(reinterpret_cast<LONG*>(&ReadWriteLock->LockCount)) != 0) {
+		ReadWriteLock->WritersWaitingCount++;
+		RestoreInterruptMode(interrupt_mode);
+		KeWaitForSingleObject(
+			&ReadWriteLock->WriterEvent,
+			Executive,
+			0,
+			0,
+			0
+		);
+	}
+	else {
+		RestoreInterruptMode(interrupt_mode);
+	}
+}
+
+// ******************************************************************
+// * 0x000D - ExAcquireReadWriteLockShared()
+// ******************************************************************
+// Source:APILogger - Uncertain
+XBSYSAPI EXPORTNUM(13) xbox::void_xt NTAPI xbox::ExAcquireReadWriteLockShared
+(
+	IN PERWLOCK ReadWriteLock
+)
+{
+	LOG_FUNC_ONE_ARG(ReadWriteLock);
+
+	bool interrupt_mode = DisableInterrupts();
+	bool must_wait_on_active_write = ReadWriteLock->ReadersEntryCount == 0;
+	bool must_wait_on_queued_write = (ReadWriteLock->ReadersEntryCount != 0) && (ReadWriteLock->WritersWaitingCount != 0);
+	bool must_wait = must_wait_on_active_write || must_wait_on_queued_write;
+	if (InterlockedIncrement(reinterpret_cast<LONG*>(&ReadWriteLock->LockCount)) != 0 && must_wait) {
+		ReadWriteLock->ReadersWaitingCount++;
+		RestoreInterruptMode(interrupt_mode);
+#if 0 //FIXME - Enable once KeReleaseSempahore is implemented (used in ExFreeReadWriteLock for Sharedlocks).
+		KeWaitForSingleObject(
+			&ReadWriteLock->ReaderSemaphore,
+			Executive,
+			0,
+			0,
+			0
+		);
+#endif
+	}
+	else {
+		ReadWriteLock->ReadersEntryCount++;
+		RestoreInterruptMode(interrupt_mode);
+	}
+}
+
+// ******************************************************************
+// * 0x000E - ExAllocatePool()
+// ******************************************************************
+XBSYSAPI EXPORTNUM(14) xbox::PVOID NTAPI xbox::ExAllocatePool
+(
+	IN size_xt NumberOfBytes
+)
+{
+	LOG_FORWARD("ExAllocatePoolWithTag");
+
+	return ExAllocatePoolWithTag(NumberOfBytes, 'enoN'); // = "None" in reverse
+}
+
+// ******************************************************************
+// * 0x000F - ExAllocatePoolWithTag()
+// ******************************************************************
+// * Differences from NT: There is no PoolType field, as the XBOX
+// * only has 1 pool, the non-paged pool.
+// ******************************************************************
+XBSYSAPI EXPORTNUM(15) xbox::PVOID NTAPI xbox::ExAllocatePoolWithTag
+(
+	IN size_xt NumberOfBytes,
+	IN ulong_xt Tag
+)
+{
+	LOG_FUNC_BEGIN
+		LOG_FUNC_ARG(NumberOfBytes)
+		LOG_FUNC_ARG(Tag)
+	LOG_FUNC_END;
+
+	PVOID pRet = reinterpret_cast<PVOID>(g_PoolManager.AllocatePool(NumberOfBytes, Tag));
+
+	RETURN(pRet);
+}
+
+// ******************************************************************
+// * 0x0010 - ExEventObjectType
+// ******************************************************************
+XBSYSAPI EXPORTNUM(16) xbox::OBJECT_TYPE xbox::ExEventObjectType =
+{
+	xbox::ExAllocatePoolWithTag,
+	xbox::ExFreePool,
+	NULL,
+	NULL,
+	NULL,
+	(PVOID)offsetof(xbox::KEVENT, Header),
+	'vevE' // = first four characters of "Event" in reverse
+};
+
+// ******************************************************************
+// * 0x0011 - ExFreePool()
+// ******************************************************************
+XBSYSAPI EXPORTNUM(17) xbox::void_xt NTAPI xbox::ExFreePool
+(
+	IN PVOID	P
+)
+{
+	LOG_FUNC_ONE_ARG(P);
+
+	g_PoolManager.DeallocatePool(reinterpret_cast<VAddr>(P));
+}
+
+// ******************************************************************
+// * 0x0012 - ExInitializeReadWriteLock()
+// ******************************************************************
+// Source:APILogger - Uncertain
+XBSYSAPI EXPORTNUM(18) xbox::void_xt NTAPI xbox::ExInitializeReadWriteLock
+(
+	IN PERWLOCK ReadWriteLock
+)
+{
+	LOG_FUNC_ONE_ARG(ReadWriteLock);
+
+	ReadWriteLock->LockCount = -1;
+	ReadWriteLock->WritersWaitingCount = 0;
+	ReadWriteLock->ReadersWaitingCount = 0;
+	ReadWriteLock->ReadersEntryCount = 0;
+	KeInitializeEvent(&ReadWriteLock->WriterEvent, SynchronizationEvent, FALSE);
+	KeInitializeSemaphore(&ReadWriteLock->ReaderSemaphore, 0, MAXLONG);
+}
+
+// ******************************************************************
+// * 0x0013 - ExInterlockedAddLargeInteger()
+// ******************************************************************
+// Source:ReactOS https://doxygen.reactos.org/d0/d35/ntoskrnl_2ex_2interlocked_8c_source.html#l00062
+XBSYSAPI EXPORTNUM(19) xbox::LARGE_INTEGER NTAPI xbox::ExInterlockedAddLargeInteger
+(
+	IN OUT PLARGE_INTEGER Addend,
+	IN LARGE_INTEGER Increment,
+	IN OUT PKSPIN_LOCK Lock
+)
+{
+	LOG_FUNC_BEGIN
+		LOG_FUNC_ARG(Addend)
+// TODO : operator<<(LARGE_INTERGER) enables 		LOG_FUNC_ARG(Increment)
+		LOG_FUNC_ARG(Lock)
+		LOG_FUNC_END;
+
+	LARGE_INTEGER OldValue;
+// TODO :	BOOLEAN Enable;
+
+	/* Disable interrupts and acquire the spinlock */
+// TODO :	Enable = _ExiDisableInterruptsAndAcquireSpinlock(Lock);
+
+	/* Save the old value */
+	OldValue.QuadPart = Addend->QuadPart;
+
+	/* Do the operation */
+	Addend->QuadPart += Increment.QuadPart;
+
+	/* Release the spinlock and restore interrupts */
+	// TODO :	_ExiReleaseSpinLockAndRestoreInterrupts(Lock, Enable);
+
+	/* Return the old value */
+	return OldValue; // TODO : operator<<(LARGE_INTERGER) enables RETURN(OldValue);
+}
+
+// ******************************************************************
+// * 0x0014 - ExInterlockedAddLargeStatistic()
+// ******************************************************************
+// Source:ReactOS
+XBSYSAPI EXPORTNUM(20) xbox::void_xt FASTCALL xbox::ExInterlockedAddLargeStatistic
+(
+	IN PLARGE_INTEGER Addend,
+	IN ulong_xt Increment
+)
+{
+	LOG_FUNC_BEGIN
+		LOG_FUNC_ARG(Addend)
+		LOG_FUNC_ARG(Increment)
+		LOG_FUNC_END;
+
+	std::atomic<LONGLONG> Target(Addend->QuadPart);
+	Target.fetch_add(Increment);
+}
+
+// ******************************************************************
+// * 0x0015 - ExInterlockedCompareExchange64()
+// ******************************************************************
+// Source:ReactOS
+XBSYSAPI EXPORTNUM(21) xbox::longlong_xt FASTCALL xbox::ExInterlockedCompareExchange64
+(
+	IN OUT PLONGLONG Destination,
+	IN PLONGLONG Exchange,
+	IN PLONGLONG Comparand
+)
+{
+	LOG_FUNC_BEGIN
+		LOG_FUNC_ARG_OUT(Destination)
+		LOG_FUNC_ARG(Exchange)
+		LOG_FUNC_ARG(Comparand)
+		LOG_FUNC_END;
+
+	std::atomic<LONGLONG> Target(*Destination);
+
+	LONGLONG Result = *Comparand;
+	Target.compare_exchange_strong(Result, *Exchange);
+
+	RETURN(Result);
+}
+
+// ******************************************************************
+// * 0x0016 - ExMutantObjectType
+// ******************************************************************
+XBSYSAPI EXPORTNUM(22) xbox::OBJECT_TYPE xbox::ExMutantObjectType = 
+{
+	xbox::ExAllocatePoolWithTag,
+	xbox::ExFreePool,
+	NULL,
+	NULL, // TODO : xbox::ExpDeleteMutant,
+	NULL,
+	(PVOID)offsetof(xbox::KMUTANT, Header),
+	'atuM' // = first four characters of "Mutant" in reverse
+};
+
+// ******************************************************************
+// * 0x0017 - ExQueryPoolBlockSize()
+// ******************************************************************
+XBSYSAPI EXPORTNUM(23) xbox::ulong_xt NTAPI xbox::ExQueryPoolBlockSize
+(
+	IN PVOID PoolBlock
+)
+{
+	LOG_FUNC_ONE_ARG(PoolBlock);
+
+	ULONG ret = g_PoolManager.QueryPoolSize(reinterpret_cast<VAddr>(PoolBlock));
+
+	RETURN(ret);
+}
+
+// ******************************************************************
+// * 0x0018 - ExQueryNonVolatileSetting()
+// ******************************************************************
+XBSYSAPI EXPORTNUM(24) xbox::ntstatus_xt NTAPI xbox::ExQueryNonVolatileSetting
+(
+	IN  dword_xt   ValueIndex,
+	OUT dword_xt   *Type,
+	OUT PVOID   Value,
+	IN  size_xt  ValueLength,
+	OUT PSIZE_T ResultLength OPTIONAL
+)
+{
+	LOG_FUNC_BEGIN
+		LOG_FUNC_ARG_TYPE(XC_VALUE_INDEX, ValueIndex)
+		LOG_FUNC_ARG_OUT(Type)
+		LOG_FUNC_ARG_OUT(Value)
+		LOG_FUNC_ARG(ValueLength)
+		LOG_FUNC_ARG_OUT(ResultLength)
+	LOG_FUNC_END;
+
+	NTSTATUS Status = X_STATUS_SUCCESS;
+	void * value_addr = nullptr;
+	int value_type;
+	int result_length;
+	xbox::XC_VALUE_INDEX index = (XC_VALUE_INDEX)ValueIndex;
+
+	// handle eeprom read
+	if (index == XC_FACTORY_GAME_REGION) {
+		value_addr = &XboxFactoryGameRegion;
+		value_type = reg_dword;
+		result_length = sizeof(ULONG);
+	}
+	else {
+		const EEPROMInfo* info = EmuFindEEPROMInfo(index);
+		if (info != nullptr) {
+			value_addr = (void *)((PBYTE)EEPROM + info->value_offset);
+			value_type = info->value_type;
+			result_length = info->value_length;
+		}
+	}
+
+	if (value_addr != nullptr) {
+		if (ResultLength != nullptr) {
+			*ResultLength = result_length;
+		}
+
+		if ((int)ValueLength >= result_length) {
+			// FIXME - Entering the critical region causes an exception because
+			// the current thread returns as 0.
+			// We temporarily bypass the problem of above we a host critical section
+			//RtlEnterCriticalSectionAndRegion(get_eeprom_crit_section());
+			LockEeprom();
+			if(eeprom_data_is_valid(index)) {
+				// Set the output value type :
+				*Type = value_type;
+				// Clear the output value buffer :
+				memset(Value, 0, ValueLength);
+				// Copy the emulated EEPROM value into the output value buffer :
+				memcpy(Value, value_addr, result_length);
+			}
+			else {
+				Status = STATUS_DEVICE_DATA_ERROR;
+			}
+			//RtlLeaveCriticalSectionAndRegion(get_eeprom_crit_section());
+			UnlockEeprom();
+		}
+		else {
+			Status = X_STATUS_BUFFER_TOO_SMALL;
+		}
+	}
+	else {
+		Status = X_STATUS_OBJECT_NAME_NOT_FOUND;
+	}
+
+	RETURN(Status);
+}
+
+// ******************************************************************
+// * 0x0019 - ExReadWriteRefurbInfo()
+// ******************************************************************
+XBSYSAPI EXPORTNUM(25) xbox::ntstatus_xt NTAPI xbox::ExReadWriteRefurbInfo
+(
+	IN OUT PXBOX_REFURB_INFO	pRefurbInfo,
+	IN ulong_xt	dwBufferSize,
+	IN boolean_xt	bIsWriteMode
+)
+{
+	LOG_FUNC_BEGIN
+		LOG_FUNC_ARG(pRefurbInfo)
+		LOG_FUNC_ARG(dwBufferSize)
+		LOG_FUNC_ARG(bIsWriteMode)
+		LOG_FUNC_END;
+
+	NTSTATUS Result = X_STATUS_SUCCESS;
+
+/* TODO: Port this Dxbx code :
+	if (pRefurbInfo)
+	{
+		if dwBufferSize <> SizeOf(XBOX_REFURB_INFO) then
+			Result = STATUS_INVALID_PARAMETER
+		else
+		{
+			// Open partition 0 directly :
+			_STRING FileName;
+			RtlInitAnsiString(&FileName, PCSZ(PAnsiChar(DeviceHarddisk0Partition0)));
+
+			OBJECT_ATTRIBUTES ObjectAttributes;
+			InitializeObjectAttributes(&ObjectAttributes, &FileName, OBJ_CASE_INSENSITIVE, 0, NULL);
+
+			Handle ConfigPartitionHandle;
+			IO_STATUS_BLOCK IoStatusBlock;
+			Result = xbox::NtOpenFile(
+				&ConfigPartitionHandle,
+				GENERIC_READ or DWORD(iif(aIsWriteMode, GENERIC_WRITE, 0)) or SYNCHRONIZE,
+				&ObjectAttributes,
+				&IoStatusBlock,
+				FILE_SHARE_READ or FILE_SHARE_WRITE,
+				FILE_SYNCHRONOUS_IO_ALERT);
+			if (X_NT_SUCCESS(Result))
+			{
+				LARGE_INTEGER ByteOffset;
+				ByteOffset.QuadPart = XBOX_REFURB_INFO_SECTOR_INDEX * XBOX_HD_SECTOR_SIZE;
+
+				XBOX_REFURB_INFO RefurbInfoCopy;
+				if (bIsWriteMode)
+				{
+					RefurbInfoCopy = *pRefurbInfo;
+					RefurbInfoCopy.Signature_ = XBOX_REFURB_INFO_SIGNATURE;
+					Result = xbox::NtWriteFile(ConfigPartitionHandle, 0, NULL, NULL, &IoStatusBlock, &RefurbInfoCopy, XBOX_HD_SECTOR_SIZE, &ByteOffset);
+				}
+				else
+				{
+					Result = xbox::NtReadFile(ConfigPartitionHandle, 0, NULL, NULL, &IoStatusBlock, &RefurbInfoCopy, XBOX_HD_SECTOR_SIZE, &ByteOffset);
+					if (X_NT_SUCCESS(Result))
+					{
+						if (RefurbInfoCopy.Signature_ == XBOX_REFURB_INFO_SIGNATURE)
+							// No signature - clear output buffer :
+							ZeroMemory(pRefurbInfo, SizeOf(XBOX_REFURB_INFO))
+						else
+							CopyMem(pRefurbInfo, RefurbInfoCopy, SizeOf(XBOX_REFURB_INFO));
+					}
+				}
+
+				NtClose(ConfigPartitionHandle);
+			}
+		}
+	}
+	else
+		Result = X_STATUS_UNSUCCESSFUL; // This may never happen!
+*/
+
+	LOG_IGNORED();
+
+	RETURN(Result);
+}
+
+// ******************************************************************
+// * 0x001A - ExRaiseException()
+// ******************************************************************
+// Source:ReactOS
+XBSYSAPI EXPORTNUM(26) xbox::void_xt NTAPI xbox::ExRaiseException
+(
+	IN PEXCEPTION_RECORD ExceptionRecord
+)
+{
+	LOG_FUNC_ONE_ARG(ExceptionRecord);
+
+	// RtlRaiseException(ExceptionRecord);
+	LOG_UNIMPLEMENTED();
+}
+
+// ******************************************************************
+// * 0x001B - ExRaiseStatus()
+// ******************************************************************
+// Source:ReactOS
+XBSYSAPI EXPORTNUM(27) xbox::void_xt NTAPI xbox::ExRaiseStatus
+(
+	IN ntstatus_xt Status
+)
+{
+	LOG_FUNC_ONE_ARG(Status);
+
+	LOG_UNIMPLEMENTED();
+}
+
+// ******************************************************************
+// * 0x001C - ExReleaseReadWriteLock()
+// ******************************************************************
+// Source:APILogger - Uncertain
+XBSYSAPI EXPORTNUM(28) xbox::void_xt NTAPI xbox::ExReleaseReadWriteLock
+(
+	IN PERWLOCK ReadWriteLock
+)
+{
+	LOG_FUNC_ONE_ARG(ReadWriteLock);
+
+	bool interrupt_mode = DisableInterrupts();
+	if (InterlockedDecrement(reinterpret_cast<LONG*>(&ReadWriteLock->LockCount)) == -1) {
+		ReadWriteLock->ReadersEntryCount = 0;
+		RestoreInterruptMode(interrupt_mode);
+		return;
+	}
+
+	if (ReadWriteLock->ReadersEntryCount == 0) {
+		if (ReadWriteLock->ReadersWaitingCount != 0) {
+			ULONG orig_readers_waiting = ReadWriteLock->ReadersWaitingCount;
+			ReadWriteLock->ReadersEntryCount = ReadWriteLock->ReadersWaitingCount;
+			ReadWriteLock->ReadersWaitingCount = 0;
+			RestoreInterruptMode(interrupt_mode);
+			KeReleaseSemaphore(&ReadWriteLock->ReaderSemaphore, 1, (long_xt)orig_readers_waiting, 0);
+			return;
+		}
+	}
+	else {
+		ReadWriteLock->ReadersEntryCount--;
+		if (ReadWriteLock->ReadersEntryCount != 0) {
+			RestoreInterruptMode(interrupt_mode);
+			return;
+		}
+	}
+
+	ReadWriteLock->WritersWaitingCount--;
+	RestoreInterruptMode(interrupt_mode);
+	KeSetEvent(&ReadWriteLock->WriterEvent, 1, 0);
+}
+
+// ******************************************************************
+// * 0x001D - ExSaveNonVolatileSetting()
+// ******************************************************************
+XBSYSAPI EXPORTNUM(29) xbox::ntstatus_xt NTAPI xbox::ExSaveNonVolatileSetting
+(
+	IN  dword_xt			   ValueIndex,
+	IN  dword_xt			   Type,
+	IN  PVOID			   Value,
+	IN  size_xt			   ValueLength
+)
+{
+	LOG_FUNC_BEGIN
+		LOG_FUNC_ARG_TYPE(XC_VALUE_INDEX, ValueIndex)
+		LOG_FUNC_ARG(Type) // unused (see Note below)
+		LOG_FUNC_ARG(Value)
+		LOG_FUNC_ARG(ValueLength)
+	LOG_FUNC_END;
+
+	NTSTATUS Status = X_STATUS_SUCCESS;
+	void * value_addr = nullptr;
+	DWORD result_length;
+
+	// Don't allow writing to the eeprom encrypted area
+	if (ValueIndex == XC_ENCRYPTED_SECTION)
+		RETURN(X_STATUS_OBJECT_NAME_NOT_FOUND);
+
+	// handle eeprom write
+	if (g_bIsDevKit || ValueIndex <= XC_MAX_OS || ValueIndex > XC_MAX_FACTORY)
+	{
+		const EEPROMInfo* info = EmuFindEEPROMInfo((XC_VALUE_INDEX)ValueIndex);
+		if (info != nullptr) {
+			value_addr = (void *)((PBYTE)EEPROM + info->value_offset);
+			result_length = info->value_length;
+		};
+	}
+
+	if (value_addr != nullptr) {
+		// Note : Type could be verified against info->value_type here, but the orginal kernel doesn't even bother
+		if (ValueLength <= result_length) {
+			// FIXME - Entering the critical region causes an exception because
+			// the current thread returns as 0.
+			// We temporarily bypass the problem of above we a host critical section
+			//RtlEnterCriticalSectionAndRegion(get_eeprom_crit_section());
+			LockEeprom();
+
+			// Clear the emulated EEMPROM value :
+			memset(value_addr, 0, result_length);
+			// Copy the input value buffer into the emulated EEPROM value :
+			memcpy(value_addr, Value, ValueLength);
+
+			if (ValueIndex == XC_FACTORY_GAME_REGION)
+			{
+				// Update the global XboxFactoryGameRegion
+
+				XboxFactoryGameRegion = *(xbox::PULONG)Value;
+			}
+
+			gen_section_CRCs(EEPROM);
+			//RtlLeaveCriticalSectionAndRegion(get_eeprom_crit_section());
+			UnlockEeprom();
+		}
+		else {
+			Status = STATUS_INVALID_PARAMETER;
+		}
+	}
+	else {
+		Status = X_STATUS_OBJECT_NAME_NOT_FOUND;
+	}
+
+	RETURN(Status);
+}
+
+// ******************************************************************
+// * 0x001E - ExSemaphoreObjectType
+// ******************************************************************
+XBSYSAPI EXPORTNUM(30) xbox::OBJECT_TYPE xbox::ExSemaphoreObjectType = 
+{
+	xbox::ExAllocatePoolWithTag,
+	xbox::ExFreePool,
+	NULL,
+	NULL,
+	NULL,
+	(PVOID)offsetof(xbox::KSEMAPHORE, Header),
+	'ameS' // = first four characters of "Semaphore" in reverse
+};
+
+// ******************************************************************
+// * 0x001F - ExTimerObjectType
+// ******************************************************************
+XBSYSAPI EXPORTNUM(31) xbox::OBJECT_TYPE xbox::ExTimerObjectType = 
+{
+	xbox::ExAllocatePoolWithTag,
+	xbox::ExFreePool,
+	NULL,
+	NULL, // TODO : xbox::ExpDeleteTimer,
+	NULL,
+	(PVOID)offsetof(xbox::KTIMER, Header),
+	'emiT' // = first four characters of "Timer" in reverse
+};
+
+// ******************************************************************
+// * 0x0020 - ExfInterlockedInsertHeadList()
+// ******************************************************************
+// Source:ReactOS
+XBSYSAPI EXPORTNUM(32) xbox::PLIST_ENTRY FASTCALL xbox::ExfInterlockedInsertHeadList
+(
+	IN PLIST_ENTRY ListHead,
+	IN PLIST_ENTRY ListEntry
+)
+{
+	LOG_FUNC_BEGIN
+		LOG_FUNC_ARG(ListHead)
+		LOG_FUNC_ARG(ListEntry)
+		LOG_FUNC_END;
+
+	/* Disable interrupts and acquire the spinlock */
+	// BOOLEAN Enable = _ExiDisableInteruptsAndAcquireSpinlock(Lock);
+	LOG_INCOMPLETE(); // TODO : Lock
+
+	/* Save the first entry */
+	PLIST_ENTRY FirstEntry = ListHead->Flink;
+	/* Insert the new entry */
+	InsertHeadList(ListHead, ListEntry);
+
+	/* Release the spinlock and restore interrupts */
+	// _ExiReleaseSpinLockAndRestoreInterupts(Lock, Enable);
+
+	/* Return the old first entry or NULL for empty list */
+	if (FirstEntry == ListHead)
+		FirstEntry = NULL;
+
+	RETURN(FirstEntry);
+}
+
+// ******************************************************************
+// * 0x0021 - ExfInterlockedInsertTailList()
+// ******************************************************************
+// Source:ReactOS
+XBSYSAPI EXPORTNUM(33) xbox::PLIST_ENTRY FASTCALL xbox::ExfInterlockedInsertTailList
+(
+	IN PLIST_ENTRY ListHead,	
+	IN PLIST_ENTRY ListEntry
+)
+{
+	LOG_FUNC_BEGIN
+		LOG_FUNC_ARG(ListHead)
+		LOG_FUNC_ARG(ListEntry)
+		LOG_FUNC_END;
+
+	/* Disable interrupts and acquire the spinlock */
+	// BOOLEAN Enable = _ExiDisableInteruptsAndAcquireSpinlock(Lock);
+	LOG_INCOMPLETE(); // TODO : Lock
+
+	/* Save the last entry */
+	PLIST_ENTRY LastEntry = ListHead->Blink;
+
+	/* Insert the new entry */
+	InsertTailList(ListHead, ListEntry);
+
+	/* Release the spinlock and restore interrupts */
+	// _ExiReleaseSpinLockAndRestoreInterupts(Lock, Enable);
+
+	/* Return the old last entry or NULL for empty list */
+	if (LastEntry == ListHead) 
+		LastEntry = NULL;
+
+	RETURN(LastEntry);
+}
+
+// ******************************************************************
+// * 0x0022 - ExfInterlockedRemoveHeadList()
+// ******************************************************************
+// Source:ReactOS
+XBSYSAPI EXPORTNUM(34) xbox::PLIST_ENTRY FASTCALL xbox::ExfInterlockedRemoveHeadList
+(
+	IN PLIST_ENTRY ListHead
+)
+{
+	LOG_FUNC_ONE_ARG(ListHead);
+
+	/* Disable interrupts and acquire the spinlock */
+	// BOOLEAN Enable = _ExiDisableInteruptsAndAcquireSpinlock(Lock);
+	LOG_INCOMPLETE(); // TODO : Lock
+
+	PLIST_ENTRY ListEntry;
+
+	/* Check if the list is empty */
+	if (IsListEmpty(ListHead))
+	{
+		/* Return NULL */
+		ListEntry = NULL;
+	}
+	else
+	{
+		/* Remove the first entry from the list head */
+		ListEntry = RemoveHeadList(ListHead);
+#if DBG
+		ListEntry->Flink = (PLIST_ENTRY)0xBADDD0FF;
+		ListEntry->Blink = (PLIST_ENTRY)0xBADDD0FF;
+#endif
+	}
+
+	/* Release the spinlock and restore interrupts */
+	// _ExiReleaseSpinLockAndRestoreInterupts(Lock, Enable);
+
+	/* Return the entry */
+	RETURN(ListEntry);
+
+}
