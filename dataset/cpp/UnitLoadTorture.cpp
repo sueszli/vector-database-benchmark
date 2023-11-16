@@ -1,0 +1,232 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4; fill-column: 100 -*- */
+/*
+ * Copyright the Collabora Online contributors.
+ *
+ * SPDX-License-Identifier: MPL-2.0
+ *
+ * This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at http://mozilla.org/MPL/2.0/.
+ */
+
+#include <config.h>
+
+#include <string>
+
+#include <test/lokassert.hpp>
+
+#include <Unit.hpp>
+#include <Util.hpp>
+#include <helpers.hpp>
+#include <net/WebSocketSession.hpp>
+
+/// Load torture testcase.
+class UnitLoadTorture : public UnitWSD
+{
+    int loadTorture(const std::string& name, const std::string& docName,
+                    const size_t thread_count, const size_t max_jitter_ms);
+    TestResult testLoadTortureODT();
+    TestResult testLoadTortureODS();
+    TestResult testLoadTortureODP();
+    TestResult testLoadTorture();
+
+public:
+    UnitLoadTorture();
+    void invokeWSDTest() override;
+};
+
+int UnitLoadTorture::loadTorture(const std::string& name, const std::string& docName,
+                                 const size_t thread_count, const size_t max_jitter_ms)
+{
+    // Load same document from many threads together.
+    std::string documentPath, documentURL;
+    helpers::getDocumentPathAndURL(docName, documentPath, documentURL, name);
+
+    TST_LOG("Starting test on " << documentURL << ' ' << documentPath);
+
+    std::atomic<int> sum_view_ids;
+    sum_view_ids = 0;
+    std::atomic<int> num_of_views(0);
+    std::atomic<int> num_to_load(thread_count);
+    std::shared_ptr<SocketPoll> poll = std::make_shared<SocketPoll>("WebSocketPoll");
+    poll->startThread();
+
+    std::vector<std::thread> threads;
+    for (size_t i = 0; i < thread_count; ++i)
+    {
+        threads.emplace_back([&] {
+            std::ostringstream oss;
+            oss << std::hex << std::this_thread::get_id();
+            const std::string id = oss.str();
+
+            TST_LOG(": #" << id << ", views: " << num_of_views << ", to load: " << num_to_load);
+            try
+            {
+                // Load a document and wait for the status.
+                auto wsSession = http::WebSocketSession::create(helpers::getTestServerURI());
+                http::Request req(documentURL);
+                wsSession->asyncRequest(req, poll);
+
+                wsSession->sendMessage("load url=" + documentURL);
+
+                // 20s is double of the default.
+                std::vector<char> message
+                    = wsSession->waitForMessage("status:", std::chrono::seconds(20), name + id + ' ');
+                const std::string status = COOLProtocol::getFirstLine(message);
+
+                int viewid = -1;
+                LOK_ASSERT(COOLProtocol::getTokenIntegerFromMessage(status, "viewid", viewid));
+                sum_view_ids += viewid;
+                ++num_of_views;
+                --num_to_load;
+
+                TST_LOG(": #" << id << ", loaded views: " << num_of_views
+                              << ", to load: " << num_to_load);
+
+                while (true)
+                {
+                    if (num_to_load == 0)
+                    {
+                        // Unload at once, nothing more left to do.
+                        TST_LOG(": #" << id << ", no more to load, unloading.");
+                        break;
+                    }
+
+                    const auto ms
+                        = (max_jitter_ms > 0
+                               ? std::chrono::milliseconds(Util::rng::getNext() % max_jitter_ms)
+                               : std::chrono::milliseconds(0));
+                    std::this_thread::sleep_for(ms);
+
+                    // Unload only when we aren't the last/only.
+                    if (--num_of_views > 0)
+                    {
+                        TST_LOG(": #" << id << ", views: " << num_of_views
+                                      << " not the last/only, unloading.");
+                        break;
+                    }
+                    else
+                    {
+                        // Correct back, since we aren't unloading just yet.
+                        ++num_of_views;
+                    }
+                }
+            }
+            catch (const std::exception& exc)
+            {
+                TST_LOG(": #" << id << ", Exception: " << exc.what());
+                --num_to_load;
+            }
+        });
+    }
+
+    for (auto& thread : threads)
+    {
+        try
+        {
+            thread.join();
+        }
+        catch (const std::exception& exc)
+        {
+            TST_LOG(": Exception: " << exc.what());
+        }
+    }
+
+    return sum_view_ids;
+}
+
+UnitBase::TestResult UnitLoadTorture::testLoadTortureODT()
+{
+    const int thread_count = 6;
+    const int max_jitter_ms = 100;
+
+    const int sum_view_ids = loadTorture(testname, "empty.odt", thread_count, max_jitter_ms);
+
+    // This only works when the first view-ID is 0 and increments monotonously.
+    const int number_of_loads = thread_count;
+    const int exp_sum_view_ids = number_of_loads * (number_of_loads - 1) / 2; // 0-based view-ids.
+    LOK_ASSERT_EQUAL(exp_sum_view_ids, sum_view_ids);
+    return TestResult::Ok;
+}
+
+UnitBase::TestResult UnitLoadTorture::testLoadTortureODS()
+{
+    const int thread_count = 6;
+    const int max_jitter_ms = 100;
+
+    const int sum_view_ids = loadTorture(testname, "empty.ods", thread_count, max_jitter_ms);
+
+    // This only works when the first view-ID is 0 and increments monotonously.
+    const int number_of_loads = thread_count;
+    const int exp_sum_view_ids = number_of_loads * (number_of_loads - 1) / 2; // 0-based view-ids.
+    LOK_ASSERT_EQUAL(exp_sum_view_ids, sum_view_ids);
+    return TestResult::Ok;
+}
+
+UnitBase::TestResult UnitLoadTorture::testLoadTortureODP()
+{
+    const int thread_count = 6;
+    const int max_jitter_ms = 100;
+
+    const int sum_view_ids = loadTorture(testname, "empty.odp", thread_count, max_jitter_ms);
+
+    // For ODP the view-id is always odd, and we expect not to skip any ids.
+    const int number_of_loads = thread_count;
+    const int exp_sum_view_ids = number_of_loads * (number_of_loads - 1) / 2; // 0-based view-ids.
+    LOK_ASSERT_EQUAL(exp_sum_view_ids, sum_view_ids);
+    return TestResult::Ok;
+}
+
+UnitBase::TestResult UnitLoadTorture::testLoadTorture()
+{
+    const int thread_count = 3;
+    const int max_jitter_ms = 75;
+
+    std::vector<std::string> docNames = { "setclientpart.ods", "hello.odt", "viewcursor.odp" };
+
+    std::vector<std::thread> threads;
+    threads.reserve(docNames.size());
+    for (const auto& docName : docNames)
+    {
+        threads.emplace_back([&] {
+            const auto name = "loadTorture_" + docName + ' ';
+            loadTorture(name, docName, thread_count, max_jitter_ms);
+        });
+    }
+
+    for (auto& thread : threads)
+    {
+        thread.join();
+    }
+    return TestResult::Ok;
+}
+
+UnitLoadTorture::UnitLoadTorture()
+    : UnitWSD("UnitLoadTorture")
+{
+    // Double of the default.
+    constexpr std::chrono::minutes timeout_minutes(1);
+    setTimeout(timeout_minutes);
+}
+
+void UnitLoadTorture::invokeWSDTest()
+{
+    UnitBase::TestResult result = testLoadTortureODT();
+    if (result != TestResult::Ok)
+        exitTest(result);
+
+    result = testLoadTortureODS();
+    if (result != TestResult::Ok)
+        exitTest(result);
+
+    result = testLoadTortureODP();
+    if (result != TestResult::Ok)
+        exitTest(result);
+
+    result = testLoadTorture();
+    exitTest(result);
+}
+
+UnitBase* unit_create_wsd(void) { return new UnitLoadTorture(); }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */
