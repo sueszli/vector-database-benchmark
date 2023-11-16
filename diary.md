@@ -34,4 +34,6 @@ there are 2 ways to scrape github:
 
 after collecting a bunch of links to repositories i merged and sorted the files: 2340 original lines, 186 removed, 2154 remaining.
 
-i then did the same thing again, but this time with python code.
+i then did the same thing again, but this time with python code which lead to 1154 original lines.
+
+next i cloned all repositories, unzipped them, and removed all unrelated files.
