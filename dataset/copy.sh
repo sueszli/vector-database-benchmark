@@ -1,7 +1,7 @@
 #!/bin/bash
 
-src_dir=~/dev/PYTHON_FILES
-target_dir=~/dev/vector-database-benchmark/dataset/python
+src_dir=~/dev/CPP_FILES
+target_dir=~/dev/vector-database-benchmark/dataset/cpp
 
 while [ "$(ls -A $src_dir)" ]; do
     cd $src_dir
