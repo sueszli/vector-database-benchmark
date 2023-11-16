@@ -1,0 +1,229 @@
+/* Copyright (C) 2016, Nikolai Wuttke. All rights reserved.
+ *
+ *  This program is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation, either version 2 of the License, or
+ *  (at your option) any later version.
+ *
+ *  This program is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ *
+ *  You should have received a copy of the GNU General Public License
+ *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+#include "laser_turret.hpp"
+
+#include "base/math_utils.hpp"
+#include "data/player_model.hpp"
+#include "engine/random_number_generator.hpp"
+#include "engine/sprite_tools.hpp"
+#include "engine/visual_components.hpp"
+#include "frontend/game_service_provider.hpp"
+#include "game_logic/damage_components.hpp"
+#include "game_logic/global_dependencies.hpp"
+#include "game_logic/ientity_factory.hpp"
+#include "game_logic/player.hpp"
+
+
+namespace rigel::game_logic::behaviors
+{
+
+namespace
+{
+
+int angleAdjustment(const int currentAngle, const bool playerIsRight)
+{
+  if (playerIsRight)
+  {
+    if (currentAngle > 4)
+    {
+      return -1;
+    }
+    else if (currentAngle < 4)
+    {
+      return 1;
+    }
+  }
+  else if (currentAngle > 0)
+  {
+    return -1;
+  }
+
+  return 0;
+}
+
+
+void performBaseHitEffect(GlobalDependencies& d, const base::Vec2& position)
+{
+  spawnFloatingOneShotSprite(
+    *d.mpEntityFactory,
+    data::ActorID::Shot_impact_FX,
+    position + base::Vec2{-1, 2});
+  const auto randomChoice = d.mpRandomGenerator->gen();
+  const auto soundId = randomChoice % 2 == 0 ? data::SoundId::AlternateExplosion
+                                             : data::SoundId::Explosion;
+  d.mpServiceProvider->playSound(soundId);
+}
+
+} // namespace
+
+
+void LaserTurret::update(
+  GlobalDependencies& d,
+  GlobalState& s,
+  bool isOnScreen,
+  entityx::Entity entity)
+{
+  const auto& position = *entity.component<engine::components::WorldPosition>();
+  const auto& playerPosition = s.mpPlayer->orientedPosition();
+  auto& sprite = *entity.component<engine::components::Sprite>();
+
+  const auto isSpinning = mSpinningTurnsLeft > 0;
+  if (!isSpinning)
+  {
+    // Flash the sprite before checking orientation and potentially firing.
+    // This mirrors what the original game does. It has the effect that the
+    // turret stays in the 'flashed' state for longer than one frame if the
+    // player moves while it's about to fire, which seems kind of buggy.
+    if (mNextShotCountdown < 7 && mNextShotCountdown % 2 != 0)
+    {
+      sprite.flashWhite();
+    }
+
+    // See if we need to re-adjust our orientation
+    const auto playerIsRight = position.x <= playerPosition.x;
+    // clang-format off
+    const auto isInPosition =
+      (playerIsRight && mAngle == 4) ||
+      (!playerIsRight && mAngle == 0);
+    // clang-format on
+
+    if (isInPosition)
+    {
+      // Count down and maybe fire
+      --mNextShotCountdown;
+      if (mNextShotCountdown <= 0)
+      {
+        mNextShotCountdown = 40;
+
+        const auto facingLeft = mAngle == 0;
+        const auto offset = facingLeft ? -2 : 2;
+        d.mpServiceProvider->playSound(data::SoundId::EnemyLaserShot);
+        spawnEnemyLaserShot(
+          *d.mpEntityFactory,
+          position + base::Vec2{offset, 0},
+          facingLeft ? engine::components::Orientation::Left
+                     : engine::components::Orientation::Right);
+      }
+    }
+    else
+    {
+      mAngle += angleAdjustment(mAngle, playerIsRight);
+    }
+  }
+  else
+  {
+    // Spin around
+    --mSpinningTurnsLeft;
+    int rotationAmount = 0;
+    if (mSpinningTurnsLeft > 20)
+    {
+      rotationAmount = 2;
+    }
+    else if (mSpinningTurnsLeft >= 10)
+    {
+      rotationAmount = 1;
+    }
+    else
+    {
+      const auto doSpin = mSpinningTurnsLeft % 2 == 0;
+      rotationAmount = doSpin ? 1 : 0;
+    }
+
+    mAngle = (mAngle + rotationAmount) % 8;
+
+    if (mAngle == 5 || mAngle == 6)
+    {
+      d.mpServiceProvider->playSound(data::SoundId::Swoosh);
+    }
+
+    if (mSpinningTurnsLeft <= 0)
+    {
+      // Go back to normal state
+      mNextShotCountdown = 40;
+
+      auto& shootable = *entity.component<game_logic::components::Shootable>();
+      shootable.mInvincible = false;
+      entity.assign<game_logic::components::PlayerDamaging>(1);
+    }
+  }
+
+  sprite.mFramesToRender[0] = mAngle;
+  engine::synchronizeBoundingBoxToSprite(entity);
+}
+
+
+void LaserTurret::onHit(
+  GlobalDependencies& d,
+  GlobalState& s,
+  entityx::Entity inflictorEntity,
+  entityx::Entity entity)
+{
+  using game_logic::components::PlayerProjectile;
+
+  auto& shootable = *entity.component<game_logic::components::Shootable>();
+
+  // If the inflictor is not Duke's regular shot, apply damage as normal.
+  if (
+    !inflictorEntity.has_component<PlayerProjectile>() ||
+    inflictorEntity.component<PlayerProjectile>()->mType !=
+      PlayerProjectile::Type::Normal)
+  {
+    shootable.mHealth -=
+      inflictorEntity.component<game_logic::components::DamageInflicting>()
+        ->mAmount;
+    return;
+  }
+
+  // Otherwise, go into spinning mode, but don't lose any health.
+  mSpinningTurnsLeft = 40;
+
+  shootable.mInvincible = true;
+  entity.remove<game_logic::components::PlayerDamaging>();
+
+  s.mpPlayer->model().giveScore(1);
+
+  performBaseHitEffect(
+    d, *entity.component<engine::components::WorldPosition>());
+}
+
+
+void LaserTurret::onKilled(
+  GlobalDependencies& d,
+  GlobalState& s,
+  const base::Vec2f& inflictorVelocity,
+  entityx::Entity entity)
+{
+  const auto& position = *entity.component<engine::components::WorldPosition>();
+
+  performBaseHitEffect(d, position);
+
+  const auto shotFromRight = inflictorVelocity.x < 0.0f;
+  const auto shotFromLeft = inflictorVelocity.x > 0.0f;
+
+  // clang-format off
+  const auto debrisMovement = shotFromRight
+    ? SpriteMovement::FlyUpperLeft
+    : (shotFromLeft)
+      ? SpriteMovement::FlyUpperRight
+      : SpriteMovement::FlyUp;
+  // clang-format on
+
+  spawnMovingEffectSprite(
+    *d.mpEntityFactory, data::ActorID::Laser_turret, debrisMovement, position);
+}
+
+} // namespace rigel::game_logic::behaviors
