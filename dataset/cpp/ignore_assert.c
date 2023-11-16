@@ -1,0 +1,16 @@
+/**
+ * @file ignore_assert.c
+ * @brief 忽略断言
+ * @author 光城
+ * @version v1
+ * @date 2019-07-25
+ */
+
+# define NDEBUG // 忽略断言
+
+#include<assert.h>
+
+int main(){
+    assert(x==5);
+    return 0;
+}
