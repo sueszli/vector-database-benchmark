@@ -1,0 +1,29 @@
+from __future__ import annotations
+from functools import cached_property
+from typing import TYPE_CHECKING, Optional, Type
+from .exception import StrawberryException
+from .utils.source_finder import SourceFinder
+if TYPE_CHECKING:
+    from enum import Enum
+    from .exception_source import ExceptionSource
+
+class ObjectIsNotAnEnumError(StrawberryException):
+
+    def __init__(self, cls: Type[Enum]):
+        if False:
+            print('Hello World!')
+        self.cls = cls
+        self.message = f'strawberry.enum can only be used with subclasses of Enum. Provided object {cls.__name__} is not an enum.'
+        self.rich_message = f'strawberry.enum can only be used with subclasses of Enum. Provided object `[underline]{cls.__name__}[/]` is not an enum.'
+        self.annotation_message = 'class defined here'
+        self.suggestion = 'To fix this error, make sure your class is a subclass of enum.Enum.'
+        super().__init__(self.message)
+
+    @cached_property
+    def exception_source(self) -> Optional[ExceptionSource]:
+        if False:
+            print('Hello World!')
+        if self.cls is None:
+            return None
+        source_finder = SourceFinder()
+        return source_finder.find_class_from_object(self.cls)

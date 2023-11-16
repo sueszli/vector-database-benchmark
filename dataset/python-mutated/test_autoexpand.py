@@ -1,0 +1,142 @@
+"""Test autoexpand, coverage 100%."""
+from idlelib.autoexpand import AutoExpand
+import unittest
+from test.support import requires
+from tkinter import Text, Tk
+
+class DummyEditwin:
+
+    def __init__(self, text):
+        if False:
+            for i in range(10):
+                print('nop')
+        self.text = text
+
+class AutoExpandTest(unittest.TestCase):
+
+    @classmethod
+    def setUpClass(cls):
+        if False:
+            i = 10
+            return i + 15
+        requires('gui')
+        cls.tk = Tk()
+        cls.text = Text(cls.tk)
+        cls.auto_expand = AutoExpand(DummyEditwin(cls.text))
+        cls.auto_expand.bell = lambda : None
+
+    @classmethod
+    def tearDownClass(cls):
+        if False:
+            while True:
+                i = 10
+        del cls.text, cls.auto_expand
+        if hasattr(cls, 'tk'):
+            cls.tk.destroy()
+            del cls.tk
+
+    def tearDown(self):
+        if False:
+            print('Hello World!')
+        self.text.delete('1.0', 'end')
+
+    def test_get_prevword(self):
+        if False:
+            return 10
+        text = self.text
+        previous = self.auto_expand.getprevword
+        equal = self.assertEqual
+        equal(previous(), '')
+        text.insert('insert', 't')
+        equal(previous(), 't')
+        text.insert('insert', 'his')
+        equal(previous(), 'this')
+        text.insert('insert', ' ')
+        equal(previous(), '')
+        text.insert('insert', 'is')
+        equal(previous(), 'is')
+        text.insert('insert', '\nsample\nstring')
+        equal(previous(), 'string')
+        text.delete('3.0', 'insert')
+        equal(previous(), '')
+        text.delete('1.0', 'end')
+        equal(previous(), '')
+
+    def test_before_only(self):
+        if False:
+            while True:
+                i = 10
+        previous = self.auto_expand.getprevword
+        expand = self.auto_expand.expand_word_event
+        equal = self.assertEqual
+        self.text.insert('insert', 'ab ac bx ad ab a')
+        equal(self.auto_expand.getwords(), ['ab', 'ad', 'ac', 'a'])
+        expand('event')
+        equal(previous(), 'ab')
+        expand('event')
+        equal(previous(), 'ad')
+        expand('event')
+        equal(previous(), 'ac')
+        expand('event')
+        equal(previous(), 'a')
+
+    def test_after_only(self):
+        if False:
+            while True:
+                i = 10
+        text = self.text
+        previous = self.auto_expand.getprevword
+        expand = self.auto_expand.expand_word_event
+        equal = self.assertEqual
+        text.insert('insert', 'a, [ab] ac: () bx"" cd ac= ad ya')
+        text.mark_set('insert', '1.1')
+        equal(self.auto_expand.getwords(), ['ab', 'ac', 'ad', 'a'])
+        expand('event')
+        equal(previous(), 'ab')
+        expand('event')
+        equal(previous(), 'ac')
+        expand('event')
+        equal(previous(), 'ad')
+        expand('event')
+        equal(previous(), 'a')
+
+    def test_both_before_after(self):
+        if False:
+            while True:
+                i = 10
+        text = self.text
+        previous = self.auto_expand.getprevword
+        expand = self.auto_expand.expand_word_event
+        equal = self.assertEqual
+        text.insert('insert', 'ab xy yz\n')
+        text.insert('insert', 'a ac by ac')
+        text.mark_set('insert', '2.1')
+        equal(self.auto_expand.getwords(), ['ab', 'ac', 'a'])
+        expand('event')
+        equal(previous(), 'ab')
+        expand('event')
+        equal(previous(), 'ac')
+        expand('event')
+        equal(previous(), 'a')
+
+    def test_other_expand_cases(self):
+        if False:
+            i = 10
+            return i + 15
+        text = self.text
+        expand = self.auto_expand.expand_word_event
+        equal = self.assertEqual
+        equal(self.auto_expand.getwords(), [])
+        equal(expand('event'), 'break')
+        text.insert('insert', 'bx cy dz a')
+        equal(self.auto_expand.getwords(), [])
+        text.insert('insert', 'ac xy a ac ad a')
+        text.mark_set('insert', '1.7')
+        expand('event')
+        initial_state = self.auto_expand.state
+        text.mark_set('insert', '1.end')
+        expand('event')
+        new_state = self.auto_expand.state
+        self.assertNotEqual(initial_state, new_state)
+if __name__ == '__main__':
+    unittest.main(verbosity=2)

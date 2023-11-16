@@ -1,0 +1,30 @@
+"""Add key uuid to secrets
+
+Revision ID: e3593cc2191e
+Revises: 90d978a8aef8
+Create Date: 2023-07-14 15:53:06.580076
+
+"""
+from alembic import op
+import sqlalchemy as sa
+revision = 'e3593cc2191e'
+down_revision = '90d978a8aef8'
+branch_labels = None
+depends_on = None
+
+def upgrade() -> None:
+    if False:
+        print('Hello World!')
+    with op.batch_alter_table('secret', schema=None) as batch_op:
+        batch_op.drop_constraint('name_unique', type_='unique')
+        batch_op.add_column(sa.Column('key_uuid', sa.String(length=255), nullable=True))
+        batch_op.create_unique_constraint('name_key_uuid_uc', ['name', 'key_uuid'])
+
+def downgrade() -> None:
+    if False:
+        i = 10
+        return i + 15
+    with op.batch_alter_table('secret', schema=None) as batch_op:
+        batch_op.drop_constraint('name_key_uuid_uc', type_='unique')
+        batch_op.drop_column('key_uuid')
+        batch_op.create_unique_constraint('name_unique', columns=['name'])

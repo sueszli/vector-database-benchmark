@@ -1,0 +1,114 @@
+import pytest
+from astropy.cosmology._io.row import from_row, to_row
+from astropy.cosmology.core import _COSMOLOGY_CLASSES, Cosmology
+from astropy.table import Row
+from .base import ToFromDirectTestBase, ToFromTestMixinBase
+
+class ToFromRowTestMixin(ToFromTestMixinBase):
+    """
+    Tests for a Cosmology[To/From]Format with ``format="astropy.row"``.
+    This class will not be directly called by :mod:`pytest` since its name does
+    not begin with ``Test``. To activate the contained tests this class must
+    be inherited in a subclass. Subclasses must define a :func:`pytest.fixture`
+    ``cosmo`` that returns/yields an instance of a |Cosmology|.
+    See ``TestCosmologyToFromFormat`` or ``TestCosmology`` for examples.
+    """
+
+    @pytest.mark.parametrize('in_meta', [True, False])
+    def test_to_row_in_meta(self, cosmo_cls, cosmo, in_meta):
+        if False:
+            while True:
+                i = 10
+        'Test where the cosmology class is placed.'
+        row = cosmo.to_format('astropy.row', cosmology_in_meta=in_meta)
+        if in_meta:
+            assert row.meta['cosmology'] == cosmo_cls.__qualname__
+            assert 'cosmology' not in row.colnames
+        else:
+            assert row['cosmology'] == cosmo_cls.__qualname__
+            assert 'cosmology' not in row.meta
+
+    def test_from_not_row(self, cosmo, from_format):
+        if False:
+            while True:
+                i = 10
+        'Test not passing a Row to the Row parser.'
+        with pytest.raises(AttributeError):
+            from_format('NOT A ROW', format='astropy.row')
+
+    def test_tofrom_row_instance(self, cosmo, to_format, from_format):
+        if False:
+            i = 10
+            return i + 15
+        'Test cosmology -> astropy.row -> cosmology.'
+        row = to_format('astropy.row')
+        assert isinstance(row, Row)
+        assert row['cosmology'] == cosmo.__class__.__qualname__
+        assert row['name'] == cosmo.name
+        row.table['mismatching'] = 'will error'
+        if tuple(cosmo._init_signature.parameters.values())[-1].kind == 4:
+            got = from_format(row, format='astropy.row')
+            assert got.__class__ is cosmo.__class__
+            assert got.name == cosmo.name
+            assert 'mismatching' not in got.meta
+            return
+        with pytest.raises(TypeError, match='there are unused parameters'):
+            from_format(row, format='astropy.row')
+        got = from_format(row, format='astropy.row', move_to_meta=True)
+        assert got == cosmo
+        assert got.meta['mismatching'] == 'will error'
+        row.table.remove_column('mismatching')
+        got = from_format(row, format='astropy.row')
+        assert got == cosmo
+        cosmology = _COSMOLOGY_CLASSES[row['cosmology']]
+        row.table.remove_column('cosmology')
+        row.table['cosmology'] = cosmology
+        got = from_format(row, format='astropy.row')
+        assert got == cosmo
+        got = from_format(row)
+        assert got == cosmo
+
+    def test_tofrom_row_rename(self, cosmo, to_format, from_format):
+        if False:
+            return 10
+        'Test renaming columns in row.'
+        rename = {'name': 'cosmo_name'}
+        row = to_format('astropy.row', rename=rename)
+        assert 'name' not in row.colnames
+        assert 'cosmo_name' in row.colnames
+        with pytest.raises(TypeError, match='there are unused parameters'):
+            from_format(row)
+        inv_rename = {v: k for (k, v) in rename.items()}
+        got = from_format(row, rename=inv_rename)
+        assert got == cosmo
+
+    def test_fromformat_row_subclass_partial_info(self, cosmo: Cosmology) -> None:
+        if False:
+            for i in range(10):
+                print('nop')
+        '\n        Test writing from an instance and reading from that class.\n        This works with missing information.\n\n        There are no partial info options\n        '
+
+    @pytest.mark.parametrize('format', [True, False, None, 'astropy.row'])
+    def test_is_equivalent_to_row(self, cosmo, to_format, format):
+        if False:
+            for i in range(10):
+                print('nop')
+        'Test :meth:`astropy.cosmology.Cosmology.is_equivalent`.\n\n        This test checks that Cosmology equivalency can be extended to any\n        Python object that can be converted to a Cosmology -- in this case\n        a Row.\n        '
+        obj = to_format('astropy.row')
+        assert not isinstance(obj, Cosmology)
+        is_equiv = cosmo.is_equivalent(obj, format=format)
+        assert is_equiv is (format is not False)
+
+class TestToFromRow(ToFromDirectTestBase, ToFromRowTestMixin):
+    """
+    Directly test ``to/from_row``.
+    These are not public API and are discouraged from use, in favor of
+    ``Cosmology.to/from_format(..., format="astropy.row")``, but should be
+    tested regardless b/c 3rd party packages might use these in their Cosmology
+    I/O. Also, it's cheap to test.
+    """
+
+    def setup_class(self):
+        if False:
+            print('Hello World!')
+        self.functions = {'to': to_row, 'from': from_row}

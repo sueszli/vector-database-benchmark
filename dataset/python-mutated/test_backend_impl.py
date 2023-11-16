@@ -1,0 +1,381 @@
+import numpy as np
+import nvidia.dali.fn as fn
+import nvidia.dali.types as types
+import warnings
+from numpy.testing import assert_array_equal
+from nvidia.dali import pipeline_def
+from nvidia.dali.backend_impl import TensorCPU, TensorListCPU, TensorListGPU
+from nvidia.dali.backend_impl import types as types_
+import nvidia.dali as dali
+from nose_utils import assert_raises
+from nose import SkipTest
+from test_utils import dali_type_to_np, py_buffer_from_address, get_device_memory_info
+
+def test_preallocation():
+    if False:
+        i = 10
+        return i + 15
+    dali.backend.PreallocateDeviceMemory(0, 0)
+    dali.backend.ReleaseUnusedMemory()
+    mem_info = get_device_memory_info()
+    if mem_info is None:
+        raise SkipTest('Python bindings for NVML not found, skipping')
+    free_before_prealloc = mem_info.free
+    size = 256 << 20
+    dali.backend.PreallocateDeviceMemory(size, 0)
+    free_after_prealloc = get_device_memory_info().free
+    assert free_after_prealloc < free_before_prealloc
+    dali.backend.ReleaseUnusedMemory()
+    free_after_release = get_device_memory_info().free
+    assert free_after_release > free_after_prealloc
+
+def test_create_tensor():
+    if False:
+        i = 10
+        return i + 15
+    arr = np.random.rand(3, 5, 6)
+    tensor = TensorCPU(arr, 'NHWC')
+    assert_array_equal(arr, np.array(tensor))
+
+def test_create_tensor_and_make_it_release_memory():
+    if False:
+        while True:
+            i = 10
+    arr = np.random.rand(3, 5, 6)
+    tensor = TensorCPU(arr, 'NHWC')
+    assert_array_equal(arr, np.array(tensor))
+    arr = None
+    tensor = None
+
+def test_create_tensorlist():
+    if False:
+        return 10
+    arr = np.random.rand(3, 5, 6)
+    tensorlist = TensorListCPU(arr, 'NHWC')
+    assert_array_equal(arr, tensorlist.as_array())
+
+def test_create_tensorlist_list():
+    if False:
+        i = 10
+        return i + 15
+    arr = np.random.rand(3, 5, 6)
+    tensorlist = TensorListCPU([arr], 'NHWC')
+    assert_array_equal(arr.reshape(tuple([1]) + arr.shape), tensorlist.as_array())
+
+def test_create_tensorlist_as_tensor():
+    if False:
+        while True:
+            i = 10
+    arr = np.random.rand(3, 5, 6)
+    tensorlist = TensorListCPU(arr, 'NHWC')
+    tensor = tensorlist.as_tensor()
+    assert_array_equal(np.array(tensor), tensorlist.as_array())
+
+def test_empty_tensor_tensorlist():
+    if False:
+        while True:
+            i = 10
+    arr = np.array([], dtype=np.float32)
+    tensor = TensorCPU(arr, 'NHWC')
+    tensorlist = TensorListCPU(arr, 'NHWC')
+    assert_array_equal(np.array(tensor), tensorlist.as_array())
+    assert np.array(tensor).shape == (0,)
+    assert tensorlist.as_array().shape == (0,)
+
+def test_tensorlist_getitem_cpu():
+    if False:
+        return 10
+    arr = np.random.rand(3, 5, 6)
+    tensorlist = TensorListCPU(arr, 'NHWC')
+    list_of_tensors = [x for x in tensorlist]
+    assert type(tensorlist.at(0)) is np.ndarray
+    assert type(tensorlist[0]) is not np.ndarray
+    assert type(tensorlist[0]) is TensorCPU
+    assert type(tensorlist[-3]) is TensorCPU
+    assert len(list_of_tensors) == len(tensorlist)
+    with assert_raises(IndexError, glob='out of range'):
+        tensorlist[len(tensorlist)]
+    with assert_raises(IndexError, glob='out of range'):
+        tensorlist[-len(tensorlist) - 1]
+
+def test_data_ptr_tensor_cpu():
+    if False:
+        print('Hello World!')
+    arr = np.random.rand(3, 5, 6)
+    tensor = TensorCPU(arr, 'NHWC')
+    from_tensor = py_buffer_from_address(tensor.data_ptr(), tensor.shape(), types.to_numpy_type(tensor.dtype))
+    assert np.array_equal(arr, from_tensor)
+
+def test_data_ptr_tensor_list_cpu():
+    if False:
+        while True:
+            i = 10
+    arr = np.random.rand(3, 5, 6)
+    tensorlist = TensorListCPU(arr, 'NHWC')
+    tensor = tensorlist.as_tensor()
+    from_tensor_list = py_buffer_from_address(tensorlist.data_ptr(), tensor.shape(), types.to_numpy_type(tensor.dtype))
+    assert np.array_equal(arr, from_tensor_list)
+
+def test_array_interface_tensor_cpu():
+    if False:
+        for i in range(10):
+            print('nop')
+    arr = np.random.rand(3, 5, 6)
+    tensorlist = TensorListCPU(arr, 'NHWC')
+    assert tensorlist[0].__array_interface__['data'][0] == tensorlist[0].data_ptr()
+    assert not tensorlist[0].__array_interface__['data'][1]
+    assert np.array_equal(tensorlist[0].__array_interface__['shape'], tensorlist[0].shape())
+    assert np.dtype(tensorlist[0].__array_interface__['typestr']) == np.dtype(types.to_numpy_type(tensorlist[0].dtype))
+
+def check_transfer(dali_type):
+    if False:
+        while True:
+            i = 10
+    arr = np.random.rand(3, 5, 6)
+    data = dali_type(arr)
+    data_gpu = data._as_gpu()
+    data_cpu = data_gpu.as_cpu()
+    if dali_type is TensorListCPU:
+        np.testing.assert_array_equal(arr, data_cpu.as_array())
+    else:
+        np.testing.assert_array_equal(arr, np.array(data_cpu))
+
+def test_transfer_cpu_gpu():
+    if False:
+        return 10
+    for dali_type in [TensorCPU, TensorListCPU]:
+        yield (check_transfer, dali_type)
+
+def check_array_types(t):
+    if False:
+        i = 10
+        return i + 15
+    arr = np.array([[-0.39, 1.5], [-1.5, 0.33]], dtype=t)
+    tensor = TensorCPU(arr, 'NHWC')
+    assert np.allclose(np.array(arr), np.asanyarray(tensor))
+
+def test_array_interface_types():
+    if False:
+        print('Hello World!')
+    for t in [np.bool_, np.int_, np.intc, np.intp, np.int8, np.int16, np.int32, np.int64, np.uint8, np.uint16, np.uint32, np.uint64, np.float_, np.float32, np.float16, np.short, np.long, np.longlong, np.ushort, np.ulonglong]:
+        yield (check_array_types, t)
+
+def layout_compatible(a, b):
+    if False:
+        while True:
+            i = 10
+    if a is None:
+        a = ''
+    if b is None:
+        b = ''
+    return a == b
+
+def test_tensor_cpu_squeeze():
+    if False:
+        for i in range(10):
+            print('nop')
+
+    def check_squeeze(shape, dim, in_layout, expected_out_layout):
+        if False:
+            print('Hello World!')
+        arr = np.random.rand(*shape)
+        t = TensorCPU(arr, in_layout)
+        is_squeezed = t.squeeze(dim)
+        should_squeeze = len(expected_out_layout) < len(in_layout)
+        arr_squeeze = arr.squeeze(dim)
+        t_shape = tuple(t.shape())
+        assert t_shape == arr_squeeze.shape, f'{t_shape} != {arr_squeeze.shape}'
+        assert t.layout() == expected_out_layout, f'{t.layout()} != {expected_out_layout}'
+        assert layout_compatible(t.get_property('layout'), expected_out_layout), f"{t.get_property('layout')} doesn't match {expected_out_layout}"
+        assert np.allclose(arr_squeeze, np.array(t))
+        assert is_squeezed == should_squeeze, f'{is_squeezed} != {should_squeeze}'
+    for (dim, shape, in_layout, expected_out_layout) in [(None, (3, 5, 6), 'ABC', 'ABC'), (None, (3, 1, 6), 'ABC', 'AC'), (1, (3, 1, 6), 'ABC', 'AC'), (-2, (3, 1, 6), 'ABC', 'AC'), (None, (1, 1, 6), 'ABC', 'C'), (1, (1, 1, 6), 'ABC', 'AC'), (None, (1, 1, 1), 'ABC', ''), (None, (1, 5, 1), 'ABC', 'B'), (-1, (1, 5, 1), 'ABC', 'AB'), (0, (1, 5, 1), 'ABC', 'BC'), (None, (3, 5, 1), 'ABC', 'AB')]:
+        yield (check_squeeze, shape, dim, in_layout, expected_out_layout)
+
+def test_tensorlist_shape():
+    if False:
+        i = 10
+        return i + 15
+    shapes = [(3, 4, 5, 6), (1, 8, 7, 6, 5), (1,), (1, 1)]
+    for shape in shapes:
+        arr = np.empty(shape)
+        tl = TensorListCPU(arr)
+        tl_gpu = tl._as_gpu()
+        assert tl.shape() == [shape[1:]] * shape[0]
+        assert tl_gpu.shape() == [shape[1:]] * shape[0]
+
+def test_tl_from_list_of_tensors_same_shape():
+    if False:
+        i = 10
+        return i + 15
+    for shape in [(10, 1), (4, 5, 6), (13, 1), (1, 1)]:
+        arr = np.random.rand(*shape)
+        tl_cpu_from_np = TensorListCPU(arr)
+        tl_cpu_from_tensors = TensorListCPU([TensorCPU(a) for a in arr])
+        np.testing.assert_array_equal(tl_cpu_from_np.as_array(), tl_cpu_from_tensors.as_array())
+        tl_gpu_from_np = tl_cpu_from_np._as_gpu()
+        tl_gpu_from_tensors = TensorListGPU([TensorCPU(a)._as_gpu() for a in arr])
+        np.testing.assert_array_equal(tl_gpu_from_np.as_cpu().as_array(), tl_gpu_from_tensors.as_cpu().as_array())
+
+def test_tl_from_list_of_tensors_different_shapes():
+    if False:
+        while True:
+            i = 10
+    shapes = [(1, 2, 3), (4, 5, 6), (128, 128, 128), (8, 8, 8), (13, 47, 131)]
+    for size in [10, 5, 36, 1]:
+        np_arrays = [np.random.rand(*shapes[i]) for i in np.random.choice(range(len(shapes)), size=size)]
+        tl_cpu = TensorListCPU([TensorCPU(a) for a in np_arrays])
+        tl_gpu = TensorListGPU([TensorCPU(a)._as_gpu() for a in np_arrays])
+        for (arr, tensor_cpu, tensor_gpu) in zip(np_arrays, tl_cpu, tl_gpu):
+            np.testing.assert_array_equal(arr, tensor_cpu)
+            np.testing.assert_array_equal(arr, tensor_gpu.as_cpu())
+
+def test_tl_from_list_of_tensors_empty():
+    if False:
+        return 10
+    with assert_raises(RuntimeError, glob='Cannot create TensorList from an empty list.'):
+        TensorListCPU([])
+    with assert_raises(RuntimeError, glob='Cannot create TensorList from an empty list.'):
+        TensorListGPU([])
+
+def test_tl_from_list_of_tensors_different_backends():
+    if False:
+        while True:
+            i = 10
+    t1 = TensorCPU(np.zeros(1))
+    t2 = TensorCPU(np.zeros(1))._as_gpu()
+    with assert_raises(TypeError, glob='Object at position 1 cannot be converted to TensorCPU'):
+        TensorListCPU([t1, t2])
+    with assert_raises(TypeError, glob='Object at position 1 cannot be converted to TensorGPU'):
+        TensorListGPU([t2, t1])
+
+def test_tl_from_list_of_tensors_different_dtypes():
+    if False:
+        print('Hello World!')
+    np_types = [np.float32, np.float16, np.int16, np.int8, np.uint16, np.uint8]
+    for dtypes in np.random.choice(np_types, size=(3, 2), replace=False):
+        t1 = TensorCPU(np.zeros(1, dtype=dtypes[0]))
+        t2 = TensorCPU(np.zeros(1, dtype=dtypes[1]))
+        with assert_raises(TypeError, glob="Tensors cannot have different data types. Tensor at position 1 has type '*' expected to have type '*'."):
+            TensorListCPU([t1, t2])
+
+def test_dtype_deprecation_warning():
+    if False:
+        while True:
+            i = 10
+    with warnings.catch_warnings(record=True) as w:
+        warnings.simplefilter('always')
+        TensorCPU(np.empty(0)).dtype()
+        assert "Calling '.dtype()' is deprecated, please use '.dtype' instead" == str(w[-1].message)
+
+def test_dtype_placeholder_equivalence():
+    if False:
+        for i in range(10):
+            print('nop')
+    dali_types = types._all_types
+    np_types = list(map(dali_type_to_np, dali_types))
+    for (dali_type, np_type) in zip(dali_types, np_types):
+        assert TensorCPU(np.zeros(1, dtype=np_type)).dtype == dali_type
+
+@pipeline_def(batch_size=8, num_threads=3, device_id=0)
+def dtype_pipeline(np_type, placeholder_dali_type):
+    if False:
+        while True:
+            i = 10
+    res = fn.external_source(source=np.zeros((8, 1), dtype=np_type), dtype=placeholder_dali_type)
+    return res
+
+def test_dtype_converion():
+    if False:
+        print('Hello World!')
+    dali_types = [types_._DALIDataType.INT8, types_._DALIDataType.UINT64, types_._DALIDataType.FLOAT16]
+    np_types = list(map(dali_type_to_np, dali_types))
+    for (dali_type, np_type) in zip(dali_types, np_types):
+        pipe = dtype_pipeline(np_type, dali_type)
+        pipe.build()
+        assert pipe.run()[0].dtype == dali_type
+
+def test_tensorlist_dtype():
+    if False:
+        for i in range(10):
+            print('nop')
+    dali_types = types._all_types
+    np_types = list(map(dali_type_to_np, dali_types))
+    for (dali_type, np_type) in zip(dali_types, np_types):
+        tl = TensorListCPU([TensorCPU(np.zeros(1, dtype=np_type))])
+        assert tl.dtype == dali_type
+        assert tl._as_gpu().dtype == dali_type
+
+def _expected_tensorlist_str(device, data, dtype, num_samples, shape, layout=None):
+    if False:
+        for i in range(10):
+            print('nop')
+    return '\n    '.join([f'TensorList{device.upper()}(', f'{data},', f'dtype={dtype},'] + ([f'layout={layout}'] if layout is not None else []) + [f'num_samples={num_samples},', f'shape={shape})'])
+
+def _expected_tensor_str(device, data, dtype, shape, layout=None):
+    if False:
+        i = 10
+        return i + 15
+    return '\n    '.join([f'Tensor{device.upper()}(', f'{data},', f'dtype={dtype},'] + ([f'layout={layout}'] if layout is not None else []) + [f'shape={shape})'])
+
+def _test_str(tl, expected_params, expected_func):
+    if False:
+        print('Hello World!')
+    assert str(tl) == expected_func('cpu', *expected_params)
+    assert str(tl._as_gpu()) == expected_func('gpu', *expected_params)
+
+def test_tensorlist_str_empty():
+    if False:
+        while True:
+            i = 10
+    tl = TensorListCPU(np.empty(0))
+    params = [[], 'DALIDataType.FLOAT64', 0, []]
+    _test_str(tl, params, _expected_tensorlist_str)
+
+def test_tensorlist_str_scalars():
+    if False:
+        print('Hello World!')
+    arr = np.arange(10)
+    tl = TensorListCPU(arr)
+    params = [arr, 'DALIDataType.INT64', 10, '[(), (), (), (), (), (), (), (), (), ()]']
+    _test_str(tl, params, _expected_tensorlist_str)
+
+def test_tensor_str_empty():
+    if False:
+        return 10
+    t = TensorCPU(np.empty(0))
+    params = [[], 'DALIDataType.FLOAT64', [0]]
+    _test_str(t, params, _expected_tensor_str)
+
+def test_tensor_str_sample():
+    if False:
+        i = 10
+        return i + 15
+    arr = np.arange(16)
+    t = TensorCPU(arr)
+    params = [arr, 'DALIDataType.INT64', [16]]
+    _test_str(t, params, _expected_tensor_str)
+
+def test_tensor_expose_dlpack_capsule():
+    if False:
+        print('Hello World!')
+    if not hasattr(np, 'from_dlpack'):
+        raise SkipTest('Test requires Numpy DLPack support.')
+    arr = np.arange(20)
+    tensor = TensorCPU(arr, 'NHWC')
+    capsule = tensor._expose_dlpack_capsule()
+
+    class dlpack_interface_adapter:
+
+        def __init__(self, capsule):
+            if False:
+                while True:
+                    i = 10
+            self.capsule = capsule
+
+        def __dlpack__(self):
+            if False:
+                print('Hello World!')
+            return self.capsule
+    arr_from_dlapck = np.from_dlpack(dlpack_interface_adapter(capsule))
+    assert np.array_equal(arr, arr_from_dlapck)

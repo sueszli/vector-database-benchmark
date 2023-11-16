@@ -1,0 +1,10 @@
+import frappe
+
+def execute():
+    if False:
+        while True:
+            i = 10
+    custom_field = frappe.qb.DocType('Custom Field')
+    frappe.qb.update(custom_field).set(custom_field.is_system_generated, True).where(custom_field.owner == 'Administrator').run()
+    property_setter = frappe.qb.DocType('Property Setter')
+    frappe.qb.update(property_setter).set(property_setter.is_system_generated, True).where(property_setter.owner == 'Administrator').run()

@@ -1,0 +1,27 @@
+"""
+The IDEEP test utils is a small addition on top of the hypothesis test utils
+under caffe2/python, which allows one to more easily test IDEEP related
+operators.
+"""
+import hypothesis.strategies as st
+from caffe2.proto import caffe2_pb2
+from caffe2.python import hypothesis_test_util as hu
+cpu_do = hu.cpu_do
+ideep_do = caffe2_pb2.DeviceOption(device_type=caffe2_pb2.IDEEP)
+device_options = hu.device_options + [ideep_do]
+
+def device_checker_device_options():
+    if False:
+        while True:
+            i = 10
+    return st.just(device_options)
+
+def gradient_checker_device_option():
+    if False:
+        for i in range(10):
+            print('nop')
+    return st.sampled_from(device_options)
+gcs = dict(gc=gradient_checker_device_option(), dc=device_checker_device_options())
+gcs_cpu_only = dict(gc=st.sampled_from([cpu_do]), dc=st.just([cpu_do]))
+gcs_ideep_only = dict(gc=st.sampled_from([ideep_do]), dc=st.just([ideep_do]))
+gcs_cpu_ideep = dict(gc=st.sampled_from([cpu_do, ideep_do]), dc=st.just([cpu_do, ideep_do]))

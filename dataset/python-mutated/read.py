@@ -1,0 +1,13 @@
+import pathlib
+from deeplake.core.sample import Sample
+from typing import Optional, Dict, Union
+from deeplake.core.storage.provider import StorageProvider
+from deeplake.util.path import convert_pathlib_to_string_if_needed
+
+def read(path: Union[str, pathlib.Path], verify: bool=False, creds: Optional[Dict]=None, compression: Optional[str]=None, storage: Optional[StorageProvider]=None) -> Sample:
+    if False:
+        while True:
+            i = 10
+    'Utility that reads raw data from supported files into Deep Lake format.\n\n    - Recompresses data into format required by the tensor if permitted by the tensor htype.\n    - Simply copies the data in the file if file format matches sample_compression of the tensor, thus maximizing upload speeds.\n\n    Examples:\n\n        >>> ds.create_tensor("images", htype="image", sample_compression="jpeg")\n        >>> ds.images.append(deeplake.read("path/to/cat.jpg"))\n        >>> ds.images.shape\n        (1, 399, 640, 3)\n\n        >>> ds.create_tensor("videos", htype="video", sample_compression="mp4")\n        >>> ds.videos.append(deeplake.read("path/to/video.mp4"))\n        >>> ds.videos.shape\n        (1, 136, 720, 1080, 3)\n\n        >>> ds.create_tensor("images", htype="image", sample_compression="jpeg")\n        >>> ds.images.append(deeplake.read("https://picsum.photos/200/300"))\n        >>> ds.images[0].shape\n        (300, 200, 3)\n\n    Supported file types::\n\n        Image: "bmp", "dib", "gif", "ico", "jpeg", "jpeg2000", "pcx", "png", "ppm", "sgi", "tga", "tiff", "webp", "wmf", "xbm"\n        Audio: "flac", "mp3", "wav"\n        Video: "mp4", "mkv", "avi"\n        Dicom: "dcm"\n        Nifti: "nii", "nii.gz"\n\n    Args:\n        path (str): Path to a supported file.\n        verify (bool):  If True, contents of the file are verified.\n        creds (optional, Dict): Credentials for s3, gcp and http urls.\n        compression (optional, str): Format of the file. Only required if path does not have an extension.\n        storage (optional, StorageProvider): Storage provider to use to retrieve remote files. Useful if multiple files are being read from same storage to minimize overhead of creating a new provider.\n\n    Returns:\n        Sample: Sample object. Call ``sample.array`` to get the ``np.ndarray``.\n\n    Note:\n        No data is actually loaded until you try to get a property of the returned :class:`Sample`.\n        This is useful for passing along to :func:`Tensor.append <deeplake.core.tensor.Tensor.append>` and :func:`Tensor.extend <deeplake.core.tensor.Tensor.extend>`.\n    '
+    path = convert_pathlib_to_string_if_needed(path)
+    return Sample(path, verify=verify, compression=compression, creds=creds, storage=storage)

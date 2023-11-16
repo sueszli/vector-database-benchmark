@@ -1,0 +1,28 @@
+"""add_dataset_model_name
+
+Revision ID: e8883b0148c9
+Revises: 2c8af9671032
+Create Date: 2023-08-15 20:54:58.936787
+
+"""
+from alembic import op
+import sqlalchemy as sa
+revision = 'e8883b0148c9'
+down_revision = '2c8af9671032'
+branch_labels = None
+depends_on = None
+
+def upgrade():
+    if False:
+        return 10
+    with op.batch_alter_table('datasets', schema=None) as batch_op:
+        batch_op.add_column(sa.Column('embedding_model', sa.String(length=255), server_default=sa.text("'text-embedding-ada-002'::character varying"), nullable=False))
+        batch_op.add_column(sa.Column('embedding_model_provider', sa.String(length=255), server_default=sa.text("'openai'::character varying"), nullable=False))
+
+def downgrade():
+    if False:
+        while True:
+            i = 10
+    with op.batch_alter_table('datasets', schema=None) as batch_op:
+        batch_op.drop_column('embedding_model_provider')
+        batch_op.drop_column('embedding_model')

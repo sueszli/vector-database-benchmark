@@ -1,0 +1,10 @@
+from google.cloud import compute_v1
+
+def sample_send_diagnostic_interrupt():
+    if False:
+        for i in range(10):
+            print('nop')
+    client = compute_v1.InstancesClient()
+    request = compute_v1.SendDiagnosticInterruptInstanceRequest(instance='instance_value', project='project_value', zone='zone_value')
+    response = client.send_diagnostic_interrupt(request=request)
+    print(response)

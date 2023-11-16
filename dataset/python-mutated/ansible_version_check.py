@@ -1,0 +1,23 @@
+import sys
+import ansible
+try:
+    from ansible.plugins.callback import CallbackBase
+except ImportError:
+    CallbackBase = object
+
+def print_red_bold(text):
+    if False:
+        return 10
+    print('\x1b[31;1m' + text + '\x1b[0m')
+
+class CallbackModule(CallbackBase):
+
+    def __init__(self):
+        if False:
+            return 10
+        viable_start = [2, 11, 0]
+        viable_end = [2, 15, 0]
+        ansible_version = [int(v) for v in ansible.__version__.split('.')]
+        if not viable_start <= ansible_version < viable_end:
+            print_red_bold('SecureDrop restriction: Ansible version must be at least {viable_start} and less than {viable_end}.'.format(viable_start='.'.join((str(v) for v in viable_start)), viable_end='.'.join((str(v) for v in viable_end))))
+            sys.exit(1)

@@ -1,0 +1,81 @@
+import os
+from unittest import TestCase
+import apps.blender.resources.blenderloganalyser as bla
+from golem.docker.job import DockerJob
+LOG_FILE = 'stdout.log_for_test'
+
+class TestBlenderLogAnalyser(TestCase):
+
+    @classmethod
+    def _get_log_file(cls):
+        if False:
+            print('Hello World!')
+        log_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), LOG_FILE)
+        with open(log_path, 'r') as f:
+            log_file = f.read()
+        return log_file
+
+    def test_find_missing_files(self):
+        if False:
+            for i in range(10):
+                print('nop')
+        missing_files = bla.find_missing_files(self._get_log_file())
+        assert [f for f in missing_files if f['baseName'] == 'VSE_copy_proxy_path_to_all_strips.py']
+        assert [f for f in missing_files if f['baseName'] == 'subsurf_change_level.py']
+        assert [f for f in missing_files if f['baseName'] == 'set_ray_visibilities_for_selected_objects.py']
+
+    def test_find_rendering_time(self):
+        if False:
+            while True:
+                i = 10
+        time_rendering = bla.find_rendering_time(self._get_log_file())
+        assert time_rendering == 11.82
+        time_rendering = bla.find_rendering_time('No time in this log')
+        assert time_rendering is None
+
+    def test_find_output_file(self):
+        if False:
+            while True:
+                i = 10
+        output_file = bla.find_output_file(self._get_log_file())
+        assert output_file == f'{DockerJob.OUTPUT_DIR}/kitty_10001.png'
+        output_file = bla.find_output_file('No time in this log')
+        assert output_file is None
+
+    def test_find_resoultion(self):
+        if False:
+            i = 10
+            return i + 15
+        resolution = bla.find_resolution(self._get_log_file())
+        assert resolution == (501, 230)
+        resolution = bla.find_resolution('No resolution in this log')
+        assert resolution is None
+
+    def test_find_frames(self):
+        if False:
+            i = 10
+            return i + 15
+        frames = bla.find_frames(self._get_log_file())
+        assert frames == list(range(0, 101))
+        frames = bla.find_frames('No frames here')
+        assert frames is None
+        frames = bla.find_frames('Info: Frames: 24-113;10')
+        assert frames == [24, 34, 44, 54, 64, 74, 84, 94, 104]
+
+    def test_find_file_format(self):
+        if False:
+            i = 10
+            return i + 15
+        file_format = bla.find_file_format(self._get_log_file())
+        assert file_format == '.png'
+        file_format = bla.find_file_format('No file format here')
+        assert file_format is None
+
+    def test_filepath(self):
+        if False:
+            i = 10
+            return i + 15
+        filepath = bla.find_filepath(self._get_log_file())
+        assert filepath == '/tmp/'
+        filepath = bla.find_filepath('No filepath here')
+        assert filepath is None

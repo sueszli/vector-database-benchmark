@@ -1,0 +1,12 @@
+from django.db import migrations
+from django.db.models import Case, F, Value, When
+
+def update_authorize_and_charge_status(apps, _schema_editor):
+    if False:
+        print('Hello World!')
+    Order = apps.get_model('order', 'Order')
+    Order.objects.annotate(sum_authorized=F('total_authorized_amount') + F('total_charged_amount')).update(authorize_status=Case(When(sum_authorized__gt=0, sum_authorized__lt=F('total_gross_amount'), then=Value('partial')), When(sum_authorized__gte=F('total_gross_amount'), then=Value('full')), default='authorize_status'), charge_status=Case(When(total_charged_amount__gt=0, total_charged_amount__lt=F('total_gross_amount'), then=Value('partial')), When(total_charged_amount=F('total_gross_amount'), then=Value('full')), When(total_charged_amount__gt=F('total_gross_amount'), then=Value('overcharged')), default='charge_status'))
+
+class Migration(migrations.Migration):
+    dependencies = [('order', '0149_add_fields_for_authorize_and_charge')]
+    operations = [migrations.RunPython(update_authorize_and_charge_status, reverse_code=migrations.RunPython.noop)]

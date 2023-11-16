@@ -1,0 +1,69 @@
+from cinn.common import is_compiled_with_cuda
+from cinn.frontend import NetBuilder
+from op_test import OpTest, OpTestTool
+from op_test_helper import TestCaseHelper
+import paddle
+
+@OpTestTool.skip_if(not is_compiled_with_cuda(), 'x86 test will be skipped due to timeout.')
+class TestNegativeOp(OpTest):
+
+    def setUp(self):
+        if False:
+            i = 10
+            return i + 15
+        print(f'\nRunning {self.__class__.__name__}: {self.case}')
+        self.prepare_inputs()
+
+    def prepare_inputs(self):
+        if False:
+            return 10
+        self.x_np = self.random(shape=self.case['x_shape'], dtype=self.case['x_dtype'], low=-100, high=100)
+
+    def build_paddle_program(self, target):
+        if False:
+            return 10
+        x = paddle.to_tensor(self.x_np, stop_gradient=True)
+        out = paddle.neg(x)
+        self.paddle_outputs = [out]
+
+    def build_cinn_program(self, target):
+        if False:
+            return 10
+        builder = NetBuilder('unary_elementwise_test')
+        x = builder.create_input(self.nptype2cinntype(self.case['x_dtype']), self.case['x_shape'], 'x')
+        out = builder.negative(x)
+        prog = builder.build()
+        res = self.get_cinn_output(prog, target, [x], [self.x_np], [out])
+        self.cinn_outputs = [res[0]]
+
+    def test_check_results(self):
+        if False:
+            for i in range(10):
+                print('nop')
+        self.check_outputs_and_grads()
+
+class TestNegativeOpShape(TestCaseHelper):
+
+    def init_attrs(self):
+        if False:
+            return 10
+        self.class_name = 'TestNegativeOpShape'
+        self.cls = TestNegativeOp
+        self.inputs = [{'x_shape': [1]}, {'x_shape': [1024]}, {'x_shape': [1, 2048]}, {'x_shape': [32, 64]}, {'x_shape': [1, 1, 1]}, {'x_shape': [16, 8, 4, 2]}, {'x_shape': [16, 8, 4, 2, 1]}]
+        self.dtypes = [{'x_dtype': 'float32'}]
+        self.attrs = []
+
+class TestNegativeOpDtype(TestCaseHelper):
+
+    def init_attrs(self):
+        if False:
+            i = 10
+            return i + 15
+        self.class_name = 'TestNegativeOpDtype'
+        self.cls = TestNegativeOp
+        self.inputs = [{'x_shape': [32, 64]}]
+        self.dtypes = [{'x_dtype': 'int8'}, {'x_dtype': 'int16'}, {'x_dtype': 'int32'}, {'x_dtype': 'int64'}, {'x_dtype': 'float16', 'max_relative_error': 0.001}, {'x_dtype': 'float32'}, {'x_dtype': 'float64'}]
+        self.attrs = []
+if __name__ == '__main__':
+    TestNegativeOpShape().run()
+    TestNegativeOpDtype().run()

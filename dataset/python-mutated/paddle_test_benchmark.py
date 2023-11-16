@@ -1,0 +1,59 @@
+import argparse
+import time
+import numpy as np
+import paddle.inference as paddle_infer
+from paddle.base.core import AnalysisConfig, create_paddle_predictor
+
+def main():
+    if False:
+        i = 10
+        return i + 15
+    args = parse_args()
+    config = set_config(args)
+    predictor = create_paddle_predictor(config)
+    input_names = predictor.get_input_names()
+    input_tensor = predictor.get_input_tensor(input_names[0])
+    fake_input = np.random.randn(1, 3, 224, 224).astype('float32')
+    input_tensor.reshape([1, 3, 224, 224])
+    input_tensor.copy_from_cpu(fake_input)
+    if len(input_names) > 1:
+        input_tensor2 = predictor.get_input_tensor(input_names[1])
+        fake_input2 = np.random.randn(512, 512).astype('float32')
+        input_tensor2.reshape([512, 512])
+        input_tensor2.copy_from_cpu(fake_input2)
+    for _ in range(0, 10):
+        predictor.zero_copy_run()
+    time1 = time.time()
+    repeat = 10
+    for i in range(0, repeat):
+        predictor.zero_copy_run()
+    time2 = time.time()
+    total_inference_cost = (time2 - time1) * 1000
+    print(f'Average latency : {total_inference_cost / repeat} ms')
+    output_names = predictor.get_output_names()
+    output_tensor = predictor.get_output_tensor(output_names[0])
+    output_data = output_tensor.copy_to_cpu()
+
+def parse_args():
+    if False:
+        print('Hello World!')
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--model_dir', type=str, help='model filename')
+    return parser.parse_args()
+
+def set_config(args):
+    if False:
+        while True:
+            i = 10
+    config = AnalysisConfig(args.model_dir + '/__model__', args.model_dir + '/params')
+    config.enable_profile()
+    config.enable_use_gpu(1000, 1)
+    config.enable_tensorrt_engine(workspace_size=1 << 30, max_batch_size=1, min_subgraph_size=3, precision_mode=paddle_infer.PrecisionType.Float32, use_static=False, use_calib_mode=False)
+    config.enable_memory_optim()
+    config.gpu_device_id()
+    config.switch_use_feed_fetch_ops(False)
+    config.switch_specify_input_names(True)
+    config.switch_ir_optim(True)
+    return config
+if __name__ == '__main__':
+    main()

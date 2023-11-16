@@ -1,0 +1,110 @@
+import hashlib
+import zipfile
+from pathlib import Path
+from typing import Any
+import pytest
+from pyodide_lock.spec import PackageSpec
+from pyodide_build import buildall
+from pyodide_build.pywasmcross import BuildArgs
+RECIPE_DIR = Path(__file__).parent / '_test_recipes'
+
+def test_generate_dependency_graph():
+    if False:
+        while True:
+            i = 10
+    pkg_map = buildall.generate_dependency_graph(RECIPE_DIR, {'beautifulsoup4'})
+    assert pkg_map['beautifulsoup4'].run_dependencies == ['soupsieve']
+    assert pkg_map['beautifulsoup4'].host_dependencies == []
+    assert pkg_map['beautifulsoup4'].host_dependents == set()
+
+@pytest.mark.parametrize('requested, disabled, out', [({'scipy'}, set(), {'scipy', 'numpy', 'CLAPACK'}), ({'scipy'}, {'numpy'}, set()), ({'scipy', 'CLAPACK'}, {'numpy'}, {'CLAPACK'}), ({'scikit-learn'}, {'numpy'}, set()), ({'scikit-learn', 'scipy'}, {'joblib'}, {'scipy', 'numpy', 'CLAPACK'}), ({'scikit-learn', 'no-numpy-dependents'}, set(), set()), ({'scikit-learn', 'numpy', 'no-numpy-dependents'}, set(), {'numpy'})])
+def test_generate_dependency_graph2(requested, disabled, out):
+    if False:
+        while True:
+            i = 10
+    pkg_map = buildall.generate_dependency_graph(RECIPE_DIR, requested, disabled)
+    assert set(pkg_map.keys()) == out
+
+def test_generate_dependency_graph_disabled():
+    if False:
+        i = 10
+        return i + 15
+    pkg_map = buildall.generate_dependency_graph(RECIPE_DIR, {'pkg_test_disabled_child'})
+    assert set(pkg_map.keys()) == set()
+    pkg_map = buildall.generate_dependency_graph(RECIPE_DIR, {'pkg_test_disabled'})
+    assert set(pkg_map.keys()) == set()
+
+def test_generate_lockfile(tmp_path):
+    if False:
+        for i in range(10):
+            print('nop')
+    pkg_map = buildall.generate_dependency_graph(RECIPE_DIR, {'pkg_1', 'pkg_2', 'libtest', 'libtest_shared'})
+    hashes = {}
+    for pkg in pkg_map.values():
+        pkg.file_name = pkg.file_name or pkg.name + '.whl'
+        with zipfile.ZipFile(tmp_path / pkg.file_name, 'w') as whlzip:
+            whlzip.writestr(pkg.file_name, data=pkg.file_name)
+        with open(tmp_path / pkg.file_name, 'rb') as f:
+            hashes[pkg.name] = hashlib.sha256(f.read()).hexdigest()
+    package_data = buildall.generate_lockfile(tmp_path, pkg_map)
+    assert package_data.info.arch == 'wasm32'
+    assert package_data.info.platform.startswith('emscripten')
+    assert set(package_data.packages) == {'pkg_1', 'pkg_1_1', 'pkg_2', 'pkg_3', 'pkg_3_1', 'libtest_shared'}
+    assert package_data.packages['pkg_1'] == PackageSpec(name='pkg_1', version='1.0.0', file_name='pkg_1.whl', depends=['pkg_1_1', 'pkg_3', 'libtest_shared'], imports=['pkg_1'], package_type='package', install_dir='site', sha256=hashes['pkg_1'])
+    assert package_data.packages['libtest_shared'].package_type == 'shared_library'
+    sharedlib_imports = package_data.packages['libtest_shared'].imports
+    assert not sharedlib_imports, f'shared libraries should not have any imports, but got {sharedlib_imports}'
+
+@pytest.mark.parametrize('n_jobs', [1, 4])
+def test_build_dependencies(n_jobs, monkeypatch):
+    if False:
+        while True:
+            i = 10
+    build_list = []
+
+    class MockPackage(buildall.Package):
+
+        def build(self, args: Any) -> None:
+            if False:
+                i = 10
+                return i + 15
+            build_list.append(self.name)
+    monkeypatch.setattr(buildall, 'Package', MockPackage)
+    pkg_map = buildall.generate_dependency_graph(RECIPE_DIR, {'pkg_1', 'pkg_2'})
+    buildall.build_from_graph(pkg_map, BuildArgs(), n_jobs=n_jobs, force_rebuild=True)
+    assert set(build_list) == {'pkg_1', 'pkg_1_1', 'pkg_2', 'pkg_3', 'pkg_3_1', 'libtest_shared'}
+    assert build_list.index('pkg_1_1') < build_list.index('pkg_1')
+    assert build_list.index('pkg_3') < build_list.index('pkg_1')
+    assert build_list.index('pkg_3_1') < build_list.index('pkg_3')
+
+@pytest.mark.parametrize('n_jobs', [1, 4])
+def test_build_error(n_jobs, monkeypatch):
+    if False:
+        i = 10
+        return i + 15
+    'Try building all the dependency graph, without the actual build operations'
+
+    class MockPackage(buildall.Package):
+
+        def build(self, args: Any) -> None:
+            if False:
+                while True:
+                    i = 10
+            raise ValueError('Failed build')
+    monkeypatch.setattr(buildall, 'Package', MockPackage)
+    pkg_map = buildall.generate_dependency_graph(RECIPE_DIR, {'pkg_1'})
+    with pytest.raises(ValueError, match='Failed build'):
+        buildall.build_from_graph(pkg_map, BuildArgs(), n_jobs=n_jobs, force_rebuild=True)
+
+def test_requirements_executable(monkeypatch):
+    if False:
+        for i in range(10):
+            print('nop')
+    import shutil
+    with monkeypatch.context() as m:
+        m.setattr(shutil, 'which', lambda exe: None)
+        with pytest.raises(RuntimeError, match='missing in the host system'):
+            buildall.generate_dependency_graph(RECIPE_DIR, {'pkg_test_executable'})
+    with monkeypatch.context() as m:
+        m.setattr(shutil, 'which', lambda exe: '/bin')
+        buildall.generate_dependency_graph(RECIPE_DIR, {'pkg_test_executable'})

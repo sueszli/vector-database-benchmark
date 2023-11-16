@@ -1,0 +1,113 @@
+import unittest
+import numpy as np
+import paddle
+from paddle.base import core
+from paddle.distributed.models.moe import utils
+
+def count(x, upper_num):
+    if False:
+        return 10
+    res = np.zeros((upper_num,)).astype(int)
+    for i in x.reshape(-1):
+        if i >= 0 and i < len(res):
+            res[i] += 1
+    return res
+
+def limit_by_capacity(expert_count, _capacity, n_worker):
+    if False:
+        return 10
+    capacity = np.copy(_capacity)
+    old_shape = expert_count.shape
+    expert_count = np.reshape(expert_count, (n_worker, len(capacity)))
+    output = np.zeros_like(expert_count)
+    for wid in range(len(expert_count)):
+        for eid in range(len(expert_count[wid])):
+            last_cap = capacity[eid]
+            if last_cap >= 0:
+                capacity[eid] -= expert_count[wid][eid]
+            if last_cap >= expert_count[wid][eid]:
+                output[wid][eid] = expert_count[wid][eid]
+            elif last_cap >= 0:
+                output[wid][eid] = last_cap
+    return output.reshape(old_shape)
+
+def prune_gate_by_capacity(gate_idx, expert_count, n_expert, n_worker):
+    if False:
+        print('Hello World!')
+    new_gate_idx = np.copy(gate_idx)
+    expert_count = np.copy(expert_count)
+    for i in range(len(gate_idx)):
+        idx = gate_idx[i]
+        last_cap = expert_count[idx]
+        if last_cap > 0:
+            expert_count[idx] -= 1
+        else:
+            new_gate_idx[i] = -1
+    return new_gate_idx
+
+def assert_allclose(output, expected, n_expert):
+    if False:
+        print('Hello World!')
+    c1 = count(output, n_expert)
+    c2 = count(expected, n_expert)
+    np.testing.assert_allclose(c1, c2)
+
+@unittest.skipIf(not core.is_compiled_with_cuda(), 'core is not compiled with CUDA')
+class TestPruneGateByCapacityAPI1(unittest.TestCase):
+
+    def init_test_case(self):
+        if False:
+            while True:
+                i = 10
+        self.gate_idx = np.random.randint(0, self.n_expert, size=(200,)).astype(self.dtype)
+        expert_count = count(self.gate_idx, self.n_expert * self.n_worker)
+        capacity = np.random.randint(10, 200, size=(self.n_expert,))
+        self.expert_count = limit_by_capacity(expert_count, capacity, self.n_worker).astype(self.dtype)
+        self.out = prune_gate_by_capacity(self.gate_idx, self.expert_count, self.n_expert, self.n_worker).astype(self.dtype)
+        self.place = paddle.CUDAPlace(0)
+
+    def setUp(self):
+        if False:
+            i = 10
+            return i + 15
+        self.n_expert = 24
+        self.n_worker = 2
+        self.dtype = 'int64'
+        self.init_test_case()
+
+    def test_static_api(self):
+        if False:
+            for i in range(10):
+                print('nop')
+        paddle.enable_static()
+        with paddle.static.program_guard(paddle.static.Program()):
+            gate_idx_tensor = paddle.static.data('GateIdx', shape=self.gate_idx.shape, dtype='int64')
+            expert_count_tensor = paddle.static.data('ExpertCount', shape=self.expert_count.shape, dtype='int64')
+            out = utils._prune_gate_by_capacity(gate_idx_tensor, expert_count_tensor, self.n_expert, self.n_worker)
+            exe = paddle.static.Executor(self.place)
+            res = exe.run(feed={'GateIdx': self.gate_idx, 'ExpertCount': self.expert_count}, fetch_list=out)
+        assert_allclose(res[0], self.out, self.n_expert)
+
+    def test_dygraph_api(self):
+        if False:
+            for i in range(10):
+                print('nop')
+        paddle.disable_static(self.place)
+        gate_idx_tensor = paddle.to_tensor(self.gate_idx)
+        expert_count_tensor = paddle.to_tensor(self.expert_count)
+        out = utils._prune_gate_by_capacity(gate_idx_tensor, expert_count_tensor, self.n_expert, self.n_worker)
+        assert_allclose(out.numpy(), self.out, self.n_expert)
+
+@unittest.skipIf(not core.is_compiled_with_cuda(), 'core is not compiled with CUDA')
+class TestPruneGateByCapacityAPI2(TestPruneGateByCapacityAPI1):
+
+    def setUp(self):
+        if False:
+            i = 10
+            return i + 15
+        self.n_expert = 12
+        self.n_worker = 1
+        self.dtype = 'int64'
+        self.init_test_case()
+if __name__ == '__main__':
+    unittest.main()

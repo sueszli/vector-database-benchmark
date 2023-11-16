@@ -1,0 +1,13 @@
+def validate_PolygonRegionsOfInterest(polygons):
+    if False:
+        return 10
+    '\n    Property: StreamProcessor.PolygonRegionsOfInterest\n    '
+    from ..rekognition import Point
+    if not isinstance(polygons, list):
+        raise TypeError('PolygonRegionsOfInterest must be a list')
+    all_lists = all((isinstance(item, list) for item in polygons))
+    if not all_lists:
+        raise TypeError('PolygonRegionsOfInterest must be a list of lists')
+    all_points = all((isinstance(point, Point) for sublist in polygons for point in sublist))
+    if not all_points:
+        raise TypeError('PolygonRegionsOfInterest must be a list of lists of ponts')

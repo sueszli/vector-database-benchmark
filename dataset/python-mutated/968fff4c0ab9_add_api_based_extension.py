@@ -1,0 +1,30 @@
+"""add_api_based_extension
+
+Revision ID: 968fff4c0ab9
+Revises: b3a09c049e8e
+Create Date: 2023-10-27 13:05:58.901858
+
+"""
+from alembic import op
+import sqlalchemy as sa
+from sqlalchemy.dialects import postgresql
+revision = '968fff4c0ab9'
+down_revision = 'b3a09c049e8e'
+branch_labels = None
+depends_on = None
+
+def upgrade():
+    if False:
+        i = 10
+        return i + 15
+    op.create_table('api_based_extensions', sa.Column('id', postgresql.UUID(), server_default=sa.text('uuid_generate_v4()'), nullable=False), sa.Column('tenant_id', postgresql.UUID(), nullable=False), sa.Column('name', sa.String(length=255), nullable=False), sa.Column('api_endpoint', sa.String(length=255), nullable=False), sa.Column('api_key', sa.Text(), nullable=False), sa.Column('created_at', sa.DateTime(), server_default=sa.text('CURRENT_TIMESTAMP(0)'), nullable=False), sa.PrimaryKeyConstraint('id', name='api_based_extension_pkey'))
+    with op.batch_alter_table('api_based_extensions', schema=None) as batch_op:
+        batch_op.create_index('api_based_extension_tenant_idx', ['tenant_id'], unique=False)
+
+def downgrade():
+    if False:
+        i = 10
+        return i + 15
+    with op.batch_alter_table('api_based_extensions', schema=None) as batch_op:
+        batch_op.drop_index('api_based_extension_tenant_idx')
+    op.drop_table('api_based_extensions')

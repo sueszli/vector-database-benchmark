@@ -1,0 +1,48 @@
+"""Example use of the C++ MCCFR algorithms on Kuhn Poker.
+
+This examples calls the underlying C++ implementations via the Python bindings.
+Note that there are some pure Python implementations of some of these algorithms
+in python/algorithms as well.
+"""
+import pickle
+from absl import app
+from absl import flags
+import pyspiel
+FLAGS = flags.FLAGS
+flags.DEFINE_enum('sampling', 'external', ['external', 'outcome'], 'Sampling for the MCCFR solver')
+flags.DEFINE_integer('iterations', 50, 'Number of iterations')
+flags.DEFINE_string('game', 'kuhn_poker', 'Name of the game')
+flags.DEFINE_integer('players', 2, 'Number of players')
+MODEL_FILE_NAME = '{}_sampling_mccfr_solver.pickle'
+
+def run_iterations(game, solver, start_iteration=0):
+    if False:
+        i = 10
+        return i + 15
+    'Run iterations of MCCFR.'
+    for i in range(int(FLAGS.iterations / 2)):
+        solver.run_iteration()
+        policy = solver.average_policy()
+        exploitability = pyspiel.exploitability(game, policy)
+        nash_conv = pyspiel.nash_conv(game, policy, True)
+        print('Iteration {} nashconv: {:.6f} exploitability: {:.6f}'.format(start_iteration + i, nash_conv, exploitability))
+
+def main(_):
+    if False:
+        return 10
+    game = pyspiel.load_game(FLAGS.game, {'players': FLAGS.players})
+    if FLAGS.sampling == 'external':
+        solver = pyspiel.ExternalSamplingMCCFRSolver(game, avg_type=pyspiel.MCCFRAverageType.FULL)
+    elif FLAGS.sampling == 'outcome':
+        solver = pyspiel.OutcomeSamplingMCCFRSolver(game)
+    run_iterations(game, solver)
+    print('Persisting the model...')
+    with open(MODEL_FILE_NAME.format(FLAGS.sampling), 'wb') as file:
+        pickle.dump(solver, file, pickle.HIGHEST_PROTOCOL)
+    print('Loading the model...')
+    with open(MODEL_FILE_NAME.format(FLAGS.sampling), 'rb') as file:
+        loaded_solver = pickle.load(file)
+    print('Exploitability of the loaded model: {:.6f}'.format(pyspiel.exploitability(game, loaded_solver.average_policy())))
+    run_iterations(game, solver, start_iteration=int(FLAGS.iterations / 2))
+if __name__ == '__main__':
+    app.run(main)

@@ -1,0 +1,23 @@
+"""
+This program will look for the next perfect square.
+Check the argument to see if it is a perfect square itself, if it is not then return -1 otherwise
+look for the next perfect square.
+for instance if you pass 121 then the script should return the next perfect square which is 144.
+"""
+
+def find_next_square(sq):
+    if False:
+        i = 10
+        return i + 15
+    root = sq ** 0.5
+    if root.is_integer():
+        return (root + 1) ** 2
+    return -1
+
+def find_next_square2(sq):
+    if False:
+        while True:
+            i = 10
+    ' Alternative method, works by evaluating anything non-zero as True (0.000001 --> True) '
+    root = sq ** 0.5
+    return -1 if root % 1 else (root + 1) ** 2

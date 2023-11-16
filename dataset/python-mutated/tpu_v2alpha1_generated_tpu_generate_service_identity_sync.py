@@ -1,0 +1,9 @@
+from google.cloud import tpu_v2alpha1
+
+def sample_generate_service_identity():
+    if False:
+        print('Hello World!')
+    client = tpu_v2alpha1.TpuClient()
+    request = tpu_v2alpha1.GenerateServiceIdentityRequest(parent='parent_value')
+    response = client.generate_service_identity(request=request)
+    print(response)

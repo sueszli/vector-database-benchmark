@@ -1,0 +1,358 @@
+import json
+import logging
+import re
+from datetime import datetime
+from json import JSONDecodeError
+from typing import Optional, Pattern
+from localstack.aws.api.secretsmanager import CreateSecretResponse
+from localstack.aws.api.stepfunctions import CreateStateMachineOutput, LongArn, StartExecutionOutput
+from localstack.testing.snapshots.transformer import JsonpathTransformer, KeyValueBasedTransformer, RegexTransformer, ResponseMetaDataTransformer, SortingTransformer
+from localstack.utils.net import IP_REGEX
+LOG = logging.getLogger(__name__)
+PATTERN_UUID = re.compile('[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}')
+PATTERN_ISO8601 = re.compile('(?:[1-9]\\d{3}-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1\\d|2[0-8])|(?:0[13-9]|1[0-2])-(?:29|30)|(?:0[13578]|1[02])-31)|(?:[1-9]\\d(?:0[48]|[2468][048]|[13579][26])|(?:[2468][048]|[13579][26])00)-02-29)T(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d{1,9})?(?:Z|[+-][01]\\d:?([0-5]\\d)?)')
+PATTERN_ARN = re.compile('arn:(aws[a-zA-Z-]*)?:([a-zA-Z0-9-_.]+)?:([^:]+)?:(\\d{12})?:(.*)')
+PATTERN_ARN_CHANGESET = re.compile('arn:(aws[a-zA-Z-]*)?:([a-zA-Z0-9-_.]+)?:([^:]+)?:(\\d{12})?:changeSet/([^/]+)')
+PATTERN_LOGSTREAM_ID: Pattern[str] = re.compile('\\d{4}/\\d{1,2}/\\d{1,2}/\\[((\\$LATEST)|\\d+)\\][0-9a-f]{8,32}')
+PATTERN_KEY_ARN = re.compile('arn:(aws[a-zA-Z-]*)?:([a-zA-Z0-9-_.]+)?:([^:]+)?:(\\d{12})?:key/[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}')
+
+class TransformerUtility:
+
+    @staticmethod
+    def key_value(key: str, value_replacement: Optional[str]=None, reference_replacement: bool=True):
+        if False:
+            for i in range(10):
+                print('nop')
+        'Creates a new KeyValueBasedTransformer. If the key matches, the value will be replaced.\n\n        :param key: the name of the key which should be replaced\n        :param value_replacement: the value which will replace the original value.\n        By default it is the key-name in lowercase, separated with hyphen\n        :param reference_replacement: if False, only the original value for this key will be replaced.\n        If True all references of this value will be replaced (using a regex pattern), for the entire test case.\n        In this case, the replaced value will be nummerated as well.\n        Default: True\n\n        :return: KeyValueBasedTransformer\n        '
+        return KeyValueBasedTransformer(lambda k, v: v if k == key and (v is not None and v != '') else None, replacement=value_replacement or _replace_camel_string_with_hyphen(key), replace_reference=reference_replacement)
+
+    @staticmethod
+    def resource_name(replacement_name: str='resource'):
+        if False:
+            return 10
+        'Creates a new KeyValueBasedTransformer for the resource name.\n\n        :param replacement_name ARN of a resource to extract name from\n        :return: KeyValueBasedTransformer\n        '
+        return KeyValueBasedTransformer(_resource_name_transformer, replacement_name)
+
+    @staticmethod
+    def jsonpath(jsonpath: str, value_replacement: str, reference_replacement: bool=True):
+        if False:
+            print('Hello World!')
+        'Creates a new JsonpathTransformer. If the jsonpath matches, the value will be replaced.\n\n        :param jsonpath: the jsonpath that should be matched\n        :param value_replacement: the value which will replace the original value.\n        By default it is the key-name in lowercase, separated with hyphen\n        :param reference_replacement: if False, only the original value for this key will be replaced.\n        If True all references of this value will be replaced (using a regex pattern), for the entire test case.\n        In this case, the replaced value will be nummerated as well.\n        Default: True\n\n        :return: JsonpathTransformer\n        '
+        return JsonpathTransformer(jsonpath=jsonpath, replacement=value_replacement, replace_reference=reference_replacement)
+
+    @staticmethod
+    def regex(regex: str | Pattern[str], replacement: str):
+        if False:
+            i = 10
+            return i + 15
+        'Creates a new RegexTransformer. All matches in the string-converted dict will be replaced.\n\n        :param regex: the regex that should be matched\n        :param replacement: the value which will replace the original value.\n\n        :return: RegexTransformer\n        '
+        return RegexTransformer(regex, replacement)
+
+    @staticmethod
+    def lambda_api():
+        if False:
+            i = 10
+            return i + 15
+        '\n        :return: array with Transformers, for lambda api.\n        '
+        return [TransformerUtility.key_value('FunctionName'), TransformerUtility.key_value('CodeSize', value_replacement='<code-size>', reference_replacement=False), TransformerUtility.jsonpath(jsonpath='$..Code.Location', value_replacement='<location>', reference_replacement=False), TransformerUtility.jsonpath(jsonpath='$..Content.Location', value_replacement='<layer-location>', reference_replacement=False), KeyValueBasedTransformer(_resource_name_transformer, 'resource'), KeyValueBasedTransformer(_log_stream_name_transformer, 'log-stream-name', replace_reference=True)]
+
+    @staticmethod
+    def lambda_report_logs():
+        if False:
+            for i in range(10):
+                print('nop')
+        'Transformers for Lambda REPORT logs replacing dynamic metrics including:\n        * Duration\n        * Billed Duration\n        * Max Memory Used\n        * Init Duration\n\n        Excluding:\n        * Memory Size\n        '
+        return [TransformerUtility.regex(re.compile('Duration: \\d+(\\.\\d{2})? ms'), 'Duration: <duration> ms'), TransformerUtility.regex(re.compile('Used: \\d+ MB'), 'Used: <memory> MB')]
+
+    @staticmethod
+    def apigateway_api():
+        if False:
+            i = 10
+            return i + 15
+        return [TransformerUtility.key_value('id'), TransformerUtility.key_value('name'), TransformerUtility.key_value('parentId')]
+
+    @staticmethod
+    def apigateway_proxy_event():
+        if False:
+            return 10
+        return [TransformerUtility.key_value('extendedRequestId'), TransformerUtility.key_value('resourceId'), TransformerUtility.key_value('sourceIp'), TransformerUtility.jsonpath('$..headers.X-Amz-Cf-Id', value_replacement='cf-id'), TransformerUtility.jsonpath('$..headers.CloudFront-Viewer-ASN', value_replacement='cloudfront-asn'), TransformerUtility.jsonpath('$..headers.CloudFront-Viewer-Country', value_replacement='cloudfront-country'), TransformerUtility.jsonpath('$..headers.Via', value_replacement='via'), TransformerUtility.jsonpath('$..headers.X-Amzn-Trace-Id', value_replacement='trace-id'), TransformerUtility.jsonpath('$..requestContext.requestTime', value_replacement='<request-time>', reference_replacement=False), KeyValueBasedTransformer(lambda k, v: str(v) if k == 'requestTimeEpoch' else None, '<request-time-epoch>', replace_reference=False), TransformerUtility.regex(IP_REGEX.strip('^$'), '<ip>')]
+
+    @staticmethod
+    def apigatewayv2_jwt_authorizer_event():
+        if False:
+            while True:
+                i = 10
+        return [TransformerUtility.jsonpath('$..claims.auth_time', 'claims-auth-time'), TransformerUtility.jsonpath('$..claims.client_id', 'claims-client-id'), TransformerUtility.jsonpath('$..claims.exp', 'claims-exp'), TransformerUtility.jsonpath('$..claims.iat', 'claims-iat'), TransformerUtility.jsonpath('$..claims.jti', 'claims-jti'), TransformerUtility.jsonpath('$..claims.sub', 'claims-sub')]
+
+    @staticmethod
+    def apigatewayv2_lambda_proxy_event():
+        if False:
+            return 10
+        return [TransformerUtility.key_value('resourceId'), TransformerUtility.key_value('sourceIp'), TransformerUtility.jsonpath('$..requestContext.accountId', 'account-id'), TransformerUtility.jsonpath('$..requestContext.apiId', 'api-id'), TransformerUtility.jsonpath('$..requestContext.domainName', 'domain-name'), TransformerUtility.jsonpath('$..requestContext.domainPrefix', 'domain-prefix'), TransformerUtility.jsonpath('$..requestContext.extendedRequestId', 'extended-request-id'), TransformerUtility.jsonpath('$..requestContext.requestId', 'request-id'), TransformerUtility.jsonpath('$..requestContext.requestTime', value_replacement='<request-time>', reference_replacement=False), KeyValueBasedTransformer(lambda k, v: str(v) if k == 'requestTimeEpoch' else None, '<request-time-epoch>', replace_reference=False), TransformerUtility.key_value('time'), KeyValueBasedTransformer(lambda k, v: str(v) if k == 'timeEpoch' else None, '<time-epoch>', replace_reference=False), TransformerUtility.jsonpath('$..multiValueHeaders.Host[*]', 'host'), TransformerUtility.jsonpath('$..multiValueHeaders.X-Forwarded-For[*]', 'x-forwarded-for'), TransformerUtility.jsonpath('$..multiValueHeaders.X-Forwarded-Port[*]', 'x-forwarded-port'), TransformerUtility.jsonpath('$..multiValueHeaders.X-Forwarded-Proto[*]', 'x-forwarded-proto'), TransformerUtility.jsonpath('$..multiValueHeaders.X-Amzn-Trace-Id[*]', 'x-amzn-trace-id'), TransformerUtility.jsonpath('$..multiValueHeaders.authorization[*]', 'authorization'), TransformerUtility.jsonpath('$..multiValueHeaders.User-Agent[*]', 'user-agent'), TransformerUtility.regex('python-requests/\\d+\\.\\d+(\\.\\d+)?', 'python-requests/x.x.x')]
+
+    @staticmethod
+    def cloudformation_api():
+        if False:
+            return 10
+        '\n        :return: array with Transformers, for cloudformation api.\n        '
+        return [KeyValueBasedTransformer(_resource_name_transformer, 'resource'), KeyValueBasedTransformer(_change_set_id_transformer, 'change-set-id'), TransformerUtility.key_value('ChangeSetName'), TransformerUtility.key_value('ChangeSetId'), TransformerUtility.key_value('StackName')]
+
+    @staticmethod
+    def cfn_stack_resource():
+        if False:
+            return 10
+        '\n        :return: array with Transformers, for cloudformation stack resource description;\n                recommended for verifying the stack resources deployed for scenario tests\n        '
+        return [KeyValueBasedTransformer(_resource_name_transformer, 'resource'), KeyValueBasedTransformer(_change_set_id_transformer, 'change-set-id'), TransformerUtility.key_value('LogicalResourceId'), TransformerUtility.key_value('PhysicalResourceId', reference_replacement=False)]
+
+    @staticmethod
+    def dynamodb_api():
+        if False:
+            return 10
+        '\n        :return: array with Transformers, for dynamodb api.\n        '
+        return [RegexTransformer('([a-zA-Z0-9-_.]*)?test_table_([a-zA-Z0-9-_.]*)?', replacement='<test-table>')]
+
+    @staticmethod
+    def iam_api():
+        if False:
+            i = 10
+            return i + 15
+        '\n        :return: array with Transformers, for iam api.\n        '
+        return [TransformerUtility.key_value('UserName'), TransformerUtility.key_value('UserId'), TransformerUtility.key_value('RoleId'), TransformerUtility.key_value('RoleName'), TransformerUtility.key_value('PolicyName'), TransformerUtility.key_value('PolicyId')]
+
+    @staticmethod
+    def transcribe_api():
+        if False:
+            for i in range(10):
+                print('nop')
+        '\n        :return: array with Transformers, for iam api.\n        '
+        return [RegexTransformer('([a-zA-Z0-9-_.]*)?\\/test-bucket-([a-zA-Z0-9-_.]*)?', replacement='<test-bucket>'), TransformerUtility.key_value('TranscriptionJobName', 'transcription-job'), TransformerUtility.jsonpath(jsonpath='$..Transcript..TranscriptFileUri', value_replacement='<transcript-file-uri>', reference_replacement=False), TransformerUtility.key_value('NextToken', 'token', reference_replacement=False)]
+
+    @staticmethod
+    def s3_api():
+        if False:
+            i = 10
+            return i + 15
+        '\n        :return: array with Transformers, for s3 api.\n        '
+        s3 = [TransformerUtility.key_value('Name', value_replacement='bucket-name'), TransformerUtility.key_value('BucketName'), TransformerUtility.key_value('VersionId'), TransformerUtility.jsonpath(jsonpath='$..Owner.DisplayName', value_replacement='<display-name>', reference_replacement=False), TransformerUtility.jsonpath(jsonpath='$..Owner.ID', value_replacement='<owner-id>', reference_replacement=False)]
+        s3.extend(TransformerUtility.s3_notifications_transformer())
+        return s3
+
+    @staticmethod
+    def s3_notifications_transformer():
+        if False:
+            i = 10
+            return i + 15
+        return [TransformerUtility.jsonpath('$..responseElements.x-amz-id-2', 'amz-id', reference_replacement=False), TransformerUtility.jsonpath('$..responseElements.x-amz-request-id', 'amz-request-id', reference_replacement=False), TransformerUtility.jsonpath('$..s3.configurationId', 'config-id'), TransformerUtility.jsonpath('$..s3.object.sequencer', 'sequencer', reference_replacement=False), TransformerUtility.jsonpath('$..s3.bucket.ownerIdentity.principalId', 'principal-id'), TransformerUtility.jsonpath('$..userIdentity.principalId', 'principal-id'), TransformerUtility.jsonpath('$..requestParameters.sourceIPAddress', 'ip-address'), TransformerUtility.jsonpath('$..s3.object.versionId', 'version-id', reference_replacement=False)]
+
+    @staticmethod
+    def s3_dynamodb_notifications():
+        if False:
+            print('Hello World!')
+        return [TransformerUtility.jsonpath('$..uuid.S', 'uuid'), TransformerUtility.jsonpath('$..M.requestParameters.M.sourceIPAddress.S', 'ip-address'), TransformerUtility.jsonpath('$..M.responseElements.M.x-amz-id-2.S', 'amz-id', reference_replacement=False), TransformerUtility.jsonpath('$..M.responseElements.M.x-amz-request-id.S', 'amz-request-id', reference_replacement=False), TransformerUtility.jsonpath('$..M.s3.M.bucket.M.name.S', 'bucket-name'), TransformerUtility.jsonpath('$..M.s3.M.bucket.M.arn.S', 'bucket-arn'), TransformerUtility.jsonpath('$..M.s3.M.bucket.M.ownerIdentity.M.principalId.S', 'principal-id'), TransformerUtility.jsonpath('$..M.s3.M.configurationId.S', 'config-id'), TransformerUtility.jsonpath('$..M.s3.M.object.M.key.S', 'object-key'), TransformerUtility.jsonpath('$..M.s3.M.object.M.sequencer.S', 'sequencer', reference_replacement=False), TransformerUtility.jsonpath('$..M.userIdentity.M.principalId.S', 'principal-id')]
+
+    @staticmethod
+    def kinesis_api():
+        if False:
+            print('Hello World!')
+        '\n        :return: array with Transformers, for kinesis api.\n        '
+        return [JsonpathTransformer(jsonpath='$..Records..SequenceNumber', replacement='sequence_number', replace_reference=True), TransformerUtility.key_value('SequenceNumber', 'sequence_number'), TransformerUtility.key_value('StartingSequenceNumber', 'starting_sequence_number'), TransformerUtility.key_value('ShardId', 'shard_id'), TransformerUtility.key_value('NextShardIterator', 'next_shard_iterator'), TransformerUtility.key_value('EndingHashKey', 'ending_hash', reference_replacement=False), TransformerUtility.key_value('StartingHashKey', 'starting_hash', reference_replacement=False), TransformerUtility.key_value(_resource_name_transformer, 'ConsumerARN'), RegexTransformer('([a-zA-Z0-9-_.]*)?\\/consumer:([0-9-_.]*)?', replacement='<stream-consumer>'), RegexTransformer('([a-zA-Z0-9-_.]*)?\\/test-stream-([a-zA-Z0-9-_.]*)?', replacement='<stream-name>'), TransformerUtility.key_value('ContinuationSequenceNumber', '<continuation_sequence_number>')]
+
+    @staticmethod
+    def route53resolver_api():
+        if False:
+            while True:
+                i = 10
+        '\n        :return: array with Transformers, for route53resolver api.\n        '
+        return [TransformerUtility.key_value('SecurityGroupIds', value_replacement='sg-ids', reference_replacement=False), TransformerUtility.key_value('Id'), TransformerUtility.key_value('HostVPCId', 'host-vpc-id'), KeyValueBasedTransformer(_resource_name_transformer, 'Arn'), TransformerUtility.key_value('CreatorRequestId'), TransformerUtility.key_value('StatusMessage', reference_replacement=False)]
+
+    @staticmethod
+    def route53_api():
+        if False:
+            for i in range(10):
+                print('nop')
+        return [TransformerUtility.jsonpath('$..HostedZone.CallerReference', 'caller-reference'), TransformerUtility.jsonpath(jsonpath='$..DelegationSet.NameServers', value_replacement='<name-server>', reference_replacement=False), TransformerUtility.jsonpath(jsonpath='$..ChangeInfo.Status', value_replacement='status'), KeyValueBasedTransformer(_route53_hosted_zone_id_transformer, 'zone-id'), TransformerUtility.regex('/change/[A-Za-z0-9]+', '/change/<change-id>'), TransformerUtility.jsonpath(jsonpath='$..HostedZone.Name', value_replacement='zone_name')]
+
+    @staticmethod
+    def sqs_api():
+        if False:
+            for i in range(10):
+                print('nop')
+        '\n        :return: array with Transformers, for sqs api.\n        '
+        return [TransformerUtility.key_value('ReceiptHandle'), TransformerUtility.key_value('SenderId'), TransformerUtility.key_value('SequenceNumber'), TransformerUtility.jsonpath('$..MessageAttributes.RequestID.StringValue', 'request-id'), KeyValueBasedTransformer(_resource_name_transformer, 'resource')]
+
+    @staticmethod
+    def kms_api():
+        if False:
+            i = 10
+            return i + 15
+        '\n        :return: array with Transformers, for kms api.\n        '
+        return [TransformerUtility.key_value('KeyId'), TransformerUtility.jsonpath(jsonpath='$..Signature', value_replacement='<signature>', reference_replacement=False), TransformerUtility.jsonpath(jsonpath='$..Mac', value_replacement='<mac>', reference_replacement=False), TransformerUtility.key_value('CiphertextBlob', reference_replacement=False), TransformerUtility.key_value('Plaintext', reference_replacement=False), RegexTransformer(PATTERN_KEY_ARN, replacement='<key-arn>')]
+
+    @staticmethod
+    def sns_api():
+        if False:
+            return 10
+        '\n        :return: array with Transformers, for sns api.\n        '
+        return [TransformerUtility.key_value('ReceiptHandle'), TransformerUtility.key_value('SequenceNumber'), TransformerUtility.key_value('Signature', value_replacement='<signature>', reference_replacement=False), TransformerUtility.key_value('MD5OfBody', '<md5-hash>', reference_replacement=False), TransformerUtility.key_value('SenderId', value_replacement='<sender-id>', reference_replacement=False), KeyValueBasedTransformer(_sns_pem_file_token_transformer, replacement='signing-cert-file'), RegexTransformer('(?i)(?<=UnsubscribeURL[\\"|\']:\\s[\\"|\'])(https?.*?)(?=/\\?Action=Unsubscribe)', replacement='<unsubscribe-domain>'), KeyValueBasedTransformer(_resource_name_transformer, 'resource'), KeyValueBasedTransformer(_sns_unsubscribe_url_subscription_arn_transformer, replacement='resource')]
+
+    @staticmethod
+    def cloudwatch_api():
+        if False:
+            i = 10
+            return i + 15
+        '\n        :return: array with Transformers, for cloudwatch api.\n        '
+        return [TransformerUtility.key_value('AlarmName'), TransformerUtility.key_value('Namespace'), KeyValueBasedTransformer(_resource_name_transformer, 'SubscriptionArn'), TransformerUtility.key_value('Region', 'region-name-full')]
+
+    @staticmethod
+    def logs_api():
+        if False:
+            print('Hello World!')
+        '\n        :return: array with Transformers, for logs api\n        '
+        return [TransformerUtility.key_value('logGroupName'), TransformerUtility.key_value('logStreamName'), TransformerUtility.key_value('creationTime', '<time>', reference_replacement=False), TransformerUtility.key_value('firstEventTimestamp', '<time>', reference_replacement=False), TransformerUtility.key_value('lastEventTimestamp', '<time>', reference_replacement=False), TransformerUtility.key_value('lastIngestionTime', '<time>', reference_replacement=False), TransformerUtility.key_value('nextToken', '<next_token>', reference_replacement=False)]
+
+    @staticmethod
+    def secretsmanager_api():
+        if False:
+            for i in range(10):
+                print('nop')
+        return [KeyValueBasedTransformer(lambda k, v: k if isinstance(k, str) and isinstance(v, list) and re.match(PATTERN_UUID, k) else None, 'version_uuid'), KeyValueBasedTransformer(lambda k, v: v if isinstance(k, str) and k == 'VersionId' and isinstance(v, str) and re.match(PATTERN_UUID, v) else None, 'version_uuid'), SortingTransformer('VersionStages'), SortingTransformer('Versions', lambda e: e.get('CreatedDate'))]
+
+    @staticmethod
+    def secretsmanager_secret_id_arn(create_secret_res: CreateSecretResponse, index: int):
+        if False:
+            i = 10
+            return i + 15
+        secret_id_repl = f'<SecretId-{index}idx>'
+        arn_part_repl = f'<ArnPart-{index}idx>'
+        secret_id: str = create_secret_res['Name']
+        arn_part: str = ''.join(create_secret_res['ARN'].rpartition('-')[-2:])
+        return [RegexTransformer(arn_part, arn_part_repl), RegexTransformer(secret_id, secret_id_repl)]
+
+    @staticmethod
+    def sfn_sm_create_arn(create_sm_res: CreateStateMachineOutput, index: int):
+        if False:
+            return 10
+        arn_part_repl = f'<ArnPart_{index}idx>'
+        arn_part: str = ''.join(create_sm_res['stateMachineArn'].rpartition(':')[-1])
+        return RegexTransformer(arn_part, arn_part_repl)
+
+    @staticmethod
+    def sfn_sm_exec_arn(start_exec: StartExecutionOutput, index: int):
+        if False:
+            for i in range(10):
+                print('nop')
+        arn_part_repl = f'<ExecArnPart_{index}idx>'
+        arn_part: str = ''.join(start_exec['executionArn'].rpartition(':')[-1])
+        return RegexTransformer(arn_part, arn_part_repl)
+
+    @staticmethod
+    def sfn_map_run_arn(map_run_arn: LongArn, index: int) -> list[RegexTransformer]:
+        if False:
+            for i in range(10):
+                print('nop')
+        map_run_arn_part = map_run_arn.split('/')[-1]
+        arn_parts = map_run_arn_part.split(':')
+        return [RegexTransformer(arn_parts[0], f'<MapRunArnPart0_{index}idx>'), RegexTransformer(arn_parts[1], f'<MapRunArnPart1_{index}idx>')]
+
+    @staticmethod
+    def stepfunctions_api():
+        if False:
+            for i in range(10):
+                print('nop')
+        return [JsonpathTransformer('$..SdkHttpMetadata.AllHttpHeaders.Date', 'date', replace_reference=False), JsonpathTransformer('$..SdkHttpMetadata.AllHttpHeaders.X-Amzn-Trace-Id', 'X-Amzn-Trace-Id', replace_reference=False), JsonpathTransformer('$..SdkHttpMetadata.HttpHeaders.Date', 'date', replace_reference=False), JsonpathTransformer('$..SdkHttpMetadata.HttpHeaders.X-Amzn-Trace-Id', 'X-Amzn-Trace-Id', replace_reference=False), KeyValueBasedTransformer(_transform_stepfunctions_cause_details, 'json-input')]
+
+def _sns_pem_file_token_transformer(key: str, val: str) -> str:
+    if False:
+        return 10
+    if isinstance(val, str) and key.lower() == 'SigningCertURL'.lower():
+        pattern = re.compile('.*SimpleNotificationService-(.*\\.pem)')
+        match = re.match(pattern, val)
+        if match:
+            return match.groups()[0]
+
+def _sns_unsubscribe_url_subscription_arn_transformer(key: str, val: str) -> str:
+    if False:
+        i = 10
+        return i + 15
+    if isinstance(val, str) and key.lower() == 'UnsubscribeURL'.lower():
+        pattern = re.compile('.*(?<=\\?Action=Unsubscribe&SubscriptionArn=).*:(.*)')
+        match = re.match(pattern, val)
+        if match:
+            return match.groups()[0]
+
+def _replace_camel_string_with_hyphen(input_string: str):
+    if False:
+        print('Hello World!')
+    return ''.join(['-' + char.lower() if char.isupper() else char for char in input_string]).strip('-')
+
+def _log_stream_name_transformer(key: str, val: str) -> str:
+    if False:
+        print('Hello World!')
+    if isinstance(val, str) and (key == 'log_stream_name' or key == 'logStreamName'):
+        match = re.match(PATTERN_LOGSTREAM_ID, val)
+        if match:
+            return val
+    return None
+
+def _route53_hosted_zone_id_transformer(key: str, val: str) -> str:
+    if False:
+        print('Hello World!')
+    if isinstance(val, str) and key == 'Id':
+        match = re.match('.*/hostedzone/([A-Za-z0-9]+)', val)
+        if match:
+            return match.groups()[0]
+
+def _resource_name_transformer(key: str, val: str) -> str:
+    if False:
+        while True:
+            i = 10
+    if isinstance(val, str):
+        match = re.match(PATTERN_ARN, val)
+        if match:
+            res = match.groups()[-1]
+            if res.startswith('<') and res.endswith('>'):
+                return None
+            if ':changeSet/' in val:
+                return val.split(':changeSet/')[-1]
+            if '/' in res:
+                return res.split('/')[-1]
+            if res.startswith('function:'):
+                res = res.replace('function:', '')
+                if '$' in res:
+                    res = res.split('$')[0].rstrip(':')
+                return res
+            if res.startswith('layer:'):
+                match res.split(':'):
+                    case [_, layer_name, _]:
+                        return layer_name
+                    case [_, layer_name]:
+                        return layer_name
+            if ':' in res:
+                return res.split(':')[-1]
+            return res
+        return None
+
+def _transform_stepfunctions_cause_details(key: str, val: str) -> str:
+    if False:
+        return 10
+    if key == 'cause' and isinstance(val, str):
+        regex = ".*'({.*})'"
+        match = re.match(regex, val)
+        if match:
+            json_input = match.groups()[0]
+            try:
+                json.loads(json_input)
+                return json_input
+            except JSONDecodeError:
+                return None
+    return None
+
+def _change_set_id_transformer(key: str, val: str) -> str:
+    if False:
+        return 10
+    if key == 'Id' and isinstance(val, str):
+        match = re.match(PATTERN_ARN_CHANGESET, val)
+        if match:
+            return match.groups()[-1]
+    return None
+SNAPSHOT_BASIC_TRANSFORMER = [ResponseMetaDataTransformer(), KeyValueBasedTransformer(lambda k, v: v if isinstance(v, str) and k.lower().endswith('id') and re.match(PATTERN_UUID, v) else None, 'uuid'), RegexTransformer(PATTERN_ISO8601, 'date'), KeyValueBasedTransformer(lambda k, v: v if isinstance(v, datetime) else None, 'datetime', replace_reference=False), KeyValueBasedTransformer(lambda k, v: str(v) if (re.compile('^.*timestamp.*$', flags=re.IGNORECASE).match(k) or k in ('creationTime', 'ingestionTime')) and (not PATTERN_ISO8601.match(str(v))) else None, 'timestamp', replace_reference=False)]

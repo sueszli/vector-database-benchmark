@@ -1,0 +1,120 @@
+"""Test uncommit."""
+from bzrlib import errors, tests, uncommit
+
+class TestUncommit(tests.TestCaseWithTransport):
+
+    def make_linear_tree(self):
+        if False:
+            print('Hello World!')
+        tree = self.make_branch_and_tree('tree')
+        tree.lock_write()
+        try:
+            self.build_tree(['tree/one'])
+            tree.add('one')
+            rev_id1 = tree.commit('one')
+            self.build_tree(['tree/two'])
+            tree.add('two')
+            rev_id2 = tree.commit('two')
+        finally:
+            tree.unlock()
+        return (tree, [rev_id1, rev_id2])
+
+    def test_uncommit(self):
+        if False:
+            return 10
+        (tree, history) = self.make_linear_tree()
+        self.assertEqual(history[1], tree.last_revision())
+        self.assertEqual((2, history[1]), tree.branch.last_revision_info())
+        uncommit.uncommit(tree.branch, tree=tree)
+        self.assertEqual(history[0], tree.last_revision())
+        self.assertEqual((1, history[0]), tree.branch.last_revision_info())
+        self.assertPathExists('tree/two')
+        self.assertIsNot(None, tree.path2id('two'))
+
+    def test_uncommit_bound(self):
+        if False:
+            while True:
+                i = 10
+        (tree, history) = self.make_linear_tree()
+        child = tree.bzrdir.sprout('child').open_workingtree()
+        child.branch.bind(tree.branch)
+        self.assertEqual(history[1], tree.last_revision())
+        self.assertEqual((2, history[1]), tree.branch.last_revision_info())
+        self.assertEqual(history[1], child.last_revision())
+        self.assertEqual((2, history[1]), child.branch.last_revision_info())
+        uncommit.uncommit(child.branch, tree=child)
+        self.assertEqual(history[1], tree.last_revision())
+        self.assertEqual((1, history[0]), tree.branch.last_revision_info())
+        self.assertEqual(history[0], child.last_revision())
+        self.assertEqual((1, history[0]), child.branch.last_revision_info())
+
+    def test_uncommit_bound_local(self):
+        if False:
+            print('Hello World!')
+        (tree, history) = self.make_linear_tree()
+        child = tree.bzrdir.sprout('child').open_workingtree()
+        child.branch.bind(tree.branch)
+        self.assertEqual(history[1], tree.last_revision())
+        self.assertEqual((2, history[1]), tree.branch.last_revision_info())
+        self.assertEqual(history[1], child.last_revision())
+        self.assertEqual((2, history[1]), child.branch.last_revision_info())
+        uncommit.uncommit(child.branch, tree=child, local=True)
+        self.assertEqual(history[1], tree.last_revision())
+        self.assertEqual((2, history[1]), tree.branch.last_revision_info())
+        self.assertEqual(history[0], child.last_revision())
+        self.assertEqual((1, history[0]), child.branch.last_revision_info())
+
+    def test_uncommit_unbound_local(self):
+        if False:
+            while True:
+                i = 10
+        (tree, history) = self.make_linear_tree()
+        self.assertRaises(errors.LocalRequiresBoundBranch, uncommit.uncommit, tree.branch, tree=tree, local=True)
+
+    def test_uncommit_remove_tags(self):
+        if False:
+            for i in range(10):
+                print('nop')
+        (tree, history) = self.make_linear_tree()
+        self.assertEqual(history[1], tree.last_revision())
+        self.assertEqual((2, history[1]), tree.branch.last_revision_info())
+        tree.branch.tags.set_tag(u'pointsatexisting', history[0])
+        tree.branch.tags.set_tag(u'pointsatremoved', history[1])
+        uncommit.uncommit(tree.branch, tree=tree)
+        self.assertEqual(history[0], tree.last_revision())
+        self.assertEqual((1, history[0]), tree.branch.last_revision_info())
+        self.assertEqual({'pointsatexisting': history[0]}, tree.branch.tags.get_tag_dict())
+
+    def test_uncommit_remove_tags_keeps_pending_merges(self):
+        if False:
+            for i in range(10):
+                print('nop')
+        (tree, history) = self.make_linear_tree()
+        copy = tree.bzrdir.sprout('copyoftree').open_workingtree()
+        copy.commit(message='merged', rev_id='merged')
+        tree.merge_from_branch(copy.branch)
+        tree.branch.tags.set_tag('pointsatmerged', 'merged')
+        history.append(tree.commit('merge'))
+        self.assertEqual('merged', tree.branch.tags.lookup_tag('pointsatmerged'))
+        self.assertEqual(history[2], tree.last_revision())
+        self.assertEqual((3, history[2]), tree.branch.last_revision_info())
+        tree.branch.tags.set_tag(u'pointsatexisting', history[1])
+        tree.branch.tags.set_tag(u'pointsatremoved', history[2])
+        uncommit.uncommit(tree.branch, tree=tree)
+        self.assertEqual(history[1], tree.last_revision())
+        self.assertEqual((2, history[1]), tree.branch.last_revision_info())
+        self.assertEqual([history[1], 'merged'], tree.get_parent_ids())
+        self.assertEqual({'pointsatexisting': history[1], 'pointsatmerged': 'merged'}, tree.branch.tags.get_tag_dict())
+
+    def test_uncommit_keep_tags(self):
+        if False:
+            print('Hello World!')
+        (tree, history) = self.make_linear_tree()
+        self.assertEqual(history[1], tree.last_revision())
+        self.assertEqual((2, history[1]), tree.branch.last_revision_info())
+        tree.branch.tags.set_tag(u'pointsatexisting', history[0])
+        tree.branch.tags.set_tag(u'pointsatremoved', history[1])
+        uncommit.uncommit(tree.branch, tree=tree, keep_tags=True)
+        self.assertEqual(history[0], tree.last_revision())
+        self.assertEqual((1, history[0]), tree.branch.last_revision_info())
+        self.assertEqual({'pointsatexisting': history[0], 'pointsatremoved': history[1]}, tree.branch.tags.get_tag_dict())

@@ -1,0 +1,142 @@
+"""
+Port of Manuel Guizar's code from:
+http://www.mathworks.com/matlabcentral/fileexchange/18401-efficient-subpixel-image-registration-by-cross-correlation
+"""
+import itertools
+import warnings
+import numpy as np
+from scipy.fft import fftn, ifftn, fftfreq
+from scipy import ndimage as ndi
+from skimage._shared.utils import remove_arg
+from ._masked_phase_cross_correlation import _masked_phase_cross_correlation
+
+def _upsampled_dft(data, upsampled_region_size, upsample_factor=1, axis_offsets=None):
+    if False:
+        return 10
+    '\n    Upsampled DFT by matrix multiplication.\n\n    This code is intended to provide the same result as if the following\n    operations were performed:\n        - Embed the array "data" in an array that is ``upsample_factor`` times\n          larger in each dimension.  ifftshift to bring the center of the\n          image to (1,1).\n        - Take the FFT of the larger array.\n        - Extract an ``[upsampled_region_size]`` region of the result, starting\n          with the ``[axis_offsets+1]`` element.\n\n    It achieves this result by computing the DFT in the output array without\n    the need to zeropad. Much faster and memory efficient than the zero-padded\n    FFT approach if ``upsampled_region_size`` is much smaller than\n    ``data.size * upsample_factor``.\n\n    Parameters\n    ----------\n    data : array\n        The input data array (DFT of original data) to upsample.\n    upsampled_region_size : integer or tuple of integers, optional\n        The size of the region to be sampled.  If one integer is provided, it\n        is duplicated up to the dimensionality of ``data``.\n    upsample_factor : integer, optional\n        The upsampling factor.  Defaults to 1.\n    axis_offsets : tuple of integers, optional\n        The offsets of the region to be sampled.  Defaults to None (uses\n        image center)\n\n    Returns\n    -------\n    output : ndarray\n            The upsampled DFT of the specified region.\n    '
+    if not hasattr(upsampled_region_size, '__iter__'):
+        upsampled_region_size = [upsampled_region_size] * data.ndim
+    elif len(upsampled_region_size) != data.ndim:
+        raise ValueError("shape of upsampled region sizes must be equal to input data's number of dimensions.")
+    if axis_offsets is None:
+        axis_offsets = [0] * data.ndim
+    elif len(axis_offsets) != data.ndim:
+        raise ValueError("number of axis offsets must be equal to input data's number of dimensions.")
+    im2pi = 1j * 2 * np.pi
+    dim_properties = list(zip(data.shape, upsampled_region_size, axis_offsets))
+    for (n_items, ups_size, ax_offset) in dim_properties[::-1]:
+        kernel = (np.arange(ups_size) - ax_offset)[:, None] * fftfreq(n_items, upsample_factor)
+        kernel = np.exp(-im2pi * kernel)
+        kernel = kernel.astype(data.dtype, copy=False)
+        data = np.tensordot(kernel, data, axes=(1, -1))
+    return data
+
+def _compute_phasediff(cross_correlation_max):
+    if False:
+        i = 10
+        return i + 15
+    '\n    Compute global phase difference between the two images (should be\n        zero if images are non-negative).\n\n    Parameters\n    ----------\n    cross_correlation_max : complex\n        The complex value of the cross correlation at its maximum point.\n    '
+    return np.arctan2(cross_correlation_max.imag, cross_correlation_max.real)
+
+def _compute_error(cross_correlation_max, src_amp, target_amp):
+    if False:
+        for i in range(10):
+            print('nop')
+    '\n    Compute RMS error metric between ``src_image`` and ``target_image``.\n\n    Parameters\n    ----------\n    cross_correlation_max : complex\n        The complex value of the cross correlation at its maximum point.\n    src_amp : float\n        The normalized average image intensity of the source image\n    target_amp : float\n        The normalized average image intensity of the target image\n    '
+    error = 1.0 - cross_correlation_max * cross_correlation_max.conj() / (src_amp * target_amp)
+    return np.sqrt(np.abs(error))
+
+def _disambiguate_shift(reference_image, moving_image, shift):
+    if False:
+        i = 10
+        return i + 15
+    "Determine the correct real-space shift based on periodic shift.\n\n    When determining a translation shift from phase cross-correlation in\n    Fourier space, the shift is only correct to within a period of the image\n    size along each axis, resulting in $2^n$ possible shifts, where $n$ is the\n    number of dimensions of the image. This function checks the\n    cross-correlation in real space for each of those shifts, and returns the\n    one with the highest cross-correlation.\n\n    The strategy we use is to perform the shift on the moving image *using the\n    'grid-wrap' mode* in `scipy.ndimage`. The moving image's original borders\n    then define $2^n$ quadrants, which we cross-correlate with the reference\n    image in turn using slicing. The entire operation is thus $O(2^n + m)$,\n    where $m$ is the number of pixels in the image (and typically dominates).\n\n    Parameters\n    ----------\n    reference_image : numpy array\n        The reference (non-moving) image.\n    moving_image : numpy array\n        The moving image: applying the shift to this image overlays it on the\n        reference image. Must be the same shape as the reference image.\n    shift : ndarray\n        The shift to apply to each axis of the moving image, *modulo* image\n        size. The length of ``shift`` must be equal to ``moving_image.ndim``.\n\n    Returns\n    -------\n    real_shift : ndarray\n        The shift disambiguated in real space.\n    "
+    shape = reference_image.shape
+    positive_shift = [shift_i % s for (shift_i, s) in zip(shift, shape)]
+    negative_shift = [shift_i - s for (shift_i, s) in zip(positive_shift, shape)]
+    subpixel = np.any(np.array(shift) % 1 != 0)
+    interp_order = 3 if subpixel else 0
+    shifted = ndi.shift(moving_image, shift, mode='grid-wrap', order=interp_order)
+    indices = np.round(positive_shift).astype(int)
+    splits_per_dim = [(slice(0, i), slice(i, None)) for i in indices]
+    max_corr = -1.0
+    max_slice = None
+    for test_slice in itertools.product(*splits_per_dim):
+        reference_tile = np.reshape(reference_image[test_slice], -1)
+        moving_tile = np.reshape(shifted[test_slice], -1)
+        corr = -1.0
+        if reference_tile.size > 2:
+            with warnings.catch_warnings():
+                warnings.filterwarnings('ignore', category=RuntimeWarning)
+                corr = np.corrcoef(reference_tile, moving_tile)[0, 1]
+        if corr > max_corr:
+            max_corr = corr
+            max_slice = test_slice
+    real_shift_acc = []
+    for (sl, pos_shift, neg_shift) in zip(max_slice, positive_shift, negative_shift):
+        real_shift_acc.append(pos_shift if sl.stop is None else neg_shift)
+    return np.array(real_shift_acc)
+
+@remove_arg('return_error', changed_version='0.23')
+def phase_cross_correlation(reference_image, moving_image, *, upsample_factor=1, space='real', disambiguate=False, return_error=True, reference_mask=None, moving_mask=None, overlap_ratio=0.3, normalization='phase'):
+    if False:
+        i = 10
+        return i + 15
+    'Efficient subpixel image translation registration by cross-correlation.\n\n    This code gives the same precision as the FFT upsampled cross-correlation\n    in a fraction of the computation time and with reduced memory requirements.\n    It obtains an initial estimate of the cross-correlation peak by an FFT and\n    then refines the shift estimation by upsampling the DFT only in a small\n    neighborhood of that estimate by means of a matrix-multiply DFT [1]_.\n\n    Parameters\n    ----------\n    reference_image : array\n        Reference image.\n    moving_image : array\n        Image to register. Must be same dimensionality as\n        ``reference_image``.\n    upsample_factor : int, optional\n        Upsampling factor. Images will be registered to within\n        ``1 / upsample_factor`` of a pixel. For example\n        ``upsample_factor == 20`` means the images will be registered\n        within 1/20th of a pixel. Default is 1 (no upsampling).\n        Not used if any of ``reference_mask`` or ``moving_mask`` is not None.\n    space : string, one of "real" or "fourier", optional\n        Defines how the algorithm interprets input data. "real" means\n        data will be FFT\'d to compute the correlation, while "fourier"\n        data will bypass FFT of input data. Case insensitive. Not\n        used if any of ``reference_mask`` or ``moving_mask`` is not\n        None.\n    disambiguate : bool\n        The shift returned by this function is only accurate *modulo* the\n        image shape, due to the periodic nature of the Fourier transform. If\n        this parameter is set to ``True``, the *real* space cross-correlation\n        is computed for each possible shift, and the shift with the highest\n        cross-correlation within the overlapping area is returned.\n    reference_mask : ndarray\n        Boolean mask for ``reference_image``. The mask should evaluate\n        to ``True`` (or 1) on valid pixels. ``reference_mask`` should\n        have the same shape as ``reference_image``.\n    moving_mask : ndarray or None, optional\n        Boolean mask for ``moving_image``. The mask should evaluate to ``True``\n        (or 1) on valid pixels. ``moving_mask`` should have the same shape\n        as ``moving_image``. If ``None``, ``reference_mask`` will be used.\n    overlap_ratio : float, optional\n        Minimum allowed overlap ratio between images. The correlation for\n        translations corresponding with an overlap ratio lower than this\n        threshold will be ignored. A lower `overlap_ratio` leads to smaller\n        maximum translation, while a higher `overlap_ratio` leads to greater\n        robustness against spurious matches due to small overlap between\n        masked images. Used only if one of ``reference_mask`` or\n        ``moving_mask`` is not None.\n    normalization : {"phase", None}\n        The type of normalization to apply to the cross-correlation. This\n        parameter is unused when masks (`reference_mask` and `moving_mask`) are\n        supplied.\n\n    Returns\n    -------\n    shift : ndarray\n        Shift vector (in pixels) required to register ``moving_image``\n        with ``reference_image``. Axis ordering is consistent with\n        the axis order of the input array.\n    error : float\n        Translation invariant normalized RMS error between\n        ``reference_image`` and ``moving_image``. For masked cross-correlation\n        this error is not available and NaN is returned.\n    phasediff : float\n        Global phase difference between the two images (should be\n        zero if images are non-negative). For masked cross-correlation\n        this phase difference is not available and NaN is returned.\n\n    Notes\n    -----\n    The use of cross-correlation to estimate image translation has a long\n    history dating back to at least [2]_. The "phase correlation"\n    method (selected by ``normalization="phase"``) was first proposed in [3]_.\n    Publications [1]_ and [2]_ use an unnormalized cross-correlation\n    (``normalization=None``). Which form of normalization is better is\n    application-dependent. For example, the phase correlation method works\n    well in registering images under different illumination, but is not very\n    robust to noise. In a high noise scenario, the unnormalized method may be\n    preferable.\n\n    When masks are provided, a masked normalized cross-correlation algorithm is\n    used [5]_, [6]_.\n\n    References\n    ----------\n    .. [1] Manuel Guizar-Sicairos, Samuel T. Thurman, and James R. Fienup,\n           "Efficient subpixel image registration algorithms,"\n           Optics Letters 33, 156-158 (2008). :DOI:`10.1364/OL.33.000156`\n    .. [2] P. Anuta, Spatial registration of multispectral and multitemporal\n           digital imagery using fast Fourier transform techniques, IEEE Trans.\n           Geosci. Electron., vol. 8, no. 4, pp. 353–368, Oct. 1970.\n           :DOI:`10.1109/TGE.1970.271435`.\n    .. [3] C. D. Kuglin D. C. Hines. The phase correlation image alignment\n           method, Proceeding of IEEE International Conference on Cybernetics\n           and Society, pp. 163-165, New York, NY, USA, 1975, pp. 163–165.\n    .. [4] James R. Fienup, "Invariant error metrics for image reconstruction"\n           Optics Letters 36, 8352-8357 (1997). :DOI:`10.1364/AO.36.008352`\n    .. [5] Dirk Padfield. Masked Object Registration in the Fourier Domain.\n           IEEE Transactions on Image Processing, vol. 21(5),\n           pp. 2706-2718 (2012). :DOI:`10.1109/TIP.2011.2181402`\n    .. [6] D. Padfield. "Masked FFT registration". In Proc. Computer Vision and\n           Pattern Recognition, pp. 2918-2925 (2010).\n           :DOI:`10.1109/CVPR.2010.5540032`\n    '
+    if reference_mask is not None or moving_mask is not None:
+        shift = _masked_phase_cross_correlation(reference_image, moving_image, reference_mask, moving_mask, overlap_ratio)
+        return (shift, np.nan, np.nan)
+    if reference_image.shape != moving_image.shape:
+        raise ValueError('images must be same shape')
+    if space.lower() == 'fourier':
+        src_freq = reference_image
+        target_freq = moving_image
+    elif space.lower() == 'real':
+        src_freq = fftn(reference_image)
+        target_freq = fftn(moving_image)
+    else:
+        raise ValueError('space argument must be "real" of "fourier"')
+    shape = src_freq.shape
+    image_product = src_freq * target_freq.conj()
+    if normalization == 'phase':
+        eps = np.finfo(image_product.real.dtype).eps
+        image_product /= np.maximum(np.abs(image_product), 100 * eps)
+    elif normalization is not None:
+        raise ValueError('normalization must be either phase or None')
+    cross_correlation = ifftn(image_product)
+    maxima = np.unravel_index(np.argmax(np.abs(cross_correlation)), cross_correlation.shape)
+    midpoint = np.array([np.fix(axis_size / 2) for axis_size in shape])
+    float_dtype = image_product.real.dtype
+    shift = np.stack(maxima).astype(float_dtype, copy=False)
+    shift[shift > midpoint] -= np.array(shape)[shift > midpoint]
+    if upsample_factor == 1:
+        src_amp = np.sum(np.real(src_freq * src_freq.conj()))
+        src_amp /= src_freq.size
+        target_amp = np.sum(np.real(target_freq * target_freq.conj()))
+        target_amp /= target_freq.size
+        CCmax = cross_correlation[maxima]
+    else:
+        upsample_factor = np.array(upsample_factor, dtype=float_dtype)
+        shift = np.round(shift * upsample_factor) / upsample_factor
+        upsampled_region_size = np.ceil(upsample_factor * 1.5)
+        dftshift = np.fix(upsampled_region_size / 2.0)
+        sample_region_offset = dftshift - shift * upsample_factor
+        cross_correlation = _upsampled_dft(image_product.conj(), upsampled_region_size, upsample_factor, sample_region_offset).conj()
+        maxima = np.unravel_index(np.argmax(np.abs(cross_correlation)), cross_correlation.shape)
+        CCmax = cross_correlation[maxima]
+        maxima = np.stack(maxima).astype(float_dtype, copy=False)
+        maxima -= dftshift
+        shift += maxima / upsample_factor
+        src_amp = np.sum(np.real(src_freq * src_freq.conj()))
+        target_amp = np.sum(np.real(target_freq * target_freq.conj()))
+    for dim in range(src_freq.ndim):
+        if shape[dim] == 1:
+            shift[dim] = 0
+    if disambiguate:
+        if space.lower() != 'real':
+            reference_image = ifftn(reference_image)
+            moving_image = ifftn(moving_image)
+        shift = _disambiguate_shift(reference_image, moving_image, shift)
+    if np.isnan(CCmax) or np.isnan(src_amp) or np.isnan(target_amp):
+        raise ValueError('NaN values found, please remove NaNs from your input data or use the `reference_mask`/`moving_mask` keywords, eg: phase_cross_correlation(reference_image, moving_image, reference_mask=~np.isnan(reference_image), moving_mask=~np.isnan(moving_image))')
+    return (shift, _compute_error(CCmax, src_amp, target_amp), _compute_phasediff(CCmax))

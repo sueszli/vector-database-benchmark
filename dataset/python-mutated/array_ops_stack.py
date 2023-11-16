@@ -1,0 +1,40 @@
+"""Operations to stack and unstack tensors."""
+from tensorflow.python.framework import ops
+from tensorflow.python.ops import gen_array_ops
+from tensorflow.python.util import dispatch
+from tensorflow.python.util.tf_export import tf_export
+
+@tf_export('stack')
+@dispatch.add_dispatch_support
+def stack(values, axis=0, name='stack'):
+    if False:
+        return 10
+    'Stacks a list of rank-`R` tensors into one rank-`(R+1)` tensor.\n\n  See also `tf.concat`, `tf.tile`, `tf.repeat`.\n\n  Packs the list of tensors in `values` into a tensor with rank one higher than\n  each tensor in `values`, by packing them along the `axis` dimension.\n  Given a list of length `N` of tensors of shape `(A, B, C)`;\n\n  if `axis == 0` then the `output` tensor will have the shape `(N, A, B, C)`.\n  if `axis == 1` then the `output` tensor will have the shape `(A, N, B, C)`.\n  Etc.\n\n  For example:\n\n  >>> x = tf.constant([1, 4])\n  >>> y = tf.constant([2, 5])\n  >>> z = tf.constant([3, 6])\n  >>> tf.stack([x, y, z])\n  <tf.Tensor: shape=(3, 2), dtype=int32, numpy=\n  array([[1, 4],\n         [2, 5],\n         [3, 6]], dtype=int32)>\n  >>> tf.stack([x, y, z], axis=1)\n  <tf.Tensor: shape=(2, 3), dtype=int32, numpy=\n  array([[1, 2, 3],\n         [4, 5, 6]], dtype=int32)>\n\n  This is the opposite of unstack.  The numpy equivalent is `np.stack`\n\n  >>> np.array_equal(np.stack([x, y, z]), tf.stack([x, y, z]))\n  True\n\n  Args:\n    values: A list of `Tensor` objects with the same shape and type.\n    axis: An `int`. The axis to stack along. Defaults to the first dimension.\n      Negative values wrap around, so the valid range is `[-(R+1), R+1)`.\n    name: A name for this operation (optional).\n\n  Returns:\n    output: A stacked `Tensor` with the same type as `values`.\n\n  Raises:\n    ValueError: If `axis` is out of the range [-(R+1), R+1).\n  '
+    if axis == 0:
+        try:
+            return ops.convert_to_tensor(values, name=name)
+        except (TypeError, ValueError, NotImplementedError):
+            pass
+    value_shape = ops.convert_to_tensor(values[0], name=name)._shape_tuple()
+    if value_shape is not None:
+        expanded_num_dims = len(value_shape) + 1
+        if axis < -expanded_num_dims or axis >= expanded_num_dims:
+            raise ValueError(f'Argument `axis` = {axis} not in range [{-expanded_num_dims}, {expanded_num_dims})')
+    return gen_array_ops.pack(values, axis=axis, name=name)
+
+@tf_export('unstack')
+@dispatch.add_dispatch_support
+def unstack(value, num=None, axis=0, name='unstack'):
+    if False:
+        return 10
+    "Unpacks the given dimension of a rank-`R` tensor into rank-`(R-1)` tensors.\n\n  Unpacks tensors from `value` by chipping it along the `axis` dimension.\n\n  >>> x = tf.reshape(tf.range(12), (3,4))\n  >>>\n  >>> p, q, r = tf.unstack(x)\n  >>> p.shape.as_list()\n  [4]\n\n  >>> i, j, k, l = tf.unstack(x, axis=1)\n  >>> i.shape.as_list()\n  [3]\n\n  This is the opposite of stack.\n\n  >>> x = tf.stack([i, j, k, l], axis=1)\n\n  More generally if you have a tensor of shape `(A, B, C, D)`:\n\n  >>> A, B, C, D = [2, 3, 4, 5]\n  >>> t = tf.random.normal(shape=[A, B, C, D])\n\n  The number of tensor returned is equal to the length of the target `axis`:\n\n  >>> axis = 2\n  >>> items = tf.unstack(t, axis=axis)\n  >>> len(items) == t.shape[axis]\n  True\n\n  The shape of each result tensor is equal to the shape of the input tensor,\n  with the target `axis` removed.\n\n  >>> items[0].shape.as_list()  # [A, B, D]\n  [2, 3, 5]\n\n  The value of each tensor `items[i]` is equal to the slice of `input` across\n  `axis` at index `i`:\n\n  >>> for i in range(len(items)):\n  ...   slice = t[:,:,i,:]\n  ...   assert tf.reduce_all(slice == items[i])\n\n  #### Python iterable unpacking\n\n  With eager execution you _can_ unstack the 0th axis of a tensor using python's\n  iterable unpacking:\n\n  >>> t = tf.constant([1,2,3])\n  >>> a,b,c = t\n\n  `unstack` is still necessary because Iterable unpacking doesn't work in\n  a `@tf.function`: Symbolic tensors are not iterable.\n\n  You need to use `tf.unstack` here:\n\n  >>> @tf.function\n  ... def bad(t):\n  ...   a,b,c = t\n  ...   return a\n  >>>\n  >>> bad(t)\n  Traceback (most recent call last):\n  ...\n  OperatorNotAllowedInGraphError: ...\n\n  >>> @tf.function\n  ... def good(t):\n  ...   a,b,c = tf.unstack(t)\n  ...   return a\n  >>>\n  >>> good(t).numpy()\n  1\n\n  #### Unknown shapes\n\n  Eager tensors have concrete values, so their shape is always known.\n  Inside a `tf.function` the symbolic tensors may have unknown shapes.\n  If the length of `axis` is unknown `tf.unstack` will fail because it cannot\n  handle an unknown number of tensors:\n\n  >>> @tf.function(input_signature=[tf.TensorSpec([None], tf.float32)])\n  ... def bad(t):\n  ...   tensors = tf.unstack(t)\n  ...   return tensors[0]\n  >>>\n  >>> bad(tf.constant([1.0, 2.0, 3.0]))\n  Traceback (most recent call last):\n  ...\n  ValueError: Cannot infer argument `num` from shape (None,)\n\n  If you know the `axis` length you can pass it as the `num` argument. But this\n  must be a constant value.\n\n  If you actually need a variable number of tensors in a single `tf.function`\n  trace, you will need to use exlicit loops and a `tf.TensorArray` instead.\n\n  Args:\n    value: A rank `R > 0` `Tensor` to be unstacked.\n    num: An `int`. The length of the dimension `axis`. Automatically inferred if\n      `None` (the default).\n    axis: An `int`. The axis to unstack along. Defaults to the first dimension.\n      Negative values wrap around, so the valid range is `[-R, R)`.\n    name: A name for the operation (optional).\n\n  Returns:\n    The list of `Tensor` objects unstacked from `value`.\n\n  Raises:\n    ValueError: If `axis` is out of the range `[-R, R)`.\n    ValueError: If `num` is unspecified and cannot be inferred.\n    InvalidArgumentError: If `num` does not match the shape of `value`.\n  "
+    if num is None:
+        value = ops.convert_to_tensor(value)
+        value_shape = value.get_shape()
+        if value_shape.ndims is not None:
+            if axis < -value_shape.ndims or axis >= value_shape.ndims:
+                raise ValueError(f'Argument `axis` = {axis} not in range [{-value_shape.ndims}, {value_shape.ndims})')
+            num = value_shape.dims[axis].value
+        if num is None:
+            raise ValueError(f'Cannot infer argument `num` from shape {value_shape}')
+    return gen_array_ops.unpack(value, num=num, axis=axis, name=name)

@@ -1,0 +1,137 @@
+from __future__ import absolute_import
+import socket
+import six
+import retrying
+from oslo_config import cfg
+from kombu.serialization import register
+from kombu.serialization import pickle
+from kombu.serialization import pickle_protocol
+from kombu.serialization import pickle_loads
+from st2common import log as logging
+from st2common.transport import utils as transport_utils
+from st2common.transport.actionalias import ACTIONALIAS_XCHG
+from st2common.transport.actionexecutionstate import ACTIONEXECUTIONSTATE_XCHG
+from st2common.transport.announcement import ANNOUNCEMENT_XCHG
+from st2common.transport.connection_retry_wrapper import ConnectionRetryWrapper
+from st2common.transport.execution import EXECUTION_XCHG
+from st2common.transport.liveaction import LIVEACTION_XCHG, LIVEACTION_STATUS_MGMT_XCHG
+from st2common.transport.reactor import SENSOR_CUD_XCHG
+from st2common.transport.reactor import TRIGGER_CUD_XCHG, TRIGGER_INSTANCE_XCHG
+from st2common.transport import reactor
+from st2common.transport.workflow import WORKFLOW_EXECUTION_XCHG
+from st2common.transport.workflow import WORKFLOW_EXECUTION_STATUS_MGMT_XCHG
+from st2common.transport.queues import ACTIONSCHEDULER_REQUEST_QUEUE
+from st2common.transport.queues import ACTIONRUNNER_WORK_QUEUE
+from st2common.transport.queues import ACTIONRUNNER_CANCEL_QUEUE
+from st2common.transport.queues import NOTIFIER_ACTIONUPDATE_WORK_QUEUE
+from st2common.transport.queues import RESULTSTRACKER_ACTIONSTATE_WORK_QUEUE
+from st2common.transport.queues import RULESENGINE_WORK_QUEUE
+from st2common.transport.queues import STREAM_ANNOUNCEMENT_WORK_QUEUE
+from st2common.transport.queues import STREAM_EXECUTION_ALL_WORK_QUEUE
+from st2common.transport.queues import STREAM_LIVEACTION_WORK_QUEUE
+from st2common.transport.queues import STREAM_EXECUTION_OUTPUT_QUEUE
+from st2common.transport.queues import WORKFLOW_EXECUTION_WORK_QUEUE
+from st2common.transport.queues import WORKFLOW_EXECUTION_RESUME_QUEUE
+LOG = logging.getLogger('st2common.transport.bootstrap')
+__all__ = ['register_exchanges', 'register_exchanges_with_retry', 'register_kombu_serializers', 'EXCHANGES', 'QUEUES']
+EXCHANGES = [ACTIONALIAS_XCHG, ACTIONEXECUTIONSTATE_XCHG, ANNOUNCEMENT_XCHG, EXECUTION_XCHG, LIVEACTION_XCHG, LIVEACTION_STATUS_MGMT_XCHG, TRIGGER_CUD_XCHG, TRIGGER_INSTANCE_XCHG, SENSOR_CUD_XCHG, WORKFLOW_EXECUTION_XCHG, WORKFLOW_EXECUTION_STATUS_MGMT_XCHG]
+QUEUES = [ACTIONSCHEDULER_REQUEST_QUEUE, ACTIONRUNNER_WORK_QUEUE, ACTIONRUNNER_CANCEL_QUEUE, NOTIFIER_ACTIONUPDATE_WORK_QUEUE, RESULTSTRACKER_ACTIONSTATE_WORK_QUEUE, RULESENGINE_WORK_QUEUE, STREAM_ANNOUNCEMENT_WORK_QUEUE, STREAM_EXECUTION_ALL_WORK_QUEUE, STREAM_LIVEACTION_WORK_QUEUE, STREAM_EXECUTION_OUTPUT_QUEUE, WORKFLOW_EXECUTION_WORK_QUEUE, WORKFLOW_EXECUTION_RESUME_QUEUE, reactor.get_trigger_cud_queue(name='st2.preinit', routing_key='init'), reactor.get_sensor_cud_queue(name='st2.preinit', routing_key='init')]
+
+def _do_register_exchange(exchange, connection, channel, retry_wrapper):
+    if False:
+        while True:
+            i = 10
+    try:
+        kwargs = {'exchange': exchange.name, 'type': exchange.type, 'durable': exchange.durable, 'auto_delete': exchange.auto_delete, 'arguments': exchange.arguments, 'nowait': False, 'passive': False}
+        retry_wrapper.ensured(connection=connection, obj=channel, to_ensure_func=channel.exchange_declare, **kwargs)
+        LOG.debug('Registered exchange %s (%s).' % (exchange.name, str(kwargs)))
+    except Exception:
+        LOG.exception('Failed to register exchange: %s.', exchange.name)
+
+def _do_predeclare_queue(channel, queue):
+    if False:
+        i = 10
+        return i + 15
+    LOG.debug('Predeclaring queue for exchange "%s"' % queue.exchange.name)
+    bound_queue = None
+    try:
+        bound_queue = queue(channel)
+        bound_queue.declare(nowait=False)
+        LOG.debug('Predeclared queue for exchange "%s"' % queue.exchange.name)
+    except Exception:
+        LOG.exception('Failed to predeclare queue for exchange "%s"' % queue.exchange.name)
+    return bound_queue
+
+def register_exchanges():
+    if False:
+        i = 10
+        return i + 15
+    LOG.debug('Registering exchanges...')
+    connection_urls = transport_utils.get_messaging_urls()
+    with transport_utils.get_connection() as conn:
+        retry_wrapper = ConnectionRetryWrapper(cluster_size=len(connection_urls), logger=LOG)
+
+        def wrapped_register_exchanges(connection, channel):
+            if False:
+                i = 10
+                return i + 15
+            for exchange in EXCHANGES:
+                _do_register_exchange(exchange=exchange, connection=connection, channel=channel, retry_wrapper=retry_wrapper)
+        retry_wrapper.run(connection=conn, wrapped_callback=wrapped_register_exchanges)
+
+        def wrapped_predeclare_queues(connection, channel):
+            if False:
+                while True:
+                    i = 10
+            for queue in QUEUES:
+                _do_predeclare_queue(channel=channel, queue=queue)
+        retry_wrapper.run(connection=conn, wrapped_callback=wrapped_predeclare_queues)
+
+def register_exchanges_with_retry():
+    if False:
+        return 10
+
+    def retry_if_io_error(exception):
+        if False:
+            for i in range(10):
+                print('nop')
+        return isinstance(exception, socket.error)
+    retrying_obj = retrying.Retrying(retry_on_exception=retry_if_io_error, wait_fixed=cfg.CONF.messaging.connection_retry_wait, stop_max_attempt_number=cfg.CONF.messaging.connection_retries)
+    return retrying_obj.call(register_exchanges)
+
+def register_kombu_serializers():
+    if False:
+        for i in range(10):
+            print('nop')
+    '\n    Register our custom pickle serializer which knows how to handle UTF-8 (non\n    ascii) messages.\n\n    Default kombu pickle de-serializer calls .encode() on the bytes object without providing an\n    encoding. This means it default to "ascii" and fail with UnicodeDecode error.\n\n    https://github.com/celery/kombu/blob/3.0/kombu/utils/encoding.py#L47\n    '
+
+    def pickle_dumps(obj, dumper=pickle.dumps):
+        if False:
+            while True:
+                i = 10
+        return dumper(obj, protocol=pickle_protocol)
+    if six.PY3:
+
+        def str_to_bytes(s):
+            if False:
+                while True:
+                    i = 10
+            if isinstance(s, str):
+                return s.encode('utf-8')
+            return s
+
+        def unpickle(s):
+            if False:
+                while True:
+                    i = 10
+            return pickle_loads(str_to_bytes(s))
+    else:
+
+        def str_to_bytes(s):
+            if False:
+                return 10
+            if isinstance(s, unicode):
+                return s.encode('utf-8')
+            return s
+        unpickle = pickle_loads
+    register('pickle', pickle_dumps, unpickle, content_type='application/x-python-serialize', content_encoding='binary')

@@ -1,0 +1,92 @@
+import pycti
+from django.conf import settings
+from pycti.api.opencti_api_client import File
+from api_app import helpers
+from api_app.analyzers_manager.constants import ObservableTypes
+from api_app.connectors_manager import classes
+from tests.mock_utils import if_mock_connections, patch
+INTELOWL_OPENCTI_TYPE_MAP = {ObservableTypes.IP: {'v4': 'ipv4-addr', 'v6': 'ipv6-addr'}, ObservableTypes.DOMAIN: 'domain-name', ObservableTypes.URL: 'url', ObservableTypes.GENERIC: 'x-opencti-text', 'file': 'file'}
+
+class OpenCTI(classes.Connector):
+    ssl_verify: bool
+    tlp: dict
+    proxies: str
+    _url_key_name: str
+    _api_key_name: str
+
+    def get_observable_type(self) -> str:
+        if False:
+            while True:
+                i = 10
+        if self._job.is_sample:
+            obs_type = INTELOWL_OPENCTI_TYPE_MAP['file']
+        elif self._job.observable_classification == ObservableTypes.HASH:
+            matched_hash_type = helpers.get_hash_type(self._job.observable_name)
+            if matched_hash_type in ['md5', 'sha-1', 'sha-256']:
+                obs_type = INTELOWL_OPENCTI_TYPE_MAP['file']
+            else:
+                obs_type = INTELOWL_OPENCTI_TYPE_MAP[ObservableTypes.GENERIC]
+        elif self._job.observable_classification == ObservableTypes.IP:
+            ip_version = helpers.get_ip_version(self._job.observable_name)
+            if ip_version in [4, 6]:
+                obs_type = INTELOWL_OPENCTI_TYPE_MAP[ObservableTypes.IP][f'v{ip_version}']
+            else:
+                obs_type = INTELOWL_OPENCTI_TYPE_MAP[ObservableTypes.GENERIC]
+        else:
+            obs_type = INTELOWL_OPENCTI_TYPE_MAP[self._job.observable_classification]
+        return obs_type
+
+    def generate_observable_data(self) -> dict:
+        if False:
+            print('Hello World!')
+        observable_data = {'type': self.get_observable_type()}
+        if self._job.is_sample:
+            observable_data['name'] = self._job.file_name
+            observable_data['hashes'] = {'md5': self._job.md5, 'sha-1': self._job.sha1, 'sha-256': self._job.sha256}
+        elif self._job.observable_classification == ObservableTypes.HASH and observable_data['type'] == 'file':
+            matched_type = helpers.get_hash_type(self._job.observable_name)
+            observable_data['hashes'] = {matched_type: self._job.observable_name}
+        else:
+            observable_data['value'] = self._job.observable_name
+        return observable_data
+
+    @property
+    def organization_id(self) -> str:
+        if False:
+            for i in range(10):
+                print('nop')
+        org = pycti.Identity(self.opencti_instance).create(type='Organization', name='IntelOwl', description='Intel Owl is an Open Source Intelligence, or OSINT solution to get threat intelligence data about a specific file, an IP or a domain from a single API at scale. [Visit the project on GitHub](https://github.com/intelowlproject/IntelOwl/)', update=True)
+        return org['id']
+
+    @property
+    def marking_definition_id(self) -> str:
+        if False:
+            while True:
+                i = 10
+        md = pycti.MarkingDefinition(self.opencti_instance).create(definition_type='TLP', definition=f"TLP:{self.tlp['type'].upper()}", x_opencti_color=self.tlp['color'].lower(), x_opencti_order=self.tlp['x_opencti_order'])
+        return md['id']
+
+    def run(self):
+        if False:
+            while True:
+                i = 10
+        self.opencti_instance = pycti.OpenCTIApiClient(url=self._url_key_name, token=self._api_key_name, ssl_verify=self.ssl_verify, proxies=self.proxies)
+        observable_data = self.generate_observable_data()
+        observable = pycti.StixCyberObservable(self.opencti_instance, File).create(observableData=observable_data, createdBy=self.organization_id, objectMarking=self.marking_definition_id)
+        label_ids = []
+        for tag in self._job.tags.all():
+            label = pycti.Label(self.opencti_instance).create(value=f'intelowl-tag:{tag.label}', color=tag.color)
+            label_ids.append(label['id'])
+        report = pycti.Report(self.opencti_instance).create(name=f'IntelOwl Job-{self.job_id}', description=f"This is IntelOwl's analysis report for Job: {self.job_id}. Analyzers Executed: {', '.join(list(self._job.analyzers_to_execute.all().values_list('name', flat=True)))}", published=self._job.received_request_time.strftime('%Y-%m-%dT%H:%M:%SZ'), report_types=['internal-report'], createdBy=self.organization_id, objectMarking=self.marking_definition_id, objectLabel=label_ids, x_opencti_report_status=2)
+        external_reference = pycti.ExternalReference(self.opencti_instance, None).create(source_name='IntelOwl Analysis', description='View analysis report on the IntelOwl instance', url=f'{settings.WEB_CLIENT_URL}/pages/scan/result/{self.job_id}')
+        pycti.StixDomainObject(self.opencti_instance, File).add_external_reference(id=report['id'], external_reference_id=external_reference['id'])
+        pycti.Report(self.opencti_instance).add_stix_object_or_stix_relationship(id=report['id'], stixObjectOrStixRelationshipId=observable['id'])
+        return {'observable': pycti.StixCyberObservable(self.opencti_instance, File).read(id=observable['id']), 'report': pycti.Report(self.opencti_instance).read(id=report['id'])}
+
+    @classmethod
+    def _monkeypatch(cls):
+        if False:
+            for i in range(10):
+                print('nop')
+        patches = [if_mock_connections(patch('pycti.OpenCTIApiClient', return_value=None), patch('pycti.Identity.create', return_value={'id': 1}), patch('pycti.MarkingDefinition.create', return_value={'id': 1}), patch('pycti.StixCyberObservable.create', return_value={'id': 1}), patch('pycti.Label.create', return_value={'id': 1}), patch('pycti.Report.create', return_value={'id': 1}), patch('pycti.ExternalReference.create', return_value={'id': 1}), patch('pycti.StixDomainObject.add_external_reference', return_value=None), patch('pycti.Report.add_stix_object_or_stix_relationship', return_value=None), patch('pycti.StixCyberObservable.read', return_value={'id': 1}), patch('pycti.Report.read', return_value={'id': 1}))]
+        return super()._monkeypatch(patches=patches)

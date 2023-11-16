@@ -1,0 +1,12 @@
+from azure.identity import DefaultAzureCredential
+from azure.mgmt.batch import BatchManagementClient
+'\n# PREREQUISITES\n    pip install azure-identity\n    pip install azure-mgmt-batch\n# USAGE\n    python certificate_update.py\n\n    Before run the sample, please set the values of the client ID, tenant ID and client secret\n    of the AAD application as environment variables: AZURE_CLIENT_ID, AZURE_TENANT_ID,\n    AZURE_CLIENT_SECRET. For more info about how to get the value, please see:\n    https://docs.microsoft.com/azure/active-directory/develop/howto-create-service-principal-portal\n'
+
+def main():
+    if False:
+        print('Hello World!')
+    client = BatchManagementClient(credential=DefaultAzureCredential(), subscription_id='subid')
+    response = client.certificate.update(resource_group_name='default-azurebatch-japaneast', account_name='sampleacct', certificate_name='sha1-0a0e4f50d51beadeac1d35afc5116098e7902e6e', parameters={'properties': {'data': 'MIIJsgIBAzCCCW4GCSqGSIb3DQE...', 'password': '<ExamplePassword>'}})
+    print(response)
+if __name__ == '__main__':
+    main()

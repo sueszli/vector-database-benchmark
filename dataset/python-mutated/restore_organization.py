@@ -1,0 +1,54 @@
+import logging
+from django.contrib import messages
+from django.http import HttpRequest, HttpResponse
+from django.urls import reverse
+from django.utils.translation import gettext_lazy as _
+from sentry import audit_log
+from sentry.api import client
+from sentry.models.organization import Organization, OrganizationStatus
+from sentry.services.hybrid_cloud.organization import organization_service
+from sentry.services.hybrid_cloud.organization_actions.impl import unmark_organization_as_pending_deletion_with_outbox_message
+from sentry.web.frontend.base import ControlSiloOrganizationView
+from sentry.web.helpers import render_to_response
+ERR_MESSAGES = {OrganizationStatus.ACTIVE: _('Deletion already canceled.'), OrganizationStatus.DELETION_IN_PROGRESS: _('Deletion cannot be canceled, already in progress')}
+MSG_RESTORE_SUCCESS = _('Organization restored successfully.')
+delete_logger = logging.getLogger('sentry.deletions.ui')
+
+class RestoreOrganizationView(ControlSiloOrganizationView):
+    required_scope = 'org:admin'
+    sudo_required = True
+
+    def determine_active_organization(self, request: HttpRequest, organization_slug=None) -> None:
+        if False:
+            while True:
+                i = 10
+        organization = organization_service.get_organization_by_slug(user_id=request.user.id, slug=organization_slug, only_visible=False)
+        if organization and organization.member:
+            self.active_organization = organization
+        else:
+            self.active_organization = None
+
+    def get(self, request: HttpRequest, organization) -> HttpResponse:
+        if False:
+            for i in range(10):
+                print('nop')
+        if organization.status == OrganizationStatus.ACTIVE:
+            return self.redirect(Organization.get_url(organization.slug))
+        context = {'deleting_organization': organization, 'pending_deletion': organization.status == OrganizationStatus.PENDING_DELETION}
+        return render_to_response('sentry/restore-organization.html', context, self.request)
+
+    def post(self, request: HttpRequest, organization) -> HttpResponse:
+        if False:
+            while True:
+                i = 10
+        deletion_statuses = [OrganizationStatus.PENDING_DELETION, OrganizationStatus.DELETION_IN_PROGRESS]
+        if organization.status not in deletion_statuses:
+            messages.add_message(request, messages.ERROR, ERR_MESSAGES[organization.status])
+            return self.redirect(reverse('sentry'))
+        updated = unmark_organization_as_pending_deletion_with_outbox_message(org_id=organization.id)
+        if updated:
+            client.put(f'/organizations/{organization.slug}/', data={'cancelDeletion': True}, request=request)
+            messages.add_message(request, messages.SUCCESS, MSG_RESTORE_SUCCESS)
+            if organization.status == OrganizationStatus.PENDING_DELETION:
+                self.create_audit_entry(request=request, organization=organization, target_object=organization.id, event=audit_log.get_event_id('ORG_RESTORE'), data=organization.get_audit_log_data())
+        return self.redirect(Organization.get_url(organization.slug))

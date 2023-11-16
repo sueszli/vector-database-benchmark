@@ -1,0 +1,29 @@
+from Orange.base import Learner, Model, SklLearner, SklModel
+__all__ = ['LearnerClassification', 'ModelClassification', 'SklModelClassification', 'SklLearnerClassification']
+
+class LearnerClassification(Learner):
+
+    def incompatibility_reason(self, domain):
+        if False:
+            i = 10
+            return i + 15
+        reason = None
+        if len(domain.class_vars) > 1 and (not self.supports_multiclass):
+            reason = 'Too many target variables.'
+        elif not domain.has_discrete_class:
+            reason = 'Categorical class variable expected.'
+        return reason
+
+class ModelClassification(Model):
+
+    def predict_proba(self, data):
+        if False:
+            for i in range(10):
+                print('nop')
+        return self(data, ret=Model.Probs)
+
+class SklModelClassification(SklModel, ModelClassification):
+    pass
+
+class SklLearnerClassification(SklLearner, LearnerClassification):
+    __returns__ = SklModelClassification

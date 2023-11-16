@@ -1,0 +1,27 @@
+"""Utils to create distributed datasets based on TF version."""
+from tensorflow.python import tf2
+from tensorflow.python.distribute import input_lib
+from tensorflow.python.distribute.v1 import input_lib as input_lib_v1
+
+def get_distributed_dataset(dataset, input_workers, strategy, num_replicas_in_sync=None, input_context=None, options=None, build=True, replica_order=None):
+    if False:
+        i = 10
+        return i + 15
+    "Returns a distributed dataset from the given tf.data.Dataset instance.\n\n  This is a common function that is used by all strategies to return a\n  distributed dataset. The distributed dataset instance returned is different\n  depending on if we are in a TF 1 or TF 2 context. The distributed dataset\n  instances returned differ from each other in the APIs supported by each of\n  them.\n\n  Args:\n    dataset: a tf.data.Dataset instance.\n    input_workers: an InputWorkers object which specifies devices on which\n      iterators should be created.\n    strategy: a `tf.distribute.Strategy` object, used to run all-reduce to\n      handle last partial batch.\n    num_replicas_in_sync: Optional integer. If this is not None, the value is\n      used to decide how to rebatch datasets into smaller batches so that the\n      total batch size for each step (across all workers and replicas) adds up\n      to `dataset`'s batch size.\n    input_context: `InputContext` for sharding. Only pass this in for between\n      graph multi-worker cases where there is only one `input_worker`. In these\n      cases, we will shard based on the `input_pipeline_id` and\n      `num_input_pipelines` in the `InputContext`.\n    options: Default is None. `tf.distribute.InputOptions` used to control\n      options on how this dataset is distributed.\n    build: whether to build underlying datasets when a DistributedDataset is\n      created. This is only useful for `ParameterServerStrategy` now.\n    replica_order: the order of the replicas, which will be used to reorder the\n      iterators to match the device order.\n\n  Returns:\n    A distributed dataset instance.\n  "
+    if tf2.enabled():
+        return input_lib.DistributedDataset(input_workers, strategy, dataset, num_replicas_in_sync=num_replicas_in_sync, input_context=input_context, build=build, options=options, replica_order=replica_order)
+    else:
+        return input_lib_v1.DistributedDatasetV1(dataset, input_workers, strategy, num_replicas_in_sync=num_replicas_in_sync, input_context=input_context, options=options)
+
+def get_distributed_datasets_from_function(dataset_fn, input_workers, input_contexts, strategy, options=None, build=True, replica_order=None):
+    if False:
+        return 10
+    'Returns a distributed dataset from the given input function.\n\n  This is a common function that is used by all strategies to return a\n  distributed dataset. The distributed dataset instance returned is different\n  depending on if we are in a TF 1 or TF 2 context. The distributed dataset\n  instances returned differ from each other in the APIs supported by each of\n  them.\n\n  Args:\n    dataset_fn: a function that returns a tf.data.Dataset instance.\n    input_workers: an InputWorkers object which specifies devices on which\n      iterators should be created.\n    input_contexts: A list of `InputContext` instances to be passed to call(s)\n      to `dataset_fn`. Length and order should match worker order in\n      `worker_device_pairs`.\n    strategy: a `tf.distribute.Strategy` object, used to run all-reduce to\n      handle last partial batch.\n    options: Default is None. `tf.distribute.InputOptions` used to control\n      options on how this dataset is distributed.\n    build: whether to build underlying datasets when a\n      `DistributedDatasetFromFunction` is created. This is only useful for\n      `ParameterServerStrategy` now.\n    replica_order: the order of the replicas, which will be used to reorder the\n      iterators to match the device order.\n\n  Returns:\n    A distributed dataset instance.\n\n  Raises:\n    ValueError: if `options.experimental_replication_mode` and\n    `options.experimental_place_dataset_on_device` are not consistent\n  '
+    if options is not None and options.experimental_replication_mode != input_lib.InputReplicationMode.PER_REPLICA and options.experimental_place_dataset_on_device:
+        raise ValueError('When `experimental_place_dataset_on_device` is set for dataset placement, you must also specify `PER_REPLICA` for the replication mode')
+    if options is not None and options.experimental_replication_mode == input_lib.InputReplicationMode.PER_REPLICA and options.experimental_fetch_to_device and options.experimental_place_dataset_on_device:
+        raise ValueError('`experimental_place_dataset_on_device` can not be set to True when experimental_fetch_to_device is True and replication mode is set to `PER_REPLICA`')
+    if tf2.enabled():
+        return input_lib.DistributedDatasetsFromFunction(input_workers, strategy, input_contexts=input_contexts, dataset_fn=dataset_fn, options=options, build=build, replica_order=replica_order)
+    else:
+        return input_lib_v1.DistributedDatasetsFromFunctionV1(input_workers, strategy, input_contexts, dataset_fn, options)

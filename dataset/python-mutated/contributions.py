@@ -1,0 +1,21 @@
+import h2o
+from h2o.exceptions import H2OValueError
+from h2o.job import H2OJob
+from h2o.utils.typechecks import assert_is_type, Enum
+
+class Contributions:
+
+    def _predict_contributions(self, test_data, output_format, top_n, bottom_n, compare_abs, background_frame, output_space, output_per_reference):
+        if False:
+            i = 10
+            return i + 15
+        '\n        Predict feature contributions - SHAP values on an H2O Model (only GBM, XGBoost, DRF models and equivalent\n        imported MOJOs).\n        \n        Returned H2OFrame has shape (#rows, #features + 1). There is a feature contribution column for each input\n        feature, and the last column is the model bias (same value for each row). The sum of the feature contributions\n        and the bias term is equal to the raw prediction of the model. Raw prediction of tree-based models is the sum \n        of the predictions of the individual trees before the inverse link function is applied to get the actual\n        prediction. For Gaussian distribution the sum of the contributions is equal to the model prediction. \n\n        **Note**: Multinomial classification models are currently not supported.\n\n        :param H2OFrame test_data: Data on which to calculate contributions.\n        :param Enum output_format: Specify how to output feature contributions in XGBoost. XGBoost by default outputs \n            contributions for 1-hot encoded features, specifying a Compact output format will produce a per-feature\n            contribution. One of: ``"Original"``, ``"Compact"``.\n        :param top_n: Return only #top_n the highest contributions + bias:\n        \n            - If ``top_n<0`` then sort all SHAP values in descending order\n            - If ``top_n<0 && bottom_n<0`` then sort all SHAP values in descending order\n            \n        :param bottom_n: Return only #bottom_n the lowest contributions + bias:\n        \n            - If top_n and bottom_n are defined together then return array of #top_n + #bottom_n + bias\n            - If ``bottom_n<0`` then sort all SHAP values in ascending order\n            - If ``top_n<0 && bottom_n<0`` then sort all SHAP values in descending order\n            \n        :param compare_abs: True to compare absolute values of contributions\n        :param background_frame: Optional frame, that is used as the source of baselines for\n                                 the baseline SHAP (when output_per_reference == True) or for\n                                 the marginal SHAP (when output_per_reference == False).\n        :param output_space: If True, linearly scale the contributions so that they sum up to the prediction.\n                             NOTE: This will result only in approximate SHAP values even if the model supports exact SHAP calculation.\n                             NOTE: This will not have any effect if the estimator doesn\'t use a link function.\n        :param output_per_reference: If True, return baseline SHAP, i.e., contribution for each data point for each reference from the background_frame.\n                                     If False, return TreeSHAP if no background_frame is provided, or marginal SHAP if background frame is provided.\n                                     Can be used only with background_frame.\n        :returns: A new H2OFrame made of feature contributions.\n\n        '
+        assert_is_type(output_format, None, Enum('Original', 'Compact'))
+        if not isinstance(test_data, h2o.H2OFrame):
+            raise H2OValueError('test_data must be an instance of H2OFrame')
+        assert_is_type(background_frame, None, h2o.H2OFrame)
+        assert_is_type(output_space, bool)
+        assert_is_type(output_per_reference, bool)
+        j = H2OJob(h2o.api('POST /4/Predictions/models/%s/frames/%s' % (self.model_id, test_data.frame_id), data={'predict_contributions': True, 'predict_contributions_output_format': output_format, 'top_n': top_n, 'bottom_n': bottom_n, 'compare_abs': compare_abs, 'background_frame': background_frame.frame_id if background_frame is not None else None, 'output_space': output_space, 'output_per_reference': output_per_reference}), 'contributions')
+        j.poll()
+        return h2o.get_frame(j.dest_key)

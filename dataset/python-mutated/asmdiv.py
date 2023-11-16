@@ -1,0 +1,19 @@
+@micropython.asm_thumb
+def sdiv(r0, r1):
+    if False:
+        return 10
+    sdiv(r0, r0, r1)
+
+@micropython.asm_thumb
+def udiv(r0, r1):
+    if False:
+        while True:
+            i = 10
+    udiv(r0, r0, r1)
+print(sdiv(1234, 3))
+print(sdiv(-1234, 3))
+print(sdiv(1234, -3))
+print(sdiv(-1234, -3))
+print(udiv(1234, 3))
+print(udiv(4294967295, 2147483647))
+print(udiv(4294967295, 4294967295))

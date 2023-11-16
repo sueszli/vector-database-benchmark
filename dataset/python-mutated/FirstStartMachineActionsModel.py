@@ -1,0 +1,105 @@
+from typing import Optional, Dict, Any, TYPE_CHECKING
+from PyQt6.QtCore import QObject, Qt, pyqtProperty, pyqtSignal, pyqtSlot
+from UM.Qt.ListModel import ListModel
+if TYPE_CHECKING:
+    from cura.CuraApplication import CuraApplication
+
+class FirstStartMachineActionsModel(ListModel):
+    """This model holds all first-start machine actions for the currently active machine. It has 2 roles:
+
+        - title   : the title/name of the action
+        - content : the QObject of the QML content of the action
+        - action  : the MachineAction object itself
+    """
+    TitleRole = Qt.ItemDataRole.UserRole + 1
+    ContentRole = Qt.ItemDataRole.UserRole + 2
+    ActionRole = Qt.ItemDataRole.UserRole + 3
+
+    def __init__(self, application: 'CuraApplication', parent: Optional[QObject]=None) -> None:
+        if False:
+            i = 10
+            return i + 15
+        super().__init__(parent)
+        self.addRoleName(self.TitleRole, 'title')
+        self.addRoleName(self.ContentRole, 'content')
+        self.addRoleName(self.ActionRole, 'action')
+        self._current_action_index = 0
+        self._application = application
+        self._application.initializationFinished.connect(self.initialize)
+        self._previous_global_stack = None
+
+    def initialize(self) -> None:
+        if False:
+            i = 10
+            return i + 15
+        self._application.getMachineManager().globalContainerChanged.connect(self._update)
+        self._update()
+    currentActionIndexChanged = pyqtSignal()
+    allFinished = pyqtSignal()
+
+    @pyqtProperty(int, notify=currentActionIndexChanged)
+    def currentActionIndex(self) -> int:
+        if False:
+            for i in range(10):
+                print('nop')
+        return self._current_action_index
+
+    @pyqtProperty('QVariantMap', notify=currentActionIndexChanged)
+    def currentItem(self) -> Optional[Dict[str, Any]]:
+        if False:
+            print('Hello World!')
+        if self._current_action_index >= self.count:
+            return dict()
+        else:
+            return self.getItem(self._current_action_index)
+
+    @pyqtProperty(bool, notify=currentActionIndexChanged)
+    def hasMoreActions(self) -> bool:
+        if False:
+            return 10
+        return self._current_action_index < self.count - 1
+
+    @pyqtSlot()
+    def goToNextAction(self) -> None:
+        if False:
+            for i in range(10):
+                print('nop')
+        if 'action' in self.currentItem:
+            self.currentItem['action'].setFinished()
+        if not self.hasMoreActions:
+            self.allFinished.emit()
+            self.reset()
+            return
+        self._current_action_index += 1
+        self.currentActionIndexChanged.emit()
+
+    @pyqtSlot()
+    def reset(self) -> None:
+        if False:
+            return 10
+        'Resets the current action index to 0 so the wizard panel can show actions from the beginning.'
+        self._current_action_index = 0
+        self.currentActionIndexChanged.emit()
+        if self.count == 0:
+            self.allFinished.emit()
+
+    def _update(self) -> None:
+        if False:
+            i = 10
+            return i + 15
+        global_stack = self._application.getMachineManager().activeMachine
+        if global_stack is None:
+            self.setItems([])
+            return
+        if self._previous_global_stack is not None and global_stack.getId() == self._previous_global_stack.getId():
+            return
+        self._previous_global_stack = global_stack
+        definition_id = global_stack.definition.getId()
+        first_start_actions = self._application.getMachineActionManager().getFirstStartActions(definition_id)
+        item_list = []
+        for item in first_start_actions:
+            item_list.append({'title': item.label, 'content': item.getDisplayItem(), 'action': item})
+            item.reset()
+        self.setItems(item_list)
+        self.reset()
+__all__ = ['FirstStartMachineActionsModel']

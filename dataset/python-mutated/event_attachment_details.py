@@ -1,0 +1,87 @@
+import posixpath
+from django.http import StreamingHttpResponse
+from rest_framework.request import Request
+from rest_framework.response import Response
+from sentry import eventstore, features, roles
+from sentry.api.api_publish_status import ApiPublishStatus
+from sentry.api.base import region_silo_endpoint
+from sentry.api.bases.project import ProjectEndpoint, ProjectPermission
+from sentry.api.serializers import serialize
+from sentry.auth.superuser import is_active_superuser
+from sentry.auth.system import is_system_auth
+from sentry.constants import ATTACHMENTS_ROLE_DEFAULT
+from sentry.models.eventattachment import EventAttachment
+from sentry.models.files.file import File
+from sentry.models.organizationmember import OrganizationMember
+
+class EventAttachmentDetailsPermission(ProjectPermission):
+
+    def has_object_permission(self, request: Request, view, project):
+        if False:
+            i = 10
+            return i + 15
+        result = super().has_object_permission(request, view, project)
+        if not result:
+            return result
+        if is_system_auth(request.auth) or is_active_superuser(request):
+            return True
+        if not request.user.is_authenticated:
+            return False
+        organization = project.organization
+        required_role = organization.get_option('sentry:attachments_role') or ATTACHMENTS_ROLE_DEFAULT
+        try:
+            om = OrganizationMember.objects.get(organization=organization, user_id=request.user.id)
+        except OrganizationMember.DoesNotExist:
+            return False
+        required_role = roles.get(required_role)
+        return any((role.priority >= required_role.priority for role in om.get_all_org_roles_sorted()))
+
+@region_silo_endpoint
+class EventAttachmentDetailsEndpoint(ProjectEndpoint):
+    publish_status = {'DELETE': ApiPublishStatus.UNKNOWN, 'GET': ApiPublishStatus.UNKNOWN}
+    permission_classes = (EventAttachmentDetailsPermission,)
+
+    def download(self, attachment):
+        if False:
+            while True:
+                i = 10
+        file = File.objects.get(id=attachment.file_id)
+        content_type = attachment.content_type or file.headers.get('content-type', 'application/octet-stream')
+        size = attachment.size or file.size
+        fp = file.getfile()
+        response = StreamingHttpResponse(iter(lambda : fp.read(4096), b''), content_type=content_type)
+        response['Content-Length'] = size
+        name = posixpath.basename(' '.join(attachment.name.split()))
+        response['Content-Disposition'] = f'attachment; filename="{name}"'
+        return response
+
+    def get(self, request: Request, project, event_id, attachment_id) -> Response:
+        if False:
+            while True:
+                i = 10
+        '\n        Retrieve an Attachment\n        ``````````````````````\n\n        :pparam string organization_slug: the slug of the organization the\n                                          issues belong to.\n        :pparam string project_slug: the slug of the project the event\n                                     belongs to.\n        :pparam string event_id: the id of the event.\n        :pparam string attachment_id: the id of the attachment.\n        :auth: required\n        '
+        if not features.has('organizations:event-attachments', project.organization, actor=request.user):
+            return self.respond(status=404)
+        event = eventstore.backend.get_event_by_id(project.id, event_id)
+        if event is None:
+            return self.respond({'detail': 'Event not found'}, status=404)
+        try:
+            attachment = EventAttachment.objects.filter(project_id=project.id, event_id=event.event_id, id=attachment_id).get()
+        except EventAttachment.DoesNotExist:
+            return self.respond({'detail': 'Attachment not found'}, status=404)
+        if request.GET.get('download') is not None:
+            return self.download(attachment)
+        return self.respond(serialize(attachment, request.user))
+
+    def delete(self, request: Request, project, event_id, attachment_id) -> Response:
+        if False:
+            print('Hello World!')
+        '\n        Delete an Event Attachment by ID\n        ````````````````````````````````\n\n        Delete an attachment on the given event.\n\n        :pparam string event_id: the identifier of the event.\n        :pparam string attachment_id: the identifier of the attachment.\n        :auth: required\n        '
+        if not features.has('organizations:event-attachments', project.organization, actor=request.user):
+            return self.respond(status=404)
+        try:
+            attachment = EventAttachment.objects.filter(project_id=project.id, event_id=event_id, id=attachment_id).get()
+        except EventAttachment.DoesNotExist:
+            return self.respond({'detail': 'Attachment not found'}, status=404)
+        attachment.delete()
+        return self.respond(status=204)

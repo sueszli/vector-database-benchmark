@@ -1,0 +1,315 @@
+import sys
+from contextlib import contextmanager
+from functools import wraps
+from time import sleep, time
+try:
+    from time import process_time
+except ImportError:
+    from time import clock
+    process_time = clock
+from tqdm import tqdm, trange
+from .tests_tqdm import importorskip, mark, patch_lock, skip
+pytestmark = mark.slow
+
+def cpu_sleep(t):
+    if False:
+        print('Hello World!')
+    'Sleep the given amount of cpu time'
+    start = process_time()
+    while process_time() - start < t:
+        pass
+
+def checkCpuTime(sleeptime=0.2):
+    if False:
+        for i in range(10):
+            print('nop')
+    'Check if cpu time works correctly'
+    if checkCpuTime.passed:
+        return True
+    start1 = process_time()
+    sleep(sleeptime)
+    t1 = process_time() - start1
+    start2 = process_time()
+    cpu_sleep(sleeptime)
+    t2 = process_time() - start2
+    if abs(t1) < 0.0001 and t1 < t2 / 10:
+        checkCpuTime.passed = True
+        return True
+    skip('cpu time not reliable on this machine')
+checkCpuTime.passed = False
+
+@contextmanager
+def relative_timer():
+    if False:
+        return 10
+    'yields a context timer function which stops ticking on exit'
+    start = process_time()
+
+    def elapser():
+        if False:
+            i = 10
+            return i + 15
+        return process_time() - start
+    yield (lambda : elapser())
+    spent = elapser()
+
+    def elapser():
+        if False:
+            print('Hello World!')
+        return spent
+
+def retry_on_except(n=3, check_cpu_time=True):
+    if False:
+        while True:
+            i = 10
+    'decroator for retrying `n` times before raising Exceptions'
+
+    def wrapper(func):
+        if False:
+            i = 10
+            return i + 15
+        'actual decorator'
+
+        @wraps(func)
+        def test_inner(*args, **kwargs):
+            if False:
+                while True:
+                    i = 10
+            'may skip if `check_cpu_time` fails'
+            for i in range(1, n + 1):
+                try:
+                    if check_cpu_time:
+                        checkCpuTime()
+                    func(*args, **kwargs)
+                except Exception:
+                    if i >= n:
+                        raise
+                else:
+                    return
+        return test_inner
+    return wrapper
+
+def simple_progress(iterable=None, total=None, file=sys.stdout, desc='', leave=False, miniters=1, mininterval=0.1, width=60):
+    if False:
+        return 10
+    "Simple progress bar reproducing tqdm's major features"
+    n = [0]
+    start_t = [time()]
+    last_n = [0]
+    last_t = [0]
+    if iterable is not None:
+        total = len(iterable)
+
+    def format_interval(t):
+        if False:
+            for i in range(10):
+                print('nop')
+        (mins, s) = divmod(int(t), 60)
+        (h, m) = divmod(mins, 60)
+        if h:
+            return '{0:d}:{1:02d}:{2:02d}'.format(h, m, s)
+        else:
+            return '{0:02d}:{1:02d}'.format(m, s)
+
+    def update_and_print(i=1):
+        if False:
+            return 10
+        n[0] += i
+        if n[0] - last_n[0] >= miniters:
+            last_n[0] = n[0]
+            if time() - last_t[0] >= mininterval:
+                last_t[0] = time()
+                spent = last_t[0] - start_t[0]
+                spent_fmt = format_interval(spent)
+                rate = n[0] / spent if spent > 0 else 0
+                rate_fmt = '%.2fs/it' % (1.0 / rate) if 0.0 < rate < 1.0 else '%.2fit/s' % rate
+                frac = n[0] / total
+                percentage = int(frac * 100)
+                eta = (total - n[0]) / rate if rate > 0 else 0
+                eta_fmt = format_interval(eta)
+                barfill = ' ' * int((1.0 - frac) * width)
+                (bar_length, frac_bar_length) = divmod(int(frac * width * 10), 10)
+                full_bar = '#' * bar_length
+                frac_bar = chr(48 + frac_bar_length) if frac_bar_length else ' '
+                file.write('\r%s %i%%|%s%s%s| %i/%i [%s<%s, %s]' % (desc, percentage, full_bar, frac_bar, barfill, n[0], total, spent_fmt, eta_fmt, rate_fmt))
+                if n[0] == total and leave:
+                    file.write('\n')
+                file.flush()
+
+    def update_and_yield():
+        if False:
+            i = 10
+            return i + 15
+        for elt in iterable:
+            yield elt
+            update_and_print()
+    update_and_print(0)
+    if iterable is not None:
+        return update_and_yield()
+    else:
+        return update_and_print
+
+def assert_performance(thresh, name_left, time_left, name_right, time_right):
+    if False:
+        while True:
+            i = 10
+    'raises if time_left > thresh * time_right'
+    if time_left > thresh * time_right:
+        raise ValueError('{name[0]}: {time[0]:f}, {name[1]}: {time[1]:f}, ratio {ratio:f} > {thresh:f}'.format(name=(name_left, name_right), time=(time_left, time_right), ratio=time_left / time_right, thresh=thresh))
+
+@retry_on_except()
+def test_iter_basic_overhead():
+    if False:
+        i = 10
+        return i + 15
+    'Test overhead of iteration based tqdm'
+    total = int(1000000.0)
+    a = 0
+    with trange(total) as t:
+        with relative_timer() as time_tqdm:
+            for i in t:
+                a += i
+    assert a == (total ** 2 - total) / 2.0
+    a = 0
+    with relative_timer() as time_bench:
+        for i in range(total):
+            a += i
+            sys.stdout.write(str(a))
+    assert_performance(3, 'trange', time_tqdm(), 'range', time_bench())
+
+@retry_on_except()
+def test_manual_basic_overhead():
+    if False:
+        for i in range(10):
+            print('nop')
+    'Test overhead of manual tqdm'
+    total = int(1000000.0)
+    with tqdm(total=total * 10, leave=True) as t:
+        a = 0
+        with relative_timer() as time_tqdm:
+            for i in range(total):
+                a += i
+                t.update(10)
+    a = 0
+    with relative_timer() as time_bench:
+        for i in range(total):
+            a += i
+            sys.stdout.write(str(a))
+    assert_performance(5, 'tqdm', time_tqdm(), 'range', time_bench())
+
+def worker(total, blocking=True):
+    if False:
+        i = 10
+        return i + 15
+
+    def incr_bar(x):
+        if False:
+            while True:
+                i = 10
+        for _ in trange(total, lock_args=None if blocking else (False,), miniters=1, mininterval=0, maxinterval=0):
+            pass
+        return x + 1
+    return incr_bar
+
+@retry_on_except()
+@patch_lock(thread=True)
+def test_lock_args():
+    if False:
+        for i in range(10):
+            print('nop')
+    'Test overhead of nonblocking threads'
+    ThreadPoolExecutor = importorskip('concurrent.futures').ThreadPoolExecutor
+    total = 16
+    subtotal = 10000
+    with ThreadPoolExecutor() as pool:
+        sys.stderr.write('block ... ')
+        sys.stderr.flush()
+        with relative_timer() as time_tqdm:
+            res = list(pool.map(worker(subtotal, True), range(total)))
+            assert sum(res) == sum(range(total)) + total
+        sys.stderr.write('noblock ... ')
+        sys.stderr.flush()
+        with relative_timer() as time_noblock:
+            res = list(pool.map(worker(subtotal, False), range(total)))
+            assert sum(res) == sum(range(total)) + total
+    assert_performance(0.5, 'noblock', time_noblock(), 'tqdm', time_tqdm())
+
+@retry_on_except(10)
+def test_iter_overhead_hard():
+    if False:
+        for i in range(10):
+            print('nop')
+    'Test overhead of iteration based tqdm (hard)'
+    total = int(100000.0)
+    a = 0
+    with trange(total, leave=True, miniters=1, mininterval=0, maxinterval=0) as t:
+        with relative_timer() as time_tqdm:
+            for i in t:
+                a += i
+    assert a == (total ** 2 - total) / 2.0
+    a = 0
+    with relative_timer() as time_bench:
+        for i in range(total):
+            a += i
+            sys.stdout.write('%i' % a * 40)
+    assert_performance(130, 'trange', time_tqdm(), 'range', time_bench())
+
+@retry_on_except(10)
+def test_manual_overhead_hard():
+    if False:
+        for i in range(10):
+            print('nop')
+    'Test overhead of manual tqdm (hard)'
+    total = int(100000.0)
+    with tqdm(total=total * 10, leave=True, miniters=1, mininterval=0, maxinterval=0) as t:
+        a = 0
+        with relative_timer() as time_tqdm:
+            for i in range(total):
+                a += i
+                t.update(10)
+    a = 0
+    with relative_timer() as time_bench:
+        for i in range(total):
+            a += i
+            sys.stdout.write('%i' % a * 40)
+    assert_performance(130, 'tqdm', time_tqdm(), 'range', time_bench())
+
+@retry_on_except(10)
+def test_iter_overhead_simplebar_hard():
+    if False:
+        return 10
+    'Test overhead of iteration based tqdm vs simple progress bar (hard)'
+    total = int(10000.0)
+    a = 0
+    with trange(total, leave=True, miniters=1, mininterval=0, maxinterval=0) as t:
+        with relative_timer() as time_tqdm:
+            for i in t:
+                a += i
+    assert a == (total ** 2 - total) / 2.0
+    a = 0
+    s = simple_progress(range(total), leave=True, miniters=1, mininterval=0)
+    with relative_timer() as time_bench:
+        for i in s:
+            a += i
+    assert_performance(10, 'trange', time_tqdm(), 'simple_progress', time_bench())
+
+@retry_on_except(10)
+def test_manual_overhead_simplebar_hard():
+    if False:
+        for i in range(10):
+            print('nop')
+    'Test overhead of manual tqdm vs simple progress bar (hard)'
+    total = int(10000.0)
+    with tqdm(total=total * 10, leave=True, miniters=1, mininterval=0, maxinterval=0) as t:
+        a = 0
+        with relative_timer() as time_tqdm:
+            for i in range(total):
+                a += i
+                t.update(10)
+    simplebar_update = simple_progress(total=total * 10, leave=True, miniters=1, mininterval=0)
+    a = 0
+    with relative_timer() as time_bench:
+        for i in range(total):
+            a += i
+            simplebar_update(10)
+    assert_performance(10, 'tqdm', time_tqdm(), 'simple_progress', time_bench())

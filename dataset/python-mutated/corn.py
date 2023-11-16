@@ -1,0 +1,24 @@
+import torch
+import torch.nn.functional as F
+
+def corn_loss(logits, y_train, num_classes):
+    if False:
+        print('Hello World!')
+    "Computes the CORN loss described in our forthcoming 'Deep Neural Networks for Rank Consistent Ordinal\n    Regression based on Conditional Probabilities' manuscript.\n\n    Parameters\n    ----------\n    logits : torch.tensor, shape=(num_examples, num_classes-1)\n        Outputs of the CORN layer.\n\n    y_train : torch.tensor, shape=(num_examples)\n        Torch tensor containing the class labels.\n\n    num_classes : int\n        Number of unique class labels (class labels should start at 0).\n\n    Returns\n    ----------\n        loss : torch.tensor\n        A torch.tensor containing a single loss value.\n\n    Examples\n    ----------\n    >>> # Consider 8 training examples\n    >>> _  = torch.manual_seed(123)\n    >>> X_train = torch.rand(8, 99)\n    >>> y_train = torch.tensor([0, 1, 2, 2, 2, 3, 4, 4])\n    >>> NUM_CLASSES = 5\n    >>> #\n    >>> #\n    >>> # def __init__(self):\n    >>> corn_net = torch.nn.Linear(99, NUM_CLASSES-1)\n    >>> #\n    >>> #\n    >>> # def forward(self, X_train):\n    >>> logits = corn_net(X_train)\n    >>> logits.shape\n    torch.Size([8, 4])\n    >>> corn_loss(logits, y_train, NUM_CLASSES)\n    tensor(0.7127, grad_fn=<DivBackward0>)\n    "
+    sets = []
+    for i in range(num_classes - 1):
+        label_mask = y_train > i - 1
+        label_tensor = (y_train[label_mask] > i).to(torch.int64)
+        sets.append((label_mask, label_tensor))
+    num_examples = 0
+    losses = 0.0
+    for (task_index, s) in enumerate(sets):
+        train_examples = s[0]
+        train_labels = s[1]
+        if len(train_labels) < 1:
+            continue
+        num_examples += len(train_labels)
+        pred = logits[train_examples, task_index]
+        loss = -torch.sum(F.logsigmoid(pred) * train_labels + (F.logsigmoid(pred) - pred) * (1 - train_labels))
+        losses += loss
+    return losses / num_examples

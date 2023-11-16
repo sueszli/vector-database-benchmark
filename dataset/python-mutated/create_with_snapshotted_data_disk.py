@@ -1,0 +1,125 @@
+from __future__ import annotations
+import re
+import sys
+from typing import Any
+import warnings
+from google.api_core.extended_operation import ExtendedOperation
+from google.cloud import compute_v1
+
+def get_image_from_family(project: str, family: str) -> compute_v1.Image:
+    if False:
+        while True:
+            i = 10
+    '\n    Retrieve the newest image that is part of a given family in a project.\n\n    Args:\n        project: project ID or project number of the Cloud project you want to get image from.\n        family: name of the image family you want to get image from.\n\n    Returns:\n        An Image object.\n    '
+    image_client = compute_v1.ImagesClient()
+    newest_image = image_client.get_from_family(project=project, family=family)
+    return newest_image
+
+def disk_from_image(disk_type: str, disk_size_gb: int, boot: bool, source_image: str, auto_delete: bool=True) -> compute_v1.AttachedDisk:
+    if False:
+        for i in range(10):
+            print('nop')
+    '\n    Create an AttachedDisk object to be used in VM instance creation. Uses an image as the\n    source for the new disk.\n\n    Args:\n         disk_type: the type of disk you want to create. This value uses the following format:\n            "zones/{zone}/diskTypes/(pd-standard|pd-ssd|pd-balanced|pd-extreme)".\n            For example: "zones/us-west3-b/diskTypes/pd-ssd"\n        disk_size_gb: size of the new disk in gigabytes\n        boot: boolean flag indicating whether this disk should be used as a boot disk of an instance\n        source_image: source image to use when creating this disk. You must have read access to this disk. This can be one\n            of the publicly available images or an image from one of your projects.\n            This value uses the following format: "projects/{project_name}/global/images/{image_name}"\n        auto_delete: boolean flag indicating whether this disk should be deleted with the VM that uses it\n\n    Returns:\n        AttachedDisk object configured to be created using the specified image.\n    '
+    boot_disk = compute_v1.AttachedDisk()
+    initialize_params = compute_v1.AttachedDiskInitializeParams()
+    initialize_params.source_image = source_image
+    initialize_params.disk_size_gb = disk_size_gb
+    initialize_params.disk_type = disk_type
+    boot_disk.initialize_params = initialize_params
+    boot_disk.auto_delete = auto_delete
+    boot_disk.boot = boot
+    return boot_disk
+
+def disk_from_snapshot(disk_type: str, disk_size_gb: int, boot: bool, source_snapshot: str, auto_delete: bool=True) -> compute_v1.AttachedDisk():
+    if False:
+        i = 10
+        return i + 15
+    '\n    Create an AttachedDisk object to be used in VM instance creation. Uses a disk snapshot as the\n    source for the new disk.\n\n    Args:\n         disk_type: the type of disk you want to create. This value uses the following format:\n            "zones/{zone}/diskTypes/(pd-standard|pd-ssd|pd-balanced|pd-extreme)".\n            For example: "zones/us-west3-b/diskTypes/pd-ssd"\n        disk_size_gb: size of the new disk in gigabytes\n        boot: boolean flag indicating whether this disk should be used as a boot disk of an instance\n        source_snapshot: disk snapshot to use when creating this disk. You must have read access to this disk.\n            This value uses the following format: "projects/{project_name}/global/snapshots/{snapshot_name}"\n        auto_delete: boolean flag indicating whether this disk should be deleted with the VM that uses it\n\n    Returns:\n        AttachedDisk object configured to be created using the specified snapshot.\n    '
+    disk = compute_v1.AttachedDisk()
+    initialize_params = compute_v1.AttachedDiskInitializeParams()
+    initialize_params.source_snapshot = source_snapshot
+    initialize_params.disk_type = disk_type
+    initialize_params.disk_size_gb = disk_size_gb
+    disk.initialize_params = initialize_params
+    disk.auto_delete = auto_delete
+    disk.boot = boot
+    return disk
+
+def wait_for_extended_operation(operation: ExtendedOperation, verbose_name: str='operation', timeout: int=300) -> Any:
+    if False:
+        return 10
+    '\n    Waits for the extended (long-running) operation to complete.\n\n    If the operation is successful, it will return its result.\n    If the operation ends with an error, an exception will be raised.\n    If there were any warnings during the execution of the operation\n    they will be printed to sys.stderr.\n\n    Args:\n        operation: a long-running operation you want to wait on.\n        verbose_name: (optional) a more verbose name of the operation,\n            used only during error and warning reporting.\n        timeout: how long (in seconds) to wait for operation to finish.\n            If None, wait indefinitely.\n\n    Returns:\n        Whatever the operation.result() returns.\n\n    Raises:\n        This method will raise the exception received from `operation.exception()`\n        or RuntimeError if there is no exception set, but there is an `error_code`\n        set for the `operation`.\n\n        In case of an operation taking longer than `timeout` seconds to complete,\n        a `concurrent.futures.TimeoutError` will be raised.\n    '
+    result = operation.result(timeout=timeout)
+    if operation.error_code:
+        print(f'Error during {verbose_name}: [Code: {operation.error_code}]: {operation.error_message}', file=sys.stderr, flush=True)
+        print(f'Operation ID: {operation.name}', file=sys.stderr, flush=True)
+        raise operation.exception() or RuntimeError(operation.error_message)
+    if operation.warnings:
+        print(f'Warnings during {verbose_name}:\n', file=sys.stderr, flush=True)
+        for warning in operation.warnings:
+            print(f' - {warning.code}: {warning.message}', file=sys.stderr, flush=True)
+    return result
+
+def create_instance(project_id: str, zone: str, instance_name: str, disks: list[compute_v1.AttachedDisk], machine_type: str='n1-standard-1', network_link: str='global/networks/default', subnetwork_link: str=None, internal_ip: str=None, external_access: bool=False, external_ipv4: str=None, accelerators: list[compute_v1.AcceleratorConfig]=None, preemptible: bool=False, spot: bool=False, instance_termination_action: str='STOP', custom_hostname: str=None, delete_protection: bool=False) -> compute_v1.Instance:
+    if False:
+        for i in range(10):
+            print('nop')
+    '\n    Send an instance creation request to the Compute Engine API and wait for it to complete.\n\n    Args:\n        project_id: project ID or project number of the Cloud project you want to use.\n        zone: name of the zone to create the instance in. For example: "us-west3-b"\n        instance_name: name of the new virtual machine (VM) instance.\n        disks: a list of compute_v1.AttachedDisk objects describing the disks\n            you want to attach to your new instance.\n        machine_type: machine type of the VM being created. This value uses the\n            following format: "zones/{zone}/machineTypes/{type_name}".\n            For example: "zones/europe-west3-c/machineTypes/f1-micro"\n        network_link: name of the network you want the new instance to use.\n            For example: "global/networks/default" represents the network\n            named "default", which is created automatically for each project.\n        subnetwork_link: name of the subnetwork you want the new instance to use.\n            This value uses the following format:\n            "regions/{region}/subnetworks/{subnetwork_name}"\n        internal_ip: internal IP address you want to assign to the new instance.\n            By default, a free address from the pool of available internal IP addresses of\n            used subnet will be used.\n        external_access: boolean flag indicating if the instance should have an external IPv4\n            address assigned.\n        external_ipv4: external IPv4 address to be assigned to this instance. If you specify\n            an external IP address, it must live in the same region as the zone of the instance.\n            This setting requires `external_access` to be set to True to work.\n        accelerators: a list of AcceleratorConfig objects describing the accelerators that will\n            be attached to the new instance.\n        preemptible: boolean value indicating if the new instance should be preemptible\n            or not. Preemptible VMs have been deprecated and you should now use Spot VMs.\n        spot: boolean value indicating if the new instance should be a Spot VM or not.\n        instance_termination_action: What action should be taken once a Spot VM is terminated.\n            Possible values: "STOP", "DELETE"\n        custom_hostname: Custom hostname of the new VM instance.\n            Custom hostnames must conform to RFC 1035 requirements for valid hostnames.\n        delete_protection: boolean value indicating if the new virtual machine should be\n            protected against deletion or not.\n    Returns:\n        Instance object.\n    '
+    instance_client = compute_v1.InstancesClient()
+    network_interface = compute_v1.NetworkInterface()
+    network_interface.network = network_link
+    if subnetwork_link:
+        network_interface.subnetwork = subnetwork_link
+    if internal_ip:
+        network_interface.network_i_p = internal_ip
+    if external_access:
+        access = compute_v1.AccessConfig()
+        access.type_ = compute_v1.AccessConfig.Type.ONE_TO_ONE_NAT.name
+        access.name = 'External NAT'
+        access.network_tier = access.NetworkTier.PREMIUM.name
+        if external_ipv4:
+            access.nat_i_p = external_ipv4
+        network_interface.access_configs = [access]
+    instance = compute_v1.Instance()
+    instance.network_interfaces = [network_interface]
+    instance.name = instance_name
+    instance.disks = disks
+    if re.match('^zones/[a-z\\d\\-]+/machineTypes/[a-z\\d\\-]+$', machine_type):
+        instance.machine_type = machine_type
+    else:
+        instance.machine_type = f'zones/{zone}/machineTypes/{machine_type}'
+    instance.scheduling = compute_v1.Scheduling()
+    if accelerators:
+        instance.guest_accelerators = accelerators
+        instance.scheduling.on_host_maintenance = compute_v1.Scheduling.OnHostMaintenance.TERMINATE.name
+    if preemptible:
+        warnings.warn('Preemptible VMs are being replaced by Spot VMs.', DeprecationWarning)
+        instance.scheduling = compute_v1.Scheduling()
+        instance.scheduling.preemptible = True
+    if spot:
+        instance.scheduling.provisioning_model = compute_v1.Scheduling.ProvisioningModel.SPOT.name
+        instance.scheduling.instance_termination_action = instance_termination_action
+    if custom_hostname is not None:
+        instance.hostname = custom_hostname
+    if delete_protection:
+        instance.deletion_protection = True
+    request = compute_v1.InsertInstanceRequest()
+    request.zone = zone
+    request.project = project_id
+    request.instance_resource = instance
+    print(f'Creating the {instance_name} instance in {zone}...')
+    operation = instance_client.insert(request=request)
+    wait_for_extended_operation(operation, 'instance creation')
+    print(f'Instance {instance_name} created.')
+    return instance_client.get(project=project_id, zone=zone, instance=instance_name)
+
+def create_with_snapshotted_data_disk(project_id: str, zone: str, instance_name: str, snapshot_link: str):
+    if False:
+        i = 10
+        return i + 15
+    '\n    Create a new VM instance with Debian 10 operating system and data disk created from snapshot.\n\n    Args:\n        project_id: project ID or project number of the Cloud project you want to use.\n        zone: name of the zone to create the instance in. For example: "us-west3-b"\n        instance_name: name of the new virtual machine (VM) instance.\n        snapshot_link: link to the snapshot you want to use as the source of your\n            data disk in the form of: "projects/{project_name}/global/snapshots/{snapshot_name}"\n\n    Returns:\n        Instance object.\n    '
+    newest_debian = get_image_from_family(project='debian-cloud', family='debian-10')
+    disk_type = f'zones/{zone}/diskTypes/pd-standard'
+    disks = [disk_from_image(disk_type, 10, True, newest_debian.self_link), disk_from_snapshot(disk_type, 11, False, snapshot_link)]
+    instance = create_instance(project_id, zone, instance_name, disks)
+    return instance

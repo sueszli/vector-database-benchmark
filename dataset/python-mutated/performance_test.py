@@ -1,0 +1,39 @@
+import pytest
+import contextlib
+
+@contextlib.contextmanager
+def small_buffer(ds, size=3):
+    if False:
+        return 10
+    if ds.is_local():
+        previous = ds.executor.chunk_size
+        ds.executor.chunk_size = size
+        ds._invalidate_selection_cache()
+        try:
+            yield
+        finally:
+            ds.executor.chunk_size = previous
+    else:
+        yield
+
+def test_delayed(df_server, df_remote, webserver, client):
+    if False:
+        i = 10
+        return i + 15
+    xmin = df_server.x.min()
+    xmax = df_server.x.max()
+    remote_calls = df_remote.executor.remote_calls
+    assert df_remote.x.min() == xmin
+    assert df_remote.executor.remote_calls == remote_calls + 1
+    remote_calls = df_remote.executor.remote_calls
+    df_remote.x.min()
+    df_remote.x.max()
+    assert df_remote.executor.remote_calls == remote_calls + 2
+    remote_calls = df_remote.executor.remote_calls
+    vmin = df_remote.x.min(delay=True)
+    vmax = df_remote.x.max(delay=True)
+    assert df_remote.executor.remote_calls == remote_calls
+    df_remote.execute()
+    assert vmin.get() == xmin
+    assert vmax.get() == xmax
+    assert df_remote.executor.remote_calls == remote_calls + 1

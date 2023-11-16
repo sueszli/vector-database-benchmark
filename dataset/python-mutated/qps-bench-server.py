@@ -1,0 +1,62 @@
+from collections import deque
+from time import time
+from twisted.internet import reactor
+from twisted.web.resource import Resource
+from twisted.web.server import NOT_DONE_YET, Site
+
+class Root(Resource):
+
+    def __init__(self):
+        if False:
+            return 10
+        Resource.__init__(self)
+        self.concurrent = 0
+        self.tail = deque(maxlen=100)
+        self._reset_stats()
+
+    def _reset_stats(self):
+        if False:
+            return 10
+        self.tail.clear()
+        self.start = self.lastmark = self.lasttime = time()
+
+    def getChild(self, request, name):
+        if False:
+            i = 10
+            return i + 15
+        return self
+
+    def render(self, request):
+        if False:
+            i = 10
+            return i + 15
+        now = time()
+        delta = now - self.lasttime
+        if delta > 3:
+            self._reset_stats()
+            return ''
+        self.tail.appendleft(delta)
+        self.lasttime = now
+        self.concurrent += 1
+        if now - self.lastmark >= 3:
+            self.lastmark = now
+            qps = len(self.tail) / sum(self.tail)
+            print(f'samplesize={len(self.tail)} concurrent={self.concurrent} qps={qps:0.2f}')
+        if 'latency' in request.args:
+            latency = float(request.args['latency'][0])
+            reactor.callLater(latency, self._finish, request)
+            return NOT_DONE_YET
+        self.concurrent -= 1
+        return ''
+
+    def _finish(self, request):
+        if False:
+            i = 10
+            return i + 15
+        self.concurrent -= 1
+        if not request.finished and (not request._disconnected):
+            request.finish()
+root = Root()
+factory = Site(root)
+reactor.listenTCP(8880, factory)
+reactor.run()

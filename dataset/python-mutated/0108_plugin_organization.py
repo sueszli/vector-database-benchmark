@@ -1,0 +1,14 @@
+import django.db.models.deletion
+from django.db import migrations, models
+
+def set_plugin_organization(apps, schema_editor):
+    if False:
+        while True:
+            i = 10
+    Plugin = apps.get_model('posthog', 'Plugin')
+    Organization = apps.get_model('posthog', 'Organization')
+    Plugin.objects.update(organization=Organization.objects.first())
+
+class Migration(migrations.Migration):
+    dependencies = [('posthog', '0107_plugin_source')]
+    operations = [migrations.AddField(model_name='plugin', name='organization', field=models.ForeignKey(default=None, null=True, on_delete=django.db.models.deletion.CASCADE, related_name='plugins', related_query_name='plugin', to='posthog.Organization'), preserve_default=False), migrations.RunPython(set_plugin_organization, migrations.RunPython.noop, elidable=True), migrations.AlterField(model_name='plugin', name='organization', field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='plugins', related_query_name='plugin', to='posthog.Organization'))]

@@ -1,0 +1,322 @@
+from sympy.core.function import expand_mul
+from sympy.core.symbol import Dummy, uniquely_named_symbol, symbols
+from sympy.utilities.iterables import numbered_symbols
+from .common import ShapeError, NonSquareMatrixError, NonInvertibleMatrixError
+from .eigen import _fuzzy_positive_definite
+from .utilities import _get_intermediate_simp, _iszero
+
+def _diagonal_solve(M, rhs):
+    if False:
+        print('Hello World!')
+    'Solves ``Ax = B`` efficiently, where A is a diagonal Matrix,\n    with non-zero diagonal entries.\n\n    Examples\n    ========\n\n    >>> from sympy import Matrix, eye\n    >>> A = eye(2)*2\n    >>> B = Matrix([[1, 2], [3, 4]])\n    >>> A.diagonal_solve(B) == B/2\n    True\n\n    See Also\n    ========\n\n    sympy.matrices.dense.DenseMatrix.lower_triangular_solve\n    sympy.matrices.dense.DenseMatrix.upper_triangular_solve\n    gauss_jordan_solve\n    cholesky_solve\n    LDLsolve\n    LUsolve\n    QRsolve\n    pinv_solve\n    cramer_solve\n    '
+    if not M.is_diagonal():
+        raise TypeError('Matrix should be diagonal')
+    if rhs.rows != M.rows:
+        raise TypeError('Size mismatch')
+    return M._new(rhs.rows, rhs.cols, lambda i, j: rhs[i, j] / M[i, i])
+
+def _lower_triangular_solve(M, rhs):
+    if False:
+        return 10
+    'Solves ``Ax = B``, where A is a lower triangular matrix.\n\n    See Also\n    ========\n\n    upper_triangular_solve\n    gauss_jordan_solve\n    cholesky_solve\n    diagonal_solve\n    LDLsolve\n    LUsolve\n    QRsolve\n    pinv_solve\n    cramer_solve\n    '
+    from .dense import MutableDenseMatrix
+    if not M.is_square:
+        raise NonSquareMatrixError('Matrix must be square.')
+    if rhs.rows != M.rows:
+        raise ShapeError('Matrices size mismatch.')
+    if not M.is_lower:
+        raise ValueError('Matrix must be lower triangular.')
+    dps = _get_intermediate_simp()
+    X = MutableDenseMatrix.zeros(M.rows, rhs.cols)
+    for j in range(rhs.cols):
+        for i in range(M.rows):
+            if M[i, i] == 0:
+                raise TypeError('Matrix must be non-singular.')
+            X[i, j] = dps((rhs[i, j] - sum((M[i, k] * X[k, j] for k in range(i)))) / M[i, i])
+    return M._new(X)
+
+def _lower_triangular_solve_sparse(M, rhs):
+    if False:
+        for i in range(10):
+            print('nop')
+    'Solves ``Ax = B``, where A is a lower triangular matrix.\n\n    See Also\n    ========\n\n    upper_triangular_solve\n    gauss_jordan_solve\n    cholesky_solve\n    diagonal_solve\n    LDLsolve\n    LUsolve\n    QRsolve\n    pinv_solve\n    cramer_solve\n    '
+    if not M.is_square:
+        raise NonSquareMatrixError('Matrix must be square.')
+    if rhs.rows != M.rows:
+        raise ShapeError('Matrices size mismatch.')
+    if not M.is_lower:
+        raise ValueError('Matrix must be lower triangular.')
+    dps = _get_intermediate_simp()
+    rows = [[] for i in range(M.rows)]
+    for (i, j, v) in M.row_list():
+        if i > j:
+            rows[i].append((j, v))
+    X = rhs.as_mutable()
+    for j in range(rhs.cols):
+        for i in range(rhs.rows):
+            for (u, v) in rows[i]:
+                X[i, j] -= v * X[u, j]
+            X[i, j] = dps(X[i, j] / M[i, i])
+    return M._new(X)
+
+def _upper_triangular_solve(M, rhs):
+    if False:
+        while True:
+            i = 10
+    'Solves ``Ax = B``, where A is an upper triangular matrix.\n\n    See Also\n    ========\n\n    lower_triangular_solve\n    gauss_jordan_solve\n    cholesky_solve\n    diagonal_solve\n    LDLsolve\n    LUsolve\n    QRsolve\n    pinv_solve\n    cramer_solve\n    '
+    from .dense import MutableDenseMatrix
+    if not M.is_square:
+        raise NonSquareMatrixError('Matrix must be square.')
+    if rhs.rows != M.rows:
+        raise ShapeError('Matrix size mismatch.')
+    if not M.is_upper:
+        raise TypeError('Matrix is not upper triangular.')
+    dps = _get_intermediate_simp()
+    X = MutableDenseMatrix.zeros(M.rows, rhs.cols)
+    for j in range(rhs.cols):
+        for i in reversed(range(M.rows)):
+            if M[i, i] == 0:
+                raise ValueError('Matrix must be non-singular.')
+            X[i, j] = dps((rhs[i, j] - sum((M[i, k] * X[k, j] for k in range(i + 1, M.rows)))) / M[i, i])
+    return M._new(X)
+
+def _upper_triangular_solve_sparse(M, rhs):
+    if False:
+        return 10
+    'Solves ``Ax = B``, where A is an upper triangular matrix.\n\n    See Also\n    ========\n\n    lower_triangular_solve\n    gauss_jordan_solve\n    cholesky_solve\n    diagonal_solve\n    LDLsolve\n    LUsolve\n    QRsolve\n    pinv_solve\n    cramer_solve\n    '
+    if not M.is_square:
+        raise NonSquareMatrixError('Matrix must be square.')
+    if rhs.rows != M.rows:
+        raise ShapeError('Matrix size mismatch.')
+    if not M.is_upper:
+        raise TypeError('Matrix is not upper triangular.')
+    dps = _get_intermediate_simp()
+    rows = [[] for i in range(M.rows)]
+    for (i, j, v) in M.row_list():
+        if i < j:
+            rows[i].append((j, v))
+    X = rhs.as_mutable()
+    for j in range(rhs.cols):
+        for i in reversed(range(rhs.rows)):
+            for (u, v) in reversed(rows[i]):
+                X[i, j] -= v * X[u, j]
+            X[i, j] = dps(X[i, j] / M[i, i])
+    return M._new(X)
+
+def _cholesky_solve(M, rhs):
+    if False:
+        for i in range(10):
+            print('nop')
+    'Solves ``Ax = B`` using Cholesky decomposition,\n    for a general square non-singular matrix.\n    For a non-square matrix with rows > cols,\n    the least squares solution is returned.\n\n    See Also\n    ========\n\n    sympy.matrices.dense.DenseMatrix.lower_triangular_solve\n    sympy.matrices.dense.DenseMatrix.upper_triangular_solve\n    gauss_jordan_solve\n    diagonal_solve\n    LDLsolve\n    LUsolve\n    QRsolve\n    pinv_solve\n    cramer_solve\n    '
+    if M.rows < M.cols:
+        raise NotImplementedError('Under-determined System. Try M.gauss_jordan_solve(rhs)')
+    hermitian = True
+    reform = False
+    if M.is_symmetric():
+        hermitian = False
+    elif not M.is_hermitian:
+        reform = True
+    if reform or _fuzzy_positive_definite(M) is False:
+        H = M.H
+        M = H.multiply(M)
+        rhs = H.multiply(rhs)
+        hermitian = not M.is_symmetric()
+    L = M.cholesky(hermitian=hermitian)
+    Y = L.lower_triangular_solve(rhs)
+    if hermitian:
+        return L.H.upper_triangular_solve(Y)
+    else:
+        return L.T.upper_triangular_solve(Y)
+
+def _LDLsolve(M, rhs):
+    if False:
+        print('Hello World!')
+    'Solves ``Ax = B`` using LDL decomposition,\n    for a general square and non-singular matrix.\n\n    For a non-square matrix with rows > cols,\n    the least squares solution is returned.\n\n    Examples\n    ========\n\n    >>> from sympy import Matrix, eye\n    >>> A = eye(2)*2\n    >>> B = Matrix([[1, 2], [3, 4]])\n    >>> A.LDLsolve(B) == B/2\n    True\n\n    See Also\n    ========\n\n    sympy.matrices.dense.DenseMatrix.LDLdecomposition\n    sympy.matrices.dense.DenseMatrix.lower_triangular_solve\n    sympy.matrices.dense.DenseMatrix.upper_triangular_solve\n    gauss_jordan_solve\n    cholesky_solve\n    diagonal_solve\n    LUsolve\n    QRsolve\n    pinv_solve\n    cramer_solve\n    '
+    if M.rows < M.cols:
+        raise NotImplementedError('Under-determined System. Try M.gauss_jordan_solve(rhs)')
+    hermitian = True
+    reform = False
+    if M.is_symmetric():
+        hermitian = False
+    elif not M.is_hermitian:
+        reform = True
+    if reform or _fuzzy_positive_definite(M) is False:
+        H = M.H
+        M = H.multiply(M)
+        rhs = H.multiply(rhs)
+        hermitian = not M.is_symmetric()
+    (L, D) = M.LDLdecomposition(hermitian=hermitian)
+    Y = L.lower_triangular_solve(rhs)
+    Z = D.diagonal_solve(Y)
+    if hermitian:
+        return L.H.upper_triangular_solve(Z)
+    else:
+        return L.T.upper_triangular_solve(Z)
+
+def _LUsolve(M, rhs, iszerofunc=_iszero):
+    if False:
+        return 10
+    'Solve the linear system ``Ax = rhs`` for ``x`` where ``A = M``.\n\n    This is for symbolic matrices, for real or complex ones use\n    mpmath.lu_solve or mpmath.qr_solve.\n\n    See Also\n    ========\n\n    sympy.matrices.dense.DenseMatrix.lower_triangular_solve\n    sympy.matrices.dense.DenseMatrix.upper_triangular_solve\n    gauss_jordan_solve\n    cholesky_solve\n    diagonal_solve\n    LDLsolve\n    QRsolve\n    pinv_solve\n    LUdecomposition\n    cramer_solve\n    '
+    if rhs.rows != M.rows:
+        raise ShapeError('``M`` and ``rhs`` must have the same number of rows.')
+    m = M.rows
+    n = M.cols
+    if m < n:
+        raise NotImplementedError('Underdetermined systems not supported.')
+    try:
+        (A, perm) = M.LUdecomposition_Simple(iszerofunc=iszerofunc, rankcheck=True)
+    except ValueError:
+        raise NonInvertibleMatrixError('Matrix det == 0; not invertible.')
+    dps = _get_intermediate_simp()
+    b = rhs.permute_rows(perm).as_mutable()
+    for i in range(m):
+        for j in range(min(i, n)):
+            scale = A[i, j]
+            b.zip_row_op(i, j, lambda x, y: dps(x - y * scale))
+    if m > n:
+        for i in range(n, m):
+            for j in range(b.cols):
+                if not iszerofunc(b[i, j]):
+                    raise ValueError('The system is inconsistent.')
+        b = b[0:n, :]
+    for i in range(n - 1, -1, -1):
+        for j in range(i + 1, n):
+            scale = A[i, j]
+            b.zip_row_op(i, j, lambda x, y: dps(x - y * scale))
+        scale = A[i, i]
+        b.row_op(i, lambda x, _: dps(x / scale))
+    return rhs.__class__(b)
+
+def _QRsolve(M, b):
+    if False:
+        i = 10
+        return i + 15
+    'Solve the linear system ``Ax = b``.\n\n    ``M`` is the matrix ``A``, the method argument is the vector\n    ``b``.  The method returns the solution vector ``x``.  If ``b`` is a\n    matrix, the system is solved for each column of ``b`` and the\n    return value is a matrix of the same shape as ``b``.\n\n    This method is slower (approximately by a factor of 2) but\n    more stable for floating-point arithmetic than the LUsolve method.\n    However, LUsolve usually uses an exact arithmetic, so you do not need\n    to use QRsolve.\n\n    This is mainly for educational purposes and symbolic matrices, for real\n    (or complex) matrices use mpmath.qr_solve.\n\n    See Also\n    ========\n\n    sympy.matrices.dense.DenseMatrix.lower_triangular_solve\n    sympy.matrices.dense.DenseMatrix.upper_triangular_solve\n    gauss_jordan_solve\n    cholesky_solve\n    diagonal_solve\n    LDLsolve\n    LUsolve\n    pinv_solve\n    QRdecomposition\n    cramer_solve\n    '
+    dps = _get_intermediate_simp(expand_mul, expand_mul)
+    (Q, R) = M.QRdecomposition()
+    y = Q.T * b
+    x = []
+    n = R.rows
+    for j in range(n - 1, -1, -1):
+        tmp = y[j, :]
+        for k in range(j + 1, n):
+            tmp -= R[j, k] * x[n - 1 - k]
+        tmp = dps(tmp)
+        x.append(tmp / R[j, j])
+    return M.vstack(*x[::-1])
+
+def _gauss_jordan_solve(M, B, freevar=False):
+    if False:
+        print('Hello World!')
+    '\n    Solves ``Ax = B`` using Gauss Jordan elimination.\n\n    There may be zero, one, or infinite solutions.  If one solution\n    exists, it will be returned. If infinite solutions exist, it will\n    be returned parametrically. If no solutions exist, It will throw\n    ValueError.\n\n    Parameters\n    ==========\n\n    B : Matrix\n        The right hand side of the equation to be solved for.  Must have\n        the same number of rows as matrix A.\n\n    freevar : boolean, optional\n        Flag, when set to `True` will return the indices of the free\n        variables in the solutions (column Matrix), for a system that is\n        undetermined (e.g. A has more columns than rows), for which\n        infinite solutions are possible, in terms of arbitrary\n        values of free variables. Default `False`.\n\n    Returns\n    =======\n\n    x : Matrix\n        The matrix that will satisfy ``Ax = B``.  Will have as many rows as\n        matrix A has columns, and as many columns as matrix B.\n\n    params : Matrix\n        If the system is underdetermined (e.g. A has more columns than\n        rows), infinite solutions are possible, in terms of arbitrary\n        parameters. These arbitrary parameters are returned as params\n        Matrix.\n\n    free_var_index : List, optional\n        If the system is underdetermined (e.g. A has more columns than\n        rows), infinite solutions are possible, in terms of arbitrary\n        values of free variables. Then the indices of the free variables\n        in the solutions (column Matrix) are returned by free_var_index,\n        if the flag `freevar` is set to `True`.\n\n    Examples\n    ========\n\n    >>> from sympy import Matrix\n    >>> A = Matrix([[1, 2, 1, 1], [1, 2, 2, -1], [2, 4, 0, 6]])\n    >>> B = Matrix([7, 12, 4])\n    >>> sol, params = A.gauss_jordan_solve(B)\n    >>> sol\n    Matrix([\n    [-2*tau0 - 3*tau1 + 2],\n    [                 tau0],\n    [           2*tau1 + 5],\n    [                 tau1]])\n    >>> params\n    Matrix([\n    [tau0],\n    [tau1]])\n    >>> taus_zeroes = { tau:0 for tau in params }\n    >>> sol_unique = sol.xreplace(taus_zeroes)\n    >>> sol_unique\n        Matrix([\n    [2],\n    [0],\n    [5],\n    [0]])\n\n\n    >>> A = Matrix([[1, 2, 3], [4, 5, 6], [7, 8, 10]])\n    >>> B = Matrix([3, 6, 9])\n    >>> sol, params = A.gauss_jordan_solve(B)\n    >>> sol\n    Matrix([\n    [-1],\n    [ 2],\n    [ 0]])\n    >>> params\n    Matrix(0, 1, [])\n\n    >>> A = Matrix([[2, -7], [-1, 4]])\n    >>> B = Matrix([[-21, 3], [12, -2]])\n    >>> sol, params = A.gauss_jordan_solve(B)\n    >>> sol\n    Matrix([\n    [0, -2],\n    [3, -1]])\n    >>> params\n    Matrix(0, 2, [])\n\n\n    >>> from sympy import Matrix\n    >>> A = Matrix([[1, 2, 1, 1], [1, 2, 2, -1], [2, 4, 0, 6]])\n    >>> B = Matrix([7, 12, 4])\n    >>> sol, params, freevars = A.gauss_jordan_solve(B, freevar=True)\n    >>> sol\n    Matrix([\n    [-2*tau0 - 3*tau1 + 2],\n    [                 tau0],\n    [           2*tau1 + 5],\n    [                 tau1]])\n    >>> params\n    Matrix([\n    [tau0],\n    [tau1]])\n    >>> freevars\n    [1, 3]\n\n\n    See Also\n    ========\n\n    sympy.matrices.dense.DenseMatrix.lower_triangular_solve\n    sympy.matrices.dense.DenseMatrix.upper_triangular_solve\n    cholesky_solve\n    diagonal_solve\n    LDLsolve\n    LUsolve\n    QRsolve\n    pinv\n\n    References\n    ==========\n\n    .. [1] https://en.wikipedia.org/wiki/Gaussian_elimination\n\n    '
+    from sympy.matrices import Matrix, zeros
+    cls = M.__class__
+    aug = M.hstack(M.copy(), B.copy())
+    B_cols = B.cols
+    (row, col) = aug[:, :-B_cols].shape
+    (A, pivots) = aug.rref(simplify=True)
+    (A, v) = (A[:, :-B_cols], A[:, -B_cols:])
+    pivots = list(filter(lambda p: p < col, pivots))
+    rank = len(pivots)
+    free_var_index = [c for c in range(A.cols) if c not in pivots]
+    permutation = Matrix(pivots + free_var_index).T
+    if not v[rank:, :].is_zero_matrix:
+        raise ValueError('Linear system has no solution')
+    name = uniquely_named_symbol('tau', aug, compare=lambda i: str(i).rstrip('1234567890'), modify=lambda s: '_' + s).name
+    gen = numbered_symbols(name)
+    tau = Matrix([next(gen) for k in range((col - rank) * B_cols)]).reshape(col - rank, B_cols)
+    V = A[:rank, free_var_index]
+    vt = v[:rank, :]
+    free_sol = tau.vstack(vt - V * tau, tau)
+    sol = zeros(col, B_cols)
+    for k in range(col):
+        sol[permutation[k], :] = free_sol[k, :]
+    (sol, tau) = (cls(sol), cls(tau))
+    if freevar:
+        return (sol, tau, free_var_index)
+    else:
+        return (sol, tau)
+
+def _pinv_solve(M, B, arbitrary_matrix=None):
+    if False:
+        return 10
+    'Solve ``Ax = B`` using the Moore-Penrose pseudoinverse.\n\n    There may be zero, one, or infinite solutions.  If one solution\n    exists, it will be returned.  If infinite solutions exist, one will\n    be returned based on the value of arbitrary_matrix.  If no solutions\n    exist, the least-squares solution is returned.\n\n    Parameters\n    ==========\n\n    B : Matrix\n        The right hand side of the equation to be solved for.  Must have\n        the same number of rows as matrix A.\n    arbitrary_matrix : Matrix\n        If the system is underdetermined (e.g. A has more columns than\n        rows), infinite solutions are possible, in terms of an arbitrary\n        matrix.  This parameter may be set to a specific matrix to use\n        for that purpose; if so, it must be the same shape as x, with as\n        many rows as matrix A has columns, and as many columns as matrix\n        B.  If left as None, an appropriate matrix containing dummy\n        symbols in the form of ``wn_m`` will be used, with n and m being\n        row and column position of each symbol.\n\n    Returns\n    =======\n\n    x : Matrix\n        The matrix that will satisfy ``Ax = B``.  Will have as many rows as\n        matrix A has columns, and as many columns as matrix B.\n\n    Examples\n    ========\n\n    >>> from sympy import Matrix\n    >>> A = Matrix([[1, 2, 3], [4, 5, 6]])\n    >>> B = Matrix([7, 8])\n    >>> A.pinv_solve(B)\n    Matrix([\n    [ _w0_0/6 - _w1_0/3 + _w2_0/6 - 55/18],\n    [-_w0_0/3 + 2*_w1_0/3 - _w2_0/3 + 1/9],\n    [ _w0_0/6 - _w1_0/3 + _w2_0/6 + 59/18]])\n    >>> A.pinv_solve(B, arbitrary_matrix=Matrix([0, 0, 0]))\n    Matrix([\n    [-55/18],\n    [   1/9],\n    [ 59/18]])\n\n    See Also\n    ========\n\n    sympy.matrices.dense.DenseMatrix.lower_triangular_solve\n    sympy.matrices.dense.DenseMatrix.upper_triangular_solve\n    gauss_jordan_solve\n    cholesky_solve\n    diagonal_solve\n    LDLsolve\n    LUsolve\n    QRsolve\n    pinv\n\n    Notes\n    =====\n\n    This may return either exact solutions or least squares solutions.\n    To determine which, check ``A * A.pinv() * B == B``.  It will be\n    True if exact solutions exist, and False if only a least-squares\n    solution exists.  Be aware that the left hand side of that equation\n    may need to be simplified to correctly compare to the right hand\n    side.\n\n    References\n    ==========\n\n    .. [1] https://en.wikipedia.org/wiki/Moore-Penrose_pseudoinverse#Obtaining_all_solutions_of_a_linear_system\n\n    '
+    from sympy.matrices import eye
+    A = M
+    A_pinv = M.pinv()
+    if arbitrary_matrix is None:
+        (rows, cols) = (A.cols, B.cols)
+        w = symbols('w:{}_:{}'.format(rows, cols), cls=Dummy)
+        arbitrary_matrix = M.__class__(cols, rows, w).T
+    return A_pinv.multiply(B) + (eye(A.cols) - A_pinv.multiply(A)).multiply(arbitrary_matrix)
+
+def _cramer_solve(M, rhs, det_method='laplace'):
+    if False:
+        print('Hello World!')
+    "Solves system of linear equations using Cramer's rule.\n\n    This method is relatively inefficient compared to other methods.\n    However it only uses a single division, assuming a division-free determinant\n    method is provided. This is helpful to minimize the chance of divide-by-zero\n    cases in symbolic solutions to linear systems.\n\n    Parameters\n    ==========\n    M : Matrix\n        The matrix representing the left hand side of the equation.\n    rhs : Matrix\n        The matrix representing the right hand side of the equation.\n    det_method : str or callable\n        The method to use to calculate the determinant of the matrix.\n        The default is ``'laplace'``.  If a callable is passed, it should take a\n        single argument, the matrix, and return the determinant of the matrix.\n\n    Returns\n    =======\n    x : Matrix\n        The matrix that will satisfy ``Ax = B``.  Will have as many rows as\n        matrix A has columns, and as many columns as matrix B.\n\n    Examples\n    ========\n\n    >>> from sympy import Matrix\n    >>> A = Matrix([[0, -6, 1], [0, -6, -1], [-5, -2, 3]])\n    >>> B = Matrix([[-30, -9], [-18, -27], [-26, 46]])\n    >>> x = A.cramer_solve(B)\n    >>> x\n    Matrix([\n    [ 0, -5],\n    [ 4,  3],\n    [-6,  9]])\n\n    References\n    ==========\n\n    .. [1] https://en.wikipedia.org/wiki/Cramer%27s_rule#Explicit_formulas_for_small_systems\n\n    "
+    from .dense import zeros
+
+    def entry(i, j):
+        if False:
+            print('Hello World!')
+        return rhs[i, sol] if j == col else M[i, j]
+    if det_method == 'bird':
+        from .determinant import _det_bird
+        det = _det_bird
+    elif det_method == 'laplace':
+        from .determinant import _det_laplace
+        det = _det_laplace
+    elif isinstance(det_method, str):
+        det = lambda matrix: matrix.det(method=det_method)
+    else:
+        det = det_method
+    det_M = det(M)
+    x = zeros(*rhs.shape)
+    for sol in range(rhs.shape[1]):
+        for col in range(rhs.shape[0]):
+            x[col, sol] = det(M.__class__(*M.shape, entry)) / det_M
+    return M.__class__(x)
+
+def _solve(M, rhs, method='GJ'):
+    if False:
+        return 10
+    "Solves linear equation where the unique solution exists.\n\n    Parameters\n    ==========\n\n    rhs : Matrix\n        Vector representing the right hand side of the linear equation.\n\n    method : string, optional\n        If set to ``'GJ'`` or ``'GE'``, the Gauss-Jordan elimination will be\n        used, which is implemented in the routine ``gauss_jordan_solve``.\n\n        If set to ``'LU'``, ``LUsolve`` routine will be used.\n\n        If set to ``'QR'``, ``QRsolve`` routine will be used.\n\n        If set to ``'PINV'``, ``pinv_solve`` routine will be used.\n\n        If set to ``'CRAMER'``, ``cramer_solve`` routine will be used.\n\n        It also supports the methods available for special linear systems\n\n        For positive definite systems:\n\n        If set to ``'CH'``, ``cholesky_solve`` routine will be used.\n\n        If set to ``'LDL'``, ``LDLsolve`` routine will be used.\n\n        To use a different method and to compute the solution via the\n        inverse, use a method defined in the .inv() docstring.\n\n    Returns\n    =======\n\n    solutions : Matrix\n        Vector representing the solution.\n\n    Raises\n    ======\n\n    ValueError\n        If there is not a unique solution then a ``ValueError`` will be\n        raised.\n\n        If ``M`` is not square, a ``ValueError`` and a different routine\n        for solving the system will be suggested.\n    "
+    if method in ('GJ', 'GE'):
+        try:
+            (soln, param) = M.gauss_jordan_solve(rhs)
+            if param:
+                raise NonInvertibleMatrixError('Matrix det == 0; not invertible. Try ``M.gauss_jordan_solve(rhs)`` to obtain a parametric solution.')
+        except ValueError:
+            raise NonInvertibleMatrixError('Matrix det == 0; not invertible.')
+        return soln
+    elif method == 'LU':
+        return M.LUsolve(rhs)
+    elif method == 'CH':
+        return M.cholesky_solve(rhs)
+    elif method == 'QR':
+        return M.QRsolve(rhs)
+    elif method == 'LDL':
+        return M.LDLsolve(rhs)
+    elif method == 'PINV':
+        return M.pinv_solve(rhs)
+    elif method == 'CRAMER':
+        return M.cramer_solve(rhs)
+    else:
+        return M.inv(method=method).multiply(rhs)
+
+def _solve_least_squares(M, rhs, method='CH'):
+    if False:
+        i = 10
+        return i + 15
+    "Return the least-square fit to the data.\n\n    Parameters\n    ==========\n\n    rhs : Matrix\n        Vector representing the right hand side of the linear equation.\n\n    method : string or boolean, optional\n        If set to ``'CH'``, ``cholesky_solve`` routine will be used.\n\n        If set to ``'LDL'``, ``LDLsolve`` routine will be used.\n\n        If set to ``'QR'``, ``QRsolve`` routine will be used.\n\n        If set to ``'PINV'``, ``pinv_solve`` routine will be used.\n\n        Otherwise, the conjugate of ``M`` will be used to create a system\n        of equations that is passed to ``solve`` along with the hint\n        defined by ``method``.\n\n    Returns\n    =======\n\n    solutions : Matrix\n        Vector representing the solution.\n\n    Examples\n    ========\n\n    >>> from sympy import Matrix, ones\n    >>> A = Matrix([1, 2, 3])\n    >>> B = Matrix([2, 3, 4])\n    >>> S = Matrix(A.row_join(B))\n    >>> S\n    Matrix([\n    [1, 2],\n    [2, 3],\n    [3, 4]])\n\n    If each line of S represent coefficients of Ax + By\n    and x and y are [2, 3] then S*xy is:\n\n    >>> r = S*Matrix([2, 3]); r\n    Matrix([\n    [ 8],\n    [13],\n    [18]])\n\n    But let's add 1 to the middle value and then solve for the\n    least-squares value of xy:\n\n    >>> xy = S.solve_least_squares(Matrix([8, 14, 18])); xy\n    Matrix([\n    [ 5/3],\n    [10/3]])\n\n    The error is given by S*xy - r:\n\n    >>> S*xy - r\n    Matrix([\n    [1/3],\n    [1/3],\n    [1/3]])\n    >>> _.norm().n(2)\n    0.58\n\n    If a different xy is used, the norm will be higher:\n\n    >>> xy += ones(2, 1)/10\n    >>> (S*xy - r).norm().n(2)\n    1.5\n\n    "
+    if method == 'CH':
+        return M.cholesky_solve(rhs)
+    elif method == 'QR':
+        return M.QRsolve(rhs)
+    elif method == 'LDL':
+        return M.LDLsolve(rhs)
+    elif method == 'PINV':
+        return M.pinv_solve(rhs)
+    else:
+        t = M.H
+        return (t * M).solve(t * rhs, method=method)

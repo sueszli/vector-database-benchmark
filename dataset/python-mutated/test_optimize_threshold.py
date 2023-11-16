@@ -1,0 +1,16 @@
+import pandas as pd
+import pycaret.classification
+import pycaret.datasets
+from pycaret.internal.meta_estimators import CustomProbabilityThresholdClassifier
+
+def test_optimize_threshold():
+    if False:
+        return 10
+    data = pycaret.datasets.get_data('blood')
+    pycaret.classification.setup(data, target='Class', html=False, n_jobs=1)
+    lr = pycaret.classification.create_model('lr')
+    (optimized_data, optimized_model) = pycaret.classification.optimize_threshold(lr, return_data=True)
+    assert isinstance(optimized_data, pd.core.frame.DataFrame)
+    assert isinstance(optimized_model, CustomProbabilityThresholdClassifier)
+if __name__ == '__main__':
+    test_optimize_threshold()

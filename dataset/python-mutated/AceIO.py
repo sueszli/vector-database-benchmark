@@ -1,0 +1,37 @@
+"""Bio.SeqIO support for the "ace" file format.
+
+You are expected to use this module via the Bio.SeqIO functions.
+See also the Bio.Sequencing.Ace module which offers more than just accessing
+the contig consensus sequences in an ACE file as SeqRecord objects.
+"""
+from Bio.Seq import Seq
+from Bio.SeqRecord import SeqRecord
+from Bio.Sequencing import Ace
+
+def AceIterator(source):
+    if False:
+        for i in range(10):
+            print('nop')
+    'Return SeqRecord objects from an ACE file.\n\n    This uses the Bio.Sequencing.Ace module to do the hard work.  Note that\n    by iterating over the file in a single pass, we are forced to ignore any\n    WA, CT, RT or WR footer tags.\n\n    Ace files include the base quality for each position, which are taken\n    to be PHRED style scores. Just as if you had read in a FASTQ or QUAL file\n    using PHRED scores using Bio.SeqIO, these are stored in the SeqRecord\'s\n    letter_annotations dictionary under the "phred_quality" key.\n\n    >>> from Bio import SeqIO\n    >>> with open("Ace/consed_sample.ace") as handle:\n    ...     for record in SeqIO.parse(handle, "ace"):\n    ...         print("%s %s... %i" % (record.id, record.seq[:10], len(record)))\n    ...         print(max(record.letter_annotations["phred_quality"]))\n    Contig1 agccccgggc... 1475\n    90\n\n    However, ACE files do not include a base quality for any gaps in the\n    consensus sequence, and these are represented in Biopython with a quality\n    of zero. Using zero is perhaps misleading as there may be very strong\n    evidence to support the gap in the consensus. Previous versions of\n    Biopython therefore used None instead, but this complicated usage, and\n    prevented output of the gapped sequence as FASTQ format.\n\n    >>> from Bio import SeqIO\n    >>> with open("Ace/contig1.ace") as handle:\n    ...     for record in SeqIO.parse(handle, "ace"):\n    ...         print("%s ...%s..." % (record.id, record.seq[85:95]))\n    ...         print(record.letter_annotations["phred_quality"][85:95])\n    ...         print(max(record.letter_annotations["phred_quality"]))\n    Contig1 ...AGAGG-ATGC...\n    [57, 57, 54, 57, 57, 0, 57, 72, 72, 72]\n    90\n    Contig2 ...GAATTACTAT...\n    [68, 68, 68, 68, 68, 68, 68, 68, 68, 68]\n    90\n\n    '
+    for ace_contig in Ace.parse(source):
+        consensus_seq_str = ace_contig.sequence
+        if '*' in consensus_seq_str:
+            assert '-' not in consensus_seq_str
+            consensus_seq = Seq(consensus_seq_str.replace('*', '-'))
+        else:
+            consensus_seq = Seq(consensus_seq_str)
+        seq_record = SeqRecord(consensus_seq, id=ace_contig.name, name=ace_contig.name)
+        quals = []
+        i = 0
+        for base in consensus_seq:
+            if base == '-':
+                quals.append(0)
+            else:
+                quals.append(ace_contig.quality[i])
+                i += 1
+        assert i == len(ace_contig.quality)
+        seq_record.letter_annotations['phred_quality'] = quals
+        yield seq_record
+if __name__ == '__main__':
+    from Bio._utils import run_doctest
+    run_doctest()

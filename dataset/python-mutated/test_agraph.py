@@ -1,0 +1,302 @@
+"""Unit tests for PyGraphviz interface."""
+import os
+import tempfile
+import pytest
+pygraphviz = pytest.importorskip('pygraphviz')
+import networkx as nx
+from networkx.utils import edges_equal, graphs_equal, nodes_equal
+
+class TestAGraph:
+
+    def build_graph(self, G):
+        if False:
+            while True:
+                i = 10
+        edges = [('A', 'B'), ('A', 'C'), ('A', 'C'), ('B', 'C'), ('A', 'D')]
+        G.add_edges_from(edges)
+        G.add_node('E')
+        G.graph['metal'] = 'bronze'
+        return G
+
+    def assert_equal(self, G1, G2):
+        if False:
+            while True:
+                i = 10
+        assert nodes_equal(G1.nodes(), G2.nodes())
+        assert edges_equal(G1.edges(), G2.edges())
+        assert G1.graph['metal'] == G2.graph['metal']
+
+    def agraph_checks(self, G):
+        if False:
+            i = 10
+            return i + 15
+        G = self.build_graph(G)
+        A = nx.nx_agraph.to_agraph(G)
+        H = nx.nx_agraph.from_agraph(A)
+        self.assert_equal(G, H)
+        (fd, fname) = tempfile.mkstemp()
+        nx.drawing.nx_agraph.write_dot(H, fname)
+        Hin = nx.nx_agraph.read_dot(fname)
+        self.assert_equal(H, Hin)
+        os.close(fd)
+        os.unlink(fname)
+        (fd, fname) = tempfile.mkstemp()
+        with open(fname, 'w') as fh:
+            nx.drawing.nx_agraph.write_dot(H, fh)
+        with open(fname) as fh:
+            Hin = nx.nx_agraph.read_dot(fh)
+        os.close(fd)
+        os.unlink(fname)
+        self.assert_equal(H, Hin)
+
+    def test_from_agraph_name(self):
+        if False:
+            i = 10
+            return i + 15
+        G = nx.Graph(name='test')
+        A = nx.nx_agraph.to_agraph(G)
+        H = nx.nx_agraph.from_agraph(A)
+        assert G.name == 'test'
+
+    @pytest.mark.parametrize('graph_class', (nx.Graph, nx.DiGraph, nx.MultiGraph, nx.MultiDiGraph))
+    def test_from_agraph_create_using(self, graph_class):
+        if False:
+            i = 10
+            return i + 15
+        G = nx.path_graph(3)
+        A = nx.nx_agraph.to_agraph(G)
+        H = nx.nx_agraph.from_agraph(A, create_using=graph_class)
+        assert isinstance(H, graph_class)
+
+    def test_from_agraph_named_edges(self):
+        if False:
+            print('Hello World!')
+        G = nx.Graph()
+        G.add_nodes_from([0, 1])
+        A = nx.nx_agraph.to_agraph(G)
+        A.add_edge(0, 1, key='foo')
+        H = nx.nx_agraph.from_agraph(A)
+        assert isinstance(H, nx.Graph)
+        assert ('0', '1', {'key': 'foo'}) in H.edges(data=True)
+
+    def test_undirected(self):
+        if False:
+            i = 10
+            return i + 15
+        self.agraph_checks(nx.Graph())
+
+    def test_directed(self):
+        if False:
+            i = 10
+            return i + 15
+        self.agraph_checks(nx.DiGraph())
+
+    def test_multi_undirected(self):
+        if False:
+            print('Hello World!')
+        self.agraph_checks(nx.MultiGraph())
+
+    def test_multi_directed(self):
+        if False:
+            i = 10
+            return i + 15
+        self.agraph_checks(nx.MultiDiGraph())
+
+    def test_to_agraph_with_nodedata(self):
+        if False:
+            while True:
+                i = 10
+        G = nx.Graph()
+        G.add_node(1, color='red')
+        A = nx.nx_agraph.to_agraph(G)
+        assert dict(A.nodes()[0].attr) == {'color': 'red'}
+
+    @pytest.mark.parametrize('graph_class', (nx.Graph, nx.MultiGraph))
+    def test_to_agraph_with_edgedata(self, graph_class):
+        if False:
+            while True:
+                i = 10
+        G = graph_class()
+        G.add_nodes_from([0, 1])
+        G.add_edge(0, 1, color='yellow')
+        A = nx.nx_agraph.to_agraph(G)
+        assert dict(A.edges()[0].attr) == {'color': 'yellow'}
+
+    def test_view_pygraphviz_path(self, tmp_path):
+        if False:
+            print('Hello World!')
+        G = nx.complete_graph(3)
+        input_path = str(tmp_path / 'graph.png')
+        (out_path, A) = nx.nx_agraph.view_pygraphviz(G, path=input_path, show=False)
+        assert out_path == input_path
+        with open(input_path, 'rb') as fh:
+            data = fh.read()
+        assert len(data) > 0
+
+    def test_view_pygraphviz_file_suffix(self, tmp_path):
+        if False:
+            print('Hello World!')
+        G = nx.complete_graph(3)
+        (path, A) = nx.nx_agraph.view_pygraphviz(G, suffix=1, show=False)
+        assert path[-6:] == '_1.png'
+
+    def test_view_pygraphviz(self):
+        if False:
+            print('Hello World!')
+        G = nx.Graph()
+        pytest.raises(nx.NetworkXException, nx.nx_agraph.view_pygraphviz, G)
+        G = nx.barbell_graph(4, 6)
+        nx.nx_agraph.view_pygraphviz(G, show=False)
+
+    def test_view_pygraphviz_edgelabel(self):
+        if False:
+            return 10
+        G = nx.Graph()
+        G.add_edge(1, 2, weight=7)
+        G.add_edge(2, 3, weight=8)
+        (path, A) = nx.nx_agraph.view_pygraphviz(G, edgelabel='weight', show=False)
+        for edge in A.edges():
+            assert edge.attr['weight'] in ('7', '8')
+
+    def test_view_pygraphviz_callable_edgelabel(self):
+        if False:
+            return 10
+        G = nx.complete_graph(3)
+
+        def foo_label(data):
+            if False:
+                print('Hello World!')
+            return 'foo'
+        (path, A) = nx.nx_agraph.view_pygraphviz(G, edgelabel=foo_label, show=False)
+        for edge in A.edges():
+            assert edge.attr['label'] == 'foo'
+
+    def test_view_pygraphviz_multigraph_edgelabels(self):
+        if False:
+            return 10
+        G = nx.MultiGraph()
+        G.add_edge(0, 1, key=0, name='left_fork')
+        G.add_edge(0, 1, key=1, name='right_fork')
+        (path, A) = nx.nx_agraph.view_pygraphviz(G, edgelabel='name', show=False)
+        edges = A.edges()
+        assert len(edges) == 2
+        for edge in edges:
+            assert edge.attr['label'].strip() in ('left_fork', 'right_fork')
+
+    def test_graph_with_reserved_keywords(self):
+        if False:
+            while True:
+                i = 10
+        G = nx.Graph()
+        G = self.build_graph(G)
+        G.nodes['E']['n'] = 'keyword'
+        G.edges['A', 'B']['u'] = 'keyword'
+        G.edges['A', 'B']['v'] = 'keyword'
+        A = nx.nx_agraph.to_agraph(G)
+
+    def test_view_pygraphviz_no_added_attrs_to_input(self):
+        if False:
+            i = 10
+            return i + 15
+        G = nx.complete_graph(2)
+        (path, A) = nx.nx_agraph.view_pygraphviz(G, show=False)
+        assert G.graph == {}
+
+    @pytest.mark.xfail(reason='known bug in clean_attrs')
+    def test_view_pygraphviz_leaves_input_graph_unmodified(self):
+        if False:
+            return 10
+        G = nx.complete_graph(2)
+        G.graph['node'] = {'width': '0.80'}
+        G.graph['edge'] = {'fontsize': '14'}
+        (path, A) = nx.nx_agraph.view_pygraphviz(G, show=False)
+        assert G.graph == {'node': {'width': '0.80'}, 'edge': {'fontsize': '14'}}
+
+    def test_graph_with_AGraph_attrs(self):
+        if False:
+            return 10
+        G = nx.complete_graph(2)
+        G.graph['node'] = {'width': '0.80'}
+        G.graph['edge'] = {'fontsize': '14'}
+        (path, A) = nx.nx_agraph.view_pygraphviz(G, show=False)
+        assert dict(A.node_attr)['width'] == '0.80'
+        assert dict(A.edge_attr)['fontsize'] == '14'
+
+    def test_round_trip_empty_graph(self):
+        if False:
+            for i in range(10):
+                print('nop')
+        G = nx.Graph()
+        A = nx.nx_agraph.to_agraph(G)
+        H = nx.nx_agraph.from_agraph(A)
+        AA = nx.nx_agraph.to_agraph(H)
+        HH = nx.nx_agraph.from_agraph(AA)
+        assert graphs_equal(H, HH)
+        G.graph['graph'] = {}
+        G.graph['node'] = {}
+        G.graph['edge'] = {}
+        assert graphs_equal(G, HH)
+
+    @pytest.mark.xfail(reason='integer->string node conversion in round trip')
+    def test_round_trip_integer_nodes(self):
+        if False:
+            print('Hello World!')
+        G = nx.complete_graph(3)
+        A = nx.nx_agraph.to_agraph(G)
+        H = nx.nx_agraph.from_agraph(A)
+        assert graphs_equal(G, H)
+
+    def test_graphviz_alias(self):
+        if False:
+            while True:
+                i = 10
+        G = self.build_graph(nx.Graph())
+        pos_graphviz = nx.nx_agraph.graphviz_layout(G)
+        pos_pygraphviz = nx.nx_agraph.pygraphviz_layout(G)
+        assert pos_graphviz == pos_pygraphviz
+
+    @pytest.mark.parametrize('root', range(5))
+    def test_pygraphviz_layout_root(self, root):
+        if False:
+            print('Hello World!')
+        G = nx.complete_graph(5)
+        A = nx.nx_agraph.to_agraph(G)
+        pygv_layout = nx.nx_agraph.pygraphviz_layout(G, prog='circo', root=root)
+        A.layout(args=f'-Groot={root}', prog='circo')
+        a1_pos = tuple((float(v) for v in dict(A.get_node('1').attr)['pos'].split(',')))
+        assert pygv_layout[1] == a1_pos
+
+    def test_2d_layout(self):
+        if False:
+            print('Hello World!')
+        G = nx.Graph()
+        G = self.build_graph(G)
+        G.graph['dimen'] = 2
+        pos = nx.nx_agraph.pygraphviz_layout(G, prog='neato')
+        pos = list(pos.values())
+        assert len(pos) == 5
+        assert len(pos[0]) == 2
+
+    def test_3d_layout(self):
+        if False:
+            while True:
+                i = 10
+        G = nx.Graph()
+        G = self.build_graph(G)
+        G.graph['dimen'] = 3
+        pos = nx.nx_agraph.pygraphviz_layout(G, prog='neato')
+        pos = list(pos.values())
+        assert len(pos) == 5
+        assert len(pos[0]) == 3
+
+    def test_no_warnings_raised(self):
+        if False:
+            for i in range(10):
+                print('nop')
+        G = nx.Graph()
+        G.add_node(0, pos=(0, 0))
+        G.add_node(1, pos=(1, 1))
+        A = nx.nx_agraph.to_agraph(G)
+        with pytest.warns(None) as record:
+            A.layout()
+        assert len(record) == 0

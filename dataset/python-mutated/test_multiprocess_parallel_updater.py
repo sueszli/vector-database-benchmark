@@ -1,0 +1,206 @@
+import copy
+import os
+import subprocess
+import sys
+import unittest
+import numpy
+import chainer
+from chainer.backends import cuda
+import chainer.functions.math.minmax
+from chainer import initializers
+import chainer.reporter
+from chainer import testing
+from chainer.testing import attr
+import chainer.training.updaters.multiprocess_parallel_updater as mpu
+
+class SimpleNet(chainer.Chain):
+    insize = 5
+
+    def __init__(self, dtype=numpy.float32):
+        if False:
+            return 10
+        super(SimpleNet, self).__init__()
+        self.dtype = dtype
+        W = initializers.HeNormal(1 / numpy.sqrt(2), self.dtype)
+        bias = initializers.Zero(self.dtype)
+        with self.init_scope():
+            self.conv = chainer.links.Convolution2D(2, 2, 3, initialW=W, initial_bias=bias)
+            self.fc = chainer.links.Linear(18, 2, initialW=W, initial_bias=bias)
+        self.train = True
+
+    def clear(self):
+        if False:
+            i = 10
+            return i + 15
+        self.loss = None
+        self.accuracy = None
+
+    def __call__(self, x, t):
+        if False:
+            for i in range(10):
+                print('nop')
+        h = chainer.functions.relu(self.conv(x))
+        y = self.fc(h)
+        self.loss = chainer.functions.softmax_cross_entropy(y, t)
+        self.accuracy = chainer.functions.accuracy(y, t)
+        return self.loss
+
+@testing.parameterize(*testing.product({'dtype': [numpy.float32, numpy.float16]}))
+class TestGatherScatter(unittest.TestCase):
+
+    @attr.gpu
+    def test_gather_scatter_grads(self):
+        if False:
+            print('Hello World!')
+        cupy = cuda.cupy
+        model0 = SimpleNet(dtype=self.dtype)
+        model1 = copy.deepcopy(model0)
+        with testing.assert_warns(DeprecationWarning):
+            model0.to_gpu()
+        with testing.assert_warns(DeprecationWarning):
+            model1.to_gpu()
+        optimizer0 = chainer.optimizers.SGD(lr=1.0)
+        optimizer0.setup(model0)
+        optimizer1 = chainer.optimizers.SGD(lr=1.0)
+        optimizer1.setup(model1)
+        bsize = 8
+        x = numpy.random.uniform(0, 1, (bsize, 2, 5, 5)).astype(self.dtype)
+        t = numpy.empty(bsize, dtype=numpy.int32)
+        for i in range(bsize):
+            t[i] = i % 2
+        x = chainer.Variable(chainer.backends.cuda.to_gpu(x))
+        t = chainer.Variable(chainer.backends.cuda.to_gpu(t))
+        loss0 = model0(x, t)
+        model0.cleargrads()
+        model1.cleargrads()
+        loss0.backward()
+        gg0 = mpu.gather_grads(model0)
+        mpu.scatter_grads(model1, gg0)
+        cupy.testing.assert_array_equal(model0.conv.W.grad, model1.conv.W.grad)
+        cupy.testing.assert_array_equal(model0.conv.b.grad, model1.conv.b.grad)
+        cupy.testing.assert_array_equal(model0.fc.W.grad, model1.fc.W.grad)
+        cupy.testing.assert_array_equal(model0.fc.b.grad, model1.fc.b.grad)
+        optimizer0.update()
+        optimizer1.update()
+        cupy.testing.assert_array_equal(model0.conv.W.data, model1.conv.W.data)
+        cupy.testing.assert_array_equal(model0.conv.b.data, model1.conv.b.data)
+        cupy.testing.assert_array_equal(model0.fc.W.data, model1.fc.W.data)
+        cupy.testing.assert_array_equal(model0.fc.b.data, model1.fc.b.data)
+
+    def test_gather_grads_raise_on_cpu(self):
+        if False:
+            for i in range(10):
+                print('nop')
+        model = SimpleNet(dtype=self.dtype)
+        with self.assertRaises(RuntimeError):
+            mpu.gather_grads(model)
+
+    @attr.gpu
+    def test_gather_scatter_params(self):
+        if False:
+            for i in range(10):
+                print('nop')
+        cupy = cuda.cupy
+        model0 = SimpleNet(dtype=self.dtype)
+        model1 = SimpleNet(dtype=self.dtype)
+        with testing.assert_warns(DeprecationWarning):
+            model0.to_gpu()
+        with testing.assert_warns(DeprecationWarning):
+            model1.to_gpu()
+        gp0 = mpu.gather_params(model0)
+        mpu.scatter_params(model1, gp0)
+        cupy.testing.assert_array_equal(model0.conv.W.data, model1.conv.W.data)
+        cupy.testing.assert_array_equal(model0.conv.b.data, model1.conv.b.data)
+        cupy.testing.assert_array_equal(model0.fc.W.data, model1.fc.W.data)
+        cupy.testing.assert_array_equal(model0.fc.b.data, model1.fc.b.data)
+
+    def test_gather_params_raise_on_cpu(self):
+        if False:
+            return 10
+        model = SimpleNet(dtype=self.dtype)
+        with self.assertRaises(RuntimeError):
+            mpu.gather_params(model)
+
+def _run_test_snippet(name, *args):
+    if False:
+        i = 10
+        return i + 15
+    script_path = os.path.join(os.path.dirname(__file__), 'snippets/{}'.format(name))
+    proc = subprocess.Popen((sys.executable, script_path) + args, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+    (stdoutdata, stderrdata) = proc.communicate()
+    ret = proc.returncode
+    return (ret, stdoutdata, stderrdata)
+
+class TestRawArray(unittest.TestCase):
+
+    @attr.gpu
+    @unittest.skipUnless(mpu.MultiprocessParallelUpdater.available(), 'MultiprocessParallelUpdater is not available.')
+    def test_update_uses_raw_array(self):
+        if False:
+            print('Hello World!')
+        (ret, stdoutdata, stderrdata) = _run_test_snippet('raw_array.py', '@cupy:0')
+        assert ret == 0, '[stdout]:{!r}\n[stderr]:{!r}'.format(stdoutdata, stderrdata)
+
+class TestChildReporter(unittest.TestCase):
+
+    def check_with_devices(self, n_devices):
+        if False:
+            for i in range(10):
+                print('nop')
+        devices_str = ','.join(['@cupy:{}'.format(device_id) for device_id in range(n_devices)])
+        (ret, stdoutdata, stderrdata) = _run_test_snippet('child_reporter.py', devices_str)
+        assert ret == 0, '[stdout]:{!r}\n[stderr]:{!r}'.format(stdoutdata, stderrdata)
+
+    @attr.gpu
+    @unittest.skipUnless(mpu.MultiprocessParallelUpdater.available(), 'MultiprocessParallelUpdater is not available.')
+    def test_single_device(self):
+        if False:
+            print('Hello World!')
+        self.check_with_devices(1)
+
+    @attr.multi_gpu(2)
+    @unittest.skipUnless(mpu.MultiprocessParallelUpdater.available(), 'MultiprocessParallelUpdater is not available.')
+    def test_multi_device(self):
+        if False:
+            while True:
+                i = 10
+        self.check_with_devices(2)
+
+class TestCUDAContext(unittest.TestCase):
+
+    @attr.gpu
+    @unittest.skipUnless(mpu.MultiprocessParallelUpdater.available(), 'MultiprocessParallelUpdater is not available.')
+    def test_cuda_init_fork(self):
+        if False:
+            i = 10
+            return i + 15
+        (ret, stdoutdata, stderrdata) = _run_test_snippet('cuda_init.py', '@cupy:0', 'fork')
+        assert ret == 0, '[stdout]:{!r}\n[stderr]:{!r}'.format(stdoutdata, stderrdata)
+
+    @attr.gpu
+    @unittest.skipUnless(mpu.MultiprocessParallelUpdater.available(), 'MultiprocessParallelUpdater is not available.')
+    def test_cuda_init_spawn(self):
+        if False:
+            return 10
+        (ret, stdoutdata, stderrdata) = _run_test_snippet('cuda_init.py', '@cupy:0', 'spawn')
+        assert ret == 0, '[stdout]:{!r}\n[stderr]:{!r}'.format(stdoutdata, stderrdata)
+
+    @attr.gpu
+    @unittest.skipUnless(mpu.MultiprocessParallelUpdater.available(), 'MultiprocessParallelUpdater is not available.')
+    def test_cuda_init_forkserver(self):
+        if False:
+            for i in range(10):
+                print('nop')
+        (ret, stdoutdata, stderrdata) = _run_test_snippet('cuda_init.py', '@cupy:0', 'forkserver')
+        assert ret == 0, '[stdout]:{!r}\n[stderr]:{!r}'.format(stdoutdata, stderrdata)
+
+class TestDevicesByDeviceIds(unittest.TestCase):
+
+    @attr.gpu
+    @unittest.skipUnless(mpu.MultiprocessParallelUpdater.available(), 'MultiprocessParallelUpdater is not available.')
+    def test_devices_by_device_ids_array(self):
+        if False:
+            return 10
+        (ret, stdoutdata, stderrdata) = _run_test_snippet('raw_array.py', '0')
+        assert ret == 0, '[stdout]:{!r}\n[stderr]:{!r}'.format(stdoutdata, stderrdata)
+testing.run_module(__name__, __file__)

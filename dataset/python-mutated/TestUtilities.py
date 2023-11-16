@@ -1,0 +1,44 @@
+from contextlib import contextmanager
+import os
+import sys
+import unittest.mock
+from coala_utils.ContextManagers import retrieve_stdout, retrieve_stderr
+TEST_BEAR_NAMES = ('AspectsGeneralTestBear', 'AspectTestBear', 'DependentBear', 'EchoBear', 'ErrorTestBear', 'JavaTestBear', 'LineCountTestBear', 'RaiseTestBear', 'RaiseTestExecuteBear', 'SpaceConsistencyTestBear', 'TestBear', 'TestDepBearA', 'TestDepBearAA', 'TestDepBearBDependsA', 'TestDepBearCDependsB', 'TestDepBearDependsAAndAA')
+TEST_BEARS_COUNT = len(TEST_BEAR_NAMES)
+JAVA_BEARS_COUNT = 3
+C_BEARS_COUNT = 2
+LANGUAGE_NAMES = ['antlr 3, 4', 'Bash', 'C', 'C#', 'CPP', 'CSS', 'D', 'Dart', 'DOT', 'Extensible Markup Language 1.0', 'Fortran', 'Golang', 'GraphQL', 'Haskell 1.0, 1.1, 1.2, 1.3, 1.4, 98, 2010', 'Hypertext Markup Language 2.0, 3.2, 4.0, 4.1, 5, 5.1', 'Java', 'JavaScript', 'JavaScript Object Notation', 'JavaServer Pages', 'Jinja2', 'KornShell', 'Markdown', 'Matlab', 'ObjectiveC', 'PHP', 'PLSQL', 'PowerShell', 'Python 2.7, 3.3, 3.4, 3.5, 3.6', 'Ruby', 'Scala', 'SASS', 'SCSS 3.1, 3.2, 3.3, 3.4, 3.5, 4.0', 'Shell', 'Swift', 'Tcl', 'Text', 'TinyBasic 1.0, 2.0', 'TypeScript', 'Vala', 'Verilog', 'VisualBasic', 'm4', 'ZShell']
+LANGUAGE_COUNT = len([language_file[:-3] for language_file in os.listdir('coalib/bearlib/languages/definitions/') if language_file.endswith('.py') and language_file != '__init__.py' and (language_file != 'Unknown.py')])
+TEST_BEAR_NAME_REPRS = ["<class 'AspectTestBear.AspectTestBear'>", "<class 'AspectsGeneralTestBear.AspectsGeneralTestBear'>", "<ErrorTestBear linter class (wrapping 'I_do_not_exist')>", "<class 'JavaTestBear.JavaTestBear'>", "<class 'LineCountTestBear.LineCountTestBear'>", "<EchoBear linter class (wrapping 'echo')>", "<class 'RaiseTestBear.RaiseTestBear'>", "<class 'RaiseTestBear.RaiseTestExecuteBear'>", "<class 'TestBear.TestBear'>", "<class 'TestBearDep.TestDepBearA'>", "<class 'TestBearDep.TestDepBearAA'>", "<class 'TestBearDep.TestDepBearBDependsA'>", "<class 'TestBearDep.TestDepBearCDependsB'>", "<class 'TestBearDep.TestDepBearDependsAAndAA'>", "<class 'DependentBear.DependentBear'>", "<class 'SpaceConsistencyTestBear.SpaceConsistencyTestBear'>"]
+
+def execute_coala(func, binary, *args, debug=False):
+    if False:
+        for i in range(10):
+            print('nop')
+    '\n    Executes the main function with the given argument string from given module.\n\n    :param function:    A main function from coala_json, coala_ci module etc.\n    :param binary:      A binary to execute coala test\n    :param debug:       Run main function with ``debug=True`` and re-raise any\n                        exception coming back.\n    :return:            A tuple holding a return value as first element,\n                        a stdout output as second element and a stderr output\n                        as third element if stdout_only is False.\n    '
+    sys.argv = [binary] + list(args)
+    with retrieve_stdout() as stdout:
+        with retrieve_stderr() as stderr:
+            retval = func(debug=debug)
+            return (retval, stdout.getvalue(), stderr.getvalue())
+
+@contextmanager
+def bear_test_module():
+    if False:
+        i = 10
+        return i + 15
+    "\n    This function mocks the ``pkg_resources.iter_entry_points()``\n    to use the testing bear module we have. Hence, it doesn't test\n    the collection of entry points.\n    "
+    bears_test_module = os.path.join(os.path.dirname(__file__), 'test_bears', '__init__.py')
+
+    class EntryPoint:
+
+        @staticmethod
+        def load():
+            if False:
+                print('Hello World!')
+
+            class PseudoPlugin:
+                __file__ = bears_test_module
+            return PseudoPlugin()
+    with unittest.mock.patch('pkg_resources.iter_entry_points', return_value=[EntryPoint()]) as mocked:
+        yield

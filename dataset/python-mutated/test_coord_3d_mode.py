@@ -1,0 +1,80 @@
+import numpy as np
+import torch
+from mmdet3d.core.bbox import CameraInstance3DBoxes, Coord3DMode, DepthInstance3DBoxes, LiDARInstance3DBoxes, limit_period
+from mmdet3d.core.points import CameraPoints, DepthPoints, LiDARPoints
+
+def test_points_conversion():
+    if False:
+        i = 10
+        return i + 15
+    'Test the conversion of points between different modes.'
+    points_np = np.array([[-5.24223238, 40.0209696, 0.297570381, 0.6666, 0.1956, 0.4974, 0.9409], [-26.6751588, 5.59499564, -0.91434586, 0.1502, 0.3707, 0.1086, 0.6297], [-5.80979675, 35.4092357, 0.200889888, 0.6565, 0.6248, 0.6954, 0.2538], [-31.3086877, 1.09007628, -0.194612112, 0.2803, 0.0258, 0.4896, 0.3269]], dtype=np.float32)
+    cam_points = CameraPoints(points_np, points_dim=7, attribute_dims=dict(color=[3, 4, 5], height=6))
+    convert_lidar_points = cam_points.convert_to(Coord3DMode.LIDAR)
+    expected_tensor = torch.tensor([[0.29757, 5.2422, -40.021, 0.6666, 0.1956, 0.4974, 0.9409], [-0.91435, 26.675, -5.595, 0.1502, 0.3707, 0.1086, 0.6297], [0.20089, 5.8098, -35.409, 0.6565, 0.6248, 0.6954, 0.2538], [-0.19461, 31.309, -1.0901, 0.2803, 0.0258, 0.4896, 0.3269]])
+    lidar_point_tensor = Coord3DMode.convert_point(cam_points.tensor, Coord3DMode.CAM, Coord3DMode.LIDAR)
+    assert torch.allclose(expected_tensor, convert_lidar_points.tensor, 0.0001)
+    assert torch.allclose(lidar_point_tensor, convert_lidar_points.tensor, 0.0001)
+    convert_depth_points = cam_points.convert_to(Coord3DMode.DEPTH)
+    expected_tensor = torch.tensor([[-5.2422, 0.29757, -40.021, 0.6666, 0.1956, 0.4974, 0.9409], [-26.675, -0.91435, -5.595, 0.1502, 0.3707, 0.1086, 0.6297], [-5.8098, 0.20089, -35.409, 0.6565, 0.6248, 0.6954, 0.2538], [-31.309, -0.19461, -1.0901, 0.2803, 0.0258, 0.4896, 0.3269]])
+    depth_point_tensor = Coord3DMode.convert_point(cam_points.tensor, Coord3DMode.CAM, Coord3DMode.DEPTH)
+    assert torch.allclose(expected_tensor, convert_depth_points.tensor, 0.0001)
+    assert torch.allclose(depth_point_tensor, convert_depth_points.tensor, 0.0001)
+    lidar_points = LiDARPoints(points_np, points_dim=7, attribute_dims=dict(color=[3, 4, 5], height=6))
+    convert_cam_points = lidar_points.convert_to(Coord3DMode.CAM)
+    expected_tensor = torch.tensor([[-40.021, -0.29757, -5.2422, 0.6666, 0.1956, 0.4974, 0.9409], [-5.595, 0.91435, -26.675, 0.1502, 0.3707, 0.1086, 0.6297], [-35.409, -0.20089, -5.8098, 0.6565, 0.6248, 0.6954, 0.2538], [-1.0901, 0.19461, -31.309, 0.2803, 0.0258, 0.4896, 0.3269]])
+    cam_point_tensor = Coord3DMode.convert_point(lidar_points.tensor, Coord3DMode.LIDAR, Coord3DMode.CAM)
+    assert torch.allclose(expected_tensor, convert_cam_points.tensor, 0.0001)
+    assert torch.allclose(cam_point_tensor, convert_cam_points.tensor, 0.0001)
+    convert_depth_points = lidar_points.convert_to(Coord3DMode.DEPTH)
+    expected_tensor = torch.tensor([[-40.021, -5.2422, 0.29757, 0.6666, 0.1956, 0.4974, 0.9409], [-5.595, -26.675, -0.91435, 0.1502, 0.3707, 0.1086, 0.6297], [-35.409, -5.8098, 0.20089, 0.6565, 0.6248, 0.6954, 0.2538], [-1.0901, -31.309, -0.19461, 0.2803, 0.0258, 0.4896, 0.3269]])
+    depth_point_tensor = Coord3DMode.convert_point(lidar_points.tensor, Coord3DMode.LIDAR, Coord3DMode.DEPTH)
+    assert torch.allclose(expected_tensor, convert_depth_points.tensor, 0.0001)
+    assert torch.allclose(depth_point_tensor, convert_depth_points.tensor, 0.0001)
+    depth_points = DepthPoints(points_np, points_dim=7, attribute_dims=dict(color=[3, 4, 5], height=6))
+    convert_cam_points = depth_points.convert_to(Coord3DMode.CAM)
+    expected_tensor = torch.tensor([[-5.2422, -0.29757, 40.021, 0.6666, 0.1956, 0.4974, 0.9409], [-26.675, 0.91435, 5.595, 0.1502, 0.3707, 0.1086, 0.6297], [-5.8098, -0.20089, 35.409, 0.6565, 0.6248, 0.6954, 0.2538], [-31.309, 0.19461, 1.0901, 0.2803, 0.0258, 0.4896, 0.3269]])
+    cam_point_tensor = Coord3DMode.convert_point(depth_points.tensor, Coord3DMode.DEPTH, Coord3DMode.CAM)
+    assert torch.allclose(expected_tensor, convert_cam_points.tensor, 0.0001)
+    assert torch.allclose(cam_point_tensor, convert_cam_points.tensor, 0.0001)
+    rt_mat_provided = torch.tensor([[0.99789, -0.012698, -0.063678], [-0.012698, 0.92359, -0.38316], [0.063678, 0.38316, 0.92148]])
+    depth_points_new = torch.cat([depth_points.tensor[:, :3] @ rt_mat_provided.t(), depth_points.tensor[:, 3:]], dim=1)
+    mat = rt_mat_provided.new_tensor([[1, 0, 0], [0, 0, -1], [0, 1, 0]])
+    rt_mat_provided = mat @ rt_mat_provided.transpose(1, 0)
+    cam_point_tensor_new = Coord3DMode.convert_point(depth_points_new, Coord3DMode.DEPTH, Coord3DMode.CAM, rt_mat=rt_mat_provided)
+    assert torch.allclose(expected_tensor, cam_point_tensor_new, 0.0001)
+    convert_lidar_points = depth_points.convert_to(Coord3DMode.LIDAR)
+    expected_tensor = torch.tensor([[40.021, 5.2422, 0.29757, 0.6666, 0.1956, 0.4974, 0.9409], [5.595, 26.675, -0.91435, 0.1502, 0.3707, 0.1086, 0.6297], [35.409, 5.8098, 0.20089, 0.6565, 0.6248, 0.6954, 0.2538], [1.0901, 31.309, -0.19461, 0.2803, 0.0258, 0.4896, 0.3269]])
+    lidar_point_tensor = Coord3DMode.convert_point(depth_points.tensor, Coord3DMode.DEPTH, Coord3DMode.LIDAR)
+    assert torch.allclose(lidar_point_tensor, convert_lidar_points.tensor, 0.0001)
+    assert torch.allclose(lidar_point_tensor, convert_lidar_points.tensor, 0.0001)
+
+def test_boxes_conversion():
+    if False:
+        while True:
+            i = 10
+    cam_boxes = CameraInstance3DBoxes([[1.7802081, 2.516249, -1.7501148, 1.75, 3.39, 1.65, 1.48], [8.959413, 2.4567227, -1.6357126, 1.54, 4.01, 1.57, 1.62], [28.2967, -0.5557558, -1.303325, 1.47, 2.23, 1.48, -1.57], [26.66902, 21.82302, -1.736057, 1.56, 3.48, 1.4, -1.69], [31.31978, 8.162144, -1.6217787, 1.74, 3.77, 1.48, 2.79]])
+    convert_lidar_boxes = Coord3DMode.convert(cam_boxes, Coord3DMode.CAM, Coord3DMode.LIDAR)
+    expected_tensor = torch.tensor([[-1.7501, -1.7802, -2.5162, 1.75, 1.65, 3.39, -1.48 - np.pi / 2], [-1.6357, -8.9594, -2.4567, 1.54, 1.57, 4.01, -1.62 - np.pi / 2], [-1.3033, -28.2967, 0.5558, 1.47, 1.48, 2.23, 1.57 - np.pi / 2], [-1.7361, -26.669, -21.823, 1.56, 1.4, 3.48, 1.69 - np.pi / 2], [-1.6218, -31.3198, -8.1621, 1.74, 1.48, 3.77, -2.79 - np.pi / 2]])
+    expected_tensor[:, -1:] = limit_period(expected_tensor[:, -1:], period=np.pi * 2)
+    assert torch.allclose(expected_tensor, convert_lidar_boxes.tensor, 0.001)
+    convert_depth_boxes = Coord3DMode.convert(cam_boxes, Coord3DMode.CAM, Coord3DMode.DEPTH)
+    expected_tensor = torch.tensor([[1.7802, -1.7501, -2.5162, 1.75, 1.65, 3.39, -1.48], [8.9594, -1.6357, -2.4567, 1.54, 1.57, 4.01, -1.62], [28.2967, -1.3033, 0.5558, 1.47, 1.48, 2.23, 1.57], [26.669, -1.7361, -21.823, 1.56, 1.4, 3.48, 1.69], [31.3198, -1.6218, -8.1621, 1.74, 1.48, 3.77, -2.79]])
+    assert torch.allclose(expected_tensor, convert_depth_boxes.tensor, 0.001)
+    lidar_boxes = LiDARInstance3DBoxes([[1.7802081, 2.516249, -1.7501148, 1.75, 3.39, 1.65, 1.48], [8.959413, 2.4567227, -1.6357126, 1.54, 4.01, 1.57, 1.62], [28.2967, -0.5557558, -1.303325, 1.47, 2.23, 1.48, -1.57], [26.66902, 21.82302, -1.736057, 1.56, 3.48, 1.4, -1.69], [31.31978, 8.162144, -1.6217787, 1.74, 3.77, 1.48, 2.79]])
+    convert_cam_boxes = Coord3DMode.convert(lidar_boxes, Coord3DMode.LIDAR, Coord3DMode.CAM)
+    expected_tensor = torch.tensor([[-2.5162, 1.7501, 1.7802, 1.75, 1.65, 3.39, -1.48 - np.pi / 2], [-2.4567, 1.6357, 8.9594, 1.54, 1.57, 4.01, -1.62 - np.pi / 2], [0.5558, 1.3033, 28.2967, 1.47, 1.48, 2.23, 1.57 - np.pi / 2], [-21.823, 1.7361, 26.669, 1.56, 1.4, 3.48, 1.69 - np.pi / 2], [-8.1621, 1.6218, 31.3198, 1.74, 1.48, 3.77, -2.79 - np.pi / 2]])
+    expected_tensor[:, -1:] = limit_period(expected_tensor[:, -1:], period=np.pi * 2)
+    assert torch.allclose(expected_tensor, convert_cam_boxes.tensor, 0.001)
+    convert_depth_boxes = Coord3DMode.convert(lidar_boxes, Coord3DMode.LIDAR, Coord3DMode.DEPTH)
+    expected_tensor = torch.tensor([[-2.5162, 1.7802, -1.7501, 1.75, 3.39, 1.65, 1.48 + np.pi / 2], [-2.4567, 8.9594, -1.6357, 1.54, 4.01, 1.57, 1.62 + np.pi / 2], [0.5558, 28.2967, -1.3033, 1.47, 2.23, 1.48, -1.57 + np.pi / 2], [-21.823, 26.669, -1.7361, 1.56, 3.48, 1.4, -1.69 + np.pi / 2], [-8.1621, 31.3198, -1.6218, 1.74, 3.77, 1.48, 2.79 + np.pi / 2]])
+    expected_tensor[:, -1:] = limit_period(expected_tensor[:, -1:], period=np.pi * 2)
+    assert torch.allclose(expected_tensor, convert_depth_boxes.tensor, 0.001)
+    depth_boxes = DepthInstance3DBoxes([[1.7802081, 2.516249, -1.7501148, 1.75, 3.39, 1.65, 1.48], [8.959413, 2.4567227, -1.6357126, 1.54, 4.01, 1.57, 1.62], [28.2967, -0.5557558, -1.303325, 1.47, 2.23, 1.48, -1.57], [26.66902, 21.82302, -1.736057, 1.56, 3.48, 1.4, -1.69], [31.31978, 8.162144, -1.6217787, 1.74, 3.77, 1.48, 2.79]])
+    convert_cam_boxes = Coord3DMode.convert(depth_boxes, Coord3DMode.DEPTH, Coord3DMode.CAM)
+    expected_tensor = torch.tensor([[1.7802, 1.7501, 2.5162, 1.75, 1.65, 3.39, -1.48], [8.9594, 1.6357, 2.4567, 1.54, 1.57, 4.01, -1.62], [28.2967, 1.3033, -0.5558, 1.47, 1.48, 2.23, 1.57], [26.669, 1.7361, 21.823, 1.56, 1.4, 3.48, 1.69], [31.3198, 1.6218, 8.1621, 1.74, 1.48, 3.77, -2.79]])
+    assert torch.allclose(expected_tensor, convert_cam_boxes.tensor, 0.001)
+    convert_lidar_boxes = Coord3DMode.convert(depth_boxes, Coord3DMode.DEPTH, Coord3DMode.LIDAR)
+    expected_tensor = torch.tensor([[2.5162, -1.7802, -1.7501, 1.75, 3.39, 1.65, 1.48 - np.pi / 2], [2.4567, -8.9594, -1.6357, 1.54, 4.01, 1.57, 1.62 - np.pi / 2], [-0.5558, -28.2967, -1.3033, 1.47, 2.23, 1.48, -1.57 - np.pi / 2], [21.823, -26.669, -1.7361, 1.56, 3.48, 1.4, -1.69 - np.pi / 2], [8.1621, -31.3198, -1.6218, 1.74, 3.77, 1.48, 2.79 - np.pi / 2]])
+    expected_tensor[:, -1:] = limit_period(expected_tensor[:, -1:], period=np.pi * 2)
+    assert torch.allclose(expected_tensor, convert_lidar_boxes.tensor, 0.001)

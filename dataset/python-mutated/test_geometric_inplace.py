@@ -1,0 +1,163 @@
+import unittest
+import numpy as np
+import scipy.stats
+import paddle
+from paddle import base
+
+class TestGeometricInplaceDtype(unittest.TestCase):
+
+    def setUp(self):
+        if False:
+            i = 10
+            return i + 15
+        self.shape = (1000, 784)
+
+    def test_geometrictype(self):
+        if False:
+            return 10
+
+        def test_fp32():
+            if False:
+                return 10
+            tensor_fp32 = paddle.ones(self.shape, dtype=paddle.float32)
+            tensor_fp32.geometric_(probs=0.3)
+            self.assertEqual(tensor_fp32.dtype, paddle.float32)
+
+        def test_fp64():
+            if False:
+                print('Hello World!')
+            tensor_fp64 = paddle.ones(self.shape, paddle.float64)
+            tensor_fp64.geometric_(probs=0.3)
+            self.assertEqual(tensor_fp64.dtype, paddle.float64)
+        places = ['cpu']
+        if base.core.is_compiled_with_cuda():
+            places.append('gpu')
+        for place in places:
+            paddle.set_device(place)
+            test_fp32()
+            test_fp64()
+
+class TestGeometricIsInplace(unittest.TestCase):
+
+    def setUp(self):
+        if False:
+            i = 10
+            return i + 15
+        self.shape = (1000, 784)
+
+    def test_geometric_inplace_op_is_inplace(self):
+        if False:
+            print('Hello World!')
+        tensor_a = paddle.ones(self.shape)
+        tensor_b = tensor_a.geometric_(probs=0.3)
+        self.assertTrue(tensor_a is tensor_b)
+
+class TestGeometricInplaceSeedIsZero(unittest.TestCase):
+
+    def setUp(self):
+        if False:
+            print('Hello World!')
+        self.shape = (1000, 784)
+
+    def test_geometric_inplace_op_not_equal(self):
+        if False:
+            while True:
+                i = 10
+        tensor = paddle.ones(self.shape)
+        tensor.geometric_(probs=0.3)
+        tensor_data_first = tensor.numpy()
+        tensor.geometric_(probs=0.3)
+        tensor_data_second = tensor.numpy()
+        self.assertFalse((tensor_data_first == tensor_data_second).all())
+
+class TestGeometricInplaceOpShape(unittest.TestCase):
+
+    def setUp(self):
+        if False:
+            while True:
+                i = 10
+        self.shape = (1000, 784)
+
+    def test_geometric_inplace_op_shape(self):
+        if False:
+            while True:
+                i = 10
+        tensor = paddle.ones(self.shape)
+        tensor.geometric_(probs=0.3)
+        tensor_shape_np = np.array(tensor.shape)
+        origin_shape = np.array(self.shape)
+        self.assertTrue((tensor_shape_np == origin_shape).all())
+
+class TestGeometricInplaceDistribution(unittest.TestCase):
+
+    def setUp(self):
+        if False:
+            i = 10
+            return i + 15
+        self.shape = (1000, 784)
+        self.probs = 0.3
+
+    def test_geometric_inplace_distribution(self):
+        if False:
+            for i in range(10):
+                print('nop')
+        a = paddle.ones(self.shape)
+        a.geometric_(self.probs)
+        np.testing.assert_allclose(a.mean(axis=0), scipy.stats.geom.mean(self.probs), rtol=0.7, atol=0)
+        np.testing.assert_allclose(a.var(axis=0), scipy.stats.geom.var(self.probs), rtol=0.7, atol=0)
+
+class TestGeometricInplaceEmptyTensor(unittest.TestCase):
+
+    def test_geometric_inplace_op_empty_tensor(self):
+        if False:
+            print('Hello World!')
+        places = ['cpu']
+        if base.core.is_compiled_with_cuda():
+            places.append('gpu')
+        test_shapes = [(200, 1), (1, 200)]
+        for place in places:
+            paddle.set_device(place)
+            for test_shape in test_shapes:
+                tensor = paddle.empty(shape=test_shape)
+                tensor.geometric_(probs=0.3)
+                tensor_shape_np = np.array(tensor.shape)
+                origin_shape = np.array(test_shape)
+                self.assertTrue((tensor_shape_np == origin_shape).all())
+
+class TestGeometricInplaceGrad(unittest.TestCase):
+
+    def setUp(self):
+        if False:
+            for i in range(10):
+                print('nop')
+        self.shape = (1000, 784)
+
+    def run_(self):
+        if False:
+            return 10
+
+        def test_grad():
+            if False:
+                print('Hello World!')
+            tensor_a = paddle.ones(self.shape)
+            tensor_a.stop_gradient = False
+            tensor_b = tensor_a * 0.5
+            tensor_b.retain_grads()
+            tensor_b.geometric_(probs=0.3)
+            loss = tensor_b.sum()
+            loss.backward()
+            geometric_grad = tensor_b.grad.numpy()
+            self.assertTrue((geometric_grad == 0).all())
+        places = ['cpu']
+        if base.core.is_compiled_with_cuda():
+            places.append('gpu')
+        for place in places:
+            paddle.set_device(place)
+            test_grad()
+
+    def test_geometric_inplace_grad(self):
+        if False:
+            print('Hello World!')
+        self.run_()
+if __name__ == '__main__':
+    unittest.main()

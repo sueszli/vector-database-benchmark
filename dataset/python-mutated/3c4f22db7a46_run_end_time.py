@@ -1,0 +1,24 @@
+"""run end time
+
+Revision ID: 3c4f22db7a46
+Revises: 9ba30ab3b2b4
+Create Date: 2021-09-01 21:19:00.391203
+
+"""
+from alembic import op
+import sqlalchemy as sa
+revision = '3c4f22db7a46'
+down_revision = '9ba30ab3b2b4'
+branch_labels = None
+depends_on = None
+
+def upgrade():
+    if False:
+        return 10
+    op.add_column('run', sa.Column('finalized_at', sa.DateTime(), nullable=True))
+
+def downgrade():
+    if False:
+        i = 10
+        return i + 15
+    op.drop_column('run', 'finalized_at')

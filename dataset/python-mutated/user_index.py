@@ -1,0 +1,27 @@
+import logging
+from rest_framework import status
+from rest_framework.request import Request
+from rest_framework.response import Response
+from sentry.api.api_publish_status import ApiPublishStatus
+from sentry.api.base import region_silo_endpoint
+from sentry.api.bases import OrganizationEndpoint
+from sentry.api.bases.external_actor import ExternalActorEndpointMixin, ExternalUserSerializer
+from sentry.api.serializers import serialize
+from sentry.models.organization import Organization
+logger = logging.getLogger(__name__)
+
+@region_silo_endpoint
+class ExternalUserEndpoint(OrganizationEndpoint, ExternalActorEndpointMixin):
+    publish_status = {'POST': ApiPublishStatus.UNKNOWN}
+
+    def post(self, request: Request, organization: Organization) -> Response:
+        if False:
+            return 10
+        '\n        Create an External User\n        `````````````\n\n        :pparam string organization_slug: the slug of the organization the\n                                          user belongs to.\n        :param required string provider: enum("github", "gitlab", "slack")\n        :param required string external_name: the associated username for this provider.\n        :param required int user_id: the User ID in Sentry.\n        :param string external_id: the associated user ID for this provider\n        :auth: required\n        '
+        self.assert_has_feature(request, organization)
+        serializer = ExternalUserSerializer(data=request.data, context={'organization': organization})
+        if not serializer.is_valid():
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        (external_user, created) = serializer.save()
+        status_code = status.HTTP_201_CREATED if created else status.HTTP_200_OK
+        return Response(serialize(external_user, request.user, key='user'), status=status_code)

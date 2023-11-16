@@ -1,0 +1,17 @@
+from routersploit.core.exploit.utils import import_exploit
+Exploit = import_exploit('routersploit.modules.exploits.routers.3com.imc_path_traversal')
+
+def test_check_success(target):
+    if False:
+        return 10
+    ' Test scenario - successful exploitation '
+    route_mock = target.get_route_mock('/imc/report/DownloadReportSource', methods=['GET'])
+    route_mock.return_value = 'TEST[fonts]TEST'
+    exploit = Exploit()
+    assert exploit.target == ''
+    assert exploit.port == 8080
+    assert exploit.filename == '\\windows\\win.ini'
+    exploit.target = target.host
+    exploit.port = target.port
+    assert exploit.check()
+    assert exploit.run() is None

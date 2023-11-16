@@ -1,0 +1,3017 @@
+import os
+try:
+    from unittest import mock
+    from unittest.mock import AsyncMock
+except ImportError:
+    import mock
+from collections.abc import Iterable
+import json
+import math
+from google.api_core import future, gapic_v1, grpc_helpers, grpc_helpers_async, operation, operations_v1, path_template
+from google.api_core import client_options
+from google.api_core import exceptions as core_exceptions
+from google.api_core import operation_async
+import google.auth
+from google.auth import credentials as ga_credentials
+from google.auth.exceptions import MutualTLSChannelError
+from google.cloud.location import locations_pb2
+from google.longrunning import operations_pb2
+from google.oauth2 import service_account
+from google.protobuf import duration_pb2
+from google.protobuf import empty_pb2
+from google.protobuf import json_format
+from google.protobuf import timestamp_pb2
+import grpc
+from grpc.experimental import aio
+from proto.marshal.rules import wrappers
+from proto.marshal.rules.dates import DurationRule, TimestampRule
+import pytest
+from requests import PreparedRequest, Request, Response
+from requests.sessions import Session
+from google.cloud.batch_v1.services.batch_service import BatchServiceAsyncClient, BatchServiceClient, pagers, transports
+from google.cloud.batch_v1.types import batch
+from google.cloud.batch_v1.types import job
+from google.cloud.batch_v1.types import job as gcb_job
+from google.cloud.batch_v1.types import task, volume
+
+def client_cert_source_callback():
+    if False:
+        while True:
+            i = 10
+    return (b'cert bytes', b'key bytes')
+
+def modify_default_endpoint(client):
+    if False:
+        print('Hello World!')
+    return 'foo.googleapis.com' if 'localhost' in client.DEFAULT_ENDPOINT else client.DEFAULT_ENDPOINT
+
+def test__get_default_mtls_endpoint():
+    if False:
+        while True:
+            i = 10
+    api_endpoint = 'example.googleapis.com'
+    api_mtls_endpoint = 'example.mtls.googleapis.com'
+    sandbox_endpoint = 'example.sandbox.googleapis.com'
+    sandbox_mtls_endpoint = 'example.mtls.sandbox.googleapis.com'
+    non_googleapi = 'api.example.com'
+    assert BatchServiceClient._get_default_mtls_endpoint(None) is None
+    assert BatchServiceClient._get_default_mtls_endpoint(api_endpoint) == api_mtls_endpoint
+    assert BatchServiceClient._get_default_mtls_endpoint(api_mtls_endpoint) == api_mtls_endpoint
+    assert BatchServiceClient._get_default_mtls_endpoint(sandbox_endpoint) == sandbox_mtls_endpoint
+    assert BatchServiceClient._get_default_mtls_endpoint(sandbox_mtls_endpoint) == sandbox_mtls_endpoint
+    assert BatchServiceClient._get_default_mtls_endpoint(non_googleapi) == non_googleapi
+
+@pytest.mark.parametrize('client_class,transport_name', [(BatchServiceClient, 'grpc'), (BatchServiceAsyncClient, 'grpc_asyncio'), (BatchServiceClient, 'rest')])
+def test_batch_service_client_from_service_account_info(client_class, transport_name):
+    if False:
+        i = 10
+        return i + 15
+    creds = ga_credentials.AnonymousCredentials()
+    with mock.patch.object(service_account.Credentials, 'from_service_account_info') as factory:
+        factory.return_value = creds
+        info = {'valid': True}
+        client = client_class.from_service_account_info(info, transport=transport_name)
+        assert client.transport._credentials == creds
+        assert isinstance(client, client_class)
+        assert client.transport._host == ('batch.googleapis.com:443' if transport_name in ['grpc', 'grpc_asyncio'] else 'https://batch.googleapis.com')
+
+@pytest.mark.parametrize('transport_class,transport_name', [(transports.BatchServiceGrpcTransport, 'grpc'), (transports.BatchServiceGrpcAsyncIOTransport, 'grpc_asyncio'), (transports.BatchServiceRestTransport, 'rest')])
+def test_batch_service_client_service_account_always_use_jwt(transport_class, transport_name):
+    if False:
+        while True:
+            i = 10
+    with mock.patch.object(service_account.Credentials, 'with_always_use_jwt_access', create=True) as use_jwt:
+        creds = service_account.Credentials(None, None, None)
+        transport = transport_class(credentials=creds, always_use_jwt_access=True)
+        use_jwt.assert_called_once_with(True)
+    with mock.patch.object(service_account.Credentials, 'with_always_use_jwt_access', create=True) as use_jwt:
+        creds = service_account.Credentials(None, None, None)
+        transport = transport_class(credentials=creds, always_use_jwt_access=False)
+        use_jwt.assert_not_called()
+
+@pytest.mark.parametrize('client_class,transport_name', [(BatchServiceClient, 'grpc'), (BatchServiceAsyncClient, 'grpc_asyncio'), (BatchServiceClient, 'rest')])
+def test_batch_service_client_from_service_account_file(client_class, transport_name):
+    if False:
+        i = 10
+        return i + 15
+    creds = ga_credentials.AnonymousCredentials()
+    with mock.patch.object(service_account.Credentials, 'from_service_account_file') as factory:
+        factory.return_value = creds
+        client = client_class.from_service_account_file('dummy/file/path.json', transport=transport_name)
+        assert client.transport._credentials == creds
+        assert isinstance(client, client_class)
+        client = client_class.from_service_account_json('dummy/file/path.json', transport=transport_name)
+        assert client.transport._credentials == creds
+        assert isinstance(client, client_class)
+        assert client.transport._host == ('batch.googleapis.com:443' if transport_name in ['grpc', 'grpc_asyncio'] else 'https://batch.googleapis.com')
+
+def test_batch_service_client_get_transport_class():
+    if False:
+        return 10
+    transport = BatchServiceClient.get_transport_class()
+    available_transports = [transports.BatchServiceGrpcTransport, transports.BatchServiceRestTransport]
+    assert transport in available_transports
+    transport = BatchServiceClient.get_transport_class('grpc')
+    assert transport == transports.BatchServiceGrpcTransport
+
+@pytest.mark.parametrize('client_class,transport_class,transport_name', [(BatchServiceClient, transports.BatchServiceGrpcTransport, 'grpc'), (BatchServiceAsyncClient, transports.BatchServiceGrpcAsyncIOTransport, 'grpc_asyncio'), (BatchServiceClient, transports.BatchServiceRestTransport, 'rest')])
+@mock.patch.object(BatchServiceClient, 'DEFAULT_ENDPOINT', modify_default_endpoint(BatchServiceClient))
+@mock.patch.object(BatchServiceAsyncClient, 'DEFAULT_ENDPOINT', modify_default_endpoint(BatchServiceAsyncClient))
+def test_batch_service_client_client_options(client_class, transport_class, transport_name):
+    if False:
+        for i in range(10):
+            print('nop')
+    with mock.patch.object(BatchServiceClient, 'get_transport_class') as gtc:
+        transport = transport_class(credentials=ga_credentials.AnonymousCredentials())
+        client = client_class(transport=transport)
+        gtc.assert_not_called()
+    with mock.patch.object(BatchServiceClient, 'get_transport_class') as gtc:
+        client = client_class(transport=transport_name)
+        gtc.assert_called()
+    options = client_options.ClientOptions(api_endpoint='squid.clam.whelk')
+    with mock.patch.object(transport_class, '__init__') as patched:
+        patched.return_value = None
+        client = client_class(transport=transport_name, client_options=options)
+        patched.assert_called_once_with(credentials=None, credentials_file=None, host='squid.clam.whelk', scopes=None, client_cert_source_for_mtls=None, quota_project_id=None, client_info=transports.base.DEFAULT_CLIENT_INFO, always_use_jwt_access=True, api_audience=None)
+    with mock.patch.dict(os.environ, {'GOOGLE_API_USE_MTLS_ENDPOINT': 'never'}):
+        with mock.patch.object(transport_class, '__init__') as patched:
+            patched.return_value = None
+            client = client_class(transport=transport_name)
+            patched.assert_called_once_with(credentials=None, credentials_file=None, host=client.DEFAULT_ENDPOINT, scopes=None, client_cert_source_for_mtls=None, quota_project_id=None, client_info=transports.base.DEFAULT_CLIENT_INFO, always_use_jwt_access=True, api_audience=None)
+    with mock.patch.dict(os.environ, {'GOOGLE_API_USE_MTLS_ENDPOINT': 'always'}):
+        with mock.patch.object(transport_class, '__init__') as patched:
+            patched.return_value = None
+            client = client_class(transport=transport_name)
+            patched.assert_called_once_with(credentials=None, credentials_file=None, host=client.DEFAULT_MTLS_ENDPOINT, scopes=None, client_cert_source_for_mtls=None, quota_project_id=None, client_info=transports.base.DEFAULT_CLIENT_INFO, always_use_jwt_access=True, api_audience=None)
+    with mock.patch.dict(os.environ, {'GOOGLE_API_USE_MTLS_ENDPOINT': 'Unsupported'}):
+        with pytest.raises(MutualTLSChannelError):
+            client = client_class(transport=transport_name)
+    with mock.patch.dict(os.environ, {'GOOGLE_API_USE_CLIENT_CERTIFICATE': 'Unsupported'}):
+        with pytest.raises(ValueError):
+            client = client_class(transport=transport_name)
+    options = client_options.ClientOptions(quota_project_id='octopus')
+    with mock.patch.object(transport_class, '__init__') as patched:
+        patched.return_value = None
+        client = client_class(client_options=options, transport=transport_name)
+        patched.assert_called_once_with(credentials=None, credentials_file=None, host=client.DEFAULT_ENDPOINT, scopes=None, client_cert_source_for_mtls=None, quota_project_id='octopus', client_info=transports.base.DEFAULT_CLIENT_INFO, always_use_jwt_access=True, api_audience=None)
+    options = client_options.ClientOptions(api_audience='https://language.googleapis.com')
+    with mock.patch.object(transport_class, '__init__') as patched:
+        patched.return_value = None
+        client = client_class(client_options=options, transport=transport_name)
+        patched.assert_called_once_with(credentials=None, credentials_file=None, host=client.DEFAULT_ENDPOINT, scopes=None, client_cert_source_for_mtls=None, quota_project_id=None, client_info=transports.base.DEFAULT_CLIENT_INFO, always_use_jwt_access=True, api_audience='https://language.googleapis.com')
+
+@pytest.mark.parametrize('client_class,transport_class,transport_name,use_client_cert_env', [(BatchServiceClient, transports.BatchServiceGrpcTransport, 'grpc', 'true'), (BatchServiceAsyncClient, transports.BatchServiceGrpcAsyncIOTransport, 'grpc_asyncio', 'true'), (BatchServiceClient, transports.BatchServiceGrpcTransport, 'grpc', 'false'), (BatchServiceAsyncClient, transports.BatchServiceGrpcAsyncIOTransport, 'grpc_asyncio', 'false'), (BatchServiceClient, transports.BatchServiceRestTransport, 'rest', 'true'), (BatchServiceClient, transports.BatchServiceRestTransport, 'rest', 'false')])
+@mock.patch.object(BatchServiceClient, 'DEFAULT_ENDPOINT', modify_default_endpoint(BatchServiceClient))
+@mock.patch.object(BatchServiceAsyncClient, 'DEFAULT_ENDPOINT', modify_default_endpoint(BatchServiceAsyncClient))
+@mock.patch.dict(os.environ, {'GOOGLE_API_USE_MTLS_ENDPOINT': 'auto'})
+def test_batch_service_client_mtls_env_auto(client_class, transport_class, transport_name, use_client_cert_env):
+    if False:
+        i = 10
+        return i + 15
+    with mock.patch.dict(os.environ, {'GOOGLE_API_USE_CLIENT_CERTIFICATE': use_client_cert_env}):
+        options = client_options.ClientOptions(client_cert_source=client_cert_source_callback)
+        with mock.patch.object(transport_class, '__init__') as patched:
+            patched.return_value = None
+            client = client_class(client_options=options, transport=transport_name)
+            if use_client_cert_env == 'false':
+                expected_client_cert_source = None
+                expected_host = client.DEFAULT_ENDPOINT
+            else:
+                expected_client_cert_source = client_cert_source_callback
+                expected_host = client.DEFAULT_MTLS_ENDPOINT
+            patched.assert_called_once_with(credentials=None, credentials_file=None, host=expected_host, scopes=None, client_cert_source_for_mtls=expected_client_cert_source, quota_project_id=None, client_info=transports.base.DEFAULT_CLIENT_INFO, always_use_jwt_access=True, api_audience=None)
+    with mock.patch.dict(os.environ, {'GOOGLE_API_USE_CLIENT_CERTIFICATE': use_client_cert_env}):
+        with mock.patch.object(transport_class, '__init__') as patched:
+            with mock.patch('google.auth.transport.mtls.has_default_client_cert_source', return_value=True):
+                with mock.patch('google.auth.transport.mtls.default_client_cert_source', return_value=client_cert_source_callback):
+                    if use_client_cert_env == 'false':
+                        expected_host = client.DEFAULT_ENDPOINT
+                        expected_client_cert_source = None
+                    else:
+                        expected_host = client.DEFAULT_MTLS_ENDPOINT
+                        expected_client_cert_source = client_cert_source_callback
+                    patched.return_value = None
+                    client = client_class(transport=transport_name)
+                    patched.assert_called_once_with(credentials=None, credentials_file=None, host=expected_host, scopes=None, client_cert_source_for_mtls=expected_client_cert_source, quota_project_id=None, client_info=transports.base.DEFAULT_CLIENT_INFO, always_use_jwt_access=True, api_audience=None)
+    with mock.patch.dict(os.environ, {'GOOGLE_API_USE_CLIENT_CERTIFICATE': use_client_cert_env}):
+        with mock.patch.object(transport_class, '__init__') as patched:
+            with mock.patch('google.auth.transport.mtls.has_default_client_cert_source', return_value=False):
+                patched.return_value = None
+                client = client_class(transport=transport_name)
+                patched.assert_called_once_with(credentials=None, credentials_file=None, host=client.DEFAULT_ENDPOINT, scopes=None, client_cert_source_for_mtls=None, quota_project_id=None, client_info=transports.base.DEFAULT_CLIENT_INFO, always_use_jwt_access=True, api_audience=None)
+
+@pytest.mark.parametrize('client_class', [BatchServiceClient, BatchServiceAsyncClient])
+@mock.patch.object(BatchServiceClient, 'DEFAULT_ENDPOINT', modify_default_endpoint(BatchServiceClient))
+@mock.patch.object(BatchServiceAsyncClient, 'DEFAULT_ENDPOINT', modify_default_endpoint(BatchServiceAsyncClient))
+def test_batch_service_client_get_mtls_endpoint_and_cert_source(client_class):
+    if False:
+        return 10
+    mock_client_cert_source = mock.Mock()
+    with mock.patch.dict(os.environ, {'GOOGLE_API_USE_CLIENT_CERTIFICATE': 'true'}):
+        mock_api_endpoint = 'foo'
+        options = client_options.ClientOptions(client_cert_source=mock_client_cert_source, api_endpoint=mock_api_endpoint)
+        (api_endpoint, cert_source) = client_class.get_mtls_endpoint_and_cert_source(options)
+        assert api_endpoint == mock_api_endpoint
+        assert cert_source == mock_client_cert_source
+    with mock.patch.dict(os.environ, {'GOOGLE_API_USE_CLIENT_CERTIFICATE': 'false'}):
+        mock_client_cert_source = mock.Mock()
+        mock_api_endpoint = 'foo'
+        options = client_options.ClientOptions(client_cert_source=mock_client_cert_source, api_endpoint=mock_api_endpoint)
+        (api_endpoint, cert_source) = client_class.get_mtls_endpoint_and_cert_source(options)
+        assert api_endpoint == mock_api_endpoint
+        assert cert_source is None
+    with mock.patch.dict(os.environ, {'GOOGLE_API_USE_MTLS_ENDPOINT': 'never'}):
+        (api_endpoint, cert_source) = client_class.get_mtls_endpoint_and_cert_source()
+        assert api_endpoint == client_class.DEFAULT_ENDPOINT
+        assert cert_source is None
+    with mock.patch.dict(os.environ, {'GOOGLE_API_USE_MTLS_ENDPOINT': 'always'}):
+        (api_endpoint, cert_source) = client_class.get_mtls_endpoint_and_cert_source()
+        assert api_endpoint == client_class.DEFAULT_MTLS_ENDPOINT
+        assert cert_source is None
+    with mock.patch.dict(os.environ, {'GOOGLE_API_USE_CLIENT_CERTIFICATE': 'true'}):
+        with mock.patch('google.auth.transport.mtls.has_default_client_cert_source', return_value=False):
+            (api_endpoint, cert_source) = client_class.get_mtls_endpoint_and_cert_source()
+            assert api_endpoint == client_class.DEFAULT_ENDPOINT
+            assert cert_source is None
+    with mock.patch.dict(os.environ, {'GOOGLE_API_USE_CLIENT_CERTIFICATE': 'true'}):
+        with mock.patch('google.auth.transport.mtls.has_default_client_cert_source', return_value=True):
+            with mock.patch('google.auth.transport.mtls.default_client_cert_source', return_value=mock_client_cert_source):
+                (api_endpoint, cert_source) = client_class.get_mtls_endpoint_and_cert_source()
+                assert api_endpoint == client_class.DEFAULT_MTLS_ENDPOINT
+                assert cert_source == mock_client_cert_source
+
+@pytest.mark.parametrize('client_class,transport_class,transport_name', [(BatchServiceClient, transports.BatchServiceGrpcTransport, 'grpc'), (BatchServiceAsyncClient, transports.BatchServiceGrpcAsyncIOTransport, 'grpc_asyncio'), (BatchServiceClient, transports.BatchServiceRestTransport, 'rest')])
+def test_batch_service_client_client_options_scopes(client_class, transport_class, transport_name):
+    if False:
+        for i in range(10):
+            print('nop')
+    options = client_options.ClientOptions(scopes=['1', '2'])
+    with mock.patch.object(transport_class, '__init__') as patched:
+        patched.return_value = None
+        client = client_class(client_options=options, transport=transport_name)
+        patched.assert_called_once_with(credentials=None, credentials_file=None, host=client.DEFAULT_ENDPOINT, scopes=['1', '2'], client_cert_source_for_mtls=None, quota_project_id=None, client_info=transports.base.DEFAULT_CLIENT_INFO, always_use_jwt_access=True, api_audience=None)
+
+@pytest.mark.parametrize('client_class,transport_class,transport_name,grpc_helpers', [(BatchServiceClient, transports.BatchServiceGrpcTransport, 'grpc', grpc_helpers), (BatchServiceAsyncClient, transports.BatchServiceGrpcAsyncIOTransport, 'grpc_asyncio', grpc_helpers_async), (BatchServiceClient, transports.BatchServiceRestTransport, 'rest', None)])
+def test_batch_service_client_client_options_credentials_file(client_class, transport_class, transport_name, grpc_helpers):
+    if False:
+        return 10
+    options = client_options.ClientOptions(credentials_file='credentials.json')
+    with mock.patch.object(transport_class, '__init__') as patched:
+        patched.return_value = None
+        client = client_class(client_options=options, transport=transport_name)
+        patched.assert_called_once_with(credentials=None, credentials_file='credentials.json', host=client.DEFAULT_ENDPOINT, scopes=None, client_cert_source_for_mtls=None, quota_project_id=None, client_info=transports.base.DEFAULT_CLIENT_INFO, always_use_jwt_access=True, api_audience=None)
+
+def test_batch_service_client_client_options_from_dict():
+    if False:
+        print('Hello World!')
+    with mock.patch('google.cloud.batch_v1.services.batch_service.transports.BatchServiceGrpcTransport.__init__') as grpc_transport:
+        grpc_transport.return_value = None
+        client = BatchServiceClient(client_options={'api_endpoint': 'squid.clam.whelk'})
+        grpc_transport.assert_called_once_with(credentials=None, credentials_file=None, host='squid.clam.whelk', scopes=None, client_cert_source_for_mtls=None, quota_project_id=None, client_info=transports.base.DEFAULT_CLIENT_INFO, always_use_jwt_access=True, api_audience=None)
+
+@pytest.mark.parametrize('client_class,transport_class,transport_name,grpc_helpers', [(BatchServiceClient, transports.BatchServiceGrpcTransport, 'grpc', grpc_helpers), (BatchServiceAsyncClient, transports.BatchServiceGrpcAsyncIOTransport, 'grpc_asyncio', grpc_helpers_async)])
+def test_batch_service_client_create_channel_credentials_file(client_class, transport_class, transport_name, grpc_helpers):
+    if False:
+        print('Hello World!')
+    options = client_options.ClientOptions(credentials_file='credentials.json')
+    with mock.patch.object(transport_class, '__init__') as patched:
+        patched.return_value = None
+        client = client_class(client_options=options, transport=transport_name)
+        patched.assert_called_once_with(credentials=None, credentials_file='credentials.json', host=client.DEFAULT_ENDPOINT, scopes=None, client_cert_source_for_mtls=None, quota_project_id=None, client_info=transports.base.DEFAULT_CLIENT_INFO, always_use_jwt_access=True, api_audience=None)
+    with mock.patch.object(google.auth, 'load_credentials_from_file', autospec=True) as load_creds, mock.patch.object(google.auth, 'default', autospec=True) as adc, mock.patch.object(grpc_helpers, 'create_channel') as create_channel:
+        creds = ga_credentials.AnonymousCredentials()
+        file_creds = ga_credentials.AnonymousCredentials()
+        load_creds.return_value = (file_creds, None)
+        adc.return_value = (creds, None)
+        client = client_class(client_options=options, transport=transport_name)
+        create_channel.assert_called_with('batch.googleapis.com:443', credentials=file_creds, credentials_file=None, quota_project_id=None, default_scopes=('https://www.googleapis.com/auth/cloud-platform',), scopes=None, default_host='batch.googleapis.com', ssl_credentials=None, options=[('grpc.max_send_message_length', -1), ('grpc.max_receive_message_length', -1)])
+
+@pytest.mark.parametrize('request_type', [batch.CreateJobRequest, dict])
+def test_create_job(request_type, transport: str='grpc'):
+    if False:
+        while True:
+            i = 10
+    client = BatchServiceClient(credentials=ga_credentials.AnonymousCredentials(), transport=transport)
+    request = request_type()
+    with mock.patch.object(type(client.transport.create_job), '__call__') as call:
+        call.return_value = gcb_job.Job(name='name_value', uid='uid_value', priority=898)
+        response = client.create_job(request)
+        assert len(call.mock_calls) == 1
+        (_, args, _) = call.mock_calls[0]
+        assert args[0] == batch.CreateJobRequest()
+    assert isinstance(response, gcb_job.Job)
+    assert response.name == 'name_value'
+    assert response.uid == 'uid_value'
+    assert response.priority == 898
+
+def test_create_job_empty_call():
+    if False:
+        print('Hello World!')
+    client = BatchServiceClient(credentials=ga_credentials.AnonymousCredentials(), transport='grpc')
+    with mock.patch.object(type(client.transport.create_job), '__call__') as call:
+        client.create_job()
+        call.assert_called()
+        (_, args, _) = call.mock_calls[0]
+        assert args[0] == batch.CreateJobRequest()
+
+@pytest.mark.asyncio
+async def test_create_job_async(transport: str='grpc_asyncio', request_type=batch.CreateJobRequest):
+    client = BatchServiceAsyncClient(credentials=ga_credentials.AnonymousCredentials(), transport=transport)
+    request = request_type()
+    with mock.patch.object(type(client.transport.create_job), '__call__') as call:
+        call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(gcb_job.Job(name='name_value', uid='uid_value', priority=898))
+        response = await client.create_job(request)
+        assert len(call.mock_calls)
+        (_, args, _) = call.mock_calls[0]
+        assert args[0] == batch.CreateJobRequest()
+    assert isinstance(response, gcb_job.Job)
+    assert response.name == 'name_value'
+    assert response.uid == 'uid_value'
+    assert response.priority == 898
+
+@pytest.mark.asyncio
+async def test_create_job_async_from_dict():
+    await test_create_job_async(request_type=dict)
+
+def test_create_job_field_headers():
+    if False:
+        i = 10
+        return i + 15
+    client = BatchServiceClient(credentials=ga_credentials.AnonymousCredentials())
+    request = batch.CreateJobRequest()
+    request.parent = 'parent_value'
+    with mock.patch.object(type(client.transport.create_job), '__call__') as call:
+        call.return_value = gcb_job.Job()
+        client.create_job(request)
+        assert len(call.mock_calls) == 1
+        (_, args, _) = call.mock_calls[0]
+        assert args[0] == request
+    (_, _, kw) = call.mock_calls[0]
+    assert ('x-goog-request-params', 'parent=parent_value') in kw['metadata']
+
+@pytest.mark.asyncio
+async def test_create_job_field_headers_async():
+    client = BatchServiceAsyncClient(credentials=ga_credentials.AnonymousCredentials())
+    request = batch.CreateJobRequest()
+    request.parent = 'parent_value'
+    with mock.patch.object(type(client.transport.create_job), '__call__') as call:
+        call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(gcb_job.Job())
+        await client.create_job(request)
+        assert len(call.mock_calls)
+        (_, args, _) = call.mock_calls[0]
+        assert args[0] == request
+    (_, _, kw) = call.mock_calls[0]
+    assert ('x-goog-request-params', 'parent=parent_value') in kw['metadata']
+
+def test_create_job_flattened():
+    if False:
+        i = 10
+        return i + 15
+    client = BatchServiceClient(credentials=ga_credentials.AnonymousCredentials())
+    with mock.patch.object(type(client.transport.create_job), '__call__') as call:
+        call.return_value = gcb_job.Job()
+        client.create_job(parent='parent_value', job=gcb_job.Job(name='name_value'), job_id='job_id_value')
+        assert len(call.mock_calls) == 1
+        (_, args, _) = call.mock_calls[0]
+        arg = args[0].parent
+        mock_val = 'parent_value'
+        assert arg == mock_val
+        arg = args[0].job
+        mock_val = gcb_job.Job(name='name_value')
+        assert arg == mock_val
+        arg = args[0].job_id
+        mock_val = 'job_id_value'
+        assert arg == mock_val
+
+def test_create_job_flattened_error():
+    if False:
+        while True:
+            i = 10
+    client = BatchServiceClient(credentials=ga_credentials.AnonymousCredentials())
+    with pytest.raises(ValueError):
+        client.create_job(batch.CreateJobRequest(), parent='parent_value', job=gcb_job.Job(name='name_value'), job_id='job_id_value')
+
+@pytest.mark.asyncio
+async def test_create_job_flattened_async():
+    client = BatchServiceAsyncClient(credentials=ga_credentials.AnonymousCredentials())
+    with mock.patch.object(type(client.transport.create_job), '__call__') as call:
+        call.return_value = gcb_job.Job()
+        call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(gcb_job.Job())
+        response = await client.create_job(parent='parent_value', job=gcb_job.Job(name='name_value'), job_id='job_id_value')
+        assert len(call.mock_calls)
+        (_, args, _) = call.mock_calls[0]
+        arg = args[0].parent
+        mock_val = 'parent_value'
+        assert arg == mock_val
+        arg = args[0].job
+        mock_val = gcb_job.Job(name='name_value')
+        assert arg == mock_val
+        arg = args[0].job_id
+        mock_val = 'job_id_value'
+        assert arg == mock_val
+
+@pytest.mark.asyncio
+async def test_create_job_flattened_error_async():
+    client = BatchServiceAsyncClient(credentials=ga_credentials.AnonymousCredentials())
+    with pytest.raises(ValueError):
+        await client.create_job(batch.CreateJobRequest(), parent='parent_value', job=gcb_job.Job(name='name_value'), job_id='job_id_value')
+
+@pytest.mark.parametrize('request_type', [batch.GetJobRequest, dict])
+def test_get_job(request_type, transport: str='grpc'):
+    if False:
+        for i in range(10):
+            print('nop')
+    client = BatchServiceClient(credentials=ga_credentials.AnonymousCredentials(), transport=transport)
+    request = request_type()
+    with mock.patch.object(type(client.transport.get_job), '__call__') as call:
+        call.return_value = job.Job(name='name_value', uid='uid_value', priority=898)
+        response = client.get_job(request)
+        assert len(call.mock_calls) == 1
+        (_, args, _) = call.mock_calls[0]
+        assert args[0] == batch.GetJobRequest()
+    assert isinstance(response, job.Job)
+    assert response.name == 'name_value'
+    assert response.uid == 'uid_value'
+    assert response.priority == 898
+
+def test_get_job_empty_call():
+    if False:
+        print('Hello World!')
+    client = BatchServiceClient(credentials=ga_credentials.AnonymousCredentials(), transport='grpc')
+    with mock.patch.object(type(client.transport.get_job), '__call__') as call:
+        client.get_job()
+        call.assert_called()
+        (_, args, _) = call.mock_calls[0]
+        assert args[0] == batch.GetJobRequest()
+
+@pytest.mark.asyncio
+async def test_get_job_async(transport: str='grpc_asyncio', request_type=batch.GetJobRequest):
+    client = BatchServiceAsyncClient(credentials=ga_credentials.AnonymousCredentials(), transport=transport)
+    request = request_type()
+    with mock.patch.object(type(client.transport.get_job), '__call__') as call:
+        call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(job.Job(name='name_value', uid='uid_value', priority=898))
+        response = await client.get_job(request)
+        assert len(call.mock_calls)
+        (_, args, _) = call.mock_calls[0]
+        assert args[0] == batch.GetJobRequest()
+    assert isinstance(response, job.Job)
+    assert response.name == 'name_value'
+    assert response.uid == 'uid_value'
+    assert response.priority == 898
+
+@pytest.mark.asyncio
+async def test_get_job_async_from_dict():
+    await test_get_job_async(request_type=dict)
+
+def test_get_job_field_headers():
+    if False:
+        print('Hello World!')
+    client = BatchServiceClient(credentials=ga_credentials.AnonymousCredentials())
+    request = batch.GetJobRequest()
+    request.name = 'name_value'
+    with mock.patch.object(type(client.transport.get_job), '__call__') as call:
+        call.return_value = job.Job()
+        client.get_job(request)
+        assert len(call.mock_calls) == 1
+        (_, args, _) = call.mock_calls[0]
+        assert args[0] == request
+    (_, _, kw) = call.mock_calls[0]
+    assert ('x-goog-request-params', 'name=name_value') in kw['metadata']
+
+@pytest.mark.asyncio
+async def test_get_job_field_headers_async():
+    client = BatchServiceAsyncClient(credentials=ga_credentials.AnonymousCredentials())
+    request = batch.GetJobRequest()
+    request.name = 'name_value'
+    with mock.patch.object(type(client.transport.get_job), '__call__') as call:
+        call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(job.Job())
+        await client.get_job(request)
+        assert len(call.mock_calls)
+        (_, args, _) = call.mock_calls[0]
+        assert args[0] == request
+    (_, _, kw) = call.mock_calls[0]
+    assert ('x-goog-request-params', 'name=name_value') in kw['metadata']
+
+def test_get_job_flattened():
+    if False:
+        i = 10
+        return i + 15
+    client = BatchServiceClient(credentials=ga_credentials.AnonymousCredentials())
+    with mock.patch.object(type(client.transport.get_job), '__call__') as call:
+        call.return_value = job.Job()
+        client.get_job(name='name_value')
+        assert len(call.mock_calls) == 1
+        (_, args, _) = call.mock_calls[0]
+        arg = args[0].name
+        mock_val = 'name_value'
+        assert arg == mock_val
+
+def test_get_job_flattened_error():
+    if False:
+        while True:
+            i = 10
+    client = BatchServiceClient(credentials=ga_credentials.AnonymousCredentials())
+    with pytest.raises(ValueError):
+        client.get_job(batch.GetJobRequest(), name='name_value')
+
+@pytest.mark.asyncio
+async def test_get_job_flattened_async():
+    client = BatchServiceAsyncClient(credentials=ga_credentials.AnonymousCredentials())
+    with mock.patch.object(type(client.transport.get_job), '__call__') as call:
+        call.return_value = job.Job()
+        call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(job.Job())
+        response = await client.get_job(name='name_value')
+        assert len(call.mock_calls)
+        (_, args, _) = call.mock_calls[0]
+        arg = args[0].name
+        mock_val = 'name_value'
+        assert arg == mock_val
+
+@pytest.mark.asyncio
+async def test_get_job_flattened_error_async():
+    client = BatchServiceAsyncClient(credentials=ga_credentials.AnonymousCredentials())
+    with pytest.raises(ValueError):
+        await client.get_job(batch.GetJobRequest(), name='name_value')
+
+@pytest.mark.parametrize('request_type', [batch.DeleteJobRequest, dict])
+def test_delete_job(request_type, transport: str='grpc'):
+    if False:
+        while True:
+            i = 10
+    client = BatchServiceClient(credentials=ga_credentials.AnonymousCredentials(), transport=transport)
+    request = request_type()
+    with mock.patch.object(type(client.transport.delete_job), '__call__') as call:
+        call.return_value = operations_pb2.Operation(name='operations/spam')
+        response = client.delete_job(request)
+        assert len(call.mock_calls) == 1
+        (_, args, _) = call.mock_calls[0]
+        assert args[0] == batch.DeleteJobRequest()
+    assert isinstance(response, future.Future)
+
+def test_delete_job_empty_call():
+    if False:
+        while True:
+            i = 10
+    client = BatchServiceClient(credentials=ga_credentials.AnonymousCredentials(), transport='grpc')
+    with mock.patch.object(type(client.transport.delete_job), '__call__') as call:
+        client.delete_job()
+        call.assert_called()
+        (_, args, _) = call.mock_calls[0]
+        assert args[0] == batch.DeleteJobRequest()
+
+@pytest.mark.asyncio
+async def test_delete_job_async(transport: str='grpc_asyncio', request_type=batch.DeleteJobRequest):
+    client = BatchServiceAsyncClient(credentials=ga_credentials.AnonymousCredentials(), transport=transport)
+    request = request_type()
+    with mock.patch.object(type(client.transport.delete_job), '__call__') as call:
+        call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(operations_pb2.Operation(name='operations/spam'))
+        response = await client.delete_job(request)
+        assert len(call.mock_calls)
+        (_, args, _) = call.mock_calls[0]
+        assert args[0] == batch.DeleteJobRequest()
+    assert isinstance(response, future.Future)
+
+@pytest.mark.asyncio
+async def test_delete_job_async_from_dict():
+    await test_delete_job_async(request_type=dict)
+
+def test_delete_job_field_headers():
+    if False:
+        return 10
+    client = BatchServiceClient(credentials=ga_credentials.AnonymousCredentials())
+    request = batch.DeleteJobRequest()
+    request.name = 'name_value'
+    with mock.patch.object(type(client.transport.delete_job), '__call__') as call:
+        call.return_value = operations_pb2.Operation(name='operations/op')
+        client.delete_job(request)
+        assert len(call.mock_calls) == 1
+        (_, args, _) = call.mock_calls[0]
+        assert args[0] == request
+    (_, _, kw) = call.mock_calls[0]
+    assert ('x-goog-request-params', 'name=name_value') in kw['metadata']
+
+@pytest.mark.asyncio
+async def test_delete_job_field_headers_async():
+    client = BatchServiceAsyncClient(credentials=ga_credentials.AnonymousCredentials())
+    request = batch.DeleteJobRequest()
+    request.name = 'name_value'
+    with mock.patch.object(type(client.transport.delete_job), '__call__') as call:
+        call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(operations_pb2.Operation(name='operations/op'))
+        await client.delete_job(request)
+        assert len(call.mock_calls)
+        (_, args, _) = call.mock_calls[0]
+        assert args[0] == request
+    (_, _, kw) = call.mock_calls[0]
+    assert ('x-goog-request-params', 'name=name_value') in kw['metadata']
+
+def test_delete_job_flattened():
+    if False:
+        while True:
+            i = 10
+    client = BatchServiceClient(credentials=ga_credentials.AnonymousCredentials())
+    with mock.patch.object(type(client.transport.delete_job), '__call__') as call:
+        call.return_value = operations_pb2.Operation(name='operations/op')
+        client.delete_job(name='name_value')
+        assert len(call.mock_calls) == 1
+        (_, args, _) = call.mock_calls[0]
+        arg = args[0].name
+        mock_val = 'name_value'
+        assert arg == mock_val
+
+def test_delete_job_flattened_error():
+    if False:
+        i = 10
+        return i + 15
+    client = BatchServiceClient(credentials=ga_credentials.AnonymousCredentials())
+    with pytest.raises(ValueError):
+        client.delete_job(batch.DeleteJobRequest(), name='name_value')
+
+@pytest.mark.asyncio
+async def test_delete_job_flattened_async():
+    client = BatchServiceAsyncClient(credentials=ga_credentials.AnonymousCredentials())
+    with mock.patch.object(type(client.transport.delete_job), '__call__') as call:
+        call.return_value = operations_pb2.Operation(name='operations/op')
+        call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(operations_pb2.Operation(name='operations/spam'))
+        response = await client.delete_job(name='name_value')
+        assert len(call.mock_calls)
+        (_, args, _) = call.mock_calls[0]
+        arg = args[0].name
+        mock_val = 'name_value'
+        assert arg == mock_val
+
+@pytest.mark.asyncio
+async def test_delete_job_flattened_error_async():
+    client = BatchServiceAsyncClient(credentials=ga_credentials.AnonymousCredentials())
+    with pytest.raises(ValueError):
+        await client.delete_job(batch.DeleteJobRequest(), name='name_value')
+
+@pytest.mark.parametrize('request_type', [batch.ListJobsRequest, dict])
+def test_list_jobs(request_type, transport: str='grpc'):
+    if False:
+        i = 10
+        return i + 15
+    client = BatchServiceClient(credentials=ga_credentials.AnonymousCredentials(), transport=transport)
+    request = request_type()
+    with mock.patch.object(type(client.transport.list_jobs), '__call__') as call:
+        call.return_value = batch.ListJobsResponse(next_page_token='next_page_token_value', unreachable=['unreachable_value'])
+        response = client.list_jobs(request)
+        assert len(call.mock_calls) == 1
+        (_, args, _) = call.mock_calls[0]
+        assert args[0] == batch.ListJobsRequest()
+    assert isinstance(response, pagers.ListJobsPager)
+    assert response.next_page_token == 'next_page_token_value'
+    assert response.unreachable == ['unreachable_value']
+
+def test_list_jobs_empty_call():
+    if False:
+        i = 10
+        return i + 15
+    client = BatchServiceClient(credentials=ga_credentials.AnonymousCredentials(), transport='grpc')
+    with mock.patch.object(type(client.transport.list_jobs), '__call__') as call:
+        client.list_jobs()
+        call.assert_called()
+        (_, args, _) = call.mock_calls[0]
+        assert args[0] == batch.ListJobsRequest()
+
+@pytest.mark.asyncio
+async def test_list_jobs_async(transport: str='grpc_asyncio', request_type=batch.ListJobsRequest):
+    client = BatchServiceAsyncClient(credentials=ga_credentials.AnonymousCredentials(), transport=transport)
+    request = request_type()
+    with mock.patch.object(type(client.transport.list_jobs), '__call__') as call:
+        call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(batch.ListJobsResponse(next_page_token='next_page_token_value', unreachable=['unreachable_value']))
+        response = await client.list_jobs(request)
+        assert len(call.mock_calls)
+        (_, args, _) = call.mock_calls[0]
+        assert args[0] == batch.ListJobsRequest()
+    assert isinstance(response, pagers.ListJobsAsyncPager)
+    assert response.next_page_token == 'next_page_token_value'
+    assert response.unreachable == ['unreachable_value']
+
+@pytest.mark.asyncio
+async def test_list_jobs_async_from_dict():
+    await test_list_jobs_async(request_type=dict)
+
+def test_list_jobs_field_headers():
+    if False:
+        while True:
+            i = 10
+    client = BatchServiceClient(credentials=ga_credentials.AnonymousCredentials())
+    request = batch.ListJobsRequest()
+    request.parent = 'parent_value'
+    with mock.patch.object(type(client.transport.list_jobs), '__call__') as call:
+        call.return_value = batch.ListJobsResponse()
+        client.list_jobs(request)
+        assert len(call.mock_calls) == 1
+        (_, args, _) = call.mock_calls[0]
+        assert args[0] == request
+    (_, _, kw) = call.mock_calls[0]
+    assert ('x-goog-request-params', 'parent=parent_value') in kw['metadata']
+
+@pytest.mark.asyncio
+async def test_list_jobs_field_headers_async():
+    client = BatchServiceAsyncClient(credentials=ga_credentials.AnonymousCredentials())
+    request = batch.ListJobsRequest()
+    request.parent = 'parent_value'
+    with mock.patch.object(type(client.transport.list_jobs), '__call__') as call:
+        call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(batch.ListJobsResponse())
+        await client.list_jobs(request)
+        assert len(call.mock_calls)
+        (_, args, _) = call.mock_calls[0]
+        assert args[0] == request
+    (_, _, kw) = call.mock_calls[0]
+    assert ('x-goog-request-params', 'parent=parent_value') in kw['metadata']
+
+def test_list_jobs_flattened():
+    if False:
+        return 10
+    client = BatchServiceClient(credentials=ga_credentials.AnonymousCredentials())
+    with mock.patch.object(type(client.transport.list_jobs), '__call__') as call:
+        call.return_value = batch.ListJobsResponse()
+        client.list_jobs(parent='parent_value')
+        assert len(call.mock_calls) == 1
+        (_, args, _) = call.mock_calls[0]
+        arg = args[0].parent
+        mock_val = 'parent_value'
+        assert arg == mock_val
+
+def test_list_jobs_flattened_error():
+    if False:
+        i = 10
+        return i + 15
+    client = BatchServiceClient(credentials=ga_credentials.AnonymousCredentials())
+    with pytest.raises(ValueError):
+        client.list_jobs(batch.ListJobsRequest(), parent='parent_value')
+
+@pytest.mark.asyncio
+async def test_list_jobs_flattened_async():
+    client = BatchServiceAsyncClient(credentials=ga_credentials.AnonymousCredentials())
+    with mock.patch.object(type(client.transport.list_jobs), '__call__') as call:
+        call.return_value = batch.ListJobsResponse()
+        call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(batch.ListJobsResponse())
+        response = await client.list_jobs(parent='parent_value')
+        assert len(call.mock_calls)
+        (_, args, _) = call.mock_calls[0]
+        arg = args[0].parent
+        mock_val = 'parent_value'
+        assert arg == mock_val
+
+@pytest.mark.asyncio
+async def test_list_jobs_flattened_error_async():
+    client = BatchServiceAsyncClient(credentials=ga_credentials.AnonymousCredentials())
+    with pytest.raises(ValueError):
+        await client.list_jobs(batch.ListJobsRequest(), parent='parent_value')
+
+def test_list_jobs_pager(transport_name: str='grpc'):
+    if False:
+        return 10
+    client = BatchServiceClient(credentials=ga_credentials.AnonymousCredentials, transport=transport_name)
+    with mock.patch.object(type(client.transport.list_jobs), '__call__') as call:
+        call.side_effect = (batch.ListJobsResponse(jobs=[job.Job(), job.Job(), job.Job()], next_page_token='abc'), batch.ListJobsResponse(jobs=[], next_page_token='def'), batch.ListJobsResponse(jobs=[job.Job()], next_page_token='ghi'), batch.ListJobsResponse(jobs=[job.Job(), job.Job()]), RuntimeError)
+        metadata = ()
+        metadata = tuple(metadata) + (gapic_v1.routing_header.to_grpc_metadata((('parent', ''),)),)
+        pager = client.list_jobs(request={})
+        assert pager._metadata == metadata
+        results = list(pager)
+        assert len(results) == 6
+        assert all((isinstance(i, job.Job) for i in results))
+
+def test_list_jobs_pages(transport_name: str='grpc'):
+    if False:
+        i = 10
+        return i + 15
+    client = BatchServiceClient(credentials=ga_credentials.AnonymousCredentials, transport=transport_name)
+    with mock.patch.object(type(client.transport.list_jobs), '__call__') as call:
+        call.side_effect = (batch.ListJobsResponse(jobs=[job.Job(), job.Job(), job.Job()], next_page_token='abc'), batch.ListJobsResponse(jobs=[], next_page_token='def'), batch.ListJobsResponse(jobs=[job.Job()], next_page_token='ghi'), batch.ListJobsResponse(jobs=[job.Job(), job.Job()]), RuntimeError)
+        pages = list(client.list_jobs(request={}).pages)
+        for (page_, token) in zip(pages, ['abc', 'def', 'ghi', '']):
+            assert page_.raw_page.next_page_token == token
+
+@pytest.mark.asyncio
+async def test_list_jobs_async_pager():
+    client = BatchServiceAsyncClient(credentials=ga_credentials.AnonymousCredentials)
+    with mock.patch.object(type(client.transport.list_jobs), '__call__', new_callable=mock.AsyncMock) as call:
+        call.side_effect = (batch.ListJobsResponse(jobs=[job.Job(), job.Job(), job.Job()], next_page_token='abc'), batch.ListJobsResponse(jobs=[], next_page_token='def'), batch.ListJobsResponse(jobs=[job.Job()], next_page_token='ghi'), batch.ListJobsResponse(jobs=[job.Job(), job.Job()]), RuntimeError)
+        async_pager = await client.list_jobs(request={})
+        assert async_pager.next_page_token == 'abc'
+        responses = []
+        async for response in async_pager:
+            responses.append(response)
+        assert len(responses) == 6
+        assert all((isinstance(i, job.Job) for i in responses))
+
+@pytest.mark.asyncio
+async def test_list_jobs_async_pages():
+    client = BatchServiceAsyncClient(credentials=ga_credentials.AnonymousCredentials)
+    with mock.patch.object(type(client.transport.list_jobs), '__call__', new_callable=mock.AsyncMock) as call:
+        call.side_effect = (batch.ListJobsResponse(jobs=[job.Job(), job.Job(), job.Job()], next_page_token='abc'), batch.ListJobsResponse(jobs=[], next_page_token='def'), batch.ListJobsResponse(jobs=[job.Job()], next_page_token='ghi'), batch.ListJobsResponse(jobs=[job.Job(), job.Job()]), RuntimeError)
+        pages = []
+        async for page_ in (await client.list_jobs(request={})).pages:
+            pages.append(page_)
+        for (page_, token) in zip(pages, ['abc', 'def', 'ghi', '']):
+            assert page_.raw_page.next_page_token == token
+
+@pytest.mark.parametrize('request_type', [batch.GetTaskRequest, dict])
+def test_get_task(request_type, transport: str='grpc'):
+    if False:
+        i = 10
+        return i + 15
+    client = BatchServiceClient(credentials=ga_credentials.AnonymousCredentials(), transport=transport)
+    request = request_type()
+    with mock.patch.object(type(client.transport.get_task), '__call__') as call:
+        call.return_value = task.Task(name='name_value')
+        response = client.get_task(request)
+        assert len(call.mock_calls) == 1
+        (_, args, _) = call.mock_calls[0]
+        assert args[0] == batch.GetTaskRequest()
+    assert isinstance(response, task.Task)
+    assert response.name == 'name_value'
+
+def test_get_task_empty_call():
+    if False:
+        while True:
+            i = 10
+    client = BatchServiceClient(credentials=ga_credentials.AnonymousCredentials(), transport='grpc')
+    with mock.patch.object(type(client.transport.get_task), '__call__') as call:
+        client.get_task()
+        call.assert_called()
+        (_, args, _) = call.mock_calls[0]
+        assert args[0] == batch.GetTaskRequest()
+
+@pytest.mark.asyncio
+async def test_get_task_async(transport: str='grpc_asyncio', request_type=batch.GetTaskRequest):
+    client = BatchServiceAsyncClient(credentials=ga_credentials.AnonymousCredentials(), transport=transport)
+    request = request_type()
+    with mock.patch.object(type(client.transport.get_task), '__call__') as call:
+        call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(task.Task(name='name_value'))
+        response = await client.get_task(request)
+        assert len(call.mock_calls)
+        (_, args, _) = call.mock_calls[0]
+        assert args[0] == batch.GetTaskRequest()
+    assert isinstance(response, task.Task)
+    assert response.name == 'name_value'
+
+@pytest.mark.asyncio
+async def test_get_task_async_from_dict():
+    await test_get_task_async(request_type=dict)
+
+def test_get_task_field_headers():
+    if False:
+        i = 10
+        return i + 15
+    client = BatchServiceClient(credentials=ga_credentials.AnonymousCredentials())
+    request = batch.GetTaskRequest()
+    request.name = 'name_value'
+    with mock.patch.object(type(client.transport.get_task), '__call__') as call:
+        call.return_value = task.Task()
+        client.get_task(request)
+        assert len(call.mock_calls) == 1
+        (_, args, _) = call.mock_calls[0]
+        assert args[0] == request
+    (_, _, kw) = call.mock_calls[0]
+    assert ('x-goog-request-params', 'name=name_value') in kw['metadata']
+
+@pytest.mark.asyncio
+async def test_get_task_field_headers_async():
+    client = BatchServiceAsyncClient(credentials=ga_credentials.AnonymousCredentials())
+    request = batch.GetTaskRequest()
+    request.name = 'name_value'
+    with mock.patch.object(type(client.transport.get_task), '__call__') as call:
+        call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(task.Task())
+        await client.get_task(request)
+        assert len(call.mock_calls)
+        (_, args, _) = call.mock_calls[0]
+        assert args[0] == request
+    (_, _, kw) = call.mock_calls[0]
+    assert ('x-goog-request-params', 'name=name_value') in kw['metadata']
+
+def test_get_task_flattened():
+    if False:
+        print('Hello World!')
+    client = BatchServiceClient(credentials=ga_credentials.AnonymousCredentials())
+    with mock.patch.object(type(client.transport.get_task), '__call__') as call:
+        call.return_value = task.Task()
+        client.get_task(name='name_value')
+        assert len(call.mock_calls) == 1
+        (_, args, _) = call.mock_calls[0]
+        arg = args[0].name
+        mock_val = 'name_value'
+        assert arg == mock_val
+
+def test_get_task_flattened_error():
+    if False:
+        return 10
+    client = BatchServiceClient(credentials=ga_credentials.AnonymousCredentials())
+    with pytest.raises(ValueError):
+        client.get_task(batch.GetTaskRequest(), name='name_value')
+
+@pytest.mark.asyncio
+async def test_get_task_flattened_async():
+    client = BatchServiceAsyncClient(credentials=ga_credentials.AnonymousCredentials())
+    with mock.patch.object(type(client.transport.get_task), '__call__') as call:
+        call.return_value = task.Task()
+        call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(task.Task())
+        response = await client.get_task(name='name_value')
+        assert len(call.mock_calls)
+        (_, args, _) = call.mock_calls[0]
+        arg = args[0].name
+        mock_val = 'name_value'
+        assert arg == mock_val
+
+@pytest.mark.asyncio
+async def test_get_task_flattened_error_async():
+    client = BatchServiceAsyncClient(credentials=ga_credentials.AnonymousCredentials())
+    with pytest.raises(ValueError):
+        await client.get_task(batch.GetTaskRequest(), name='name_value')
+
+@pytest.mark.parametrize('request_type', [batch.ListTasksRequest, dict])
+def test_list_tasks(request_type, transport: str='grpc'):
+    if False:
+        while True:
+            i = 10
+    client = BatchServiceClient(credentials=ga_credentials.AnonymousCredentials(), transport=transport)
+    request = request_type()
+    with mock.patch.object(type(client.transport.list_tasks), '__call__') as call:
+        call.return_value = batch.ListTasksResponse(next_page_token='next_page_token_value', unreachable=['unreachable_value'])
+        response = client.list_tasks(request)
+        assert len(call.mock_calls) == 1
+        (_, args, _) = call.mock_calls[0]
+        assert args[0] == batch.ListTasksRequest()
+    assert isinstance(response, pagers.ListTasksPager)
+    assert response.next_page_token == 'next_page_token_value'
+    assert response.unreachable == ['unreachable_value']
+
+def test_list_tasks_empty_call():
+    if False:
+        while True:
+            i = 10
+    client = BatchServiceClient(credentials=ga_credentials.AnonymousCredentials(), transport='grpc')
+    with mock.patch.object(type(client.transport.list_tasks), '__call__') as call:
+        client.list_tasks()
+        call.assert_called()
+        (_, args, _) = call.mock_calls[0]
+        assert args[0] == batch.ListTasksRequest()
+
+@pytest.mark.asyncio
+async def test_list_tasks_async(transport: str='grpc_asyncio', request_type=batch.ListTasksRequest):
+    client = BatchServiceAsyncClient(credentials=ga_credentials.AnonymousCredentials(), transport=transport)
+    request = request_type()
+    with mock.patch.object(type(client.transport.list_tasks), '__call__') as call:
+        call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(batch.ListTasksResponse(next_page_token='next_page_token_value', unreachable=['unreachable_value']))
+        response = await client.list_tasks(request)
+        assert len(call.mock_calls)
+        (_, args, _) = call.mock_calls[0]
+        assert args[0] == batch.ListTasksRequest()
+    assert isinstance(response, pagers.ListTasksAsyncPager)
+    assert response.next_page_token == 'next_page_token_value'
+    assert response.unreachable == ['unreachable_value']
+
+@pytest.mark.asyncio
+async def test_list_tasks_async_from_dict():
+    await test_list_tasks_async(request_type=dict)
+
+def test_list_tasks_field_headers():
+    if False:
+        i = 10
+        return i + 15
+    client = BatchServiceClient(credentials=ga_credentials.AnonymousCredentials())
+    request = batch.ListTasksRequest()
+    request.parent = 'parent_value'
+    with mock.patch.object(type(client.transport.list_tasks), '__call__') as call:
+        call.return_value = batch.ListTasksResponse()
+        client.list_tasks(request)
+        assert len(call.mock_calls) == 1
+        (_, args, _) = call.mock_calls[0]
+        assert args[0] == request
+    (_, _, kw) = call.mock_calls[0]
+    assert ('x-goog-request-params', 'parent=parent_value') in kw['metadata']
+
+@pytest.mark.asyncio
+async def test_list_tasks_field_headers_async():
+    client = BatchServiceAsyncClient(credentials=ga_credentials.AnonymousCredentials())
+    request = batch.ListTasksRequest()
+    request.parent = 'parent_value'
+    with mock.patch.object(type(client.transport.list_tasks), '__call__') as call:
+        call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(batch.ListTasksResponse())
+        await client.list_tasks(request)
+        assert len(call.mock_calls)
+        (_, args, _) = call.mock_calls[0]
+        assert args[0] == request
+    (_, _, kw) = call.mock_calls[0]
+    assert ('x-goog-request-params', 'parent=parent_value') in kw['metadata']
+
+def test_list_tasks_flattened():
+    if False:
+        print('Hello World!')
+    client = BatchServiceClient(credentials=ga_credentials.AnonymousCredentials())
+    with mock.patch.object(type(client.transport.list_tasks), '__call__') as call:
+        call.return_value = batch.ListTasksResponse()
+        client.list_tasks(parent='parent_value')
+        assert len(call.mock_calls) == 1
+        (_, args, _) = call.mock_calls[0]
+        arg = args[0].parent
+        mock_val = 'parent_value'
+        assert arg == mock_val
+
+def test_list_tasks_flattened_error():
+    if False:
+        print('Hello World!')
+    client = BatchServiceClient(credentials=ga_credentials.AnonymousCredentials())
+    with pytest.raises(ValueError):
+        client.list_tasks(batch.ListTasksRequest(), parent='parent_value')
+
+@pytest.mark.asyncio
+async def test_list_tasks_flattened_async():
+    client = BatchServiceAsyncClient(credentials=ga_credentials.AnonymousCredentials())
+    with mock.patch.object(type(client.transport.list_tasks), '__call__') as call:
+        call.return_value = batch.ListTasksResponse()
+        call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(batch.ListTasksResponse())
+        response = await client.list_tasks(parent='parent_value')
+        assert len(call.mock_calls)
+        (_, args, _) = call.mock_calls[0]
+        arg = args[0].parent
+        mock_val = 'parent_value'
+        assert arg == mock_val
+
+@pytest.mark.asyncio
+async def test_list_tasks_flattened_error_async():
+    client = BatchServiceAsyncClient(credentials=ga_credentials.AnonymousCredentials())
+    with pytest.raises(ValueError):
+        await client.list_tasks(batch.ListTasksRequest(), parent='parent_value')
+
+def test_list_tasks_pager(transport_name: str='grpc'):
+    if False:
+        while True:
+            i = 10
+    client = BatchServiceClient(credentials=ga_credentials.AnonymousCredentials, transport=transport_name)
+    with mock.patch.object(type(client.transport.list_tasks), '__call__') as call:
+        call.side_effect = (batch.ListTasksResponse(tasks=[task.Task(), task.Task(), task.Task()], next_page_token='abc'), batch.ListTasksResponse(tasks=[], next_page_token='def'), batch.ListTasksResponse(tasks=[task.Task()], next_page_token='ghi'), batch.ListTasksResponse(tasks=[task.Task(), task.Task()]), RuntimeError)
+        metadata = ()
+        metadata = tuple(metadata) + (gapic_v1.routing_header.to_grpc_metadata((('parent', ''),)),)
+        pager = client.list_tasks(request={})
+        assert pager._metadata == metadata
+        results = list(pager)
+        assert len(results) == 6
+        assert all((isinstance(i, task.Task) for i in results))
+
+def test_list_tasks_pages(transport_name: str='grpc'):
+    if False:
+        i = 10
+        return i + 15
+    client = BatchServiceClient(credentials=ga_credentials.AnonymousCredentials, transport=transport_name)
+    with mock.patch.object(type(client.transport.list_tasks), '__call__') as call:
+        call.side_effect = (batch.ListTasksResponse(tasks=[task.Task(), task.Task(), task.Task()], next_page_token='abc'), batch.ListTasksResponse(tasks=[], next_page_token='def'), batch.ListTasksResponse(tasks=[task.Task()], next_page_token='ghi'), batch.ListTasksResponse(tasks=[task.Task(), task.Task()]), RuntimeError)
+        pages = list(client.list_tasks(request={}).pages)
+        for (page_, token) in zip(pages, ['abc', 'def', 'ghi', '']):
+            assert page_.raw_page.next_page_token == token
+
+@pytest.mark.asyncio
+async def test_list_tasks_async_pager():
+    client = BatchServiceAsyncClient(credentials=ga_credentials.AnonymousCredentials)
+    with mock.patch.object(type(client.transport.list_tasks), '__call__', new_callable=mock.AsyncMock) as call:
+        call.side_effect = (batch.ListTasksResponse(tasks=[task.Task(), task.Task(), task.Task()], next_page_token='abc'), batch.ListTasksResponse(tasks=[], next_page_token='def'), batch.ListTasksResponse(tasks=[task.Task()], next_page_token='ghi'), batch.ListTasksResponse(tasks=[task.Task(), task.Task()]), RuntimeError)
+        async_pager = await client.list_tasks(request={})
+        assert async_pager.next_page_token == 'abc'
+        responses = []
+        async for response in async_pager:
+            responses.append(response)
+        assert len(responses) == 6
+        assert all((isinstance(i, task.Task) for i in responses))
+
+@pytest.mark.asyncio
+async def test_list_tasks_async_pages():
+    client = BatchServiceAsyncClient(credentials=ga_credentials.AnonymousCredentials)
+    with mock.patch.object(type(client.transport.list_tasks), '__call__', new_callable=mock.AsyncMock) as call:
+        call.side_effect = (batch.ListTasksResponse(tasks=[task.Task(), task.Task(), task.Task()], next_page_token='abc'), batch.ListTasksResponse(tasks=[], next_page_token='def'), batch.ListTasksResponse(tasks=[task.Task()], next_page_token='ghi'), batch.ListTasksResponse(tasks=[task.Task(), task.Task()]), RuntimeError)
+        pages = []
+        async for page_ in (await client.list_tasks(request={})).pages:
+            pages.append(page_)
+        for (page_, token) in zip(pages, ['abc', 'def', 'ghi', '']):
+            assert page_.raw_page.next_page_token == token
+
+@pytest.mark.parametrize('request_type', [batch.CreateJobRequest, dict])
+def test_create_job_rest(request_type):
+    if False:
+        print('Hello World!')
+    client = BatchServiceClient(credentials=ga_credentials.AnonymousCredentials(), transport='rest')
+    request_init = {'parent': 'projects/sample1/locations/sample2'}
+    request_init['job'] = {'name': 'name_value', 'uid': 'uid_value', 'priority': 898, 'task_groups': [{'name': 'name_value', 'task_spec': {'runnables': [{'container': {'image_uri': 'image_uri_value', 'commands': ['commands_value1', 'commands_value2'], 'entrypoint': 'entrypoint_value', 'volumes': ['volumes_value1', 'volumes_value2'], 'options': 'options_value', 'block_external_network': True, 'username': 'username_value', 'password': 'password_value'}, 'script': {'path': 'path_value', 'text': 'text_value'}, 'barrier': {'name': 'name_value'}, 'display_name': 'display_name_value', 'ignore_exit_status': True, 'background': True, 'always_run': True, 'environment': {'variables': {}, 'secret_variables': {}, 'encrypted_variables': {'key_name': 'key_name_value', 'cipher_text': 'cipher_text_value'}}, 'timeout': {'seconds': 751, 'nanos': 543}, 'labels': {}}], 'compute_resource': {'cpu_milli': 958, 'memory_mib': 1072, 'boot_disk_mib': 1365}, 'max_run_duration': {}, 'max_retry_count': 1635, 'lifecycle_policies': [{'action': 1, 'action_condition': {'exit_codes': [1064, 1065]}}], 'environments': {}, 'volumes': [{'nfs': {'server': 'server_value', 'remote_path': 'remote_path_value'}, 'gcs': {'remote_path': 'remote_path_value'}, 'device_name': 'device_name_value', 'mount_path': 'mount_path_value', 'mount_options': ['mount_options_value1', 'mount_options_value2']}], 'environment': {}}, 'task_count': 1083, 'parallelism': 1174, 'scheduling_policy': 1, 'task_environments': {}, 'task_count_per_node': 2022, 'require_hosts_file': True, 'permissive_ssh': True}], 'allocation_policy': {'location': {'allowed_locations': ['allowed_locations_value1', 'allowed_locations_value2']}, 'instances': [{'policy': {'machine_type': 'machine_type_value', 'min_cpu_platform': 'min_cpu_platform_value', 'provisioning_model': 1, 'accelerators': [{'type_': 'type__value', 'count': 553, 'install_gpu_drivers': True, 'driver_version': 'driver_version_value'}], 'boot_disk': {'image': 'image_value', 'snapshot': 'snapshot_value', 'type_': 'type__value', 'size_gb': 739, 'disk_interface': 'disk_interface_value'}, 'disks': [{'new_disk': {}, 'existing_disk': 'existing_disk_value', 'device_name': 'device_name_value'}], 'reservation': 'reservation_value'}, 'instance_template': 'instance_template_value', 'install_gpu_drivers': True}], 'service_account': {'email': 'email_value', 'scopes': ['scopes_value1', 'scopes_value2']}, 'labels': {}, 'network': {'network_interfaces': [{'network': 'network_value', 'subnetwork': 'subnetwork_value', 'no_external_ip_address': True}]}, 'placement': {'collocation': 'collocation_value', 'max_distance': 1264}}, 'labels': {}, 'status': {'state': 1, 'status_events': [{'type_': 'type__value', 'description': 'description_value', 'event_time': {'seconds': 751, 'nanos': 543}, 'task_execution': {'exit_code': 948}, 'task_state': 1}], 'task_groups': {}, 'run_duration': {}}, 'create_time': {}, 'update_time': {}, 'logs_policy': {'destination': 1, 'logs_path': 'logs_path_value'}, 'notifications': [{'pubsub_topic': 'pubsub_topic_value', 'message': {'type_': 1, 'new_job_state': 1, 'new_task_state': 1}}]}
+    test_field = batch.CreateJobRequest.meta.fields['job']
+
+    def get_message_fields(field):
+        if False:
+            while True:
+                i = 10
+        message_fields = []
+        if hasattr(field, 'message') and field.message:
+            is_field_type_proto_plus_type = not hasattr(field.message, 'DESCRIPTOR')
+            if is_field_type_proto_plus_type:
+                message_fields = field.message.meta.fields.values()
+            else:
+                message_fields = field.message.DESCRIPTOR.fields
+        return message_fields
+    runtime_nested_fields = [(field.name, nested_field.name) for field in get_message_fields(test_field) for nested_field in get_message_fields(field)]
+    subfields_not_in_runtime = []
+    for (field, value) in request_init['job'].items():
+        result = None
+        is_repeated = False
+        if isinstance(value, list) and len(value):
+            is_repeated = True
+            result = value[0]
+        if isinstance(value, dict):
+            result = value
+        if result and hasattr(result, 'keys'):
+            for subfield in result.keys():
+                if (field, subfield) not in runtime_nested_fields:
+                    subfields_not_in_runtime.append({'field': field, 'subfield': subfield, 'is_repeated': is_repeated})
+    for subfield_to_delete in subfields_not_in_runtime:
+        field = subfield_to_delete.get('field')
+        field_repeated = subfield_to_delete.get('is_repeated')
+        subfield = subfield_to_delete.get('subfield')
+        if subfield:
+            if field_repeated:
+                for i in range(0, len(request_init['job'][field])):
+                    del request_init['job'][field][i][subfield]
+            else:
+                del request_init['job'][field][subfield]
+    request = request_type(**request_init)
+    with mock.patch.object(type(client.transport._session), 'request') as req:
+        return_value = gcb_job.Job(name='name_value', uid='uid_value', priority=898)
+        response_value = Response()
+        response_value.status_code = 200
+        return_value = gcb_job.Job.pb(return_value)
+        json_return_value = json_format.MessageToJson(return_value)
+        response_value._content = json_return_value.encode('UTF-8')
+        req.return_value = response_value
+        response = client.create_job(request)
+    assert isinstance(response, gcb_job.Job)
+    assert response.name == 'name_value'
+    assert response.uid == 'uid_value'
+    assert response.priority == 898
+
+def test_create_job_rest_required_fields(request_type=batch.CreateJobRequest):
+    if False:
+        return 10
+    transport_class = transports.BatchServiceRestTransport
+    request_init = {}
+    request_init['parent'] = ''
+    request = request_type(**request_init)
+    pb_request = request_type.pb(request)
+    jsonified_request = json.loads(json_format.MessageToJson(pb_request, including_default_value_fields=False, use_integers_for_enums=False))
+    unset_fields = transport_class(credentials=ga_credentials.AnonymousCredentials()).create_job._get_unset_required_fields(jsonified_request)
+    jsonified_request.update(unset_fields)
+    jsonified_request['parent'] = 'parent_value'
+    unset_fields = transport_class(credentials=ga_credentials.AnonymousCredentials()).create_job._get_unset_required_fields(jsonified_request)
+    assert not set(unset_fields) - set(('job_id', 'request_id'))
+    jsonified_request.update(unset_fields)
+    assert 'parent' in jsonified_request
+    assert jsonified_request['parent'] == 'parent_value'
+    client = BatchServiceClient(credentials=ga_credentials.AnonymousCredentials(), transport='rest')
+    request = request_type(**request_init)
+    return_value = gcb_job.Job()
+    with mock.patch.object(Session, 'request') as req:
+        with mock.patch.object(path_template, 'transcode') as transcode:
+            pb_request = request_type.pb(request)
+            transcode_result = {'uri': 'v1/sample_method', 'method': 'post', 'query_params': pb_request}
+            transcode_result['body'] = pb_request
+            transcode.return_value = transcode_result
+            response_value = Response()
+            response_value.status_code = 200
+            return_value = gcb_job.Job.pb(return_value)
+            json_return_value = json_format.MessageToJson(return_value)
+            response_value._content = json_return_value.encode('UTF-8')
+            req.return_value = response_value
+            response = client.create_job(request)
+            expected_params = [('$alt', 'json;enum-encoding=int')]
+            actual_params = req.call_args.kwargs['params']
+            assert expected_params == actual_params
+
+def test_create_job_rest_unset_required_fields():
+    if False:
+        return 10
+    transport = transports.BatchServiceRestTransport(credentials=ga_credentials.AnonymousCredentials)
+    unset_fields = transport.create_job._get_unset_required_fields({})
+    assert set(unset_fields) == set(('jobId', 'requestId')) & set(('parent', 'job'))
+
+@pytest.mark.parametrize('null_interceptor', [True, False])
+def test_create_job_rest_interceptors(null_interceptor):
+    if False:
+        i = 10
+        return i + 15
+    transport = transports.BatchServiceRestTransport(credentials=ga_credentials.AnonymousCredentials(), interceptor=None if null_interceptor else transports.BatchServiceRestInterceptor())
+    client = BatchServiceClient(transport=transport)
+    with mock.patch.object(type(client.transport._session), 'request') as req, mock.patch.object(path_template, 'transcode') as transcode, mock.patch.object(transports.BatchServiceRestInterceptor, 'post_create_job') as post, mock.patch.object(transports.BatchServiceRestInterceptor, 'pre_create_job') as pre:
+        pre.assert_not_called()
+        post.assert_not_called()
+        pb_message = batch.CreateJobRequest.pb(batch.CreateJobRequest())
+        transcode.return_value = {'method': 'post', 'uri': 'my_uri', 'body': pb_message, 'query_params': pb_message}
+        req.return_value = Response()
+        req.return_value.status_code = 200
+        req.return_value.request = PreparedRequest()
+        req.return_value._content = gcb_job.Job.to_json(gcb_job.Job())
+        request = batch.CreateJobRequest()
+        metadata = [('key', 'val'), ('cephalopod', 'squid')]
+        pre.return_value = (request, metadata)
+        post.return_value = gcb_job.Job()
+        client.create_job(request, metadata=[('key', 'val'), ('cephalopod', 'squid')])
+        pre.assert_called_once()
+        post.assert_called_once()
+
+def test_create_job_rest_bad_request(transport: str='rest', request_type=batch.CreateJobRequest):
+    if False:
+        while True:
+            i = 10
+    client = BatchServiceClient(credentials=ga_credentials.AnonymousCredentials(), transport=transport)
+    request_init = {'parent': 'projects/sample1/locations/sample2'}
+    request = request_type(**request_init)
+    with mock.patch.object(Session, 'request') as req, pytest.raises(core_exceptions.BadRequest):
+        response_value = Response()
+        response_value.status_code = 400
+        response_value.request = Request()
+        req.return_value = response_value
+        client.create_job(request)
+
+def test_create_job_rest_flattened():
+    if False:
+        print('Hello World!')
+    client = BatchServiceClient(credentials=ga_credentials.AnonymousCredentials(), transport='rest')
+    with mock.patch.object(type(client.transport._session), 'request') as req:
+        return_value = gcb_job.Job()
+        sample_request = {'parent': 'projects/sample1/locations/sample2'}
+        mock_args = dict(parent='parent_value', job=gcb_job.Job(name='name_value'), job_id='job_id_value')
+        mock_args.update(sample_request)
+        response_value = Response()
+        response_value.status_code = 200
+        return_value = gcb_job.Job.pb(return_value)
+        json_return_value = json_format.MessageToJson(return_value)
+        response_value._content = json_return_value.encode('UTF-8')
+        req.return_value = response_value
+        client.create_job(**mock_args)
+        assert len(req.mock_calls) == 1
+        (_, args, _) = req.mock_calls[0]
+        assert path_template.validate('%s/v1/{parent=projects/*/locations/*}/jobs' % client.transport._host, args[1])
+
+def test_create_job_rest_flattened_error(transport: str='rest'):
+    if False:
+        return 10
+    client = BatchServiceClient(credentials=ga_credentials.AnonymousCredentials(), transport=transport)
+    with pytest.raises(ValueError):
+        client.create_job(batch.CreateJobRequest(), parent='parent_value', job=gcb_job.Job(name='name_value'), job_id='job_id_value')
+
+def test_create_job_rest_error():
+    if False:
+        print('Hello World!')
+    client = BatchServiceClient(credentials=ga_credentials.AnonymousCredentials(), transport='rest')
+
+@pytest.mark.parametrize('request_type', [batch.GetJobRequest, dict])
+def test_get_job_rest(request_type):
+    if False:
+        while True:
+            i = 10
+    client = BatchServiceClient(credentials=ga_credentials.AnonymousCredentials(), transport='rest')
+    request_init = {'name': 'projects/sample1/locations/sample2/jobs/sample3'}
+    request = request_type(**request_init)
+    with mock.patch.object(type(client.transport._session), 'request') as req:
+        return_value = job.Job(name='name_value', uid='uid_value', priority=898)
+        response_value = Response()
+        response_value.status_code = 200
+        return_value = job.Job.pb(return_value)
+        json_return_value = json_format.MessageToJson(return_value)
+        response_value._content = json_return_value.encode('UTF-8')
+        req.return_value = response_value
+        response = client.get_job(request)
+    assert isinstance(response, job.Job)
+    assert response.name == 'name_value'
+    assert response.uid == 'uid_value'
+    assert response.priority == 898
+
+def test_get_job_rest_required_fields(request_type=batch.GetJobRequest):
+    if False:
+        return 10
+    transport_class = transports.BatchServiceRestTransport
+    request_init = {}
+    request_init['name'] = ''
+    request = request_type(**request_init)
+    pb_request = request_type.pb(request)
+    jsonified_request = json.loads(json_format.MessageToJson(pb_request, including_default_value_fields=False, use_integers_for_enums=False))
+    unset_fields = transport_class(credentials=ga_credentials.AnonymousCredentials()).get_job._get_unset_required_fields(jsonified_request)
+    jsonified_request.update(unset_fields)
+    jsonified_request['name'] = 'name_value'
+    unset_fields = transport_class(credentials=ga_credentials.AnonymousCredentials()).get_job._get_unset_required_fields(jsonified_request)
+    jsonified_request.update(unset_fields)
+    assert 'name' in jsonified_request
+    assert jsonified_request['name'] == 'name_value'
+    client = BatchServiceClient(credentials=ga_credentials.AnonymousCredentials(), transport='rest')
+    request = request_type(**request_init)
+    return_value = job.Job()
+    with mock.patch.object(Session, 'request') as req:
+        with mock.patch.object(path_template, 'transcode') as transcode:
+            pb_request = request_type.pb(request)
+            transcode_result = {'uri': 'v1/sample_method', 'method': 'get', 'query_params': pb_request}
+            transcode.return_value = transcode_result
+            response_value = Response()
+            response_value.status_code = 200
+            return_value = job.Job.pb(return_value)
+            json_return_value = json_format.MessageToJson(return_value)
+            response_value._content = json_return_value.encode('UTF-8')
+            req.return_value = response_value
+            response = client.get_job(request)
+            expected_params = [('$alt', 'json;enum-encoding=int')]
+            actual_params = req.call_args.kwargs['params']
+            assert expected_params == actual_params
+
+def test_get_job_rest_unset_required_fields():
+    if False:
+        while True:
+            i = 10
+    transport = transports.BatchServiceRestTransport(credentials=ga_credentials.AnonymousCredentials)
+    unset_fields = transport.get_job._get_unset_required_fields({})
+    assert set(unset_fields) == set(()) & set(('name',))
+
+@pytest.mark.parametrize('null_interceptor', [True, False])
+def test_get_job_rest_interceptors(null_interceptor):
+    if False:
+        while True:
+            i = 10
+    transport = transports.BatchServiceRestTransport(credentials=ga_credentials.AnonymousCredentials(), interceptor=None if null_interceptor else transports.BatchServiceRestInterceptor())
+    client = BatchServiceClient(transport=transport)
+    with mock.patch.object(type(client.transport._session), 'request') as req, mock.patch.object(path_template, 'transcode') as transcode, mock.patch.object(transports.BatchServiceRestInterceptor, 'post_get_job') as post, mock.patch.object(transports.BatchServiceRestInterceptor, 'pre_get_job') as pre:
+        pre.assert_not_called()
+        post.assert_not_called()
+        pb_message = batch.GetJobRequest.pb(batch.GetJobRequest())
+        transcode.return_value = {'method': 'post', 'uri': 'my_uri', 'body': pb_message, 'query_params': pb_message}
+        req.return_value = Response()
+        req.return_value.status_code = 200
+        req.return_value.request = PreparedRequest()
+        req.return_value._content = job.Job.to_json(job.Job())
+        request = batch.GetJobRequest()
+        metadata = [('key', 'val'), ('cephalopod', 'squid')]
+        pre.return_value = (request, metadata)
+        post.return_value = job.Job()
+        client.get_job(request, metadata=[('key', 'val'), ('cephalopod', 'squid')])
+        pre.assert_called_once()
+        post.assert_called_once()
+
+def test_get_job_rest_bad_request(transport: str='rest', request_type=batch.GetJobRequest):
+    if False:
+        return 10
+    client = BatchServiceClient(credentials=ga_credentials.AnonymousCredentials(), transport=transport)
+    request_init = {'name': 'projects/sample1/locations/sample2/jobs/sample3'}
+    request = request_type(**request_init)
+    with mock.patch.object(Session, 'request') as req, pytest.raises(core_exceptions.BadRequest):
+        response_value = Response()
+        response_value.status_code = 400
+        response_value.request = Request()
+        req.return_value = response_value
+        client.get_job(request)
+
+def test_get_job_rest_flattened():
+    if False:
+        print('Hello World!')
+    client = BatchServiceClient(credentials=ga_credentials.AnonymousCredentials(), transport='rest')
+    with mock.patch.object(type(client.transport._session), 'request') as req:
+        return_value = job.Job()
+        sample_request = {'name': 'projects/sample1/locations/sample2/jobs/sample3'}
+        mock_args = dict(name='name_value')
+        mock_args.update(sample_request)
+        response_value = Response()
+        response_value.status_code = 200
+        return_value = job.Job.pb(return_value)
+        json_return_value = json_format.MessageToJson(return_value)
+        response_value._content = json_return_value.encode('UTF-8')
+        req.return_value = response_value
+        client.get_job(**mock_args)
+        assert len(req.mock_calls) == 1
+        (_, args, _) = req.mock_calls[0]
+        assert path_template.validate('%s/v1/{name=projects/*/locations/*/jobs/*}' % client.transport._host, args[1])
+
+def test_get_job_rest_flattened_error(transport: str='rest'):
+    if False:
+        return 10
+    client = BatchServiceClient(credentials=ga_credentials.AnonymousCredentials(), transport=transport)
+    with pytest.raises(ValueError):
+        client.get_job(batch.GetJobRequest(), name='name_value')
+
+def test_get_job_rest_error():
+    if False:
+        while True:
+            i = 10
+    client = BatchServiceClient(credentials=ga_credentials.AnonymousCredentials(), transport='rest')
+
+@pytest.mark.parametrize('request_type', [batch.DeleteJobRequest, dict])
+def test_delete_job_rest(request_type):
+    if False:
+        while True:
+            i = 10
+    client = BatchServiceClient(credentials=ga_credentials.AnonymousCredentials(), transport='rest')
+    request_init = {'name': 'projects/sample1/locations/sample2/jobs/sample3'}
+    request = request_type(**request_init)
+    with mock.patch.object(type(client.transport._session), 'request') as req:
+        return_value = operations_pb2.Operation(name='operations/spam')
+        response_value = Response()
+        response_value.status_code = 200
+        json_return_value = json_format.MessageToJson(return_value)
+        response_value._content = json_return_value.encode('UTF-8')
+        req.return_value = response_value
+        response = client.delete_job(request)
+    assert response.operation.name == 'operations/spam'
+
+@pytest.mark.parametrize('null_interceptor', [True, False])
+def test_delete_job_rest_interceptors(null_interceptor):
+    if False:
+        for i in range(10):
+            print('nop')
+    transport = transports.BatchServiceRestTransport(credentials=ga_credentials.AnonymousCredentials(), interceptor=None if null_interceptor else transports.BatchServiceRestInterceptor())
+    client = BatchServiceClient(transport=transport)
+    with mock.patch.object(type(client.transport._session), 'request') as req, mock.patch.object(path_template, 'transcode') as transcode, mock.patch.object(operation.Operation, '_set_result_from_operation'), mock.patch.object(transports.BatchServiceRestInterceptor, 'post_delete_job') as post, mock.patch.object(transports.BatchServiceRestInterceptor, 'pre_delete_job') as pre:
+        pre.assert_not_called()
+        post.assert_not_called()
+        pb_message = batch.DeleteJobRequest.pb(batch.DeleteJobRequest())
+        transcode.return_value = {'method': 'post', 'uri': 'my_uri', 'body': pb_message, 'query_params': pb_message}
+        req.return_value = Response()
+        req.return_value.status_code = 200
+        req.return_value.request = PreparedRequest()
+        req.return_value._content = json_format.MessageToJson(operations_pb2.Operation())
+        request = batch.DeleteJobRequest()
+        metadata = [('key', 'val'), ('cephalopod', 'squid')]
+        pre.return_value = (request, metadata)
+        post.return_value = operations_pb2.Operation()
+        client.delete_job(request, metadata=[('key', 'val'), ('cephalopod', 'squid')])
+        pre.assert_called_once()
+        post.assert_called_once()
+
+def test_delete_job_rest_bad_request(transport: str='rest', request_type=batch.DeleteJobRequest):
+    if False:
+        i = 10
+        return i + 15
+    client = BatchServiceClient(credentials=ga_credentials.AnonymousCredentials(), transport=transport)
+    request_init = {'name': 'projects/sample1/locations/sample2/jobs/sample3'}
+    request = request_type(**request_init)
+    with mock.patch.object(Session, 'request') as req, pytest.raises(core_exceptions.BadRequest):
+        response_value = Response()
+        response_value.status_code = 400
+        response_value.request = Request()
+        req.return_value = response_value
+        client.delete_job(request)
+
+def test_delete_job_rest_flattened():
+    if False:
+        for i in range(10):
+            print('nop')
+    client = BatchServiceClient(credentials=ga_credentials.AnonymousCredentials(), transport='rest')
+    with mock.patch.object(type(client.transport._session), 'request') as req:
+        return_value = operations_pb2.Operation(name='operations/spam')
+        sample_request = {'name': 'projects/sample1/locations/sample2/jobs/sample3'}
+        mock_args = dict(name='name_value')
+        mock_args.update(sample_request)
+        response_value = Response()
+        response_value.status_code = 200
+        json_return_value = json_format.MessageToJson(return_value)
+        response_value._content = json_return_value.encode('UTF-8')
+        req.return_value = response_value
+        client.delete_job(**mock_args)
+        assert len(req.mock_calls) == 1
+        (_, args, _) = req.mock_calls[0]
+        assert path_template.validate('%s/v1/{name=projects/*/locations/*/jobs/*}' % client.transport._host, args[1])
+
+def test_delete_job_rest_flattened_error(transport: str='rest'):
+    if False:
+        while True:
+            i = 10
+    client = BatchServiceClient(credentials=ga_credentials.AnonymousCredentials(), transport=transport)
+    with pytest.raises(ValueError):
+        client.delete_job(batch.DeleteJobRequest(), name='name_value')
+
+def test_delete_job_rest_error():
+    if False:
+        print('Hello World!')
+    client = BatchServiceClient(credentials=ga_credentials.AnonymousCredentials(), transport='rest')
+
+@pytest.mark.parametrize('request_type', [batch.ListJobsRequest, dict])
+def test_list_jobs_rest(request_type):
+    if False:
+        print('Hello World!')
+    client = BatchServiceClient(credentials=ga_credentials.AnonymousCredentials(), transport='rest')
+    request_init = {'parent': 'projects/sample1/locations/sample2'}
+    request = request_type(**request_init)
+    with mock.patch.object(type(client.transport._session), 'request') as req:
+        return_value = batch.ListJobsResponse(next_page_token='next_page_token_value', unreachable=['unreachable_value'])
+        response_value = Response()
+        response_value.status_code = 200
+        return_value = batch.ListJobsResponse.pb(return_value)
+        json_return_value = json_format.MessageToJson(return_value)
+        response_value._content = json_return_value.encode('UTF-8')
+        req.return_value = response_value
+        response = client.list_jobs(request)
+    assert isinstance(response, pagers.ListJobsPager)
+    assert response.next_page_token == 'next_page_token_value'
+    assert response.unreachable == ['unreachable_value']
+
+@pytest.mark.parametrize('null_interceptor', [True, False])
+def test_list_jobs_rest_interceptors(null_interceptor):
+    if False:
+        i = 10
+        return i + 15
+    transport = transports.BatchServiceRestTransport(credentials=ga_credentials.AnonymousCredentials(), interceptor=None if null_interceptor else transports.BatchServiceRestInterceptor())
+    client = BatchServiceClient(transport=transport)
+    with mock.patch.object(type(client.transport._session), 'request') as req, mock.patch.object(path_template, 'transcode') as transcode, mock.patch.object(transports.BatchServiceRestInterceptor, 'post_list_jobs') as post, mock.patch.object(transports.BatchServiceRestInterceptor, 'pre_list_jobs') as pre:
+        pre.assert_not_called()
+        post.assert_not_called()
+        pb_message = batch.ListJobsRequest.pb(batch.ListJobsRequest())
+        transcode.return_value = {'method': 'post', 'uri': 'my_uri', 'body': pb_message, 'query_params': pb_message}
+        req.return_value = Response()
+        req.return_value.status_code = 200
+        req.return_value.request = PreparedRequest()
+        req.return_value._content = batch.ListJobsResponse.to_json(batch.ListJobsResponse())
+        request = batch.ListJobsRequest()
+        metadata = [('key', 'val'), ('cephalopod', 'squid')]
+        pre.return_value = (request, metadata)
+        post.return_value = batch.ListJobsResponse()
+        client.list_jobs(request, metadata=[('key', 'val'), ('cephalopod', 'squid')])
+        pre.assert_called_once()
+        post.assert_called_once()
+
+def test_list_jobs_rest_bad_request(transport: str='rest', request_type=batch.ListJobsRequest):
+    if False:
+        return 10
+    client = BatchServiceClient(credentials=ga_credentials.AnonymousCredentials(), transport=transport)
+    request_init = {'parent': 'projects/sample1/locations/sample2'}
+    request = request_type(**request_init)
+    with mock.patch.object(Session, 'request') as req, pytest.raises(core_exceptions.BadRequest):
+        response_value = Response()
+        response_value.status_code = 400
+        response_value.request = Request()
+        req.return_value = response_value
+        client.list_jobs(request)
+
+def test_list_jobs_rest_flattened():
+    if False:
+        print('Hello World!')
+    client = BatchServiceClient(credentials=ga_credentials.AnonymousCredentials(), transport='rest')
+    with mock.patch.object(type(client.transport._session), 'request') as req:
+        return_value = batch.ListJobsResponse()
+        sample_request = {'parent': 'projects/sample1/locations/sample2'}
+        mock_args = dict(parent='parent_value')
+        mock_args.update(sample_request)
+        response_value = Response()
+        response_value.status_code = 200
+        return_value = batch.ListJobsResponse.pb(return_value)
+        json_return_value = json_format.MessageToJson(return_value)
+        response_value._content = json_return_value.encode('UTF-8')
+        req.return_value = response_value
+        client.list_jobs(**mock_args)
+        assert len(req.mock_calls) == 1
+        (_, args, _) = req.mock_calls[0]
+        assert path_template.validate('%s/v1/{parent=projects/*/locations/*}/jobs' % client.transport._host, args[1])
+
+def test_list_jobs_rest_flattened_error(transport: str='rest'):
+    if False:
+        i = 10
+        return i + 15
+    client = BatchServiceClient(credentials=ga_credentials.AnonymousCredentials(), transport=transport)
+    with pytest.raises(ValueError):
+        client.list_jobs(batch.ListJobsRequest(), parent='parent_value')
+
+def test_list_jobs_rest_pager(transport: str='rest'):
+    if False:
+        print('Hello World!')
+    client = BatchServiceClient(credentials=ga_credentials.AnonymousCredentials(), transport=transport)
+    with mock.patch.object(Session, 'request') as req:
+        response = (batch.ListJobsResponse(jobs=[job.Job(), job.Job(), job.Job()], next_page_token='abc'), batch.ListJobsResponse(jobs=[], next_page_token='def'), batch.ListJobsResponse(jobs=[job.Job()], next_page_token='ghi'), batch.ListJobsResponse(jobs=[job.Job(), job.Job()]))
+        response = response + response
+        response = tuple((batch.ListJobsResponse.to_json(x) for x in response))
+        return_values = tuple((Response() for i in response))
+        for (return_val, response_val) in zip(return_values, response):
+            return_val._content = response_val.encode('UTF-8')
+            return_val.status_code = 200
+        req.side_effect = return_values
+        sample_request = {'parent': 'projects/sample1/locations/sample2'}
+        pager = client.list_jobs(request=sample_request)
+        results = list(pager)
+        assert len(results) == 6
+        assert all((isinstance(i, job.Job) for i in results))
+        pages = list(client.list_jobs(request=sample_request).pages)
+        for (page_, token) in zip(pages, ['abc', 'def', 'ghi', '']):
+            assert page_.raw_page.next_page_token == token
+
+@pytest.mark.parametrize('request_type', [batch.GetTaskRequest, dict])
+def test_get_task_rest(request_type):
+    if False:
+        i = 10
+        return i + 15
+    client = BatchServiceClient(credentials=ga_credentials.AnonymousCredentials(), transport='rest')
+    request_init = {'name': 'projects/sample1/locations/sample2/jobs/sample3/taskGroups/sample4/tasks/sample5'}
+    request = request_type(**request_init)
+    with mock.patch.object(type(client.transport._session), 'request') as req:
+        return_value = task.Task(name='name_value')
+        response_value = Response()
+        response_value.status_code = 200
+        return_value = task.Task.pb(return_value)
+        json_return_value = json_format.MessageToJson(return_value)
+        response_value._content = json_return_value.encode('UTF-8')
+        req.return_value = response_value
+        response = client.get_task(request)
+    assert isinstance(response, task.Task)
+    assert response.name == 'name_value'
+
+def test_get_task_rest_required_fields(request_type=batch.GetTaskRequest):
+    if False:
+        while True:
+            i = 10
+    transport_class = transports.BatchServiceRestTransport
+    request_init = {}
+    request_init['name'] = ''
+    request = request_type(**request_init)
+    pb_request = request_type.pb(request)
+    jsonified_request = json.loads(json_format.MessageToJson(pb_request, including_default_value_fields=False, use_integers_for_enums=False))
+    unset_fields = transport_class(credentials=ga_credentials.AnonymousCredentials()).get_task._get_unset_required_fields(jsonified_request)
+    jsonified_request.update(unset_fields)
+    jsonified_request['name'] = 'name_value'
+    unset_fields = transport_class(credentials=ga_credentials.AnonymousCredentials()).get_task._get_unset_required_fields(jsonified_request)
+    jsonified_request.update(unset_fields)
+    assert 'name' in jsonified_request
+    assert jsonified_request['name'] == 'name_value'
+    client = BatchServiceClient(credentials=ga_credentials.AnonymousCredentials(), transport='rest')
+    request = request_type(**request_init)
+    return_value = task.Task()
+    with mock.patch.object(Session, 'request') as req:
+        with mock.patch.object(path_template, 'transcode') as transcode:
+            pb_request = request_type.pb(request)
+            transcode_result = {'uri': 'v1/sample_method', 'method': 'get', 'query_params': pb_request}
+            transcode.return_value = transcode_result
+            response_value = Response()
+            response_value.status_code = 200
+            return_value = task.Task.pb(return_value)
+            json_return_value = json_format.MessageToJson(return_value)
+            response_value._content = json_return_value.encode('UTF-8')
+            req.return_value = response_value
+            response = client.get_task(request)
+            expected_params = [('$alt', 'json;enum-encoding=int')]
+            actual_params = req.call_args.kwargs['params']
+            assert expected_params == actual_params
+
+def test_get_task_rest_unset_required_fields():
+    if False:
+        while True:
+            i = 10
+    transport = transports.BatchServiceRestTransport(credentials=ga_credentials.AnonymousCredentials)
+    unset_fields = transport.get_task._get_unset_required_fields({})
+    assert set(unset_fields) == set(()) & set(('name',))
+
+@pytest.mark.parametrize('null_interceptor', [True, False])
+def test_get_task_rest_interceptors(null_interceptor):
+    if False:
+        for i in range(10):
+            print('nop')
+    transport = transports.BatchServiceRestTransport(credentials=ga_credentials.AnonymousCredentials(), interceptor=None if null_interceptor else transports.BatchServiceRestInterceptor())
+    client = BatchServiceClient(transport=transport)
+    with mock.patch.object(type(client.transport._session), 'request') as req, mock.patch.object(path_template, 'transcode') as transcode, mock.patch.object(transports.BatchServiceRestInterceptor, 'post_get_task') as post, mock.patch.object(transports.BatchServiceRestInterceptor, 'pre_get_task') as pre:
+        pre.assert_not_called()
+        post.assert_not_called()
+        pb_message = batch.GetTaskRequest.pb(batch.GetTaskRequest())
+        transcode.return_value = {'method': 'post', 'uri': 'my_uri', 'body': pb_message, 'query_params': pb_message}
+        req.return_value = Response()
+        req.return_value.status_code = 200
+        req.return_value.request = PreparedRequest()
+        req.return_value._content = task.Task.to_json(task.Task())
+        request = batch.GetTaskRequest()
+        metadata = [('key', 'val'), ('cephalopod', 'squid')]
+        pre.return_value = (request, metadata)
+        post.return_value = task.Task()
+        client.get_task(request, metadata=[('key', 'val'), ('cephalopod', 'squid')])
+        pre.assert_called_once()
+        post.assert_called_once()
+
+def test_get_task_rest_bad_request(transport: str='rest', request_type=batch.GetTaskRequest):
+    if False:
+        i = 10
+        return i + 15
+    client = BatchServiceClient(credentials=ga_credentials.AnonymousCredentials(), transport=transport)
+    request_init = {'name': 'projects/sample1/locations/sample2/jobs/sample3/taskGroups/sample4/tasks/sample5'}
+    request = request_type(**request_init)
+    with mock.patch.object(Session, 'request') as req, pytest.raises(core_exceptions.BadRequest):
+        response_value = Response()
+        response_value.status_code = 400
+        response_value.request = Request()
+        req.return_value = response_value
+        client.get_task(request)
+
+def test_get_task_rest_flattened():
+    if False:
+        return 10
+    client = BatchServiceClient(credentials=ga_credentials.AnonymousCredentials(), transport='rest')
+    with mock.patch.object(type(client.transport._session), 'request') as req:
+        return_value = task.Task()
+        sample_request = {'name': 'projects/sample1/locations/sample2/jobs/sample3/taskGroups/sample4/tasks/sample5'}
+        mock_args = dict(name='name_value')
+        mock_args.update(sample_request)
+        response_value = Response()
+        response_value.status_code = 200
+        return_value = task.Task.pb(return_value)
+        json_return_value = json_format.MessageToJson(return_value)
+        response_value._content = json_return_value.encode('UTF-8')
+        req.return_value = response_value
+        client.get_task(**mock_args)
+        assert len(req.mock_calls) == 1
+        (_, args, _) = req.mock_calls[0]
+        assert path_template.validate('%s/v1/{name=projects/*/locations/*/jobs/*/taskGroups/*/tasks/*}' % client.transport._host, args[1])
+
+def test_get_task_rest_flattened_error(transport: str='rest'):
+    if False:
+        for i in range(10):
+            print('nop')
+    client = BatchServiceClient(credentials=ga_credentials.AnonymousCredentials(), transport=transport)
+    with pytest.raises(ValueError):
+        client.get_task(batch.GetTaskRequest(), name='name_value')
+
+def test_get_task_rest_error():
+    if False:
+        print('Hello World!')
+    client = BatchServiceClient(credentials=ga_credentials.AnonymousCredentials(), transport='rest')
+
+@pytest.mark.parametrize('request_type', [batch.ListTasksRequest, dict])
+def test_list_tasks_rest(request_type):
+    if False:
+        i = 10
+        return i + 15
+    client = BatchServiceClient(credentials=ga_credentials.AnonymousCredentials(), transport='rest')
+    request_init = {'parent': 'projects/sample1/locations/sample2/jobs/sample3/taskGroups/sample4'}
+    request = request_type(**request_init)
+    with mock.patch.object(type(client.transport._session), 'request') as req:
+        return_value = batch.ListTasksResponse(next_page_token='next_page_token_value', unreachable=['unreachable_value'])
+        response_value = Response()
+        response_value.status_code = 200
+        return_value = batch.ListTasksResponse.pb(return_value)
+        json_return_value = json_format.MessageToJson(return_value)
+        response_value._content = json_return_value.encode('UTF-8')
+        req.return_value = response_value
+        response = client.list_tasks(request)
+    assert isinstance(response, pagers.ListTasksPager)
+    assert response.next_page_token == 'next_page_token_value'
+    assert response.unreachable == ['unreachable_value']
+
+def test_list_tasks_rest_required_fields(request_type=batch.ListTasksRequest):
+    if False:
+        i = 10
+        return i + 15
+    transport_class = transports.BatchServiceRestTransport
+    request_init = {}
+    request_init['parent'] = ''
+    request = request_type(**request_init)
+    pb_request = request_type.pb(request)
+    jsonified_request = json.loads(json_format.MessageToJson(pb_request, including_default_value_fields=False, use_integers_for_enums=False))
+    unset_fields = transport_class(credentials=ga_credentials.AnonymousCredentials()).list_tasks._get_unset_required_fields(jsonified_request)
+    jsonified_request.update(unset_fields)
+    jsonified_request['parent'] = 'parent_value'
+    unset_fields = transport_class(credentials=ga_credentials.AnonymousCredentials()).list_tasks._get_unset_required_fields(jsonified_request)
+    assert not set(unset_fields) - set(('filter', 'page_size', 'page_token'))
+    jsonified_request.update(unset_fields)
+    assert 'parent' in jsonified_request
+    assert jsonified_request['parent'] == 'parent_value'
+    client = BatchServiceClient(credentials=ga_credentials.AnonymousCredentials(), transport='rest')
+    request = request_type(**request_init)
+    return_value = batch.ListTasksResponse()
+    with mock.patch.object(Session, 'request') as req:
+        with mock.patch.object(path_template, 'transcode') as transcode:
+            pb_request = request_type.pb(request)
+            transcode_result = {'uri': 'v1/sample_method', 'method': 'get', 'query_params': pb_request}
+            transcode.return_value = transcode_result
+            response_value = Response()
+            response_value.status_code = 200
+            return_value = batch.ListTasksResponse.pb(return_value)
+            json_return_value = json_format.MessageToJson(return_value)
+            response_value._content = json_return_value.encode('UTF-8')
+            req.return_value = response_value
+            response = client.list_tasks(request)
+            expected_params = [('$alt', 'json;enum-encoding=int')]
+            actual_params = req.call_args.kwargs['params']
+            assert expected_params == actual_params
+
+def test_list_tasks_rest_unset_required_fields():
+    if False:
+        for i in range(10):
+            print('nop')
+    transport = transports.BatchServiceRestTransport(credentials=ga_credentials.AnonymousCredentials)
+    unset_fields = transport.list_tasks._get_unset_required_fields({})
+    assert set(unset_fields) == set(('filter', 'pageSize', 'pageToken')) & set(('parent',))
+
+@pytest.mark.parametrize('null_interceptor', [True, False])
+def test_list_tasks_rest_interceptors(null_interceptor):
+    if False:
+        return 10
+    transport = transports.BatchServiceRestTransport(credentials=ga_credentials.AnonymousCredentials(), interceptor=None if null_interceptor else transports.BatchServiceRestInterceptor())
+    client = BatchServiceClient(transport=transport)
+    with mock.patch.object(type(client.transport._session), 'request') as req, mock.patch.object(path_template, 'transcode') as transcode, mock.patch.object(transports.BatchServiceRestInterceptor, 'post_list_tasks') as post, mock.patch.object(transports.BatchServiceRestInterceptor, 'pre_list_tasks') as pre:
+        pre.assert_not_called()
+        post.assert_not_called()
+        pb_message = batch.ListTasksRequest.pb(batch.ListTasksRequest())
+        transcode.return_value = {'method': 'post', 'uri': 'my_uri', 'body': pb_message, 'query_params': pb_message}
+        req.return_value = Response()
+        req.return_value.status_code = 200
+        req.return_value.request = PreparedRequest()
+        req.return_value._content = batch.ListTasksResponse.to_json(batch.ListTasksResponse())
+        request = batch.ListTasksRequest()
+        metadata = [('key', 'val'), ('cephalopod', 'squid')]
+        pre.return_value = (request, metadata)
+        post.return_value = batch.ListTasksResponse()
+        client.list_tasks(request, metadata=[('key', 'val'), ('cephalopod', 'squid')])
+        pre.assert_called_once()
+        post.assert_called_once()
+
+def test_list_tasks_rest_bad_request(transport: str='rest', request_type=batch.ListTasksRequest):
+    if False:
+        i = 10
+        return i + 15
+    client = BatchServiceClient(credentials=ga_credentials.AnonymousCredentials(), transport=transport)
+    request_init = {'parent': 'projects/sample1/locations/sample2/jobs/sample3/taskGroups/sample4'}
+    request = request_type(**request_init)
+    with mock.patch.object(Session, 'request') as req, pytest.raises(core_exceptions.BadRequest):
+        response_value = Response()
+        response_value.status_code = 400
+        response_value.request = Request()
+        req.return_value = response_value
+        client.list_tasks(request)
+
+def test_list_tasks_rest_flattened():
+    if False:
+        i = 10
+        return i + 15
+    client = BatchServiceClient(credentials=ga_credentials.AnonymousCredentials(), transport='rest')
+    with mock.patch.object(type(client.transport._session), 'request') as req:
+        return_value = batch.ListTasksResponse()
+        sample_request = {'parent': 'projects/sample1/locations/sample2/jobs/sample3/taskGroups/sample4'}
+        mock_args = dict(parent='parent_value')
+        mock_args.update(sample_request)
+        response_value = Response()
+        response_value.status_code = 200
+        return_value = batch.ListTasksResponse.pb(return_value)
+        json_return_value = json_format.MessageToJson(return_value)
+        response_value._content = json_return_value.encode('UTF-8')
+        req.return_value = response_value
+        client.list_tasks(**mock_args)
+        assert len(req.mock_calls) == 1
+        (_, args, _) = req.mock_calls[0]
+        assert path_template.validate('%s/v1/{parent=projects/*/locations/*/jobs/*/taskGroups/*}/tasks' % client.transport._host, args[1])
+
+def test_list_tasks_rest_flattened_error(transport: str='rest'):
+    if False:
+        print('Hello World!')
+    client = BatchServiceClient(credentials=ga_credentials.AnonymousCredentials(), transport=transport)
+    with pytest.raises(ValueError):
+        client.list_tasks(batch.ListTasksRequest(), parent='parent_value')
+
+def test_list_tasks_rest_pager(transport: str='rest'):
+    if False:
+        print('Hello World!')
+    client = BatchServiceClient(credentials=ga_credentials.AnonymousCredentials(), transport=transport)
+    with mock.patch.object(Session, 'request') as req:
+        response = (batch.ListTasksResponse(tasks=[task.Task(), task.Task(), task.Task()], next_page_token='abc'), batch.ListTasksResponse(tasks=[], next_page_token='def'), batch.ListTasksResponse(tasks=[task.Task()], next_page_token='ghi'), batch.ListTasksResponse(tasks=[task.Task(), task.Task()]))
+        response = response + response
+        response = tuple((batch.ListTasksResponse.to_json(x) for x in response))
+        return_values = tuple((Response() for i in response))
+        for (return_val, response_val) in zip(return_values, response):
+            return_val._content = response_val.encode('UTF-8')
+            return_val.status_code = 200
+        req.side_effect = return_values
+        sample_request = {'parent': 'projects/sample1/locations/sample2/jobs/sample3/taskGroups/sample4'}
+        pager = client.list_tasks(request=sample_request)
+        results = list(pager)
+        assert len(results) == 6
+        assert all((isinstance(i, task.Task) for i in results))
+        pages = list(client.list_tasks(request=sample_request).pages)
+        for (page_, token) in zip(pages, ['abc', 'def', 'ghi', '']):
+            assert page_.raw_page.next_page_token == token
+
+def test_credentials_transport_error():
+    if False:
+        i = 10
+        return i + 15
+    transport = transports.BatchServiceGrpcTransport(credentials=ga_credentials.AnonymousCredentials())
+    with pytest.raises(ValueError):
+        client = BatchServiceClient(credentials=ga_credentials.AnonymousCredentials(), transport=transport)
+    transport = transports.BatchServiceGrpcTransport(credentials=ga_credentials.AnonymousCredentials())
+    with pytest.raises(ValueError):
+        client = BatchServiceClient(client_options={'credentials_file': 'credentials.json'}, transport=transport)
+    transport = transports.BatchServiceGrpcTransport(credentials=ga_credentials.AnonymousCredentials())
+    options = client_options.ClientOptions()
+    options.api_key = 'api_key'
+    with pytest.raises(ValueError):
+        client = BatchServiceClient(client_options=options, transport=transport)
+    options = mock.Mock()
+    options.api_key = 'api_key'
+    with pytest.raises(ValueError):
+        client = BatchServiceClient(client_options=options, credentials=ga_credentials.AnonymousCredentials())
+    transport = transports.BatchServiceGrpcTransport(credentials=ga_credentials.AnonymousCredentials())
+    with pytest.raises(ValueError):
+        client = BatchServiceClient(client_options={'scopes': ['1', '2']}, transport=transport)
+
+def test_transport_instance():
+    if False:
+        for i in range(10):
+            print('nop')
+    transport = transports.BatchServiceGrpcTransport(credentials=ga_credentials.AnonymousCredentials())
+    client = BatchServiceClient(transport=transport)
+    assert client.transport is transport
+
+def test_transport_get_channel():
+    if False:
+        for i in range(10):
+            print('nop')
+    transport = transports.BatchServiceGrpcTransport(credentials=ga_credentials.AnonymousCredentials())
+    channel = transport.grpc_channel
+    assert channel
+    transport = transports.BatchServiceGrpcAsyncIOTransport(credentials=ga_credentials.AnonymousCredentials())
+    channel = transport.grpc_channel
+    assert channel
+
+@pytest.mark.parametrize('transport_class', [transports.BatchServiceGrpcTransport, transports.BatchServiceGrpcAsyncIOTransport, transports.BatchServiceRestTransport])
+def test_transport_adc(transport_class):
+    if False:
+        return 10
+    with mock.patch.object(google.auth, 'default') as adc:
+        adc.return_value = (ga_credentials.AnonymousCredentials(), None)
+        transport_class()
+        adc.assert_called_once()
+
+@pytest.mark.parametrize('transport_name', ['grpc', 'rest'])
+def test_transport_kind(transport_name):
+    if False:
+        return 10
+    transport = BatchServiceClient.get_transport_class(transport_name)(credentials=ga_credentials.AnonymousCredentials())
+    assert transport.kind == transport_name
+
+def test_transport_grpc_default():
+    if False:
+        i = 10
+        return i + 15
+    client = BatchServiceClient(credentials=ga_credentials.AnonymousCredentials())
+    assert isinstance(client.transport, transports.BatchServiceGrpcTransport)
+
+def test_batch_service_base_transport_error():
+    if False:
+        for i in range(10):
+            print('nop')
+    with pytest.raises(core_exceptions.DuplicateCredentialArgs):
+        transport = transports.BatchServiceTransport(credentials=ga_credentials.AnonymousCredentials(), credentials_file='credentials.json')
+
+def test_batch_service_base_transport():
+    if False:
+        while True:
+            i = 10
+    with mock.patch('google.cloud.batch_v1.services.batch_service.transports.BatchServiceTransport.__init__') as Transport:
+        Transport.return_value = None
+        transport = transports.BatchServiceTransport(credentials=ga_credentials.AnonymousCredentials())
+    methods = ('create_job', 'get_job', 'delete_job', 'list_jobs', 'get_task', 'list_tasks', 'get_location', 'list_locations', 'get_operation', 'cancel_operation', 'delete_operation', 'list_operations')
+    for method in methods:
+        with pytest.raises(NotImplementedError):
+            getattr(transport, method)(request=object())
+    with pytest.raises(NotImplementedError):
+        transport.close()
+    with pytest.raises(NotImplementedError):
+        transport.operations_client
+    remainder = ['kind']
+    for r in remainder:
+        with pytest.raises(NotImplementedError):
+            getattr(transport, r)()
+
+def test_batch_service_base_transport_with_credentials_file():
+    if False:
+        for i in range(10):
+            print('nop')
+    with mock.patch.object(google.auth, 'load_credentials_from_file', autospec=True) as load_creds, mock.patch('google.cloud.batch_v1.services.batch_service.transports.BatchServiceTransport._prep_wrapped_messages') as Transport:
+        Transport.return_value = None
+        load_creds.return_value = (ga_credentials.AnonymousCredentials(), None)
+        transport = transports.BatchServiceTransport(credentials_file='credentials.json', quota_project_id='octopus')
+        load_creds.assert_called_once_with('credentials.json', scopes=None, default_scopes=('https://www.googleapis.com/auth/cloud-platform',), quota_project_id='octopus')
+
+def test_batch_service_base_transport_with_adc():
+    if False:
+        return 10
+    with mock.patch.object(google.auth, 'default', autospec=True) as adc, mock.patch('google.cloud.batch_v1.services.batch_service.transports.BatchServiceTransport._prep_wrapped_messages') as Transport:
+        Transport.return_value = None
+        adc.return_value = (ga_credentials.AnonymousCredentials(), None)
+        transport = transports.BatchServiceTransport()
+        adc.assert_called_once()
+
+def test_batch_service_auth_adc():
+    if False:
+        i = 10
+        return i + 15
+    with mock.patch.object(google.auth, 'default', autospec=True) as adc:
+        adc.return_value = (ga_credentials.AnonymousCredentials(), None)
+        BatchServiceClient()
+        adc.assert_called_once_with(scopes=None, default_scopes=('https://www.googleapis.com/auth/cloud-platform',), quota_project_id=None)
+
+@pytest.mark.parametrize('transport_class', [transports.BatchServiceGrpcTransport, transports.BatchServiceGrpcAsyncIOTransport])
+def test_batch_service_transport_auth_adc(transport_class):
+    if False:
+        print('Hello World!')
+    with mock.patch.object(google.auth, 'default', autospec=True) as adc:
+        adc.return_value = (ga_credentials.AnonymousCredentials(), None)
+        transport_class(quota_project_id='octopus', scopes=['1', '2'])
+        adc.assert_called_once_with(scopes=['1', '2'], default_scopes=('https://www.googleapis.com/auth/cloud-platform',), quota_project_id='octopus')
+
+@pytest.mark.parametrize('transport_class', [transports.BatchServiceGrpcTransport, transports.BatchServiceGrpcAsyncIOTransport, transports.BatchServiceRestTransport])
+def test_batch_service_transport_auth_gdch_credentials(transport_class):
+    if False:
+        while True:
+            i = 10
+    host = 'https://language.com'
+    api_audience_tests = [None, 'https://language2.com']
+    api_audience_expect = [host, 'https://language2.com']
+    for (t, e) in zip(api_audience_tests, api_audience_expect):
+        with mock.patch.object(google.auth, 'default', autospec=True) as adc:
+            gdch_mock = mock.MagicMock()
+            type(gdch_mock).with_gdch_audience = mock.PropertyMock(return_value=gdch_mock)
+            adc.return_value = (gdch_mock, None)
+            transport_class(host=host, api_audience=t)
+            gdch_mock.with_gdch_audience.assert_called_once_with(e)
+
+@pytest.mark.parametrize('transport_class,grpc_helpers', [(transports.BatchServiceGrpcTransport, grpc_helpers), (transports.BatchServiceGrpcAsyncIOTransport, grpc_helpers_async)])
+def test_batch_service_transport_create_channel(transport_class, grpc_helpers):
+    if False:
+        i = 10
+        return i + 15
+    with mock.patch.object(google.auth, 'default', autospec=True) as adc, mock.patch.object(grpc_helpers, 'create_channel', autospec=True) as create_channel:
+        creds = ga_credentials.AnonymousCredentials()
+        adc.return_value = (creds, None)
+        transport_class(quota_project_id='octopus', scopes=['1', '2'])
+        create_channel.assert_called_with('batch.googleapis.com:443', credentials=creds, credentials_file=None, quota_project_id='octopus', default_scopes=('https://www.googleapis.com/auth/cloud-platform',), scopes=['1', '2'], default_host='batch.googleapis.com', ssl_credentials=None, options=[('grpc.max_send_message_length', -1), ('grpc.max_receive_message_length', -1)])
+
+@pytest.mark.parametrize('transport_class', [transports.BatchServiceGrpcTransport, transports.BatchServiceGrpcAsyncIOTransport])
+def test_batch_service_grpc_transport_client_cert_source_for_mtls(transport_class):
+    if False:
+        print('Hello World!')
+    cred = ga_credentials.AnonymousCredentials()
+    with mock.patch.object(transport_class, 'create_channel') as mock_create_channel:
+        mock_ssl_channel_creds = mock.Mock()
+        transport_class(host='squid.clam.whelk', credentials=cred, ssl_channel_credentials=mock_ssl_channel_creds)
+        mock_create_channel.assert_called_once_with('squid.clam.whelk:443', credentials=cred, credentials_file=None, scopes=None, ssl_credentials=mock_ssl_channel_creds, quota_project_id=None, options=[('grpc.max_send_message_length', -1), ('grpc.max_receive_message_length', -1)])
+    with mock.patch.object(transport_class, 'create_channel', return_value=mock.Mock()):
+        with mock.patch('grpc.ssl_channel_credentials') as mock_ssl_cred:
+            transport_class(credentials=cred, client_cert_source_for_mtls=client_cert_source_callback)
+            (expected_cert, expected_key) = client_cert_source_callback()
+            mock_ssl_cred.assert_called_once_with(certificate_chain=expected_cert, private_key=expected_key)
+
+def test_batch_service_http_transport_client_cert_source_for_mtls():
+    if False:
+        for i in range(10):
+            print('nop')
+    cred = ga_credentials.AnonymousCredentials()
+    with mock.patch('google.auth.transport.requests.AuthorizedSession.configure_mtls_channel') as mock_configure_mtls_channel:
+        transports.BatchServiceRestTransport(credentials=cred, client_cert_source_for_mtls=client_cert_source_callback)
+        mock_configure_mtls_channel.assert_called_once_with(client_cert_source_callback)
+
+def test_batch_service_rest_lro_client():
+    if False:
+        while True:
+            i = 10
+    client = BatchServiceClient(credentials=ga_credentials.AnonymousCredentials(), transport='rest')
+    transport = client.transport
+    assert isinstance(transport.operations_client, operations_v1.AbstractOperationsClient)
+    assert transport.operations_client is transport.operations_client
+
+@pytest.mark.parametrize('transport_name', ['grpc', 'grpc_asyncio', 'rest'])
+def test_batch_service_host_no_port(transport_name):
+    if False:
+        while True:
+            i = 10
+    client = BatchServiceClient(credentials=ga_credentials.AnonymousCredentials(), client_options=client_options.ClientOptions(api_endpoint='batch.googleapis.com'), transport=transport_name)
+    assert client.transport._host == ('batch.googleapis.com:443' if transport_name in ['grpc', 'grpc_asyncio'] else 'https://batch.googleapis.com')
+
+@pytest.mark.parametrize('transport_name', ['grpc', 'grpc_asyncio', 'rest'])
+def test_batch_service_host_with_port(transport_name):
+    if False:
+        return 10
+    client = BatchServiceClient(credentials=ga_credentials.AnonymousCredentials(), client_options=client_options.ClientOptions(api_endpoint='batch.googleapis.com:8000'), transport=transport_name)
+    assert client.transport._host == ('batch.googleapis.com:8000' if transport_name in ['grpc', 'grpc_asyncio'] else 'https://batch.googleapis.com:8000')
+
+@pytest.mark.parametrize('transport_name', ['rest'])
+def test_batch_service_client_transport_session_collision(transport_name):
+    if False:
+        return 10
+    creds1 = ga_credentials.AnonymousCredentials()
+    creds2 = ga_credentials.AnonymousCredentials()
+    client1 = BatchServiceClient(credentials=creds1, transport=transport_name)
+    client2 = BatchServiceClient(credentials=creds2, transport=transport_name)
+    session1 = client1.transport.create_job._session
+    session2 = client2.transport.create_job._session
+    assert session1 != session2
+    session1 = client1.transport.get_job._session
+    session2 = client2.transport.get_job._session
+    assert session1 != session2
+    session1 = client1.transport.delete_job._session
+    session2 = client2.transport.delete_job._session
+    assert session1 != session2
+    session1 = client1.transport.list_jobs._session
+    session2 = client2.transport.list_jobs._session
+    assert session1 != session2
+    session1 = client1.transport.get_task._session
+    session2 = client2.transport.get_task._session
+    assert session1 != session2
+    session1 = client1.transport.list_tasks._session
+    session2 = client2.transport.list_tasks._session
+    assert session1 != session2
+
+def test_batch_service_grpc_transport_channel():
+    if False:
+        return 10
+    channel = grpc.secure_channel('http://localhost/', grpc.local_channel_credentials())
+    transport = transports.BatchServiceGrpcTransport(host='squid.clam.whelk', channel=channel)
+    assert transport.grpc_channel == channel
+    assert transport._host == 'squid.clam.whelk:443'
+    assert transport._ssl_channel_credentials == None
+
+def test_batch_service_grpc_asyncio_transport_channel():
+    if False:
+        for i in range(10):
+            print('nop')
+    channel = aio.secure_channel('http://localhost/', grpc.local_channel_credentials())
+    transport = transports.BatchServiceGrpcAsyncIOTransport(host='squid.clam.whelk', channel=channel)
+    assert transport.grpc_channel == channel
+    assert transport._host == 'squid.clam.whelk:443'
+    assert transport._ssl_channel_credentials == None
+
+@pytest.mark.parametrize('transport_class', [transports.BatchServiceGrpcTransport, transports.BatchServiceGrpcAsyncIOTransport])
+def test_batch_service_transport_channel_mtls_with_client_cert_source(transport_class):
+    if False:
+        for i in range(10):
+            print('nop')
+    with mock.patch('grpc.ssl_channel_credentials', autospec=True) as grpc_ssl_channel_cred:
+        with mock.patch.object(transport_class, 'create_channel') as grpc_create_channel:
+            mock_ssl_cred = mock.Mock()
+            grpc_ssl_channel_cred.return_value = mock_ssl_cred
+            mock_grpc_channel = mock.Mock()
+            grpc_create_channel.return_value = mock_grpc_channel
+            cred = ga_credentials.AnonymousCredentials()
+            with pytest.warns(DeprecationWarning):
+                with mock.patch.object(google.auth, 'default') as adc:
+                    adc.return_value = (cred, None)
+                    transport = transport_class(host='squid.clam.whelk', api_mtls_endpoint='mtls.squid.clam.whelk', client_cert_source=client_cert_source_callback)
+                    adc.assert_called_once()
+            grpc_ssl_channel_cred.assert_called_once_with(certificate_chain=b'cert bytes', private_key=b'key bytes')
+            grpc_create_channel.assert_called_once_with('mtls.squid.clam.whelk:443', credentials=cred, credentials_file=None, scopes=None, ssl_credentials=mock_ssl_cred, quota_project_id=None, options=[('grpc.max_send_message_length', -1), ('grpc.max_receive_message_length', -1)])
+            assert transport.grpc_channel == mock_grpc_channel
+            assert transport._ssl_channel_credentials == mock_ssl_cred
+
+@pytest.mark.parametrize('transport_class', [transports.BatchServiceGrpcTransport, transports.BatchServiceGrpcAsyncIOTransport])
+def test_batch_service_transport_channel_mtls_with_adc(transport_class):
+    if False:
+        for i in range(10):
+            print('nop')
+    mock_ssl_cred = mock.Mock()
+    with mock.patch.multiple('google.auth.transport.grpc.SslCredentials', __init__=mock.Mock(return_value=None), ssl_credentials=mock.PropertyMock(return_value=mock_ssl_cred)):
+        with mock.patch.object(transport_class, 'create_channel') as grpc_create_channel:
+            mock_grpc_channel = mock.Mock()
+            grpc_create_channel.return_value = mock_grpc_channel
+            mock_cred = mock.Mock()
+            with pytest.warns(DeprecationWarning):
+                transport = transport_class(host='squid.clam.whelk', credentials=mock_cred, api_mtls_endpoint='mtls.squid.clam.whelk', client_cert_source=None)
+            grpc_create_channel.assert_called_once_with('mtls.squid.clam.whelk:443', credentials=mock_cred, credentials_file=None, scopes=None, ssl_credentials=mock_ssl_cred, quota_project_id=None, options=[('grpc.max_send_message_length', -1), ('grpc.max_receive_message_length', -1)])
+            assert transport.grpc_channel == mock_grpc_channel
+
+def test_batch_service_grpc_lro_client():
+    if False:
+        while True:
+            i = 10
+    client = BatchServiceClient(credentials=ga_credentials.AnonymousCredentials(), transport='grpc')
+    transport = client.transport
+    assert isinstance(transport.operations_client, operations_v1.OperationsClient)
+    assert transport.operations_client is transport.operations_client
+
+def test_batch_service_grpc_lro_async_client():
+    if False:
+        for i in range(10):
+            print('nop')
+    client = BatchServiceAsyncClient(credentials=ga_credentials.AnonymousCredentials(), transport='grpc_asyncio')
+    transport = client.transport
+    assert isinstance(transport.operations_client, operations_v1.OperationsAsyncClient)
+    assert transport.operations_client is transport.operations_client
+
+def test_job_path():
+    if False:
+        for i in range(10):
+            print('nop')
+    project = 'squid'
+    location = 'clam'
+    job = 'whelk'
+    expected = 'projects/{project}/locations/{location}/jobs/{job}'.format(project=project, location=location, job=job)
+    actual = BatchServiceClient.job_path(project, location, job)
+    assert expected == actual
+
+def test_parse_job_path():
+    if False:
+        print('Hello World!')
+    expected = {'project': 'octopus', 'location': 'oyster', 'job': 'nudibranch'}
+    path = BatchServiceClient.job_path(**expected)
+    actual = BatchServiceClient.parse_job_path(path)
+    assert expected == actual
+
+def test_task_path():
+    if False:
+        print('Hello World!')
+    project = 'cuttlefish'
+    location = 'mussel'
+    job = 'winkle'
+    task_group = 'nautilus'
+    task = 'scallop'
+    expected = 'projects/{project}/locations/{location}/jobs/{job}/taskGroups/{task_group}/tasks/{task}'.format(project=project, location=location, job=job, task_group=task_group, task=task)
+    actual = BatchServiceClient.task_path(project, location, job, task_group, task)
+    assert expected == actual
+
+def test_parse_task_path():
+    if False:
+        for i in range(10):
+            print('nop')
+    expected = {'project': 'abalone', 'location': 'squid', 'job': 'clam', 'task_group': 'whelk', 'task': 'octopus'}
+    path = BatchServiceClient.task_path(**expected)
+    actual = BatchServiceClient.parse_task_path(path)
+    assert expected == actual
+
+def test_task_group_path():
+    if False:
+        print('Hello World!')
+    project = 'oyster'
+    location = 'nudibranch'
+    job = 'cuttlefish'
+    task_group = 'mussel'
+    expected = 'projects/{project}/locations/{location}/jobs/{job}/taskGroups/{task_group}'.format(project=project, location=location, job=job, task_group=task_group)
+    actual = BatchServiceClient.task_group_path(project, location, job, task_group)
+    assert expected == actual
+
+def test_parse_task_group_path():
+    if False:
+        print('Hello World!')
+    expected = {'project': 'winkle', 'location': 'nautilus', 'job': 'scallop', 'task_group': 'abalone'}
+    path = BatchServiceClient.task_group_path(**expected)
+    actual = BatchServiceClient.parse_task_group_path(path)
+    assert expected == actual
+
+def test_common_billing_account_path():
+    if False:
+        print('Hello World!')
+    billing_account = 'squid'
+    expected = 'billingAccounts/{billing_account}'.format(billing_account=billing_account)
+    actual = BatchServiceClient.common_billing_account_path(billing_account)
+    assert expected == actual
+
+def test_parse_common_billing_account_path():
+    if False:
+        return 10
+    expected = {'billing_account': 'clam'}
+    path = BatchServiceClient.common_billing_account_path(**expected)
+    actual = BatchServiceClient.parse_common_billing_account_path(path)
+    assert expected == actual
+
+def test_common_folder_path():
+    if False:
+        return 10
+    folder = 'whelk'
+    expected = 'folders/{folder}'.format(folder=folder)
+    actual = BatchServiceClient.common_folder_path(folder)
+    assert expected == actual
+
+def test_parse_common_folder_path():
+    if False:
+        while True:
+            i = 10
+    expected = {'folder': 'octopus'}
+    path = BatchServiceClient.common_folder_path(**expected)
+    actual = BatchServiceClient.parse_common_folder_path(path)
+    assert expected == actual
+
+def test_common_organization_path():
+    if False:
+        while True:
+            i = 10
+    organization = 'oyster'
+    expected = 'organizations/{organization}'.format(organization=organization)
+    actual = BatchServiceClient.common_organization_path(organization)
+    assert expected == actual
+
+def test_parse_common_organization_path():
+    if False:
+        for i in range(10):
+            print('nop')
+    expected = {'organization': 'nudibranch'}
+    path = BatchServiceClient.common_organization_path(**expected)
+    actual = BatchServiceClient.parse_common_organization_path(path)
+    assert expected == actual
+
+def test_common_project_path():
+    if False:
+        for i in range(10):
+            print('nop')
+    project = 'cuttlefish'
+    expected = 'projects/{project}'.format(project=project)
+    actual = BatchServiceClient.common_project_path(project)
+    assert expected == actual
+
+def test_parse_common_project_path():
+    if False:
+        while True:
+            i = 10
+    expected = {'project': 'mussel'}
+    path = BatchServiceClient.common_project_path(**expected)
+    actual = BatchServiceClient.parse_common_project_path(path)
+    assert expected == actual
+
+def test_common_location_path():
+    if False:
+        return 10
+    project = 'winkle'
+    location = 'nautilus'
+    expected = 'projects/{project}/locations/{location}'.format(project=project, location=location)
+    actual = BatchServiceClient.common_location_path(project, location)
+    assert expected == actual
+
+def test_parse_common_location_path():
+    if False:
+        print('Hello World!')
+    expected = {'project': 'scallop', 'location': 'abalone'}
+    path = BatchServiceClient.common_location_path(**expected)
+    actual = BatchServiceClient.parse_common_location_path(path)
+    assert expected == actual
+
+def test_client_with_default_client_info():
+    if False:
+        while True:
+            i = 10
+    client_info = gapic_v1.client_info.ClientInfo()
+    with mock.patch.object(transports.BatchServiceTransport, '_prep_wrapped_messages') as prep:
+        client = BatchServiceClient(credentials=ga_credentials.AnonymousCredentials(), client_info=client_info)
+        prep.assert_called_once_with(client_info)
+    with mock.patch.object(transports.BatchServiceTransport, '_prep_wrapped_messages') as prep:
+        transport_class = BatchServiceClient.get_transport_class()
+        transport = transport_class(credentials=ga_credentials.AnonymousCredentials(), client_info=client_info)
+        prep.assert_called_once_with(client_info)
+
+@pytest.mark.asyncio
+async def test_transport_close_async():
+    client = BatchServiceAsyncClient(credentials=ga_credentials.AnonymousCredentials(), transport='grpc_asyncio')
+    with mock.patch.object(type(getattr(client.transport, 'grpc_channel')), 'close') as close:
+        async with client:
+            close.assert_not_called()
+        close.assert_called_once()
+
+def test_get_location_rest_bad_request(transport: str='rest', request_type=locations_pb2.GetLocationRequest):
+    if False:
+        i = 10
+        return i + 15
+    client = BatchServiceClient(credentials=ga_credentials.AnonymousCredentials(), transport=transport)
+    request = request_type()
+    request = json_format.ParseDict({'name': 'projects/sample1/locations/sample2'}, request)
+    with mock.patch.object(Session, 'request') as req, pytest.raises(core_exceptions.BadRequest):
+        response_value = Response()
+        response_value.status_code = 400
+        response_value.request = Request()
+        req.return_value = response_value
+        client.get_location(request)
+
+@pytest.mark.parametrize('request_type', [locations_pb2.GetLocationRequest, dict])
+def test_get_location_rest(request_type):
+    if False:
+        return 10
+    client = BatchServiceClient(credentials=ga_credentials.AnonymousCredentials(), transport='rest')
+    request_init = {'name': 'projects/sample1/locations/sample2'}
+    request = request_type(**request_init)
+    with mock.patch.object(type(client.transport._session), 'request') as req:
+        return_value = locations_pb2.Location()
+        response_value = Response()
+        response_value.status_code = 200
+        json_return_value = json_format.MessageToJson(return_value)
+        response_value._content = json_return_value.encode('UTF-8')
+        req.return_value = response_value
+        response = client.get_location(request)
+    assert isinstance(response, locations_pb2.Location)
+
+def test_list_locations_rest_bad_request(transport: str='rest', request_type=locations_pb2.ListLocationsRequest):
+    if False:
+        for i in range(10):
+            print('nop')
+    client = BatchServiceClient(credentials=ga_credentials.AnonymousCredentials(), transport=transport)
+    request = request_type()
+    request = json_format.ParseDict({'name': 'projects/sample1'}, request)
+    with mock.patch.object(Session, 'request') as req, pytest.raises(core_exceptions.BadRequest):
+        response_value = Response()
+        response_value.status_code = 400
+        response_value.request = Request()
+        req.return_value = response_value
+        client.list_locations(request)
+
+@pytest.mark.parametrize('request_type', [locations_pb2.ListLocationsRequest, dict])
+def test_list_locations_rest(request_type):
+    if False:
+        while True:
+            i = 10
+    client = BatchServiceClient(credentials=ga_credentials.AnonymousCredentials(), transport='rest')
+    request_init = {'name': 'projects/sample1'}
+    request = request_type(**request_init)
+    with mock.patch.object(type(client.transport._session), 'request') as req:
+        return_value = locations_pb2.ListLocationsResponse()
+        response_value = Response()
+        response_value.status_code = 200
+        json_return_value = json_format.MessageToJson(return_value)
+        response_value._content = json_return_value.encode('UTF-8')
+        req.return_value = response_value
+        response = client.list_locations(request)
+    assert isinstance(response, locations_pb2.ListLocationsResponse)
+
+def test_cancel_operation_rest_bad_request(transport: str='rest', request_type=operations_pb2.CancelOperationRequest):
+    if False:
+        print('Hello World!')
+    client = BatchServiceClient(credentials=ga_credentials.AnonymousCredentials(), transport=transport)
+    request = request_type()
+    request = json_format.ParseDict({'name': 'projects/sample1/locations/sample2/operations/sample3'}, request)
+    with mock.patch.object(Session, 'request') as req, pytest.raises(core_exceptions.BadRequest):
+        response_value = Response()
+        response_value.status_code = 400
+        response_value.request = Request()
+        req.return_value = response_value
+        client.cancel_operation(request)
+
+@pytest.mark.parametrize('request_type', [operations_pb2.CancelOperationRequest, dict])
+def test_cancel_operation_rest(request_type):
+    if False:
+        i = 10
+        return i + 15
+    client = BatchServiceClient(credentials=ga_credentials.AnonymousCredentials(), transport='rest')
+    request_init = {'name': 'projects/sample1/locations/sample2/operations/sample3'}
+    request = request_type(**request_init)
+    with mock.patch.object(type(client.transport._session), 'request') as req:
+        return_value = None
+        response_value = Response()
+        response_value.status_code = 200
+        json_return_value = '{}'
+        response_value._content = json_return_value.encode('UTF-8')
+        req.return_value = response_value
+        response = client.cancel_operation(request)
+    assert response is None
+
+def test_delete_operation_rest_bad_request(transport: str='rest', request_type=operations_pb2.DeleteOperationRequest):
+    if False:
+        i = 10
+        return i + 15
+    client = BatchServiceClient(credentials=ga_credentials.AnonymousCredentials(), transport=transport)
+    request = request_type()
+    request = json_format.ParseDict({'name': 'projects/sample1/locations/sample2/operations/sample3'}, request)
+    with mock.patch.object(Session, 'request') as req, pytest.raises(core_exceptions.BadRequest):
+        response_value = Response()
+        response_value.status_code = 400
+        response_value.request = Request()
+        req.return_value = response_value
+        client.delete_operation(request)
+
+@pytest.mark.parametrize('request_type', [operations_pb2.DeleteOperationRequest, dict])
+def test_delete_operation_rest(request_type):
+    if False:
+        print('Hello World!')
+    client = BatchServiceClient(credentials=ga_credentials.AnonymousCredentials(), transport='rest')
+    request_init = {'name': 'projects/sample1/locations/sample2/operations/sample3'}
+    request = request_type(**request_init)
+    with mock.patch.object(type(client.transport._session), 'request') as req:
+        return_value = None
+        response_value = Response()
+        response_value.status_code = 200
+        json_return_value = '{}'
+        response_value._content = json_return_value.encode('UTF-8')
+        req.return_value = response_value
+        response = client.delete_operation(request)
+    assert response is None
+
+def test_get_operation_rest_bad_request(transport: str='rest', request_type=operations_pb2.GetOperationRequest):
+    if False:
+        print('Hello World!')
+    client = BatchServiceClient(credentials=ga_credentials.AnonymousCredentials(), transport=transport)
+    request = request_type()
+    request = json_format.ParseDict({'name': 'projects/sample1/locations/sample2/operations/sample3'}, request)
+    with mock.patch.object(Session, 'request') as req, pytest.raises(core_exceptions.BadRequest):
+        response_value = Response()
+        response_value.status_code = 400
+        response_value.request = Request()
+        req.return_value = response_value
+        client.get_operation(request)
+
+@pytest.mark.parametrize('request_type', [operations_pb2.GetOperationRequest, dict])
+def test_get_operation_rest(request_type):
+    if False:
+        return 10
+    client = BatchServiceClient(credentials=ga_credentials.AnonymousCredentials(), transport='rest')
+    request_init = {'name': 'projects/sample1/locations/sample2/operations/sample3'}
+    request = request_type(**request_init)
+    with mock.patch.object(type(client.transport._session), 'request') as req:
+        return_value = operations_pb2.Operation()
+        response_value = Response()
+        response_value.status_code = 200
+        json_return_value = json_format.MessageToJson(return_value)
+        response_value._content = json_return_value.encode('UTF-8')
+        req.return_value = response_value
+        response = client.get_operation(request)
+    assert isinstance(response, operations_pb2.Operation)
+
+def test_list_operations_rest_bad_request(transport: str='rest', request_type=operations_pb2.ListOperationsRequest):
+    if False:
+        while True:
+            i = 10
+    client = BatchServiceClient(credentials=ga_credentials.AnonymousCredentials(), transport=transport)
+    request = request_type()
+    request = json_format.ParseDict({'name': 'projects/sample1/locations/sample2'}, request)
+    with mock.patch.object(Session, 'request') as req, pytest.raises(core_exceptions.BadRequest):
+        response_value = Response()
+        response_value.status_code = 400
+        response_value.request = Request()
+        req.return_value = response_value
+        client.list_operations(request)
+
+@pytest.mark.parametrize('request_type', [operations_pb2.ListOperationsRequest, dict])
+def test_list_operations_rest(request_type):
+    if False:
+        i = 10
+        return i + 15
+    client = BatchServiceClient(credentials=ga_credentials.AnonymousCredentials(), transport='rest')
+    request_init = {'name': 'projects/sample1/locations/sample2'}
+    request = request_type(**request_init)
+    with mock.patch.object(type(client.transport._session), 'request') as req:
+        return_value = operations_pb2.ListOperationsResponse()
+        response_value = Response()
+        response_value.status_code = 200
+        json_return_value = json_format.MessageToJson(return_value)
+        response_value._content = json_return_value.encode('UTF-8')
+        req.return_value = response_value
+        response = client.list_operations(request)
+    assert isinstance(response, operations_pb2.ListOperationsResponse)
+
+def test_delete_operation(transport: str='grpc'):
+    if False:
+        i = 10
+        return i + 15
+    client = BatchServiceClient(credentials=ga_credentials.AnonymousCredentials(), transport=transport)
+    request = operations_pb2.DeleteOperationRequest()
+    with mock.patch.object(type(client.transport.delete_operation), '__call__') as call:
+        call.return_value = None
+        response = client.delete_operation(request)
+        assert len(call.mock_calls) == 1
+        (_, args, _) = call.mock_calls[0]
+        assert args[0] == request
+    assert response is None
+
+@pytest.mark.asyncio
+async def test_delete_operation_async(transport: str='grpc'):
+    client = BatchServiceAsyncClient(credentials=ga_credentials.AnonymousCredentials(), transport=transport)
+    request = operations_pb2.DeleteOperationRequest()
+    with mock.patch.object(type(client.transport.delete_operation), '__call__') as call:
+        call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(None)
+        response = await client.delete_operation(request)
+        assert len(call.mock_calls) == 1
+        (_, args, _) = call.mock_calls[0]
+        assert args[0] == request
+    assert response is None
+
+def test_delete_operation_field_headers():
+    if False:
+        for i in range(10):
+            print('nop')
+    client = BatchServiceClient(credentials=ga_credentials.AnonymousCredentials())
+    request = operations_pb2.DeleteOperationRequest()
+    request.name = 'locations'
+    with mock.patch.object(type(client.transport.delete_operation), '__call__') as call:
+        call.return_value = None
+        client.delete_operation(request)
+        assert len(call.mock_calls) == 1
+        (_, args, _) = call.mock_calls[0]
+        assert args[0] == request
+    (_, _, kw) = call.mock_calls[0]
+    assert ('x-goog-request-params', 'name=locations') in kw['metadata']
+
+@pytest.mark.asyncio
+async def test_delete_operation_field_headers_async():
+    client = BatchServiceAsyncClient(credentials=ga_credentials.AnonymousCredentials())
+    request = operations_pb2.DeleteOperationRequest()
+    request.name = 'locations'
+    with mock.patch.object(type(client.transport.delete_operation), '__call__') as call:
+        call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(None)
+        await client.delete_operation(request)
+        assert len(call.mock_calls) == 1
+        (_, args, _) = call.mock_calls[0]
+        assert args[0] == request
+    (_, _, kw) = call.mock_calls[0]
+    assert ('x-goog-request-params', 'name=locations') in kw['metadata']
+
+def test_delete_operation_from_dict():
+    if False:
+        print('Hello World!')
+    client = BatchServiceClient(credentials=ga_credentials.AnonymousCredentials())
+    with mock.patch.object(type(client.transport.delete_operation), '__call__') as call:
+        call.return_value = None
+        response = client.delete_operation(request={'name': 'locations'})
+        call.assert_called()
+
+@pytest.mark.asyncio
+async def test_delete_operation_from_dict_async():
+    client = BatchServiceAsyncClient(credentials=ga_credentials.AnonymousCredentials())
+    with mock.patch.object(type(client.transport.delete_operation), '__call__') as call:
+        call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(None)
+        response = await client.delete_operation(request={'name': 'locations'})
+        call.assert_called()
+
+def test_cancel_operation(transport: str='grpc'):
+    if False:
+        i = 10
+        return i + 15
+    client = BatchServiceClient(credentials=ga_credentials.AnonymousCredentials(), transport=transport)
+    request = operations_pb2.CancelOperationRequest()
+    with mock.patch.object(type(client.transport.cancel_operation), '__call__') as call:
+        call.return_value = None
+        response = client.cancel_operation(request)
+        assert len(call.mock_calls) == 1
+        (_, args, _) = call.mock_calls[0]
+        assert args[0] == request
+    assert response is None
+
+@pytest.mark.asyncio
+async def test_cancel_operation_async(transport: str='grpc'):
+    client = BatchServiceAsyncClient(credentials=ga_credentials.AnonymousCredentials(), transport=transport)
+    request = operations_pb2.CancelOperationRequest()
+    with mock.patch.object(type(client.transport.cancel_operation), '__call__') as call:
+        call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(None)
+        response = await client.cancel_operation(request)
+        assert len(call.mock_calls) == 1
+        (_, args, _) = call.mock_calls[0]
+        assert args[0] == request
+    assert response is None
+
+def test_cancel_operation_field_headers():
+    if False:
+        while True:
+            i = 10
+    client = BatchServiceClient(credentials=ga_credentials.AnonymousCredentials())
+    request = operations_pb2.CancelOperationRequest()
+    request.name = 'locations'
+    with mock.patch.object(type(client.transport.cancel_operation), '__call__') as call:
+        call.return_value = None
+        client.cancel_operation(request)
+        assert len(call.mock_calls) == 1
+        (_, args, _) = call.mock_calls[0]
+        assert args[0] == request
+    (_, _, kw) = call.mock_calls[0]
+    assert ('x-goog-request-params', 'name=locations') in kw['metadata']
+
+@pytest.mark.asyncio
+async def test_cancel_operation_field_headers_async():
+    client = BatchServiceAsyncClient(credentials=ga_credentials.AnonymousCredentials())
+    request = operations_pb2.CancelOperationRequest()
+    request.name = 'locations'
+    with mock.patch.object(type(client.transport.cancel_operation), '__call__') as call:
+        call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(None)
+        await client.cancel_operation(request)
+        assert len(call.mock_calls) == 1
+        (_, args, _) = call.mock_calls[0]
+        assert args[0] == request
+    (_, _, kw) = call.mock_calls[0]
+    assert ('x-goog-request-params', 'name=locations') in kw['metadata']
+
+def test_cancel_operation_from_dict():
+    if False:
+        while True:
+            i = 10
+    client = BatchServiceClient(credentials=ga_credentials.AnonymousCredentials())
+    with mock.patch.object(type(client.transport.cancel_operation), '__call__') as call:
+        call.return_value = None
+        response = client.cancel_operation(request={'name': 'locations'})
+        call.assert_called()
+
+@pytest.mark.asyncio
+async def test_cancel_operation_from_dict_async():
+    client = BatchServiceAsyncClient(credentials=ga_credentials.AnonymousCredentials())
+    with mock.patch.object(type(client.transport.cancel_operation), '__call__') as call:
+        call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(None)
+        response = await client.cancel_operation(request={'name': 'locations'})
+        call.assert_called()
+
+def test_get_operation(transport: str='grpc'):
+    if False:
+        while True:
+            i = 10
+    client = BatchServiceClient(credentials=ga_credentials.AnonymousCredentials(), transport=transport)
+    request = operations_pb2.GetOperationRequest()
+    with mock.patch.object(type(client.transport.get_operation), '__call__') as call:
+        call.return_value = operations_pb2.Operation()
+        response = client.get_operation(request)
+        assert len(call.mock_calls) == 1
+        (_, args, _) = call.mock_calls[0]
+        assert args[0] == request
+    assert isinstance(response, operations_pb2.Operation)
+
+@pytest.mark.asyncio
+async def test_get_operation_async(transport: str='grpc'):
+    client = BatchServiceAsyncClient(credentials=ga_credentials.AnonymousCredentials(), transport=transport)
+    request = operations_pb2.GetOperationRequest()
+    with mock.patch.object(type(client.transport.get_operation), '__call__') as call:
+        call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(operations_pb2.Operation())
+        response = await client.get_operation(request)
+        assert len(call.mock_calls) == 1
+        (_, args, _) = call.mock_calls[0]
+        assert args[0] == request
+    assert isinstance(response, operations_pb2.Operation)
+
+def test_get_operation_field_headers():
+    if False:
+        for i in range(10):
+            print('nop')
+    client = BatchServiceClient(credentials=ga_credentials.AnonymousCredentials())
+    request = operations_pb2.GetOperationRequest()
+    request.name = 'locations'
+    with mock.patch.object(type(client.transport.get_operation), '__call__') as call:
+        call.return_value = operations_pb2.Operation()
+        client.get_operation(request)
+        assert len(call.mock_calls) == 1
+        (_, args, _) = call.mock_calls[0]
+        assert args[0] == request
+    (_, _, kw) = call.mock_calls[0]
+    assert ('x-goog-request-params', 'name=locations') in kw['metadata']
+
+@pytest.mark.asyncio
+async def test_get_operation_field_headers_async():
+    client = BatchServiceAsyncClient(credentials=ga_credentials.AnonymousCredentials())
+    request = operations_pb2.GetOperationRequest()
+    request.name = 'locations'
+    with mock.patch.object(type(client.transport.get_operation), '__call__') as call:
+        call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(operations_pb2.Operation())
+        await client.get_operation(request)
+        assert len(call.mock_calls) == 1
+        (_, args, _) = call.mock_calls[0]
+        assert args[0] == request
+    (_, _, kw) = call.mock_calls[0]
+    assert ('x-goog-request-params', 'name=locations') in kw['metadata']
+
+def test_get_operation_from_dict():
+    if False:
+        i = 10
+        return i + 15
+    client = BatchServiceClient(credentials=ga_credentials.AnonymousCredentials())
+    with mock.patch.object(type(client.transport.get_operation), '__call__') as call:
+        call.return_value = operations_pb2.Operation()
+        response = client.get_operation(request={'name': 'locations'})
+        call.assert_called()
+
+@pytest.mark.asyncio
+async def test_get_operation_from_dict_async():
+    client = BatchServiceAsyncClient(credentials=ga_credentials.AnonymousCredentials())
+    with mock.patch.object(type(client.transport.get_operation), '__call__') as call:
+        call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(operations_pb2.Operation())
+        response = await client.get_operation(request={'name': 'locations'})
+        call.assert_called()
+
+def test_list_operations(transport: str='grpc'):
+    if False:
+        print('Hello World!')
+    client = BatchServiceClient(credentials=ga_credentials.AnonymousCredentials(), transport=transport)
+    request = operations_pb2.ListOperationsRequest()
+    with mock.patch.object(type(client.transport.list_operations), '__call__') as call:
+        call.return_value = operations_pb2.ListOperationsResponse()
+        response = client.list_operations(request)
+        assert len(call.mock_calls) == 1
+        (_, args, _) = call.mock_calls[0]
+        assert args[0] == request
+    assert isinstance(response, operations_pb2.ListOperationsResponse)
+
+@pytest.mark.asyncio
+async def test_list_operations_async(transport: str='grpc'):
+    client = BatchServiceAsyncClient(credentials=ga_credentials.AnonymousCredentials(), transport=transport)
+    request = operations_pb2.ListOperationsRequest()
+    with mock.patch.object(type(client.transport.list_operations), '__call__') as call:
+        call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(operations_pb2.ListOperationsResponse())
+        response = await client.list_operations(request)
+        assert len(call.mock_calls) == 1
+        (_, args, _) = call.mock_calls[0]
+        assert args[0] == request
+    assert isinstance(response, operations_pb2.ListOperationsResponse)
+
+def test_list_operations_field_headers():
+    if False:
+        print('Hello World!')
+    client = BatchServiceClient(credentials=ga_credentials.AnonymousCredentials())
+    request = operations_pb2.ListOperationsRequest()
+    request.name = 'locations'
+    with mock.patch.object(type(client.transport.list_operations), '__call__') as call:
+        call.return_value = operations_pb2.ListOperationsResponse()
+        client.list_operations(request)
+        assert len(call.mock_calls) == 1
+        (_, args, _) = call.mock_calls[0]
+        assert args[0] == request
+    (_, _, kw) = call.mock_calls[0]
+    assert ('x-goog-request-params', 'name=locations') in kw['metadata']
+
+@pytest.mark.asyncio
+async def test_list_operations_field_headers_async():
+    client = BatchServiceAsyncClient(credentials=ga_credentials.AnonymousCredentials())
+    request = operations_pb2.ListOperationsRequest()
+    request.name = 'locations'
+    with mock.patch.object(type(client.transport.list_operations), '__call__') as call:
+        call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(operations_pb2.ListOperationsResponse())
+        await client.list_operations(request)
+        assert len(call.mock_calls) == 1
+        (_, args, _) = call.mock_calls[0]
+        assert args[0] == request
+    (_, _, kw) = call.mock_calls[0]
+    assert ('x-goog-request-params', 'name=locations') in kw['metadata']
+
+def test_list_operations_from_dict():
+    if False:
+        print('Hello World!')
+    client = BatchServiceClient(credentials=ga_credentials.AnonymousCredentials())
+    with mock.patch.object(type(client.transport.list_operations), '__call__') as call:
+        call.return_value = operations_pb2.ListOperationsResponse()
+        response = client.list_operations(request={'name': 'locations'})
+        call.assert_called()
+
+@pytest.mark.asyncio
+async def test_list_operations_from_dict_async():
+    client = BatchServiceAsyncClient(credentials=ga_credentials.AnonymousCredentials())
+    with mock.patch.object(type(client.transport.list_operations), '__call__') as call:
+        call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(operations_pb2.ListOperationsResponse())
+        response = await client.list_operations(request={'name': 'locations'})
+        call.assert_called()
+
+def test_list_locations(transport: str='grpc'):
+    if False:
+        for i in range(10):
+            print('nop')
+    client = BatchServiceClient(credentials=ga_credentials.AnonymousCredentials(), transport=transport)
+    request = locations_pb2.ListLocationsRequest()
+    with mock.patch.object(type(client.transport.list_locations), '__call__') as call:
+        call.return_value = locations_pb2.ListLocationsResponse()
+        response = client.list_locations(request)
+        assert len(call.mock_calls) == 1
+        (_, args, _) = call.mock_calls[0]
+        assert args[0] == request
+    assert isinstance(response, locations_pb2.ListLocationsResponse)
+
+@pytest.mark.asyncio
+async def test_list_locations_async(transport: str='grpc'):
+    client = BatchServiceAsyncClient(credentials=ga_credentials.AnonymousCredentials(), transport=transport)
+    request = locations_pb2.ListLocationsRequest()
+    with mock.patch.object(type(client.transport.list_locations), '__call__') as call:
+        call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(locations_pb2.ListLocationsResponse())
+        response = await client.list_locations(request)
+        assert len(call.mock_calls) == 1
+        (_, args, _) = call.mock_calls[0]
+        assert args[0] == request
+    assert isinstance(response, locations_pb2.ListLocationsResponse)
+
+def test_list_locations_field_headers():
+    if False:
+        i = 10
+        return i + 15
+    client = BatchServiceClient(credentials=ga_credentials.AnonymousCredentials())
+    request = locations_pb2.ListLocationsRequest()
+    request.name = 'locations'
+    with mock.patch.object(type(client.transport.list_locations), '__call__') as call:
+        call.return_value = locations_pb2.ListLocationsResponse()
+        client.list_locations(request)
+        assert len(call.mock_calls) == 1
+        (_, args, _) = call.mock_calls[0]
+        assert args[0] == request
+    (_, _, kw) = call.mock_calls[0]
+    assert ('x-goog-request-params', 'name=locations') in kw['metadata']
+
+@pytest.mark.asyncio
+async def test_list_locations_field_headers_async():
+    client = BatchServiceAsyncClient(credentials=ga_credentials.AnonymousCredentials())
+    request = locations_pb2.ListLocationsRequest()
+    request.name = 'locations'
+    with mock.patch.object(type(client.transport.list_locations), '__call__') as call:
+        call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(locations_pb2.ListLocationsResponse())
+        await client.list_locations(request)
+        assert len(call.mock_calls) == 1
+        (_, args, _) = call.mock_calls[0]
+        assert args[0] == request
+    (_, _, kw) = call.mock_calls[0]
+    assert ('x-goog-request-params', 'name=locations') in kw['metadata']
+
+def test_list_locations_from_dict():
+    if False:
+        return 10
+    client = BatchServiceClient(credentials=ga_credentials.AnonymousCredentials())
+    with mock.patch.object(type(client.transport.list_locations), '__call__') as call:
+        call.return_value = locations_pb2.ListLocationsResponse()
+        response = client.list_locations(request={'name': 'locations'})
+        call.assert_called()
+
+@pytest.mark.asyncio
+async def test_list_locations_from_dict_async():
+    client = BatchServiceAsyncClient(credentials=ga_credentials.AnonymousCredentials())
+    with mock.patch.object(type(client.transport.list_locations), '__call__') as call:
+        call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(locations_pb2.ListLocationsResponse())
+        response = await client.list_locations(request={'name': 'locations'})
+        call.assert_called()
+
+def test_get_location(transport: str='grpc'):
+    if False:
+        print('Hello World!')
+    client = BatchServiceClient(credentials=ga_credentials.AnonymousCredentials(), transport=transport)
+    request = locations_pb2.GetLocationRequest()
+    with mock.patch.object(type(client.transport.get_location), '__call__') as call:
+        call.return_value = locations_pb2.Location()
+        response = client.get_location(request)
+        assert len(call.mock_calls) == 1
+        (_, args, _) = call.mock_calls[0]
+        assert args[0] == request
+    assert isinstance(response, locations_pb2.Location)
+
+@pytest.mark.asyncio
+async def test_get_location_async(transport: str='grpc_asyncio'):
+    client = BatchServiceAsyncClient(credentials=ga_credentials.AnonymousCredentials(), transport=transport)
+    request = locations_pb2.GetLocationRequest()
+    with mock.patch.object(type(client.transport.get_location), '__call__') as call:
+        call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(locations_pb2.Location())
+        response = await client.get_location(request)
+        assert len(call.mock_calls) == 1
+        (_, args, _) = call.mock_calls[0]
+        assert args[0] == request
+    assert isinstance(response, locations_pb2.Location)
+
+def test_get_location_field_headers():
+    if False:
+        print('Hello World!')
+    client = BatchServiceClient(credentials=ga_credentials.AnonymousCredentials())
+    request = locations_pb2.GetLocationRequest()
+    request.name = 'locations/abc'
+    with mock.patch.object(type(client.transport.get_location), '__call__') as call:
+        call.return_value = locations_pb2.Location()
+        client.get_location(request)
+        assert len(call.mock_calls) == 1
+        (_, args, _) = call.mock_calls[0]
+        assert args[0] == request
+    (_, _, kw) = call.mock_calls[0]
+    assert ('x-goog-request-params', 'name=locations/abc') in kw['metadata']
+
+@pytest.mark.asyncio
+async def test_get_location_field_headers_async():
+    client = BatchServiceAsyncClient(credentials=ga_credentials.AnonymousCredentials())
+    request = locations_pb2.GetLocationRequest()
+    request.name = 'locations/abc'
+    with mock.patch.object(type(client.transport.get_location), '__call__') as call:
+        call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(locations_pb2.Location())
+        await client.get_location(request)
+        assert len(call.mock_calls) == 1
+        (_, args, _) = call.mock_calls[0]
+        assert args[0] == request
+    (_, _, kw) = call.mock_calls[0]
+    assert ('x-goog-request-params', 'name=locations/abc') in kw['metadata']
+
+def test_get_location_from_dict():
+    if False:
+        for i in range(10):
+            print('nop')
+    client = BatchServiceClient(credentials=ga_credentials.AnonymousCredentials())
+    with mock.patch.object(type(client.transport.list_locations), '__call__') as call:
+        call.return_value = locations_pb2.Location()
+        response = client.get_location(request={'name': 'locations/abc'})
+        call.assert_called()
+
+@pytest.mark.asyncio
+async def test_get_location_from_dict_async():
+    client = BatchServiceAsyncClient(credentials=ga_credentials.AnonymousCredentials())
+    with mock.patch.object(type(client.transport.list_locations), '__call__') as call:
+        call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(locations_pb2.Location())
+        response = await client.get_location(request={'name': 'locations'})
+        call.assert_called()
+
+def test_transport_close():
+    if False:
+        return 10
+    transports = {'rest': '_session', 'grpc': '_grpc_channel'}
+    for (transport, close_name) in transports.items():
+        client = BatchServiceClient(credentials=ga_credentials.AnonymousCredentials(), transport=transport)
+        with mock.patch.object(type(getattr(client.transport, close_name)), 'close') as close:
+            with client:
+                close.assert_not_called()
+            close.assert_called_once()
+
+def test_client_ctx():
+    if False:
+        for i in range(10):
+            print('nop')
+    transports = ['rest', 'grpc']
+    for transport in transports:
+        client = BatchServiceClient(credentials=ga_credentials.AnonymousCredentials(), transport=transport)
+        with mock.patch.object(type(client.transport), 'close') as close:
+            close.assert_not_called()
+            with client:
+                pass
+            close.assert_called()
+
+@pytest.mark.parametrize('client_class,transport_class', [(BatchServiceClient, transports.BatchServiceGrpcTransport), (BatchServiceAsyncClient, transports.BatchServiceGrpcAsyncIOTransport)])
+def test_api_key_credentials(client_class, transport_class):
+    if False:
+        while True:
+            i = 10
+    with mock.patch.object(google.auth._default, 'get_api_key_credentials', create=True) as get_api_key_credentials:
+        mock_cred = mock.Mock()
+        get_api_key_credentials.return_value = mock_cred
+        options = client_options.ClientOptions()
+        options.api_key = 'api_key'
+        with mock.patch.object(transport_class, '__init__') as patched:
+            patched.return_value = None
+            client = client_class(client_options=options)
+            patched.assert_called_once_with(credentials=mock_cred, credentials_file=None, host=client.DEFAULT_ENDPOINT, scopes=None, client_cert_source_for_mtls=None, quota_project_id=None, client_info=transports.base.DEFAULT_CLIENT_INFO, always_use_jwt_access=True, api_audience=None)

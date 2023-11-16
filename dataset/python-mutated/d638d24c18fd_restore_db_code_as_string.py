@@ -1,0 +1,25 @@
+"""Restore DB code as String
+
+Revision ID: d638d24c18fd
+Revises: 84072533841c
+Create Date: 2023-01-31 23:23:05.316277
+
+"""
+from alembic import op
+import sqlalchemy as sa
+revision = 'd638d24c18fd'
+down_revision = '84072533841c'
+branch_labels = None
+depends_on = None
+
+def upgrade() -> None:
+    if False:
+        return 10
+    op.create_table('product', sa.Column('key', sa.String(), nullable=False), sa.Column('code', sa.String(), nullable=True), sa.Column('codebar', sa.String(), nullable=True), sa.Column('codebarinner', sa.String(), nullable=True), sa.Column('codebarmaster', sa.String(), nullable=True), sa.Column('unit', sa.String(), nullable=False), sa.Column('description', sa.String(), nullable=False), sa.Column('brand', sa.String(), nullable=True), sa.Column('buy', sa.Float(), nullable=False), sa.Column('retailsale', sa.Float(), nullable=False), sa.Column('wholesale', sa.Float(), nullable=False), sa.Column('inventory', sa.Integer(), nullable=True), sa.Column('min_inventory', sa.Integer(), nullable=True), sa.Column('department', sa.String(), nullable=True), sa.Column('id', sa.Integer(), nullable=True), sa.Column('LastUpdate', sa.DateTime(), nullable=True), sa.PrimaryKeyConstraint('key'), sa.UniqueConstraint('code'), sa.UniqueConstraint('codebar'), sa.UniqueConstraint('codebarinner'), sa.UniqueConstraint('codebarmaster'))
+    op.create_index(op.f('ix_product_key'), 'product', ['key'], unique=False)
+
+def downgrade() -> None:
+    if False:
+        print('Hello World!')
+    op.drop_index(op.f('ix_product_key'), table_name='product')
+    op.drop_table('product')

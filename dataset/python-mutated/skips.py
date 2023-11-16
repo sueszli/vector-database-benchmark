@@ -1,0 +1,89 @@
+from __future__ import annotations
+import os
+import socket
+from typing import Any, Callable, TypeVar
+from urllib.parse import urlparse
+import pytest
+from django.conf import settings
+T = TypeVar('T', bound=Callable[..., Any])
+
+def is_arm64() -> bool:
+    if False:
+        print('Hello World!')
+    return os.uname().machine == 'arm64'
+requires_not_arm64 = pytest.mark.skipif(is_arm64(), reason='this test fails in our arm64 testing env')
+
+def xfail_if_not_postgres(reason: str) -> Callable[[T], T]:
+    if False:
+        for i in range(10):
+            print('nop')
+
+    def decorator(function: T) -> T:
+        if False:
+            while True:
+                i = 10
+        return pytest.mark.xfail(os.environ.get('TEST_SUITE') != 'postgres', reason=reason)(function)
+    return decorator
+
+def skip_for_relay_store(reason: str) -> Callable[[T], T]:
+    if False:
+        for i in range(10):
+            print('nop')
+    '\n    Decorator factory will skip marked tests if Relay is enabled.\n    A test decorated with @skip_for_relay_store("this test has been moved in relay")\n    Will not be executed when the settings SENTRY_USE_RELAY = True\n    :param reason: the reason the test should be skipped\n\n    Note: Eventually, when Relay becomes compulsory, tests marked with this decorator will be deleted.\n    '
+
+    def decorator(function: T) -> T:
+        if False:
+            i = 10
+            return i + 15
+        return pytest.mark.skipif(settings.SENTRY_USE_RELAY, reason=reason)(function)
+    return decorator
+
+def _service_available(host: str, port: int) -> bool:
+    if False:
+        print('Hello World!')
+    try:
+        with socket.create_connection((host, port), 1.0):
+            pass
+    except OSError:
+        return False
+    else:
+        return True
+
+def _requires_service_message(name: str) -> str:
+    if False:
+        for i in range(10):
+            print('nop')
+    return f"requires '{name}' server running\n\t💡 Hint: run `sentry devservices up {name}`"
+
+@pytest.fixture(scope='session')
+def _requires_snuba() -> None:
+    if False:
+        for i in range(10):
+            print('nop')
+    parsed = urlparse(settings.SENTRY_SNUBA)
+    assert parsed.hostname is not None
+    assert parsed.port is not None
+    if not _service_available(parsed.hostname, parsed.port):
+        pytest.fail(_requires_service_message('snuba'))
+
+@pytest.fixture(scope='session')
+def _requires_kafka() -> None:
+    if False:
+        i = 10
+        return i + 15
+    kafka_conf = settings.SENTRY_DEVSERVICES['kafka'](settings, {})
+    (port,) = kafka_conf['ports'].values()
+    if not _service_available('127.0.0.1', port):
+        pytest.fail(_requires_service_message('kafka'))
+
+@pytest.fixture(scope='session')
+def _requires_symbolicator() -> None:
+    if False:
+        return 10
+    symbolicator_conf = settings.SENTRY_DEVSERVICES['symbolicator'](settings, {})
+    (port,) = symbolicator_conf['ports'].values()
+    if not _service_available('127.0.0.1', port):
+        pytest.fail(_requires_service_message('symbolicator'))
+requires_snuba = pytest.mark.usefixtures('_requires_snuba')
+requires_symbolicator = pytest.mark.usefixtures('_requires_symbolicator')
+requires_kafka = pytest.mark.usefixtures('_requires_kafka')

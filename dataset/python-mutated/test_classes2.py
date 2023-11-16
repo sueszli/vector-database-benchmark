@@ -1,0 +1,287 @@
+"""Tests for classes."""
+from pytype.tests import test_base
+from pytype.tests import test_utils
+
+class ClassesTest(test_base.BaseTest):
+    """Tests for classes."""
+
+    def test_class_getitem(self):
+        if False:
+            return 10
+        ty = self.Infer('\n      class A(type):\n        def __getitem__(self, i):\n          return 42\n      X = A("X", (object,), {})\n      v = X[0]\n    ')
+        self.assertTypesMatchPytd(ty, '\n      class A(type):\n        def __getitem__(self, i) -> int: ...\n      class X(object, metaclass=A): ...\n      v = ...  # type: int\n    ')
+
+    def test_new_annotated_cls(self):
+        if False:
+            for i in range(10):
+                print('nop')
+        ty = self.Infer('\n      from typing import Type\n      class Foo:\n        def __new__(cls: Type[str]):\n          return super(Foo, cls).__new__(cls)\n    ')
+        self.assertTypesMatchPytd(ty, '\n      from typing import Type\n      class Foo:\n        def __new__(cls: Type[str]) -> str: ...\n    ')
+
+    def test_recursive_constructor(self):
+        if False:
+            while True:
+                i = 10
+        self.Check("\n      from typing import List\n      MyType = List['Foo']\n      class Foo:\n        def __init__(self, x):\n          self.Create(x)\n        def Create(self, x: MyType):\n          self.x = x\n        def Convert(self):\n          self.x\n    ")
+
+    def test_recursive_constructor_attribute(self):
+        if False:
+            while True:
+                i = 10
+        self.Check("\n      from typing import List\n      MyType = List['Foo']\n      class Foo:\n        def __init__(self, x):\n          self.Create(x)\n        def Create(self, x: MyType):\n          self.x = x\n          self.x[0].x\n    ")
+
+    def test_recursive_constructor_bad_attribute(self):
+        if False:
+            return 10
+        (_, errors) = self.InferWithErrors("\n      from typing import List\n      MyType = List['Foo']\n      class Foo:\n        def __init__(self, x):\n          self.Create(x)\n        def Create(self, x: MyType):\n          self.x = x\n        def Convert(self):\n          self.y  # attribute-error[e]\n    ")
+        self.assertErrorRegexes(errors, {'e': 'y.*Foo'})
+
+    def test_recursive_constructor_subclass(self):
+        if False:
+            for i in range(10):
+                print('nop')
+        self.Check("\n      from typing import List\n      MyType = List['Foo']\n      class Foo:\n        def __init__(self, x):\n          self.Create(x)\n        def Create(self, x):\n          self.x = x\n      class FooChild(Foo):\n        def Create(self, x: MyType):\n          super(FooChild, self).Create(x)\n        def Convert(self):\n          self.x\n    ")
+
+    def test_name_exists(self):
+        if False:
+            while True:
+                i = 10
+        self.Check('\n      from typing import Optional\n      class Foo: pass\n      class Bar:\n        @staticmethod\n        def Create(x: Optional[Foo] = None):\n          return Bar(x)\n        @staticmethod\n        def bar():\n          for name in __any_object__:\n            Bar.Create()\n            name\n        def __init__(self, x: Optional[Foo]): pass\n    ')
+
+    def test_inherit_from_generic_class(self):
+        if False:
+            for i in range(10):
+                print('nop')
+        ty = self.Infer('\n      from typing import List\n      class Foo(List[str]): ...\n      v = Foo()[0]\n    ', deep=False)
+        self.assertTypesMatchPytd(ty, '\n      from typing import List\n      class Foo(List[str]): ...\n      v = ...  # type: str\n    ')
+
+    def test_make_generic_class(self):
+        if False:
+            print('Hello World!')
+        ty = self.Infer('\n      from typing import List, TypeVar, Union\n      T1 = TypeVar("T1")\n      T2 = TypeVar("T2")\n      class Foo(List[Union[T1, T2]]): ...\n    ')
+        self.assertTypesMatchPytd(ty, '\n      from typing import List, TypeVar, Union\n      T1 = TypeVar("T1")\n      T2 = TypeVar("T2")\n      class Foo(List[Union[T1, T2]]): ...\n    ')
+
+    def test_make_generic_class_with_concrete_value(self):
+        if False:
+            for i in range(10):
+                print('nop')
+        ty = self.Infer('\n      from typing import Dict, TypeVar\n      V = TypeVar("V")\n      class Foo(Dict[str, V]): ...\n      for v in Foo().keys():\n        pass\n    ')
+        self.assertTypesMatchPytd(ty, '\n      from typing import Dict, TypeVar\n      V = TypeVar("V")\n      class Foo(Dict[str, V]): ...\n      v = ...  # type: str\n    ')
+
+    def test_generic_reinstantiated(self):
+        if False:
+            for i in range(10):
+                print('nop')
+        "Makes sure the result of foo.f() isn't used by both a() and b()."
+        with test_utils.Tempdir() as d:
+            d.create_file('foo.pyi', 'def f() -> list: ...')
+            self.Check('\n        import foo\n        from typing import List\n        def a() -> List[str]:\n          x = foo.f()\n          x.append("hello")\n          return x\n        def b() -> List[int]:\n          return [x for x in foo.f()]\n        ', pythonpath=[d.path])
+
+    def test_base_init(self):
+        if False:
+            return 10
+        errors = self.CheckWithErrors('\n      from typing import Sequence\n      class X:\n        def __init__(self, obj: Sequence):\n          pass\n      class Y(X):\n        def __init__(self, obj: int):\n          X.__init__(self, obj)  # wrong-arg-types[e]\n    ')
+        self.assertErrorRegexes(errors, {'e': 'Sequence.*int'})
+
+    def test_parameterized_class_binary_operator(self):
+        if False:
+            for i in range(10):
+                print('nop')
+        self.InferWithErrors('\n      from typing import Sequence\n      def f(x: Sequence[str], y: Sequence[str]) -> None:\n        a = x + y  # unsupported-operands\n      ')
+
+    def test_instance_attribute(self):
+        if False:
+            return 10
+        ty = self.Infer('\n      class Foo:\n        def __init__(self) -> None:\n          self.bar = 42\n    ', analyze_annotated=False)
+        self.assertTypesMatchPytd(ty, '\n      class Foo:\n        bar: int\n        def __init__(self) -> None: ...\n    ')
+
+    def test_generic_super(self):
+        if False:
+            i = 10
+            return i + 15
+        self.Check("\n      from typing import Callable, Generic, TypeVar\n      T = TypeVar('T')\n      Func = Callable[[T], str]\n      class Foo(Generic[T]):\n        def __init__(self, func: Func = str) -> None:\n          super(Foo, self).__init__()\n          self._func = func\n        def f(self, value: T) -> str:\n          return self._func(value)\n    ")
+
+    def test_class_containing_itself(self):
+        if False:
+            for i in range(10):
+                print('nop')
+        ty = self.Infer("\n      from typing import Type\n      class MyMetaclass(type):\n        pass\n      class MyClass(metaclass=MyMetaclass):\n        my_object = None  # type: Type['MyClass']\n    ")
+        self.assertTypesMatchPytd(ty, '\n      from typing import Type\n      class MyMetaclass(type): ...\n      class MyClass(metaclass=MyMetaclass):\n        my_object: Type[MyClass]\n    ')
+
+    def test_decorated_class(self):
+        if False:
+            for i in range(10):
+                print('nop')
+        self.CheckWithErrors('\n      from typing import Any\n      def decorate(cls) -> Any:\n        return cls\n      @decorate\n      class Foo:\n        def f(self):\n          return self.nonsense  # attribute-error\n    ')
+
+    def test_callable_attribute(self):
+        if False:
+            while True:
+                i = 10
+        with test_utils.Tempdir() as d:
+            d.create_file('foo.pyi', '\n        from typing import Callable\n        class Foo:\n          x: Callable[[int], int]\n      ')
+            self.Check('\n        import foo\n        from typing import Callable, Tuple\n        class Bar:\n          x: Callable[[int], int]\n          y: Callable[[int], int] = lambda i: i\n          def __init__(self, z: Callable[[int], int]):\n            self.z = z\n          def f(self) -> Tuple[int, int, int, int]:\n            return self.x(0), self.y(0), self.z(0), foo.Foo().x(0)\n      ', pythonpath=[d.path])
+
+    def test_nested_class_init(self):
+        if False:
+            for i in range(10):
+                print('nop')
+        ty = self.Infer('\n      class Foo:\n        class Bar:\n          def __init__(self):\n            self.x = 0\n    ')
+        self.assertTypesMatchPytd(ty, '\n      class Foo:\n        class Bar:\n          x: int\n          def __init__(self) -> None: ...\n    ')
+
+    def test_new_and_subclass(self):
+        if False:
+            i = 10
+            return i + 15
+        ty = self.Infer("\n      class Foo:\n        def __new__(cls) -> 'Foo':\n          return cls()\n      class Bar(Foo):\n        pass\n    ")
+        self.assertTypesMatchPytd(ty, "\n      from typing import TypeVar\n      _TFoo = TypeVar('_TFoo', bound=Foo)\n      class Foo:\n        def __new__(cls: type[_TFoo]) -> _TFoo: ...\n      class Bar(Foo): ...\n    ")
+
+class ClassesTestPython3Feature(test_base.BaseTest):
+    """Tests for classes."""
+
+    def test_class_starargs(self):
+        if False:
+            print('Hello World!')
+        ty = self.Infer('\n      class Foo: pass\n      class Bar: pass\n      bases = (Foo, Bar)\n      class Baz(*bases): pass\n    ')
+        self.assertTypesMatchPytd(ty, '\n      from typing import Tuple, Type\n      bases: Tuple[Type[Foo], Type[Bar]]\n      class Foo: ...\n      class Bar: ...\n      class Baz(Foo, Bar): ...\n    ')
+
+    def test_class_kwargs(self):
+        if False:
+            i = 10
+            return i + 15
+        ty = self.Infer('\n      # x, y are passed to type() or the metaclass. We currently ignore them.\n      class Thing(x=True, y="foo"): pass\n    ')
+        self.assertTypesMatchPytd(ty, '\n    class Thing: ...\n    ')
+
+    def test_metaclass_kwarg(self):
+        if False:
+            return 10
+        self.Check('\n      import abc\n      class Example(metaclass=abc.ABCMeta):\n        @abc.abstractmethod\n        def foo(self) -> int:\n          return None\n    ')
+
+    def test_class_starargs_with_metaclass(self):
+        if False:
+            while True:
+                i = 10
+        self.Check('\n      class Foo: pass\n      class Bar: pass\n      bases = (Foo, Bar)\n      class Baz(*bases, metaclass=type): pass\n    ')
+
+    def test_build_class_quick(self):
+        if False:
+            print('Hello World!')
+        ty = self.Infer('\n      def f():\n        class A: pass\n        return {A: A()}\n    ', quick=True, maximum_depth=1)
+        self.assertTypesMatchPytd(ty, '\n      def f() -> dict: ...\n    ')
+
+    def test_type_change(self):
+        if False:
+            i = 10
+            return i + 15
+        ty = self.Infer('\n      class A:\n        def __init__(self):\n          self.__class__ = int\n      x = "" % type(A())\n    ')
+        self.assertTypesMatchPytd(ty, '\n      class A:\n        def __init__(self) -> None: ...\n      x = ...  # type: str\n    ')
+
+    def test_ambiguous_base_class(self):
+        if False:
+            print('Hello World!')
+        with test_utils.Tempdir() as d:
+            d.create_file('foo.pyi', '\n        from typing import Any\n        class Foo(Any): ...\n      ')
+            self.Check('\n        from typing import Tuple\n        import foo\n        def f() -> Tuple[int]:\n          return foo.Foo()\n      ', pythonpath=[d.path])
+
+    def test_callable_inheritance(self):
+        if False:
+            return 10
+        self.Check('\n      from typing import Callable\n      Foo = Callable[[], None]\n      class Bar(Foo):\n        def __call__(self):\n          pass\n      def f(x: Foo):\n        pass\n      f(Bar(__any_object__, __any_object__))\n    ')
+
+    def test_init_test_class_in_setup(self):
+        if False:
+            for i in range(10):
+                print('nop')
+        ty = self.Infer('\n      import unittest\n      class A(unittest.TestCase):\n        def setUp(self):\n          self.x = 10\n        def fooTest(self):\n          return self.x\n    ')
+        self.assertTypesMatchPytd(ty, '\n      import unittest\n      class A(unittest.case.TestCase):\n          x = ...  # type: int\n          def fooTest(self) -> int: ...\n          def setUp(self) -> None : ...\n    ')
+
+    def test_init_inherited_test_class_in_setup(self):
+        if False:
+            while True:
+                i = 10
+        ty = self.Infer('\n      import unittest\n      class A(unittest.TestCase):\n        def setUp(self):\n          self.x = 10\n      class B(A):\n        def fooTest(self):\n          return self.x\n    ')
+        self.assertTypesMatchPytd(ty, '\n      import unittest\n      class A(unittest.case.TestCase):\n          x = ...  # type: int\n          def setUp(self) -> None : ...\n      class B(A):\n          x = ...  # type: int\n          def fooTest(self) -> int: ...\n    ')
+
+    def test_init_test_class_in_init_and_setup(self):
+        if False:
+            for i in range(10):
+                print('nop')
+        ty = self.Infer('\n      import unittest\n      class A(unittest.TestCase):\n        def __init__(self, foo: str):\n          self.foo = foo\n        def setUp(self):\n          self.x = 10\n        def fooTest(self):\n          return self.x\n    ')
+        self.assertTypesMatchPytd(ty, '\n      import unittest\n      class A(unittest.case.TestCase):\n          x = ...  # type: int\n          foo = ...  # type: str\n          def __init__(self, foo: str) -> NoneType: ...\n          def fooTest(self) -> int: ...\n          def setUp(self) -> None : ...\n    ')
+
+    def test_set_metaclass(self):
+        if False:
+            for i in range(10):
+                print('nop')
+        ty = self.Infer('\n      class A(type):\n        def f(self):\n          return 3.14\n      class X(metaclass=A):\n        pass\n      v = X.f()\n    ')
+        self.assertTypesMatchPytd(ty, '\n      from typing import Type\n      class A(type):\n        def f(self) -> float: ...\n      class X(metaclass=A):\n        pass\n      v = ...  # type: float\n    ')
+
+    def test_no_metaclass(self):
+        if False:
+            i = 10
+            return i + 15
+        ty = self.Infer('\n      class X(metaclass=type):\n        pass\n    ')
+        self.assertTypesMatchPytd(ty, '\n      class X:\n        pass\n    ')
+
+    def test_metaclass(self):
+        if False:
+            i = 10
+            return i + 15
+        with test_utils.Tempdir() as d:
+            d.create_file('foo.pyi', '\n        T = TypeVar("T")\n        class MyMeta(type):\n          def register(self, cls: type) -> None: ...\n        def mymethod(funcobj: T) -> T: ...\n      ')
+            ty = self.Infer('\n        import foo\n        class X(metaclass=foo.MyMeta):\n          @foo.mymethod\n          def f(self):\n            return 42\n        X.register(tuple)\n        v = X().f()\n      ', pythonpath=[d.path])
+            self.assertTypesMatchPytd(ty, '\n        import foo\n        from typing import Type\n        class X(metaclass=foo.MyMeta):\n          def f(self) -> int: ...\n        v = ...  # type: int\n      ')
+
+    @test_base.skip("Setting metaclass to a function doesn't work yet.")
+    def test_function_as_metaclass(self):
+        if False:
+            i = 10
+            return i + 15
+        ty = self.Infer('\n      def MyMeta(name, bases, members):\n        return type(name, bases, members)\n      class X(metaclass=MyMeta):\n        pass\n    ')
+        self.assertTypesMatchPytd(ty, '\n      from typing import Any\n      def MyMeta(names, bases, members) -> Any: ...\n      class X(metaclass=MyMeta):\n        pass\n    ')
+
+    def test_unknown_metaclass(self):
+        if False:
+            i = 10
+            return i + 15
+        self.Check('\n      class Foo(metaclass=__any_object__):\n        def foo(self):\n          self.bar()\n        @classmethod\n        def bar(cls):\n          pass\n    ')
+
+    def test_py2_metaclass(self):
+        if False:
+            i = 10
+            return i + 15
+        errors = self.CheckWithErrors('\n      import abc\n      class Foo:  # ignored-metaclass[e]\n        __metaclass__ = abc.ABCMeta\n        @abc.abstractmethod\n        def f(self) -> int: ...\n    ')
+        self.assertErrorRegexes(errors, {'e': 'abc\\.ABCMeta.*Foo'})
+
+    def test_new_no_bases(self):
+        if False:
+            return 10
+        self.Check('\n      class Foo:\n        def __new__(cls, x):\n          self = super().__new__(cls)\n          self.x = x\n          return self\n      Foo(0)\n    ')
+
+    def test_new_pyi_no_bases(self):
+        if False:
+            for i in range(10):
+                print('nop')
+        with test_utils.Tempdir() as d:
+            d.create_file('foo.pyi', '\n        class Foo:\n          def __new__(cls, x) -> Foo: ...\n      ')
+            self.Check('\n        import foo\n        foo.Foo(0)\n      ', pythonpath=[d.path])
+
+    def test_type_subclass(self):
+        if False:
+            return 10
+        self.Check('\n      class A(type):\n        def __init__(self, name, bases, dct):\n          super().__init__(name, bases, dct)\n      class B(type, metaclass=A):\n        pass\n    ')
+
+    def test_attribute_in_decorated_init(self):
+        if False:
+            i = 10
+            return i + 15
+        self.Check('\n      from typing import Any\n      def decorate(f) -> Any:\n        return f\n      class X:\n        @decorate\n        def __init__(self):\n          self.x = 0\n      x = X()\n      assert_type(x.x, int)\n    ')
+
+    def test_attribute_in_decorated_init_inference(self):
+        if False:
+            for i in range(10):
+                print('nop')
+        ty = self.Infer('\n      from typing import Any\n      def decorate(f) -> Any:\n        return f\n      class X:\n        @decorate\n        def __init__(self):\n          self.x = 0\n    ')
+        self.assertTypesMatchPytd(ty, '\n      from typing import Any\n      def decorate(f) -> Any: ...\n      class X:\n        __init__: Any\n        x: int\n    ')
+if __name__ == '__main__':
+    test_base.main()

@@ -1,0 +1,32 @@
+import numpy as np
+import pandas as pd
+from hamcrest import assert_that, contains_exactly, is_
+from deepchecks.utils.simple_models import PerfectModel, RandomModel
+
+def test_random_model():
+    if False:
+        while True:
+            i = 10
+    model = RandomModel()
+    y = pd.Series([1, 2, 1, 2, 3])
+    x = np.ones(5)
+    model.fit([], y)
+    np.random.seed(42)
+    p = model.predict(x)
+    np.random.seed(42)
+    proba = model.predict_proba(x)
+    assert_that(p.tolist(), contains_exactly(2, 3, 1, 3, 3))
+    expected_proba = np.array([[0, 1, 0], [0, 0, 1], [1, 0, 0], [0, 0, 1], [0, 0, 1]])
+    assert_that(np.equal(proba, expected_proba).sum(), is_(15))
+
+def test_perfect_model():
+    if False:
+        return 10
+    model = PerfectModel()
+    data = pd.DataFrame(data={'target': [1, 2, 1, 2, 3], 'col1': ['a', 'b', 'a', 'a', 'c']})
+    model.fit([], data['target'])
+    p = model.predict(data[['col1']])
+    proba = model.predict_proba(data[['col1']])
+    assert_that(p.tolist(), contains_exactly(1, 2, 1, 2, 3))
+    expected_proba = np.array([[1, 0, 0], [0, 1, 0], [1, 0, 0], [0, 1, 0], [0, 0, 1]])
+    assert_that(np.equal(proba, expected_proba).sum(), is_(15))

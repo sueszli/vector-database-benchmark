@@ -1,0 +1,30 @@
+import flet_core as ft
+import pytest
+from flet_core.protocol import Command
+
+def test_instance_no_attrs_set():
+    if False:
+        for i in range(10):
+            print('nop')
+    r = ft.ShaderMask()
+    assert isinstance(r, ft.Control)
+    assert r._build_add_commands() == [Command(indent=0, name=None, values=['shadermask'], attrs={}, commands=[])], 'Test failed'
+
+def test_blend_mode_enum():
+    if False:
+        return 10
+    r = ft.ShaderMask(blend_mode=ft.BlendMode.LIGHTEN)
+    assert isinstance(r.blend_mode, ft.BlendMode)
+    assert isinstance(r._get_attr('blendMode'), str)
+    cmd = r._build_add_commands()
+    assert cmd[0].attrs['blendmode'] == 'lighten'
+
+def test_blend_mode_str():
+    if False:
+        for i in range(10):
+            print('nop')
+    r = ft.ShaderMask(blend_mode='darken')
+    assert isinstance(r.blend_mode, str)
+    assert isinstance(r._get_attr('blendMode'), str)
+    cmd = r._build_add_commands()
+    assert cmd[0].attrs['blendmode'] == 'darken'

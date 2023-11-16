@@ -1,0 +1,28 @@
+"""embedding for message now in its own table
+
+Revision ID: 35bdc1a08bb8
+Revises: 023548d474f7
+Create Date: 2023-01-08 16:03:48.454207
+
+"""
+import sqlalchemy as sa
+import sqlmodel
+from alembic import op
+from sqlalchemy.dialects import postgresql
+revision = '35bdc1a08bb8'
+down_revision = '023548d474f7'
+branch_labels = None
+depends_on = None
+
+def upgrade() -> None:
+    if False:
+        print('Hello World!')
+    op.create_table('message_embedding', sa.Column('message_id', postgresql.UUID(as_uuid=True), nullable=False), sa.Column('embedding', sa.ARRAY(sa.Float()), nullable=True), sa.Column('model', sqlmodel.sql.sqltypes.AutoString(length=256), nullable=False), sa.ForeignKeyConstraint(['message_id'], ['message.id']), sa.PrimaryKeyConstraint('message_id', 'model'))
+    op.drop_column('message', 'miniLM_embedding')
+
+def downgrade() -> None:
+    if False:
+        for i in range(10):
+            print('nop')
+    op.add_column('message', sa.Column('miniLM_embedding', postgresql.ARRAY(postgresql.DOUBLE_PRECISION(precision=53)), autoincrement=False, nullable=True))
+    op.drop_table('message_embedding')

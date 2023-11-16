@@ -1,0 +1,83 @@
+from sentry.constants import SentryAppStatus
+from sentry.models.apiapplication import ApiApplication
+from sentry.models.integrations.sentry_app import SentryApp
+from sentry.testutils.cases import TestCase
+from sentry.testutils.silo import control_silo_test
+
+@control_silo_test(stable=True)
+class SentryAppTest(TestCase):
+
+    def setUp(self):
+        if False:
+            return 10
+        self.user = self.create_user()
+        self.org = self.create_organization(owner=self.user)
+        self.proxy = self.create_user()
+        self.application = ApiApplication.objects.create(owner=self.proxy)
+        self.sentry_app = SentryApp(application=self.application, name='NullDB', proxy_user=self.proxy, owner_id=self.org.id, scope_list=('project:read',), webhook_url='http://example.com', slug='nulldb')
+        self.sentry_app.save()
+
+    def test_paranoid(self):
+        if False:
+            for i in range(10):
+                print('nop')
+        self.sentry_app.save()
+        self.sentry_app.delete()
+        assert self.sentry_app.date_deleted is not None
+        assert self.sentry_app not in SentryApp.objects.all()
+
+    def test_date_updated(self):
+        if False:
+            while True:
+                i = 10
+        self.sentry_app.save()
+        date_updated = self.sentry_app.date_updated
+        self.sentry_app.save()
+        assert not self.sentry_app.date_updated == date_updated
+
+    def test_related_names(self):
+        if False:
+            for i in range(10):
+                print('nop')
+        self.sentry_app.save()
+        assert self.sentry_app.application is not None
+        assert self.sentry_app.proxy_user is not None
+        assert self.sentry_app.application.sentry_app == self.sentry_app
+        assert self.sentry_app.proxy_user.sentry_app == self.sentry_app
+
+    def test_is_unpublished(self):
+        if False:
+            return 10
+        self.sentry_app.status = SentryAppStatus.UNPUBLISHED
+        self.sentry_app.save()
+        assert self.sentry_app.is_unpublished
+
+    def test_is_published(self):
+        if False:
+            return 10
+        self.sentry_app.status = SentryAppStatus.PUBLISHED
+        self.sentry_app.save()
+        assert self.sentry_app.is_published
+
+    def test_is_internal(self):
+        if False:
+            for i in range(10):
+                print('nop')
+        self.sentry_app.status = SentryAppStatus.INTERNAL
+        self.sentry_app.save()
+        assert self.sentry_app.is_internal
+
+    def test_is_installed_on(self):
+        if False:
+            print('Hello World!')
+        other_app = self.create_sentry_app()
+        self.create_sentry_app_installation(organization=self.org, slug=self.sentry_app.slug, prevent_token_exchange=True)
+        assert self.sentry_app.is_installed_on(self.org)
+        assert not other_app.is_installed_on(self.org)
+
+    def test_not_installed_on_org(self):
+        if False:
+            print('Hello World!')
+        other_org = self.create_organization()
+        self.create_sentry_app_installation(organization=other_org, slug=self.sentry_app.slug, prevent_token_exchange=True)
+        assert not self.sentry_app.is_installed_on(self.org)

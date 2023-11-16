@@ -1,0 +1,50 @@
+"""
+Manage RabbitMQ Clusters
+========================
+
+Example:
+
+.. code-block:: yaml
+
+    rabbit@rabbit.example.com:
+      rabbitmq_cluster.join:
+        - user: rabbit
+        - host: rabbit.example.com
+"""
+import logging
+import salt.utils.functools
+import salt.utils.path
+log = logging.getLogger(__name__)
+
+def __virtual__():
+    if False:
+        while True:
+            i = 10
+    '\n    Only load if RabbitMQ is installed.\n    '
+    if salt.utils.path.which('rabbitmqctl'):
+        return True
+    return (False, 'Command not found: rabbitmqctl')
+
+def joined(name, host, user='rabbit', ram_node=None, runas='root'):
+    if False:
+        print('Hello World!')
+    '\n    Ensure the current node joined to a cluster with node user@host\n\n    name\n        Irrelevant, not used (recommended: user@host)\n    user\n        The user of node to join to (default: rabbit)\n    host\n        The host of node to join to\n    ram_node\n        Join node as a RAM node\n    runas\n        The user to run the rabbitmq command as\n    '
+    ret = {'name': name, 'result': True, 'comment': '', 'changes': {}}
+    status = __salt__['rabbitmq.cluster_status']()
+    if '{}@{}'.format(user, host) in status:
+        ret['comment'] = 'Already in cluster'
+        return ret
+    if not __opts__['test']:
+        result = __salt__['rabbitmq.join_cluster'](host, user, ram_node, runas=runas)
+        if 'Error' in result:
+            ret['result'] = False
+            ret['comment'] = result['Error']
+            return ret
+        elif 'Join' in result:
+            ret['comment'] = result['Join']
+    ret['changes'] = {'old': '', 'new': '{}@{}'.format(user, host)}
+    if __opts__['test']:
+        ret['result'] = None
+        ret['comment'] = 'Node is set to join cluster {}@{}'.format(user, host)
+    return ret
+join = salt.utils.functools.alias_function(joined, 'join')

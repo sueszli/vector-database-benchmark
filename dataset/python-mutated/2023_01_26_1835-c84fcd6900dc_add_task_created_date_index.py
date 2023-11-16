@@ -1,0 +1,23 @@
+"""add task created date index
+
+Revision ID: c84fcd6900dc
+Revises: 40ed93df0ed5
+Create Date: 2023-01-26 18:35:43.061589
+
+"""
+from alembic import op
+revision = 'c84fcd6900dc'
+down_revision = '40ed93df0ed5'
+branch_labels = None
+depends_on = None
+
+def upgrade() -> None:
+    if False:
+        while True:
+            i = 10
+    op.create_index(op.f('ix_task_created_date'), 'task', ['created_date'], unique=False)
+
+def downgrade() -> None:
+    if False:
+        return 10
+    op.drop_index(op.f('ix_task_created_date'), table_name='task')

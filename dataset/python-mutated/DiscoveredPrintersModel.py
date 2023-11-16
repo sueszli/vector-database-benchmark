@@ -1,0 +1,286 @@
+from typing import Callable, Dict, List, Optional, TYPE_CHECKING
+from PyQt6.QtCore import pyqtSlot, pyqtProperty, pyqtSignal, QObject, QTimer
+from UM.i18n import i18nCatalog
+from UM.Logger import Logger
+from UM.Util import parseBool
+from UM.OutputDevice.OutputDeviceManager import ManualDeviceAdditionAttempt
+if TYPE_CHECKING:
+    from UM.OutputDevice.OutputDevicePlugin import OutputDevicePlugin
+    from cura.CuraApplication import CuraApplication
+    from cura.PrinterOutput.NetworkedPrinterOutputDevice import NetworkedPrinterOutputDevice
+catalog = i18nCatalog('cura')
+
+class DiscoveredPrinter(QObject):
+
+    def __init__(self, ip_address: str, key: str, name: str, create_callback: Callable[[str], None], machine_type: str, device: 'NetworkedPrinterOutputDevice', parent: Optional['QObject']=None) -> None:
+        if False:
+            return 10
+        super().__init__(parent)
+        self._ip_address = ip_address
+        self._key = key
+        self._name = name
+        self.create_callback = create_callback
+        self._machine_type = machine_type
+        self._device = device
+    nameChanged = pyqtSignal()
+
+    def getKey(self) -> str:
+        if False:
+            i = 10
+            return i + 15
+        return self._key
+
+    @pyqtProperty(str, notify=nameChanged)
+    def name(self) -> str:
+        if False:
+            return 10
+        return self._name
+
+    def setName(self, name: str) -> None:
+        if False:
+            for i in range(10):
+                print('nop')
+        if self._name != name:
+            self._name = name
+            self.nameChanged.emit()
+
+    @pyqtProperty(str, constant=True)
+    def address(self) -> str:
+        if False:
+            return 10
+        return self._ip_address
+    machineTypeChanged = pyqtSignal()
+
+    @pyqtProperty(str, notify=machineTypeChanged)
+    def machineType(self) -> str:
+        if False:
+            i = 10
+            return i + 15
+        return self._machine_type
+
+    def setMachineType(self, machine_type: str) -> None:
+        if False:
+            for i in range(10):
+                print('nop')
+        if self._machine_type != machine_type:
+            self._machine_type = machine_type
+            self.machineTypeChanged.emit()
+
+    def _hasHumanReadableMachineTypeName(self, machine_type_name: str) -> bool:
+        if False:
+            while True:
+                i = 10
+        from cura.CuraApplication import CuraApplication
+        results = CuraApplication.getInstance().getContainerRegistry().findDefinitionContainersMetadata(name=machine_type_name)
+        return len(results) > 0
+
+    @pyqtProperty(str, notify=machineTypeChanged)
+    def readableMachineType(self) -> str:
+        if False:
+            i = 10
+            return i + 15
+        if self._hasHumanReadableMachineTypeName(self._machine_type):
+            readable_type = self._machine_type
+        else:
+            readable_type = self._getMachineTypeNameFromId(self._machine_type)
+            if not readable_type:
+                readable_type = catalog.i18nc('@label', 'Unknown')
+        return readable_type
+
+    @pyqtProperty(bool, notify=machineTypeChanged)
+    def isUnknownMachineType(self) -> bool:
+        if False:
+            print('Hello World!')
+        if self._hasHumanReadableMachineTypeName(self._machine_type):
+            readable_type = self._machine_type
+        else:
+            readable_type = self._getMachineTypeNameFromId(self._machine_type)
+        return not readable_type
+
+    def _getMachineTypeNameFromId(self, machine_type_id: str) -> str:
+        if False:
+            return 10
+        machine_type_name = ''
+        from cura.CuraApplication import CuraApplication
+        results = CuraApplication.getInstance().getContainerRegistry().findDefinitionContainersMetadata(id=machine_type_id)
+        if results:
+            machine_type_name = results[0]['name']
+        return machine_type_name
+
+    @pyqtProperty(QObject, constant=True)
+    def device(self) -> 'NetworkedPrinterOutputDevice':
+        if False:
+            i = 10
+            return i + 15
+        return self._device
+
+    @pyqtProperty(bool, constant=True)
+    def isHostOfGroup(self) -> bool:
+        if False:
+            i = 10
+            return i + 15
+        return getattr(self._device, 'clusterSize', 1) > 0
+
+    @pyqtProperty(str, constant=True)
+    def sectionName(self) -> str:
+        if False:
+            while True:
+                i = 10
+        if self.isUnknownMachineType or not self.isHostOfGroup:
+            return catalog.i18nc('@label', 'The printer(s) below cannot be connected because they are part of a group')
+        else:
+            return catalog.i18nc('@label', 'Available networked printers')
+
+class DiscoveredPrintersModel(QObject):
+    """Discovered printers are all the printers that were found on the network, which provide a more convenient way to
+     add networked printers (Plugin finds a bunch of printers, user can select one from the list, plugin can then add
+     that printer to Cura as the active one).
+    """
+
+    def __init__(self, application: 'CuraApplication', parent: Optional['QObject']=None) -> None:
+        if False:
+            i = 10
+            return i + 15
+        super().__init__(parent)
+        self._application = application
+        self._discovered_printer_by_ip_dict = dict()
+        self._plugin_for_manual_device = None
+        self._network_plugin_queue = []
+        self._manual_device_address = ''
+        self._manual_device_request_timeout_in_seconds = 5
+        self._manual_device_request_timer = QTimer()
+        self._manual_device_request_timer.setInterval(self._manual_device_request_timeout_in_seconds * 1000)
+        self._manual_device_request_timer.setSingleShot(True)
+        self._manual_device_request_timer.timeout.connect(self._onManualRequestTimeout)
+    discoveredPrintersChanged = pyqtSignal()
+
+    @pyqtSlot(str)
+    def checkManualDevice(self, address: str) -> None:
+        if False:
+            return 10
+        if self.hasManualDeviceRequestInProgress:
+            Logger.log('i', 'A manual device request for address [%s] is still in progress, do nothing', self._manual_device_address)
+            return
+        priority_order = [ManualDeviceAdditionAttempt.PRIORITY, ManualDeviceAdditionAttempt.POSSIBLE]
+        all_plugins_dict = self._application.getOutputDeviceManager().getAllOutputDevicePlugins()
+        self._network_plugin_queue = [item for item in filter(lambda plugin_item: plugin_item.canAddManualDevice(address) in priority_order, all_plugins_dict.values())]
+        if not self._network_plugin_queue:
+            Logger.log('d', 'Could not find a plugin to accept adding %s manually via address.', address)
+            return
+        self._attemptToAddManualDevice(address)
+
+    def _attemptToAddManualDevice(self, address: str) -> None:
+        if False:
+            while True:
+                i = 10
+        if self._network_plugin_queue:
+            self._plugin_for_manual_device = self._network_plugin_queue.pop()
+            Logger.log('d', 'Network plugin %s: attempting to add manual device with address %s.', self._plugin_for_manual_device.getId(), address)
+            self._plugin_for_manual_device.addManualDevice(address, callback=self._onManualDeviceRequestFinished)
+            self._manual_device_address = address
+            self._manual_device_request_timer.start()
+            self.hasManualDeviceRequestInProgressChanged.emit()
+
+    @pyqtSlot()
+    def cancelCurrentManualDeviceRequest(self) -> None:
+        if False:
+            while True:
+                i = 10
+        self._manual_device_request_timer.stop()
+        if self._manual_device_address:
+            if self._plugin_for_manual_device is not None:
+                self._plugin_for_manual_device.removeManualDevice(self._manual_device_address, address=self._manual_device_address)
+            self._manual_device_address = ''
+            self._plugin_for_manual_device = None
+            self.hasManualDeviceRequestInProgressChanged.emit()
+            self.manualDeviceRequestFinished.emit(False)
+
+    def _onManualRequestTimeout(self) -> None:
+        if False:
+            return 10
+        address = self._manual_device_address
+        Logger.log('w', 'Manual printer [%s] request timed out. Cancel the current request.', address)
+        self.cancelCurrentManualDeviceRequest()
+        if self._network_plugin_queue:
+            self._attemptToAddManualDevice(address)
+    hasManualDeviceRequestInProgressChanged = pyqtSignal()
+
+    @pyqtProperty(bool, notify=hasManualDeviceRequestInProgressChanged)
+    def hasManualDeviceRequestInProgress(self) -> bool:
+        if False:
+            return 10
+        return self._manual_device_address != ''
+    manualDeviceRequestFinished = pyqtSignal(bool, arguments=['success'])
+
+    def _onManualDeviceRequestFinished(self, success: bool, address: str) -> None:
+        if False:
+            while True:
+                i = 10
+        self._manual_device_request_timer.stop()
+        if address == self._manual_device_address:
+            self._manual_device_address = ''
+            self.hasManualDeviceRequestInProgressChanged.emit()
+            self.manualDeviceRequestFinished.emit(success)
+        if not success and self._network_plugin_queue:
+            self._attemptToAddManualDevice(address)
+
+    @pyqtProperty('QVariantMap', notify=discoveredPrintersChanged)
+    def discoveredPrintersByAddress(self) -> Dict[str, DiscoveredPrinter]:
+        if False:
+            for i in range(10):
+                print('nop')
+        return self._discovered_printer_by_ip_dict
+
+    @pyqtProperty('QVariantList', notify=discoveredPrintersChanged)
+    def discoveredPrinters(self) -> List['DiscoveredPrinter']:
+        if False:
+            print('Hello World!')
+        item_list = list((x for x in self._discovered_printer_by_ip_dict.values() if not parseBool(x.device.getProperty('temporary'))))
+        available_list = []
+        not_available_list = []
+        for item in item_list:
+            if item.isUnknownMachineType or getattr(item.device, 'clusterSize', 1) < 1:
+                not_available_list.append(item)
+            else:
+                available_list.append(item)
+        available_list.sort(key=lambda x: x.device.name)
+        not_available_list.sort(key=lambda x: x.device.name)
+        return available_list + not_available_list
+
+    def addDiscoveredPrinter(self, ip_address: str, key: str, name: str, create_callback: Callable[[str], None], machine_type: str, device: 'NetworkedPrinterOutputDevice') -> None:
+        if False:
+            return 10
+        if ip_address in self._discovered_printer_by_ip_dict:
+            Logger.log('e', 'Printer with ip [%s] has already been added', ip_address)
+            return
+        discovered_printer = DiscoveredPrinter(ip_address, key, name, create_callback, machine_type, device, parent=self)
+        self._discovered_printer_by_ip_dict[ip_address] = discovered_printer
+        self.discoveredPrintersChanged.emit()
+
+    def updateDiscoveredPrinter(self, ip_address: str, name: Optional[str]=None, machine_type: Optional[str]=None) -> None:
+        if False:
+            return 10
+        if ip_address not in self._discovered_printer_by_ip_dict:
+            Logger.log('w', 'Printer with ip [%s] is not known', ip_address)
+            return
+        item = self._discovered_printer_by_ip_dict[ip_address]
+        if name is not None:
+            item.setName(name)
+        if machine_type is not None:
+            item.setMachineType(machine_type)
+
+    def removeDiscoveredPrinter(self, ip_address: str) -> None:
+        if False:
+            print('Hello World!')
+        if ip_address not in self._discovered_printer_by_ip_dict:
+            Logger.log('w', 'Key [%s] does not exist in the discovered printers list.', ip_address)
+            return
+        del self._discovered_printer_by_ip_dict[ip_address]
+        self.discoveredPrintersChanged.emit()
+
+    @pyqtSlot('QVariant')
+    def createMachineFromDiscoveredPrinter(self, discovered_printer: 'DiscoveredPrinter') -> None:
+        if False:
+            print('Hello World!')
+        'A convenience function for QML to create a machine (GlobalStack) out of the given discovered printer.\n\n        This function invokes the given discovered printer\'s "create_callback" to do this\n\n        :param discovered_printer:\n        '
+        discovered_printer.create_callback(discovered_printer.getKey())

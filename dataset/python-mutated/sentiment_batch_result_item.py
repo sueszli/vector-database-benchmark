@@ -1,0 +1,26 @@
+from msrest.serialization import Model
+
+class SentimentBatchResultItem(Model):
+    """SentimentBatchResultItem.
+
+    :param id: Unique, non-empty document identifier.
+    :type id: str
+    :param score: A decimal number between 0 and 1 denoting the sentiment of
+     the document. A score above 0.7 usually refers to a positive document
+     while a score below 0.3 normally has a negative connotation. Mid values
+     refer to neutral text.
+    :type score: float
+    :param statistics: (Optional) if showStats=true was specified in the
+     request this field will contain information about the document payload.
+    :type statistics:
+     ~azure.cognitiveservices.language.textanalytics.models.DocumentStatistics
+    """
+    _attribute_map = {'id': {'key': 'id', 'type': 'str'}, 'score': {'key': 'score', 'type': 'float'}, 'statistics': {'key': 'statistics', 'type': 'DocumentStatistics'}}
+
+    def __init__(self, **kwargs):
+        if False:
+            print('Hello World!')
+        super(SentimentBatchResultItem, self).__init__(**kwargs)
+        self.id = kwargs.get('id', None)
+        self.score = kwargs.get('score', None)
+        self.statistics = kwargs.get('statistics', None)

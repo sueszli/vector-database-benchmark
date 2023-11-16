@@ -1,0 +1,97 @@
+from collections import OrderedDict
+from sacred.observers.queue import QueueObserver
+from sacred import Experiment
+import mock
+import pytest
+
+@pytest.fixture
+def queue_observer():
+    if False:
+        for i in range(10):
+            print('nop')
+    return QueueObserver(mock.MagicMock(), interval=0.01, retry_interval=0.01)
+
+def test_started_event(queue_observer):
+    if False:
+        i = 10
+        return i + 15
+    queue_observer.started_event('args', kwds='kwargs')
+    assert queue_observer._worker.is_alive()
+    queue_observer.join()
+    assert queue_observer._covered_observer.method_calls[0][0] == 'started_event'
+    assert queue_observer._covered_observer.method_calls[0][1] == ('args',)
+    assert queue_observer._covered_observer.method_calls[0][2] == {'kwds': 'kwargs'}
+
+@pytest.mark.parametrize('event_name', ['heartbeat_event', 'resource_event', 'artifact_event'])
+def test_non_terminal_generic_events(queue_observer, event_name):
+    if False:
+        for i in range(10):
+            print('nop')
+    queue_observer.started_event()
+    getattr(queue_observer, event_name)('args', kwds='kwargs')
+    queue_observer.join()
+    assert queue_observer._covered_observer.method_calls[1][0] == event_name
+    assert queue_observer._covered_observer.method_calls[1][1] == ('args',)
+    assert queue_observer._covered_observer.method_calls[1][2] == {'kwds': 'kwargs'}
+
+@pytest.mark.parametrize('event_name', ['completed_event', 'interrupted_event', 'failed_event'])
+def test_terminal_generic_events(queue_observer, event_name):
+    if False:
+        print('Hello World!')
+    queue_observer.started_event()
+    getattr(queue_observer, event_name)('args', kwds='kwargs')
+    assert queue_observer._covered_observer.method_calls[1][0] == event_name
+    assert queue_observer._covered_observer.method_calls[1][1] == ('args',)
+    assert queue_observer._covered_observer.method_calls[1][2] == {'kwds': 'kwargs'}
+    assert not queue_observer._worker.is_alive()
+
+def test_log_metrics(queue_observer):
+    if False:
+        for i in range(10):
+            print('nop')
+    queue_observer.started_event()
+    first = ('a', [1])
+    second = ('b', [2])
+    queue_observer.log_metrics(OrderedDict([first, second]), 'info')
+    queue_observer.join()
+    assert queue_observer._covered_observer.method_calls[1][0] == 'log_metrics'
+    assert queue_observer._covered_observer.method_calls[1][1] == (first[0], first[1], 'info')
+    assert queue_observer._covered_observer.method_calls[1][2] == {}
+    assert queue_observer._covered_observer.method_calls[2][0] == 'log_metrics'
+    assert queue_observer._covered_observer.method_calls[2][1] == (second[0], second[1], 'info')
+    assert queue_observer._covered_observer.method_calls[2][2] == {}
+
+def test_run_waits_for_running_queue_observer():
+    if False:
+        i = 10
+        return i + 15
+    queue_observer_with_long_interval = QueueObserver(mock.MagicMock(), interval=1, retry_interval=0.01)
+    ex = Experiment('ator3000')
+    ex.observers.append(queue_observer_with_long_interval)
+
+    @ex.main
+    def main():
+        if False:
+            i = 10
+            return i + 15
+        print('do nothing')
+    ex.run()
+    assert queue_observer_with_long_interval._covered_observer.method_calls[-1][0] == 'completed_event'
+
+def test_run_waits_for_running_queue_observer_after_failure():
+    if False:
+        print('Hello World!')
+    queue_observer_with_long_interval = QueueObserver(mock.MagicMock(), interval=1, retry_interval=0.01)
+    ex = Experiment('ator3000')
+    ex.observers.append(queue_observer_with_long_interval)
+
+    @ex.main
+    def main():
+        if False:
+            return 10
+        raise Exception('fatal error')
+    try:
+        ex.run()
+    except:
+        pass
+    assert queue_observer_with_long_interval._covered_observer.method_calls[-1][0] == 'failed_event'

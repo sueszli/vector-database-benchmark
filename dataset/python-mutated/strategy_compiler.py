@@ -1,0 +1,173 @@
+__all__ = []
+
+def create_graph(optimizer_list):
+    if False:
+        return 10
+    nsize = len(optimizer_list)
+    edge = [[0] * nsize for _ in range(nsize)]
+    indegree = [0] * nsize
+    for (i, opt) in enumerate(optimizer_list):
+        for (j, opt_inner) in enumerate(optimizer_list):
+            if opt._can_update(opt_inner):
+                edge[i][j] = 1
+                indegree[j] += 1
+    return (edge, indegree)
+
+def topo_sort(edge, indegree):
+    if False:
+        while True:
+            i = 10
+    nsize = len(indegree)
+    topo = [-1] * nsize
+    for i in range(nsize):
+        j = 0
+        while j < nsize and indegree[j] != 0:
+            j += 1
+        assert j < nsize, 'The combination of meta optimizers contains ring'
+        topo[i] = j
+        indegree[j] = -1
+        for k in range(nsize):
+            if edge[j][k] != 0:
+                indegree[k] -= 1
+    return topo
+
+def floyd(edge):
+    if False:
+        print('Hello World!')
+    nsize = len(edge)
+    max_len = -1
+    max_edge = [-1, -1]
+    max_path = [[[] for _ in range(nsize)] for _ in range(nsize)]
+    for i in range(nsize):
+        for j in range(nsize):
+            if edge[i][j] > 0:
+                max_path[i][j] = [j]
+                if edge[i][j] > max_len:
+                    max_len = edge[i][j]
+                    max_edge = [i, j]
+    for k in range(nsize):
+        for i in range(nsize):
+            for j in range(nsize):
+                if edge[i][j] == 0:
+                    continue
+                if edge[i][k] == 0 or edge[k][j] == 0:
+                    continue
+                if edge[i][j] < edge[i][k] + edge[k][j]:
+                    edge[i][j] = edge[i][k] + edge[k][j]
+                    max_path[i][j] = max_path[i][k] + max_path[k][j]
+                    max_len = edge[i][j]
+                    max_edge = [i, j]
+    if max_len == -1:
+        return [0]
+    return [max_edge[0]] + max_path[max_edge[0]][max_edge[1]]
+
+def maximum_path_len_algo(optimizer_list):
+    if False:
+        while True:
+            i = 10
+    if len(optimizer_list) == 0:
+        return None
+    (edge, indegree) = create_graph(optimizer_list)
+    topo_sort(edge, indegree)
+    max_path = floyd(edge)
+    candidate = []
+    for idx in max_path:
+        candidate.append(optimizer_list[idx])
+    for (idx, opt) in enumerate(candidate[:-1]):
+        opt._update_inner_optimizer(candidate[idx + 1])
+    return candidate
+
+class StrategyCompilerBase:
+
+    def __init__(self):
+        if False:
+            return 10
+        pass
+
+class StrategyCompiler(StrategyCompilerBase):
+    """
+    StrategyCompiler is responsible for meta optimizers combination
+    Generally, a user can define serveral distributed strategies that
+    can generate serveral meta optimizer. The combination of these
+    meta optimizers should have the right order to apply the optimizers'
+    minimize function.
+    This class is responsible for the executable distributed optimizer
+    generation.
+    """
+
+    def __init__(self):
+        if False:
+            print('Hello World!')
+        super().__init__()
+        self._meta_optimizers = []
+        self._graph_optimizers = []
+        self._valid_optimizer_list = None
+        self._user_defined_strategy = None
+        self._meta_optimizer_candidates = []
+        self._graph_optimizer_candidates = []
+
+    def _get_applied_meta_optimizer(self):
+        if False:
+            while True:
+                i = 10
+        return self._meta_optimizers
+
+    def _get_applied_meta_list(self):
+        if False:
+            for i in range(10):
+                print('nop')
+        return [type(opt).__name__ for opt in self._meta_optimizers]
+
+    def _get_applied_graph_list(self):
+        if False:
+            print('Hello World!')
+        return [type(opt).__name__ for opt in self._graph_optimizers]
+
+    def _get_valid_strategy(self, dist_strategy, can_not_apply_optimizer_list):
+        if False:
+            for i in range(10):
+                print('nop')
+        import copy
+        valid_strategy = copy.deepcopy(dist_strategy)
+        invalid_optimizers = []
+        for candidate in self._meta_optimizer_candidates:
+            is_valid = False
+            for valid in self._meta_optimizers:
+                if candidate.__class__.__name__ == valid.__class__.__name__:
+                    is_valid = True
+                    break
+            if not is_valid:
+                invalid_optimizers.append(candidate)
+        for opt in invalid_optimizers:
+            opt._disable_strategy(valid_strategy)
+        for opt in can_not_apply_optimizer_list:
+            opt._disable_strategy(valid_strategy)
+        return valid_strategy
+    '\n    Meta Optimizer Type A: rewrite forward, backward. e.g. recompute, async, sync, pipeline.\n                           results will be splitted in async, sync, pipeline\n    Meta Optimizer Type B: rewrite forward,\n                           e.g. AMP and the corresponding backward is generated by rewritten forward\n    Meta Opitmizer Type B: rewrite backward. e.g. gradient fusion\n    Meta Optimizer Type D: rewrite optimize. e.g. lars, lamb, localsgd, gradient merge, dgc\n    Meta Optimizer Type E: only transpile to Graph structure for runtime,\n                           currently, grad fusion and kernel fusion, sync batch-norm included.\n                           we will remove grad fusion and sync batch-norm\n    '
+
+    def generate_optimizer(self, loss, role_maker, optimizer, user_defined_strategy, meta_optimizer_list, graph_optimizer_list):
+        if False:
+            i = 10
+            return i + 15
+        self._user_defined_strategy = user_defined_strategy
+        self._meta_optimizer_candidates = meta_optimizer_list
+        self._graph_optimizer_candidates = graph_optimizer_list
+        if len(meta_optimizer_list) == 0 and len(graph_optimizer_list) == 0:
+            return (optimizer, None)
+        else:
+            meta_optimizers = maximum_path_len_algo(meta_optimizer_list)
+            graph_optimizers = maximum_path_len_algo(graph_optimizer_list)
+            self._meta_optimizers = [] if meta_optimizers is None else meta_optimizers
+            self._graph_optimizers = [] if graph_optimizers is None else graph_optimizers
+            return_meta = None if meta_optimizers is None else meta_optimizers[0]
+            return_graph = None if graph_optimizers is None else graph_optimizers[0]
+            if meta_optimizers is None or graph_optimizers is None:
+                return (return_meta, return_graph)
+            need_graph_opt = True
+            for graph_opt in graph_optimizers:
+                for program_opt in meta_optimizers:
+                    if graph_opt.__class__.__name__ in program_opt.meta_optimizers_black_list:
+                        need_graph_opt = False
+            if not need_graph_opt:
+                return_graph = None
+            return (return_meta, return_graph)

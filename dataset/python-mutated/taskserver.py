@@ -1,0 +1,61 @@
+import factory
+from golem_messages import idgenerator, message
+from golem import clientconfigdescriptor
+from golem.task import taskserver
+
+class ClientConfigDescriptor(factory.Factory):
+
+    class Meta:
+        model = clientconfigdescriptor.ClientConfigDescriptor
+
+    @factory.post_generation
+    def set_min_hardware_requirements(self, *_, **__):
+        if False:
+            print('Hello World!')
+        self.max_memory_size = 1024 * 1024
+        self.num_cores = 1
+
+class TaskServer(factory.Factory):
+
+    class Meta:
+        model = taskserver.TaskServer
+    node = factory.SubFactory('golem_messages.factories.datastructures.p2p.Node')
+    config_desc = factory.SubFactory(ClientConfigDescriptor)
+    use_docker_manager = False
+
+class WaitingTaskResultFactory(factory.Factory):
+
+    class Meta:
+        model = taskserver.WaitingTaskResult
+    task_id = factory.Faker('uuid4')
+    subtask_id = factory.Faker('uuid4')
+    result = factory.Faker('text')
+    last_sending_trial = 0
+    delay_time = 0
+    owner = factory.SubFactory('golem_messages.factories.datastructures.p2p.Node')
+    package_sha1 = factory.Faker('sha1')
+    result_size = factory.Faker('random_int', min=1 << 20, max=10 << 20)
+
+    @factory.post_generation
+    def xtask_id(wtr: taskserver.WaitingTaskResult, _create, extracted, **_kwargs):
+        if False:
+            return 10
+        value = extracted or idgenerator.generate_id_from_hex(wtr.owner.key)
+        wtr.task_id = value
+
+    @factory.post_generation
+    def xsubtask_id(wtr: taskserver.WaitingTaskResult, _create, extracted, **_kwargs):
+        if False:
+            return 10
+        value = extracted or idgenerator.generate_id_from_hex(wtr.owner.key)
+        wtr.subtask_id = value
+
+class WaitingTaskFailureFactory(factory.Factory):
+
+    class Meta:
+        model = taskserver.WaitingTaskFailure
+    task_id = factory.Faker('uuid4')
+    subtask_id = factory.Faker('uuid4')
+    err_msg = factory.Faker('text')
+    owner = factory.SubFactory('golem_messages.factories.datastructures.p2p.Node')
+    reason = message.TaskFailure.DEFAULT_REASON

@@ -1,0 +1,31 @@
+from __future__ import annotations
+from typing import TYPE_CHECKING
+import pytest
+if TYPE_CHECKING:
+    from tox.pytest import ToxProjectCreator
+
+def test_devenv_fail_multiple_target(tox_project: ToxProjectCreator) -> None:
+    if False:
+        print('Hello World!')
+    outcome = tox_project({'tox.ini': '[tox]\nenv_list=a,b'}).run('d', '-e', 'a,b')
+    outcome.assert_failed()
+    msg = 'ROOT: HandledError| exactly one target environment allowed in devenv mode but found a, b\n'
+    outcome.assert_out_err(msg, '')
+
+@pytest.mark.integration()
+def test_devenv_ok(tox_project: ToxProjectCreator, enable_pip_pypi_access: str | None) -> None:
+    if False:
+        return 10
+    content = {'setup.py': "from setuptools import setup\nsetup(name='demo', version='1.0')", 'tox.ini': '[tox]\nenv_list = py\n[testenv]\nusedevelop = True'}
+    project = tox_project(content)
+    outcome = project.run('d', '-e', 'py')
+    outcome.assert_success()
+    assert (project.path / 'venv').exists()
+    assert f"created development environment under {project.path / 'venv'}" in outcome.out
+
+def test_devenv_help(tox_project: ToxProjectCreator) -> None:
+    if False:
+        for i in range(10):
+            print('nop')
+    outcome = tox_project({'tox.ini': ''}).run('d', '-h')
+    outcome.assert_success()

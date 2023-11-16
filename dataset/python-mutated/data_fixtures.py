@@ -1,0 +1,10 @@
+from __future__ import annotations
+from .platform_rules import Platform
+
+def platform(arch='', os='', distro='', distro_name='', distro_codename='', distro_like='', distro_major_version='', distro_version='', mac_release='', win_release='') -> Platform:
+    if False:
+        i = 10
+        return i + 15
+    'Create a Platform with all values defaulted to the empty string.'
+    return Platform(arch=arch, os=os, distro=distro, distro_name=distro_name, distro_codename=distro_codename, distro_like=distro_like, distro_major_version=distro_major_version, distro_version=distro_version, mac_release=mac_release, win_release=win_release)
+platform_samples = (platform(), platform(arch='x86_64', os='Linux', distro='centos', distro_name='Centos Linux', distro_codename='Core', distro_like='rhel fedora', distro_major_version='7', distro_version='7'), platform(arch='x86_64', os='Linux', distro='rocky', distro_name='Rocky Linux', distro_codename='Green Obsidian', distro_like='rhel centos fedora', distro_major_version='8', distro_version='8.7'), platform(arch='x86_64', os='Linux', distro='ubuntu', distro_name='Ubuntu', distro_codename='xenial', distro_like='debian', distro_major_version='16', distro_version='16.04'), platform(arch='x86_64', os='Linux', distro='ubuntu', distro_name='Ubuntu', distro_codename='bionic', distro_like='debian', distro_major_version='18', distro_version='18.04'), platform(arch='x86_64', os='Linux', distro='ubuntu', distro_name='Ubuntu', distro_codename='focal', distro_like='debian', distro_major_version='20', distro_version='20.04'), platform(arch='x86_64', os='Linux', distro='gentoo', distro_name='Gentoo', distro_codename='n/a', distro_major_version='2', distro_version='2.7'), platform(arch='aarch64', os='Linux'), platform(arch='x86_64', os='Darwin', distro='darwin', distro_name='Darwin', distro_major_version='19', distro_version='19.6.0', mac_release='10.15.7'), platform(arch='x86_64', os='Darwin', distro='darwin', distro_name='Darwin', distro_major_version='21', distro_version='21.6.0', mac_release='12.6.2'))

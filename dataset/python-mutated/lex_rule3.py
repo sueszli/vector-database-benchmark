@@ -1,0 +1,21 @@
+import sys
+if '..' not in sys.path:
+    sys.path.insert(0, '..')
+import ply.lex as lex
+tokens = ['PLUS', 'MINUS', 'NUMBER']
+t_PLUS = '\\+'
+t_MINUS = '-'
+
+def t_NUMBER(t, s):
+    if False:
+        while True:
+            i = 10
+    '\\d+'
+    return t
+
+def t_error(t):
+    if False:
+        for i in range(10):
+            print('nop')
+    pass
+lex.lex()

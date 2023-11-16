@@ -1,0 +1,30 @@
+from msrest.serialization import Model
+
+class ConsistencyPolicy(Model):
+    """The consistency policy for the DocumentDB database account.
+
+    :param default_consistency_level: The default consistency level and
+     configuration settings of the DocumentDB account. Possible values include:
+     'Eventual', 'Session', 'BoundedStaleness', 'Strong', 'ConsistentPrefix'
+    :type default_consistency_level: str or :class:`DefaultConsistencyLevel
+     <azure.mgmt.documentdb.models.DefaultConsistencyLevel>`
+    :param max_staleness_prefix: When used with the Bounded Staleness
+     consistency level, this value represents the number of stale requests
+     tolerated. Accepted range for this value is 1 – 2,147,483,647. Required
+     when defaultConsistencyPolicy is set to 'BoundedStaleness'.
+    :type max_staleness_prefix: long
+    :param max_interval_in_seconds: When used with the Bounded Staleness
+     consistency level, this value represents the time amount of staleness (in
+     seconds) tolerated. Accepted range for this value is 1 - 100. Required
+     when defaultConsistencyPolicy is set to 'BoundedStaleness'.
+    :type max_interval_in_seconds: int
+    """
+    _validation = {'default_consistency_level': {'required': True}, 'max_staleness_prefix': {'maximum': 2147483647, 'minimum': 1}, 'max_interval_in_seconds': {'maximum': 100, 'minimum': 1}}
+    _attribute_map = {'default_consistency_level': {'key': 'defaultConsistencyLevel', 'type': 'DefaultConsistencyLevel'}, 'max_staleness_prefix': {'key': 'maxStalenessPrefix', 'type': 'long'}, 'max_interval_in_seconds': {'key': 'maxIntervalInSeconds', 'type': 'int'}}
+
+    def __init__(self, default_consistency_level, max_staleness_prefix=None, max_interval_in_seconds=None):
+        if False:
+            return 10
+        self.default_consistency_level = default_consistency_level
+        self.max_staleness_prefix = max_staleness_prefix
+        self.max_interval_in_seconds = max_interval_in_seconds

@@ -1,0 +1,13 @@
+from azure.identity import DefaultAzureCredential
+from azure.mgmt.web import WebSiteManagementClient
+'\n# PREREQUISITES\n    pip install azure-identity\n    pip install azure-mgmt-web\n# USAGE\n    python backup_web_app.py\n\n    Before run the sample, please set the values of the client ID, tenant ID and client secret\n    of the AAD application as environment variables: AZURE_CLIENT_ID, AZURE_TENANT_ID,\n    AZURE_CLIENT_SECRET. For more info about how to get the value, please see:\n    https://docs.microsoft.com/azure/active-directory/develop/howto-create-service-principal-portal\n'
+
+def main():
+    if False:
+        i = 10
+        return i + 15
+    client = WebSiteManagementClient(credential=DefaultAzureCredential(), subscription_id='34adfa4f-cedf-4dc0-ba29-b6d1a69ab345')
+    response = client.web_apps.backup(resource_group_name='testrg123', name='sitef6141', request={'properties': {'backupName': 'abcdwe', 'backupSchedule': {'frequencyInterval': 7, 'frequencyUnit': 'Day', 'keepAtLeastOneBackup': True, 'retentionPeriodInDays': 30, 'startTime': '2022-09-02T17:33:11.641Z'}, 'databases': [{'connectionString': 'DSN=data-source-name[;SERVER=value] [;PWD=value] [;UID=value] [;<Attribute>=<value>]', 'connectionStringName': 'backend', 'databaseType': 'SqlAzure', 'name': 'backenddb'}, {'connectionString': 'DSN=data-source-name[;SERVER=value] [;PWD=value] [;UID=value] [;<Attribute>=<value>]', 'connectionStringName': 'stats', 'databaseType': 'SqlAzure', 'name': 'statsdb'}], 'enabled': True, 'storageAccountUrl': 'DefaultEndpointsProtocol=https;AccountName=storagesample;AccountKey=<account-key>'}})
+    print(response)
+if __name__ == '__main__':
+    main()

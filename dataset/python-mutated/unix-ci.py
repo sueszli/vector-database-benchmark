@@ -1,0 +1,174 @@
+import glob
+import io
+import os
+import shlex
+import subprocess
+import sys
+import tarfile
+import time
+from tempfile import NamedTemporaryFile
+from urllib.request import urlopen
+_plat = sys.platform.lower()
+ismacos = 'darwin' in _plat
+iswindows = 'win32' in _plat or 'win64' in _plat
+
+def setenv(key, val):
+    if False:
+        while True:
+            i = 10
+    os.environ[key] = os.path.expandvars(val)
+if ismacos:
+    SWBASE = '/Users/Shared/calibre-build/sw'
+    SW = SWBASE + '/sw'
+
+    def install_env():
+        if False:
+            for i in range(10):
+                print('nop')
+        setenv('SWBASE', SWBASE)
+        setenv('SW', SW)
+        setenv('PATH', '$SW/bin:$SW/qt/bin:$SW/python/Python.framework/Versions/2.7/bin:$PWD/node_modules/.bin:$PATH')
+        setenv('CFLAGS', '-I$SW/include')
+        setenv('LDFLAGS', '-L$SW/lib')
+        setenv('QMAKE', '$SW/qt/bin/qmake')
+        setenv('QTWEBENGINE_DISABLE_SANDBOX', '1')
+        setenv('QT_PLUGIN_PATH', '$SW/qt/plugins')
+        old = os.environ.get('DYLD_FALLBACK_LIBRARY_PATH', '')
+        if old:
+            old += ':'
+        setenv('DYLD_FALLBACK_LIBRARY_PATH', old + '$SW/lib')
+else:
+    SWBASE = '/sw'
+    SW = SWBASE + '/sw'
+
+    def install_env():
+        if False:
+            i = 10
+            return i + 15
+        setenv('SW', SW)
+        setenv('PATH', '$SW/bin:$PATH')
+        setenv('CFLAGS', '-I$SW/include')
+        setenv('LDFLAGS', '-L$SW/lib')
+        setenv('LD_LIBRARY_PATH', '$SW/qt/lib:$SW/lib')
+        setenv('PKG_CONFIG_PATH', '$SW/lib/pkgconfig')
+        setenv('QMAKE', '$SW/qt/bin/qmake')
+        setenv('CALIBRE_QT_PREFIX', '$SW/qt')
+
+def run(*args):
+    if False:
+        for i in range(10):
+            print('nop')
+    if len(args) == 1:
+        args = shlex.split(args[0])
+    print(' '.join(args), flush=True)
+    p = subprocess.Popen(args)
+    try:
+        ret = p.wait(timeout=600)
+    except subprocess.TimeoutExpired as err:
+        ret = 1
+        print(err, file=sys.stderr, flush=True)
+        print('Timed out running:', ' '.join(args), flush=True, file=sys.stderr)
+        p.kill()
+    if ret != 0:
+        raise SystemExit(ret)
+
+def decompress(path, dest, compression):
+    if False:
+        while True:
+            i = 10
+    run('tar', 'x' + compression + 'f', path, '-C', dest)
+
+def download_and_decompress(url, dest, compression=None):
+    if False:
+        i = 10
+        return i + 15
+    if compression is None:
+        compression = 'j' if url.endswith('.bz2') else 'J'
+    for i in range(5):
+        print('Downloading', url, '...')
+        with NamedTemporaryFile() as f:
+            ret = subprocess.Popen(['curl', '-fSL', url], stdout=f).wait()
+            if ret == 0:
+                decompress(f.name, dest, compression)
+                (sys.stdout.flush(), sys.stderr.flush())
+                return
+            time.sleep(1)
+    raise SystemExit('Failed to download ' + url)
+
+def install_qt_source_code():
+    if False:
+        print('Hello World!')
+    dest = os.path.expanduser('~/qt-base')
+    os.mkdir(dest)
+    download_and_decompress('https://download.calibre-ebook.com/qtbase-everywhere-src-6.4.2.tar.xz', dest, 'J')
+    qdir = glob.glob(dest + '/*')[0]
+    os.environ['QT_SRC'] = qdir
+
+def run_python(*args):
+    if False:
+        i = 10
+        return i + 15
+    python = os.path.expandvars('$SW/bin/python')
+    if len(args) == 1:
+        args = shlex.split(args[0])
+    args = [python] + list(args)
+    return run(*args)
+
+def install_linux_deps():
+    if False:
+        print('Hello World!')
+    run('sudo', 'apt-get', 'update', '-y')
+    run('sudo', 'apt-get', 'install', '-y', 'gettext', 'libgl1-mesa-dev', 'libxkbcommon-dev', 'libxkbcommon-x11-dev')
+
+def get_tx():
+    if False:
+        for i in range(10):
+            print('nop')
+    url = 'https://github.com/transifex/cli/releases/latest/download/tx-linux-amd64.tar.gz'
+    print('Downloading:', url)
+    with urlopen(url) as f:
+        raw = f.read()
+    with tarfile.open(fileobj=io.BytesIO(raw), mode='r') as tf:
+        tf.extract('tx')
+
+def main():
+    if False:
+        print('Hello World!')
+    if iswindows:
+        import runpy
+        m = runpy.run_path('setup/win-ci.py')
+        return m['main']()
+    action = sys.argv[1]
+    if action == 'install':
+        run('sudo', 'mkdir', '-p', SW)
+        run('sudo', 'chown', '-R', os.environ['USER'], SWBASE)
+        tball = 'macos-64' if ismacos else 'linux-64'
+        download_and_decompress(f'https://download.calibre-ebook.com/ci/calibre7/{tball}.tar.xz', SW)
+        if not ismacos:
+            install_linux_deps()
+    elif action == 'bootstrap':
+        install_env()
+        run_python('setup.py bootstrap --ephemeral')
+    elif action == 'pot':
+        transifexrc = '[https://www.transifex.com]\napi_hostname  = https://api.transifex.com\nrest_hostname = https://rest.api.transifex.com\nhostname = https://www.transifex.com\npassword = PASSWORD\ntoken = PASSWORD\nusername = api\n'.replace('PASSWORD', os.environ['tx'])
+        with open(os.path.expanduser('~/.transifexrc'), 'w') as f:
+            f.write(transifexrc)
+        install_qt_source_code()
+        install_env()
+        get_tx()
+        os.environ['TX'] = os.path.abspath('tx')
+        run(sys.executable, 'setup.py', 'pot')
+    elif action == 'test':
+        os.environ['CI'] = 'true'
+        os.environ['OPENSSL_MODULES'] = os.path.join(SW, 'lib', 'ossl-modules')
+        if ismacos:
+            os.environ['SSL_CERT_FILE'] = os.path.abspath('resources/mozilla-ca-certs.pem')
+            os.environ['DYLD_INSERT_LIBRARIES'] = ':'.join((os.path.join(SW, 'lib', x) for x in 'libxml2.dylib libxslt.dylib libexslt.dylib'.split()))
+            os.environ['OPENSSL_ENGINES'] = os.path.join(SW, 'lib', 'engines-3')
+        install_env()
+        run_python('setup.py test')
+        run_python('setup.py test_rs')
+    else:
+        raise SystemExit(f'Unknown action: {action}')
+if __name__ == '__main__':
+    main()

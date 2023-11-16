@@ -1,0 +1,76 @@
+import open3d as o3d
+import numpy as np
+import pytest
+import sys
+import os
+sys.path.append(os.path.dirname(os.path.realpath(__file__)) + '/..')
+from open3d_test import list_devices
+
+def test_size_vector():
+    if False:
+        for i in range(10):
+            print('nop')
+    sv = o3d.core.SizeVector([-1, 2, 3])
+    assert '{}'.format(sv) == 'SizeVector[-1, 2, 3]'
+    sv = o3d.core.SizeVector((-1, 2, 3))
+    assert '{}'.format(sv) == 'SizeVector[-1, 2, 3]'
+    sv = o3d.core.SizeVector(np.array([-1, 2, 3]))
+    assert '{}'.format(sv) == 'SizeVector[-1, 2, 3]'
+    sv = o3d.core.SizeVector()
+    assert '{}'.format(sv) == 'SizeVector[]'
+    sv = o3d.core.SizeVector([])
+    assert '{}'.format(sv) == 'SizeVector[]'
+    sv = o3d.core.SizeVector(())
+    assert '{}'.format(sv) == 'SizeVector[]'
+    sv = o3d.core.SizeVector(np.array([]))
+    assert '{}'.format(sv) == 'SizeVector[]'
+    assert o3d.core.SizeVector(3) == (3,)
+    assert o3d.core.SizeVector(3) == (3,)
+    assert o3d.core.SizeVector((3,)) == (3,)
+    assert o3d.core.SizeVector([3]) == (3,)
+    assert o3d.core.SizeVector([3]) == (3,)
+    with pytest.raises(Exception):
+        sv = o3d.core.SizeVector([1.9, 2, 3])
+    with pytest.raises(Exception):
+        sv = o3d.core.SizeVector([-1.5, 2, 3])
+    with pytest.raises(Exception):
+        sv = o3d.core.SizeVector([[1, 2], [3, 4]])
+    with pytest.raises(Exception):
+        sv = o3d.core.SizeVector(np.array([[1, 2], [3, 4]]))
+    with pytest.raises(Exception):
+        sv = o3d.core.SizeVector(['foo', 'bar'])
+
+@pytest.mark.parametrize('device', list_devices())
+def test_implicit_conversion(device):
+    if False:
+        for i in range(10):
+            print('nop')
+    t = o3d.core.Tensor.ones((3, 4), device=device)
+    assert t.reshape(o3d.core.SizeVector((4, 3))).shape == (4, 3)
+    assert t.reshape(o3d.core.SizeVector([4, 3])).shape == (4, 3)
+    assert t.reshape((4, 3)).shape == (4, 3)
+    assert t.reshape([4, 3]).shape == (4, 3)
+    with pytest.raises(TypeError, match='incompatible function arguments'):
+        t.reshape((4, 3.0))
+    with pytest.raises(TypeError, match='incompatible function arguments'):
+        t.reshape((4.0, 3.0))
+    with pytest.raises(RuntimeError, match='Invalid shape dimension'):
+        t.reshape((4, -3))
+    assert o3d.core.Tensor.ones((), device=device).shape == ()
+    assert o3d.core.Tensor.ones([], device=device).shape == ()
+    assert o3d.core.Tensor.ones(3, device=device).shape == (3,)
+    assert o3d.core.Tensor.ones(3, device=device).shape == (3,)
+    assert o3d.core.Tensor.ones((3,), device=device).shape == (3,)
+    assert o3d.core.Tensor.ones([3], device=device).shape == (3,)
+    assert o3d.core.Tensor.ones([3], device=device).shape == (3,)
+    assert o3d.core.Tensor.empty((3, 4), device=device).shape == (3, 4)
+    assert o3d.core.Tensor.ones((3, 4), device=device).shape == (3, 4)
+    assert o3d.core.Tensor.zeros((3, 4), device=device).shape == (3, 4)
+    assert o3d.core.Tensor.full((3, 4), 10, device=device).shape == (3, 4)
+    t = o3d.core.Tensor.ones((3, 4, 5), device=device)
+    assert t.sum(o3d.core.SizeVector([0, 2])).shape == (4,)
+    assert t.sum(o3d.core.SizeVector([0, 2]), keepdim=True).shape == (1, 4, 1)
+    assert t.sum((0, 2)).shape == (4,)
+    assert t.sum([0, 2]).shape == (4,)
+    assert t.sum((0, 2), keepdim=True).shape == (1, 4, 1)
+    assert t.sum([0, 2], keepdim=True).shape == (1, 4, 1)

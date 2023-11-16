@@ -1,0 +1,38 @@
+import numpy
+import cupy
+import cupyx.scipy.special
+from cupy import testing
+import pytest
+try:
+    import scipy.special
+    scipy_ufuncs = {f for f in scipy.special.__all__ if isinstance(getattr(scipy.special, f), numpy.ufunc)}
+    cupyx_scipy_ufuncs = {f for f in dir(cupyx.scipy.special) if isinstance(getattr(cupyx.scipy.special, f), cupy.ufunc)}
+except ImportError:
+    scipy_ufuncs = set()
+    cupyx_scipy_ufuncs = set()
+
+@testing.with_requires('scipy')
+@pytest.mark.parametrize('ufunc', sorted(cupyx_scipy_ufuncs & scipy_ufuncs))
+class TestUfunc:
+
+    def _should_skip(self, f):
+        if False:
+            for i in range(10):
+                print('nop')
+        if f.startswith('gammainc'):
+            if cupy.cuda.runtime.is_hip and cupy.cuda.runtime.runtimeGetVersion() < 50000000:
+                pytest.skip('ROCm/HIP fails in ROCm 4.x')
+
+    @testing.numpy_cupy_allclose(atol=0.0001)
+    def test_dispatch(self, xp, ufunc):
+        if False:
+            for i in range(10):
+                print('nop')
+        self._should_skip(ufunc)
+        ufunc = getattr(scipy.special, ufunc)
+        if ufunc.__name__ in ['bdtr', 'bdtrc', 'bdtri']:
+            types = 'dld->d'
+        else:
+            types = ufunc.types[0]
+        args = [cupy.testing.shaped_random((5,), xp, dtype=types[i]) for i in range(ufunc.nin)]
+        return ufunc(*args)

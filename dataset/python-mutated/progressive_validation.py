@@ -1,0 +1,100 @@
+from __future__ import annotations
+import datetime as dt
+import itertools
+import time
+import typing
+from river import base, metrics, stream, utils
+__all__ = ['progressive_val_score']
+
+def _progressive_validation(dataset: base.typing.Dataset, model, metric: metrics.base.Metric, checkpoints: typing.Iterator[int], moment: str | typing.Callable[[dict], dt.datetime] | None=None, delay: str | int | dt.timedelta | typing.Callable | None=None, measure_time=False, measure_memory=False, yield_predictions=False):
+    if False:
+        while True:
+            i = 10
+    if not metric.works_with(model):
+        raise ValueError(f'{metric.__class__.__name__} metric is not compatible with {model}')
+    if utils.inspect.isanomalydetector(model) or utils.inspect.isanomalyfilter(model):
+        pred_func = model.score_one
+    elif utils.inspect.isclassifier(model) and (not metric.requires_labels):
+        pred_func = model.predict_proba_one
+    else:
+        pred_func = model.predict_one
+    preds = {}
+    active_learning = utils.inspect.isactivelearner(model)
+    n_samples_learned = 0
+    prev_checkpoint = None
+    next_checkpoint = next(checkpoints, None)
+    n_total_answers = 0
+    if measure_time:
+        start = time.perf_counter()
+
+    def report(y_pred):
+        if False:
+            while True:
+                i = 10
+        if isinstance(metric, metrics.base.Metrics):
+            state = {m.__class__.__name__: m for m in metric}
+        else:
+            state = {metric.__class__.__name__: metric}
+        state['Step'] = n_total_answers
+        if active_learning:
+            state['Samples used'] = n_samples_learned
+        if measure_time:
+            now = time.perf_counter()
+            state['Time'] = dt.timedelta(seconds=now - start)
+        if measure_memory:
+            state['Memory'] = model._raw_memory_usage
+        if yield_predictions:
+            state['Prediction'] = y_pred
+        return state
+    for (i, x, y, *kwargs) in stream.simulate_qa(dataset, moment, delay, copy=True):
+        kwargs = kwargs[0] if kwargs else {}
+        if y is None:
+            y_pred = pred_func(x, **kwargs)
+            (y_pred, ask_for_label) = y_pred if active_learning else (y_pred, True)
+            if utils.inspect.isanomalyfilter(model):
+                y_pred = model.classify(y_pred)
+            preds[i] = (y_pred, ask_for_label)
+            continue
+        (y_pred, use_label) = preds.pop(i)
+        if y_pred != {} and y_pred is not None:
+            metric.update(y_true=y, y_pred=y_pred)
+        if use_label:
+            n_samples_learned += 1
+            if model._supervised:
+                model.learn_one(x, y, **kwargs)
+            else:
+                model.learn_one(x, **kwargs)
+        n_total_answers += 1
+        if n_total_answers == next_checkpoint:
+            yield report(y_pred=y_pred)
+            prev_checkpoint = next_checkpoint
+            next_checkpoint = next(checkpoints, None)
+    else:
+        if prev_checkpoint and n_total_answers != prev_checkpoint:
+            yield report(y_pred=None)
+
+def iter_progressive_val_score(dataset: base.typing.Dataset, model, metric: metrics.base.Metric, moment: str | typing.Callable | None=None, delay: str | int | dt.timedelta | typing.Callable | None=None, step=1, measure_time=False, measure_memory=False, yield_predictions=False) -> typing.Generator:
+    if False:
+        print('Hello World!')
+    "Evaluates the performance of a model on a streaming dataset and yields results.\n\n    This does exactly the same as `evaluate.progressive_val_score`. The only difference is that\n    this function returns an iterator, yielding results at every step. This can be useful if you\n    want to have control over what you do with the results. For instance, you might want to plot\n    the results.\n\n    Parameters\n    ----------\n    dataset\n        The stream of observations against which the model will be evaluated.\n    model\n        The model to evaluate.\n    metric\n        The metric used to evaluate the model's predictions.\n    moment\n        The attribute used for measuring time. If a callable is passed, then it is expected to take\n        as input a `dict` of features. If `None`, then the observations are implicitly timestamped\n        in the order in which they arrive.\n    delay\n        The amount to wait before revealing the target associated with each observation to the\n        model. This value is expected to be able to sum with the `moment` value. For instance, if\n        `moment` is a `datetime.date`, then `delay` is expected to be a `datetime.timedelta`. If a\n        callable is passed, then it is expected to take as input a `dict` of features and the\n        target. If a `str` is passed, then it will be used to access the relevant field from the\n        features. If `None` is passed, then no delay will be used, which leads to doing standard\n        online validation.\n    step\n        Iteration number at which to yield results. This only takes into account the\n        predictions, and not the training steps.\n    measure_time\n        Whether or not to measure the elapsed time.\n    measure_memory\n        Whether or not to measure the memory usage of the model.\n    yield_predictions\n        Whether or not to include predictions. If step is 1, then this is equivalent to yielding\n        the predictions at every iterations. Otherwise, not all predictions will be yielded.\n\n    Examples\n    --------\n\n    Take the following model:\n\n    >>> from river import linear_model\n    >>> from river import preprocessing\n\n    >>> model = (\n    ...     preprocessing.StandardScaler() |\n    ...     linear_model.LogisticRegression()\n    ... )\n\n    We can evaluate it on the `Phishing` dataset as so:\n\n    >>> from river import datasets\n    >>> from river import evaluate\n    >>> from river import metrics\n\n    >>> steps = evaluate.iter_progressive_val_score(\n    ...     model=model,\n    ...     dataset=datasets.Phishing(),\n    ...     metric=metrics.ROCAUC(),\n    ...     step=200\n    ... )\n\n    >>> for step in steps:\n    ...     print(step)\n    {'ROCAUC': ROCAUC: 90.20%, 'Step': 200}\n    {'ROCAUC': ROCAUC: 92.25%, 'Step': 400}\n    {'ROCAUC': ROCAUC: 93.23%, 'Step': 600}\n    {'ROCAUC': ROCAUC: 94.05%, 'Step': 800}\n    {'ROCAUC': ROCAUC: 94.79%, 'Step': 1000}\n    {'ROCAUC': ROCAUC: 95.07%, 'Step': 1200}\n    {'ROCAUC': ROCAUC: 95.07%, 'Step': 1250}\n\n    The `yield_predictions` parameter can be used to include the predictions in the results:\n\n    >>> import itertools\n\n    >>> steps = evaluate.iter_progressive_val_score(\n    ...     model=model,\n    ...     dataset=datasets.Phishing(),\n    ...     metric=metrics.ROCAUC(),\n    ...     step=1,\n    ...     yield_predictions=True\n    ... )\n\n    >>> for step in itertools.islice(steps, 100, 105):\n    ...    print(step)\n    {'ROCAUC': ROCAUC: 94.68%, 'Step': 101, 'Prediction': {False: 0.966..., True: 0.033...}}\n    {'ROCAUC': ROCAUC: 94.75%, 'Step': 102, 'Prediction': {False: 0.035..., True: 0.964...}}\n    {'ROCAUC': ROCAUC: 94.82%, 'Step': 103, 'Prediction': {False: 0.043..., True: 0.956...}}\n    {'ROCAUC': ROCAUC: 94.89%, 'Step': 104, 'Prediction': {False: 0.816..., True: 0.183...}}\n    {'ROCAUC': ROCAUC: 94.96%, 'Step': 105, 'Prediction': {False: 0.041..., True: 0.958...}}\n\n    References\n    ----------\n    [^1]: [Beating the Hold-Out: Bounds for K-fold and Progressive Cross-Validation](http://hunch.net/~jl/projects/prediction_bounds/progressive_validation/coltfinal.pdf)\n    [^2]: [Grzenda, M., Gomes, H.M. and Bifet, A., 2019. Delayed labelling evaluation for data streams. Data Mining and Knowledge Discovery, pp.1-30](https://link.springer.com/content/pdf/10.1007%2Fs10618-019-00654-y.pdf)\n\n    "
+    yield from _progressive_validation(dataset, model, metric, checkpoints=itertools.count(step, step) if step else iter([]), moment=moment, delay=delay, measure_time=measure_time, measure_memory=measure_memory, yield_predictions=yield_predictions)
+
+def progressive_val_score(dataset: base.typing.Dataset, model, metric: metrics.base.Metric, moment: str | typing.Callable | None=None, delay: str | int | dt.timedelta | typing.Callable | None=None, print_every=0, show_time=False, show_memory=False, **print_kwargs) -> metrics.base.Metric:
+    if False:
+        for i in range(10):
+            print('nop')
+    "Evaluates the performance of a model on a streaming dataset.\n\n    This method is the canonical way to evaluate a model's performance. When used correctly, it\n    allows you to exactly assess how a model would have performed in a production scenario.\n\n    `dataset` is converted into a stream of questions and answers. At each step the model is either\n    asked to predict an observation, or is either updated. The target is only revealed to the model\n    after a certain amount of time, which is determined by the `delay` parameter. Note that under\n    the hood this uses the `stream.simulate_qa` function to go through the data in arrival order.\n\n    By default, there is no delay, which means that the samples are processed one after the other.\n    When there is no delay, this function essentially performs progressive validation. When there\n    is a delay, then we refer to it as delayed progressive validation.\n\n    It is recommended to use this method when you want to determine a model's performance on a\n    dataset. In particular, it is advised to use the `delay` parameter in order to get a reliable\n    assessment. Indeed, in a production scenario, it is often the case that ground truths are made\n    available after a certain amount of time. By using this method, you can reproduce this scenario\n    and therefore truthfully assess what would have been the performance of a model on a given\n    dataset.\n\n    Parameters\n    ----------\n    dataset\n        The stream of observations against which the model will be evaluated.\n    model\n        The model to evaluate.\n    metric\n        The metric used to evaluate the model's predictions.\n    moment\n        The attribute used for measuring time. If a callable is passed, then it is expected to take\n        as input a `dict` of features. If `None`, then the observations are implicitly timestamped\n        in the order in which they arrive.\n    delay\n        The amount to wait before revealing the target associated with each observation to the\n        model. This value is expected to be able to sum with the `moment` value. For instance, if\n        `moment` is a `datetime.date`, then `delay` is expected to be a `datetime.timedelta`. If a\n        callable is passed, then it is expected to take as input a `dict` of features and the\n        target. If a `str` is passed, then it will be used to access the relevant field from the\n        features. If `None` is passed, then no delay will be used, which leads to doing standard\n        online validation.\n    print_every\n        Iteration number at which to print the current metric. This only takes into account the\n        predictions, and not the training steps.\n    show_time\n        Whether or not to display the elapsed time.\n    show_memory\n        Whether or not to display the memory usage of the model.\n    print_kwargs\n        Extra keyword arguments are passed to the `print` function. For instance, this allows\n        providing a `file` argument, which indicates where to output progress.\n\n    Examples\n    --------\n\n    Take the following model:\n\n    >>> from river import linear_model\n    >>> from river import preprocessing\n\n    >>> model = (\n    ...     preprocessing.StandardScaler() |\n    ...     linear_model.LogisticRegression()\n    ... )\n\n    We can evaluate it on the `Phishing` dataset as so:\n\n    >>> from river import datasets\n    >>> from river import evaluate\n    >>> from river import metrics\n\n    >>> evaluate.progressive_val_score(\n    ...     model=model,\n    ...     dataset=datasets.Phishing(),\n    ...     metric=metrics.ROCAUC(),\n    ...     print_every=200\n    ... )\n    [200] ROCAUC: 90.20%\n    [400] ROCAUC: 92.25%\n    [600] ROCAUC: 93.23%\n    [800] ROCAUC: 94.05%\n    [1,000] ROCAUC: 94.79%\n    [1,200] ROCAUC: 95.07%\n    [1,250] ROCAUC: 95.07%\n    ROCAUC: 95.07%\n\n    We haven't specified a delay, therefore this is strictly equivalent to the following piece\n    of code:\n\n    >>> model = (\n    ...     preprocessing.StandardScaler() |\n    ...     linear_model.LogisticRegression()\n    ... )\n\n    >>> metric = metrics.ROCAUC()\n\n    >>> for x, y in datasets.Phishing():\n    ...     y_pred = model.predict_proba_one(x)\n    ...     metric = metric.update(y, y_pred)\n    ...     model = model.learn_one(x, y)\n\n    >>> metric\n    ROCAUC: 95.07%\n\n    When `print_every` is specified, the current state is printed at regular intervals. Under\n    the hood, Python's `print` method is being used. You can pass extra keyword arguments to\n    modify its behavior. For instance, you may use the `file` argument if you want to log the\n    progress to a file of your choice.\n\n    >>> with open('progress.log', 'w') as f:\n    ...     metric = evaluate.progressive_val_score(\n    ...         model=model,\n    ...         dataset=datasets.Phishing(),\n    ...         metric=metrics.ROCAUC(),\n    ...         print_every=200,\n    ...         file=f\n    ...     )\n\n    >>> with open('progress.log') as f:\n    ...     for line in f.read().splitlines():\n    ...         print(line)\n    [200] ROCAUC: 94.00%\n    [400] ROCAUC: 94.70%\n    [600] ROCAUC: 95.17%\n    [800] ROCAUC: 95.42%\n    [1,000] ROCAUC: 95.82%\n    [1,200] ROCAUC: 96.00%\n    [1,250] ROCAUC: 96.04%\n\n    Note that the performance is slightly better than above because we haven't used a fresh\n    copy of the model. Instead, we've reused the existing model which has already done a full\n    pass on the data.\n\n    >>> import os; os.remove('progress.log')\n\n    References\n    ----------\n    [^1]: [Beating the Hold-Out: Bounds for K-fold and Progressive Cross-Validation](http://hunch.net/~jl/projects/prediction_bounds/progressive_validation/coltfinal.pdf)\n    [^2]: [Grzenda, M., Gomes, H.M. and Bifet, A., 2019. Delayed labelling evaluation for data streams. Data Mining and Knowledge Discovery, pp.1-30](https://link.springer.com/content/pdf/10.1007%2Fs10618-019-00654-y.pdf)\n\n    "
+    checkpoints = iter_progressive_val_score(dataset=dataset, model=model, metric=metric, moment=moment, delay=delay, step=print_every, measure_time=show_time, measure_memory=show_memory)
+    active_learning = utils.inspect.isactivelearner(model)
+    for checkpoint in checkpoints:
+        msg = f"[{checkpoint['Step']:,d}] {metric}"
+        if active_learning:
+            msg += f" – {checkpoint['Samples used']:,d} samples used"
+        if show_time:
+            (H, rem) = divmod(checkpoint['Time'].seconds, 3600)
+            (M, S) = divmod(rem, 60)
+            msg += f' – {H:02d}:{M:02d}:{S:02d}'
+        if show_memory:
+            msg += f" – {utils.pretty.humanize_bytes(checkpoint['Memory'])}"
+        print(msg, **print_kwargs)
+    return metric

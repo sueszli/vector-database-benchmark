@@ -1,0 +1,13 @@
+from azure.identity import DefaultAzureCredential
+from azure.mgmt.azurearcdata import AzureArcDataManagementClient
+'\n# PREREQUISITES\n    pip install azure-identity\n    pip install azure-mgmt-azurearcdata\n# USAGE\n    python create_or_update_data_controller.py\n\n    Before run the sample, please set the values of the client ID, tenant ID and client secret\n    of the AAD application as environment variables: AZURE_CLIENT_ID, AZURE_TENANT_ID,\n    AZURE_CLIENT_SECRET. For more info about how to get the value, please see:\n    https://docs.microsoft.com/azure/active-directory/develop/howto-create-service-principal-portal\n'
+
+def main():
+    if False:
+        for i in range(10):
+            print('nop')
+    client = AzureArcDataManagementClient(credential=DefaultAzureCredential(), subscription_id='00000000-1111-2222-3333-444444444444')
+    response = client.data_controllers.begin_put_data_controller(resource_group_name='testrg', data_controller_name='testdataController', data_controller_resource={'extendedLocation': {'name': '/subscriptions/00000000-1111-2222-3333-444444444444/resourceGroups/testrg/providers/Microsoft.ExtendedLocation/customLocations/arclocation', 'type': 'CustomLocation'}, 'location': 'northeurope', 'properties': {'basicLoginInformation': {'password': '********', 'username': 'username'}, 'clusterId': '/subscriptions/00000000-1111-2222-3333-444444444444/resourceGroups/testrg/providers/Microsoft.Kubernetes/connectedClusters/connectedk8s', 'extensionId': '/subscriptions/00000000-1111-2222-3333-444444444444/resourceGroups/testrg/providers/Microsoft.Kubernetes/connectedClusters/connectedk8s/providers/Microsoft.KubernetesConfiguration/extensions/extension', 'infrastructure': 'onpremises', 'logAnalyticsWorkspaceConfig': {'primaryKey': '********', 'workspaceId': '00000000-1111-2222-3333-444444444444'}, 'logsDashboardCredential': {'password': '********', 'username': 'username'}, 'metricsDashboardCredential': {'password': '********', 'username': 'username'}, 'onPremiseProperty': {'id': '12345678-1234-1234-ab12-1a2b3c4d5e6f', 'publicSigningKey': 'publicOnPremSigningKey'}, 'uploadServicePrincipal': {'authority': 'https://login.microsoftonline.com/', 'clientId': '00000000-1111-2222-3333-444444444444', 'clientSecret': '********', 'tenantId': '00000000-1111-2222-3333-444444444444'}, 'uploadWatermark': {'logs': '2020-01-01T17:18:19.1234567Z', 'metrics': '2020-01-01T17:18:19.1234567Z', 'usages': '2020-01-01T17:18:19.1234567Z'}}, 'tags': {'mytag': 'myval'}}).result()
+    print(response)
+if __name__ == '__main__':
+    main()

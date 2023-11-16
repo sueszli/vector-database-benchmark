@@ -1,0 +1,140 @@
+import pytest
+import libqtile.bar
+import libqtile.config
+import libqtile.confreader
+import libqtile.layout
+import libqtile.widget
+from test.helpers import Retry
+pytest.skip('StatusNotifier tests are currently broken', allow_module_level=True)
+
+@Retry(ignore_exceptions=(AssertionError,))
+def wait_for_icon(widget, hidden=True, prop='width'):
+    if False:
+        i = 10
+        return i + 15
+    width = widget.info()[prop]
+    if hidden:
+        assert width == 0
+    else:
+        assert width > 0
+
+@Retry(ignore_exceptions=(AssertionError,))
+def check_fullscreen(windows, fullscreen=True):
+    if False:
+        i = 10
+        return i + 15
+    full = windows()[0]['fullscreen']
+    assert full is fullscreen
+
+@pytest.fixture(scope='function')
+def sni_config(request, manager_nospawn):
+    if False:
+        while True:
+            i = 10
+    '\n    Fixture provides a manager instance with StatusNotifier in the bar.\n\n    Widget can be customised via parameterize.\n    '
+
+    class SNIConfig(libqtile.confreader.Config):
+        """Config for the test."""
+        auto_fullscreen = True
+        keys = []
+        mouse = []
+        groups = [libqtile.config.Group('a')]
+        layouts = [libqtile.layout.Max()]
+        floating_layout = libqtile.resources.default_config.floating_layout
+        screens = [libqtile.config.Screen(top=libqtile.bar.Bar([libqtile.widget.StatusNotifier(**getattr(request, 'param', dict()))], 50))]
+    yield SNIConfig
+
+@pytest.mark.usefixtures('dbus')
+def test_statusnotifier_defaults(manager_nospawn, sni_config):
+    if False:
+        while True:
+            i = 10
+    'Check that widget displays and removes icon.'
+    manager_nospawn.start(sni_config)
+    widget = manager_nospawn.c.widget['statusnotifier']
+    assert widget.info()['width'] == 0
+    win = manager_nospawn.test_window('TestSNI', export_sni=True)
+    wait_for_icon(widget, hidden=False)
+    manager_nospawn.kill_window(win)
+    wait_for_icon(widget, hidden=True)
+
+@pytest.mark.usefixtures('dbus')
+def test_statusnotifier_defaults_vertical_bar(manager_nospawn, sni_config):
+    if False:
+        print('Hello World!')
+    'Check that widget displays and removes icon.'
+    screen = sni_config.screens[0]
+    screen.left = screen.top
+    screen.top = None
+    manager_nospawn.start(sni_config)
+    widget = manager_nospawn.c.widget['statusnotifier']
+    assert widget.info()['height'] == 0
+    win = manager_nospawn.test_window('TestSNI', export_sni=True)
+    wait_for_icon(widget, hidden=False, prop='height')
+    manager_nospawn.kill_window(win)
+    wait_for_icon(widget, hidden=True, prop='height')
+
+@pytest.mark.parametrize('sni_config', [{'icon_size': 35}], indirect=True)
+@pytest.mark.usefixtures('dbus')
+def test_statusnotifier_icon_size(manager_nospawn, sni_config):
+    if False:
+        i = 10
+        return i + 15
+    'Check that widget displays and removes icon.'
+    manager_nospawn.start(sni_config)
+    widget = manager_nospawn.c.widget['statusnotifier']
+    assert widget.info()['width'] == 0
+    win = manager_nospawn.test_window('TestSNI', export_sni=True)
+    wait_for_icon(widget, hidden=False)
+    assert widget.info()['width'] == 41
+    manager_nospawn.kill_window(win)
+
+@pytest.mark.usefixtures('dbus')
+def test_statusnotifier_left_click(manager_nospawn, sni_config):
+    if False:
+        i = 10
+        return i + 15
+    'Check `activate` method when left-clicking widget.'
+    manager_nospawn.start(sni_config)
+    widget = manager_nospawn.c.widget['statusnotifier']
+    windows = manager_nospawn.c.windows
+    assert widget.info()['width'] == 0
+    try:
+        win = manager_nospawn.test_window('TestSNILeftClick', export_sni=True)
+        wait_for_icon(widget, hidden=False)
+        assert len(windows()) == 1
+        check_fullscreen(windows, False)
+        manager_nospawn.c.bar['top'].fake_button_press(0, 'top', 10, 0, 1)
+        check_fullscreen(windows, True)
+        manager_nospawn.c.bar['top'].fake_button_press(0, 'top', 10, 0, 1)
+        check_fullscreen(windows, False)
+        manager_nospawn.kill_window(win)
+        assert not windows()
+    except Exception:
+        pytest.xfail("Unsure why test fails, but let's accept a failure for now.")
+
+@pytest.mark.usefixtures('dbus')
+def test_statusnotifier_left_click_vertical_bar(manager_nospawn, sni_config):
+    if False:
+        return 10
+    'Check `activate` method when left-clicking widget in vertical bar.'
+    screen = sni_config.screens[0]
+    screen.left = screen.top
+    screen.top = None
+    manager_nospawn.start(sni_config)
+    widget = manager_nospawn.c.widget['statusnotifier']
+    windows = manager_nospawn.c.windows
+    assert widget.info()['height'] == 0
+    try:
+        win = manager_nospawn.test_window('TestSNILeftClick', export_sni=True)
+        wait_for_icon(widget, hidden=False, prop='height')
+        assert len(windows()) == 1
+        check_fullscreen(windows, False)
+        manager_nospawn.c.bar['left'].fake_button_press(0, 'left', 0, 10, 1)
+        check_fullscreen(windows, True)
+        manager_nospawn.c.bar['left'].fake_button_press(0, 'left', 0, 10, 1)
+        check_fullscreen(windows, False)
+        manager_nospawn.kill_window(win)
+        assert not windows()
+    except Exception:
+        pytest.xfail("Unsure why test fails, but let's accept a failure for now.")

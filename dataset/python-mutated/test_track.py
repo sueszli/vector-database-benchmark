@@ -1,0 +1,33 @@
+import lbry.wallet
+from lbry.extras.daemon import analytics
+import unittest
+
+@unittest.SkipTest
+class TrackTest(unittest.TestCase):
+
+    def test_empty_summarize_is_none(self):
+        if False:
+            return 10
+        track = analytics.Manager(None, 'x', 'y', 'z')
+        (_, result) = track.summarize_and_reset('a')
+        self.assertIsNone(result)
+
+    def test_can_get_sum_of_metric(self):
+        if False:
+            return 10
+        track = analytics.Manager(None, 'x', 'y', 'z')
+        track.add_observation('b', 1)
+        track.add_observation('b', 2)
+        (_, result) = track.summarize_and_reset('b')
+        self.assertEqual(3, result)
+
+    def test_summarize_resets_metric(self):
+        if False:
+            i = 10
+            return i + 15
+        track = analytics.Manager(None, 'x', 'y', 'z')
+        track.add_observation('metric', 1)
+        track.add_observation('metric', 2)
+        track.summarize_and_reset('metric')
+        (_, result) = track.summarize_and_reset('metric')
+        self.assertIsNone(result)

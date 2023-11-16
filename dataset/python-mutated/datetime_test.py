@@ -1,0 +1,169 @@
+import pytest
+from common import *
+import numpy as np
+
+def test_datetime_operations():
+    if False:
+        return 10
+    date = np.array([np.datetime64('2009-10-12T03:31:00'), np.datetime64('2016-02-11T10:17:34'), np.datetime64('2015-11-12T11:34:22'), np.datetime64('2003-03-03T00:33:15'), np.datetime64('2014-07-23T15:08:05'), np.datetime64('2011-01-01T07:02:01')], dtype='<M8[ns]')
+    df = vaex.from_arrays(date=date)._readonly()
+    pandas_df = df.to_pandas_df()
+    assert df.date.dt.hour.tolist() == pandas_df.date.dt.hour.values.tolist()
+    assert df.date.dt.minute.tolist() == pandas_df.date.dt.minute.values.tolist()
+    assert df.date.dt.second.tolist() == pandas_df.date.dt.second.values.tolist()
+    assert df.date.dt.day.tolist() == pandas_df.date.dt.day.values.tolist()
+    assert df.date.dt.day_name.tolist() == pandas_df.date.dt.day_name().values.tolist()
+    assert df.date.dt.month.tolist() == pandas_df.date.dt.month.values.tolist()
+    assert df.date.dt.month_name.tolist() == pandas_df.date.dt.month_name().values.tolist()
+    assert df.date.dt.quarter.tolist() == pandas_df.date.dt.quarter.values.tolist()
+    assert df.date.dt.year.tolist() == pandas_df.date.dt.year.values.tolist()
+    assert df.date.dt.is_leap_year.tolist() == pandas_df.date.dt.is_leap_year.values.tolist()
+    assert any(df.date.dt.is_leap_year.tolist())
+    assert df.date.dt.weekofyear.tolist() == pandas_df.date.dt.weekofyear.values.tolist()
+    assert df.date.dt.dayofyear.tolist() == pandas_df.date.dt.dayofyear.values.tolist()
+    assert df.date.dt.dayofweek.tolist() == pandas_df.date.dt.dayofweek.values.tolist()
+    assert df.date.dt.floor('H').tolist() == pandas_df.date.dt.floor('H').values.tolist()
+    assert df.date.dt.date.tolist() == pandas_df.date.dt.date.values.tolist()
+    assert df.date.dt.quarter.tolist() == pandas_df.date.dt.quarter.tolist()
+    assert df.date.dt.halfyear.tolist() == [2, 1, 2, 1, 2, 1]
+
+def test_datetime_agg():
+    if False:
+        while True:
+            i = 10
+    date = [np.datetime64('2009-10-12T03:31:00'), np.datetime64('2016-02-11T10:17:34'), np.datetime64('2015-11-12T11:34:22'), np.datetime64('2003-03-03T00:33:15'), np.datetime64('2014-07-23T15:08:05'), np.datetime64('2011-01-01T07:02:01')]
+    df = vaex.from_arrays(date=date)
+    assert df.count(df.date) == len(date)
+    assert df.max(df.date) == np.datetime64('2016-02-11T10:17:34')
+    assert df.mean(df.date) < np.datetime64('2016-02-11T10:17:34')
+    assert df.mean(df.date) > date[0]
+
+def test_datetime_stats():
+    if False:
+        while True:
+            i = 10
+    x1 = np.datetime64('2005-01-01')
+    x2 = np.datetime64('2015-02-01')
+    x = np.arange(x1, x2, dtype=np.datetime64)
+    y = np.arange(len(x))
+    df = vaex.from_arrays(x=x, y=y)
+    (d1, d2) = df.x.minmax()
+    assert d1 == x1
+    assert d2 == x[-1]
+
+def test_timedelta_arithmetics():
+    if False:
+        print('Hello World!')
+    x = np.array(['2019-01-04T21:23:00', '2019-02-04T05:00:10', '2019-03-04T15:15:15', '2019-06-21T10:31:15'], dtype=np.datetime64)
+    y = np.array(['2018-06-14T12:11:00', '2019-02-02T22:19:00', '2017-11-18T10:11:19', '2019-07-12T11:00:00'], dtype=np.datetime64)
+    df = vaex.from_arrays(x=x, y=y)
+    df['diff'] = df.x - df.y
+    df['diff_dev_hours'] = df['diff'] / np.timedelta64(1, 'h')
+    df['diff_add_days'] = df['diff'] + np.timedelta64(5, 'D')
+    diff = df.x.values - df.y.values
+    diff_dev_hours = diff / np.timedelta64(1, 'h')
+    diff_add_days = diff + np.timedelta64(5, 'D')
+    assert diff_dev_hours.tolist() == df['diff_dev_hours'].values.tolist()
+    assert diff_add_days.tolist() == df['diff_add_days'].values.tolist()
+    assert df['diff'].min() == df['diff'].values.min()
+    assert df['diff'].max() == df['diff'].values.max()
+
+@pytest.mark.parametrize('as_string', [True, False])
+def test_datetime_binary_operations(as_string):
+    if False:
+        print('Hello World!')
+    x = np.array(['2019-01-04T21:23:00', '2019-02-04T05:00:10', '2019-03-04T15:15:15', '2019-06-21T10:31:15'], dtype=np.datetime64)
+    y = np.array(['2018-06-14T12:11:00', '2019-02-02T22:19:00', '2017-11-18T10:11:19', '2019-07-12T11:00:00'], dtype=np.datetime64)
+    sample_date = '2019-03-15'
+    if not as_string:
+        sample_date = np.datetime64(sample_date)
+    df = vaex.from_arrays(x=x, y=y)
+    assert (df.x > sample_date).tolist() == list(df.x.values > np.datetime64(sample_date))
+    assert (df.x <= sample_date).tolist() == list(df.x.values <= np.datetime64(sample_date))
+    assert (df.x > df.y).tolist() == list(df.x.values > df.y.values)
+
+@pytest.mark.skipif(vaex.utils.osname == 'windows', reason="windows' snprintf seems buggy")
+def test_create_datetime64_column_from_ints():
+    if False:
+        i = 10
+        return i + 15
+    year = np.array([2015, 2015, 2017])
+    month = np.array([1, 2, 10])
+    day = np.array([1, 3, 22])
+    time = np.array([945, 1015, 30])
+    df = vaex.from_arrays(year=year, month=month, day=day, time=time)
+    df['hour'] = (df.time // 100 % 24).format('%02d')
+    df['minute'] = (df.time % 100).format('%02d')
+    expr = df.year.format('%4d') + '-' + df.month.format('%02d') + '-' + df.day.format('%02d') + 'T' + df.hour + ':' + df.minute
+    assert expr.to_numpy().astype(np.datetime64).tolist() == expr.astype('datetime64').tolist()
+
+def test_create_datetime64_column_from_str():
+    if False:
+        for i in range(10):
+            print('nop')
+    year = np.array(['2015', '2015', '2017'])
+    month = np.array(['01', '02', '10'])
+    day = np.array(['01', '03', '22'])
+    hour = np.array(['09', '10', '00'])
+    minute = np.array(['45', '15', '30'])
+    df = vaex.from_arrays(year=year, month=month, day=day, hour=hour, minute=minute)
+    expr = df.year + '-' + df.month + '-' + df.day + 'T' + df.hour + ':' + df.minute
+    assert expr.to_numpy().astype(np.datetime64).tolist() == expr.astype('datetime64').tolist()
+    assert expr.to_numpy().astype('datetime64[ns]').tolist() == expr.astype('datetime64[ns]').to_numpy().tolist()
+
+def test_create_str_column_from_datetime64():
+    if False:
+        i = 10
+        return i + 15
+    date = np.array([np.datetime64('2009-10-12T03:31:00'), np.datetime64('2016-02-11T10:17:34'), np.datetime64('2015-11-12T11:34:22'), np.datetime64('2003-03-03T00:33:15'), np.datetime64('2014-07-23T15:08:05'), np.datetime64('2011-01-01T07:02:01')], dtype='<M8[ns]')
+    df = vaex.from_arrays(date=date)
+    pandas_df = df.to_pandas_df()
+    date_format = '%Y/%m/%d'
+    assert df.date.dt.strftime(date_format).values.tolist() == pandas_df.date.dt.strftime(date_format).values.tolist()
+
+def test_non_ns_units():
+    if False:
+        i = 10
+        return i + 15
+    date1 = np.datetime64('1900-10-12T03:31:00')
+    date2 = np.datetime64('2011-01-01T07:02:01')
+    dates = np.array([date1, date2], dtype='M8[ms]')
+    df = vaex.from_arrays(dates=pa.array(dates))
+    assert np.all(df.dates.to_numpy() == dates)
+
+def test_datetime_operations_after_astype(df_factory):
+    if False:
+        while True:
+            i = 10
+    df = df_factory(x=['2009-10-12T03:31:00', '2016-02-11T10:17:34', '2015-11-12T11:34:22'])
+    df['x_dt'] = df.x.astype('datetime64')
+    df['x_hour'] = df.x_dt.dt.hour
+    assert df.x_hour.tolist() == [3, 10, 11]
+
+def test_no_change_fingerprint():
+    if False:
+        while True:
+            i = 10
+    x = np.array(['2019-01-04T21:23:00', '2019-02-04T05:00:10'], dtype=np.datetime64)
+    sample_date = np.datetime64('2019-03-15')
+    df = vaex.from_arrays(x=x)
+    fp = df.fingerprint()
+    answer = df.x > sample_date
+    assert df.fingerprint() == fp
+
+def test_datetime_filtering(df_factory):
+    if False:
+        print('Hello World!')
+    x = ['2020-05-01', '2021-10-01', '2022-01-01']
+    df = df_factory(x=x)
+    df['x_dt'] = df.x.astype('datetime64')
+    max_date = df.x_dt.max()
+    cond = df.x_dt < max_date
+    assert cond.tolist() == [True, True, False]
+    max_date = df.x_dt.max()
+    df['x_td'] = df.x_dt - max_date
+    cond = df.x_td < np.timedelta64(0)
+    assert cond.tolist() == [True, True, False]
+    as_scalar = df['x_td'].max()
+    cond = df.x_td < as_scalar
+    assert cond.tolist() == [True, True, False]

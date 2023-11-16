@@ -1,0 +1,41 @@
+import os
+import sys
+from calibre import prints
+from calibre.ebooks.metadata.opf2 import OPFCreator
+readonly = True
+version = 0
+
+def implementation(db, notify_changes, book_id):
+    if False:
+        while True:
+            i = 10
+    with db.safe_read_lock:
+        if not db.has_id(book_id):
+            return
+        return db.get_metadata(book_id)
+
+def option_parser(get_parser, args):
+    if False:
+        while True:
+            i = 10
+    parser = get_parser(_('\n%prog show_metadata [options] id\n\nShow the metadata stored in the calibre database for the book identified by id.\nid is an id number from the search command.\n'))
+    parser.add_option('--as-opf', default=False, action='store_true', help=_('Print metadata in OPF form (XML)'))
+    return parser
+
+def main(opts, args, dbctx):
+    if False:
+        for i in range(10):
+            print('nop')
+    if len(args) < 1:
+        raise SystemExit(_('You must specify an id'))
+    book_id = int(args[0])
+    mi = dbctx.run('show_metadata', book_id)
+    if mi is None:
+        raise SystemExit(f'Id #{book_id} is not present in database.')
+    if opts.as_opf:
+        stdout = getattr(sys.stdout, 'buffer', sys.stdout)
+        mi = OPFCreator(os.getcwd(), mi)
+        mi.render(stdout)
+    else:
+        prints(str(mi))
+    return 0

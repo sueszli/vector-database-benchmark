@@ -1,0 +1,11 @@
+from paddle.base.layer_helper import LayerHelper
+
+def fused_ec_moe(x, gate, bmm0_weight, bmm0_bias, bmm1_weight, bmm1_bias, act_type):
+    if False:
+        i = 10
+        return i + 15
+    '\n    Applies fused ec_moe kernel.\n    This method requires SM_ARCH in sm75, sm80, sm86.\n\n    Args:\n        x (Tensor): the input Tensor. Its shape is [bsz, seq_len, d_model].\n        gate (Tensor): the gate Tensor to choose expert. Its shape is [bsz, seq_len, e].\n        bmm0_weight (Tensor): the first batch matrix matmul weight. Its shape is [e, d_model, d_feed_forward].\n        bmm0_bias (Tensor): the first batch matrix matmul bias. Its shape is [e, 1, d_feed_forward].\n        bmm1_weight (Tensor): the second batch matrix matmul weight. Its shape is [e, d_model, d_feed_forward].\n        bmm1_bias (Tensor): the second batch matrix matmul bias. Its shape is [e, 1, d_feed_forward].\n        act_type (string): the Activation Type. Currently only support `gelu`, `relu`.\n\n    Returns:\n        Tensor: the output Tensor.\n\n    Examples:\n        .. code-block:: python\n\n            >>> # doctest: +REQUIRES(env:GPU)\n            >>> import paddle\n            >>> from paddle.incubate.nn.functional import fused_ec_moe\n\n            >>> paddle.set_device(\'gpu\')\n            >>> x = paddle.randn([10, 128, 1024])\n            >>> gate = paddle.randn([10, 128, 8])\n            >>> bmm0_weight = paddle.randn([8, 1024, 4096])\n            >>> bmm0_bias = paddle.randn([8, 1024, 4096])\n            >>> bmm1_weight = paddle.randn([8, 1024, 4096])\n            >>> bmm1_bias = paddle.randn([8, 1024, 4096])\n            >>> out = fused_ec_moe(x, gate, bmm0_weight, bmm0_bias, bmm1_weight, bmm1_bias, act_type="gelu")\n            >>> print(out.shape)\n            [10, 128, 1024]\n    '
+    helper = LayerHelper('fused_moe', **locals())
+    out = helper.create_variable_for_type_inference(dtype=x.dtype)
+    helper.append_op(type='moe', inputs={'X': x, 'Gate': gate, 'Bmm0': bmm0_weight, 'Bias0': bmm0_bias, 'Bmm1': bmm1_weight, 'Bias1': bmm1_bias}, outputs={'Out': out}, attrs={'act_type': act_type})
+    return out

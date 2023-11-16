@@ -1,0 +1,24 @@
+"""create call logs table
+
+Revision ID: be1d922bf2ad
+Revises: 2fbd6472112c
+Create Date: 2023-08-08 08:42:37.148178
+
+"""
+from alembic import op
+import sqlalchemy as sa
+revision = 'be1d922bf2ad'
+down_revision = '520aa6776347'
+branch_labels = None
+depends_on = None
+
+def upgrade() -> None:
+    if False:
+        print('Hello World!')
+    op.create_table('call_logs', sa.Column('id', sa.Integer(), nullable=False), sa.Column('agent_execution_name', sa.String(), nullable=False), sa.Column('agent_id', sa.Integer(), nullable=False), sa.Column('tokens_consumed', sa.Integer(), nullable=False), sa.Column('tool_used', sa.String(), nullable=False), sa.Column('model', sa.String(), nullable=True), sa.Column('org_id', sa.Integer(), nullable=False), sa.Column('created_at', sa.DateTime(), nullable=True), sa.Column('updated_at', sa.DateTime(), nullable=True), sa.PrimaryKeyConstraint('id'))
+
+def downgrade() -> None:
+    if False:
+        i = 10
+        return i + 15
+    op.drop_table('call_logs')

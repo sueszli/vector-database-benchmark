@@ -1,0 +1,130 @@
+import io
+import logging
+import time
+from typing import TYPE_CHECKING, List, Optional, Tuple, Union
+import numpy as np
+from ray.data._internal.delegating_block_builder import DelegatingBlockBuilder
+from ray.data._internal.util import _check_import
+from ray.data.block import BlockMetadata
+from ray.data.datasource.file_based_datasource import FileBasedDatasource
+from ray.data.datasource.file_meta_provider import DefaultFileMetadataProvider
+from ray.util.annotations import DeveloperAPI
+if TYPE_CHECKING:
+    import pyarrow
+logger = logging.getLogger(__name__)
+IMAGE_ENCODING_RATIO_ESTIMATE_DEFAULT = 1
+IMAGE_ENCODING_RATIO_ESTIMATE_LOWER_BOUND = 0.5
+
+@DeveloperAPI
+class ImageDatasource(FileBasedDatasource):
+    """A datasource that lets you read images."""
+    _WRITE_FILE_PER_ROW = True
+    _FILE_EXTENSIONS = ['png', 'jpg', 'jpeg', 'tif', 'tiff', 'bmp', 'gif']
+    _NUM_THREADS_PER_TASK = 8
+
+    def __init__(self, paths: Union[str, List[str]], size: Optional[Tuple[int, int]]=None, mode: Optional[str]=None, include_paths: bool=False, **file_based_datasource_kwargs):
+        if False:
+            return 10
+        super().__init__(paths, **file_based_datasource_kwargs)
+        _check_import(self, module='PIL', package='Pillow')
+        if size is not None and len(size) != 2:
+            raise ValueError(f'Expected `size` to contain two integers for height and width, but got {len(size)} integers instead.')
+        if size is not None and (size[0] < 0 or size[1] < 0):
+            raise ValueError(f'Expected `size` to contain positive integers, but got {size} instead.')
+        self.size = size
+        self.mode = mode
+        self.include_paths = include_paths
+        meta_provider = file_based_datasource_kwargs.get('meta_provider', None)
+        if isinstance(meta_provider, _ImageFileMetadataProvider):
+            self._encoding_ratio = self._estimate_files_encoding_ratio()
+            meta_provider._set_encoding_ratio(self._encoding_ratio)
+        else:
+            self._encoding_ratio = IMAGE_ENCODING_RATIO_ESTIMATE_DEFAULT
+
+    def _read_file(self, f: 'pyarrow.NativeFile', path: str) -> 'pyarrow.Table':
+        if False:
+            print('Hello World!')
+        from PIL import Image, UnidentifiedImageError
+        data = f.readall()
+        try:
+            image = Image.open(io.BytesIO(data))
+        except UnidentifiedImageError as e:
+            raise ValueError(f"PIL couldn't load image file at path '{path}'.") from e
+        if self.size is not None:
+            (height, width) = self.size
+            image = image.resize((width, height))
+        if self.mode is not None:
+            image = image.convert(self.mode)
+        builder = DelegatingBlockBuilder()
+        array = np.array(image)
+        if self.include_paths:
+            item = {'image': array, 'path': path}
+        else:
+            item = {'image': array}
+        builder.add(item)
+        block = builder.build()
+        return block
+
+    def _rows_per_file(self):
+        if False:
+            i = 10
+            return i + 15
+        return 1
+
+    def estimate_inmemory_data_size(self) -> Optional[int]:
+        if False:
+            print('Hello World!')
+        total_size = 0
+        for file_size in self._file_sizes():
+            if file_size is not None:
+                total_size += file_size
+        return total_size * self._encoding_ratio
+
+    def _estimate_files_encoding_ratio(self) -> float:
+        if False:
+            print('Hello World!')
+        'Return an estimate of the image files encoding ratio.'
+        start_time = time.perf_counter()
+        non_empty_path_and_size = list(filter(lambda p: p[1] > 0, zip(self._paths(), self._file_sizes())))
+        num_files = len(non_empty_path_and_size)
+        if num_files == 0:
+            logger.warn('All input image files are empty. Use on-disk file size to estimate images in-memory size.')
+            return IMAGE_ENCODING_RATIO_ESTIMATE_DEFAULT
+        if self.size is not None and self.mode is not None:
+            if self.mode in ['1', 'L', 'P']:
+                dimension = 1
+            elif self.mode in ['RGB', 'YCbCr', 'LAB', 'HSV']:
+                dimension = 3
+            elif self.mode in ['RGBA', 'CMYK', 'I', 'F']:
+                dimension = 4
+            else:
+                logger.warn(f'Found unknown image mode: {self.mode}.')
+                return IMAGE_ENCODING_RATIO_ESTIMATE_DEFAULT
+            (height, width) = self.size
+            single_image_size = height * width * dimension
+            total_estimated_size = single_image_size * num_files
+            total_file_size = sum((p[1] for p in non_empty_path_and_size))
+            ratio = total_estimated_size / total_file_size
+        else:
+            ratio = IMAGE_ENCODING_RATIO_ESTIMATE_DEFAULT
+        sampling_duration = time.perf_counter() - start_time
+        if sampling_duration > 5:
+            logger.warn(f'Image input size estimation took {round(sampling_duration, 2)} seconds.')
+        logger.debug(f'Estimated image encoding ratio from sampling is {ratio}.')
+        return max(ratio, IMAGE_ENCODING_RATIO_ESTIMATE_LOWER_BOUND)
+
+class _ImageFileMetadataProvider(DefaultFileMetadataProvider):
+
+    def _set_encoding_ratio(self, encoding_ratio: int):
+        if False:
+            print('Hello World!')
+        'Set image file encoding ratio, to provide accurate size in bytes metadata.'
+        self._encoding_ratio = encoding_ratio
+
+    def _get_block_metadata(self, paths: List[str], schema: Optional[Union[type, 'pyarrow.lib.Schema']], *, rows_per_file: Optional[int], file_sizes: List[Optional[int]]) -> BlockMetadata:
+        if False:
+            return 10
+        metadata = super()._get_block_metadata(paths, schema, rows_per_file=rows_per_file, file_sizes=file_sizes)
+        if metadata.size_bytes is not None:
+            metadata.size_bytes = int(metadata.size_bytes * self._encoding_ratio)
+        return metadata

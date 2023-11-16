@@ -1,0 +1,26 @@
+from gnuradio import gr
+from gnuradio import audio
+from gnuradio import blocks
+from gnuradio import vocoder
+
+def build_graph():
+    if False:
+        for i in range(10):
+            print('nop')
+    tb = gr.top_block()
+    src = audio.source(8000)
+    src_scale = blocks.multiply_const_ff(32767)
+    f2s = blocks.float_to_short()
+    enc = vocoder.g723_40_encode_sb()
+    dec = vocoder.g723_40_decode_bs()
+    s2f = blocks.short_to_float()
+    sink_scale = blocks.multiply_const_ff(1.0 / 32767.0)
+    sink = audio.sink(8000)
+    tb.connect(src, src_scale, f2s, enc, dec, s2f, sink_scale, sink)
+    return tb
+if __name__ == '__main__':
+    tb = build_graph()
+    tb.start()
+    input('Press Enter to exit: ')
+    tb.stop()
+    tb.wait()

@@ -1,0 +1,12 @@
+from azure.identity import DefaultAzureCredential
+from azure.mgmt.apimanagement import ApiManagementClient
+'\n# PREREQUISITES\n    pip install azure-identity\n    pip install azure-mgmt-apimanagement\n# USAGE\n    python api_management_create_authorization_access_policy.py\n\n    Before run the sample, please set the values of the client ID, tenant ID and client secret\n    of the AAD application as environment variables: AZURE_CLIENT_ID, AZURE_TENANT_ID,\n    AZURE_CLIENT_SECRET. For more info about how to get the value, please see:\n    https://docs.microsoft.com/azure/active-directory/develop/howto-create-service-principal-portal\n'
+
+def main():
+    if False:
+        return 10
+    client = ApiManagementClient(credential=DefaultAzureCredential(), subscription_id='subid')
+    response = client.authorization_access_policy.create_or_update(resource_group_name='rg1', service_name='apimService1', authorization_provider_id='aadwithauthcode', authorization_id='authz1', authorization_access_policy_id='fe0bed83-631f-4149-bd0b-0464b1bc7cab', parameters={'properties': {'objectId': 'fe0bed83-631f-4149-bd0b-0464b1bc7cab', 'tenantId': '13932a0d-5c63-4d37-901d-1df9c97722ff'}})
+    print(response)
+if __name__ == '__main__':
+    main()

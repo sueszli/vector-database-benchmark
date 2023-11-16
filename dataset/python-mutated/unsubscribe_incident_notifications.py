@@ -1,0 +1,28 @@
+from django.http import Http404
+from django.urls import reverse
+from sentry.incidents.logic import unsubscribe_from_incident
+from sentry.incidents.models import Incident
+from sentry.utils.http import absolute_uri
+from sentry.web.frontend.unsubscribe_notifications import UnsubscribeBaseView
+
+class UnsubscribeIncidentNotificationsView(UnsubscribeBaseView):
+    object_type = 'incident'
+
+    def fetch_instance(self, incident_id):
+        if False:
+            return 10
+        try:
+            incident = Incident.objects.get(id=incident_id)
+        except Incident.DoesNotExist:
+            raise Http404
+        return incident
+
+    def build_link(self, instance) -> str:
+        if False:
+            print('Hello World!')
+        return absolute_uri(reverse('sentry-metric-alert', kwargs={'organization_slug': instance.organization.slug, 'incident_id': instance.identifier}))
+
+    def unsubscribe(self, instance, user):
+        if False:
+            return 10
+        unsubscribe_from_incident(instance, user.id)

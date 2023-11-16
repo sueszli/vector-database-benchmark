@@ -1,0 +1,9 @@
+from google.cloud import contact_center_insights_v1
+
+def sample_delete_conversation():
+    if False:
+        while True:
+            i = 10
+    client = contact_center_insights_v1.ContactCenterInsightsClient()
+    request = contact_center_insights_v1.DeleteConversationRequest(name='name_value')
+    client.delete_conversation(request=request)

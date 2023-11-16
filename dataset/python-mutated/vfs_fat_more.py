@@ -1,0 +1,107 @@
+try:
+    import os
+except ImportError:
+    print('SKIP')
+    raise SystemExit
+try:
+    os.VfsFat
+except AttributeError:
+    print('SKIP')
+    raise SystemExit
+
+class RAMFS:
+    SEC_SIZE = 512
+
+    def __init__(self, blocks):
+        if False:
+            while True:
+                i = 10
+        self.data = bytearray(blocks * self.SEC_SIZE)
+
+    def readblocks(self, n, buf):
+        if False:
+            while True:
+                i = 10
+        for i in range(len(buf)):
+            buf[i] = self.data[n * self.SEC_SIZE + i]
+
+    def writeblocks(self, n, buf):
+        if False:
+            for i in range(10):
+                print('nop')
+        for i in range(len(buf)):
+            self.data[n * self.SEC_SIZE + i] = buf[i]
+
+    def ioctl(self, op, arg):
+        if False:
+            return 10
+        if op == 4:
+            return len(self.data) // self.SEC_SIZE
+        if op == 5:
+            return self.SEC_SIZE
+try:
+    bdev = RAMFS(50)
+    bdev2 = RAMFS(50)
+except MemoryError:
+    print('SKIP')
+    raise SystemExit
+try:
+    os.umount('/')
+except OSError:
+    pass
+for path in os.listdir('/'):
+    os.umount('/' + path)
+os.VfsFat.mkfs(bdev)
+os.mount(bdev, '/')
+print(os.getcwd())
+f = open('test.txt', 'w')
+f.write('hello')
+f.close()
+print(os.listdir())
+print(os.listdir('/'))
+print(os.stat('')[:-3])
+print(os.stat('/')[:-3])
+print(os.stat('test.txt')[:-3])
+print(os.stat('/test.txt')[:-3])
+f = open('/test.txt')
+print(f.read())
+f.close()
+os.rename('test.txt', 'test2.txt')
+print(os.listdir())
+os.rename('test2.txt', '/test3.txt')
+print(os.listdir())
+os.rename('/test3.txt', 'test4.txt')
+print(os.listdir())
+os.rename('/test4.txt', '/test5.txt')
+print(os.listdir())
+os.mkdir('dir')
+print(os.listdir())
+os.mkdir('/dir2')
+print(os.listdir())
+os.mkdir('dir/subdir')
+print(os.listdir('dir'))
+for exist in ('', '/', 'dir', '/dir', 'dir/subdir'):
+    try:
+        os.mkdir(exist)
+    except OSError as er:
+        print('mkdir OSError', er.errno == 17)
+os.chdir('/')
+print(os.stat('test5.txt')[:-3])
+os.VfsFat.mkfs(bdev2)
+os.mount(bdev2, '/sys')
+print(os.listdir())
+print(os.listdir('sys'))
+print(os.listdir('/sys'))
+os.rmdir('dir2')
+os.remove('test5.txt')
+print(os.listdir())
+os.umount('/')
+print(os.getcwd())
+print(os.listdir())
+print(os.listdir('sys'))
+import sys
+sys.path.clear()
+sys.path.append('/sys')
+with open('sys/test_module.py', 'w') as f:
+    f.write('print("test_module!")')
+import test_module

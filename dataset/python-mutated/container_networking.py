@@ -1,0 +1,93 @@
+import logging
+import os
+import re
+from functools import lru_cache
+from typing import Optional
+from localstack import config, constants
+from localstack.utils.container_utils.container_client import ContainerException
+from localstack.utils.docker_utils import DOCKER_CLIENT
+from localstack.utils.net import get_docker_host_from_container
+LOG = logging.getLogger(__name__)
+
+@lru_cache()
+def get_main_container_network() -> Optional[str]:
+    if False:
+        return 10
+    '\n    Gets the main network of the LocalStack container (if we run in one, bridge otherwise)\n    If there are multiple networks connected to the LocalStack container, we choose the first as "main" network\n\n    :return: Network name\n    '
+    if config.MAIN_DOCKER_NETWORK:
+        if config.is_in_docker:
+            networks = DOCKER_CLIENT.get_networks(get_main_container_name())
+            if config.MAIN_DOCKER_NETWORK not in networks:
+                LOG.warning("The specified 'MAIN_DOCKER_NETWORK' is not connected to the LocalStack container! Falling back to %s", networks[0])
+                return networks[0]
+        return config.MAIN_DOCKER_NETWORK
+    main_container_network = 'bridge'
+    if config.is_in_docker:
+        try:
+            networks = DOCKER_CLIENT.get_networks(get_main_container_name())
+            main_container_network = networks[0]
+        except Exception as e:
+            container_name = get_main_container_name()
+            LOG.info('Unable to get network name of main container "%s", falling back to "bridge": %s', container_name, e)
+    LOG.info('Determined main container network: %s', main_container_network)
+    return main_container_network
+
+@lru_cache()
+def get_endpoint_for_network(network: Optional[str]=None) -> str:
+    if False:
+        for i in range(10):
+            print('nop')
+    '\n    Get the LocalStack endpoint (= IP address) on the given network.\n    If a network is given, it will return the IP address/hostname of LocalStack on that network\n    If omitted, it will return the IP address/hostname of the main container network\n    This is a cached call, clear cache if networks might have changed\n\n    :param network: Network to return the endpoint for\n    :return: IP address or hostname of LS on the given network\n    '
+    container_name = get_main_container_name()
+    network = network or get_main_container_network()
+    main_container_ip = None
+    try:
+        if config.is_in_docker:
+            main_container_ip = DOCKER_CLIENT.get_container_ipv4_for_network(container_name_or_id=container_name, container_network=network)
+        elif config.is_in_linux:
+            main_container_ip = DOCKER_CLIENT.inspect_network(network)['IPAM']['Config'][0]['Gateway']
+        else:
+            image_name = constants.DOCKER_IMAGE_NAME
+            (out, _) = DOCKER_CLIENT.run_container(image_name, remove=True, entrypoint='', command=['ping', '-c', '1', 'host.docker.internal'])
+            out = out.decode(config.DEFAULT_ENCODING) if isinstance(out, bytes) else out
+            ip = re.match('PING[^\\(]+\\(([^\\)]+)\\).*', out, re.MULTILINE | re.DOTALL)
+            ip = ip and ip.group(1)
+            if ip:
+                main_container_ip = ip
+        LOG.info('Determined main container target IP: %s', main_container_ip)
+    except Exception as e:
+        LOG.info('Unable to get main container IP address: %s', e)
+    if not main_container_ip:
+        return get_docker_host_from_container()
+    return main_container_ip
+
+def get_main_container_ip():
+    if False:
+        print('Hello World!')
+    '\n    Get the container IP address of the LocalStack container.\n    Use get_endpoint_for network where possible, as it allows better control about which address to return\n\n    :return: IP address of LocalStack container\n    '
+    container_name = get_main_container_name()
+    return DOCKER_CLIENT.get_container_ip(container_name)
+
+def get_main_container_id():
+    if False:
+        return 10
+    '\n    Return the container ID of the LocalStack container\n\n    :return: container ID\n    '
+    container_name = get_main_container_name()
+    try:
+        return DOCKER_CLIENT.get_container_id(container_name)
+    except ContainerException:
+        return None
+
+@lru_cache()
+def get_main_container_name():
+    if False:
+        print('Hello World!')
+    '\n    Returns the container name of the LocalStack container\n\n    :return: LocalStack container name\n    '
+    hostname = os.environ.get('HOSTNAME')
+    if hostname:
+        try:
+            return DOCKER_CLIENT.get_container_name(hostname)
+        except ContainerException:
+            return config.MAIN_CONTAINER_NAME
+    else:
+        return config.MAIN_CONTAINER_NAME

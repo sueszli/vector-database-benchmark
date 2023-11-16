@@ -1,0 +1,14 @@
+from django.db import migrations
+from django.utils import timezone
+
+def populate_sales_datetimes(apps, _schema_editor):
+    if False:
+        i = 10
+        return i + 15
+    timestamp = timezone.now()
+    Sale = apps.get_model('discount', 'Sale')
+    Sale.objects.update(created=timestamp, updated_at=timestamp)
+
+class Migration(migrations.Migration):
+    dependencies = [('discount', '0033_auto_20220209_1543')]
+    operations = [migrations.RunPython(populate_sales_datetimes, migrations.RunPython.noop)]

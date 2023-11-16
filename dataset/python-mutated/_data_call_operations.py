@@ -1,0 +1,156 @@
+from typing import Any, Callable, Dict, List, Optional, TypeVar
+from azure.core.exceptions import ClientAuthenticationError, HttpResponseError, ResourceExistsError, ResourceNotFoundError, map_error
+from azure.core.pipeline import PipelineResponse
+from azure.core.pipeline.transport import AsyncHttpResponse
+from azure.core.rest import HttpRequest
+from azure.core.tracing.decorator_async import distributed_trace_async
+from azure.mgmt.core.exceptions import ARMErrorFormat
+from ... import models as _models
+from ..._vendor import _convert_request
+from ...operations._data_call_operations import build_get_preview_for_ml_table_request, build_get_quick_profile_for_ml_table_request, build_get_schema_for_ml_table_request
+T = TypeVar('T')
+ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
+
+class DataCallOperations:
+    """DataCallOperations async operations.
+
+    You should not instantiate this class directly. Instead, you should create a Client instance that
+    instantiates it for you and attaches it as an attribute.
+
+    :ivar models: Alias to model classes used in this operation group.
+    :type models: ~azure.mgmt.machinelearningservices.models
+    :param client: Client for service requests.
+    :param config: Configuration of service client.
+    :param serializer: An object model serializer.
+    :param deserializer: An object model deserializer.
+    """
+    models = _models
+
+    def __init__(self, client, config, serializer, deserializer) -> None:
+        if False:
+            i = 10
+            return i + 15
+        self._client = client
+        self._serialize = serializer
+        self._deserialize = deserializer
+        self._config = config
+
+    @distributed_trace_async
+    async def get_schema_for_ml_table(self, subscription_id: str, resource_group_name: str, workspace_name: str, body: Optional['_models.DataCallRequest']=None, **kwargs: Any) -> List['_models.ColumnDefinition']:
+        """Get schema for a specific MLTable.
+
+        :param subscription_id: The Azure Subscription ID.
+        :type subscription_id: str
+        :param resource_group_name: The Name of the resource group in which the workspace is located.
+        :type resource_group_name: str
+        :param workspace_name: The name of the workspace.
+        :type workspace_name: str
+        :param body:
+        :type body: ~azure.mgmt.machinelearningservices.models.DataCallRequest
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: list of ColumnDefinition, or the result of cls(response)
+        :rtype: list[~azure.mgmt.machinelearningservices.models.ColumnDefinition]
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+        cls = kwargs.pop('cls', None)
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
+        content_type = kwargs.pop('content_type', 'application/json')
+        if body is not None:
+            _json = self._serialize.body(body, 'DataCallRequest')
+        else:
+            _json = None
+        request = build_get_schema_for_ml_table_request(subscription_id=subscription_id, resource_group_name=resource_group_name, workspace_name=workspace_name, content_type=content_type, json=_json, template_url=self.get_schema_for_ml_table.metadata['url'])
+        request = _convert_request(request)
+        request.url = self._client.format_url(request.url)
+        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        response = pipeline_response.http_response
+        if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            error = self._deserialize.failsafe_deserialize(_models.ErrorResponse, pipeline_response)
+            raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
+        deserialized = self._deserialize('[ColumnDefinition]', pipeline_response)
+        if cls:
+            return cls(pipeline_response, deserialized, {})
+        return deserialized
+    get_schema_for_ml_table.metadata = {'url': '/data/v2.0/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.MachineLearningServices/workspaces/{workspaceName}/datacall/schema'}
+
+    @distributed_trace_async
+    async def get_preview_for_ml_table(self, subscription_id: str, resource_group_name: str, workspace_name: str, body: Optional['_models.DataCallRequest']=None, **kwargs: Any) -> '_models.DataViewSetResult':
+        """Get preview for a specific MLTable.
+
+        :param subscription_id: The Azure Subscription ID.
+        :type subscription_id: str
+        :param resource_group_name: The Name of the resource group in which the workspace is located.
+        :type resource_group_name: str
+        :param workspace_name: The name of the workspace.
+        :type workspace_name: str
+        :param body:
+        :type body: ~azure.mgmt.machinelearningservices.models.DataCallRequest
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: DataViewSetResult, or the result of cls(response)
+        :rtype: ~azure.mgmt.machinelearningservices.models.DataViewSetResult
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+        cls = kwargs.pop('cls', None)
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
+        content_type = kwargs.pop('content_type', 'application/json')
+        if body is not None:
+            _json = self._serialize.body(body, 'DataCallRequest')
+        else:
+            _json = None
+        request = build_get_preview_for_ml_table_request(subscription_id=subscription_id, resource_group_name=resource_group_name, workspace_name=workspace_name, content_type=content_type, json=_json, template_url=self.get_preview_for_ml_table.metadata['url'])
+        request = _convert_request(request)
+        request.url = self._client.format_url(request.url)
+        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        response = pipeline_response.http_response
+        if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            error = self._deserialize.failsafe_deserialize(_models.ErrorResponse, pipeline_response)
+            raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
+        deserialized = self._deserialize('DataViewSetResult', pipeline_response)
+        if cls:
+            return cls(pipeline_response, deserialized, {})
+        return deserialized
+    get_preview_for_ml_table.metadata = {'url': '/data/v2.0/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.MachineLearningServices/workspaces/{workspaceName}/datacall/preview'}
+
+    @distributed_trace_async
+    async def get_quick_profile_for_ml_table(self, subscription_id: str, resource_group_name: str, workspace_name: str, body: Optional['_models.DataCallRequest']=None, **kwargs: Any) -> List['_models.ProfileResult']:
+        """Get quick profile for a specific MLTable.
+
+        :param subscription_id: The Azure Subscription ID.
+        :type subscription_id: str
+        :param resource_group_name: The Name of the resource group in which the workspace is located.
+        :type resource_group_name: str
+        :param workspace_name: The name of the workspace.
+        :type workspace_name: str
+        :param body:
+        :type body: ~azure.mgmt.machinelearningservices.models.DataCallRequest
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: list of ProfileResult, or the result of cls(response)
+        :rtype: list[~azure.mgmt.machinelearningservices.models.ProfileResult]
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+        cls = kwargs.pop('cls', None)
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
+        content_type = kwargs.pop('content_type', 'application/json')
+        if body is not None:
+            _json = self._serialize.body(body, 'DataCallRequest')
+        else:
+            _json = None
+        request = build_get_quick_profile_for_ml_table_request(subscription_id=subscription_id, resource_group_name=resource_group_name, workspace_name=workspace_name, content_type=content_type, json=_json, template_url=self.get_quick_profile_for_ml_table.metadata['url'])
+        request = _convert_request(request)
+        request.url = self._client.format_url(request.url)
+        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        response = pipeline_response.http_response
+        if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            error = self._deserialize.failsafe_deserialize(_models.ErrorResponse, pipeline_response)
+            raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
+        deserialized = self._deserialize('[ProfileResult]', pipeline_response)
+        if cls:
+            return cls(pipeline_response, deserialized, {})
+        return deserialized
+    get_quick_profile_for_ml_table.metadata = {'url': '/data/v2.0/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.MachineLearningServices/workspaces/{workspaceName}/datacall/quickprofile'}

@@ -1,0 +1,22 @@
+from typing import Any, Callable, List
+import argparse
+from opensfm import log
+
+def command_runner(all_commands_types: List[Any], dataset_factory: Callable, dataset_choices: List[str]) -> None:
+    if False:
+        for i in range(10):
+            print('nop')
+    ' Main entry point for running the passed SfM commands types.'
+    log.setup()
+    parser = argparse.ArgumentParser()
+    subparsers = parser.add_subparsers(help='Command to run', dest='command', metavar='command')
+    command_objects = [c.Command() for c in all_commands_types]
+    for command in command_objects:
+        subparser = subparsers.add_parser(command.name, help=command.help)
+        command.add_arguments(subparser)
+        subparser.add_argument('--dataset-type', type=str, required=False, default='opensfm', choices=dataset_choices)
+    args = parser.parse_args()
+    with dataset_factory(args.dataset, args.dataset_type) as data:
+        for command in command_objects:
+            if args.command == command.name:
+                command.run(data, args)

@@ -1,0 +1,39 @@
+"""Single-qubit unitary tests."""
+import unittest
+from test import combine
+import numpy as np
+from ddt import ddt
+from qiskit.quantum_info.random import random_unitary
+from qiskit import BasicAer, QuantumCircuit, QuantumRegister
+from qiskit.test import QiskitTestCase
+from qiskit.extensions.quantum_initializer.squ import SingleQubitUnitary
+from qiskit.compiler import transpile
+from qiskit.quantum_info.operators.predicates import matrix_equal
+squs = [np.eye(2, 2), np.array([[0.0, 1.0], [1.0, 0.0]]), 1 / np.sqrt(2) * np.array([[1.0, 1.0], [-1.0, 1.0]]), np.array([[np.exp(1j * 5.0 / 2), 0], [0, np.exp(-1j * 5.0 / 2)]]), random_unitary(2, seed=42).data]
+up_to_diagonal_list = [True, False]
+
+@ddt
+class TestSingleQubitUnitary(QiskitTestCase):
+    """Qiskit ZYZ-decomposition tests."""
+
+    @combine(u=squs, up_to_diagonal=up_to_diagonal_list)
+    def test_squ(self, u, up_to_diagonal):
+        if False:
+            print('Hello World!')
+        'Tests for single-qubit unitary decomposition.'
+        qr = QuantumRegister(1, 'qr')
+        qc = QuantumCircuit(qr)
+        with self.assertWarns(DeprecationWarning):
+            qc.squ(u, qr[0], up_to_diagonal=up_to_diagonal)
+        qc = transpile(qc, basis_gates=['u1', 'u3', 'u2', 'cx', 'id'])
+        simulator = BasicAer.get_backend('unitary_simulator')
+        result = simulator.run(qc).result()
+        unitary = result.get_unitary(qc)
+        if up_to_diagonal:
+            with self.assertWarns(DeprecationWarning):
+                squ = SingleQubitUnitary(u, up_to_diagonal=up_to_diagonal)
+            unitary = np.dot(np.diagflat(squ.diag), unitary)
+        unitary_desired = u
+        self.assertTrue(matrix_equal(unitary_desired, unitary, ignore_phase=True))
+if __name__ == '__main__':
+    unittest.main()

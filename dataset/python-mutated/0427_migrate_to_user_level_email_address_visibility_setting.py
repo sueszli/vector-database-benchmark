@@ -1,0 +1,18 @@
+from django.db import migrations
+from django.db.backends.base.schema import BaseDatabaseSchemaEditor
+from django.db.migrations.state import StateApps
+
+def migrate_to_user_level_email_address_visibility_setting(apps: StateApps, schema_editor: BaseDatabaseSchemaEditor) -> None:
+    if False:
+        return 10
+    Realm = apps.get_model('zerver', 'Realm')
+    RealmUserDefault = apps.get_model('zerver', 'RealmUserDefault')
+    UserProfile = apps.get_model('zerver', 'UserProfile')
+    realms = Realm.objects.all()
+    for realm in realms:
+        UserProfile.objects.filter(realm=realm, is_bot=False).update(email_address_visibility=realm.email_address_visibility)
+        RealmUserDefault.objects.filter(realm=realm).update(email_address_visibility=realm.email_address_visibility)
+
+class Migration(migrations.Migration):
+    dependencies = [('zerver', '0426_add_email_address_visibility_setting')]
+    operations = [migrations.RunPython(migrate_to_user_level_email_address_visibility_setting, reverse_code=migrations.RunPython.noop, elidable=True)]

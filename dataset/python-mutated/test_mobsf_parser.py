@@ -1,0 +1,91 @@
+from ..dojo_test_case import DojoTestCase
+from dojo.models import Test, Engagement, Product
+from dojo.tools.mobsf.parser import MobSFParser
+
+class TestMobSFParser(DojoTestCase):
+
+    def test_parse_file(self):
+        if False:
+            for i in range(10):
+                print('nop')
+        test = Test()
+        engagement = Engagement()
+        engagement.product = Product()
+        test.engagement = engagement
+        testfile = open('unittests/scans/mobsf/report1.json')
+        parser = MobSFParser()
+        findings = parser.get_findings(testfile, test)
+        testfile.close()
+        self.assertEqual(18, len(findings))
+        item = findings[0]
+        self.assertEqual('android.permission.WRITE_EXTERNAL_STORAGE', item.title)
+        self.assertEqual('High', item.severity)
+        item = findings[2]
+        self.assertEqual('android.permission.INTERNET', item.title)
+        self.assertEqual('Info', item.severity)
+        item = findings[10]
+        self.assertEqual('Symbols are stripped', item.title)
+        self.assertEqual('Info', item.severity)
+        self.assertEqual('lib/armeabi-v7a/libdivajni.so', item.file_path)
+        self.assertEqual(7, item.nb_occurences)
+        item = findings[17]
+        self.assertEqual('Loading Native Code (Shared Library)', item.title)
+        self.assertEqual('Info', item.severity)
+        self.assertEqual(1, item.nb_occurences)
+
+    def test_parse_file2(self):
+        if False:
+            print('Hello World!')
+        test = Test()
+        engagement = Engagement()
+        engagement.product = Product()
+        test.engagement = engagement
+        testfile = open('unittests/scans/mobsf/report2.json')
+        parser = MobSFParser()
+        findings = parser.get_findings(testfile, test)
+        testfile.close()
+        self.assertEqual(0, len(findings))
+
+    def test_parse_file_3_1_9_android(self):
+        if False:
+            print('Hello World!')
+        test = Test()
+        engagement = Engagement()
+        engagement.product = Product()
+        test.engagement = engagement
+        testfile = open('unittests/scans/mobsf/android.json')
+        parser = MobSFParser()
+        findings = parser.get_findings(testfile, test)
+        testfile.close()
+        self.assertEqual(61, len(findings))
+
+    def test_parse_file_3_1_9_ios(self):
+        if False:
+            for i in range(10):
+                print('nop')
+        test = Test()
+        engagement = Engagement()
+        engagement.product = Product()
+        test.engagement = engagement
+        testfile = open('unittests/scans/mobsf/ios.json')
+        parser = MobSFParser()
+        findings = parser.get_findings(testfile, test)
+        testfile.close()
+        self.assertEqual(11, len(findings))
+
+    def test_parse_file_mobsf_3_7_9(self):
+        if False:
+            return 10
+        test = Test()
+        engagement = Engagement()
+        engagement.product = Product()
+        test.engagement = engagement
+        testfile = open('unittests/scans/mobsf/mobsf_3_7_9.json')
+        parser = MobSFParser()
+        findings = parser.get_findings(testfile, test)
+        testfile.close()
+        self.assertEqual(2, len(findings))
+        self.assertEqual(findings[0].title, 'The binary may contain the following insecure API(s) _memcpy\n, _strlen\n')
+        self.assertEqual(findings[1].title, 'The binary may use _malloc\n function instead of calloc')
+        self.assertEqual(findings[0].severity, 'High')
+        self.assertEqual(findings[1].severity, 'High')

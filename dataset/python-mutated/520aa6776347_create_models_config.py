@@ -1,0 +1,25 @@
+"""create models config
+
+Revision ID: 520aa6776347
+Revises: 71e3980d55f5
+Create Date: 2023-08-01 07:48:13.724938
+
+"""
+from alembic import op
+import sqlalchemy as sa
+revision = '520aa6776347'
+down_revision = '446884dcae58'
+branch_labels = None
+depends_on = None
+
+def upgrade() -> None:
+    if False:
+        i = 10
+        return i + 15
+    op.create_table('models_config', sa.Column('id', sa.Integer(), nullable=False), sa.Column('provider', sa.String(), nullable=False), sa.Column('api_key', sa.String(), nullable=False), sa.Column('org_id', sa.Integer(), nullable=False), sa.Column('created_at', sa.DateTime(), nullable=True), sa.Column('updated_at', sa.DateTime(), nullable=True), sa.PrimaryKeyConstraint('id'))
+
+def downgrade() -> None:
+    if False:
+        while True:
+            i = 10
+    op.drop_table('models_config')

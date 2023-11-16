@@ -1,0 +1,13 @@
+from django.conf import settings
+from django.db import migrations
+
+def create_default_page_type(apps, schema_editor):
+    if False:
+        print('Hello World!')
+    PageType = apps.get_model('page', 'PageType')
+    if not PageType.objects.all().exists() and settings.POPULATE_DEFAULTS:
+        PageType.objects.create(name='Default Type', slug='default-type')
+
+class Migration(migrations.Migration):
+    dependencies = [('page', '0027_alter_page_created_at')]
+    operations = [migrations.RunPython(create_default_page_type, migrations.RunPython.noop)]

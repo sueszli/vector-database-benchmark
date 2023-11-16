@@ -1,0 +1,11 @@
+from evaluation import fuzz_product
+from parsing import args_for_strategy
+from unittest.mock import patch
+
+def test_parse_strategies():
+    if False:
+        i = 10
+        return i + 15
+    asd = b'\nmacd\n  description:\n    Buy when (MACD - Signal > 0) and sell when (MACD - Signal < 0).\n  options:\n    --period=<value>  period length (default: 1h)\n    --min_periods=<value>  min. number of history periods (default: 52)\n    --ema_short_period=<value>  number of periods for the shorter EMA (default: 12)\n    --ema_long_period=<value>  number of periods for the longer EMA (default: 26)\n    --signal_period=<value>  number of periods for the signal EMA (default: 9)\n    --up_trend_threshold=<value>  threshold to trigger a buy signal (default: 0)\n    --down_trend_threshold=<value>  threshold to trigger a sold signal (default: 0)\n    --overbought_rsi_periods=<value>  number of periods for overbought RSI (default: 25)\n    --overbought_rsi=<value>  sold when RSI exceeds this value (default: 70)\nsar\n  description:\n    Parabolic SAR\n  options:\n    --period=<value>  period length (default: 2m)\n    --min_periods=<value>  min. number of history periods (default: 52)\n    --sar_af=<value>  acceleration factor for parabolic SAR (default: 0.015)\n    --sar_max_af=<value>  max acceleration factor for parabolic SAR (default: 0.3)\ntrend_ema (default)\n  description:\n    Buy when (EMA - last(EMA) > 0) and sell when (EMA - last(EMA) < 0). Optional buy on low RSI.\n  options:\n    --period=<value>  period length (default: 10m)\n    --min_periods=<value>  min. number of history periods (default: 52)\n    --trend_ema=<value>  number of periods for trend EMA (default: 20)\n    --neutral_rate=<value>  avoid trades if abs(trend_ema) under this float (0 to disable, "auto" for a variable filter) (default: 0.06)\n    --oversold_rsi_periods=<value>  number of periods for oversold RSI (default: 20)\n    --oversold_rsi=<value>  buy when RSI reaches this value (default: 30)\n    '
+    with patch('evaluation.subprocess.check_output', lambda *x, **y: asd):
+        assert args_for_strategy('sar') == ['period', 'min_periods', 'sar_af', 'sar_max_af']

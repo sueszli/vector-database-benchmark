@@ -1,0 +1,39 @@
+"""CloudFlare DNS resolutions"""
+import logging
+from urllib.parse import urlparse
+import requests
+from api_app.analyzers_manager import classes
+from api_app.analyzers_manager.exceptions import AnalyzerRunException
+from tests.mock_utils import MockUpResponse, if_mock_connections, patch
+from ..dns_responses import dns_resolver_response
+logger = logging.getLogger(__name__)
+
+class CloudFlareDNSResolver(classes.ObservableAnalyzer):
+    """Resolve a DNS query with CloudFlare"""
+    query_type: str
+
+    def run(self):
+        if False:
+            i = 10
+            return i + 15
+        try:
+            observable = self.observable_name
+            if self.observable_classification == self.ObservableTypes.URL:
+                observable = urlparse(self.observable_name).hostname
+            params = {'name': observable, 'type': self.query_type}
+            headers = {'accept': 'application/dns-json'}
+            response = requests.get('https://cloudflare-dns.com/dns-query', params=params, headers=headers)
+            response.raise_for_status()
+            response_dict = response.json()
+            resolutions = response_dict.get('Answer', None)
+        except requests.exceptions.RequestException as error:
+            raise AnalyzerRunException(f'An error occurred during the connection to CloudFlare: {error}')
+        return dns_resolver_response(self.observable_name, resolutions)
+
+    @classmethod
+    def _monkeypatch(cls):
+        if False:
+            i = 10
+            return i + 15
+        patches = [if_mock_connections(patch('requests.get', return_value=MockUpResponse({'Answer': ['test1', 'test2']}, 200)))]
+        return super()._monkeypatch(patches=patches)

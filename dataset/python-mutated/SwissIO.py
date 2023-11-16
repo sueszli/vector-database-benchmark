@@ -1,0 +1,79 @@
+"""Bio.SeqIO support for the "swiss" (aka SwissProt/UniProt) file format.
+
+You are expected to use this module via the Bio.SeqIO functions.
+See also the Bio.SwissProt module which offers more than just accessing
+the sequences as SeqRecord objects.
+
+See also Bio.SeqIO.UniprotIO.py which supports the "uniprot-xml" format.
+"""
+from Bio import SeqFeature
+from Bio import SwissProt
+from Bio.Seq import Seq
+from Bio.SeqRecord import SeqRecord
+
+def SwissIterator(source):
+    if False:
+        for i in range(10):
+            print('nop')
+    'Break up a Swiss-Prot/UniProt file into SeqRecord objects.\n\n    Argument source is a file-like object or a path to a file.\n\n    Every section from the ID line to the terminating // becomes\n    a single SeqRecord with associated annotation and features.\n\n    This parser is for the flat file "swiss" format as used by:\n     - Swiss-Prot aka SwissProt\n     - TrEMBL\n     - UniProtKB aka UniProt Knowledgebase\n\n    For consistency with BioPerl and EMBOSS we call this the "swiss"\n    format. See also the SeqIO support for "uniprot-xml" format.\n\n    Rather than calling it directly, you are expected to use this\n    parser via Bio.SeqIO.parse(..., format="swiss") instead.\n    '
+    swiss_records = SwissProt.parse(source)
+    for swiss_record in swiss_records:
+        record = SeqRecord(Seq(swiss_record.sequence), id=swiss_record.accessions[0], name=swiss_record.entry_name, description=swiss_record.description, features=swiss_record.features)
+        for cross_reference in swiss_record.cross_references:
+            if len(cross_reference) < 2:
+                continue
+            (database, accession) = cross_reference[:2]
+            dbxref = f'{database}:{accession}'
+            if dbxref not in record.dbxrefs:
+                record.dbxrefs.append(dbxref)
+        annotations = record.annotations
+        annotations['molecule_type'] = 'protein'
+        annotations['accessions'] = swiss_record.accessions
+        if swiss_record.protein_existence:
+            annotations['protein_existence'] = swiss_record.protein_existence
+        if swiss_record.created:
+            (date, version) = swiss_record.created
+            annotations['date'] = date
+            annotations['sequence_version'] = version
+        if swiss_record.sequence_update:
+            (date, version) = swiss_record.sequence_update
+            annotations['date_last_sequence_update'] = date
+            annotations['sequence_version'] = version
+        if swiss_record.annotation_update:
+            (date, version) = swiss_record.annotation_update
+            annotations['date_last_annotation_update'] = date
+            annotations['entry_version'] = version
+        if swiss_record.gene_name:
+            annotations['gene_name'] = swiss_record.gene_name
+        annotations['organism'] = swiss_record.organism.rstrip('.')
+        annotations['taxonomy'] = swiss_record.organism_classification
+        annotations['ncbi_taxid'] = swiss_record.taxonomy_id
+        if swiss_record.host_organism:
+            annotations['organism_host'] = swiss_record.host_organism
+        if swiss_record.host_taxonomy_id:
+            annotations['host_ncbi_taxid'] = swiss_record.host_taxonomy_id
+        if swiss_record.comments:
+            annotations['comment'] = '\n'.join(swiss_record.comments)
+        if swiss_record.references:
+            annotations['references'] = []
+            for reference in swiss_record.references:
+                feature = SeqFeature.Reference()
+                feature.comment = ' '.join(('%s=%s;' % k_v for k_v in reference.comments))
+                for (key, value) in reference.references:
+                    if key == 'PubMed':
+                        feature.pubmed_id = value
+                    elif key == 'MEDLINE':
+                        feature.medline_id = value
+                    elif key == 'DOI':
+                        pass
+                    elif key == 'AGRICOLA':
+                        pass
+                    else:
+                        raise ValueError(f'Unknown key {key} found in references')
+                feature.authors = reference.authors
+                feature.title = reference.title
+                feature.journal = reference.location
+                annotations['references'].append(feature)
+        if swiss_record.keywords:
+            record.annotations['keywords'] = swiss_record.keywords
+        yield record

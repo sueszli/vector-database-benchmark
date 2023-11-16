@@ -1,0 +1,21 @@
+from __future__ import annotations
+import os
+import pytest
+from pre_commit_hooks.check_symlinks import main
+xfail_symlink = pytest.mark.xfail(os.name == 'nt', reason='No symlink support')
+
+@xfail_symlink
+@pytest.mark.parametrize(('dest', 'expected'), (('exists', 0), ('does-not-exist', 1)))
+def test_main(tmpdir, dest, expected):
+    if False:
+        return 10
+    tmpdir.join('exists').ensure()
+    symlink = tmpdir.join('symlink')
+    symlink.mksymlinkto(tmpdir.join(dest))
+    assert main((str(symlink),)) == expected
+
+def test_main_normal_file(tmpdir):
+    if False:
+        while True:
+            i = 10
+    assert main((str(tmpdir.join('f').ensure()),)) == 0

@@ -1,0 +1,369 @@
+import glob
+import os
+import pyclbr
+import afxres
+import commctrl
+import pywin.framework.scriptutils
+import regutil
+import win32api
+import win32con
+import win32ui
+from pywin.mfc import dialog
+from . import hierlist
+
+class HLIErrorItem(hierlist.HierListItem):
+
+    def __init__(self, text):
+        if False:
+            i = 10
+            return i + 15
+        self.text = text
+        hierlist.HierListItem.__init__(self)
+
+    def GetText(self):
+        if False:
+            print('Hello World!')
+        return self.text
+
+class HLICLBRItem(hierlist.HierListItem):
+
+    def __init__(self, name, file, lineno, suffix=''):
+        if False:
+            for i in range(10):
+                print('nop')
+        self.name = getattr(name, 'name', name)
+        self.file = file
+        self.lineno = lineno
+        self.suffix = suffix
+
+    def __lt__(self, other):
+        if False:
+            for i in range(10):
+                print('nop')
+        return self.name < other.name
+
+    def __eq__(self, other):
+        if False:
+            return 10
+        return self.name == other.name
+
+    def GetText(self):
+        if False:
+            print('Hello World!')
+        return self.name + self.suffix
+
+    def TakeDefaultAction(self):
+        if False:
+            return 10
+        if self.file:
+            pywin.framework.scriptutils.JumpToDocument(self.file, self.lineno, bScrollToTop=1)
+        else:
+            win32ui.SetStatusText('The source of this object is unknown')
+
+    def PerformItemSelected(self):
+        if False:
+            i = 10
+            return i + 15
+        if self.file is None:
+            msg = f'{self.name} - source can not be located.'
+        else:
+            msg = '%s defined at line %d of %s' % (self.name, self.lineno, self.file)
+        win32ui.SetStatusText(msg)
+
+class HLICLBRClass(HLICLBRItem):
+
+    def __init__(self, clbrclass, suffix=''):
+        if False:
+            for i in range(10):
+                print('nop')
+        try:
+            name = clbrclass.name
+            file = clbrclass.file
+            lineno = clbrclass.lineno
+            self.super = clbrclass.super
+            self.methods = clbrclass.methods
+        except AttributeError:
+            name = clbrclass
+            file = lineno = None
+            self.super = []
+            self.methods = {}
+        HLICLBRItem.__init__(self, name, file, lineno, suffix)
+
+    def GetSubList(self):
+        if False:
+            return 10
+        ret = []
+        for c in self.super:
+            ret.append(HLICLBRClass(c, ' (Parent class)'))
+        for (meth, lineno) in self.methods.items():
+            ret.append(HLICLBRMethod(meth, self.file, lineno, ' (method)'))
+        return ret
+
+    def IsExpandable(self):
+        if False:
+            i = 10
+            return i + 15
+        return len(self.methods) + len(self.super)
+
+    def GetBitmapColumn(self):
+        if False:
+            print('Hello World!')
+        return 21
+
+class HLICLBRFunction(HLICLBRClass):
+
+    def GetBitmapColumn(self):
+        if False:
+            i = 10
+            return i + 15
+        return 22
+
+class HLICLBRMethod(HLICLBRItem):
+
+    def GetBitmapColumn(self):
+        if False:
+            while True:
+                i = 10
+        return 22
+
+class HLIModuleItem(hierlist.HierListItem):
+
+    def __init__(self, path):
+        if False:
+            return 10
+        hierlist.HierListItem.__init__(self)
+        self.path = path
+
+    def GetText(self):
+        if False:
+            return 10
+        return os.path.split(self.path)[1] + ' (module)'
+
+    def IsExpandable(self):
+        if False:
+            return 10
+        return 1
+
+    def TakeDefaultAction(self):
+        if False:
+            for i in range(10):
+                print('nop')
+        win32ui.GetApp().OpenDocumentFile(self.path)
+
+    def GetBitmapColumn(self):
+        if False:
+            while True:
+                i = 10
+        col = 4
+        try:
+            if win32api.GetFileAttributes(self.path) & win32con.FILE_ATTRIBUTE_READONLY:
+                col = 5
+        except win32api.error:
+            pass
+        return col
+
+    def GetSubList(self):
+        if False:
+            i = 10
+            return i + 15
+        (mod, path) = pywin.framework.scriptutils.GetPackageModuleName(self.path)
+        win32ui.SetStatusText('Building class list - please wait...', 1)
+        win32ui.DoWaitCursor(1)
+        try:
+            try:
+                reader = pyclbr.readmodule_ex
+                extra_msg = ' or functions'
+            except AttributeError:
+                reader = pyclbr.readmodule
+                extra_msg = ''
+            data = reader(mod, [path])
+            if data:
+                ret = []
+                for item in data.values():
+                    if item.__class__ != pyclbr.Class:
+                        ret.append(HLICLBRFunction(item, ' (function)'))
+                    else:
+                        ret.append(HLICLBRClass(item, ' (class)'))
+                ret.sort()
+                return ret
+            else:
+                return [HLIErrorItem(f'No Python classes{extra_msg} in module.')]
+        finally:
+            win32ui.DoWaitCursor(0)
+            win32ui.SetStatusText(win32ui.LoadString(afxres.AFX_IDS_IDLEMESSAGE))
+
+def MakePathSubList(path):
+    if False:
+        i = 10
+        return i + 15
+    ret = []
+    for filename in glob.glob(os.path.join(path, '*')):
+        if os.path.isdir(filename) and os.path.isfile(os.path.join(filename, '__init__.py')):
+            ret.append(HLIDirectoryItem(filename, os.path.split(filename)[1]))
+        elif os.path.splitext(filename)[1].lower() in ['.py', '.pyw']:
+            ret.append(HLIModuleItem(filename))
+    return ret
+
+class HLIDirectoryItem(hierlist.HierListItem):
+
+    def __init__(self, path, displayName=None, bSubDirs=0):
+        if False:
+            while True:
+                i = 10
+        hierlist.HierListItem.__init__(self)
+        self.path = path
+        self.bSubDirs = bSubDirs
+        if displayName:
+            self.displayName = displayName
+        else:
+            self.displayName = path
+
+    def IsExpandable(self):
+        if False:
+            for i in range(10):
+                print('nop')
+        return 1
+
+    def GetText(self):
+        if False:
+            print('Hello World!')
+        return self.displayName
+
+    def GetSubList(self):
+        if False:
+            return 10
+        ret = MakePathSubList(self.path)
+        if os.path.split(self.path)[1] == 'win32com':
+            try:
+                path = win32api.GetFullPathName(os.path.join(self.path, '..\\win32comext'))
+                ret = ret + MakePathSubList(path)
+            except win32ui.error:
+                pass
+        return ret
+
+class HLIProjectRoot(hierlist.HierListItem):
+
+    def __init__(self, projectName, displayName=None):
+        if False:
+            print('Hello World!')
+        hierlist.HierListItem.__init__(self)
+        self.projectName = projectName
+        self.displayName = displayName or projectName
+
+    def GetText(self):
+        if False:
+            print('Hello World!')
+        return self.displayName
+
+    def IsExpandable(self):
+        if False:
+            while True:
+                i = 10
+        return 1
+
+    def GetSubList(self):
+        if False:
+            while True:
+                i = 10
+        paths = regutil.GetRegisteredNamedPath(self.projectName)
+        pathList = paths.split(';')
+        if len(pathList) == 1:
+            ret = MakePathSubList(pathList[0])
+        else:
+            ret = list(map(HLIDirectoryItem, pathList))
+        return ret
+
+class HLIRoot(hierlist.HierListItem):
+
+    def __init__(self):
+        if False:
+            i = 10
+            return i + 15
+        hierlist.HierListItem.__init__(self)
+
+    def IsExpandable(self):
+        if False:
+            for i in range(10):
+                print('nop')
+        return 1
+
+    def GetSubList(self):
+        if False:
+            print('Hello World!')
+        keyStr = regutil.BuildDefaultPythonKey() + '\\PythonPath'
+        hKey = win32api.RegOpenKey(regutil.GetRootKey(), keyStr)
+        try:
+            ret = []
+            ret.append(HLIProjectRoot('', 'Standard Python Library'))
+            index = 0
+            while 1:
+                try:
+                    ret.append(HLIProjectRoot(win32api.RegEnumKey(hKey, index)))
+                    index = index + 1
+                except win32api.error:
+                    break
+            return ret
+        finally:
+            win32api.RegCloseKey(hKey)
+
+class dynamic_browser(dialog.Dialog):
+    style = win32con.WS_OVERLAPPEDWINDOW | win32con.WS_VISIBLE
+    cs = win32con.WS_CHILD | win32con.WS_VISIBLE | commctrl.TVS_HASLINES | commctrl.TVS_LINESATROOT | commctrl.TVS_HASBUTTONS
+    dt = [['Python Projects', (0, 0, 200, 200), style, None, (8, 'MS Sans Serif')], ['SysTreeView32', None, win32ui.IDC_LIST1, (0, 0, 200, 200), cs]]
+
+    def __init__(self, hli_root):
+        if False:
+            while True:
+                i = 10
+        dialog.Dialog.__init__(self, self.dt)
+        self.hier_list = hierlist.HierListWithItems(hli_root, win32ui.IDB_BROWSER_HIER)
+        self.HookMessage(self.on_size, win32con.WM_SIZE)
+
+    def OnInitDialog(self):
+        if False:
+            i = 10
+            return i + 15
+        self.hier_list.HierInit(self)
+        return dialog.Dialog.OnInitDialog(self)
+
+    def on_size(self, params):
+        if False:
+            i = 10
+            return i + 15
+        lparam = params[3]
+        w = win32api.LOWORD(lparam)
+        h = win32api.HIWORD(lparam)
+        self.GetDlgItem(win32ui.IDC_LIST1).MoveWindow((0, 0, w, h))
+
+def BrowseDialog():
+    if False:
+        for i in range(10):
+            print('nop')
+    root = HLIRoot()
+    if not root.IsExpandable():
+        raise TypeError('Browse() argument must have __dict__ attribute, or be a Browser supported type')
+    dlg = dynamic_browser(root)
+    dlg.CreateWindow()
+
+def DockableBrowserCreator(parent):
+    if False:
+        while True:
+            i = 10
+    root = HLIRoot()
+    hl = hierlist.HierListWithItems(root, win32ui.IDB_BROWSER_HIER)
+    style = win32con.WS_CHILD | win32con.WS_VISIBLE | win32con.WS_BORDER | commctrl.TVS_HASLINES | commctrl.TVS_LINESATROOT | commctrl.TVS_HASBUTTONS
+    control = win32ui.CreateTreeCtrl()
+    control.CreateWindow(style, (0, 0, 150, 300), parent, win32ui.IDC_LIST1)
+    list = hl.HierInit(parent, control)
+    return control
+
+def DockablePathBrowser():
+    if False:
+        print('Hello World!')
+    import pywin.docking.DockingBar
+    bar = pywin.docking.DockingBar.DockingBar()
+    bar.CreateWindow(win32ui.GetMainFrame(), DockableBrowserCreator, 'Path Browser', 36362)
+    bar.SetBarStyle(bar.GetBarStyle() | afxres.CBRS_TOOLTIPS | afxres.CBRS_FLYBY | afxres.CBRS_SIZE_DYNAMIC)
+    bar.EnableDocking(afxres.CBRS_ALIGN_ANY)
+    win32ui.GetMainFrame().DockControlBar(bar)
+Browse = DockablePathBrowser

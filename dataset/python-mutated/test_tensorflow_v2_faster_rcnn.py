@@ -1,0 +1,126 @@
+from __future__ import absolute_import, division, print_function, unicode_literals
+import logging
+import numpy as np
+import pytest
+from art.utils import load_dataset
+from tests.utils import ARTTestException, master_seed
+logger = logging.getLogger(__name__)
+
+@pytest.mark.skip_module('object_detection')
+@pytest.mark.only_with_platform('tensorflow2')
+def test_tf_faster_rcnn(art_warning):
+    if False:
+        return 10
+    try:
+        master_seed(seed=1234, set_tensorflow=True)
+        from art.estimators.object_detection.tensorflow_v2_faster_rcnn import TensorFlowV2FasterRCNN
+        ((_, _), (x_test, _), _, _) = load_dataset('cifar10')
+        x_test = x_test[:1]
+        input_shape = tuple(x_test.shape[1:])
+        obj_dec = TensorFlowV2FasterRCNN(input_shape=input_shape)
+        result = obj_dec.predict(x_test)
+        assert list(result[0].keys()) == ['boxes', 'labels', 'scores']
+        assert result[0]['boxes'].shape == (300, 4)
+        expected_detection_boxes = np.asarray([0.11661448, 0.46441936, 0.868652, 0.99897605])
+        np.testing.assert_array_almost_equal(result[0]['boxes'][2, :], expected_detection_boxes, decimal=3)
+        assert result[0]['scores'].shape == (300,)
+        expected_detection_scores = np.asarray([0.09375852, 0.04189522, 0.03094958, 0.01798256, 0.01198419, 0.00832632, 0.0076474, 0.00762132, 0.00662233, 0.00605294])
+        np.testing.assert_array_almost_equal(result[0]['scores'][:10], expected_detection_scores, decimal=3)
+        assert result[0]['labels'].shape == (300,)
+        expected_detection_classes = np.asarray([84, 84, 84, 84, 54, 84, 0, 84, 84, 46])
+        np.testing.assert_array_almost_equal(result[0]['labels'][:10], expected_detection_classes)
+        y = [{'boxes': result[0]['boxes'], 'labels': result[0]['labels'], 'scores': np.ones_like(result[0]['labels'])}]
+        grads = obj_dec.loss_gradient(x_test[:1], y)
+        assert grads.shape == (1, 32, 32, 3)
+        expected_gradients = np.asarray([[4.71095882e-05, 8.3934483e-06, 5.82142093e-06], [-0.000108160377, 0.000227618133, -5.05365351e-05], [-3.99912205e-05, 0.000434129965, 5.15039403e-07], [-0.000141627097, 5.76516759e-05, 8.09017874e-05], [6.20874243e-06, 0.00027670202, -2.28589524e-05], [4.32882962e-06, -4.03481281e-05, -7.62806958e-05], [-8.3767969e-05, -0.00021812995, -9.04274712e-05], [-3.67438624e-05, -0.000210944389, -9.05940469e-05], [-1.75537971e-05, -0.0003482826, -8.23857263e-05], [5.30820471e-05, -0.00028613818, -7.48635794e-05], [8.23858354e-05, -0.000113339869, -3.49664515e-05], [0.00015909216, 6.47279012e-05, -1.79400049e-05], [-1.63149289e-05, 3.31735782e-06, -4.67280151e-05], [-1.98027137e-05, 7.51307743e-05, 2.54857914e-05], [6.82972241e-05, 5.97215876e-05, 0.000128419619], [0.000236609863, 0.000210922881, 0.00035010674], [0.000147960993, -7.82240568e-06, 0.000249002245], [7.2643641e-05, -0.000287787785, 0.000279000669], [3.83440783e-05, -0.000270720484, 0.000226368575], [9.61775513e-05, -6.31674193e-05, 0.000245212781], [0.000152097986, -0.000131431938, 0.000259597989], [0.000455492234, -8.12296203e-05, 0.000245009316], [0.00088323449, 7.50507315e-05, 0.00036639563], [0.00127273344, 0.000582617824, 0.000364959065], [0.0012802491, 0.000557218504, 0.000537421904], [0.00123637193, 0.000837092637, 0.000496422348], [0.000782434945, 0.000626019435, 0.00029482448], [0.000237986183, 0.000105056606, 6.55481563e-05], [-0.000200339942, -0.000120437835, -0.000166682788], [-5.84452318e-05, -0.000135937284, -0.000151533968], [-4.77294707e-05, -0.000231526021, -0.000124137907], [-0.000115175018, -0.000165152203, -7.45802899e-05]])
+        np.testing.assert_array_almost_equal(grads[0, 0, :, :], expected_gradients, decimal=2)
+        result_dup = obj_dec.predict(x_test)
+        np.testing.assert_array_almost_equal(result[0]['boxes'][2, :], result_dup[0]['boxes'][2, :], decimal=3)
+        np.testing.assert_array_almost_equal(result[0]['scores'][:10], result_dup[0]['scores'][:10], decimal=3)
+        np.testing.assert_array_almost_equal(result[0]['labels'][:10], result_dup[0]['labels'][:10])
+        y_dup = [{'boxes': result_dup[0]['boxes'], 'labels': result_dup[0]['labels'], 'scores': np.ones_like(result_dup[0]['labels'])}]
+        grads_dup = obj_dec.loss_gradient(x_test[:1], y_dup)
+        np.testing.assert_array_almost_equal(grads[0, 0, :, :], grads_dup[0, 0, :, :], decimal=2)
+        result_tf = obj_dec.predict(x_test, standardise_output=False)
+        result = obj_dec.predict(x_test, standardise_output=True)
+        from art.estimators.object_detection.utils import convert_tf_to_pt
+        result_pt = convert_tf_to_pt(y=result_tf, height=x_test.shape[1], width=x_test.shape[2])
+        np.testing.assert_array_equal(result[0]['boxes'], result_pt[0]['boxes'])
+        np.testing.assert_array_equal(result[0]['labels'], result_pt[0]['labels'])
+        np.testing.assert_array_equal(result[0]['scores'], result_pt[0]['scores'])
+        y = [{'boxes': result[0]['boxes'], 'labels': result[0]['labels'], 'scores': np.ones_like(result[0]['labels'])}]
+        grads = obj_dec.loss_gradient(x_test[:1], y, standardise_output=True)
+        assert grads.shape == (1, 32, 32, 3)
+        expected_gradients = np.asarray([[3.20258296e-05, 0.000118448479, 5.11901126e-05], [0.000520282541, 0.000431609747, -2.20944603e-05], [0.000858511135, -0.000365446263, 0.000136029223], [3.47276509e-05, -0.000823178736, -0.000223043782], [0.000137017007, -0.000557144347, -0.000198563328], [7.77723617e-05, -0.00031082303, -0.000405157916], [-0.000172378772, -0.000307416456, -0.000487639132], [-8.86716807e-05, -0.000424879254, -0.00072756107], [-1.00905372e-05, -0.00106700277, -0.000671751099], [-0.000324819557, -0.00103535608, -0.000876112608], [-0.000444697944, -0.000294831785, -0.00128169032], [-0.000253191713, 7.62609925e-05, -0.00111494109], [-0.000377789664, -7.78697427e-07, -0.000906005735], [-0.000137880095, 0.000221254071, -0.000710642664], [-0.000149297048, -0.000267961295, -0.000552246522], [-0.000348978385, -0.000713465444, -0.000776897825], [-0.000615608995, -0.00112241239, -0.00101537013], [-0.000628621201, -0.00158125453, -0.000977508142], [-0.000345328706, -0.00132934854, -0.000863111869], [-2.70117362e-05, -0.000822714996, -0.000430601096], [0.000172943372, -0.000161864562, -0.000235522675], [0.000282775087, -0.000111206624, -0.000237867673], [0.00020676553, -0.000246381125, -0.00024558662], [0.00013437841, -0.000313195225, -0.00047933156], [0.00038146539, -0.000443120458, -0.000382220693], [0.000827364449, 6.86867425e-05, -0.000102168444], [0.000470337487, 1.94208715e-05, -0.000188505583], [0.000142172328, 0.000159842341, -0.000130101529], [3.6158297e-05, -1.2315988e-05, -0.000209606616], [0.000271195429, 0.000106499057, -7.41584881e-05], [0.000149051149, -0.000521843147, -0.000240127789], [0.000146682723, -0.00020823162, -0.000279343774]])
+        np.testing.assert_array_almost_equal(grads[0, 0, :, :], expected_gradients, decimal=2)
+    except ARTTestException as e:
+        art_warning(e)
+
+@pytest.mark.only_with_platform('tensorflow2')
+def test_errors(art_warning):
+    if False:
+        print('Hello World!')
+    try:
+        from art.estimators.object_detection.tensorflow_v2_faster_rcnn import TensorFlowV2FasterRCNN
+        ((_, _), (x_test, _), _, _) = load_dataset('cifar10')
+        input_shape = tuple(x_test.shape[1:])
+        with pytest.raises(ValueError):
+            obj_det = TensorFlowV2FasterRCNN(input_shape=input_shape, clip_values=(1, 2), attack_losses=('loss_classifier', 'loss_box_reg', 'loss_objectness', 'loss_rpn_box_reg'))
+            obj_det.predict(x_test[:1])
+        with pytest.raises(ValueError):
+            TensorFlowV2FasterRCNN(input_shape=input_shape, clip_values=(-1, 1), attack_losses=('loss_classifier', 'loss_box_reg', 'loss_objectness', 'loss_rpn_box_reg'))
+            obj_det.predict(x_test[:1])
+        from art.defences.postprocessor.rounded import Rounded
+        post_def = Rounded()
+        with pytest.raises(ValueError):
+            TensorFlowV2FasterRCNN(input_shape=input_shape, clip_values=(0, 1), attack_losses=('loss_classifier', 'loss_box_reg', 'loss_objectness', 'loss_rpn_box_reg'), postprocessing_defences=post_def)
+            obj_det.predict(x_test[:1])
+    except ARTTestException as e:
+        art_warning(e)
+
+@pytest.mark.only_with_platform('tensorflow2')
+def test_preprocessing_defences(art_warning):
+    if False:
+        return 10
+    try:
+        from art.estimators.object_detection.tensorflow_v2_faster_rcnn import TensorFlowV2FasterRCNN
+        from art.defences.preprocessor.spatial_smoothing import SpatialSmoothing
+        ((_, _), (x_test, _), _, _) = load_dataset('cifar10')
+        input_shape = tuple(x_test.shape[1:])
+        pre_def = SpatialSmoothing()
+        with pytest.raises(ValueError):
+            _ = TensorFlowV2FasterRCNN(input_shape=input_shape, clip_values=(0, 1), attack_losses=('loss_classifier', 'loss_box_reg', 'loss_objectness', 'loss_rpn_box_reg'), preprocessing_defences=pre_def)
+    except ARTTestException as e:
+        art_warning(e)
+
+@pytest.mark.only_with_platform('tensorflow2')
+def test_compute_losses(art_warning):
+    if False:
+        print('Hello World!')
+    try:
+        from art.estimators.object_detection.tensorflow_v2_faster_rcnn import TensorFlowV2FasterRCNN
+        ((_, _), (x_test, _), _, _) = load_dataset('cifar10')
+        input_shape = tuple(x_test.shape[1:])
+        frcnn = TensorFlowV2FasterRCNN(input_shape=input_shape, clip_values=(0, 255), attack_losses=('Loss/RPNLoss/localization_loss', 'Loss/RPNLoss/objectness_loss', 'Loss/BoxClassifierLoss/localization_loss', 'Loss/BoxClassifierLoss/classification_loss'))
+        result = frcnn.predict(x_test[:2])
+        y = [{'boxes': result[0]['boxes'], 'labels': result[0]['labels'], 'scores': np.ones_like(result[0]['labels'])}, {'boxes': result[1]['boxes'], 'labels': result[1]['labels'], 'scores': np.ones_like(result[1]['labels'])}]
+        losses = frcnn.compute_losses(x_test[:2], y)
+        assert len(losses) == 4
+    except ARTTestException as e:
+        art_warning(e)
+
+@pytest.mark.only_with_platform('tensorflow2')
+def test_compute_loss(art_warning):
+    if False:
+        print('Hello World!')
+    try:
+        from art.estimators.object_detection.tensorflow_v2_faster_rcnn import TensorFlowV2FasterRCNN
+        ((_, _), (x_test, _), _, _) = load_dataset('cifar10')
+        input_shape = tuple(x_test.shape[1:])
+        frcnn = TensorFlowV2FasterRCNN(input_shape=input_shape, clip_values=(0, 255), attack_losses=('Loss/RPNLoss/localization_loss', 'Loss/RPNLoss/objectness_loss', 'Loss/BoxClassifierLoss/localization_loss', 'Loss/BoxClassifierLoss/classification_loss'))
+        result = frcnn.predict(x_test[:2])
+        y = [{'boxes': result[0]['boxes'], 'labels': result[0]['labels'], 'scores': np.ones_like(result[0]['labels'])}, {'boxes': result[1]['boxes'], 'labels': result[1]['labels'], 'scores': np.ones_like(result[1]['labels'])}]
+        loss = frcnn.compute_loss(x_test[:2], y)[0]
+        assert float(loss) == pytest.approx(11.245838, abs=0.5)
+    except ARTTestException as e:
+        art_warning(e)

@@ -1,0 +1,28 @@
+import sys
+sys.path.append('../')
+from util import SubstituteTemplate
+CommonCutlassConvKernelDeclare = '\ncutlass::Status ${kernel_func_name}(const ConvAllParams& params) {\n  using kernel_base =\n  typename cutlass::conv::kernel::${conv_kind_name}<\n    ${element_a},\n    ${layout_a},\n    ${element_b},\n    ${layout_b},\n    ${element_c},\n    ${layout_c},\n    ${element_accum},\n    ${opcode_class},\n    ${arch},\n    cutlass::gemm::GemmShape<${Tshape}>,\n    cutlass::gemm::GemmShape<${Wshape}>,\n    cutlass::gemm::GemmShape<${Ishape}>,\n    ${epi_part},\n    ${swizzling_functor},\n    ${stages},\n    ${math_operator},\n    ${iterator_algorithm},\n    ${stride_support},\n    ${align_a},\n    ${align_b}\n  >::Kernel;\n\n  using ImplicitGemm =\n      cutlass::conv::device::ImplicitGemmConvolution<kernel_base>;\n  const half *input = params.input;\n  const half *weight = params.weight;\n  const half *bias = params.bias;\n  half *output = params.output;\n  int batch = params.batch;\n  int ic = params.ic;\n  int ih = params.ih;\n  int iw = params.iw;\n  int kh = params.kh;\n  int kw = params.kw;\n  int oc = params.oc;\n  int pad_h0 = params.pad_h0;\n  int pad_w0 = params.pad_w0;\n  int stride_h = params.stride_h;\n  int stride_w = params.stride_w;\n  int groups = params.groups;\n  int kc = ic / groups;\n\n  int oh = params.oh;\n  int ow = params.ow;\n  int dilation_h = params.dilation_h;\n  int dilation_w = params.dilation_w;\n  int split_k_slices = ${split_k_slices};\n\n  cutlass::conv::Conv2dProblemSize problem_size({batch, ih, iw, ic},\n                                                {oc, kh, kw, ic / groups},\n                                                {pad_h0, 0, pad_w0, 0},\n                                                {stride_h, stride_w},\n                                                {dilation_h, dilation_w},\n                                                {batch, oh, ow, oc},\n                                                cutlass::conv::Mode::kCrossCorrelation,\n                                                split_k_slices,\n                                                groups);\n'
+CommonCutlassConvKernelExecute = '\n  ImplicitGemm implicit_gemm_op;\n  size_t bytes = implicit_gemm_op.get_workspace_size(arguments);\n\n  auto ctx = params.ctx;\n  auto stream = ctx->stream();\n  phi::Allocator::AllocationPtr tmp_gpu_ptrs_data =\n       phi::memory_utils::Alloc(\n          ctx->GetPlace(),\n          bytes,\n          phi::Stream(reinterpret_cast<phi::StreamId>(stream)));\n  void *workspace = tmp_gpu_ptrs_data->ptr();\n\n  cutlass::Status status = implicit_gemm_op.can_implement(arguments);\n  CUTLASS_CHECK(status);\n  status = implicit_gemm_op.initialize(arguments, workspace);\n  CUTLASS_CHECK(status);\n  status = implicit_gemm_op(stream);\n  CUTLASS_CHECK(status);\n  return status;\n}\n'
+CommonConvFunction = '\nstd::vector<std::function<cutlass::Status(const ConvAllParams)>>\n    ${func_name}_all_func =  {${all_kernel_func_name}};\n\nstd::map<std::vector<int>, int> map_problem_${func_name};\nstd::mutex ${func_name}_mutex;\n\nvoid ${func_name}(const ConvAllParams& params) {\n  int batch = params.batch;\n  int ic = params.ic;\n  int ih = params.ih;\n  int iw = params.iw;\n  int kh = params.kh;\n  int kw = params.kw;\n  int oc = params.oc;\n  //int pad_h0 = params.pad_h0;\n  //int pad_w0 = params.pad_w0;\n  int groups = params.groups;\n  int stride_h = params.stride_h;\n  int stride_w = params.stride_w;\n\n  std::vector<int> problem_size = {\n      batch, ic, ih, iw, kh, kw, oc, groups, stride_h, stride_w};\n\n  if (map_problem_${func_name}.count(problem_size)) {\n    ${func_name}_all_func[map_problem_${func_name}.at(problem_size)](\n        params);\n    return;\n  }\n\n  int best_config_index = ProfileToGetBestConfig(\n      ${func_name}_all_func, params, ${enum_op_name});\n\n  std::lock_guard<std::mutex> guard(${func_name}_mutex);\n\n  map_problem_${func_name}[problem_size] = best_config_index;\n  ${func_name}_all_func[best_config_index](params);\n}\n'
+CommonWrapperForPhi = '\nvoid ${op_name}(const ConvAllParams& params) {\n    ${dispatch_body}\n}\n'
+CommonDispatchTemp = '\n    if (params.sm_version == ${sm_code})\n    {\n        ${op_name_with_sm}(params);\n    }\n    '
+CommonTail = '\n}  // namespace cutlass_internal\n}  // namespace fusion\n}  // namespace phi\n'
+
+def GenerateFunctionForPhi(sm_versions, support_epi_funcs, underscore_names, camel_names):
+    if False:
+        i = 10
+        return i + 15
+    generated_code = ''
+    for epi_func in support_epi_funcs:
+        dispatch_body = ''
+        for sm_version in sm_versions:
+            sm_dicts = {}
+            sm_dicts['sm_code'] = sm_version
+            sm_dicts['op_name_with_sm'] = underscore_names[epi_func].lower() + '_sm' + sm_version
+            dispatch_body += SubstituteTemplate(CommonDispatchTemp, sm_dicts)
+        op_dicts = {}
+        op_dicts['dispatch_body'] = dispatch_body
+        op_dicts['op_name'] = camel_names[epi_func]
+        generated_code += SubstituteTemplate(CommonWrapperForPhi, op_dicts)
+    return generated_code
+CommonCutlassConv2dDepthwiseKernelDeclare = CommonCutlassConvKernelDeclare.replace('${align_a}', 'cutlass::MatrixShape<${strided_shape}>').replace('${align_b}', 'cutlass::MatrixShape<${dilation_shape}>').replace('ImplicitGemmConvolution', 'DirectConvolution').replace('cutlass::gemm::GemmShape<${Tshape}>,', 'cutlass::gemm::GemmShape<${Tshape}>,\n       cutlass::conv::TensorNHWCShape<${T_output_shape}>,\n       cutlass::MatrixShape<${filter_shape}>,\n     ')

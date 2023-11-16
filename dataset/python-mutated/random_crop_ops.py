@@ -1,0 +1,45 @@
+"""Operations for random tensor cropping."""
+from tensorflow.python.framework import dtypes
+from tensorflow.python.framework import ops
+from tensorflow.python.ops import array_ops
+from tensorflow.python.ops import control_flow_assert
+from tensorflow.python.ops import control_flow_ops
+from tensorflow.python.ops import math_ops
+from tensorflow.python.ops import random_ops
+from tensorflow.python.ops import stateless_random_ops
+from tensorflow.python.util import deprecation
+from tensorflow.python.util import dispatch
+from tensorflow.python.util.tf_export import tf_export
+
+@tf_export('image.random_crop', v1=['image.random_crop', 'random_crop'])
+@dispatch.add_dispatch_support
+@deprecation.deprecated_endpoints('random_crop')
+def random_crop(value, size, seed=None, name=None):
+    if False:
+        return 10
+    'Randomly crops a tensor to a given size.\n\n  Slices a shape `size` portion out of `value` at a uniformly chosen offset.\n  Requires `value.shape >= size`.\n\n  If a dimension should not be cropped, pass the full size of that dimension.\n  For example, RGB images can be cropped with\n  `size = [crop_height, crop_width, 3]`.\n\n  Example usage:\n\n  >>> image = [[1, 2, 3], [4, 5, 6]]\n  >>> result = tf.image.random_crop(value=image, size=(1, 3))\n  >>> result.shape.as_list()\n  [1, 3]\n\n  For producing deterministic results given a `seed` value, use\n  `tf.image.stateless_random_crop`. Unlike using the `seed` param with\n  `tf.image.random_*` ops, `tf.image.stateless_random_*` ops guarantee the same\n  results given the same seed independent of how many times the function is\n  called, and independent of global seed settings (e.g. tf.random.set_seed).\n\n  Args:\n    value: Input tensor to crop.\n    size: 1-D tensor with size the rank of `value`.\n    seed: Python integer. Used to create a random seed. See\n      `tf.random.set_seed`\n      for behavior.\n    name: A name for this operation (optional).\n\n  Returns:\n    A cropped tensor of the same rank as `value` and shape `size`.\n  '
+    with ops.name_scope(name, 'random_crop', [value, size]) as name:
+        value = ops.convert_to_tensor(value, name='value')
+        size = ops.convert_to_tensor(size, dtype=dtypes.int32, name='size')
+        shape = array_ops.shape(value)
+        check = control_flow_assert.Assert(math_ops.reduce_all(shape >= size), ['Need value.shape >= size, got ', shape, size], summarize=1000)
+        shape = control_flow_ops.with_dependencies([check], shape)
+        limit = shape - size + 1
+        offset = random_ops.random_uniform(array_ops.shape(shape), dtype=size.dtype, maxval=size.dtype.max, seed=seed) % limit
+        return array_ops.slice(value, offset, size, name=name)
+
+@tf_export('image.stateless_random_crop', v1=[])
+@dispatch.add_dispatch_support
+def stateless_random_crop(value, size, seed, name=None):
+    if False:
+        return 10
+    'Randomly crops a tensor to a given size in a deterministic manner.\n\n  Slices a shape `size` portion out of `value` at a uniformly chosen offset.\n  Requires `value.shape >= size`.\n\n  If a dimension should not be cropped, pass the full size of that dimension.\n  For example, RGB images can be cropped with\n  `size = [crop_height, crop_width, 3]`.\n\n  Guarantees the same results given the same `seed` independent of how many\n  times the function is called, and independent of global seed settings (e.g.\n  `tf.random.set_seed`).\n\n  Usage Example:\n\n  >>> image = [[[1, 2, 3], [4, 5, 6]], [[7, 8, 9], [10, 11, 12]]]\n  >>> seed = (1, 2)\n  >>> tf.image.stateless_random_crop(value=image, size=(1, 2, 3), seed=seed)\n  <tf.Tensor: shape=(1, 2, 3), dtype=int32, numpy=\n  array([[[1, 2, 3],\n          [4, 5, 6]]], dtype=int32)>\n\n  Args:\n    value: Input tensor to crop.\n    size: 1-D tensor with size the rank of `value`.\n    seed: A shape [2] Tensor, the seed to the random number generator. Must have\n      dtype `int32` or `int64`. (When using XLA, only `int32` is allowed.)\n    name: A name for this operation (optional).\n\n  Returns:\n    A cropped tensor of the same rank as `value` and shape `size`.\n  '
+    with ops.name_scope(name, 'random_crop', [value, size]) as name:
+        value = ops.convert_to_tensor(value, name='value')
+        size = ops.convert_to_tensor(size, dtype=dtypes.int32, name='size')
+        shape = array_ops.shape(value)
+        check = control_flow_assert.Assert(math_ops.reduce_all(shape >= size), ['Need value.shape >= size, got ', shape, size], summarize=1000)
+        shape = control_flow_ops.with_dependencies([check], shape)
+        limit = shape - size + 1
+        offset = stateless_random_ops.stateless_random_uniform(array_ops.shape(shape), dtype=size.dtype, maxval=size.dtype.max, seed=seed) % limit
+        return array_ops.slice(value, offset, size, name=name)

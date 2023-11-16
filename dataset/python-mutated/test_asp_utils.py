@@ -1,0 +1,162 @@
+import threading
+import time
+import unittest
+import numpy as np
+import paddle
+
+class TestASPUtils(unittest.TestCase):
+
+    def test_get_check_method(self):
+        if False:
+            while True:
+                i = 10
+        self.assertEqual(paddle.incubate.asp.CheckMethod.get_checking_method(paddle.incubate.asp.MaskAlgo.MASK_1D), paddle.incubate.asp.CheckMethod.CHECK_1D)
+        self.assertEqual(paddle.incubate.asp.CheckMethod.get_checking_method(paddle.incubate.asp.MaskAlgo.MASK_2D_GREEDY), paddle.incubate.asp.CheckMethod.CHECK_2D)
+        self.assertEqual(paddle.incubate.asp.CheckMethod.get_checking_method(paddle.incubate.asp.MaskAlgo.MASK_2D_BEST), paddle.incubate.asp.CheckMethod.CHECK_2D)
+
+    def test_density(self):
+        if False:
+            return 10
+        x = np.array([[1.0, 1.0, 1.0, 0.0, 1.0], [1.0, 1.0, 0.0, 0.0, 1.0], [1.0, 0.0, 0.0, 0.0, 1.0], [1.0, 1.0, 0.0, 0.0, 1.0], [0.0, 1.0, 0.0, 0.0, 1.0]])
+        self.assertEqual(paddle.incubate.asp.calculate_density(x), 0.56)
+        x[:, 0] = 0.0
+        self.assertEqual(paddle.incubate.asp.calculate_density(x), 0.4)
+
+    def test_check_mask_1d(self):
+        if False:
+            return 10
+        x = np.array([[1.0, 0.0, 0.0, 1.0, 1.0], [1.0, 1.0, 0.0, 0.0, 1.0], [1.0, 1.0, 0.0, 0.0, 1.0], [1.0, 1.0, 0.0, 0.0, 1.0], [0.0, 1.0, 0.0, 0.0, 1.0]])
+        self.assertTrue(paddle.incubate.asp.check_mask_1d(x, 2, 4))
+        self.assertFalse(paddle.incubate.asp.check_mask_1d(x, 3, 4))
+        self.assertTrue(paddle.incubate.asp.check_mask_1d(x, 2, 5))
+        self.assertFalse(paddle.incubate.asp.check_mask_1d(x, 3, 5))
+        self.assertTrue(paddle.incubate.asp.check_mask_1d(x, 3, 6))
+        self.assertFalse(paddle.incubate.asp.check_mask_1d(x, 4, 6))
+
+    def test_get_mask_1d(self):
+        if False:
+            print('Hello World!')
+        for _ in range(10):
+            x = np.random.randint(10, size=(5, 5))
+            x = paddle.incubate.asp.get_mask_1d(x, 2, 4)
+            self.assertTrue(paddle.incubate.asp.check_mask_1d(x, 2, 4))
+            x = np.random.randn(5, 4)
+            x = paddle.incubate.asp.get_mask_1d(x, 2, 4)
+            self.assertTrue(paddle.incubate.asp.check_mask_1d(x, 2, 4))
+
+    def test_check_mask_2d(self):
+        if False:
+            return 10
+        x = np.array([[1.0, 0.0, 0.0, 1.0, 1.0], [0.0, 1.0, 0.0, 0.0, 0.0], [0.0, 0.0, 1.0, 0.0, 1.0], [1.0, 1.0, 0.0, 0.0, 0.0], [0.0, 1.0, 0.0, 0.0, 1.0]])
+        self.assertTrue(paddle.incubate.asp.check_mask_2d(x, 2, 4))
+        self.assertFalse(paddle.incubate.asp.check_mask_2d(x, 3, 4))
+        self.assertTrue(paddle.incubate.asp.check_mask_2d(x, 2, 5))
+        self.assertFalse(paddle.incubate.asp.check_mask_2d(x, 3, 5))
+        self.assertTrue(paddle.incubate.asp.check_mask_2d(x, 3, 6))
+        self.assertFalse(paddle.incubate.asp.check_mask_2d(x, 4, 6))
+
+    def test_get_mask_2d_greedy(self):
+        if False:
+            i = 10
+            return i + 15
+        for _ in range(10):
+            x = np.random.randint(10, size=(5, 5))
+            x = paddle.incubate.asp.get_mask_2d_greedy(x, 2, 4)
+            self.assertTrue(paddle.incubate.asp.check_mask_2d(x, 2, 4))
+            x = np.random.randn(5, 4)
+            x = paddle.incubate.asp.get_mask_2d_greedy(x, 2, 4)
+            self.assertTrue(paddle.incubate.asp.check_mask_2d(x, 2, 4))
+
+    def test_get_mask_2d_best(self):
+        if False:
+            for i in range(10):
+                print('nop')
+        for _ in range(10):
+            x = np.random.randint(10, size=(5, 5))
+            x = paddle.incubate.asp.get_mask_2d_best(x, 2, 4)
+            self.assertTrue(paddle.incubate.asp.check_mask_2d(x, 2, 4))
+            x = np.random.randn(5, 4)
+            x = paddle.incubate.asp.get_mask_2d_best(x, 2, 4)
+            self.assertTrue(paddle.incubate.asp.check_mask_2d(x, 2, 4))
+
+    def test_threadsafe_valid_2d_patterns(self):
+        if False:
+            i = 10
+            return i + 15
+
+        def get_reference(m=4, n=2):
+            if False:
+                while True:
+                    i = 10
+            from itertools import permutations
+            patterns = np.zeros(m)
+            patterns[:n] = 1
+            patterns = list(set(permutations(patterns.tolist())))
+            patterns = patterns + patterns
+            patterns = np.asarray(list(set(permutations(patterns, m))))
+            valid = ((patterns.sum(axis=1) <= n).sum(axis=1) == m).nonzero()[0].reshape(-1)
+            valid_patterns = np.empty((valid.shape[0], m, m))
+            valid_patterns[:] = patterns[valid[:]]
+            return valid_patterns
+        for _ in range(4):
+            computing_thread = threading.Thread(target=paddle.incubate.asp.utils._compute_valid_2d_patterns, args=(2, 4))
+            computing_thread.start()
+        time.sleep(3)
+        patterns_map = paddle.incubate.asp.utils._valid_2d_patterns
+        reference_patterns = get_reference()
+        reference_key = '4_2'
+        self.assertTrue(reference_key in patterns_map)
+        self.assertTrue(len(patterns_map) == 1)
+        self.assertTrue((reference_patterns == patterns_map[reference_key]).all())
+
+    def test_check_sparsity(self):
+        if False:
+            print('Hello World!')
+        for _ in range(10):
+            x = np.random.randint(10, size=5)
+            x_2d = x.reshape(1, x.shape[0])
+            self.__test_1D_2D_sparsity_checking_methods(x_2d)
+            x = np.random.randint(10, size=(5, 5))
+            x_2d = x
+            self.__test_1D_2D_sparsity_checking_methods(x_2d)
+            x = np.random.randint(10, size=(5, 5, 5))
+            x_2d = x.reshape(x.shape[0] * x.shape[1], x.shape[2])
+            self.__test_1D_2D_sparsity_checking_methods(x_2d)
+            x = np.random.randint(10, size=(5, 5, 5, 5))
+            x_2d = x.reshape(x.shape[0], x.shape[1] * x.shape[2] * x.shape[3])
+            self.__test_1D_2D_sparsity_checking_methods(x_2d)
+
+    def test_create_mask(self):
+        if False:
+            while True:
+                i = 10
+        for _ in range(10):
+            x = np.random.randint(10, size=5)
+            self.__test_1D_2D_sparse_mask_generation_methods(x)
+            x = np.random.randint(10, size=(5, 5))
+            self.__test_1D_2D_sparse_mask_generation_methods(x)
+            x = np.random.randint(10, size=(5, 5, 5))
+            self.__test_1D_2D_sparse_mask_generation_methods(x)
+            x = np.random.randint(10, size=(5, 5, 5, 5))
+            self.__test_1D_2D_sparse_mask_generation_methods(x)
+
+    def __test_1D_2D_sparsity_checking_methods(self, x_2d):
+        if False:
+            for i in range(10):
+                print('nop')
+        mask = paddle.incubate.asp.get_mask_1d(x_2d, 2, 4)
+        self.assertEqual(paddle.incubate.asp.check_sparsity(mask, func_name=paddle.incubate.asp.CheckMethod.CHECK_1D, n=2, m=4), paddle.incubate.asp.check_mask_1d(mask, 2, 4))
+        mask = paddle.incubate.asp.get_mask_2d_best(x_2d, 2, 4)
+        self.assertEqual(paddle.incubate.asp.check_sparsity(mask, func_name=paddle.incubate.asp.CheckMethod.CHECK_2D, n=2, m=4), paddle.incubate.asp.check_mask_2d(mask, 2, 4))
+
+    def __test_1D_2D_sparse_mask_generation_methods(self, x):
+        if False:
+            print('Hello World!')
+        mask = paddle.incubate.asp.create_mask(x, func_name=paddle.incubate.asp.MaskAlgo.MASK_1D, n=2, m=4)
+        self.assertTrue(paddle.incubate.asp.check_sparsity(mask, func_name=paddle.incubate.asp.CheckMethod.CHECK_1D, n=2, m=4))
+        mask = paddle.incubate.asp.create_mask(x, func_name=paddle.incubate.asp.MaskAlgo.MASK_2D_GREEDY, n=2, m=4)
+        self.assertTrue(paddle.incubate.asp.check_sparsity(mask, func_name=paddle.incubate.asp.CheckMethod.CHECK_2D, n=2, m=4))
+        mask = paddle.incubate.asp.create_mask(x, func_name=paddle.incubate.asp.MaskAlgo.MASK_2D_BEST, n=2, m=4)
+        self.assertTrue(paddle.incubate.asp.check_sparsity(mask, func_name=paddle.incubate.asp.CheckMethod.CHECK_2D, n=2, m=4))
+if __name__ == '__main__':
+    unittest.main()

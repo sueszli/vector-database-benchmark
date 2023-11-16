@@ -1,0 +1,34 @@
+def MergeSort(nums):
+    if False:
+        for i in range(10):
+            print('nop')
+    if len(nums) <= 1:
+        return nums
+    num = int(len(nums) / 2)
+    left = MergeSort(nums[:num])
+    right = MergeSort(nums[num:])
+    print('left: ', left)
+    print('right: ', right)
+    print('-' * 20)
+    return Merge(left, right)
+
+def Merge(left, right):
+    if False:
+        for i in range(10):
+            print('nop')
+    (l, r) = (0, 0)
+    result = []
+    while l < len(left) and r < len(right):
+        if left[l] < right[r]:
+            result.append(left[l])
+            l += 1
+        else:
+            result.append(right[r])
+            r += 1
+    result += left[l:]
+    result += right[r:]
+    return result
+if __name__ == '__main__':
+    nums = [2, 6, 8, 5, 1, 4, 9, 3, 7]
+    nums = MergeSort(nums)
+    print('result:', nums)

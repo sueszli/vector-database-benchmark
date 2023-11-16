@@ -1,0 +1,126 @@
+"""Python implementation of _search_key functions, etc."""
+from __future__ import absolute_import
+import zlib
+import struct
+from bzrlib.static_tuple import StaticTuple
+_LeafNode = None
+_InternalNode = None
+_unknown = None
+
+def _crc32(bit):
+    if False:
+        i = 10
+        return i + 15
+    return zlib.crc32(bit) & 4294967295
+
+def _search_key_16(key):
+    if False:
+        i = 10
+        return i + 15
+    'Map the key tuple into a search key string which has 16-way fan out.'
+    return '\x00'.join(['%08X' % _crc32(bit) for bit in key])
+
+def _search_key_255(key):
+    if False:
+        while True:
+            i = 10
+    "Map the key tuple into a search key string which has 255-way fan out.\n\n    We use 255-way because '\n' is used as a delimiter, and causes problems\n    while parsing.\n    "
+    bytes = '\x00'.join([struct.pack('>L', _crc32(bit)) for bit in key])
+    return bytes.replace('\n', '_')
+
+def _deserialise_leaf_node(bytes, key, search_key_func=None):
+    if False:
+        return 10
+    'Deserialise bytes, with key key, into a LeafNode.\n\n    :param bytes: The bytes of the node.\n    :param key: The key that the serialised node has.\n    '
+    global _unknown, _LeafNode, _InternalNode
+    if _LeafNode is None:
+        from bzrlib import chk_map
+        _unknown = chk_map._unknown
+        _LeafNode = chk_map.LeafNode
+        _InternalNode = chk_map.InternalNode
+    result = _LeafNode(search_key_func=search_key_func)
+    lines = bytes.split('\n')
+    trailing = lines.pop()
+    if trailing != '':
+        raise AssertionError('We did not have a final newline for %s' % (key,))
+    items = {}
+    if lines[0] != 'chkleaf:':
+        raise ValueError('not a serialised leaf node: %r' % bytes)
+    maximum_size = int(lines[1])
+    width = int(lines[2])
+    length = int(lines[3])
+    prefix = lines[4]
+    pos = 5
+    while pos < len(lines):
+        line = prefix + lines[pos]
+        elements = line.split('\x00')
+        pos += 1
+        if len(elements) != width + 1:
+            raise AssertionError('Incorrect number of elements (%d vs %d) for: %r' % (len(elements), width + 1, line))
+        num_value_lines = int(elements[-1])
+        value_lines = lines[pos:pos + num_value_lines]
+        pos += num_value_lines
+        value = '\n'.join(value_lines)
+        items[StaticTuple.from_sequence(elements[:-1])] = value
+    if len(items) != length:
+        raise AssertionError('item count (%d) mismatch for key %s, bytes %r' % (length, key, bytes))
+    result._items = items
+    result._len = length
+    result._maximum_size = maximum_size
+    result._key = key
+    result._key_width = width
+    result._raw_size = sum(map(len, lines[5:])) + length * len(prefix) + (len(lines) - 5)
+    if not items:
+        result._search_prefix = None
+        result._common_serialised_prefix = None
+    else:
+        result._search_prefix = _unknown
+        result._common_serialised_prefix = prefix
+    if len(bytes) != result._current_size():
+        raise AssertionError('_current_size computed incorrectly')
+    return result
+
+def _deserialise_internal_node(bytes, key, search_key_func=None):
+    if False:
+        return 10
+    global _unknown, _LeafNode, _InternalNode
+    if _InternalNode is None:
+        from bzrlib import chk_map
+        _unknown = chk_map._unknown
+        _LeafNode = chk_map.LeafNode
+        _InternalNode = chk_map.InternalNode
+    result = _InternalNode(search_key_func=search_key_func)
+    lines = bytes.split('\n')
+    if lines[-1] != '':
+        raise ValueError("last line must be ''")
+    lines.pop(-1)
+    items = {}
+    if lines[0] != 'chknode:':
+        raise ValueError('not a serialised internal node: %r' % bytes)
+    maximum_size = int(lines[1])
+    width = int(lines[2])
+    length = int(lines[3])
+    common_prefix = lines[4]
+    for line in lines[5:]:
+        line = common_prefix + line
+        (prefix, flat_key) = line.rsplit('\x00', 1)
+        items[prefix] = StaticTuple(flat_key)
+    if len(items) == 0:
+        raise AssertionError("We didn't find any item for %s" % key)
+    result._items = items
+    result._len = length
+    result._maximum_size = maximum_size
+    result._key = key
+    result._key_width = width
+    result._raw_size = None
+    result._node_width = len(prefix)
+    result._search_prefix = common_prefix
+    return result
+
+def _bytes_to_text_key(bytes):
+    if False:
+        print('Hello World!')
+    'Take a CHKInventory value string and return a (file_id, rev_id) tuple'
+    sections = bytes.split('\n')
+    (kind, file_id) = sections[0].split(': ')
+    return (intern(file_id), intern(sections[3]))

@@ -1,0 +1,27 @@
+from __future__ import annotations
+import pendulum
+from pendulum import timezone
+from tests.conftest import assert_datetime
+
+def test_create_from_timestamp_returns_pendulum():
+    if False:
+        i = 10
+        return i + 15
+    d = pendulum.from_timestamp(pendulum.datetime(1975, 5, 21, 22, 32, 5).timestamp())
+    assert_datetime(d, 1975, 5, 21, 22, 32, 5)
+    assert d.timezone_name == 'UTC'
+
+def test_create_from_timestamp_with_timezone_string():
+    if False:
+        while True:
+            i = 10
+    d = pendulum.from_timestamp(0, 'America/Toronto')
+    assert d.timezone_name == 'America/Toronto'
+    assert_datetime(d, 1969, 12, 31, 19, 0, 0)
+
+def test_create_from_timestamp_with_timezone():
+    if False:
+        return 10
+    d = pendulum.from_timestamp(0, timezone('America/Toronto'))
+    assert d.timezone_name == 'America/Toronto'
+    assert_datetime(d, 1969, 12, 31, 19, 0, 0)

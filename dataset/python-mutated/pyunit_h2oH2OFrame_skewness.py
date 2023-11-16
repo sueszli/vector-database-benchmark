@@ -1,0 +1,18 @@
+import sys
+sys.path.insert(1, '../../../')
+from tests import pyunit_utils
+import h2o
+import numpy as np
+from h2o.utils.typechecks import assert_is_type
+
+def h2o_H2OFrame_skewness():
+    if False:
+        i = 10
+        return i + 15
+    '\n    Python API test: h2o.frame.H2OFrame.skewness(na_rm=False)\n    '
+    python_lists = np.random.uniform(-1, 1, (10000, 2))
+    h2oframe = h2o.H2OFrame(python_obj=python_lists)
+    newframe = h2oframe.skewness()
+    assert_is_type(newframe, list)
+    assert len(newframe) == 2, 'h2o.H2OFrame.skewness() command is not working.'
+pyunit_utils.standalone_test(h2o_H2OFrame_skewness)

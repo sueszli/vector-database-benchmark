@@ -1,0 +1,18 @@
+from django.db import migrations
+from django.db.backends.base.schema import BaseDatabaseSchemaEditor
+from django.db.migrations.state import StateApps
+
+def set_default_value_for_can_remove_subscribers_group(apps: StateApps, schema_editor: BaseDatabaseSchemaEditor) -> None:
+    if False:
+        while True:
+            i = 10
+    Stream = apps.get_model('zerver', 'Stream')
+    Realm = apps.get_model('zerver', 'Realm')
+    UserGroup = apps.get_model('zerver', 'UserGroup')
+    for realm in Realm.objects.all():
+        admins_group = UserGroup.objects.get(name='@role:administrators', realm=realm, is_system_group=True)
+        Stream.objects.filter(realm=realm, can_remove_subscribers_group=None).update(can_remove_subscribers_group=admins_group)
+
+class Migration(migrations.Migration):
+    dependencies = [('zerver', '0408_stream_can_remove_subscribers_group')]
+    operations = [migrations.RunPython(set_default_value_for_can_remove_subscribers_group, elidable=True, reverse_code=migrations.RunPython.noop)]

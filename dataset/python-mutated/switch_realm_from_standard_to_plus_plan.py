@@ -1,0 +1,26 @@
+from typing import Any
+from django.conf import settings
+from django.core.management.base import CommandError, CommandParser
+from typing_extensions import override
+from zerver.lib.management import ZulipBaseCommand
+if settings.BILLING_ENABLED:
+    from corporate.lib.stripe import switch_realm_from_standard_to_plus_plan
+
+class Command(ZulipBaseCommand):
+
+    @override
+    def add_arguments(self, parser: CommandParser) -> None:
+        if False:
+            return 10
+        self.add_realm_args(parser)
+
+    @override
+    def handle(self, *args: Any, **options: Any) -> None:
+        if False:
+            for i in range(10):
+                print('nop')
+        realm = self.get_realm(options)
+        if not realm:
+            raise CommandError('No realm found.')
+        if settings.BILLING_ENABLED:
+            switch_realm_from_standard_to_plus_plan(realm)

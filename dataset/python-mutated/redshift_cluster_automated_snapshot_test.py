@@ -1,0 +1,53 @@
+from re import search
+from unittest import mock
+from uuid import uuid4
+from prowler.providers.aws.services.redshift.redshift_service import Cluster
+AWS_REGION = 'eu-west-1'
+AWS_ACCOUNT_NUMBER = '123456789012'
+CLUSTER_ID = str(uuid4())
+CLUSTER_ARN = f'arn:aws:redshift:{AWS_REGION}:{AWS_ACCOUNT_NUMBER}:cluster:{CLUSTER_ID}'
+
+class Test_redshift_cluster_automated_snapshot:
+
+    def test_no_clusters(self):
+        if False:
+            for i in range(10):
+                print('nop')
+        redshift_client = mock.MagicMock
+        redshift_client.clusters = []
+        with mock.patch('prowler.providers.aws.services.redshift.redshift_service.Redshift', redshift_client):
+            from prowler.providers.aws.services.redshift.redshift_cluster_automated_snapshot.redshift_cluster_automated_snapshot import redshift_cluster_automated_snapshot
+            check = redshift_cluster_automated_snapshot()
+            result = check.execute()
+            assert len(result) == 0
+
+    def test_cluster_is_not_performing_snapshots(self):
+        if False:
+            while True:
+                i = 10
+        redshift_client = mock.MagicMock
+        redshift_client.clusters = []
+        redshift_client.clusters.append(Cluster(id=CLUSTER_ID, arn=CLUSTER_ARN, region=AWS_REGION, cluster_snapshots=False))
+        with mock.patch('prowler.providers.aws.services.redshift.redshift_service.Redshift', redshift_client):
+            from prowler.providers.aws.services.redshift.redshift_cluster_automated_snapshot.redshift_cluster_automated_snapshot import redshift_cluster_automated_snapshot
+            check = redshift_cluster_automated_snapshot()
+            result = check.execute()
+            assert result[0].status == 'FAIL'
+            assert search('has automated snapshots disabled', result[0].status_extended)
+            assert result[0].resource_id == CLUSTER_ID
+            assert result[0].resource_arn == CLUSTER_ARN
+
+    def test_cluster_is_audit_logging(self):
+        if False:
+            return 10
+        redshift_client = mock.MagicMock
+        redshift_client.clusters = []
+        redshift_client.clusters.append(Cluster(id=CLUSTER_ID, arn=CLUSTER_ARN, region=AWS_REGION, cluster_snapshots=True))
+        with mock.patch('prowler.providers.aws.services.redshift.redshift_service.Redshift', redshift_client):
+            from prowler.providers.aws.services.redshift.redshift_cluster_automated_snapshot.redshift_cluster_automated_snapshot import redshift_cluster_automated_snapshot
+            check = redshift_cluster_automated_snapshot()
+            result = check.execute()
+            assert result[0].status == 'PASS'
+            assert search('has automated snapshots', result[0].status_extended)
+            assert result[0].resource_id == CLUSTER_ID
+            assert result[0].resource_arn == CLUSTER_ARN

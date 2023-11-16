@@ -1,0 +1,119 @@
+import torch.utils.data
+from torchvision.utils import save_image
+import random
+from net import *
+from model import Model
+from launcher import run
+from checkpointer import Checkpointer
+from dlutils.pytorch import count_parameters
+from defaults import get_cfg_defaults
+import lreq
+from PIL import Image
+lreq.use_implicit_lreq.set(True)
+im_size = 256
+
+def place(canvas, image, x, y):
+    if False:
+        for i in range(10):
+            print('nop')
+    im_size = image.shape[2]
+    if len(image.shape) == 4:
+        image = image[0]
+    canvas[:, y:y + im_size, x:x + im_size] = image * 0.5 + 0.5
+
+def save_sample(model, sample, i):
+    if False:
+        while True:
+            i = 10
+    os.makedirs('results', exist_ok=True)
+    with torch.no_grad():
+        model.eval()
+        x_rec = model.generate(model.generator.layer_count - 1, 1, z=sample)
+
+        def save_pic(x_rec):
+            if False:
+                return 10
+            resultsample = x_rec * 0.5 + 0.5
+            resultsample = resultsample.cpu()
+            save_image(resultsample, 'sample_%i_lr.png' % i, nrow=16)
+        save_pic(x_rec)
+
+def sample(cfg, logger):
+    if False:
+        i = 10
+        return i + 15
+    torch.cuda.set_device(0)
+    model = Model(startf=cfg.MODEL.START_CHANNEL_COUNT, layer_count=cfg.MODEL.LAYER_COUNT, maxf=cfg.MODEL.MAX_CHANNEL_COUNT, latent_size=cfg.MODEL.LATENT_SPACE_SIZE, truncation_psi=cfg.MODEL.TRUNCATIOM_PSI, truncation_cutoff=cfg.MODEL.TRUNCATIOM_CUTOFF, mapping_layers=cfg.MODEL.MAPPING_LAYERS, channels=cfg.MODEL.CHANNELS, generator=cfg.MODEL.GENERATOR, encoder=cfg.MODEL.ENCODER)
+    model.cuda(0)
+    model.eval()
+    model.requires_grad_(False)
+    decoder = model.decoder
+    encoder = model.encoder
+    mapping_tl = model.mapping_d
+    mapping_fl = model.mapping_f
+    dlatent_avg = model.dlatent_avg
+    logger.info('Trainable parameters generator:')
+    count_parameters(decoder)
+    logger.info('Trainable parameters discriminator:')
+    count_parameters(encoder)
+    arguments = dict()
+    arguments['iteration'] = 0
+    model_dict = {'discriminator_s': encoder, 'generator_s': decoder, 'mapping_tl_s': mapping_tl, 'mapping_fl_s': mapping_fl, 'dlatent_avg': dlatent_avg}
+    checkpointer = Checkpointer(cfg, model_dict, {}, logger=logger, save=False)
+    extra_checkpoint_data = checkpointer.load()
+    model.eval()
+    layer_count = cfg.MODEL.LAYER_COUNT
+
+    def encode(x):
+        if False:
+            print('Hello World!')
+        (Z, _) = model.encode(x, layer_count - 1, 1)
+        Z = Z.repeat(1, model.mapping_f.num_layers, 1)
+        return Z
+
+    def decode(x):
+        if False:
+            for i in range(10):
+                print('nop')
+        layer_idx = torch.arange(2 * cfg.MODEL.LAYER_COUNT)[np.newaxis, :, np.newaxis]
+        ones = torch.ones(layer_idx.shape, dtype=torch.float32)
+        coefs = torch.where(layer_idx < model.truncation_cutoff, ones, ones)
+        return model.decoder(x, layer_count - 1, 1, noise=True)
+    rnd = np.random.RandomState(5)
+    latents = rnd.randn(1, cfg.MODEL.LATENT_SPACE_SIZE)
+    path = cfg.DATASET.SAMPLES_PATH
+    paths = list(os.listdir(path))
+    paths = sorted(paths)
+    random.seed(3456)
+    random.shuffle(paths)
+
+    def make(paths):
+        if False:
+            while True:
+                i = 10
+        canvas = []
+        with torch.no_grad():
+            for filename in paths:
+                img = np.asarray(Image.open(path + '/' + filename))
+                if img.shape[2] == 4:
+                    img = img[:, :, :3]
+                im = img.transpose((2, 0, 1))
+                x = torch.tensor(np.asarray(im, dtype=np.float32), device='cpu', requires_grad=True).cuda() / 127.5 - 1.0
+                if x.shape[0] == 4:
+                    x = x[:3]
+                while x.shape[2] != model.decoder.layer_to_resolution[6]:
+                    x = F.avg_pool2d(x, 2, 2)
+                latents = encode(x[None, ...].cuda())
+                f = decode(latents)
+                r = torch.cat([x[None, ...].detach().cpu(), f.detach().cpu()], dim=3)
+                canvas.append(r)
+        return canvas
+    canvas = make(paths[:10])
+    canvas = torch.cat(canvas, dim=0)
+    save_image(canvas * 0.5 + 0.5, 'make_figures/output/reconstructions_celeba_1.png', nrow=2, pad_value=1.0)
+    canvas = make(paths[10:20])
+    canvas = torch.cat(canvas, dim=0)
+    save_image(canvas * 0.5 + 0.5, 'make_figures/output/reconstructions_celeba_2.png', nrow=2, pad_value=1.0)
+if __name__ == '__main__':
+    gpu_count = 1
+    run(sample, get_cfg_defaults(), description='ALAE-reconstruction-bedroom', default_config='configs/celeba-hq256.yaml', world_size=gpu_count, write_log=False)

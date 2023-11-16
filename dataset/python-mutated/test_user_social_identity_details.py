@@ -1,0 +1,28 @@
+from sentry.testutils.cases import APITestCase
+from sentry.testutils.silo import control_silo_test
+from social_auth.models import UserSocialAuth
+
+@control_silo_test(stable=True)
+class UserSocialIdentityDetailsEndpointTest(APITestCase):
+    endpoint = 'sentry-api-0-user-social-identity-details'
+    method = 'delete'
+
+    def setUp(self):
+        if False:
+            print('Hello World!')
+        self.login_as(self.user)
+
+    def test_can_disconnect(self):
+        if False:
+            return 10
+        auth = UserSocialAuth.create_social_auth(self.user, '1234', 'github')
+        with self.settings(GITHUB_APP_ID='app-id', GITHUB_API_SECRET='secret'):
+            self.get_success_response(self.user.id, auth.id, status_code=204)
+            assert not len(UserSocialAuth.objects.filter(user=self.user))
+
+    def test_disconnect_id_not_found(self):
+        if False:
+            return 10
+        with self.settings(GITHUB_APP_ID='app-id', GITHUB_API_SECRET='secret'):
+            self.get_error_response(self.user.id, 999, status_code=404)
+            assert not len(UserSocialAuth.objects.filter(user=self.user))

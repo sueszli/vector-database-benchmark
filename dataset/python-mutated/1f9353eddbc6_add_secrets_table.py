@@ -1,0 +1,25 @@
+"""Add secrets table
+
+Revision ID: 1f9353eddbc6
+Revises: 643b6e65e814
+Create Date: 2023-02-15 09:25:39.658782
+
+"""
+from alembic import op
+import sqlalchemy as sa
+revision = '1f9353eddbc6'
+down_revision = '643b6e65e814'
+branch_labels = None
+depends_on = None
+
+def upgrade() -> None:
+    if False:
+        while True:
+            i = 10
+    op.create_table('secret', sa.Column('id', sa.Integer(), autoincrement=True, nullable=False), sa.Column('created_at', sa.DateTime(timezone=True), server_default=sa.text('(CURRENT_TIMESTAMP)'), nullable=True), sa.Column('updated_at', sa.DateTime(timezone=True), server_default=sa.text('(CURRENT_TIMESTAMP)'), nullable=True), sa.Column('name', sa.String(length=255), nullable=True), sa.Column('value', sa.Text(), nullable=True), sa.Column('repo_name', sa.String(length=255), nullable=True), sa.PrimaryKeyConstraint('id'), sa.UniqueConstraint('name'))
+
+def downgrade() -> None:
+    if False:
+        while True:
+            i = 10
+    op.drop_table('secret')

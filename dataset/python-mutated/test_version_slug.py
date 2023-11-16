@@ -1,0 +1,110 @@
+import re
+from django.test import TestCase
+from readthedocs.builds.models import Version
+from readthedocs.builds.version_slug import VERSION_SLUG_REGEX, VersionSlugField
+from readthedocs.projects.models import Project
+
+class VersionSlugPatternTests(TestCase):
+    pattern = re.compile('^{pattern}$'.format(pattern=VERSION_SLUG_REGEX))
+
+    def test_single_char(self):
+        if False:
+            for i in range(10):
+                print('nop')
+        self.assertTrue(self.pattern.match('v'))
+        self.assertFalse(self.pattern.match('.'))
+
+    def test_trailing_punctuation(self):
+        if False:
+            while True:
+                i = 10
+        self.assertTrue(self.pattern.match('with_'))
+        self.assertTrue(self.pattern.match('with.'))
+        self.assertTrue(self.pattern.match('with-'))
+        self.assertFalse(self.pattern.match('with!'))
+
+    def test_multiple_words(self):
+        if False:
+            i = 10
+            return i + 15
+        self.assertTrue(self.pattern.match('release-1.0'))
+        self.assertTrue(self.pattern.match('fix_this-and-that.'))
+
+class VersionSlugFieldTests(TestCase):
+    fixtures = ['eric', 'test_data']
+
+    def setUp(self):
+        if False:
+            for i in range(10):
+                print('nop')
+        self.pip = Project.objects.get(slug='pip')
+
+    def test_saving(self):
+        if False:
+            while True:
+                i = 10
+        version = Version.objects.create(verbose_name='1.0', project=self.pip)
+        self.assertEqual(version.slug, '1.0')
+
+    def test_normalizing(self):
+        if False:
+            for i in range(10):
+                print('nop')
+        version = Version.objects.create(verbose_name='1%0', project=self.pip)
+        self.assertEqual(version.slug, '1-0')
+
+    def test_normalizing_slashes(self):
+        if False:
+            print('Hello World!')
+        version = Version.objects.create(verbose_name='releases/1.0', project=self.pip)
+        self.assertEqual(version.slug, 'releases-1.0')
+
+    def test_uppercase(self):
+        if False:
+            print('Hello World!')
+        version = Version.objects.create(verbose_name='SomeString-charclass', project=self.pip)
+        self.assertEqual(version.slug, 'somestring-charclass')
+
+    def test_placeholder_as_name(self):
+        if False:
+            print('Hello World!')
+        version = Version.objects.create(verbose_name='-', project=self.pip)
+        self.assertEqual(version.slug, 'unknown')
+
+    def test_multiple_empty_names(self):
+        if False:
+            i = 10
+            return i + 15
+        version = Version.objects.create(verbose_name='-', project=self.pip)
+        self.assertEqual(version.slug, 'unknown')
+        version = Version.objects.create(verbose_name='-./.-', project=self.pip)
+        self.assertEqual(version.slug, 'unknown_a')
+
+    def test_uniqueness(self):
+        if False:
+            return 10
+        version = Version.objects.create(verbose_name='1!0', project=self.pip)
+        self.assertEqual(version.slug, '1-0')
+        version = Version.objects.create(verbose_name='1%0', project=self.pip)
+        self.assertEqual(version.slug, '1-0_a')
+        version = Version.objects.create(verbose_name='1?0', project=self.pip)
+        self.assertEqual(version.slug, '1-0_b')
+
+    def test_uniquifying_suffix(self):
+        if False:
+            i = 10
+            return i + 15
+        field = VersionSlugField(populate_from='foo')
+        self.assertEqual(field.uniquifying_suffix(0), '_a')
+        self.assertEqual(field.uniquifying_suffix(25), '_z')
+        self.assertEqual(field.uniquifying_suffix(26), '_ba')
+        self.assertEqual(field.uniquifying_suffix(52), '_ca')
+
+    def test_unicode(self):
+        if False:
+            for i in range(10):
+                print('nop')
+        version = Version.objects.create(verbose_name='camión', project=self.pip)
+        self.assertEqual(version.slug, 'camion')
+        version = Version.objects.create(verbose_name='ŭñíč°də-branch', project=self.pip)
+        self.assertEqual(version.slug, 'unicd-branch')

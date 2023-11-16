@@ -1,0 +1,57 @@
+import logging
+from twisted.internet import task
+from scrapy import signals
+from scrapy.exceptions import NotConfigured
+logger = logging.getLogger(__name__)
+
+class LogStats:
+    """Log basic scraping stats periodically"""
+
+    def __init__(self, stats, interval=60.0):
+        if False:
+            print('Hello World!')
+        self.stats = stats
+        self.interval = interval
+        self.multiplier = 60.0 / self.interval
+        self.task = None
+
+    @classmethod
+    def from_crawler(cls, crawler):
+        if False:
+            i = 10
+            return i + 15
+        interval = crawler.settings.getfloat('LOGSTATS_INTERVAL')
+        if not interval:
+            raise NotConfigured
+        o = cls(crawler.stats, interval)
+        crawler.signals.connect(o.spider_opened, signal=signals.spider_opened)
+        crawler.signals.connect(o.spider_closed, signal=signals.spider_closed)
+        return o
+
+    def spider_opened(self, spider):
+        if False:
+            for i in range(10):
+                print('nop')
+        self.pagesprev = 0
+        self.itemsprev = 0
+        self.task = task.LoopingCall(self.log, spider)
+        self.task.start(self.interval)
+
+    def log(self, spider):
+        if False:
+            while True:
+                i = 10
+        items = self.stats.get_value('item_scraped_count', 0)
+        pages = self.stats.get_value('response_received_count', 0)
+        irate = (items - self.itemsprev) * self.multiplier
+        prate = (pages - self.pagesprev) * self.multiplier
+        (self.pagesprev, self.itemsprev) = (pages, items)
+        msg = 'Crawled %(pages)d pages (at %(pagerate)d pages/min), scraped %(items)d items (at %(itemrate)d items/min)'
+        log_args = {'pages': pages, 'pagerate': prate, 'items': items, 'itemrate': irate}
+        logger.info(msg, log_args, extra={'spider': spider})
+
+    def spider_closed(self, spider, reason):
+        if False:
+            print('Hello World!')
+        if self.task and self.task.running:
+            self.task.stop()

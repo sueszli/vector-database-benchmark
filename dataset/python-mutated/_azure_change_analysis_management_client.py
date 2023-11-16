@@ -1,0 +1,60 @@
+from typing import TYPE_CHECKING
+from azure.mgmt.core import ARMPipelineClient
+from msrest import Deserializer, Serializer
+if TYPE_CHECKING:
+    from typing import Any, Optional
+    from azure.core.credentials import TokenCredential
+from ._configuration import AzureChangeAnalysisManagementClientConfiguration
+from .operations import Operations
+from .operations import ResourceChangesOperations
+from .operations import ChangesOperations
+from . import models
+
+class AzureChangeAnalysisManagementClient(object):
+    """AzureChangeAnalysisManagementClient.
+
+    :ivar operations: Operations operations
+    :vartype operations: Microsoft.ChangeAnalysis.operations.Operations
+    :ivar resource_changes: ResourceChangesOperations operations
+    :vartype resource_changes: Microsoft.ChangeAnalysis.operations.ResourceChangesOperations
+    :ivar changes: ChangesOperations operations
+    :vartype changes: Microsoft.ChangeAnalysis.operations.ChangesOperations
+    :param credential: Credential needed for the client to connect to Azure.
+    :type credential: ~azure.core.credentials.TokenCredential
+    :param subscription_id: The ID of the target subscription.
+    :type subscription_id: str
+    :param str base_url: Service URL
+    """
+
+    def __init__(self, credential, subscription_id, base_url=None, **kwargs):
+        if False:
+            print('Hello World!')
+        if not base_url:
+            base_url = 'https://management.azure.com'
+        self._config = AzureChangeAnalysisManagementClientConfiguration(credential, subscription_id, **kwargs)
+        self._client = ARMPipelineClient(base_url=base_url, config=self._config, **kwargs)
+        client_models = {k: v for (k, v) in models.__dict__.items() if isinstance(v, type)}
+        self._serialize = Serializer(client_models)
+        self._serialize.client_side_validation = False
+        self._deserialize = Deserializer(client_models)
+        self.operations = Operations(self._client, self._config, self._serialize, self._deserialize)
+        self.resource_changes = ResourceChangesOperations(self._client, self._config, self._serialize, self._deserialize)
+        self.changes = ChangesOperations(self._client, self._config, self._serialize, self._deserialize)
+
+    def close(self):
+        if False:
+            while True:
+                i = 10
+        self._client.close()
+
+    def __enter__(self):
+        if False:
+            print('Hello World!')
+        self._client.__enter__()
+        return self
+
+    def __exit__(self, *exc_details):
+        if False:
+            for i in range(10):
+                print('nop')
+        self._client.__exit__(*exc_details)

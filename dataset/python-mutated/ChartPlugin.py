@@ -1,0 +1,64 @@
+import time
+import itertools
+import gevent
+from Config import config
+from util import helper
+from util.Flag import flag
+from Plugin import PluginManager
+from .ChartDb import ChartDb
+from .ChartCollector import ChartCollector
+if 'db' not in locals().keys():
+    db = ChartDb()
+    gevent.spawn_later(10 * 60, db.archive)
+    helper.timer(60 * 60 * 6, db.archive)
+    collector = ChartCollector(db)
+
+@PluginManager.registerTo('SiteManager')
+class SiteManagerPlugin(object):
+
+    def load(self, *args, **kwargs):
+        if False:
+            while True:
+                i = 10
+        back = super(SiteManagerPlugin, self).load(*args, **kwargs)
+        collector.setInitialLastValues(self.sites.values())
+        return back
+
+    def delete(self, address, *args, **kwargs):
+        if False:
+            return 10
+        db.deleteSite(address)
+        return super(SiteManagerPlugin, self).delete(address, *args, **kwargs)
+
+@PluginManager.registerTo('UiWebsocket')
+class UiWebsocketPlugin(object):
+
+    @flag.admin
+    def actionChartDbQuery(self, to, query, params=None):
+        if False:
+            return 10
+        if config.debug or config.verbose:
+            s = time.time()
+        rows = []
+        try:
+            if not query.strip().upper().startswith('SELECT'):
+                raise Exception('Only SELECT query supported')
+            res = db.execute(query, params)
+        except Exception as err:
+            self.log.error('ChartDbQuery error: %s' % err)
+            return {'error': str(err)}
+        for row in res:
+            rows.append(dict(row))
+        if config.verbose and time.time() - s > 0.1:
+            self.log.debug('Slow query: %s (%.3fs)' % (query, time.time() - s))
+        return rows
+
+    @flag.admin
+    def actionChartGetPeerLocations(self, to):
+        if False:
+            print('Hello World!')
+        peers = {}
+        for site in self.server.sites.values():
+            peers.update(site.peers)
+        peer_locations = self.getPeerLocations(peers)
+        return peer_locations

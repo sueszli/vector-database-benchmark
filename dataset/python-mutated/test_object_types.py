@@ -1,0 +1,168 @@
+import dataclasses
+import re
+from enum import Enum
+from typing import List, Optional, TypeVar, Union
+from typing_extensions import Annotated
+import pytest
+import strawberry
+from strawberry.field import StrawberryField
+from strawberry.type import get_object_definition
+
+def test_enum():
+    if False:
+        while True:
+            i = 10
+
+    @strawberry.enum
+    class Count(Enum):
+        TWO = 'two'
+        FOUR = 'four'
+
+    @strawberry.type
+    class Animal:
+        legs: Count
+    field: StrawberryField = get_object_definition(Animal).fields[0]
+    assert field.type is Count._enum_definition
+
+def test_forward_reference():
+    if False:
+        for i in range(10):
+            print('nop')
+    global FromTheFuture
+
+    @strawberry.type
+    class TimeTraveler:
+        origin: 'FromTheFuture'
+
+    @strawberry.type
+    class FromTheFuture:
+        year: int
+    field: StrawberryField = get_object_definition(TimeTraveler).fields[0]
+    assert field.type is FromTheFuture
+    del FromTheFuture
+
+def test_list():
+    if False:
+        while True:
+            i = 10
+
+    @strawberry.type
+    class Santa:
+        making_a: List[str]
+    field: StrawberryField = get_object_definition(Santa).fields[0]
+    assert field.type == List[str]
+
+def test_literal():
+    if False:
+        while True:
+            i = 10
+
+    @strawberry.type
+    class Fabric:
+        thread_type: str
+    field: StrawberryField = get_object_definition(Fabric).fields[0]
+    assert field.type == str
+
+def test_object():
+    if False:
+        while True:
+            i = 10
+
+    @strawberry.type
+    class Object:
+        proper_noun: bool
+
+    @strawberry.type
+    class TransitiveVerb:
+        subject: Object
+    field: StrawberryField = get_object_definition(TransitiveVerb).fields[0]
+    assert field.type is Object
+
+def test_optional():
+    if False:
+        while True:
+            i = 10
+
+    @strawberry.type
+    class HasChoices:
+        decision: Optional[bool]
+    field: StrawberryField = get_object_definition(HasChoices).fields[0]
+    assert field.type == Optional[bool]
+
+def test_type_var():
+    if False:
+        i = 10
+        return i + 15
+    T = TypeVar('T')
+
+    @strawberry.type
+    class Gossip:
+        spill_the: T
+    field: StrawberryField = get_object_definition(Gossip).fields[0]
+    assert field.type == T
+
+def test_union():
+    if False:
+        i = 10
+        return i + 15
+
+    @strawberry.type
+    class Europe:
+        name: str
+
+    @strawberry.type
+    class UK:
+        name: str
+    EU = Annotated[Union[Europe, UK], strawberry.union('EU')]
+
+    @strawberry.type
+    class WishfulThinking:
+        desire: EU
+    field: StrawberryField = get_object_definition(WishfulThinking).fields[0]
+    assert field.type == EU
+
+def test_fields_with_defaults():
+    if False:
+        while True:
+            i = 10
+
+    @strawberry.type
+    class Country:
+        name: str = 'United Kingdom'
+        currency_code: str
+    country = Country(currency_code='GBP')
+    assert country.name == 'United Kingdom'
+    assert country.currency_code == 'GBP'
+    country = Country(name='United States of America', currency_code='USD')
+    assert country.name == 'United States of America'
+    assert country.currency_code == 'USD'
+
+def test_fields_with_defaults_inheritance():
+    if False:
+        print('Hello World!')
+
+    @strawberry.interface
+    class A:
+        text: str
+        delay: Optional[int] = None
+
+    @strawberry.type
+    class B(A):
+        attachments: Optional[List[A]] = None
+
+    @strawberry.type
+    class C(A):
+        fields: List[B]
+    c_inst = C(text='some text', fields=[B(text='more text')])
+    assert dataclasses.asdict(c_inst) == {'text': 'some text', 'delay': None, 'fields': [{'text': 'more text', 'attachments': None, 'delay': None}]}
+
+def test_positional_args_not_allowed():
+    if False:
+        i = 10
+        return i + 15
+
+    @strawberry.type
+    class Thing:
+        name: str
+    with pytest.raises(TypeError, match=re.escape('__init__() takes 1 positional argument but 2 were given')):
+        Thing('something')

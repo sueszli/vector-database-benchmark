@@ -1,0 +1,52 @@
+import unittest
+import reactivex
+from reactivex.testing import ReactiveTest, TestScheduler
+on_next = ReactiveTest.on_next
+on_completed = ReactiveTest.on_completed
+on_error = ReactiveTest.on_error
+subscribe = ReactiveTest.subscribe
+subscribed = ReactiveTest.subscribed
+disposed = ReactiveTest.disposed
+created = ReactiveTest.created
+
+class TestOf(unittest.TestCase):
+
+    def test_of(self):
+        if False:
+            for i in range(10):
+                print('nop')
+        results = []
+        reactivex.of(1, 2, 3, 4, 5).subscribe(results.append)
+        assert str([1, 2, 3, 4, 5]) == str(results)
+
+    def test_of_empty(self):
+        if False:
+            return 10
+        results = []
+        reactivex.of().subscribe(results.append)
+        assert len(results) == 0
+
+    def teest_of_with_scheduler(self):
+        if False:
+            return 10
+        scheduler = TestScheduler()
+
+        def create():
+            if False:
+                for i in range(10):
+                    print('nop')
+            return reactivex.of(1, 2, 3, 4, 5)
+        results = scheduler.start(create=create)
+        assert results.messages == [on_next(201, 1), on_next(202, 2), on_next(203, 3), on_next(204, 4), on_next(205, 5), on_completed(206)]
+
+    def teest_of_with_scheduler_empty(self):
+        if False:
+            print('Hello World!')
+        scheduler = TestScheduler()
+
+        def create():
+            if False:
+                print('Hello World!')
+            return reactivex.of(scheduler=scheduler)
+        results = scheduler.start(create=create)
+        assert results.messages == [on_completed(201)]

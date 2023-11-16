@@ -1,0 +1,192 @@
+import dataclasses
+import itertools
+from typing import Dict, List
+from qutebrowser.qt.core import QObject, QByteArray, QUrl, pyqtSlot
+from qutebrowser.qt.gui import QImage
+from qutebrowser.qt.dbus import QDBusConnection, QDBusMessage
+import pytest
+from qutebrowser.browser.webengine import notification
+from qutebrowser.utils import utils
+from tests.helpers import testutils
+
+@dataclasses.dataclass
+class NotificationProperties:
+    title: str
+    body: str
+    replaces_id: int
+    img_width: int
+    img_height: int
+    closed_via_web: bool = False
+
+class TestNotificationServer(QObject):
+    """A libnotify notification server used for testing."""
+
+    def __init__(self, service: str):
+        if False:
+            return 10
+        "Constructs a new server.\n\n        This is safe even if there is no DBus daemon; we don't check whether\n        the connection is successful until register().\n        "
+        super().__init__()
+        self._service = service
+        self._bus = QDBusConnection.sessionBus()
+        self._message_id_gen = itertools.count(1)
+        self.messages: Dict[int, NotificationProperties] = {}
+        self.supports_body_markup = True
+        self.last_id = None
+
+    def cleanup(self) -> None:
+        if False:
+            for i in range(10):
+                print('nop')
+        self.messages = {}
+
+    def last_msg(self) -> NotificationProperties:
+        if False:
+            for i in range(10):
+                print('nop')
+        return self.messages[self.last_id]
+
+    def register(self) -> bool:
+        if False:
+            return 10
+        'Try to register to DBus.\n\n        If no bus is available, returns False.\n        If a bus is available but registering fails, raises an AssertionError.\n        If registering succeeded, returns True.\n        '
+        if not self._bus.isConnected():
+            return False
+        assert self._bus.registerService(self._service)
+        assert self._bus.registerObject(notification.DBusNotificationAdapter.PATH, notification.DBusNotificationAdapter.INTERFACE, self, QDBusConnection.RegisterOption.ExportAllSlots)
+        return True
+
+    def unregister(self) -> None:
+        if False:
+            return 10
+        self._bus.unregisterObject(notification.DBusNotificationAdapter.PATH)
+        assert self._bus.unregisterService(self._service)
+
+    def _parse_notify_args(self, appname, replaces_id, icon, title, body, actions, hints, timeout) -> NotificationProperties:
+        if False:
+            for i in range(10):
+                print('nop')
+        'Parse a Notify dbus reply.\n\n        Checks all constant values and returns a NotificationProperties object for\n        values being checked inside test cases.\n        '
+        assert appname == 'qutebrowser'
+        assert icon == ''
+        assert actions == ['default', 'Activate']
+        assert timeout == -1
+        assert hints.keys() == {'x-qutebrowser-origin', 'x-kde-origin-name', 'desktop-entry', 'image-data'}
+        for key in ('x-qutebrowser-origin', 'x-kde-origin-name'):
+            value = hints[key]
+            url = QUrl(value)
+            assert url.isValid(), value
+            assert url.scheme() == 'http', value
+            assert url.host() == 'localhost', value
+        assert hints['desktop-entry'] == 'org.qutebrowser.qutebrowser'
+        img = self._parse_image(*hints['image-data'])
+        if replaces_id != 0:
+            assert replaces_id in self.messages
+        return NotificationProperties(title=title, body=body, replaces_id=replaces_id, img_width=img.width(), img_height=img.height())
+
+    def _parse_image(self, width: int, height: int, bytes_per_line: int, has_alpha: bool, bits_per_color: int, channel_count: int, data: QByteArray) -> QImage:
+        if False:
+            print('Hello World!')
+        'Make sure the given image data is valid and return a QImage.'
+        assert 0 < width <= 320
+        assert 0 < height <= 320
+        pixelstride = (channel_count * bits_per_color + 7) // 8
+        expected_len = (height - 1) * bytes_per_line + width * pixelstride
+        assert len(data) == expected_len
+        assert bits_per_color == 8
+        assert channel_count == (4 if has_alpha else 3)
+        assert bytes_per_line >= width * channel_count
+        qimage_format = QImage.Format.Format_RGBA8888 if has_alpha else QImage.Format.Format_RGB888
+        img = QImage(data, width, height, bytes_per_line, qimage_format)
+        assert not img.isNull()
+        assert img.width() == width
+        assert img.height() == height
+        return img
+
+    def close(self, notification_id: int) -> None:
+        if False:
+            while True:
+                i = 10
+        'Sends a close notification for the given ID.'
+        message = QDBusMessage.createSignal(notification.DBusNotificationAdapter.PATH, notification.DBusNotificationAdapter.INTERFACE, 'NotificationClosed')
+        message.setArguments([notification._as_uint32(notification_id), notification._as_uint32(2)])
+        if not self._bus.send(message):
+            raise OSError('Could not send close notification')
+
+    def click(self, notification_id: int) -> None:
+        if False:
+            for i in range(10):
+                print('nop')
+        'Sends a click (default action) notification for the given ID.'
+        self.action(notification_id, 'default')
+
+    def action(self, notification_id: int, name: str) -> None:
+        if False:
+            while True:
+                i = 10
+        'Sends an action notification for the given ID.'
+        message = QDBusMessage.createSignal(notification.DBusNotificationAdapter.PATH, notification.DBusNotificationAdapter.INTERFACE, 'ActionInvoked')
+        message.setArguments([notification._as_uint32(notification_id), name])
+        if not self._bus.send(message):
+            raise OSError('Could not send action notification')
+
+    @pyqtSlot(QDBusMessage, result='uint')
+    def Notify(self, dbus_message: QDBusMessage) -> int:
+        if False:
+            i = 10
+            return i + 15
+        assert dbus_message.signature() == 'susssasa{sv}i'
+        assert dbus_message.type() == QDBusMessage.MessageType.MethodCallMessage
+        message = self._parse_notify_args(*dbus_message.arguments())
+        if message.replaces_id == 0:
+            message_id = next(self._message_id_gen)
+        else:
+            message_id = message.replaces_id
+        self.messages[message_id] = message
+        self.last_id = message_id
+        return message_id
+
+    @pyqtSlot(QDBusMessage, result='QStringList')
+    def GetCapabilities(self, message: QDBusMessage) -> List[str]:
+        if False:
+            print('Hello World!')
+        assert not message.signature()
+        assert not message.arguments()
+        assert message.type() == QDBusMessage.MessageType.MethodCallMessage
+        capabilities = ['actions', 'x-kde-origin-name']
+        if self.supports_body_markup:
+            capabilities.append('body-markup')
+        return capabilities
+
+    @pyqtSlot(QDBusMessage)
+    def GetServerInformation(self, message: QDBusMessage) -> None:
+        if False:
+            print('Hello World!')
+        name = 'test notification server'
+        vendor = 'qutebrowser'
+        version = 'v0.0.1'
+        spec_version = '1.2'
+        self._bus.send(message.createReply([name, vendor, version, spec_version]))
+
+    @pyqtSlot(QDBusMessage)
+    def CloseNotification(self, dbus_message: QDBusMessage) -> None:
+        if False:
+            return 10
+        assert dbus_message.signature() == 'u'
+        assert dbus_message.type() == QDBusMessage.MessageType.MethodCallMessage
+        message_id = dbus_message.arguments()[0]
+        self.messages[message_id].closed_via_web = True
+
+@pytest.fixture(scope='module')
+def notification_server(qapp, quteproc_process):
+    if False:
+        print('Hello World!')
+    if utils.is_windows:
+        pytest.skip('Skipping DBus on Windows')
+    qb_pid = quteproc_process.proc.processId()
+    server = TestNotificationServer(f'{notification.DBusNotificationAdapter.TEST_SERVICE}{qb_pid}')
+    registered = server.register()
+    if not registered:
+        assert not (utils.is_linux and testutils.ON_CI), 'Expected DBus on Linux CI'
+        pytest.skip('No DBus server available')
+    yield server
+    server.unregister()

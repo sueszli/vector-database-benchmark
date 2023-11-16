@@ -1,0 +1,160 @@
+from __future__ import annotations
+import datetime
+import os
+import pathlib
+import uuid
+from unittest import mock
+from unittest.mock import ANY, MagicMock, call, patch
+import pytest
+from openlineage.client.facet import DocumentationJobFacet, ErrorMessageRunFacet, NominalTimeRunFacet, ProcessingEngineRunFacet
+from openlineage.client.run import Job, Run, RunEvent, RunState
+from airflow.providers.openlineage.extractors import OperatorLineage
+from airflow.providers.openlineage.plugins.adapter import _PRODUCER, OpenLineageAdapter
+from tests.test_utils.config import conf_vars
+pytestmark = pytest.mark.db_test
+
+@patch.dict(os.environ, {'OPENLINEAGE_URL': 'http://ol-api:5000', 'OPENLINEAGE_API_KEY': 'api-key'})
+def test_create_client_from_ol_env():
+    if False:
+        print('Hello World!')
+    client = OpenLineageAdapter().get_or_create_openlineage_client()
+    assert client.transport.url == 'http://ol-api:5000'
+
+@conf_vars({('openlineage', 'transport'): '{"type": "http", "url": "http://ol-api:5000", "auth": {"type": "api_key", "apiKey": "api-key"}}'})
+def test_create_client_from_config_with_options():
+    if False:
+        print('Hello World!')
+    client = OpenLineageAdapter().get_or_create_openlineage_client()
+    assert client.transport.kind == 'http'
+    assert client.transport.url == 'http://ol-api:5000'
+
+@conf_vars({('openlineage', 'transport'): '{"url": "http://ol-api:5000", "auth": {"type": "api_key", "apiKey": "api-key"}}'})
+def test_fails_to_create_client_without_type():
+    if False:
+        return 10
+    with pytest.raises(Exception):
+        OpenLineageAdapter().get_or_create_openlineage_client()
+
+def test_create_client_from_yaml_config():
+    if False:
+        return 10
+    current_folder = pathlib.Path(__file__).parent.resolve()
+    yaml_config = str((current_folder / 'openlineage_configs' / 'http.yaml').resolve())
+    with conf_vars({('openlineage', 'config_path'): yaml_config}):
+        client = OpenLineageAdapter().get_or_create_openlineage_client()
+    assert client.transport.kind == 'http'
+
+def test_create_client_from_env_var_config():
+    if False:
+        for i in range(10):
+            print('nop')
+    current_folder = pathlib.Path(__file__).parent.resolve()
+    yaml_config = str((current_folder / 'openlineage_configs' / 'http.yaml').resolve())
+    with patch.dict(os.environ, {'OPENLINEAGE_CONFIG': yaml_config}):
+        client = OpenLineageAdapter().get_or_create_openlineage_client()
+    assert client.transport.kind == 'http'
+    assert client.transport.url == 'http://localhost:5050'
+
+@patch.dict(os.environ, {'OPENLINEAGE_URL': 'http://ol-from-env:5000', 'OPENLINEAGE_API_KEY': 'api-key-from-env'})
+@patch.dict(os.environ, {'OPENLINEAGE_CONFIG': 'some/config.yml'})
+def test_create_client_overrides_env_vars():
+    if False:
+        print('Hello World!')
+    current_folder = pathlib.Path(__file__).parent.resolve()
+    yaml_config = str((current_folder / 'openlineage_configs' / 'http.yaml').resolve())
+    with conf_vars({('openlineage', 'config_path'): yaml_config}):
+        client = OpenLineageAdapter().get_or_create_openlineage_client()
+        assert client.transport.kind == 'http'
+        assert client.transport.url == 'http://localhost:5050'
+    with conf_vars({('openlineage', 'transport'): '{"type": "console"}'}):
+        client = OpenLineageAdapter().get_or_create_openlineage_client()
+        assert client.transport.kind == 'console'
+
+def test_emit_start_event():
+    if False:
+        return 10
+    client = MagicMock()
+    adapter = OpenLineageAdapter(client)
+    run_id = str(uuid.uuid4())
+    event_time = datetime.datetime.now().isoformat()
+    adapter.start_task(run_id=run_id, job_name='job', job_description='description', event_time=event_time, parent_job_name=None, parent_run_id=None, code_location=None, nominal_start_time=datetime.datetime(2022, 1, 1).isoformat(), nominal_end_time=datetime.datetime(2022, 1, 1).isoformat(), owners=[], task=None, run_facets=None)
+    assert call(RunEvent(eventType=RunState.START, eventTime=event_time, run=Run(runId=run_id, facets={'nominalTime': NominalTimeRunFacet(nominalStartTime='2022-01-01T00:00:00', nominalEndTime='2022-01-01T00:00:00'), 'processing_engine': ProcessingEngineRunFacet(version=ANY, name='Airflow', openlineageAdapterVersion=ANY)}), job=Job(namespace='default', name='job', facets={'documentation': DocumentationJobFacet(description='description')}), producer=_PRODUCER, inputs=[], outputs=[])) in client.emit.mock_calls
+
+def test_emit_complete_event():
+    if False:
+        for i in range(10):
+            print('nop')
+    client = MagicMock()
+    adapter = OpenLineageAdapter(client)
+    run_id = str(uuid.uuid4())
+    event_time = datetime.datetime.now().isoformat()
+    adapter.complete_task(run_id=run_id, end_time=event_time, job_name='job', task=OperatorLineage())
+    assert call(RunEvent(eventType=RunState.COMPLETE, eventTime=event_time, run=Run(runId=run_id, facets={}), job=Job(namespace='default', name='job', facets={}), producer=_PRODUCER, inputs=[], outputs=[])) in client.emit.mock_calls
+
+def test_emit_failed_event():
+    if False:
+        return 10
+    client = MagicMock()
+    adapter = OpenLineageAdapter(client)
+    run_id = str(uuid.uuid4())
+    event_time = datetime.datetime.now().isoformat()
+    adapter.fail_task(run_id=run_id, end_time=event_time, job_name='job', task=OperatorLineage())
+    assert call(RunEvent(eventType=RunState.FAIL, eventTime=event_time, run=Run(runId=run_id, facets={}), job=Job(namespace='default', name='job', facets={}), producer=_PRODUCER, inputs=[], outputs=[])) in client.emit.mock_calls
+
+@mock.patch('airflow.providers.openlineage.plugins.adapter.uuid')
+def test_emit_dag_started_event(uuid):
+    if False:
+        while True:
+            i = 10
+    random_uuid = '9d3b14f7-de91-40b6-aeef-e887e2c7673e'
+    client = MagicMock()
+    adapter = OpenLineageAdapter(client)
+    event_time = datetime.datetime.now()
+    dag_id = 'dag_id'
+    run_id = str(uuid.uuid4())
+    dagrun_mock = MagicMock()
+    dagrun_mock.start_date = event_time
+    dagrun_mock.run_id = run_id
+    dagrun_mock.dag_id = dag_id
+    uuid.uuid3.return_value = random_uuid
+    adapter.dag_started(dag_run=dagrun_mock, msg='', nominal_start_time=event_time.isoformat(), nominal_end_time=event_time.isoformat())
+    assert call(RunEvent(eventType=RunState.START, eventTime=event_time.isoformat(), run=Run(runId=random_uuid, facets={'nominalTime': NominalTimeRunFacet(nominalStartTime=event_time.isoformat(), nominalEndTime=event_time.isoformat())}), job=Job(namespace='default', name='dag_id', facets={}), producer=_PRODUCER, inputs=[], outputs=[])) in client.emit.mock_calls
+
+@mock.patch('airflow.providers.openlineage.plugins.adapter.uuid')
+def test_emit_dag_complete_event(uuid):
+    if False:
+        i = 10
+        return i + 15
+    random_uuid = '9d3b14f7-de91-40b6-aeef-e887e2c7673e'
+    client = MagicMock()
+    adapter = OpenLineageAdapter(client)
+    event_time = datetime.datetime.now()
+    dag_id = 'dag_id'
+    run_id = str(uuid.uuid4())
+    dagrun_mock = MagicMock()
+    dagrun_mock.start_date = event_time
+    dagrun_mock.end_date = event_time
+    dagrun_mock.run_id = run_id
+    dagrun_mock.dag_id = dag_id
+    uuid.uuid3.return_value = random_uuid
+    adapter.dag_success(dag_run=dagrun_mock, msg='')
+    assert call(RunEvent(eventType=RunState.COMPLETE, eventTime=event_time.isoformat(), run=Run(runId=random_uuid, facets={}), job=Job(namespace='default', name='dag_id', facets={}), producer=_PRODUCER, inputs=[], outputs=[])) in client.emit.mock_calls
+
+@mock.patch('airflow.providers.openlineage.plugins.adapter.uuid')
+def test_emit_dag_failed_event(uuid):
+    if False:
+        print('Hello World!')
+    random_uuid = '9d3b14f7-de91-40b6-aeef-e887e2c7673e'
+    client = MagicMock()
+    adapter = OpenLineageAdapter(client)
+    event_time = datetime.datetime.now()
+    dag_id = 'dag_id'
+    run_id = str(uuid.uuid4())
+    dagrun_mock = MagicMock()
+    dagrun_mock.start_date = event_time
+    dagrun_mock.end_date = event_time
+    dagrun_mock.run_id = run_id
+    dagrun_mock.dag_id = dag_id
+    uuid.uuid3.return_value = random_uuid
+    adapter.dag_failed(dag_run=dagrun_mock, msg='error msg')
+    assert call(RunEvent(eventType=RunState.FAIL, eventTime=event_time.isoformat(), run=Run(runId=random_uuid, facets={'errorMessage': ErrorMessageRunFacet(message='error msg', programmingLanguage='python')}), job=Job(namespace='default', name='dag_id', facets={}), producer=_PRODUCER, inputs=[], outputs=[])) in client.emit.mock_calls

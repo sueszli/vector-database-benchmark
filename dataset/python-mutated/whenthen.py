@@ -1,0 +1,18 @@
+from __future__ import annotations
+import contextlib
+from typing import TYPE_CHECKING
+import polars._reexport as pl
+from polars.utils._parse_expr_input import parse_as_expression
+from polars.utils.deprecation import deprecate_renamed_parameter
+with contextlib.suppress(ImportError):
+    import polars.polars as plr
+if TYPE_CHECKING:
+    from polars.type_aliases import IntoExpr
+
+@deprecate_renamed_parameter('expr', 'condition', version='0.18.9')
+def when(condition: IntoExpr) -> pl.When:
+    if False:
+        return 10
+    '\n    Start a `when-then-otherwise` expression.\n\n    Expression similar to an `if-else` statement in Python. Always initiated by a\n    `pl.when(<condition>).then(<value if condition>)`. Optionally followed by chaining\n    one or more `.when(<condition>).then(<value>)` statements.\n\n    Chained `when, thens` should be read as Python `if, elif, ... elif` blocks, not as\n    `if, if, ... if`, i.e. the first condition that evaluates to True will be picked.\n\n    If none of the conditions are `True`, an optional `.otherwise(<value if all\n    statements are false>)` can be appended at the end. If not appended, and none\n    of the conditions are `True`, `None` will be returned.\n\n    Parameters\n    ----------\n    condition\n        The condition for applying the subsequent statement.\n        Accepts a boolean expression. String input is parsed as a column name.\n\n    Warnings\n    --------\n    Polars computes all expressions passed to `when-then-otherwise` in parallel and\n    filters afterwards. This means each expression must be valid on its own, regardless\n    of the conditions in the `when-then-otherwise` chain.\n\n    Examples\n    --------\n    Below we add a column with the value 1, where column "foo" > 2 and the value -1\n    where it isn\'t.\n\n    >>> df = pl.DataFrame({"foo": [1, 3, 4], "bar": [3, 4, 0]})\n    >>> df.with_columns(\n    ...     pl.when(pl.col("foo") > 2)\n    ...     .then(pl.lit(1))\n    ...     .otherwise(pl.lit(-1))\n    ...     .alias("val")\n    ... )\n    shape: (3, 3)\n    ┌─────┬─────┬─────┐\n    │ foo ┆ bar ┆ val │\n    │ --- ┆ --- ┆ --- │\n    │ i64 ┆ i64 ┆ i32 │\n    ╞═════╪═════╪═════╡\n    │ 1   ┆ 3   ┆ -1  │\n    │ 3   ┆ 4   ┆ 1   │\n    │ 4   ┆ 0   ┆ 1   │\n    └─────┴─────┴─────┘\n\n    Or with multiple `when, thens` chained:\n\n    >>> df.with_columns(\n    ...     pl.when(pl.col("foo") > 2)\n    ...     .then(1)\n    ...     .when(pl.col("bar") > 2)\n    ...     .then(4)\n    ...     .otherwise(-1)\n    ...     .alias("val")\n    ... )\n    shape: (3, 3)\n    ┌─────┬─────┬─────┐\n    │ foo ┆ bar ┆ val │\n    │ --- ┆ --- ┆ --- │\n    │ i64 ┆ i64 ┆ i32 │\n    ╞═════╪═════╪═════╡\n    │ 1   ┆ 3   ┆ 4   │\n    │ 3   ┆ 4   ┆ 1   │\n    │ 4   ┆ 0   ┆ 1   │\n    └─────┴─────┴─────┘\n\n    Note how in the example above for the second row in the DataFrame,\n    where `foo=3` and `bar=4`, the first `when` evaluates to `True`, and therefore\n    the second `when`, which is also `True`, is not evaluated.\n\n    The `otherwise` at the end is optional. If left out, any rows where none\n    of the `when` expressions evaluate to True, are set to `null`:\n\n    >>> df.with_columns(pl.when(pl.col("foo") > 2).then(pl.lit(1)).alias("val"))\n    shape: (3, 3)\n    ┌─────┬─────┬──────┐\n    │ foo ┆ bar ┆ val  │\n    │ --- ┆ --- ┆ ---  │\n    │ i64 ┆ i64 ┆ i32  │\n    ╞═════╪═════╪══════╡\n    │ 1   ┆ 3   ┆ null │\n    │ 3   ┆ 4   ┆ 1    │\n    │ 4   ┆ 0   ┆ 1    │\n    └─────┴─────┴──────┘\n\n    '
+    condition_pyexpr = parse_as_expression(condition)
+    return pl.When(plr.when(condition_pyexpr))

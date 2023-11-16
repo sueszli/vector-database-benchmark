@@ -1,0 +1,4009 @@
+import array
+import collections
+import dataclasses
+import enum
+import inspect
+import sys
+import unittest
+
+@dataclasses.dataclass
+class Point:
+    x: int
+    y: int
+
+class TestCompiler(unittest.TestCase):
+
+    def test_refleaks(self):
+        if False:
+            print('Hello World!')
+        with open(__file__) as file:
+            compile(file.read(), __file__, 'exec')
+
+class TestInheritance(unittest.TestCase):
+
+    @staticmethod
+    def check_sequence_then_mapping(x):
+        if False:
+            i = 10
+            return i + 15
+        match x:
+            case [*_]:
+                return 'seq'
+            case {}:
+                return 'map'
+
+    @staticmethod
+    def check_mapping_then_sequence(x):
+        if False:
+            i = 10
+            return i + 15
+        match x:
+            case {}:
+                return 'map'
+            case [*_]:
+                return 'seq'
+
+    def test_multiple_inheritance_mapping(self):
+        if False:
+            for i in range(10):
+                print('nop')
+
+        class C:
+            pass
+
+        class M1(collections.UserDict, collections.abc.Sequence):
+            pass
+
+        class M2(C, collections.UserDict, collections.abc.Sequence):
+            pass
+
+        class M3(collections.UserDict, C, list):
+            pass
+
+        class M4(dict, collections.abc.Sequence, C):
+            pass
+        self.assertEqual(self.check_sequence_then_mapping(M1()), 'map')
+        self.assertEqual(self.check_sequence_then_mapping(M2()), 'map')
+        self.assertEqual(self.check_sequence_then_mapping(M3()), 'map')
+        self.assertEqual(self.check_sequence_then_mapping(M4()), 'map')
+        self.assertEqual(self.check_mapping_then_sequence(M1()), 'map')
+        self.assertEqual(self.check_mapping_then_sequence(M2()), 'map')
+        self.assertEqual(self.check_mapping_then_sequence(M3()), 'map')
+        self.assertEqual(self.check_mapping_then_sequence(M4()), 'map')
+
+    def test_multiple_inheritance_sequence(self):
+        if False:
+            return 10
+
+        class C:
+            pass
+
+        class S1(collections.UserList, collections.abc.Mapping):
+            pass
+
+        class S2(C, collections.UserList, collections.abc.Mapping):
+            pass
+
+        class S3(list, C, collections.abc.Mapping):
+            pass
+
+        class S4(collections.UserList, dict, C):
+            pass
+        self.assertEqual(self.check_sequence_then_mapping(S1()), 'seq')
+        self.assertEqual(self.check_sequence_then_mapping(S2()), 'seq')
+        self.assertEqual(self.check_sequence_then_mapping(S3()), 'seq')
+        self.assertEqual(self.check_sequence_then_mapping(S4()), 'seq')
+        self.assertEqual(self.check_mapping_then_sequence(S1()), 'seq')
+        self.assertEqual(self.check_mapping_then_sequence(S2()), 'seq')
+        self.assertEqual(self.check_mapping_then_sequence(S3()), 'seq')
+        self.assertEqual(self.check_mapping_then_sequence(S4()), 'seq')
+
+    def test_late_registration_mapping(self):
+        if False:
+            i = 10
+            return i + 15
+
+        class Parent:
+            pass
+
+        class ChildPre(Parent):
+            pass
+
+        class GrandchildPre(ChildPre):
+            pass
+        collections.abc.Mapping.register(Parent)
+
+        class ChildPost(Parent):
+            pass
+
+        class GrandchildPost(ChildPost):
+            pass
+        self.assertEqual(self.check_sequence_then_mapping(Parent()), 'map')
+        self.assertEqual(self.check_sequence_then_mapping(ChildPre()), 'map')
+        self.assertEqual(self.check_sequence_then_mapping(GrandchildPre()), 'map')
+        self.assertEqual(self.check_sequence_then_mapping(ChildPost()), 'map')
+        self.assertEqual(self.check_sequence_then_mapping(GrandchildPost()), 'map')
+        self.assertEqual(self.check_mapping_then_sequence(Parent()), 'map')
+        self.assertEqual(self.check_mapping_then_sequence(ChildPre()), 'map')
+        self.assertEqual(self.check_mapping_then_sequence(GrandchildPre()), 'map')
+        self.assertEqual(self.check_mapping_then_sequence(ChildPost()), 'map')
+        self.assertEqual(self.check_mapping_then_sequence(GrandchildPost()), 'map')
+
+    def test_late_registration_sequence(self):
+        if False:
+            return 10
+
+        class Parent:
+            pass
+
+        class ChildPre(Parent):
+            pass
+
+        class GrandchildPre(ChildPre):
+            pass
+        collections.abc.Sequence.register(Parent)
+
+        class ChildPost(Parent):
+            pass
+
+        class GrandchildPost(ChildPost):
+            pass
+        self.assertEqual(self.check_sequence_then_mapping(Parent()), 'seq')
+        self.assertEqual(self.check_sequence_then_mapping(ChildPre()), 'seq')
+        self.assertEqual(self.check_sequence_then_mapping(GrandchildPre()), 'seq')
+        self.assertEqual(self.check_sequence_then_mapping(ChildPost()), 'seq')
+        self.assertEqual(self.check_sequence_then_mapping(GrandchildPost()), 'seq')
+        self.assertEqual(self.check_mapping_then_sequence(Parent()), 'seq')
+        self.assertEqual(self.check_mapping_then_sequence(ChildPre()), 'seq')
+        self.assertEqual(self.check_mapping_then_sequence(GrandchildPre()), 'seq')
+        self.assertEqual(self.check_mapping_then_sequence(ChildPost()), 'seq')
+        self.assertEqual(self.check_mapping_then_sequence(GrandchildPost()), 'seq')
+
+class TestPatma(unittest.TestCase):
+
+    def test_patma_000(self):
+        if False:
+            i = 10
+            return i + 15
+        match 0:
+            case 0:
+                x = True
+        self.assertIs(x, True)
+
+    def test_patma_001(self):
+        if False:
+            for i in range(10):
+                print('nop')
+        match 0:
+            case 0 if False:
+                x = False
+            case 0 if True:
+                x = True
+        self.assertIs(x, True)
+
+    def test_patma_002(self):
+        if False:
+            return 10
+        match 0:
+            case 0:
+                x = True
+            case 0:
+                x = False
+        self.assertIs(x, True)
+
+    def test_patma_003(self):
+        if False:
+            print('Hello World!')
+        x = False
+        match 0:
+            case 0 | 1 | 2 | 3:
+                x = True
+        self.assertIs(x, True)
+
+    def test_patma_004(self):
+        if False:
+            return 10
+        x = False
+        match 1:
+            case 0 | 1 | 2 | 3:
+                x = True
+        self.assertIs(x, True)
+
+    def test_patma_005(self):
+        if False:
+            i = 10
+            return i + 15
+        x = False
+        match 2:
+            case 0 | 1 | 2 | 3:
+                x = True
+        self.assertIs(x, True)
+
+    def test_patma_006(self):
+        if False:
+            print('Hello World!')
+        x = False
+        match 3:
+            case 0 | 1 | 2 | 3:
+                x = True
+        self.assertIs(x, True)
+
+    def test_patma_007(self):
+        if False:
+            return 10
+        x = False
+        match 4:
+            case 0 | 1 | 2 | 3:
+                x = True
+        self.assertIs(x, False)
+
+    def test_patma_008(self):
+        if False:
+            while True:
+                i = 10
+        x = 0
+
+        class A:
+            y = 1
+        match x:
+            case A.y as z:
+                pass
+        self.assertEqual(x, 0)
+        self.assertEqual(A.y, 1)
+
+    def test_patma_009(self):
+        if False:
+            i = 10
+            return i + 15
+
+        class A:
+            B = 0
+        match 0:
+            case x if x:
+                z = 0
+            case _ as y if y == x and y:
+                z = 1
+            case A.B:
+                z = 2
+        self.assertEqual(A.B, 0)
+        self.assertEqual(x, 0)
+        self.assertEqual(y, 0)
+        self.assertEqual(z, 2)
+
+    def test_patma_010(self):
+        if False:
+            print('Hello World!')
+        match ():
+            case []:
+                x = 0
+        self.assertEqual(x, 0)
+
+    def test_patma_011(self):
+        if False:
+            while True:
+                i = 10
+        match (0, 1, 2):
+            case [*x]:
+                y = 0
+        self.assertEqual(x, [0, 1, 2])
+        self.assertEqual(y, 0)
+
+    def test_patma_012(self):
+        if False:
+            print('Hello World!')
+        match (0, 1, 2):
+            case [0, *x]:
+                y = 0
+        self.assertEqual(x, [1, 2])
+        self.assertEqual(y, 0)
+
+    def test_patma_013(self):
+        if False:
+            print('Hello World!')
+        match (0, 1, 2):
+            case [0, 1, *x]:
+                y = 0
+        self.assertEqual(x, [2])
+        self.assertEqual(y, 0)
+
+    def test_patma_014(self):
+        if False:
+            for i in range(10):
+                print('nop')
+        match (0, 1, 2):
+            case [0, 1, 2, *x]:
+                y = 0
+        self.assertEqual(x, [])
+        self.assertEqual(y, 0)
+
+    def test_patma_015(self):
+        if False:
+            for i in range(10):
+                print('nop')
+        match (0, 1, 2):
+            case [*x, 2]:
+                y = 0
+        self.assertEqual(x, [0, 1])
+        self.assertEqual(y, 0)
+
+    def test_patma_016(self):
+        if False:
+            print('Hello World!')
+        match (0, 1, 2):
+            case [*x, 1, 2]:
+                y = 0
+        self.assertEqual(x, [0])
+        self.assertEqual(y, 0)
+
+    def test_patma_017(self):
+        if False:
+            for i in range(10):
+                print('nop')
+        match (0, 1, 2):
+            case [*x, 0, 1, 2]:
+                y = 0
+        self.assertEqual(x, [])
+        self.assertEqual(y, 0)
+
+    def test_patma_018(self):
+        if False:
+            return 10
+        match (0, 1, 2):
+            case [0, *x, 2]:
+                y = 0
+        self.assertEqual(x, [1])
+        self.assertEqual(y, 0)
+
+    def test_patma_019(self):
+        if False:
+            while True:
+                i = 10
+        match (0, 1, 2):
+            case [0, 1, *x, 2]:
+                y = 0
+        self.assertEqual(x, [])
+        self.assertEqual(y, 0)
+
+    def test_patma_020(self):
+        if False:
+            for i in range(10):
+                print('nop')
+        match (0, 1, 2):
+            case [0, *x, 1, 2]:
+                y = 0
+        self.assertEqual(x, [])
+        self.assertEqual(y, 0)
+
+    def test_patma_021(self):
+        if False:
+            for i in range(10):
+                print('nop')
+        match (0, 1, 2):
+            case [*x]:
+                y = 0
+        self.assertEqual(x, [0, 1, 2])
+        self.assertEqual(y, 0)
+
+    def test_patma_022(self):
+        if False:
+            print('Hello World!')
+        x = {}
+        match x:
+            case {}:
+                y = 0
+        self.assertEqual(x, {})
+        self.assertEqual(y, 0)
+
+    def test_patma_023(self):
+        if False:
+            print('Hello World!')
+        x = {0: 0}
+        match x:
+            case {}:
+                y = 0
+        self.assertEqual(x, {0: 0})
+        self.assertEqual(y, 0)
+
+    def test_patma_024(self):
+        if False:
+            for i in range(10):
+                print('nop')
+        x = {}
+        y = None
+        match x:
+            case {0: 0}:
+                y = 0
+        self.assertEqual(x, {})
+        self.assertIs(y, None)
+
+    def test_patma_025(self):
+        if False:
+            while True:
+                i = 10
+        x = {0: 0}
+        match x:
+            case {0: 0 | 1 | 2 as z}:
+                y = 0
+        self.assertEqual(x, {0: 0})
+        self.assertEqual(y, 0)
+        self.assertEqual(z, 0)
+
+    def test_patma_026(self):
+        if False:
+            while True:
+                i = 10
+        x = {0: 1}
+        match x:
+            case {0: 0 | 1 | 2 as z}:
+                y = 0
+        self.assertEqual(x, {0: 1})
+        self.assertEqual(y, 0)
+        self.assertEqual(z, 1)
+
+    def test_patma_027(self):
+        if False:
+            i = 10
+            return i + 15
+        x = {0: 2}
+        match x:
+            case {0: 0 | 1 | 2 as z}:
+                y = 0
+        self.assertEqual(x, {0: 2})
+        self.assertEqual(y, 0)
+        self.assertEqual(z, 2)
+
+    def test_patma_028(self):
+        if False:
+            print('Hello World!')
+        x = {0: 3}
+        y = None
+        match x:
+            case {0: 0 | 1 | 2 as z}:
+                y = 0
+        self.assertEqual(x, {0: 3})
+        self.assertIs(y, None)
+
+    def test_patma_029(self):
+        if False:
+            return 10
+        x = {}
+        y = None
+        match x:
+            case {0: [1, 2, {}]}:
+                y = 0
+            case {0: [1, 2, {}], 1: [[]]}:
+                y = 1
+            case []:
+                y = 2
+        self.assertEqual(x, {})
+        self.assertIs(y, None)
+
+    def test_patma_030(self):
+        if False:
+            while True:
+                i = 10
+        x = {False: (True, 2.0, {})}
+        match x:
+            case {0: [1, 2, {}]}:
+                y = 0
+            case {0: [1, 2, {}], 1: [[]]}:
+                y = 1
+            case []:
+                y = 2
+        self.assertEqual(x, {False: (True, 2.0, {})})
+        self.assertEqual(y, 0)
+
+    def test_patma_031(self):
+        if False:
+            return 10
+        x = {False: (True, 2.0, {}), 1: [[]], 2: 0}
+        match x:
+            case {0: [1, 2, {}]}:
+                y = 0
+            case {0: [1, 2, {}], 1: [[]]}:
+                y = 1
+            case []:
+                y = 2
+        self.assertEqual(x, {False: (True, 2.0, {}), 1: [[]], 2: 0})
+        self.assertEqual(y, 0)
+
+    def test_patma_032(self):
+        if False:
+            print('Hello World!')
+        x = {False: (True, 2.0, {}), 1: [[]], 2: 0}
+        match x:
+            case {0: [1, 2]}:
+                y = 0
+            case {0: [1, 2, {}], 1: [[]]}:
+                y = 1
+            case []:
+                y = 2
+        self.assertEqual(x, {False: (True, 2.0, {}), 1: [[]], 2: 0})
+        self.assertEqual(y, 1)
+
+    def test_patma_033(self):
+        if False:
+            for i in range(10):
+                print('nop')
+        x = []
+        match x:
+            case {0: [1, 2, {}]}:
+                y = 0
+            case {0: [1, 2, {}], 1: [[]]}:
+                y = 1
+            case []:
+                y = 2
+        self.assertEqual(x, [])
+        self.assertEqual(y, 2)
+
+    def test_patma_034(self):
+        if False:
+            i = 10
+            return i + 15
+        x = {0: 0}
+        match x:
+            case {0: [1, 2, {}]}:
+                y = 0
+            case {0: [1, 2, {}] | False} | {1: [[]]} | {0: [1, 2, {}]} | [] | 'X' | {}:
+                y = 1
+            case []:
+                y = 2
+        self.assertEqual(x, {0: 0})
+        self.assertEqual(y, 1)
+
+    def test_patma_035(self):
+        if False:
+            for i in range(10):
+                print('nop')
+        x = {0: 0}
+        match x:
+            case {0: [1, 2, {}]}:
+                y = 0
+            case {0: [1, 2, {}] | True} | {1: [[]]} | {0: [1, 2, {}]} | [] | 'X' | {}:
+                y = 1
+            case []:
+                y = 2
+        self.assertEqual(x, {0: 0})
+        self.assertEqual(y, 1)
+
+    def test_patma_036(self):
+        if False:
+            while True:
+                i = 10
+        x = 0
+        match x:
+            case 0 | 1 | 2:
+                y = 0
+        self.assertEqual(x, 0)
+        self.assertEqual(y, 0)
+
+    def test_patma_037(self):
+        if False:
+            while True:
+                i = 10
+        x = 1
+        match x:
+            case 0 | 1 | 2:
+                y = 0
+        self.assertEqual(x, 1)
+        self.assertEqual(y, 0)
+
+    def test_patma_038(self):
+        if False:
+            while True:
+                i = 10
+        x = 2
+        match x:
+            case 0 | 1 | 2:
+                y = 0
+        self.assertEqual(x, 2)
+        self.assertEqual(y, 0)
+
+    def test_patma_039(self):
+        if False:
+            i = 10
+            return i + 15
+        x = 3
+        y = None
+        match x:
+            case 0 | 1 | 2:
+                y = 0
+        self.assertEqual(x, 3)
+        self.assertIs(y, None)
+
+    def test_patma_040(self):
+        if False:
+            while True:
+                i = 10
+        x = 0
+        match x:
+            case (0 as z) | (1 as z) | (2 as z) if z == x % 2:
+                y = 0
+        self.assertEqual(x, 0)
+        self.assertEqual(y, 0)
+        self.assertEqual(z, 0)
+
+    def test_patma_041(self):
+        if False:
+            return 10
+        x = 1
+        match x:
+            case (0 as z) | (1 as z) | (2 as z) if z == x % 2:
+                y = 0
+        self.assertEqual(x, 1)
+        self.assertEqual(y, 0)
+        self.assertEqual(z, 1)
+
+    def test_patma_042(self):
+        if False:
+            return 10
+        x = 2
+        y = None
+        match x:
+            case (0 as z) | (1 as z) | (2 as z) if z == x % 2:
+                y = 0
+        self.assertEqual(x, 2)
+        self.assertIs(y, None)
+        self.assertEqual(z, 2)
+
+    def test_patma_043(self):
+        if False:
+            i = 10
+            return i + 15
+        x = 3
+        y = None
+        match x:
+            case (0 as z) | (1 as z) | (2 as z) if z == x % 2:
+                y = 0
+        self.assertEqual(x, 3)
+        self.assertIs(y, None)
+
+    def test_patma_044(self):
+        if False:
+            for i in range(10):
+                print('nop')
+        x = ()
+        match x:
+            case []:
+                y = 0
+        self.assertEqual(x, ())
+        self.assertEqual(y, 0)
+
+    def test_patma_045(self):
+        if False:
+            while True:
+                i = 10
+        x = ()
+        match x:
+            case []:
+                y = 0
+        self.assertEqual(x, ())
+        self.assertEqual(y, 0)
+
+    def test_patma_046(self):
+        if False:
+            while True:
+                i = 10
+        x = (0,)
+        match x:
+            case [0]:
+                y = 0
+        self.assertEqual(x, (0,))
+        self.assertEqual(y, 0)
+
+    def test_patma_047(self):
+        if False:
+            return 10
+        x = ((),)
+        match x:
+            case [[]]:
+                y = 0
+        self.assertEqual(x, ((),))
+        self.assertEqual(y, 0)
+
+    def test_patma_048(self):
+        if False:
+            i = 10
+            return i + 15
+        x = [0, 1]
+        match x:
+            case [0, 1] | [1, 0]:
+                y = 0
+        self.assertEqual(x, [0, 1])
+        self.assertEqual(y, 0)
+
+    def test_patma_049(self):
+        if False:
+            print('Hello World!')
+        x = [1, 0]
+        match x:
+            case [0, 1] | [1, 0]:
+                y = 0
+        self.assertEqual(x, [1, 0])
+        self.assertEqual(y, 0)
+
+    def test_patma_050(self):
+        if False:
+            i = 10
+            return i + 15
+        x = [0, 0]
+        y = None
+        match x:
+            case [0, 1] | [1, 0]:
+                y = 0
+        self.assertEqual(x, [0, 0])
+        self.assertIs(y, None)
+
+    def test_patma_051(self):
+        if False:
+            return 10
+        w = None
+        x = [1, 0]
+        match x:
+            case [0 as w]:
+                y = 0
+            case [z] | [1, 0 | 1 as z] | [z]:
+                y = 1
+        self.assertIs(w, None)
+        self.assertEqual(x, [1, 0])
+        self.assertEqual(y, 1)
+        self.assertEqual(z, 0)
+
+    def test_patma_052(self):
+        if False:
+            i = 10
+            return i + 15
+        x = [1, 0]
+        match x:
+            case [0]:
+                y = 0
+            case [1, 0] if (x := x[:0]):
+                y = 1
+            case [1, 0]:
+                y = 2
+        self.assertEqual(x, [])
+        self.assertEqual(y, 2)
+
+    def test_patma_053(self):
+        if False:
+            i = 10
+            return i + 15
+        x = {0}
+        y = None
+        match x:
+            case [0]:
+                y = 0
+        self.assertEqual(x, {0})
+        self.assertIs(y, None)
+
+    def test_patma_054(self):
+        if False:
+            i = 10
+            return i + 15
+        x = set()
+        y = None
+        match x:
+            case []:
+                y = 0
+        self.assertEqual(x, set())
+        self.assertIs(y, None)
+
+    def test_patma_055(self):
+        if False:
+            while True:
+                i = 10
+        x = iter([1, 2, 3])
+        y = None
+        match x:
+            case []:
+                y = 0
+        self.assertEqual([*x], [1, 2, 3])
+        self.assertIs(y, None)
+
+    def test_patma_056(self):
+        if False:
+            print('Hello World!')
+        x = {}
+        y = None
+        match x:
+            case []:
+                y = 0
+        self.assertEqual(x, {})
+        self.assertIs(y, None)
+
+    def test_patma_057(self):
+        if False:
+            while True:
+                i = 10
+        x = {0: False, 1: True}
+        y = None
+        match x:
+            case [0, 1]:
+                y = 0
+        self.assertEqual(x, {0: False, 1: True})
+        self.assertIs(y, None)
+
+    def test_patma_058(self):
+        if False:
+            i = 10
+            return i + 15
+        x = 0
+        match x:
+            case 0:
+                y = 0
+        self.assertEqual(x, 0)
+        self.assertEqual(y, 0)
+
+    def test_patma_059(self):
+        if False:
+            i = 10
+            return i + 15
+        x = 0
+        y = None
+        match x:
+            case False:
+                y = 0
+        self.assertEqual(x, 0)
+        self.assertEqual(y, None)
+
+    def test_patma_060(self):
+        if False:
+            print('Hello World!')
+        x = 0
+        y = None
+        match x:
+            case 1:
+                y = 0
+        self.assertEqual(x, 0)
+        self.assertIs(y, None)
+
+    def test_patma_061(self):
+        if False:
+            for i in range(10):
+                print('nop')
+        x = 0
+        y = None
+        match x:
+            case None:
+                y = 0
+        self.assertEqual(x, 0)
+        self.assertIs(y, None)
+
+    def test_patma_062(self):
+        if False:
+            print('Hello World!')
+        x = 0
+        match x:
+            case 0:
+                y = 0
+            case 0:
+                y = 1
+        self.assertEqual(x, 0)
+        self.assertEqual(y, 0)
+
+    def test_patma_063(self):
+        if False:
+            i = 10
+            return i + 15
+        x = 0
+        y = None
+        match x:
+            case 1:
+                y = 0
+            case 1:
+                y = 1
+        self.assertEqual(x, 0)
+        self.assertIs(y, None)
+
+    def test_patma_064(self):
+        if False:
+            while True:
+                i = 10
+        x = 'x'
+        match x:
+            case 'x':
+                y = 0
+            case 'y':
+                y = 1
+        self.assertEqual(x, 'x')
+        self.assertEqual(y, 0)
+
+    def test_patma_065(self):
+        if False:
+            while True:
+                i = 10
+        x = 'x'
+        match x:
+            case 'y':
+                y = 0
+            case 'x':
+                y = 1
+        self.assertEqual(x, 'x')
+        self.assertEqual(y, 1)
+
+    def test_patma_066(self):
+        if False:
+            return 10
+        x = 'x'
+        match x:
+            case '':
+                y = 0
+            case 'x':
+                y = 1
+        self.assertEqual(x, 'x')
+        self.assertEqual(y, 1)
+
+    def test_patma_067(self):
+        if False:
+            print('Hello World!')
+        x = b'x'
+        match x:
+            case b'y':
+                y = 0
+            case b'x':
+                y = 1
+        self.assertEqual(x, b'x')
+        self.assertEqual(y, 1)
+
+    def test_patma_068(self):
+        if False:
+            while True:
+                i = 10
+        x = 0
+        match x:
+            case 0 if False:
+                y = 0
+            case 0:
+                y = 1
+        self.assertEqual(x, 0)
+        self.assertEqual(y, 1)
+
+    def test_patma_069(self):
+        if False:
+            while True:
+                i = 10
+        x = 0
+        y = None
+        match x:
+            case 0 if 0:
+                y = 0
+            case 0 if 0:
+                y = 1
+        self.assertEqual(x, 0)
+        self.assertIs(y, None)
+
+    def test_patma_070(self):
+        if False:
+            print('Hello World!')
+        x = 0
+        match x:
+            case 0 if True:
+                y = 0
+            case 0 if True:
+                y = 1
+        self.assertEqual(x, 0)
+        self.assertEqual(y, 0)
+
+    def test_patma_071(self):
+        if False:
+            return 10
+        x = 0
+        match x:
+            case 0 if 1:
+                y = 0
+            case 0 if 1:
+                y = 1
+        self.assertEqual(x, 0)
+        self.assertEqual(y, 0)
+
+    def test_patma_072(self):
+        if False:
+            for i in range(10):
+                print('nop')
+        x = 0
+        match x:
+            case 0 if True:
+                y = 0
+            case 0 if True:
+                y = 1
+        y = 2
+        self.assertEqual(x, 0)
+        self.assertEqual(y, 2)
+
+    def test_patma_073(self):
+        if False:
+            while True:
+                i = 10
+        x = 0
+        match x:
+            case 0 if 0:
+                y = 0
+            case 0 if 1:
+                y = 1
+        y = 2
+        self.assertEqual(x, 0)
+        self.assertEqual(y, 2)
+
+    def test_patma_074(self):
+        if False:
+            i = 10
+            return i + 15
+        x = 0
+        y = None
+        match x:
+            case 0 if not (x := 1):
+                y = 0
+            case 1:
+                y = 1
+        self.assertEqual(x, 1)
+        self.assertIs(y, None)
+
+    def test_patma_075(self):
+        if False:
+            while True:
+                i = 10
+        x = 'x'
+        match x:
+            case ['x']:
+                y = 0
+            case 'x':
+                y = 1
+        self.assertEqual(x, 'x')
+        self.assertEqual(y, 1)
+
+    def test_patma_076(self):
+        if False:
+            i = 10
+            return i + 15
+        x = b'x'
+        match x:
+            case [b'x']:
+                y = 0
+            case ['x']:
+                y = 1
+            case [120]:
+                y = 2
+            case b'x':
+                y = 4
+        self.assertEqual(x, b'x')
+        self.assertEqual(y, 4)
+
+    def test_patma_077(self):
+        if False:
+            while True:
+                i = 10
+        x = bytearray(b'x')
+        y = None
+        match x:
+            case [120]:
+                y = 0
+            case 120:
+                y = 1
+        self.assertEqual(x, b'x')
+        self.assertIs(y, None)
+
+    def test_patma_078(self):
+        if False:
+            i = 10
+            return i + 15
+        x = ''
+        match x:
+            case []:
+                y = 0
+            case ['']:
+                y = 1
+            case '':
+                y = 2
+        self.assertEqual(x, '')
+        self.assertEqual(y, 2)
+
+    def test_patma_079(self):
+        if False:
+            return 10
+        x = 'xxx'
+        match x:
+            case ['x', 'x', 'x']:
+                y = 0
+            case ['xxx']:
+                y = 1
+            case 'xxx':
+                y = 2
+        self.assertEqual(x, 'xxx')
+        self.assertEqual(y, 2)
+
+    def test_patma_080(self):
+        if False:
+            i = 10
+            return i + 15
+        x = b'xxx'
+        match x:
+            case [120, 120, 120]:
+                y = 0
+            case [b'xxx']:
+                y = 1
+            case b'xxx':
+                y = 2
+        self.assertEqual(x, b'xxx')
+        self.assertEqual(y, 2)
+
+    def test_patma_081(self):
+        if False:
+            print('Hello World!')
+        x = 0
+        match x:
+            case 0 if not (x := 1):
+                y = 0
+            case 0 as z:
+                y = 1
+        self.assertEqual(x, 1)
+        self.assertEqual(y, 1)
+        self.assertEqual(z, 0)
+
+    def test_patma_082(self):
+        if False:
+            return 10
+        x = 0
+        match x:
+            case 1 as z if not (x := 1):
+                y = 0
+            case 0:
+                y = 1
+        self.assertEqual(x, 0)
+        self.assertEqual(y, 1)
+
+    def test_patma_083(self):
+        if False:
+            for i in range(10):
+                print('nop')
+        x = 0
+        match x:
+            case 0 as z:
+                y = 0
+        self.assertEqual(x, 0)
+        self.assertEqual(y, 0)
+        self.assertEqual(z, 0)
+
+    def test_patma_084(self):
+        if False:
+            i = 10
+            return i + 15
+        x = 0
+        y = None
+        match x:
+            case 1 as z:
+                y = 0
+        self.assertEqual(x, 0)
+        self.assertIs(y, None)
+
+    def test_patma_085(self):
+        if False:
+            return 10
+        x = 0
+        y = None
+        match x:
+            case 0 as z if (w := 0):
+                y = 0
+        self.assertEqual(w, 0)
+        self.assertEqual(x, 0)
+        self.assertIs(y, None)
+        self.assertEqual(z, 0)
+
+    def test_patma_086(self):
+        if False:
+            while True:
+                i = 10
+        x = 0
+        match x:
+            case (0 as w) as z:
+                y = 0
+        self.assertEqual(w, 0)
+        self.assertEqual(x, 0)
+        self.assertEqual(y, 0)
+        self.assertEqual(z, 0)
+
+    def test_patma_087(self):
+        if False:
+            print('Hello World!')
+        x = 0
+        match x:
+            case (0 | 1) | 2:
+                y = 0
+        self.assertEqual(x, 0)
+        self.assertEqual(y, 0)
+
+    def test_patma_088(self):
+        if False:
+            i = 10
+            return i + 15
+        x = 1
+        match x:
+            case (0 | 1) | 2:
+                y = 0
+        self.assertEqual(x, 1)
+        self.assertEqual(y, 0)
+
+    def test_patma_089(self):
+        if False:
+            print('Hello World!')
+        x = 2
+        match x:
+            case (0 | 1) | 2:
+                y = 0
+        self.assertEqual(x, 2)
+        self.assertEqual(y, 0)
+
+    def test_patma_090(self):
+        if False:
+            print('Hello World!')
+        x = 3
+        y = None
+        match x:
+            case (0 | 1) | 2:
+                y = 0
+        self.assertEqual(x, 3)
+        self.assertIs(y, None)
+
+    def test_patma_091(self):
+        if False:
+            for i in range(10):
+                print('nop')
+        x = 0
+        match x:
+            case 0 | (1 | 2):
+                y = 0
+        self.assertEqual(x, 0)
+        self.assertEqual(y, 0)
+
+    def test_patma_092(self):
+        if False:
+            for i in range(10):
+                print('nop')
+        x = 1
+        match x:
+            case 0 | (1 | 2):
+                y = 0
+        self.assertEqual(x, 1)
+        self.assertEqual(y, 0)
+
+    def test_patma_093(self):
+        if False:
+            return 10
+        x = 2
+        match x:
+            case 0 | (1 | 2):
+                y = 0
+        self.assertEqual(x, 2)
+        self.assertEqual(y, 0)
+
+    def test_patma_094(self):
+        if False:
+            i = 10
+            return i + 15
+        x = 3
+        y = None
+        match x:
+            case 0 | (1 | 2):
+                y = 0
+        self.assertEqual(x, 3)
+        self.assertIs(y, None)
+
+    def test_patma_095(self):
+        if False:
+            print('Hello World!')
+        x = 0
+        match x:
+            case -0:
+                y = 0
+        self.assertEqual(x, 0)
+        self.assertEqual(y, 0)
+
+    def test_patma_096(self):
+        if False:
+            while True:
+                i = 10
+        x = 0
+        match x:
+            case -0.0:
+                y = 0
+        self.assertEqual(x, 0)
+        self.assertEqual(y, 0)
+
+    def test_patma_097(self):
+        if False:
+            print('Hello World!')
+        x = 0
+        match x:
+            case -0j:
+                y = 0
+        self.assertEqual(x, 0)
+        self.assertEqual(y, 0)
+
+    def test_patma_098(self):
+        if False:
+            i = 10
+            return i + 15
+        x = 0
+        match x:
+            case -0j:
+                y = 0
+        self.assertEqual(x, 0)
+        self.assertEqual(y, 0)
+
+    def test_patma_099(self):
+        if False:
+            while True:
+                i = 10
+        x = -1
+        match x:
+            case -1:
+                y = 0
+        self.assertEqual(x, -1)
+        self.assertEqual(y, 0)
+
+    def test_patma_100(self):
+        if False:
+            print('Hello World!')
+        x = -1.5
+        match x:
+            case -1.5:
+                y = 0
+        self.assertEqual(x, -1.5)
+        self.assertEqual(y, 0)
+
+    def test_patma_101(self):
+        if False:
+            for i in range(10):
+                print('nop')
+        x = -1j
+        match x:
+            case -1j:
+                y = 0
+        self.assertEqual(x, -1j)
+        self.assertEqual(y, 0)
+
+    def test_patma_102(self):
+        if False:
+            for i in range(10):
+                print('nop')
+        x = -1.5j
+        match x:
+            case -1.5j:
+                y = 0
+        self.assertEqual(x, -1.5j)
+        self.assertEqual(y, 0)
+
+    def test_patma_103(self):
+        if False:
+            for i in range(10):
+                print('nop')
+        x = 0
+        match x:
+            case 0 + 0j:
+                y = 0
+        self.assertEqual(x, 0)
+        self.assertEqual(y, 0)
+
+    def test_patma_104(self):
+        if False:
+            for i in range(10):
+                print('nop')
+        x = 0
+        match x:
+            case 0 - 0j:
+                y = 0
+        self.assertEqual(x, 0)
+        self.assertEqual(y, 0)
+
+    def test_patma_105(self):
+        if False:
+            for i in range(10):
+                print('nop')
+        x = 0
+        match x:
+            case -0 + 0j:
+                y = 0
+        self.assertEqual(x, 0)
+        self.assertEqual(y, 0)
+
+    def test_patma_106(self):
+        if False:
+            i = 10
+            return i + 15
+        x = 0
+        match x:
+            case -0 - 0j:
+                y = 0
+        self.assertEqual(x, 0)
+        self.assertEqual(y, 0)
+
+    def test_patma_107(self):
+        if False:
+            return 10
+        x = 0.25 + 1.75j
+        match x:
+            case 0.25 + 1.75j:
+                y = 0
+        self.assertEqual(x, 0.25 + 1.75j)
+        self.assertEqual(y, 0)
+
+    def test_patma_108(self):
+        if False:
+            return 10
+        x = 0.25 - 1.75j
+        match x:
+            case 0.25 - 1.75j:
+                y = 0
+        self.assertEqual(x, 0.25 - 1.75j)
+        self.assertEqual(y, 0)
+
+    def test_patma_109(self):
+        if False:
+            for i in range(10):
+                print('nop')
+        x = -0.25 + 1.75j
+        match x:
+            case -0.25 + 1.75j:
+                y = 0
+        self.assertEqual(x, -0.25 + 1.75j)
+        self.assertEqual(y, 0)
+
+    def test_patma_110(self):
+        if False:
+            return 10
+        x = -0.25 - 1.75j
+        match x:
+            case -0.25 - 1.75j:
+                y = 0
+        self.assertEqual(x, -0.25 - 1.75j)
+        self.assertEqual(y, 0)
+
+    def test_patma_111(self):
+        if False:
+            return 10
+
+        class A:
+            B = 0
+        x = 0
+        match x:
+            case A.B:
+                y = 0
+        self.assertEqual(A.B, 0)
+        self.assertEqual(x, 0)
+        self.assertEqual(y, 0)
+
+    def test_patma_112(self):
+        if False:
+            while True:
+                i = 10
+
+        class A:
+
+            class B:
+                C = 0
+        x = 0
+        match x:
+            case A.B.C:
+                y = 0
+        self.assertEqual(A.B.C, 0)
+        self.assertEqual(x, 0)
+        self.assertEqual(y, 0)
+
+    def test_patma_113(self):
+        if False:
+            while True:
+                i = 10
+
+        class A:
+
+            class B:
+                C = 0
+                D = 1
+        x = 1
+        match x:
+            case A.B.C:
+                y = 0
+            case A.B.D:
+                y = 1
+        self.assertEqual(A.B.C, 0)
+        self.assertEqual(A.B.D, 1)
+        self.assertEqual(x, 1)
+        self.assertEqual(y, 1)
+
+    def test_patma_114(self):
+        if False:
+            print('Hello World!')
+
+        class A:
+
+            class B:
+
+                class C:
+                    D = 0
+        x = 0
+        match x:
+            case A.B.C.D:
+                y = 0
+        self.assertEqual(A.B.C.D, 0)
+        self.assertEqual(x, 0)
+        self.assertEqual(y, 0)
+
+    def test_patma_115(self):
+        if False:
+            print('Hello World!')
+
+        class A:
+
+            class B:
+
+                class C:
+                    D = 0
+                    E = 1
+        x = 1
+        match x:
+            case A.B.C.D:
+                y = 0
+            case A.B.C.E:
+                y = 1
+        self.assertEqual(A.B.C.D, 0)
+        self.assertEqual(A.B.C.E, 1)
+        self.assertEqual(x, 1)
+        self.assertEqual(y, 1)
+
+    def test_patma_116(self):
+        if False:
+            return 10
+        match = case = 0
+        match match:
+            case case:
+                x = 0
+        self.assertEqual(match, 0)
+        self.assertEqual(case, 0)
+        self.assertEqual(x, 0)
+
+    def test_patma_117(self):
+        if False:
+            return 10
+        match = case = 0
+        match case:
+            case match:
+                x = 0
+        self.assertEqual(match, 0)
+        self.assertEqual(case, 0)
+        self.assertEqual(x, 0)
+
+    def test_patma_118(self):
+        if False:
+            for i in range(10):
+                print('nop')
+        x = []
+        match x:
+            case [*_, _]:
+                y = 0
+            case []:
+                y = 1
+        self.assertEqual(x, [])
+        self.assertEqual(y, 1)
+
+    def test_patma_119(self):
+        if False:
+            while True:
+                i = 10
+        x = collections.defaultdict(int)
+        match x:
+            case {0: 0}:
+                y = 0
+            case {}:
+                y = 1
+        self.assertEqual(x, {})
+        self.assertEqual(y, 1)
+
+    def test_patma_120(self):
+        if False:
+            print('Hello World!')
+        x = collections.defaultdict(int)
+        match x:
+            case {0: 0}:
+                y = 0
+            case {**z}:
+                y = 1
+        self.assertEqual(x, {})
+        self.assertEqual(y, 1)
+        self.assertEqual(z, {})
+
+    def test_patma_121(self):
+        if False:
+            return 10
+        match ():
+            case []:
+                x = 0
+        self.assertEqual(x, 0)
+
+    def test_patma_122(self):
+        if False:
+            for i in range(10):
+                print('nop')
+        match (0, 1, 2):
+            case [*x]:
+                y = 0
+        self.assertEqual(x, [0, 1, 2])
+        self.assertEqual(y, 0)
+
+    def test_patma_123(self):
+        if False:
+            i = 10
+            return i + 15
+        match (0, 1, 2):
+            case [0, *x]:
+                y = 0
+        self.assertEqual(x, [1, 2])
+        self.assertEqual(y, 0)
+
+    def test_patma_124(self):
+        if False:
+            print('Hello World!')
+        match (0, 1, 2):
+            case [0, 1, *x]:
+                y = 0
+        self.assertEqual(x, [2])
+        self.assertEqual(y, 0)
+
+    def test_patma_125(self):
+        if False:
+            i = 10
+            return i + 15
+        match (0, 1, 2):
+            case [0, 1, 2, *x]:
+                y = 0
+        self.assertEqual(x, [])
+        self.assertEqual(y, 0)
+
+    def test_patma_126(self):
+        if False:
+            for i in range(10):
+                print('nop')
+        match (0, 1, 2):
+            case [*x, 2]:
+                y = 0
+        self.assertEqual(x, [0, 1])
+        self.assertEqual(y, 0)
+
+    def test_patma_127(self):
+        if False:
+            print('Hello World!')
+        match (0, 1, 2):
+            case [*x, 1, 2]:
+                y = 0
+        self.assertEqual(x, [0])
+        self.assertEqual(y, 0)
+
+    def test_patma_128(self):
+        if False:
+            print('Hello World!')
+        match (0, 1, 2):
+            case [*x, 0, 1, 2]:
+                y = 0
+        self.assertEqual(x, [])
+        self.assertEqual(y, 0)
+
+    def test_patma_129(self):
+        if False:
+            return 10
+        match (0, 1, 2):
+            case [0, *x, 2]:
+                y = 0
+        self.assertEqual(x, [1])
+        self.assertEqual(y, 0)
+
+    def test_patma_130(self):
+        if False:
+            i = 10
+            return i + 15
+        match (0, 1, 2):
+            case [0, 1, *x, 2]:
+                y = 0
+        self.assertEqual(x, [])
+        self.assertEqual(y, 0)
+
+    def test_patma_131(self):
+        if False:
+            while True:
+                i = 10
+        match (0, 1, 2):
+            case [0, *x, 1, 2]:
+                y = 0
+        self.assertEqual(x, [])
+        self.assertEqual(y, 0)
+
+    def test_patma_132(self):
+        if False:
+            return 10
+        match (0, 1, 2):
+            case [*x]:
+                y = 0
+        self.assertEqual(x, [0, 1, 2])
+        self.assertEqual(y, 0)
+
+    def test_patma_133(self):
+        if False:
+            return 10
+        x = collections.defaultdict(int, {0: 1})
+        match x:
+            case {1: 0}:
+                y = 0
+            case {0: 0}:
+                y = 1
+            case {}:
+                y = 2
+        self.assertEqual(x, {0: 1})
+        self.assertEqual(y, 2)
+
+    def test_patma_134(self):
+        if False:
+            while True:
+                i = 10
+        x = collections.defaultdict(int, {0: 1})
+        match x:
+            case {1: 0}:
+                y = 0
+            case {0: 0}:
+                y = 1
+            case {**z}:
+                y = 2
+        self.assertEqual(x, {0: 1})
+        self.assertEqual(y, 2)
+        self.assertEqual(z, {0: 1})
+
+    def test_patma_135(self):
+        if False:
+            print('Hello World!')
+        x = collections.defaultdict(int, {0: 1})
+        match x:
+            case {1: 0}:
+                y = 0
+            case {0: 0}:
+                y = 1
+            case {0: _, **z}:
+                y = 2
+        self.assertEqual(x, {0: 1})
+        self.assertEqual(y, 2)
+        self.assertEqual(z, {})
+
+    def test_patma_136(self):
+        if False:
+            for i in range(10):
+                print('nop')
+        x = {0: 1}
+        match x:
+            case {1: 0}:
+                y = 0
+            case {0: 0}:
+                y = 0
+            case {}:
+                y = 1
+        self.assertEqual(x, {0: 1})
+        self.assertEqual(y, 1)
+
+    def test_patma_137(self):
+        if False:
+            print('Hello World!')
+        x = {0: 1}
+        match x:
+            case {1: 0}:
+                y = 0
+            case {0: 0}:
+                y = 0
+            case {**z}:
+                y = 1
+        self.assertEqual(x, {0: 1})
+        self.assertEqual(y, 1)
+        self.assertEqual(z, {0: 1})
+
+    def test_patma_138(self):
+        if False:
+            i = 10
+            return i + 15
+        x = {0: 1}
+        match x:
+            case {1: 0}:
+                y = 0
+            case {0: 0}:
+                y = 0
+            case {0: _, **z}:
+                y = 1
+        self.assertEqual(x, {0: 1})
+        self.assertEqual(y, 1)
+        self.assertEqual(z, {})
+
+    def test_patma_139(self):
+        if False:
+            print('Hello World!')
+        x = False
+        match x:
+            case bool(z):
+                y = 0
+        self.assertIs(x, False)
+        self.assertEqual(y, 0)
+        self.assertIs(z, x)
+
+    def test_patma_140(self):
+        if False:
+            while True:
+                i = 10
+        x = True
+        match x:
+            case bool(z):
+                y = 0
+        self.assertIs(x, True)
+        self.assertEqual(y, 0)
+        self.assertIs(z, x)
+
+    def test_patma_141(self):
+        if False:
+            while True:
+                i = 10
+        x = bytearray()
+        match x:
+            case bytearray(z):
+                y = 0
+        self.assertEqual(x, bytearray())
+        self.assertEqual(y, 0)
+        self.assertIs(z, x)
+
+    def test_patma_142(self):
+        if False:
+            while True:
+                i = 10
+        x = b''
+        match x:
+            case bytes(z):
+                y = 0
+        self.assertEqual(x, b'')
+        self.assertEqual(y, 0)
+        self.assertIs(z, x)
+
+    def test_patma_143(self):
+        if False:
+            i = 10
+            return i + 15
+        x = {}
+        match x:
+            case dict(z):
+                y = 0
+        self.assertEqual(x, {})
+        self.assertEqual(y, 0)
+        self.assertIs(z, x)
+
+    def test_patma_144(self):
+        if False:
+            print('Hello World!')
+        x = 0.0
+        match x:
+            case float(z):
+                y = 0
+        self.assertEqual(x, 0.0)
+        self.assertEqual(y, 0)
+        self.assertIs(z, x)
+
+    def test_patma_145(self):
+        if False:
+            while True:
+                i = 10
+        x = frozenset()
+        match x:
+            case frozenset(z):
+                y = 0
+        self.assertEqual(x, frozenset())
+        self.assertEqual(y, 0)
+        self.assertIs(z, x)
+
+    def test_patma_146(self):
+        if False:
+            return 10
+        x = 0
+        match x:
+            case int(z):
+                y = 0
+        self.assertEqual(x, 0)
+        self.assertEqual(y, 0)
+        self.assertIs(z, x)
+
+    def test_patma_147(self):
+        if False:
+            i = 10
+            return i + 15
+        x = []
+        match x:
+            case list(z):
+                y = 0
+        self.assertEqual(x, [])
+        self.assertEqual(y, 0)
+        self.assertIs(z, x)
+
+    def test_patma_148(self):
+        if False:
+            for i in range(10):
+                print('nop')
+        x = set()
+        match x:
+            case set(z):
+                y = 0
+        self.assertEqual(x, set())
+        self.assertEqual(y, 0)
+        self.assertIs(z, x)
+
+    def test_patma_149(self):
+        if False:
+            return 10
+        x = ''
+        match x:
+            case str(z):
+                y = 0
+        self.assertEqual(x, '')
+        self.assertEqual(y, 0)
+        self.assertIs(z, x)
+
+    def test_patma_150(self):
+        if False:
+            while True:
+                i = 10
+        x = ()
+        match x:
+            case tuple(z):
+                y = 0
+        self.assertEqual(x, ())
+        self.assertEqual(y, 0)
+        self.assertIs(z, x)
+
+    def test_patma_151(self):
+        if False:
+            i = 10
+            return i + 15
+        x = 0
+        match (x,):
+            case [y]:
+                z = 0
+        self.assertEqual(x, 0)
+        self.assertIs(y, x)
+        self.assertIs(z, 0)
+
+    def test_patma_152(self):
+        if False:
+            return 10
+        w = 0
+        x = 0
+        match (w, x):
+            case [y, z]:
+                v = 0
+        self.assertEqual(w, 0)
+        self.assertEqual(x, 0)
+        self.assertIs(y, w)
+        self.assertIs(z, x)
+        self.assertEqual(v, 0)
+
+    def test_patma_153(self):
+        if False:
+            print('Hello World!')
+        x = 0
+        match ((w := x),):
+            case [y as v]:
+                z = 0
+        self.assertEqual(x, 0)
+        self.assertIs(y, x)
+        self.assertEqual(z, 0)
+        self.assertIs(w, x)
+        self.assertIs(v, y)
+
+    def test_patma_154(self):
+        if False:
+            print('Hello World!')
+        x = 0
+        y = None
+        match x:
+            case 0 if x:
+                y = 0
+        self.assertEqual(x, 0)
+        self.assertIs(y, None)
+
+    def test_patma_155(self):
+        if False:
+            while True:
+                i = 10
+        x = 0
+        y = None
+        match x:
+            case 1e309:
+                y = 0
+        self.assertEqual(x, 0)
+        self.assertIs(y, None)
+
+    def test_patma_156(self):
+        if False:
+            print('Hello World!')
+        x = 0
+        match x:
+            case z:
+                y = 0
+        self.assertEqual(x, 0)
+        self.assertEqual(y, 0)
+        self.assertIs(z, x)
+
+    def test_patma_157(self):
+        if False:
+            return 10
+        x = 0
+        y = None
+        match x:
+            case _ if x:
+                y = 0
+        self.assertEqual(x, 0)
+        self.assertIs(y, None)
+
+    def test_patma_158(self):
+        if False:
+            return 10
+        x = 0
+        match x:
+            case -1e309:
+                y = 0
+            case 0:
+                y = 1
+        self.assertEqual(x, 0)
+        self.assertEqual(y, 1)
+
+    def test_patma_159(self):
+        if False:
+            return 10
+        x = 0
+        match x:
+            case 0 if not x:
+                y = 0
+            case 1:
+                y = 1
+        self.assertEqual(x, 0)
+        self.assertEqual(y, 0)
+
+    def test_patma_160(self):
+        if False:
+            i = 10
+            return i + 15
+        x = 0
+        z = None
+        match x:
+            case 0:
+                y = 0
+            case z if x:
+                y = 1
+        self.assertEqual(x, 0)
+        self.assertEqual(y, 0)
+        self.assertIs(z, None)
+
+    def test_patma_161(self):
+        if False:
+            for i in range(10):
+                print('nop')
+        x = 0
+        match x:
+            case 0:
+                y = 0
+            case _:
+                y = 1
+        self.assertEqual(x, 0)
+        self.assertEqual(y, 0)
+
+    def test_patma_162(self):
+        if False:
+            while True:
+                i = 10
+        x = 0
+        match x:
+            case 1 if x:
+                y = 0
+            case 0:
+                y = 1
+        self.assertEqual(x, 0)
+        self.assertEqual(y, 1)
+
+    def test_patma_163(self):
+        if False:
+            for i in range(10):
+                print('nop')
+        x = 0
+        y = None
+        match x:
+            case 1:
+                y = 0
+            case 1 if not x:
+                y = 1
+        self.assertEqual(x, 0)
+        self.assertIs(y, None)
+
+    def test_patma_164(self):
+        if False:
+            i = 10
+            return i + 15
+        x = 0
+        match x:
+            case 1:
+                y = 0
+            case z:
+                y = 1
+        self.assertEqual(x, 0)
+        self.assertEqual(y, 1)
+        self.assertIs(z, x)
+
+    def test_patma_165(self):
+        if False:
+            for i in range(10):
+                print('nop')
+        x = 0
+        match x:
+            case 1 if x:
+                y = 0
+            case _:
+                y = 1
+        self.assertEqual(x, 0)
+        self.assertEqual(y, 1)
+
+    def test_patma_166(self):
+        if False:
+            for i in range(10):
+                print('nop')
+        x = 0
+        match x:
+            case z if not z:
+                y = 0
+            case 0 if x:
+                y = 1
+        self.assertEqual(x, 0)
+        self.assertEqual(y, 0)
+        self.assertIs(z, x)
+
+    def test_patma_167(self):
+        if False:
+            i = 10
+            return i + 15
+        x = 0
+        match x:
+            case z if not z:
+                y = 0
+            case 1:
+                y = 1
+        self.assertEqual(x, 0)
+        self.assertEqual(y, 0)
+        self.assertIs(z, x)
+
+    def test_patma_168(self):
+        if False:
+            print('Hello World!')
+        x = 0
+        match x:
+            case z if not x:
+                y = 0
+            case z:
+                y = 1
+        self.assertEqual(x, 0)
+        self.assertEqual(y, 0)
+        self.assertIs(z, x)
+
+    def test_patma_169(self):
+        if False:
+            return 10
+        x = 0
+        match x:
+            case z if not z:
+                y = 0
+            case _ if x:
+                y = 1
+        self.assertEqual(x, 0)
+        self.assertEqual(y, 0)
+        self.assertIs(z, x)
+
+    def test_patma_170(self):
+        if False:
+            while True:
+                i = 10
+        x = 0
+        match x:
+            case _ if not x:
+                y = 0
+            case 0:
+                y = 1
+        self.assertEqual(x, 0)
+        self.assertEqual(y, 0)
+
+    def test_patma_171(self):
+        if False:
+            return 10
+        x = 0
+        y = None
+        match x:
+            case _ if x:
+                y = 0
+            case 1:
+                y = 1
+        self.assertEqual(x, 0)
+        self.assertIs(y, None)
+
+    def test_patma_172(self):
+        if False:
+            i = 10
+            return i + 15
+        x = 0
+        z = None
+        match x:
+            case _ if not x:
+                y = 0
+            case z if not x:
+                y = 1
+        self.assertEqual(x, 0)
+        self.assertEqual(y, 0)
+        self.assertIs(z, None)
+
+    def test_patma_173(self):
+        if False:
+            return 10
+        x = 0
+        match x:
+            case _ if not x:
+                y = 0
+            case _:
+                y = 1
+        self.assertEqual(x, 0)
+        self.assertEqual(y, 0)
+
+    def test_patma_174(self):
+        if False:
+            while True:
+                i = 10
+
+        def http_error(status):
+            if False:
+                i = 10
+                return i + 15
+            match status:
+                case 400:
+                    return 'Bad request'
+                case 401:
+                    return 'Unauthorized'
+                case 403:
+                    return 'Forbidden'
+                case 404:
+                    return 'Not found'
+                case 418:
+                    return "I'm a teapot"
+                case _:
+                    return 'Something else'
+        self.assertEqual(http_error(400), 'Bad request')
+        self.assertEqual(http_error(401), 'Unauthorized')
+        self.assertEqual(http_error(403), 'Forbidden')
+        self.assertEqual(http_error(404), 'Not found')
+        self.assertEqual(http_error(418), "I'm a teapot")
+        self.assertEqual(http_error(123), 'Something else')
+        self.assertEqual(http_error('400'), 'Something else')
+        self.assertEqual(http_error(401 | 403 | 404), 'Something else')
+
+    def test_patma_175(self):
+        if False:
+            return 10
+
+        def http_error(status):
+            if False:
+                return 10
+            match status:
+                case 400:
+                    return 'Bad request'
+                case 401 | 403 | 404:
+                    return 'Not allowed'
+                case 418:
+                    return "I'm a teapot"
+        self.assertEqual(http_error(400), 'Bad request')
+        self.assertEqual(http_error(401), 'Not allowed')
+        self.assertEqual(http_error(403), 'Not allowed')
+        self.assertEqual(http_error(404), 'Not allowed')
+        self.assertEqual(http_error(418), "I'm a teapot")
+        self.assertIs(http_error(123), None)
+        self.assertIs(http_error('400'), None)
+        self.assertIs(http_error(401 | 403 | 404), None)
+
+    def test_patma_176(self):
+        if False:
+            i = 10
+            return i + 15
+
+        def whereis(point):
+            if False:
+                while True:
+                    i = 10
+            match point:
+                case [0, 0]:
+                    return 'Origin'
+                case [0, y]:
+                    return f'Y={y}'
+                case [x, 0]:
+                    return f'X={x}'
+                case [x, y]:
+                    return f'X={x}, Y={y}'
+                case _:
+                    return 'Not a point'
+        self.assertEqual(whereis((0, 0)), 'Origin')
+        self.assertEqual(whereis((0, -1.0)), 'Y=-1.0')
+        self.assertEqual(whereis(('X', 0)), 'X=X')
+        self.assertEqual(whereis((None, 1j)), 'X=None, Y=1j')
+        self.assertEqual(whereis(42), 'Not a point')
+
+    def test_patma_177(self):
+        if False:
+            while True:
+                i = 10
+
+        def whereis(point):
+            if False:
+                while True:
+                    i = 10
+            match point:
+                case Point(0, 0):
+                    return 'Origin'
+                case Point(0, y):
+                    return f'Y={y}'
+                case Point(x, 0):
+                    return f'X={x}'
+                case Point():
+                    return 'Somewhere else'
+                case _:
+                    return 'Not a point'
+        self.assertEqual(whereis(Point(1, 0)), 'X=1')
+        self.assertEqual(whereis(Point(0, 0)), 'Origin')
+        self.assertEqual(whereis(10), 'Not a point')
+        self.assertEqual(whereis(Point(False, False)), 'Origin')
+        self.assertEqual(whereis(Point(0, -1.0)), 'Y=-1.0')
+        self.assertEqual(whereis(Point('X', 0)), 'X=X')
+        self.assertEqual(whereis(Point(None, 1j)), 'Somewhere else')
+        self.assertEqual(whereis(Point), 'Not a point')
+        self.assertEqual(whereis(42), 'Not a point')
+
+    def test_patma_178(self):
+        if False:
+            return 10
+
+        def whereis(point):
+            if False:
+                return 10
+            match point:
+                case Point(1, var):
+                    return var
+        self.assertEqual(whereis(Point(1, 0)), 0)
+        self.assertIs(whereis(Point(0, 0)), None)
+
+    def test_patma_179(self):
+        if False:
+            while True:
+                i = 10
+
+        def whereis(point):
+            if False:
+                while True:
+                    i = 10
+            match point:
+                case Point(1, y=var):
+                    return var
+        self.assertEqual(whereis(Point(1, 0)), 0)
+        self.assertIs(whereis(Point(0, 0)), None)
+
+    def test_patma_180(self):
+        if False:
+            i = 10
+            return i + 15
+
+        def whereis(point):
+            if False:
+                print('Hello World!')
+            match point:
+                case Point(x=1, y=var):
+                    return var
+        self.assertEqual(whereis(Point(1, 0)), 0)
+        self.assertIs(whereis(Point(0, 0)), None)
+
+    def test_patma_181(self):
+        if False:
+            i = 10
+            return i + 15
+
+        def whereis(point):
+            if False:
+                print('Hello World!')
+            match point:
+                case Point(y=var, x=1):
+                    return var
+        self.assertEqual(whereis(Point(1, 0)), 0)
+        self.assertIs(whereis(Point(0, 0)), None)
+
+    def test_patma_182(self):
+        if False:
+            i = 10
+            return i + 15
+
+        def whereis(points):
+            if False:
+                i = 10
+                return i + 15
+            match points:
+                case []:
+                    return 'No points'
+                case [Point(0, 0)]:
+                    return 'The origin'
+                case [Point(x, y)]:
+                    return f'Single point {x}, {y}'
+                case [Point(0, y1), Point(0, y2)]:
+                    return f'Two on the Y axis at {y1}, {y2}'
+                case _:
+                    return 'Something else'
+        self.assertEqual(whereis([]), 'No points')
+        self.assertEqual(whereis([Point(0, 0)]), 'The origin')
+        self.assertEqual(whereis([Point(0, 1)]), 'Single point 0, 1')
+        self.assertEqual(whereis([Point(0, 0), Point(0, 0)]), 'Two on the Y axis at 0, 0')
+        self.assertEqual(whereis([Point(0, 1), Point(0, 1)]), 'Two on the Y axis at 1, 1')
+        self.assertEqual(whereis([Point(0, 0), Point(1, 0)]), 'Something else')
+        self.assertEqual(whereis([Point(0, 0), Point(0, 0), Point(0, 0)]), 'Something else')
+        self.assertEqual(whereis([Point(0, 1), Point(0, 1), Point(0, 1)]), 'Something else')
+
+    def test_patma_183(self):
+        if False:
+            while True:
+                i = 10
+
+        def whereis(point):
+            if False:
+                i = 10
+                return i + 15
+            match point:
+                case Point(x, y) if x == y:
+                    return f'Y=X at {x}'
+                case Point(x, y):
+                    return 'Not on the diagonal'
+        self.assertEqual(whereis(Point(0, 0)), 'Y=X at 0')
+        self.assertEqual(whereis(Point(0, False)), 'Y=X at 0')
+        self.assertEqual(whereis(Point(False, 0)), 'Y=X at False')
+        self.assertEqual(whereis(Point(-1 - 1j, -1 - 1j)), 'Y=X at (-1-1j)')
+        self.assertEqual(whereis(Point('X', 'X')), 'Y=X at X')
+        self.assertEqual(whereis(Point('X', 'x')), 'Not on the diagonal')
+
+    def test_patma_184(self):
+        if False:
+            return 10
+
+        class Seq(collections.abc.Sequence):
+            __getitem__ = None
+
+            def __len__(self):
+                if False:
+                    while True:
+                        i = 10
+                return 0
+        match Seq():
+            case []:
+                y = 0
+        self.assertEqual(y, 0)
+
+    def test_patma_185(self):
+        if False:
+            return 10
+
+        class Seq(collections.abc.Sequence):
+            __getitem__ = None
+
+            def __len__(self):
+                if False:
+                    while True:
+                        i = 10
+                return 42
+        match Seq():
+            case [*_]:
+                y = 0
+        self.assertEqual(y, 0)
+
+    def test_patma_186(self):
+        if False:
+            i = 10
+            return i + 15
+
+        class Seq(collections.abc.Sequence):
+
+            def __getitem__(self, i):
+                if False:
+                    while True:
+                        i = 10
+                return i
+
+            def __len__(self):
+                if False:
+                    i = 10
+                    return i + 15
+                return 42
+        match Seq():
+            case [x, *_, y]:
+                z = 0
+        self.assertEqual(x, 0)
+        self.assertEqual(y, 41)
+        self.assertEqual(z, 0)
+
+    def test_patma_187(self):
+        if False:
+            for i in range(10):
+                print('nop')
+        w = range(10)
+        match w:
+            case [x, y, *rest]:
+                z = 0
+        self.assertEqual(w, range(10))
+        self.assertEqual(x, 0)
+        self.assertEqual(y, 1)
+        self.assertEqual(z, 0)
+        self.assertEqual(rest, list(range(2, 10)))
+
+    def test_patma_188(self):
+        if False:
+            print('Hello World!')
+        w = range(100)
+        match w:
+            case [x, y, *rest]:
+                z = 0
+        self.assertEqual(w, range(100))
+        self.assertEqual(x, 0)
+        self.assertEqual(y, 1)
+        self.assertEqual(z, 0)
+        self.assertEqual(rest, list(range(2, 100)))
+
+    def test_patma_189(self):
+        if False:
+            for i in range(10):
+                print('nop')
+        w = range(1000)
+        match w:
+            case [x, y, *rest]:
+                z = 0
+        self.assertEqual(w, range(1000))
+        self.assertEqual(x, 0)
+        self.assertEqual(y, 1)
+        self.assertEqual(z, 0)
+        self.assertEqual(rest, list(range(2, 1000)))
+
+    def test_patma_190(self):
+        if False:
+            i = 10
+            return i + 15
+        w = range(1 << 10)
+        match w:
+            case [x, y, *_]:
+                z = 0
+        self.assertEqual(w, range(1 << 10))
+        self.assertEqual(x, 0)
+        self.assertEqual(y, 1)
+        self.assertEqual(z, 0)
+
+    def test_patma_191(self):
+        if False:
+            return 10
+        w = range(1 << 20)
+        match w:
+            case [x, y, *_]:
+                z = 0
+        self.assertEqual(w, range(1 << 20))
+        self.assertEqual(x, 0)
+        self.assertEqual(y, 1)
+        self.assertEqual(z, 0)
+
+    def test_patma_192(self):
+        if False:
+            print('Hello World!')
+        w = range(1 << 30)
+        match w:
+            case [x, y, *_]:
+                z = 0
+        self.assertEqual(w, range(1 << 30))
+        self.assertEqual(x, 0)
+        self.assertEqual(y, 1)
+        self.assertEqual(z, 0)
+
+    def test_patma_193(self):
+        if False:
+            return 10
+        x = {'bandwidth': 0, 'latency': 1}
+        match x:
+            case {'bandwidth': b, 'latency': l}:
+                y = 0
+        self.assertEqual(x, {'bandwidth': 0, 'latency': 1})
+        self.assertIs(b, x['bandwidth'])
+        self.assertIs(l, x['latency'])
+        self.assertEqual(y, 0)
+
+    def test_patma_194(self):
+        if False:
+            for i in range(10):
+                print('nop')
+        x = {'bandwidth': 0, 'latency': 1, 'key': 'value'}
+        match x:
+            case {'latency': l, 'bandwidth': b}:
+                y = 0
+        self.assertEqual(x, {'bandwidth': 0, 'latency': 1, 'key': 'value'})
+        self.assertIs(l, x['latency'])
+        self.assertIs(b, x['bandwidth'])
+        self.assertEqual(y, 0)
+
+    def test_patma_195(self):
+        if False:
+            i = 10
+            return i + 15
+        x = {'bandwidth': 0, 'latency': 1, 'key': 'value'}
+        match x:
+            case {'bandwidth': b, 'latency': l, **rest}:
+                y = 0
+        self.assertEqual(x, {'bandwidth': 0, 'latency': 1, 'key': 'value'})
+        self.assertIs(b, x['bandwidth'])
+        self.assertIs(l, x['latency'])
+        self.assertEqual(rest, {'key': 'value'})
+        self.assertEqual(y, 0)
+
+    def test_patma_196(self):
+        if False:
+            while True:
+                i = 10
+        x = {'bandwidth': 0, 'latency': 1}
+        match x:
+            case {'latency': l, 'bandwidth': b, **rest}:
+                y = 0
+        self.assertEqual(x, {'bandwidth': 0, 'latency': 1})
+        self.assertIs(l, x['latency'])
+        self.assertIs(b, x['bandwidth'])
+        self.assertEqual(rest, {})
+        self.assertEqual(y, 0)
+
+    def test_patma_197(self):
+        if False:
+            while True:
+                i = 10
+        w = [Point(-1, 0), Point(1, 2)]
+        match w:
+            case [Point(x1, y1), Point(x2, y2) as p2]:
+                z = 0
+        self.assertEqual(w, [Point(-1, 0), Point(1, 2)])
+        self.assertIs(x1, w[0].x)
+        self.assertIs(y1, w[0].y)
+        self.assertIs(p2, w[1])
+        self.assertIs(x2, w[1].x)
+        self.assertIs(y2, w[1].y)
+        self.assertIs(z, 0)
+
+    def test_patma_198(self):
+        if False:
+            while True:
+                i = 10
+
+        class Color(enum.Enum):
+            RED = 0
+            GREEN = 1
+            BLUE = 2
+
+        def f(color):
+            if False:
+                for i in range(10):
+                    print('nop')
+            match color:
+                case Color.RED:
+                    return 'I see red!'
+                case Color.GREEN:
+                    return 'Grass is green'
+                case Color.BLUE:
+                    return "I'm feeling the blues :("
+        self.assertEqual(f(Color.RED), 'I see red!')
+        self.assertEqual(f(Color.GREEN), 'Grass is green')
+        self.assertEqual(f(Color.BLUE), "I'm feeling the blues :(")
+        self.assertIs(f(Color), None)
+        self.assertIs(f(0), None)
+        self.assertIs(f(1), None)
+        self.assertIs(f(2), None)
+        self.assertIs(f(3), None)
+        self.assertIs(f(False), None)
+        self.assertIs(f(True), None)
+        self.assertIs(f(2 + 0j), None)
+        self.assertIs(f(3.0), None)
+
+    def test_patma_199(self):
+        if False:
+            while True:
+                i = 10
+
+        class Color(int, enum.Enum):
+            RED = 0
+            GREEN = 1
+            BLUE = 2
+
+        def f(color):
+            if False:
+                for i in range(10):
+                    print('nop')
+            match color:
+                case Color.RED:
+                    return 'I see red!'
+                case Color.GREEN:
+                    return 'Grass is green'
+                case Color.BLUE:
+                    return "I'm feeling the blues :("
+        self.assertEqual(f(Color.RED), 'I see red!')
+        self.assertEqual(f(Color.GREEN), 'Grass is green')
+        self.assertEqual(f(Color.BLUE), "I'm feeling the blues :(")
+        self.assertIs(f(Color), None)
+        self.assertEqual(f(0), 'I see red!')
+        self.assertEqual(f(1), 'Grass is green')
+        self.assertEqual(f(2), "I'm feeling the blues :(")
+        self.assertIs(f(3), None)
+        self.assertEqual(f(False), 'I see red!')
+        self.assertEqual(f(True), 'Grass is green')
+        self.assertEqual(f(2 + 0j), "I'm feeling the blues :(")
+        self.assertIs(f(3.0), None)
+
+    def test_patma_200(self):
+        if False:
+            print('Hello World!')
+
+        class Class:
+            __match_args__ = ('a', 'b')
+        c = Class()
+        c.a = 0
+        c.b = 1
+        match c:
+            case Class(x, y):
+                z = 0
+        self.assertIs(x, c.a)
+        self.assertIs(y, c.b)
+        self.assertEqual(z, 0)
+
+    def test_patma_201(self):
+        if False:
+            return 10
+
+        class Class:
+            __match_args__ = ('a', 'b')
+        c = Class()
+        c.a = 0
+        c.b = 1
+        match c:
+            case Class(x, b=y):
+                z = 0
+        self.assertIs(x, c.a)
+        self.assertIs(y, c.b)
+        self.assertEqual(z, 0)
+
+    def test_patma_202(self):
+        if False:
+            return 10
+
+        class Parent:
+            __match_args__ = ('a', 'b')
+
+        class Child(Parent):
+            __match_args__ = ('c', 'd')
+        c = Child()
+        c.a = 0
+        c.b = 1
+        match c:
+            case Parent(x, y):
+                z = 0
+        self.assertIs(x, c.a)
+        self.assertIs(y, c.b)
+        self.assertEqual(z, 0)
+
+    def test_patma_203(self):
+        if False:
+            print('Hello World!')
+
+        class Parent:
+            __match_args__ = ('a', 'b')
+
+        class Child(Parent):
+            __match_args__ = ('c', 'd')
+        c = Child()
+        c.a = 0
+        c.b = 1
+        match c:
+            case Parent(x, b=y):
+                z = 0
+        self.assertIs(x, c.a)
+        self.assertIs(y, c.b)
+        self.assertEqual(z, 0)
+
+    def test_patma_204(self):
+        if False:
+            for i in range(10):
+                print('nop')
+
+        def f(w):
+            if False:
+                for i in range(10):
+                    print('nop')
+            match w:
+                case 42:
+                    out = locals()
+                    del out['w']
+                    return out
+        self.assertEqual(f(42), {})
+        self.assertIs(f(0), None)
+        self.assertEqual(f(42.0), {})
+        self.assertIs(f('42'), None)
+
+    def test_patma_205(self):
+        if False:
+            print('Hello World!')
+
+        def f(w):
+            if False:
+                print('Hello World!')
+            match w:
+                case 42.0:
+                    out = locals()
+                    del out['w']
+                    return out
+        self.assertEqual(f(42.0), {})
+        self.assertEqual(f(42), {})
+        self.assertIs(f(0.0), None)
+        self.assertIs(f(0), None)
+
+    def test_patma_206(self):
+        if False:
+            for i in range(10):
+                print('nop')
+
+        def f(w):
+            if False:
+                print('Hello World!')
+            match w:
+                case 1 | 2 | 3:
+                    out = locals()
+                    del out['w']
+                    return out
+        self.assertEqual(f(1), {})
+        self.assertEqual(f(2), {})
+        self.assertEqual(f(3), {})
+        self.assertEqual(f(3.0), {})
+        self.assertIs(f(0), None)
+        self.assertIs(f(4), None)
+        self.assertIs(f('1'), None)
+
+    def test_patma_207(self):
+        if False:
+            return 10
+
+        def f(w):
+            if False:
+                for i in range(10):
+                    print('nop')
+            match w:
+                case [1, 2] | [3, 4]:
+                    out = locals()
+                    del out['w']
+                    return out
+        self.assertEqual(f([1, 2]), {})
+        self.assertEqual(f([3, 4]), {})
+        self.assertIs(f(42), None)
+        self.assertIs(f([2, 3]), None)
+        self.assertIs(f([1, 2, 3]), None)
+        self.assertEqual(f([1, 2.0]), {})
+
+    def test_patma_208(self):
+        if False:
+            for i in range(10):
+                print('nop')
+
+        def f(w):
+            if False:
+                i = 10
+                return i + 15
+            match w:
+                case x:
+                    out = locals()
+                    del out['w']
+                    return out
+        self.assertEqual(f(42), {'x': 42})
+        self.assertEqual(f((1, 2)), {'x': (1, 2)})
+        self.assertEqual(f(None), {'x': None})
+
+    def test_patma_209(self):
+        if False:
+            for i in range(10):
+                print('nop')
+
+        def f(w):
+            if False:
+                i = 10
+                return i + 15
+            match w:
+                case _:
+                    out = locals()
+                    del out['w']
+                    return out
+        self.assertEqual(f(42), {})
+        self.assertEqual(f(None), {})
+        self.assertEqual(f((1, 2)), {})
+
+    def test_patma_210(self):
+        if False:
+            print('Hello World!')
+
+        def f(w):
+            if False:
+                while True:
+                    i = 10
+            match w:
+                case [x, y, z]:
+                    out = locals()
+                    del out['w']
+                    return out
+        self.assertEqual(f((1, 2, 3)), {'x': 1, 'y': 2, 'z': 3})
+        self.assertIs(f((1, 2)), None)
+        self.assertIs(f((1, 2, 3, 4)), None)
+        self.assertIs(f(123), None)
+        self.assertIs(f('abc'), None)
+        self.assertIs(f(b'abc'), None)
+        self.assertEqual(f(array.array('b', b'abc')), {'x': 97, 'y': 98, 'z': 99})
+        self.assertEqual(f(memoryview(b'abc')), {'x': 97, 'y': 98, 'z': 99})
+        self.assertIs(f(bytearray(b'abc')), None)
+
+    def test_patma_211(self):
+        if False:
+            for i in range(10):
+                print('nop')
+
+        def f(w):
+            if False:
+                print('Hello World!')
+            match w:
+                case {'x': x, 'y': 'y', 'z': z}:
+                    out = locals()
+                    del out['w']
+                    return out
+        self.assertEqual(f({'x': 'x', 'y': 'y', 'z': 'z'}), {'x': 'x', 'z': 'z'})
+        self.assertEqual(f({'x': 'x', 'y': 'y', 'z': 'z', 'a': 'a'}), {'x': 'x', 'z': 'z'})
+        self.assertIs(f({'x': 'x', 'y': 'yy', 'z': 'z', 'a': 'a'}), None)
+        self.assertIs(f({'x': 'x', 'y': 'y'}), None)
+
+    def test_patma_212(self):
+        if False:
+            print('Hello World!')
+
+        def f(w):
+            if False:
+                return 10
+            match w:
+                case Point(int(xx), y='hello'):
+                    out = locals()
+                    del out['w']
+                    return out
+        self.assertEqual(f(Point(42, 'hello')), {'xx': 42})
+
+    def test_patma_213(self):
+        if False:
+            for i in range(10):
+                print('nop')
+
+        def f(w):
+            if False:
+                while True:
+                    i = 10
+            match w:
+                case [p, q] as x:
+                    out = locals()
+                    del out['w']
+                    return out
+        self.assertEqual(f((1, 2)), {'p': 1, 'q': 2, 'x': (1, 2)})
+        self.assertEqual(f([1, 2]), {'p': 1, 'q': 2, 'x': [1, 2]})
+        self.assertIs(f(12), None)
+        self.assertIs(f((1, 2, 3)), None)
+
+    def test_patma_214(self):
+        if False:
+            return 10
+
+        def f():
+            if False:
+                while True:
+                    i = 10
+            match 42:
+                case 42:
+                    return locals()
+        self.assertEqual(set(f()), set())
+
+    def test_patma_215(self):
+        if False:
+            while True:
+                i = 10
+
+        def f():
+            if False:
+                while True:
+                    i = 10
+            match 1:
+                case 1 | 2 | 3:
+                    return locals()
+        self.assertEqual(set(f()), set())
+
+    def test_patma_216(self):
+        if False:
+            return 10
+
+        def f():
+            if False:
+                for i in range(10):
+                    print('nop')
+            match ...:
+                case _:
+                    return locals()
+        self.assertEqual(set(f()), set())
+
+    def test_patma_217(self):
+        if False:
+            while True:
+                i = 10
+
+        def f():
+            if False:
+                i = 10
+                return i + 15
+            match ...:
+                case abc:
+                    return locals()
+        self.assertEqual(set(f()), {'abc'})
+
+    def test_patma_218(self):
+        if False:
+            while True:
+                i = 10
+
+        def f():
+            if False:
+                for i in range(10):
+                    print('nop')
+            match (..., ...):
+                case [a, b]:
+                    return locals()
+        self.assertEqual(set(f()), {'a', 'b'})
+
+    def test_patma_219(self):
+        if False:
+            print('Hello World!')
+
+        def f():
+            if False:
+                i = 10
+                return i + 15
+            match {'k': ..., 'l': ...}:
+                case {'k': a, 'l': b}:
+                    return locals()
+        self.assertEqual(set(f()), {'a', 'b'})
+
+    def test_patma_220(self):
+        if False:
+            print('Hello World!')
+
+        def f():
+            if False:
+                print('Hello World!')
+            match Point(..., ...):
+                case Point(x, y=y):
+                    return locals()
+        self.assertEqual(set(f()), {'x', 'y'})
+
+    def test_patma_221(self):
+        if False:
+            i = 10
+            return i + 15
+
+        def f():
+            if False:
+                return 10
+            match ...:
+                case b as a:
+                    return locals()
+        self.assertEqual(set(f()), {'a', 'b'})
+
+    def test_patma_222(self):
+        if False:
+            return 10
+
+        def f(x):
+            if False:
+                while True:
+                    i = 10
+            match x:
+                case _:
+                    return 0
+        self.assertEqual(f(0), 0)
+        self.assertEqual(f(1), 0)
+        self.assertEqual(f(2), 0)
+        self.assertEqual(f(3), 0)
+
+    def test_patma_223(self):
+        if False:
+            return 10
+
+        def f(x):
+            if False:
+                while True:
+                    i = 10
+            match x:
+                case 0:
+                    return 0
+        self.assertEqual(f(0), 0)
+        self.assertIs(f(1), None)
+        self.assertIs(f(2), None)
+        self.assertIs(f(3), None)
+
+    def test_patma_224(self):
+        if False:
+            for i in range(10):
+                print('nop')
+
+        def f(x):
+            if False:
+                i = 10
+                return i + 15
+            match x:
+                case 0:
+                    return 0
+                case _:
+                    return 1
+        self.assertEqual(f(0), 0)
+        self.assertEqual(f(1), 1)
+        self.assertEqual(f(2), 1)
+        self.assertEqual(f(3), 1)
+
+    def test_patma_225(self):
+        if False:
+            for i in range(10):
+                print('nop')
+
+        def f(x):
+            if False:
+                for i in range(10):
+                    print('nop')
+            match x:
+                case 0:
+                    return 0
+                case 1:
+                    return 1
+        self.assertEqual(f(0), 0)
+        self.assertEqual(f(1), 1)
+        self.assertIs(f(2), None)
+        self.assertIs(f(3), None)
+
+    def test_patma_226(self):
+        if False:
+            return 10
+
+        def f(x):
+            if False:
+                print('Hello World!')
+            match x:
+                case 0:
+                    return 0
+                case 1:
+                    return 1
+                case _:
+                    return 2
+        self.assertEqual(f(0), 0)
+        self.assertEqual(f(1), 1)
+        self.assertEqual(f(2), 2)
+        self.assertEqual(f(3), 2)
+
+    def test_patma_227(self):
+        if False:
+            i = 10
+            return i + 15
+
+        def f(x):
+            if False:
+                print('Hello World!')
+            match x:
+                case 0:
+                    return 0
+                case 1:
+                    return 1
+                case 2:
+                    return 2
+        self.assertEqual(f(0), 0)
+        self.assertEqual(f(1), 1)
+        self.assertEqual(f(2), 2)
+        self.assertIs(f(3), None)
+
+    def test_patma_228(self):
+        if False:
+            for i in range(10):
+                print('nop')
+        match ():
+            case []:
+                x = 0
+        self.assertEqual(x, 0)
+
+    def test_patma_229(self):
+        if False:
+            for i in range(10):
+                print('nop')
+        x = 0
+        match x:
+            case x:
+                y = 0
+        self.assertEqual(x, 0)
+        self.assertEqual(y, 0)
+
+    def test_patma_230(self):
+        if False:
+            while True:
+                i = 10
+        x = 0
+        match x:
+            case False:
+                y = 0
+            case 0:
+                y = 1
+        self.assertEqual(x, 0)
+        self.assertEqual(y, 1)
+
+    def test_patma_231(self):
+        if False:
+            return 10
+        x = 1
+        match x:
+            case True:
+                y = 0
+            case 1:
+                y = 1
+        self.assertEqual(x, 1)
+        self.assertEqual(y, 1)
+
+    def test_patma_232(self):
+        if False:
+            while True:
+                i = 10
+
+        class Eq:
+
+            def __eq__(self, other):
+                if False:
+                    while True:
+                        i = 10
+                return True
+        x = eq = Eq()
+        y = None
+        match x:
+            case None:
+                y = 0
+        self.assertIs(x, eq)
+        self.assertEqual(y, None)
+
+    def test_patma_233(self):
+        if False:
+            for i in range(10):
+                print('nop')
+        x = False
+        match x:
+            case False:
+                y = 0
+        self.assertIs(x, False)
+        self.assertEqual(y, 0)
+
+    def test_patma_234(self):
+        if False:
+            while True:
+                i = 10
+        x = True
+        match x:
+            case True:
+                y = 0
+        self.assertIs(x, True)
+        self.assertEqual(y, 0)
+
+    def test_patma_235(self):
+        if False:
+            print('Hello World!')
+        x = None
+        match x:
+            case None:
+                y = 0
+        self.assertIs(x, None)
+        self.assertEqual(y, 0)
+
+    def test_patma_236(self):
+        if False:
+            i = 10
+            return i + 15
+        x = 0
+        match x:
+            case (0 as w) as z:
+                y = 0
+        self.assertEqual(w, 0)
+        self.assertEqual(x, 0)
+        self.assertEqual(y, 0)
+        self.assertEqual(z, 0)
+
+    def test_patma_237(self):
+        if False:
+            print('Hello World!')
+        x = 0
+        match x:
+            case (0 as w) as z:
+                y = 0
+        self.assertEqual(w, 0)
+        self.assertEqual(x, 0)
+        self.assertEqual(y, 0)
+        self.assertEqual(z, 0)
+
+    def test_patma_238(self):
+        if False:
+            while True:
+                i = 10
+        x = ((0, 1), (2, 3))
+        match x:
+            case [([a as b, c as d] as e) as w, ([f as g, h] as i) as z]:
+                y = 0
+        self.assertEqual(a, 0)
+        self.assertEqual(b, 0)
+        self.assertEqual(c, 1)
+        self.assertEqual(d, 1)
+        self.assertEqual(e, (0, 1))
+        self.assertEqual(f, 2)
+        self.assertEqual(g, 2)
+        self.assertEqual(h, 3)
+        self.assertEqual(i, (2, 3))
+        self.assertEqual(w, (0, 1))
+        self.assertEqual(x, ((0, 1), (2, 3)))
+        self.assertEqual(y, 0)
+        self.assertEqual(z, (2, 3))
+
+    def test_patma_239(self):
+        if False:
+            print('Hello World!')
+        x = collections.UserDict({0: 1, 2: 3})
+        match x:
+            case {2: 3}:
+                y = 0
+        self.assertEqual(x, {0: 1, 2: 3})
+        self.assertEqual(y, 0)
+
+    def test_patma_240(self):
+        if False:
+            for i in range(10):
+                print('nop')
+        x = collections.UserDict({0: 1, 2: 3})
+        match x:
+            case {2: 3, **z}:
+                y = 0
+        self.assertEqual(x, {0: 1, 2: 3})
+        self.assertEqual(y, 0)
+        self.assertEqual(z, {0: 1})
+
+    def test_patma_241(self):
+        if False:
+            return 10
+        x = [[{0: 0}]]
+        match x:
+            case list([[{-0 - 0j: int(real=0 + 0j, imag=0 - 0j) | 1 as z}]]):
+                y = 0
+        self.assertEqual(x, [[{0: 0}]])
+        self.assertEqual(y, 0)
+        self.assertEqual(z, 0)
+
+    def test_patma_242(self):
+        if False:
+            while True:
+                i = 10
+        x = range(3)
+        match x:
+            case [y, *_, z]:
+                w = 0
+        self.assertEqual(w, 0)
+        self.assertEqual(x, range(3))
+        self.assertEqual(y, 0)
+        self.assertEqual(z, 2)
+
+    def test_patma_243(self):
+        if False:
+            for i in range(10):
+                print('nop')
+        x = range(3)
+        match x:
+            case [_, *_, y]:
+                z = 0
+        self.assertEqual(x, range(3))
+        self.assertEqual(y, 2)
+        self.assertEqual(z, 0)
+
+    def test_patma_244(self):
+        if False:
+            while True:
+                i = 10
+        x = range(3)
+        match x:
+            case [*_, y]:
+                z = 0
+        self.assertEqual(x, range(3))
+        self.assertEqual(y, 2)
+        self.assertEqual(z, 0)
+
+    def test_patma_245(self):
+        if False:
+            return 10
+        x = {'y': 1}
+        match x:
+            case {'y': (0 as y) | (1 as y)}:
+                z = 0
+        self.assertEqual(x, {'y': 1})
+        self.assertEqual(y, 1)
+        self.assertEqual(z, 0)
+
+    def test_patma_246(self):
+        if False:
+            i = 10
+            return i + 15
+
+        def f(x):
+            if False:
+                i = 10
+                return i + 15
+            match x:
+                case [a, b, c, d, e, f, g, h, i, 9] | [h, g, i, a, b, d, e, c, f, 10] | [g, b, a, c, d, -5, e, h, i, f] | [-1, d, f, b, g, e, i, a, h, c]:
+                    w = 0
+            out = locals()
+            del out['x']
+            return out
+        alts = [dict(a=0, b=1, c=2, d=3, e=4, f=5, g=6, h=7, i=8, w=0), dict(h=1, g=2, i=3, a=4, b=5, d=6, e=7, c=8, f=9, w=0), dict(g=0, b=-1, a=-2, c=-3, d=-4, e=-6, h=-7, i=-8, f=-9, w=0), dict(d=-2, f=-3, b=-4, g=-5, e=-6, i=-7, a=-8, h=-9, c=-10, w=0), dict()]
+        self.assertEqual(f(range(10)), alts[0])
+        self.assertEqual(f(range(1, 11)), alts[1])
+        self.assertEqual(f(range(0, -10, -1)), alts[2])
+        self.assertEqual(f(range(-1, -11, -1)), alts[3])
+        self.assertEqual(f(range(10, 20)), alts[4])
+
+    def test_patma_247(self):
+        if False:
+            return 10
+
+        def f(x):
+            if False:
+                return 10
+            match x:
+                case [y, [a, b, c, d, e, f, g, h, i, 9] | [h, g, i, a, b, d, e, c, f, 10] | [g, b, a, c, d, -5, e, h, i, f] | [-1, d, f, b, g, e, i, a, h, c], z]:
+                    w = 0
+            out = locals()
+            del out['x']
+            return out
+        alts = [dict(a=0, b=1, c=2, d=3, e=4, f=5, g=6, h=7, i=8, w=0, y=False, z=True), dict(h=1, g=2, i=3, a=4, b=5, d=6, e=7, c=8, f=9, w=0, y=False, z=True), dict(g=0, b=-1, a=-2, c=-3, d=-4, e=-6, h=-7, i=-8, f=-9, w=0, y=False, z=True), dict(d=-2, f=-3, b=-4, g=-5, e=-6, i=-7, a=-8, h=-9, c=-10, w=0, y=False, z=True), dict()]
+        self.assertEqual(f((False, range(10), True)), alts[0])
+        self.assertEqual(f((False, range(1, 11), True)), alts[1])
+        self.assertEqual(f((False, range(0, -10, -1), True)), alts[2])
+        self.assertEqual(f((False, range(-1, -11, -1), True)), alts[3])
+        self.assertEqual(f((False, range(10, 20), True)), alts[4])
+
+class TestSyntaxErrors(unittest.TestCase):
+
+    def assert_syntax_error(self, code: str):
+        if False:
+            for i in range(10):
+                print('nop')
+        with self.assertRaises(SyntaxError):
+            compile(inspect.cleandoc(code), '<test>', 'exec')
+
+    def test_alternative_patterns_bind_different_names_0(self):
+        if False:
+            return 10
+        self.assert_syntax_error('\n        match ...:\n            case "a" | a:\n                pass\n        ')
+
+    def test_alternative_patterns_bind_different_names_1(self):
+        if False:
+            i = 10
+            return i + 15
+        self.assert_syntax_error('\n        match ...:\n            case [a, [b] | [c] | [d]]:\n                pass\n        ')
+
+    def test_attribute_name_repeated_in_class_pattern(self):
+        if False:
+            for i in range(10):
+                print('nop')
+        self.assert_syntax_error('\n        match ...:\n            case Class(a=_, a=_):\n                pass\n        ')
+
+    def test_imaginary_number_required_in_complex_literal_0(self):
+        if False:
+            while True:
+                i = 10
+        self.assert_syntax_error('\n        match ...:\n            case 0+0:\n                pass\n        ')
+
+    def test_imaginary_number_required_in_complex_literal_1(self):
+        if False:
+            i = 10
+            return i + 15
+        self.assert_syntax_error('\n        match ...:\n            case {0+0: _}:\n                pass\n        ')
+
+    def test_invalid_syntax_0(self):
+        if False:
+            return 10
+        self.assert_syntax_error('\n        match ...:\n            case {**rest, "key": value}:\n                pass\n        ')
+
+    def test_invalid_syntax_1(self):
+        if False:
+            i = 10
+            return i + 15
+        self.assert_syntax_error('\n        match ...:\n            case {"first": first, **rest, "last": last}:\n                pass\n        ')
+
+    def test_invalid_syntax_2(self):
+        if False:
+            i = 10
+            return i + 15
+        self.assert_syntax_error('\n        match ...:\n            case {**_}:\n                pass\n        ')
+
+    def test_invalid_syntax_3(self):
+        if False:
+            print('Hello World!')
+        self.assert_syntax_error('\n        match ...:\n            case 42 as _:\n                pass\n        ')
+
+    def test_mapping_pattern_keys_may_only_match_literals_and_attribute_lookups(self):
+        if False:
+            while True:
+                i = 10
+        self.assert_syntax_error('\n        match ...:\n            case {f"": _}:\n                pass\n        ')
+
+    def test_multiple_assignments_to_name_in_pattern_0(self):
+        if False:
+            while True:
+                i = 10
+        self.assert_syntax_error('\n        match ...:\n            case a, a:\n                pass\n        ')
+
+    def test_multiple_assignments_to_name_in_pattern_1(self):
+        if False:
+            i = 10
+            return i + 15
+        self.assert_syntax_error('\n        match ...:\n            case {"k": a, "l": a}:\n                pass\n        ')
+
+    def test_multiple_assignments_to_name_in_pattern_2(self):
+        if False:
+            i = 10
+            return i + 15
+        self.assert_syntax_error('\n        match ...:\n            case MyClass(x, x):\n                pass\n        ')
+
+    def test_multiple_assignments_to_name_in_pattern_3(self):
+        if False:
+            print('Hello World!')
+        self.assert_syntax_error('\n        match ...:\n            case MyClass(x=x, y=x):\n                pass\n        ')
+
+    def test_multiple_assignments_to_name_in_pattern_4(self):
+        if False:
+            return 10
+        self.assert_syntax_error('\n        match ...:\n            case MyClass(x, y=x):\n                pass\n        ')
+
+    def test_multiple_assignments_to_name_in_pattern_5(self):
+        if False:
+            for i in range(10):
+                print('nop')
+        self.assert_syntax_error('\n        match ...:\n            case a as a:\n                pass\n        ')
+
+    def test_multiple_starred_names_in_sequence_pattern_0(self):
+        if False:
+            for i in range(10):
+                print('nop')
+        self.assert_syntax_error('\n        match ...:\n            case *a, b, *c, d, *e:\n                pass\n        ')
+
+    def test_multiple_starred_names_in_sequence_pattern_1(self):
+        if False:
+            return 10
+        self.assert_syntax_error('\n        match ...:\n            case a, *b, c, *d, e:\n                pass\n        ')
+
+    def test_name_capture_makes_remaining_patterns_unreachable_0(self):
+        if False:
+            i = 10
+            return i + 15
+        self.assert_syntax_error('\n        match ...:\n            case a | "a":\n                pass\n        ')
+
+    def test_name_capture_makes_remaining_patterns_unreachable_1(self):
+        if False:
+            print('Hello World!')
+        self.assert_syntax_error('\n        match 42:\n            case x:\n                pass\n            case y:\n                pass\n        ')
+
+    def test_name_capture_makes_remaining_patterns_unreachable_2(self):
+        if False:
+            return 10
+        self.assert_syntax_error('\n        match ...:\n            case x | [_ as x] if x:\n                pass\n        ')
+
+    def test_name_capture_makes_remaining_patterns_unreachable_3(self):
+        if False:
+            i = 10
+            return i + 15
+        self.assert_syntax_error('\n        match ...:\n            case x:\n                pass\n            case [x] if x:\n                pass\n        ')
+
+    def test_name_capture_makes_remaining_patterns_unreachable_4(self):
+        if False:
+            i = 10
+            return i + 15
+        self.assert_syntax_error('\n        match ...:\n            case x:\n                pass\n            case _:\n                pass\n        ')
+
+    def test_patterns_may_only_match_literals_and_attribute_lookups_0(self):
+        if False:
+            print('Hello World!')
+        self.assert_syntax_error('\n        match ...:\n            case f"":\n                pass\n        ')
+
+    def test_patterns_may_only_match_literals_and_attribute_lookups_1(self):
+        if False:
+            while True:
+                i = 10
+        self.assert_syntax_error('\n        match ...:\n            case f"{x}":\n                pass\n        ')
+
+    def test_real_number_required_in_complex_literal_0(self):
+        if False:
+            i = 10
+            return i + 15
+        self.assert_syntax_error('\n        match ...:\n            case 0j+0:\n                pass\n        ')
+
+    def test_real_number_required_in_complex_literal_1(self):
+        if False:
+            while True:
+                i = 10
+        self.assert_syntax_error('\n        match ...:\n            case 0j+0j:\n                pass\n        ')
+
+    def test_real_number_required_in_complex_literal_2(self):
+        if False:
+            return 10
+        self.assert_syntax_error('\n        match ...:\n            case {0j+0: _}:\n                pass\n        ')
+
+    def test_real_number_required_in_complex_literal_3(self):
+        if False:
+            i = 10
+            return i + 15
+        self.assert_syntax_error('\n        match ...:\n            case {0j+0j: _}:\n                pass\n        ')
+
+    def test_wildcard_makes_remaining_patterns_unreachable_0(self):
+        if False:
+            for i in range(10):
+                print('nop')
+        self.assert_syntax_error('\n        match ...:\n            case _ | _:\n                pass\n        ')
+
+    def test_wildcard_makes_remaining_patterns_unreachable_1(self):
+        if False:
+            print('Hello World!')
+        self.assert_syntax_error('\n        match ...:\n            case (_ as x) | [x]:\n                pass\n        ')
+
+    def test_wildcard_makes_remaining_patterns_unreachable_2(self):
+        if False:
+            while True:
+                i = 10
+        self.assert_syntax_error('\n        match ...:\n            case _ | _ if condition():\n                pass\n        ')
+
+    def test_wildcard_makes_remaining_patterns_unreachable_3(self):
+        if False:
+            print('Hello World!')
+        self.assert_syntax_error('\n        match ...:\n            case _:\n                pass\n            case None:\n                pass\n        ')
+
+    def test_wildcard_makes_remaining_patterns_unreachable_4(self):
+        if False:
+            print('Hello World!')
+        self.assert_syntax_error('\n        match ...:\n            case (None | _) | _:\n                pass\n        ')
+
+    def test_wildcard_makes_remaining_patterns_unreachable_5(self):
+        if False:
+            return 10
+        self.assert_syntax_error('\n        match ...:\n            case _ | (True | False):\n                pass\n        ')
+
+    def test_mapping_pattern_duplicate_key(self):
+        if False:
+            i = 10
+            return i + 15
+        self.assert_syntax_error('\n        match ...:\n            case {"a": _, "a": _}:\n                pass\n        ')
+
+    def test_mapping_pattern_duplicate_key_edge_case0(self):
+        if False:
+            print('Hello World!')
+        self.assert_syntax_error('\n        match ...:\n            case {0: _, False: _}:\n                pass\n        ')
+
+    def test_mapping_pattern_duplicate_key_edge_case1(self):
+        if False:
+            for i in range(10):
+                print('nop')
+        self.assert_syntax_error('\n        match ...:\n            case {0: _, 0.0: _}:\n                pass\n        ')
+
+    def test_mapping_pattern_duplicate_key_edge_case2(self):
+        if False:
+            while True:
+                i = 10
+        self.assert_syntax_error('\n        match ...:\n            case {0: _, -0: _}:\n                pass\n        ')
+
+    def test_mapping_pattern_duplicate_key_edge_case3(self):
+        if False:
+            while True:
+                i = 10
+        self.assert_syntax_error('\n        match ...:\n            case {0: _, 0j: _}:\n                pass\n        ')
+
+class TestTypeErrors(unittest.TestCase):
+
+    def test_accepts_positional_subpatterns_0(self):
+        if False:
+            return 10
+
+        class Class:
+            __match_args__ = ()
+        x = Class()
+        y = z = None
+        with self.assertRaises(TypeError):
+            match x:
+                case Class(y):
+                    z = 0
+        self.assertIs(y, None)
+        self.assertIs(z, None)
+
+    def test_accepts_positional_subpatterns_1(self):
+        if False:
+            return 10
+        x = range(10)
+        y = None
+        with self.assertRaises(TypeError):
+            match x:
+                case range(10):
+                    y = 0
+        self.assertEqual(x, range(10))
+        self.assertIs(y, None)
+
+    def test_got_multiple_subpatterns_for_attribute_0(self):
+        if False:
+            print('Hello World!')
+
+        class Class:
+            __match_args__ = ('a', 'a')
+            a = None
+        x = Class()
+        w = y = z = None
+        with self.assertRaises(TypeError):
+            match x:
+                case Class(y, z):
+                    w = 0
+        self.assertIs(w, None)
+        self.assertIs(y, None)
+        self.assertIs(z, None)
+
+    def test_got_multiple_subpatterns_for_attribute_1(self):
+        if False:
+            i = 10
+            return i + 15
+
+        class Class:
+            __match_args__ = ('a',)
+            a = None
+        x = Class()
+        w = y = z = None
+        with self.assertRaises(TypeError):
+            match x:
+                case Class(y, a=z):
+                    w = 0
+        self.assertIs(w, None)
+        self.assertIs(y, None)
+        self.assertIs(z, None)
+
+    def test_match_args_elements_must_be_strings(self):
+        if False:
+            return 10
+
+        class Class:
+            __match_args__ = (None,)
+        x = Class()
+        y = z = None
+        with self.assertRaises(TypeError):
+            match x:
+                case Class(y):
+                    z = 0
+        self.assertIs(y, None)
+        self.assertIs(z, None)
+
+    def test_match_args_must_be_a_tuple_0(self):
+        if False:
+            i = 10
+            return i + 15
+
+        class Class:
+            __match_args__ = None
+        x = Class()
+        y = z = None
+        with self.assertRaises(TypeError):
+            match x:
+                case Class(y):
+                    z = 0
+        self.assertIs(y, None)
+        self.assertIs(z, None)
+
+    def test_match_args_must_be_a_tuple_1(self):
+        if False:
+            print('Hello World!')
+
+        class Class:
+            __match_args__ = 'XYZ'
+        x = Class()
+        y = z = None
+        with self.assertRaises(TypeError):
+            match x:
+                case Class(y):
+                    z = 0
+        self.assertIs(y, None)
+        self.assertIs(z, None)
+
+    def test_match_args_must_be_a_tuple_2(self):
+        if False:
+            while True:
+                i = 10
+
+        class Class:
+            __match_args__ = ['spam', 'eggs']
+            spam = 0
+            eggs = 1
+        x = Class()
+        w = y = z = None
+        with self.assertRaises(TypeError):
+            match x:
+                case Class(y, z):
+                    w = 0
+        self.assertIs(w, None)
+        self.assertIs(y, None)
+        self.assertIs(z, None)
+
+class TestValueErrors(unittest.TestCase):
+
+    def test_mapping_pattern_checks_duplicate_key_1(self):
+        if False:
+            i = 10
+            return i + 15
+
+        class Keys:
+            KEY = 'a'
+        x = {'a': 0, 'b': 1}
+        w = y = z = None
+        with self.assertRaises(ValueError):
+            match x:
+                case {Keys.KEY: y, 'a': z}:
+                    w = 0
+        self.assertIs(w, None)
+        self.assertIs(y, None)
+        self.assertIs(z, None)
+
+class TestTracing(unittest.TestCase):
+
+    @staticmethod
+    def _trace(func, *args, **kwargs):
+        if False:
+            print('Hello World!')
+        actual_linenos = []
+
+        def trace(frame, event, arg):
+            if False:
+                return 10
+            if event == 'line' and frame.f_code.co_name == func.__name__:
+                assert arg is None
+                relative_lineno = frame.f_lineno - func.__code__.co_firstlineno
+                actual_linenos.append(relative_lineno)
+            return trace
+        old_trace = sys.gettrace()
+        sys.settrace(trace)
+        try:
+            func(*args, **kwargs)
+        finally:
+            sys.settrace(old_trace)
+        return actual_linenos
+
+    def test_default_wildcard(self):
+        if False:
+            print('Hello World!')
+
+        def f(command):
+            if False:
+                i = 10
+                return i + 15
+            match command.split():
+                case ['go', direction] if direction in 'nesw':
+                    return f'go {direction}'
+                case ['go', _]:
+                    return 'no go'
+                case _:
+                    return 'default'
+        self.assertListEqual(self._trace(f, 'go n'), [1, 2, 3])
+        self.assertListEqual(self._trace(f, 'go x'), [1, 2, 4, 5])
+        self.assertListEqual(self._trace(f, 'spam'), [1, 2, 4, 6, 7])
+
+    def test_default_capture(self):
+        if False:
+            return 10
+
+        def f(command):
+            if False:
+                while True:
+                    i = 10
+            match command.split():
+                case ['go', direction] if direction in 'nesw':
+                    return f'go {direction}'
+                case ['go', _]:
+                    return 'no go'
+                case x:
+                    return x
+        self.assertListEqual(self._trace(f, 'go n'), [1, 2, 3])
+        self.assertListEqual(self._trace(f, 'go x'), [1, 2, 4, 5])
+        self.assertListEqual(self._trace(f, 'spam'), [1, 2, 4, 6, 7])
+
+    def test_no_default(self):
+        if False:
+            print('Hello World!')
+
+        def f(command):
+            if False:
+                i = 10
+                return i + 15
+            match command.split():
+                case ['go', direction] if direction in 'nesw':
+                    return f'go {direction}'
+                case ['go', _]:
+                    return 'no go'
+        self.assertListEqual(self._trace(f, 'go n'), [1, 2, 3])
+        self.assertListEqual(self._trace(f, 'go x'), [1, 2, 4, 5])
+        self.assertListEqual(self._trace(f, 'spam'), [1, 2, 4])
+
+    def test_only_default_wildcard(self):
+        if False:
+            i = 10
+            return i + 15
+
+        def f(command):
+            if False:
+                i = 10
+                return i + 15
+            match command.split():
+                case _:
+                    return 'default'
+        self.assertListEqual(self._trace(f, 'go n'), [1, 2, 3])
+        self.assertListEqual(self._trace(f, 'go x'), [1, 2, 3])
+        self.assertListEqual(self._trace(f, 'spam'), [1, 2, 3])
+
+    def test_only_default_capture(self):
+        if False:
+            for i in range(10):
+                print('nop')
+
+        def f(command):
+            if False:
+                i = 10
+                return i + 15
+            match command.split():
+                case x:
+                    return x
+        self.assertListEqual(self._trace(f, 'go n'), [1, 2, 3])
+        self.assertListEqual(self._trace(f, 'go x'), [1, 2, 3])
+        self.assertListEqual(self._trace(f, 'spam'), [1, 2, 3])
+if __name__ == '__main__':
+    '\n    # From inside environment using this Python, with pyperf installed:\n    sudo $(which pyperf) system tune &&          $(which python) -m test.test_patma --rigorous;     sudo $(which pyperf) system reset\n    '
+    import pyperf
+
+    class PerfPatma(TestPatma):
+
+        def assertEqual(*_, **__):
+            if False:
+                print('Hello World!')
+            pass
+
+        def assertIs(*_, **__):
+            if False:
+                print('Hello World!')
+            pass
+
+        def assertRaises(*_, **__):
+            if False:
+                print('Hello World!')
+            assert False, 'this test should be a method of a different class!'
+
+        def run_perf(self, count):
+            if False:
+                print('Hello World!')
+            tests = []
+            for attr in vars(TestPatma):
+                if attr.startswith('test_'):
+                    tests.append(getattr(self, attr))
+            tests *= count
+            start = pyperf.perf_counter()
+            for test in tests:
+                test()
+            return pyperf.perf_counter() - start
+    runner = pyperf.Runner()
+    runner.bench_time_func('patma', PerfPatma().run_perf)

@@ -1,0 +1,25 @@
+"""unique_index_for_instanceconfig_valid_until
+
+Revision ID: 1ddb81fb88c2
+Revises: 92fba0be98e9
+Create Date: 2021-06-04 17:28:25.725563
+
+"""
+import sqlalchemy as sa
+from alembic import op
+revision = '1ddb81fb88c2'
+down_revision = 'b060f38c0c31'
+branch_labels = None
+depends_on = None
+
+def upgrade() -> None:
+    if False:
+        return 10
+    with op.batch_alter_table('instance_config', schema=None) as batch_op:
+        batch_op.create_index('ix_one_active_instance_config', [sa.text('valid_until IS NULL')], unique=True, sqlite_where=sa.text('valid_until IS NULL'))
+
+def downgrade() -> None:
+    if False:
+        return 10
+    with op.batch_alter_table('instance_config', schema=None) as batch_op:
+        batch_op.drop_index('ix_one_active_instance_config')

@@ -1,0 +1,163 @@
+from __future__ import annotations
+import re
+from abc import ABCMeta, abstractmethod
+from pathlib import Path
+from subprocess import CalledProcessError, check_output
+from typing import TYPE_CHECKING
+from libqtile.command.base import expose_command
+from libqtile.confreader import ConfigError
+from libqtile.log_utils import logger
+from libqtile.widget import base
+if TYPE_CHECKING:
+    from libqtile.core.manager import Qtile
+
+class _BaseLayoutBackend(metaclass=ABCMeta):
+
+    def __init__(self, qtile: Qtile):
+        if False:
+            i = 10
+            return i + 15
+        '\n        This handles getting and setter the keyboard layout with the appropriate\n        backend.\n        '
+
+    @abstractmethod
+    def get_keyboard(self) -> str:
+        if False:
+            for i in range(10):
+                print('nop')
+        '\n        Return the currently used keyboard layout as a string\n\n        Examples: "us", "us dvorak".  In case of error returns "unknown".\n        '
+
+    def set_keyboard(self, layout: str, options: str | None) -> None:
+        if False:
+            for i in range(10):
+                print('nop')
+        '\n        Set the keyboard layout with specified options.\n        '
+
+class _X11LayoutBackend(_BaseLayoutBackend):
+    kb_layout_regex = re.compile('layout:\\s+(?P<layout>[\\w-]+)')
+    kb_variant_regex = re.compile('variant:\\s+(?P<variant>\\w+)')
+
+    def get_keyboard(self) -> str:
+        if False:
+            for i in range(10):
+                print('nop')
+        try:
+            command = 'setxkbmap -verbose 10 -query'
+            setxkbmap_output = check_output(command.split(' ')).decode()
+        except CalledProcessError:
+            logger.exception('Can not get the keyboard layout:')
+            return 'unknown'
+        except OSError:
+            logger.exception('Please, check that xset is available:')
+            return 'unknown'
+        match_layout = self.kb_layout_regex.search(setxkbmap_output)
+        if match_layout is None:
+            return 'ERR'
+        keyboard = match_layout.group('layout')
+        match_variant = self.kb_variant_regex.search(setxkbmap_output)
+        if match_variant:
+            keyboard += ' ' + match_variant.group('variant')
+        return keyboard
+
+    def set_keyboard(self, layout: str, options: str | None) -> None:
+        if False:
+            print('Hello World!')
+        command = ['setxkbmap']
+        command.extend(layout.split(' '))
+        if options:
+            command.extend(['-option', options])
+        try:
+            check_output(command)
+        except CalledProcessError:
+            logger.error('Cannot change the keyboard layout.')
+        except OSError:
+            logger.error('Please, check that setxkbmap is available.')
+        else:
+            if Path('~/.Xmodmap').expanduser().is_file():
+                try:
+                    check_output('xmodmap $HOME/.Xmodmap', shell=True)
+                except CalledProcessError:
+                    logger.error('Could not load ~/.Xmodmap.')
+
+class _WaylandLayoutBackend(_BaseLayoutBackend):
+
+    def __init__(self, qtile: Qtile) -> None:
+        if False:
+            for i in range(10):
+                print('nop')
+        self.set_keymap = qtile.core.set_keymap
+        self._layout: str = ''
+
+    def get_keyboard(self) -> str:
+        if False:
+            i = 10
+            return i + 15
+        return self._layout
+
+    def set_keyboard(self, layout: str, options: str | None) -> None:
+        if False:
+            for i in range(10):
+                print('nop')
+        maybe_variant: str | None = None
+        if ' ' in layout:
+            (layout_name, maybe_variant) = layout.split(' ', maxsplit=1)
+        else:
+            layout_name = layout
+        self.set_keymap(layout_name, options, maybe_variant)
+        self._layout = layout
+layout_backends = {'x11': _X11LayoutBackend, 'wayland': _WaylandLayoutBackend}
+
+class KeyboardLayout(base.InLoopPollText):
+    """Widget for changing and displaying the current keyboard layout
+
+    To use this widget effectively you need to specify keyboard layouts you want to use
+    (using "configured_keyboards") and bind function "next_keyboard" to specific keys in
+    order to change layouts.
+
+    For example:
+
+        Key([mod], "space", lazy.widget["keyboardlayout"].next_keyboard(), desc="Next keyboard layout."),
+
+    When running Qtile with the X11 backend, this widget requires setxkbmap to be available.
+    Xmodmap will also be used if .Xmodmap file is available.
+    """
+    defaults = [('update_interval', 1, 'Update time in seconds.'), ('configured_keyboards', ['us'], "A list of predefined keyboard layouts represented as strings. For example: ['us', 'us colemak', 'es', 'fr']."), ('display_map', {}, "Custom display of layout. Key should be in format 'layout variant'. For example: {'us': 'us', 'lt sgs': 'sgs', 'ru phonetic': 'ru'}"), ('option', None, "string of setxkbmap option. Ex., 'compose:menu,grp_led:scroll'")]
+
+    def __init__(self, **config):
+        if False:
+            print('Hello World!')
+        base.InLoopPollText.__init__(self, **config)
+        self.add_defaults(KeyboardLayout.defaults)
+        self.add_callbacks({'Button1': self.next_keyboard})
+
+    def _configure(self, qtile, bar):
+        if False:
+            i = 10
+            return i + 15
+        base.InLoopPollText._configure(self, qtile, bar)
+        if qtile.core.name not in layout_backends:
+            raise ConfigError('KeyboardLayout does not support backend: ' + qtile.core.name)
+        self.backend = layout_backends[qtile.core.name](qtile)
+        self.backend.set_keyboard(self.configured_keyboards[0], self.option)
+
+    @expose_command()
+    def next_keyboard(self):
+        if False:
+            i = 10
+            return i + 15
+        'set the next layout in the list of configured keyboard layouts as\n        new current layout in use\n\n        If the current keyboard layout is not in the list, it will set as new\n        layout the first one in the list.\n        '
+        current_keyboard = self.backend.get_keyboard()
+        if current_keyboard in self.configured_keyboards:
+            next_keyboard = self.configured_keyboards[(self.configured_keyboards.index(current_keyboard) + 1) % len(self.configured_keyboards)]
+        else:
+            next_keyboard = self.configured_keyboards[0]
+        self.backend.set_keyboard(next_keyboard, self.option)
+        self.tick()
+
+    def poll(self):
+        if False:
+            i = 10
+            return i + 15
+        keyboard = self.backend.get_keyboard()
+        if keyboard in self.display_map.keys():
+            return self.display_map[keyboard]
+        return keyboard.upper()

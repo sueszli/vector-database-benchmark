@@ -1,0 +1,39 @@
+"""Add user_id to Roles and more entity columns to Permissions
+
+Revision ID: 526c4523d5d5
+Revises: 117f8c3b9c42
+Create Date: 2023-10-04 20:26:20.722669
+
+"""
+from alembic import op
+import sqlalchemy as sa
+revision = '526c4523d5d5'
+down_revision = '117f8c3b9c42'
+branch_labels = None
+depends_on = None
+
+def upgrade() -> None:
+    if False:
+        return 10
+    with op.batch_alter_table('permission', schema=None) as batch_op:
+        batch_op.add_column(sa.Column('user_id', sa.Integer(), nullable=True))
+        batch_op.add_column(sa.Column('entity_name', sa.String(length=255), nullable=True))
+        batch_op.add_column(sa.Column('entity_type', sa.String(length=255), nullable=True))
+        batch_op.add_column(sa.Column('options', sa.JSON(), nullable=True))
+        batch_op.create_foreign_key('permission_user_id', 'user', ['user_id'], ['id'])
+    with op.batch_alter_table('role', schema=None) as batch_op:
+        batch_op.add_column(sa.Column('user_id', sa.Integer(), nullable=True))
+        batch_op.create_foreign_key('role_user_id', 'user', ['user_id'], ['id'])
+
+def downgrade() -> None:
+    if False:
+        return 10
+    with op.batch_alter_table('role', schema=None) as batch_op:
+        batch_op.drop_constraint('role_user_id', type_='foreignkey')
+        batch_op.drop_column('user_id')
+    with op.batch_alter_table('permission', schema=None) as batch_op:
+        batch_op.drop_constraint('permission_user_id', type_='foreignkey')
+        batch_op.drop_column('options')
+        batch_op.drop_column('entity_type')
+        batch_op.drop_column('entity_name')
+        batch_op.drop_column('user_id')

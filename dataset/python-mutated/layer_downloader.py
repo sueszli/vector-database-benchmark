@@ -1,0 +1,102 @@
+"""
+Downloads Layers locally
+"""
+import logging
+from pathlib import Path
+from typing import List
+import boto3
+from botocore.exceptions import ClientError, NoCredentialsError
+from samcli.commands.local.cli_common.user_exceptions import CredentialsRequired, ResourceNotFound
+from samcli.lib.providers.provider import LayerVersion, Stack
+from samcli.lib.utils.codeuri import resolve_code_path
+from samcli.local.lambdafn.remote_files import unzip_from_uri
+LOG = logging.getLogger(__name__)
+
+class LayerDownloader:
+
+    def __init__(self, layer_cache, cwd, stacks: List[Stack], lambda_client=None):
+        if False:
+            while True:
+                i = 10
+        "\n\n        Parameters\n        ----------\n        layer_cache str\n            path where to cache layers\n        cwd str\n            Current working directory\n        stacks List[Stack]\n            List of all stacks\n        lambda_client boto3.client('lambda')\n            Boto3 Client for AWS Lambda\n        "
+        self._layer_cache = layer_cache
+        self.cwd = cwd
+        self._stacks = stacks
+        self._lambda_client = lambda_client
+
+    @property
+    def lambda_client(self):
+        if False:
+            return 10
+        self._lambda_client = self._lambda_client or boto3.client('lambda')
+        return self._lambda_client
+
+    @property
+    def layer_cache(self):
+        if False:
+            return 10
+        '\n        Layer Cache property. This will always return a cache that exists on the system.\n\n        Returns\n        -------\n        str\n            Path to the Layer Cache\n        '
+        self._create_cache(self._layer_cache)
+        return self._layer_cache
+
+    def download_all(self, layers, force=False):
+        if False:
+            i = 10
+            return i + 15
+        '\n        Download a list of layers to the cache\n\n        Parameters\n        ----------\n        layers list(samcli.commands.local.lib.provider.Layer)\n            List of Layers representing the layer to be downloaded\n        force bool\n            True to download the layer even if it exists already on the system\n\n        Returns\n        -------\n        List(Path)\n            List of Paths to where the layer was cached\n        '
+        layer_dirs = []
+        for layer in layers:
+            layer_dirs.append(self.download(layer, force))
+        return layer_dirs
+
+    def download(self, layer: LayerVersion, force=False) -> LayerVersion:
+        if False:
+            i = 10
+            return i + 15
+        '\n        Download a given layer to the local cache.\n\n        Parameters\n        ----------\n        layer samcli.commands.local.lib.provider.Layer\n            Layer representing the layer to be downloaded.\n        force bool\n            True to download the layer even if it exists already on the system\n\n        Returns\n        -------\n        Path\n            Path object that represents where the layer is download to\n        '
+        if layer.is_defined_within_template:
+            LOG.info('%s is a local Layer in the template', layer.name)
+            layer.codeuri = resolve_code_path(self.cwd, layer.codeuri)
+            return layer
+        layer_path = Path(self.layer_cache).resolve().joinpath(layer.name)
+        is_layer_downloaded = self._is_layer_cached(layer_path)
+        layer.codeuri = str(layer_path)
+        if is_layer_downloaded and (not force):
+            LOG.info('%s is already cached. Skipping download', layer.arn)
+            return layer
+        layer_zip_path = layer.codeuri + '.zip'
+        layer_zip_uri = self._fetch_layer_uri(layer)
+        unzip_from_uri(layer_zip_uri, layer_zip_path, unzip_output_dir=layer.codeuri, progressbar_label='Downloading {}'.format(layer.layer_arn))
+        return layer
+
+    def _fetch_layer_uri(self, layer):
+        if False:
+            print('Hello World!')
+        '\n        Fetch the Layer Uri based on the LayerVersion Arn\n\n        Parameters\n        ----------\n        layer samcli.commands.local.lib.provider.LayerVersion\n            LayerVersion to fetch\n\n        Returns\n        -------\n        str\n            The Uri to download the LayerVersion Content from\n\n        Raises\n        ------\n        samcli.commands.local.cli_common.user_exceptions.NoCredentialsError\n            When the Credentials given are not sufficient to call AWS Lambda\n        '
+        try:
+            layer_version_response = self.lambda_client.get_layer_version(LayerName=layer.layer_arn, VersionNumber=layer.version)
+        except NoCredentialsError as ex:
+            raise CredentialsRequired('Layers require credentials to download the layers locally.') from ex
+        except ClientError as e:
+            error_code = e.response.get('Error').get('Code')
+            error_exc = {'AccessDeniedException': CredentialsRequired('Credentials provided are missing lambda:Getlayerversion policy that is needed to download the layer or you do not have permission to download the layer'), 'ResourceNotFoundException': ResourceNotFound('{} was not found.'.format(layer.arn))}
+            if error_code in error_exc:
+                raise error_exc[error_code]
+            raise e
+        return layer_version_response.get('Content').get('Location')
+
+    @staticmethod
+    def _is_layer_cached(layer_path: Path) -> bool:
+        if False:
+            for i in range(10):
+                print('nop')
+        '\n        Checks if the layer is already cached on the system\n\n        Parameters\n        ----------\n        layer_path Path\n            Path to where the layer should exist if cached on the system\n\n        Returns\n        -------\n        bool\n            True if the layer_path already exists otherwise False\n\n        '
+        return layer_path.exists()
+
+    @staticmethod
+    def _create_cache(layer_cache):
+        if False:
+            while True:
+                i = 10
+        '\n        Create the Cache directory if it does not exist.\n\n        Parameters\n        ----------\n        layer_cache\n            Directory to where the layers should be cached\n        '
+        Path(layer_cache).mkdir(mode=448, parents=True, exist_ok=True)

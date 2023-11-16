@@ -1,0 +1,28 @@
+from ..excel_comparison_test import ExcelComparisonTest
+from ...workbook import Workbook
+
+class TestCompareXLSXFiles(ExcelComparisonTest):
+    """
+    Test file created by XlsxWriter against a file created by Excel.
+
+    """
+
+    def setUp(self):
+        if False:
+            while True:
+                i = 10
+        self.set_filename('table18.xlsx')
+
+    def test_create_file(self):
+        if False:
+            print('Hello World!')
+        'Test the creation of a simple XlsxWriter file with tables.'
+        workbook = Workbook(self.got_filename)
+        worksheet = workbook.add_worksheet()
+        text_wrap = workbook.add_format({'text_wrap': 1})
+        worksheet.set_column('C:F', 10.288)
+        worksheet.set_row(2, 39)
+        worksheet.add_table('C3:F13', {'columns': [{}, {}, {}, {'header': 'Column\n4', 'header_format': text_wrap}]})
+        worksheet.write('A16', 'hello')
+        workbook.close()
+        self.assertExcelEqual()

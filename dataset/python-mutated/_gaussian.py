@@ -1,0 +1,30 @@
+import numpy as np
+from .._shared.filters import gaussian
+from ..util import img_as_float
+__all__ = ['gaussian', 'difference_of_gaussians']
+
+def difference_of_gaussians(image, low_sigma, high_sigma=None, *, mode='nearest', cval=0, channel_axis=None, truncate=4.0):
+    if False:
+        print('Hello World!')
+    "Find features between ``low_sigma`` and ``high_sigma`` in size.\n\n    This function uses the Difference of Gaussians method for applying\n    band-pass filters to multi-dimensional arrays. The input array is\n    blurred with two Gaussian kernels of differing sigmas to produce two\n    intermediate, filtered images. The more-blurred image is then subtracted\n    from the less-blurred image. The final output image will therefore have\n    had high-frequency components attenuated by the smaller-sigma Gaussian, and\n    low frequency components will have been removed due to their presence in\n    the more-blurred intermediate.\n\n    Parameters\n    ----------\n    image : ndarray\n        Input array to filter.\n    low_sigma : scalar or sequence of scalars\n        Standard deviation(s) for the Gaussian kernel with the smaller sigmas\n        across all axes. The standard deviations are given for each axis as a\n        sequence, or as a single number, in which case the single number is\n        used as the standard deviation value for all axes.\n    high_sigma : scalar or sequence of scalars, optional (default is None)\n        Standard deviation(s) for the Gaussian kernel with the larger sigmas\n        across all axes. The standard deviations are given for each axis as a\n        sequence, or as a single number, in which case the single number is\n        used as the standard deviation value for all axes. If None is given\n        (default), sigmas for all axes are calculated as 1.6 * low_sigma.\n    mode : {'reflect', 'constant', 'nearest', 'mirror', 'wrap'}, optional\n        The ``mode`` parameter determines how the array borders are\n        handled, where ``cval`` is the value when mode is equal to\n        'constant'. Default is 'nearest'.\n    cval : scalar, optional\n        Value to fill past edges of input if ``mode`` is 'constant'. Default\n        is 0.0\n    channel_axis : int or None, optional\n        If None, the image is assumed to be a grayscale (single channel) image.\n        Otherwise, this parameter indicates which axis of the array corresponds\n        to channels.\n\n        .. versionadded:: 0.19\n           ``channel_axis`` was added in 0.19.\n    truncate : float, optional (default is 4.0)\n        Truncate the filter at this many standard deviations.\n\n    Returns\n    -------\n    filtered_image : ndarray\n        the filtered array.\n\n    See also\n    --------\n    skimage.feature.blob_dog\n\n    Notes\n    -----\n    This function will subtract an array filtered with a Gaussian kernel\n    with sigmas given by ``high_sigma`` from an array filtered with a\n    Gaussian kernel with sigmas provided by ``low_sigma``. The values for\n    ``high_sigma`` must always be greater than or equal to the corresponding\n    values in ``low_sigma``, or a ``ValueError`` will be raised.\n\n    When ``high_sigma`` is none, the values for ``high_sigma`` will be\n    calculated as 1.6x the corresponding values in ``low_sigma``. This ratio\n    was originally proposed by Marr and Hildreth (1980) [1]_ and is commonly\n    used when approximating the inverted Laplacian of Gaussian, which is used\n    in edge and blob detection.\n\n    Input image is converted according to the conventions of ``img_as_float``.\n\n    Except for sigma values, all parameters are used for both filters.\n\n    Examples\n    --------\n    Apply a simple Difference of Gaussians filter to a color image:\n\n    >>> from skimage.data import astronaut\n    >>> from skimage.filters import difference_of_gaussians\n    >>> filtered_image = difference_of_gaussians(astronaut(), 2, 10,\n    ...                                          channel_axis=-1)\n\n    Apply a Laplacian of Gaussian filter as approximated by the Difference\n    of Gaussians filter:\n\n    >>> filtered_image = difference_of_gaussians(astronaut(), 2,\n    ...                                          channel_axis=-1)\n\n    Apply a Difference of Gaussians filter to a grayscale image using different\n    sigma values for each axis:\n\n    >>> from skimage.data import camera\n    >>> filtered_image = difference_of_gaussians(camera(), (2,5), (3,20))\n\n    References\n    ----------\n    .. [1] Marr, D. and Hildreth, E. Theory of Edge Detection. Proc. R. Soc.\n           Lond. Series B 207, 187-217 (1980).\n           https://doi.org/10.1098/rspb.1980.0020\n\n    "
+    image = img_as_float(image)
+    low_sigma = np.array(low_sigma, dtype='float', ndmin=1)
+    if high_sigma is None:
+        high_sigma = low_sigma * 1.6
+    else:
+        high_sigma = np.array(high_sigma, dtype='float', ndmin=1)
+    if channel_axis is not None:
+        spatial_dims = image.ndim - 1
+    else:
+        spatial_dims = image.ndim
+    if len(low_sigma) != 1 and len(low_sigma) != spatial_dims:
+        raise ValueError('low_sigma must have length equal to number of spatial dimensions of input')
+    if len(high_sigma) != 1 and len(high_sigma) != spatial_dims:
+        raise ValueError('high_sigma must have length equal to number of spatial dimensions of input')
+    low_sigma = low_sigma * np.ones(spatial_dims)
+    high_sigma = high_sigma * np.ones(spatial_dims)
+    if any(high_sigma < low_sigma):
+        raise ValueError('high_sigma must be equal to or larger thanlow_sigma for all axes')
+    im1 = gaussian(image, low_sigma, mode=mode, cval=cval, channel_axis=channel_axis, truncate=truncate, preserve_range=False)
+    im2 = gaussian(image, high_sigma, mode=mode, cval=cval, channel_axis=channel_axis, truncate=truncate, preserve_range=False)
+    return im1 - im2

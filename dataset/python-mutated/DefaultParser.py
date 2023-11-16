@@ -1,0 +1,106 @@
+"""Code handle loading mmtf-python into Biopython's structures."""
+from Bio.PDB.StructureBuilder import StructureBuilder
+import numpy as np
+
+class StructureDecoder:
+    """Class to pass the data from mmtf-python into a Biopython data structure."""
+
+    def __init__(self):
+        if False:
+            i = 10
+            return i + 15
+        'Initialize the class.'
+        self.this_type = ''
+
+    def init_structure(self, total_num_bonds, total_num_atoms, total_num_groups, total_num_chains, total_num_models, structure_id):
+        if False:
+            return 10
+        'Initialize the structure object.\n\n        :param total_num_bonds: the number of bonds in the structure\n        :param total_num_atoms: the number of atoms in the structure\n        :param total_num_groups: the number of groups in the structure\n        :param total_num_chains: the number of chains in the structure\n        :param total_num_models: the number of models in the structure\n        :param structure_id: the id of the structure (e.g. PDB id)\n\n        '
+        self.structure_builder = StructureBuilder()
+        self.structure_builder.init_structure(structure_id=structure_id)
+        self.chain_index_to_type_map = {}
+        self.chain_index_to_seq_map = {}
+        self.chain_index_to_description_map = {}
+        self.chain_counter = 0
+
+    def set_atom_info(self, atom_name, serial_number, alternative_location_id, x, y, z, occupancy, temperature_factor, element, charge):
+        if False:
+            i = 10
+            return i + 15
+        'Create an atom object an set the information.\n\n        :param atom_name: the atom name, e.g. CA for this atom\n        :param serial_number: the serial id of the atom (e.g. 1)\n        :param alternative_location_id: the alternative location id for the atom, if present\n        :param x: the x coordinate of the atom\n        :param y: the y coordinate of the atom\n        :param z: the z coordinate of the atom\n        :param occupancy: the occupancy of the atom\n        :param temperature_factor: the temperature factor of the atom\n        :param element: the element of the atom, e.g. C for carbon. According to IUPAC. Calcium  is Ca\n        :param charge: the formal atomic charge of the atom\n\n        '
+        if alternative_location_id == '\x00':
+            alternative_location_id = ' '
+        self.structure_builder.init_atom(str(atom_name), np.array((x, y, z), 'f'), temperature_factor, occupancy, alternative_location_id, str(atom_name), serial_number=serial_number, element=str(element).upper())
+
+    def set_chain_info(self, chain_id, chain_name, num_groups):
+        if False:
+            return 10
+        'Set the chain information.\n\n        :param chain_id: the asym chain id from mmCIF\n        :param chain_name: the auth chain id from mmCIF\n        :param num_groups: the number of groups this chain has\n\n        '
+        self.structure_builder.init_chain(chain_id=chain_name)
+        if self.chain_index_to_type_map[self.chain_counter] == 'polymer':
+            self.this_type = ' '
+        elif self.chain_index_to_type_map[self.chain_counter] == 'non-polymer':
+            self.this_type = 'H'
+        elif self.chain_index_to_type_map[self.chain_counter] == 'water':
+            self.this_type = 'W'
+        self.chain_counter += 1
+
+    def set_entity_info(self, chain_indices, sequence, description, entity_type):
+        if False:
+            print('Hello World!')
+        'Set the entity level information for the structure.\n\n        :param chain_indices: the indices of the chains for this entity\n        :param sequence: the one letter code sequence for this entity\n        :param description: the description for this entity\n        :param entity_type: the entity type (polymer,non-polymer,water)\n\n        '
+        for chain_ind in chain_indices:
+            self.chain_index_to_type_map[chain_ind] = entity_type
+            self.chain_index_to_seq_map[chain_ind] = sequence
+            self.chain_index_to_description_map[chain_ind] = description
+
+    def set_group_info(self, group_name, group_number, insertion_code, group_type, atom_count, bond_count, single_letter_code, sequence_index, secondary_structure_type):
+        if False:
+            print('Hello World!')
+        'Set the information for a group.\n\n        :param group_name: the name of this group, e.g. LYS\n        :param group_number: the residue number of this group\n        :param insertion_code: the insertion code for this group\n        :param group_type: a string indicating the type of group (as found in the chemcomp dictionary.\n            Empty string if none available.\n        :param atom_count: the number of atoms in the group\n        :param bond_count: the number of unique bonds in the group\n        :param single_letter_code: the single letter code of the group\n        :param sequence_index: the index of this group in the sequence defined by the entity\n        :param secondary_structure_type: the type of secondary structure used\n            (types are according to DSSP and number to type mappings are defined in the specification)\n\n        '
+        if insertion_code == '\x00':
+            insertion_code = ' '
+        self.structure_builder.init_seg(' ')
+        self.structure_builder.init_residue(group_name, self.this_type, group_number, insertion_code)
+
+    def set_model_info(self, model_id, chain_count):
+        if False:
+            while True:
+                i = 10
+        'Set the information for a model.\n\n        :param model_id: the index for the model\n        :param chain_count: the number of chains in the model\n\n        '
+        self.structure_builder.init_model(model_id)
+
+    def set_xtal_info(self, space_group, unit_cell):
+        if False:
+            print('Hello World!')
+        'Set the crystallographic information for the structure.\n\n        :param space_group: the space group name, e.g. "P 21 21 21"\n        :param unit_cell: an array of length 6 with the unit cell parameters in order: a, b, c, alpha, beta, gamma\n\n        '
+        self.structure_builder.set_symmetry(space_group, unit_cell)
+
+    def set_header_info(self, r_free, r_work, resolution, title, deposition_date, release_date, experimnetal_methods):
+        if False:
+            i = 10
+            return i + 15
+        'Set the header information.\n\n        :param r_free: the measured R-Free for the structure\n        :param r_work: the measure R-Work for the structure\n        :param resolution: the resolution of the structure\n        :param title: the title of the structure\n        :param deposition_date: the deposition date of the structure\n        :param release_date: the release date of the structure\n        :param experimnetal_methods: the list of experimental methods in the structure\n\n        '
+
+    def set_bio_assembly_trans(self, bio_assembly_index, input_chain_indices, input_transform):
+        if False:
+            while True:
+                i = 10
+        'Set the Bioassembly transformation information. A single bioassembly can have multiple transforms.\n\n        :param bio_assembly_index: the integer index of the bioassembly\n        :param input_chain_indices: the list of integer indices for the chains of this bioassembly\n        :param input_transform: the list of doubles for  the transform of this bioassmbly transform.\n\n        '
+
+    def finalize_structure(self):
+        if False:
+            return 10
+        'Any functions needed to cleanup the structure.'
+
+    def set_group_bond(self, atom_index_one, atom_index_two, bond_order):
+        if False:
+            while True:
+                i = 10
+        'Add bonds within a group.\n\n        :param atom_index_one: the integer atom index (in the group) of the first partner in the bond\n        :param atom_index_two: the integer atom index (in the group) of the second partner in the bond\n        :param bond_order: the integer bond order\n\n        '
+
+    def set_inter_group_bond(self, atom_index_one, atom_index_two, bond_order):
+        if False:
+            i = 10
+            return i + 15
+        'Add bonds between groups.\n\n        :param atom_index_one: the integer atom index (in the structure) of the first partner in the bond\n        :param atom_index_two: the integer atom index (in the structure) of the second partner in the bond\n        :param bond_order: the bond order\n\n        '

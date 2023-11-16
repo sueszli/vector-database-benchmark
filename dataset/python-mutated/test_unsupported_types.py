@@ -1,0 +1,20 @@
+import pytest
+from robyn.robyn import Response
+
+class A:
+    pass
+bad_bodies = [None, 1, True, A, {'body': 'OK'}, ['OK', b'OK'], Response(status_code=200, headers={}, description=b'OK')]
+good_bodies = ['OK', b'OK']
+
+@pytest.mark.parametrize('description', bad_bodies)
+def test_bad_body_types(description):
+    if False:
+        print('Hello World!')
+    with pytest.raises(ValueError):
+        _ = Response(status_code=200, headers={}, description=description)
+
+@pytest.mark.parametrize('description', good_bodies)
+def test_good_body_types(description):
+    if False:
+        return 10
+    _ = Response(status_code=200, headers={}, description=description)

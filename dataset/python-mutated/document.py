@@ -1,0 +1,191 @@
+import collections
+import re
+import typing
+LinkInfo = collections.namedtuple('LinkInfo', ['link', 'name', 'sections'])
+
+class Document:
+
+    def __init__(self, content: typing.Sequence[typing.Union['Section', 'Link']]=None, url: str='', title: str='', description: str='', version: str=''):
+        if False:
+            i = 10
+            return i + 15
+        content = [] if content is None else list(content)
+        seen_fields = set()
+        seen_sections = set()
+        for item in content:
+            if isinstance(item, Link):
+                msg = 'Link "%s" in Document must have a unique name.'
+                assert item.name not in seen_fields, msg % item.name
+                seen_fields.add(item.name)
+            else:
+                msg = 'Section "%s" in Document must have a unique name.'
+                assert item.name not in seen_sections, msg % item.name
+                seen_sections.add(item.name)
+        self.content = content
+        self.url = url
+        self.title = title
+        self.description = description
+        self.version = version
+
+    def get_links(self):
+        if False:
+            return 10
+        return [item for item in self.content if isinstance(item, Link)]
+
+    def get_sections(self):
+        if False:
+            for i in range(10):
+                print('nop')
+        return [item for item in self.content if isinstance(item, Section)]
+
+    def walk_links(self):
+        if False:
+            for i in range(10):
+                print('nop')
+        link_info_list = []
+        for item in self.content:
+            if isinstance(item, Link):
+                link_info = LinkInfo(link=item, name=item.name, sections=())
+                link_info_list.append(link_info)
+            else:
+                link_info_list.extend(item.walk_links())
+        return link_info_list
+
+class Section:
+
+    def __init__(self, name: str, content: typing.Sequence[typing.Union['Section', 'Link']]=None, title: str='', description: str=''):
+        if False:
+            for i in range(10):
+                print('nop')
+        content = [] if content is None else list(content)
+        seen_fields = set()
+        seen_sections = set()
+        for item in content:
+            if isinstance(item, Link):
+                msg = 'Link "%s" in Section "%s" must have a unique name.'
+                assert item.name not in seen_fields, msg % (item.name, name)
+                seen_fields.add(item.name)
+            else:
+                msg = 'Section "%s" in Section "%s" must have a unique name.'
+                assert item.name not in seen_sections, msg % (item.name, name)
+                seen_sections.add(item.name)
+        self.content = content
+        self.name = name
+        self.title = title
+        self.description = description
+
+    def get_links(self):
+        if False:
+            for i in range(10):
+                print('nop')
+        return [item for item in self.content if isinstance(item, Link)]
+
+    def get_sections(self):
+        if False:
+            return 10
+        return [item for item in self.content if isinstance(item, Section)]
+
+    def walk_links(self, previous_sections=()):
+        if False:
+            for i in range(10):
+                print('nop')
+        link_info_list = []
+        sections = previous_sections + (self,)
+        for item in self.content:
+            if isinstance(item, Link):
+                name = ':'.join([section.name for section in sections] + [item.name])
+                link_info = LinkInfo(link=item, name=name, sections=sections)
+                link_info_list.append(link_info)
+            else:
+                link_info_list.extend(item.walk_links(previous_sections=sections))
+        return link_info_list
+
+class Link:
+    """
+    Links represent the actions that a client may perform.
+    """
+
+    def __init__(self, url: str, method: str, handler: typing.Callable=None, name: str='', encoding: str='', response: 'Response'=None, title: str='', description: str='', fields: typing.Sequence['Field']=None):
+        if False:
+            while True:
+                i = 10
+        method = method.upper()
+        fields = [] if fields is None else list(fields)
+        url_path_names = set([item.strip('{}').lstrip('+') for item in re.findall('{[^}]*}', url)])
+        path_fields = [field for field in fields if field.location == 'path']
+        body_fields = [field for field in fields if field.location == 'body']
+        assert method in ('GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS', 'HEAD', 'TRACE')
+        assert len(body_fields) < 2
+        if body_fields:
+            assert encoding
+        for field in path_fields:
+            assert field.name in url_path_names
+        for path_name in url_path_names:
+            if path_name not in [field.name for field in path_fields]:
+                fields += [Field(name=path_name, location='path', required=True)]
+        self.url = url
+        self.method = method
+        self.handler = handler
+        self.name = name if name else handler.__name__
+        self.encoding = encoding
+        self.response = response
+        self.title = title
+        self.description = description
+        self.fields = fields
+
+    def get_path_fields(self):
+        if False:
+            print('Hello World!')
+        return [field for field in self.fields if field.location == 'path']
+
+    def get_query_fields(self):
+        if False:
+            while True:
+                i = 10
+        return [field for field in self.fields if field.location == 'query']
+
+    def get_body_field(self):
+        if False:
+            print('Hello World!')
+        for field in self.fields:
+            if field.location == 'body':
+                return field
+        return None
+
+    def get_expanded_body(self):
+        if False:
+            while True:
+                i = 10
+        field = self.get_body_field()
+        if field is None or not hasattr(field.schema, 'properties'):
+            return None
+        return field.schema.properties
+
+class Field:
+
+    def __init__(self, name: str, location: str, title: str='', description: str='', required: bool=None, schema: typing.Any=None, example: typing.Any=None):
+        if False:
+            i = 10
+            return i + 15
+        assert location in ('path', 'query', 'body', 'cookie', 'header', 'formData')
+        if required is None:
+            required = True if location in ('path', 'body') else False
+        if location == 'path':
+            assert required, "May not set 'required=False' on path fields."
+        self.name = name
+        self.title = title
+        self.description = description
+        self.location = location
+        self.required = required
+        self.schema = schema
+        self.example = example
+
+class Response:
+
+    def __init__(self, encoding: str, status_code: int=200, schema: typing.Any=None):
+        if False:
+            while True:
+                i = 10
+        self.encoding = encoding
+        self.status_code = status_code
+        self.schema = schema

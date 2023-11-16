@@ -1,0 +1,1331 @@
+from io import IOBase
+from typing import Any, Callable, Dict, IO, Iterable, Optional, TypeVar, Union, cast, overload
+import urllib.parse
+from azure.core.exceptions import ClientAuthenticationError, HttpResponseError, ResourceExistsError, ResourceNotFoundError, ResourceNotModifiedError, map_error
+from azure.core.paging import ItemPaged
+from azure.core.pipeline import PipelineResponse
+from azure.core.pipeline.transport import HttpResponse
+from azure.core.polling import LROPoller, NoPolling, PollingMethod
+from azure.core.rest import HttpRequest
+from azure.core.tracing.decorator import distributed_trace
+from azure.core.utils import case_insensitive_dict
+from azure.mgmt.core.exceptions import ARMErrorFormat
+from azure.mgmt.core.polling.arm_polling import ARMPolling
+from .. import models as _models
+from .._serialization import Serializer
+from .._vendor import _convert_request
+T = TypeVar('T')
+ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
+_SERIALIZER = Serializer()
+_SERIALIZER.client_side_validation = False
+
+def build_list_gremlin_databases_request(resource_group_name: str, account_name: str, subscription_id: str, **kwargs: Any) -> HttpRequest:
+    if False:
+        return 10
+    _headers = case_insensitive_dict(kwargs.pop('headers', {}) or {})
+    _params = case_insensitive_dict(kwargs.pop('params', {}) or {})
+    api_version: str = kwargs.pop('api_version', _params.pop('api-version', '2023-09-15'))
+    accept = _headers.pop('Accept', 'application/json')
+    _url = kwargs.pop('template_url', '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/gremlinDatabases')
+    path_format_arguments = {'subscriptionId': _SERIALIZER.url('subscription_id', subscription_id, 'str', min_length=1), 'resourceGroupName': _SERIALIZER.url('resource_group_name', resource_group_name, 'str', max_length=90, min_length=1), 'accountName': _SERIALIZER.url('account_name', account_name, 'str', max_length=50, min_length=3, pattern='^[a-z0-9]+(-[a-z0-9]+)*')}
+    _url: str = _url.format(**path_format_arguments)
+    _params['api-version'] = _SERIALIZER.query('api_version', api_version, 'str')
+    _headers['Accept'] = _SERIALIZER.header('accept', accept, 'str')
+    return HttpRequest(method='GET', url=_url, params=_params, headers=_headers, **kwargs)
+
+def build_get_gremlin_database_request(resource_group_name: str, account_name: str, database_name: str, subscription_id: str, **kwargs: Any) -> HttpRequest:
+    if False:
+        print('Hello World!')
+    _headers = case_insensitive_dict(kwargs.pop('headers', {}) or {})
+    _params = case_insensitive_dict(kwargs.pop('params', {}) or {})
+    api_version: str = kwargs.pop('api_version', _params.pop('api-version', '2023-09-15'))
+    accept = _headers.pop('Accept', 'application/json')
+    _url = kwargs.pop('template_url', '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/gremlinDatabases/{databaseName}')
+    path_format_arguments = {'subscriptionId': _SERIALIZER.url('subscription_id', subscription_id, 'str', min_length=1), 'resourceGroupName': _SERIALIZER.url('resource_group_name', resource_group_name, 'str', max_length=90, min_length=1), 'accountName': _SERIALIZER.url('account_name', account_name, 'str', max_length=50, min_length=3, pattern='^[a-z0-9]+(-[a-z0-9]+)*'), 'databaseName': _SERIALIZER.url('database_name', database_name, 'str')}
+    _url: str = _url.format(**path_format_arguments)
+    _params['api-version'] = _SERIALIZER.query('api_version', api_version, 'str')
+    _headers['Accept'] = _SERIALIZER.header('accept', accept, 'str')
+    return HttpRequest(method='GET', url=_url, params=_params, headers=_headers, **kwargs)
+
+def build_create_update_gremlin_database_request(resource_group_name: str, account_name: str, database_name: str, subscription_id: str, **kwargs: Any) -> HttpRequest:
+    if False:
+        for i in range(10):
+            print('nop')
+    _headers = case_insensitive_dict(kwargs.pop('headers', {}) or {})
+    _params = case_insensitive_dict(kwargs.pop('params', {}) or {})
+    api_version: str = kwargs.pop('api_version', _params.pop('api-version', '2023-09-15'))
+    content_type: Optional[str] = kwargs.pop('content_type', _headers.pop('Content-Type', None))
+    accept = _headers.pop('Accept', 'application/json')
+    _url = kwargs.pop('template_url', '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/gremlinDatabases/{databaseName}')
+    path_format_arguments = {'subscriptionId': _SERIALIZER.url('subscription_id', subscription_id, 'str', min_length=1), 'resourceGroupName': _SERIALIZER.url('resource_group_name', resource_group_name, 'str', max_length=90, min_length=1), 'accountName': _SERIALIZER.url('account_name', account_name, 'str', max_length=50, min_length=3, pattern='^[a-z0-9]+(-[a-z0-9]+)*'), 'databaseName': _SERIALIZER.url('database_name', database_name, 'str')}
+    _url: str = _url.format(**path_format_arguments)
+    _params['api-version'] = _SERIALIZER.query('api_version', api_version, 'str')
+    if content_type is not None:
+        _headers['Content-Type'] = _SERIALIZER.header('content_type', content_type, 'str')
+    _headers['Accept'] = _SERIALIZER.header('accept', accept, 'str')
+    return HttpRequest(method='PUT', url=_url, params=_params, headers=_headers, **kwargs)
+
+def build_delete_gremlin_database_request(resource_group_name: str, account_name: str, database_name: str, subscription_id: str, **kwargs: Any) -> HttpRequest:
+    if False:
+        while True:
+            i = 10
+    _params = case_insensitive_dict(kwargs.pop('params', {}) or {})
+    api_version: str = kwargs.pop('api_version', _params.pop('api-version', '2023-09-15'))
+    _url = kwargs.pop('template_url', '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/gremlinDatabases/{databaseName}')
+    path_format_arguments = {'subscriptionId': _SERIALIZER.url('subscription_id', subscription_id, 'str', min_length=1), 'resourceGroupName': _SERIALIZER.url('resource_group_name', resource_group_name, 'str', max_length=90, min_length=1), 'accountName': _SERIALIZER.url('account_name', account_name, 'str', max_length=50, min_length=3, pattern='^[a-z0-9]+(-[a-z0-9]+)*'), 'databaseName': _SERIALIZER.url('database_name', database_name, 'str')}
+    _url: str = _url.format(**path_format_arguments)
+    _params['api-version'] = _SERIALIZER.query('api_version', api_version, 'str')
+    return HttpRequest(method='DELETE', url=_url, params=_params, **kwargs)
+
+def build_get_gremlin_database_throughput_request(resource_group_name: str, account_name: str, database_name: str, subscription_id: str, **kwargs: Any) -> HttpRequest:
+    if False:
+        for i in range(10):
+            print('nop')
+    _headers = case_insensitive_dict(kwargs.pop('headers', {}) or {})
+    _params = case_insensitive_dict(kwargs.pop('params', {}) or {})
+    api_version: str = kwargs.pop('api_version', _params.pop('api-version', '2023-09-15'))
+    accept = _headers.pop('Accept', 'application/json')
+    _url = kwargs.pop('template_url', '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/gremlinDatabases/{databaseName}/throughputSettings/default')
+    path_format_arguments = {'subscriptionId': _SERIALIZER.url('subscription_id', subscription_id, 'str', min_length=1), 'resourceGroupName': _SERIALIZER.url('resource_group_name', resource_group_name, 'str', max_length=90, min_length=1), 'accountName': _SERIALIZER.url('account_name', account_name, 'str', max_length=50, min_length=3, pattern='^[a-z0-9]+(-[a-z0-9]+)*'), 'databaseName': _SERIALIZER.url('database_name', database_name, 'str')}
+    _url: str = _url.format(**path_format_arguments)
+    _params['api-version'] = _SERIALIZER.query('api_version', api_version, 'str')
+    _headers['Accept'] = _SERIALIZER.header('accept', accept, 'str')
+    return HttpRequest(method='GET', url=_url, params=_params, headers=_headers, **kwargs)
+
+def build_update_gremlin_database_throughput_request(resource_group_name: str, account_name: str, database_name: str, subscription_id: str, **kwargs: Any) -> HttpRequest:
+    if False:
+        while True:
+            i = 10
+    _headers = case_insensitive_dict(kwargs.pop('headers', {}) or {})
+    _params = case_insensitive_dict(kwargs.pop('params', {}) or {})
+    api_version: str = kwargs.pop('api_version', _params.pop('api-version', '2023-09-15'))
+    content_type: Optional[str] = kwargs.pop('content_type', _headers.pop('Content-Type', None))
+    accept = _headers.pop('Accept', 'application/json')
+    _url = kwargs.pop('template_url', '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/gremlinDatabases/{databaseName}/throughputSettings/default')
+    path_format_arguments = {'subscriptionId': _SERIALIZER.url('subscription_id', subscription_id, 'str', min_length=1), 'resourceGroupName': _SERIALIZER.url('resource_group_name', resource_group_name, 'str', max_length=90, min_length=1), 'accountName': _SERIALIZER.url('account_name', account_name, 'str', max_length=50, min_length=3, pattern='^[a-z0-9]+(-[a-z0-9]+)*'), 'databaseName': _SERIALIZER.url('database_name', database_name, 'str')}
+    _url: str = _url.format(**path_format_arguments)
+    _params['api-version'] = _SERIALIZER.query('api_version', api_version, 'str')
+    if content_type is not None:
+        _headers['Content-Type'] = _SERIALIZER.header('content_type', content_type, 'str')
+    _headers['Accept'] = _SERIALIZER.header('accept', accept, 'str')
+    return HttpRequest(method='PUT', url=_url, params=_params, headers=_headers, **kwargs)
+
+def build_migrate_gremlin_database_to_autoscale_request(resource_group_name: str, account_name: str, database_name: str, subscription_id: str, **kwargs: Any) -> HttpRequest:
+    if False:
+        return 10
+    _headers = case_insensitive_dict(kwargs.pop('headers', {}) or {})
+    _params = case_insensitive_dict(kwargs.pop('params', {}) or {})
+    api_version: str = kwargs.pop('api_version', _params.pop('api-version', '2023-09-15'))
+    accept = _headers.pop('Accept', 'application/json')
+    _url = kwargs.pop('template_url', '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/gremlinDatabases/{databaseName}/throughputSettings/default/migrateToAutoscale')
+    path_format_arguments = {'subscriptionId': _SERIALIZER.url('subscription_id', subscription_id, 'str', min_length=1), 'resourceGroupName': _SERIALIZER.url('resource_group_name', resource_group_name, 'str', max_length=90, min_length=1), 'accountName': _SERIALIZER.url('account_name', account_name, 'str', max_length=50, min_length=3, pattern='^[a-z0-9]+(-[a-z0-9]+)*'), 'databaseName': _SERIALIZER.url('database_name', database_name, 'str')}
+    _url: str = _url.format(**path_format_arguments)
+    _params['api-version'] = _SERIALIZER.query('api_version', api_version, 'str')
+    _headers['Accept'] = _SERIALIZER.header('accept', accept, 'str')
+    return HttpRequest(method='POST', url=_url, params=_params, headers=_headers, **kwargs)
+
+def build_migrate_gremlin_database_to_manual_throughput_request(resource_group_name: str, account_name: str, database_name: str, subscription_id: str, **kwargs: Any) -> HttpRequest:
+    if False:
+        return 10
+    _headers = case_insensitive_dict(kwargs.pop('headers', {}) or {})
+    _params = case_insensitive_dict(kwargs.pop('params', {}) or {})
+    api_version: str = kwargs.pop('api_version', _params.pop('api-version', '2023-09-15'))
+    accept = _headers.pop('Accept', 'application/json')
+    _url = kwargs.pop('template_url', '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/gremlinDatabases/{databaseName}/throughputSettings/default/migrateToManualThroughput')
+    path_format_arguments = {'subscriptionId': _SERIALIZER.url('subscription_id', subscription_id, 'str', min_length=1), 'resourceGroupName': _SERIALIZER.url('resource_group_name', resource_group_name, 'str', max_length=90, min_length=1), 'accountName': _SERIALIZER.url('account_name', account_name, 'str', max_length=50, min_length=3, pattern='^[a-z0-9]+(-[a-z0-9]+)*'), 'databaseName': _SERIALIZER.url('database_name', database_name, 'str')}
+    _url: str = _url.format(**path_format_arguments)
+    _params['api-version'] = _SERIALIZER.query('api_version', api_version, 'str')
+    _headers['Accept'] = _SERIALIZER.header('accept', accept, 'str')
+    return HttpRequest(method='POST', url=_url, params=_params, headers=_headers, **kwargs)
+
+def build_list_gremlin_graphs_request(resource_group_name: str, account_name: str, database_name: str, subscription_id: str, **kwargs: Any) -> HttpRequest:
+    if False:
+        print('Hello World!')
+    _headers = case_insensitive_dict(kwargs.pop('headers', {}) or {})
+    _params = case_insensitive_dict(kwargs.pop('params', {}) or {})
+    api_version: str = kwargs.pop('api_version', _params.pop('api-version', '2023-09-15'))
+    accept = _headers.pop('Accept', 'application/json')
+    _url = kwargs.pop('template_url', '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/gremlinDatabases/{databaseName}/graphs')
+    path_format_arguments = {'subscriptionId': _SERIALIZER.url('subscription_id', subscription_id, 'str', min_length=1), 'resourceGroupName': _SERIALIZER.url('resource_group_name', resource_group_name, 'str', max_length=90, min_length=1), 'accountName': _SERIALIZER.url('account_name', account_name, 'str', max_length=50, min_length=3, pattern='^[a-z0-9]+(-[a-z0-9]+)*'), 'databaseName': _SERIALIZER.url('database_name', database_name, 'str')}
+    _url: str = _url.format(**path_format_arguments)
+    _params['api-version'] = _SERIALIZER.query('api_version', api_version, 'str')
+    _headers['Accept'] = _SERIALIZER.header('accept', accept, 'str')
+    return HttpRequest(method='GET', url=_url, params=_params, headers=_headers, **kwargs)
+
+def build_get_gremlin_graph_request(resource_group_name: str, account_name: str, database_name: str, graph_name: str, subscription_id: str, **kwargs: Any) -> HttpRequest:
+    if False:
+        i = 10
+        return i + 15
+    _headers = case_insensitive_dict(kwargs.pop('headers', {}) or {})
+    _params = case_insensitive_dict(kwargs.pop('params', {}) or {})
+    api_version: str = kwargs.pop('api_version', _params.pop('api-version', '2023-09-15'))
+    accept = _headers.pop('Accept', 'application/json')
+    _url = kwargs.pop('template_url', '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/gremlinDatabases/{databaseName}/graphs/{graphName}')
+    path_format_arguments = {'subscriptionId': _SERIALIZER.url('subscription_id', subscription_id, 'str', min_length=1), 'resourceGroupName': _SERIALIZER.url('resource_group_name', resource_group_name, 'str', max_length=90, min_length=1), 'accountName': _SERIALIZER.url('account_name', account_name, 'str', max_length=50, min_length=3, pattern='^[a-z0-9]+(-[a-z0-9]+)*'), 'databaseName': _SERIALIZER.url('database_name', database_name, 'str'), 'graphName': _SERIALIZER.url('graph_name', graph_name, 'str')}
+    _url: str = _url.format(**path_format_arguments)
+    _params['api-version'] = _SERIALIZER.query('api_version', api_version, 'str')
+    _headers['Accept'] = _SERIALIZER.header('accept', accept, 'str')
+    return HttpRequest(method='GET', url=_url, params=_params, headers=_headers, **kwargs)
+
+def build_create_update_gremlin_graph_request(resource_group_name: str, account_name: str, database_name: str, graph_name: str, subscription_id: str, **kwargs: Any) -> HttpRequest:
+    if False:
+        print('Hello World!')
+    _headers = case_insensitive_dict(kwargs.pop('headers', {}) or {})
+    _params = case_insensitive_dict(kwargs.pop('params', {}) or {})
+    api_version: str = kwargs.pop('api_version', _params.pop('api-version', '2023-09-15'))
+    content_type: Optional[str] = kwargs.pop('content_type', _headers.pop('Content-Type', None))
+    accept = _headers.pop('Accept', 'application/json')
+    _url = kwargs.pop('template_url', '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/gremlinDatabases/{databaseName}/graphs/{graphName}')
+    path_format_arguments = {'subscriptionId': _SERIALIZER.url('subscription_id', subscription_id, 'str', min_length=1), 'resourceGroupName': _SERIALIZER.url('resource_group_name', resource_group_name, 'str', max_length=90, min_length=1), 'accountName': _SERIALIZER.url('account_name', account_name, 'str', max_length=50, min_length=3, pattern='^[a-z0-9]+(-[a-z0-9]+)*'), 'databaseName': _SERIALIZER.url('database_name', database_name, 'str'), 'graphName': _SERIALIZER.url('graph_name', graph_name, 'str')}
+    _url: str = _url.format(**path_format_arguments)
+    _params['api-version'] = _SERIALIZER.query('api_version', api_version, 'str')
+    if content_type is not None:
+        _headers['Content-Type'] = _SERIALIZER.header('content_type', content_type, 'str')
+    _headers['Accept'] = _SERIALIZER.header('accept', accept, 'str')
+    return HttpRequest(method='PUT', url=_url, params=_params, headers=_headers, **kwargs)
+
+def build_delete_gremlin_graph_request(resource_group_name: str, account_name: str, database_name: str, graph_name: str, subscription_id: str, **kwargs: Any) -> HttpRequest:
+    if False:
+        i = 10
+        return i + 15
+    _params = case_insensitive_dict(kwargs.pop('params', {}) or {})
+    api_version: str = kwargs.pop('api_version', _params.pop('api-version', '2023-09-15'))
+    _url = kwargs.pop('template_url', '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/gremlinDatabases/{databaseName}/graphs/{graphName}')
+    path_format_arguments = {'subscriptionId': _SERIALIZER.url('subscription_id', subscription_id, 'str', min_length=1), 'resourceGroupName': _SERIALIZER.url('resource_group_name', resource_group_name, 'str', max_length=90, min_length=1), 'accountName': _SERIALIZER.url('account_name', account_name, 'str', max_length=50, min_length=3, pattern='^[a-z0-9]+(-[a-z0-9]+)*'), 'databaseName': _SERIALIZER.url('database_name', database_name, 'str'), 'graphName': _SERIALIZER.url('graph_name', graph_name, 'str')}
+    _url: str = _url.format(**path_format_arguments)
+    _params['api-version'] = _SERIALIZER.query('api_version', api_version, 'str')
+    return HttpRequest(method='DELETE', url=_url, params=_params, **kwargs)
+
+def build_get_gremlin_graph_throughput_request(resource_group_name: str, account_name: str, database_name: str, graph_name: str, subscription_id: str, **kwargs: Any) -> HttpRequest:
+    if False:
+        print('Hello World!')
+    _headers = case_insensitive_dict(kwargs.pop('headers', {}) or {})
+    _params = case_insensitive_dict(kwargs.pop('params', {}) or {})
+    api_version: str = kwargs.pop('api_version', _params.pop('api-version', '2023-09-15'))
+    accept = _headers.pop('Accept', 'application/json')
+    _url = kwargs.pop('template_url', '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/gremlinDatabases/{databaseName}/graphs/{graphName}/throughputSettings/default')
+    path_format_arguments = {'subscriptionId': _SERIALIZER.url('subscription_id', subscription_id, 'str', min_length=1), 'resourceGroupName': _SERIALIZER.url('resource_group_name', resource_group_name, 'str', max_length=90, min_length=1), 'accountName': _SERIALIZER.url('account_name', account_name, 'str', max_length=50, min_length=3, pattern='^[a-z0-9]+(-[a-z0-9]+)*'), 'databaseName': _SERIALIZER.url('database_name', database_name, 'str'), 'graphName': _SERIALIZER.url('graph_name', graph_name, 'str')}
+    _url: str = _url.format(**path_format_arguments)
+    _params['api-version'] = _SERIALIZER.query('api_version', api_version, 'str')
+    _headers['Accept'] = _SERIALIZER.header('accept', accept, 'str')
+    return HttpRequest(method='GET', url=_url, params=_params, headers=_headers, **kwargs)
+
+def build_update_gremlin_graph_throughput_request(resource_group_name: str, account_name: str, database_name: str, graph_name: str, subscription_id: str, **kwargs: Any) -> HttpRequest:
+    if False:
+        return 10
+    _headers = case_insensitive_dict(kwargs.pop('headers', {}) or {})
+    _params = case_insensitive_dict(kwargs.pop('params', {}) or {})
+    api_version: str = kwargs.pop('api_version', _params.pop('api-version', '2023-09-15'))
+    content_type: Optional[str] = kwargs.pop('content_type', _headers.pop('Content-Type', None))
+    accept = _headers.pop('Accept', 'application/json')
+    _url = kwargs.pop('template_url', '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/gremlinDatabases/{databaseName}/graphs/{graphName}/throughputSettings/default')
+    path_format_arguments = {'subscriptionId': _SERIALIZER.url('subscription_id', subscription_id, 'str', min_length=1), 'resourceGroupName': _SERIALIZER.url('resource_group_name', resource_group_name, 'str', max_length=90, min_length=1), 'accountName': _SERIALIZER.url('account_name', account_name, 'str', max_length=50, min_length=3, pattern='^[a-z0-9]+(-[a-z0-9]+)*'), 'databaseName': _SERIALIZER.url('database_name', database_name, 'str'), 'graphName': _SERIALIZER.url('graph_name', graph_name, 'str')}
+    _url: str = _url.format(**path_format_arguments)
+    _params['api-version'] = _SERIALIZER.query('api_version', api_version, 'str')
+    if content_type is not None:
+        _headers['Content-Type'] = _SERIALIZER.header('content_type', content_type, 'str')
+    _headers['Accept'] = _SERIALIZER.header('accept', accept, 'str')
+    return HttpRequest(method='PUT', url=_url, params=_params, headers=_headers, **kwargs)
+
+def build_migrate_gremlin_graph_to_autoscale_request(resource_group_name: str, account_name: str, database_name: str, graph_name: str, subscription_id: str, **kwargs: Any) -> HttpRequest:
+    if False:
+        for i in range(10):
+            print('nop')
+    _headers = case_insensitive_dict(kwargs.pop('headers', {}) or {})
+    _params = case_insensitive_dict(kwargs.pop('params', {}) or {})
+    api_version: str = kwargs.pop('api_version', _params.pop('api-version', '2023-09-15'))
+    accept = _headers.pop('Accept', 'application/json')
+    _url = kwargs.pop('template_url', '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/gremlinDatabases/{databaseName}/graphs/{graphName}/throughputSettings/default/migrateToAutoscale')
+    path_format_arguments = {'subscriptionId': _SERIALIZER.url('subscription_id', subscription_id, 'str', min_length=1), 'resourceGroupName': _SERIALIZER.url('resource_group_name', resource_group_name, 'str', max_length=90, min_length=1), 'accountName': _SERIALIZER.url('account_name', account_name, 'str', max_length=50, min_length=3, pattern='^[a-z0-9]+(-[a-z0-9]+)*'), 'databaseName': _SERIALIZER.url('database_name', database_name, 'str'), 'graphName': _SERIALIZER.url('graph_name', graph_name, 'str')}
+    _url: str = _url.format(**path_format_arguments)
+    _params['api-version'] = _SERIALIZER.query('api_version', api_version, 'str')
+    _headers['Accept'] = _SERIALIZER.header('accept', accept, 'str')
+    return HttpRequest(method='POST', url=_url, params=_params, headers=_headers, **kwargs)
+
+def build_migrate_gremlin_graph_to_manual_throughput_request(resource_group_name: str, account_name: str, database_name: str, graph_name: str, subscription_id: str, **kwargs: Any) -> HttpRequest:
+    if False:
+        i = 10
+        return i + 15
+    _headers = case_insensitive_dict(kwargs.pop('headers', {}) or {})
+    _params = case_insensitive_dict(kwargs.pop('params', {}) or {})
+    api_version: str = kwargs.pop('api_version', _params.pop('api-version', '2023-09-15'))
+    accept = _headers.pop('Accept', 'application/json')
+    _url = kwargs.pop('template_url', '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/gremlinDatabases/{databaseName}/graphs/{graphName}/throughputSettings/default/migrateToManualThroughput')
+    path_format_arguments = {'subscriptionId': _SERIALIZER.url('subscription_id', subscription_id, 'str', min_length=1), 'resourceGroupName': _SERIALIZER.url('resource_group_name', resource_group_name, 'str', max_length=90, min_length=1), 'accountName': _SERIALIZER.url('account_name', account_name, 'str', max_length=50, min_length=3, pattern='^[a-z0-9]+(-[a-z0-9]+)*'), 'databaseName': _SERIALIZER.url('database_name', database_name, 'str'), 'graphName': _SERIALIZER.url('graph_name', graph_name, 'str')}
+    _url: str = _url.format(**path_format_arguments)
+    _params['api-version'] = _SERIALIZER.query('api_version', api_version, 'str')
+    _headers['Accept'] = _SERIALIZER.header('accept', accept, 'str')
+    return HttpRequest(method='POST', url=_url, params=_params, headers=_headers, **kwargs)
+
+def build_retrieve_continuous_backup_information_request(resource_group_name: str, account_name: str, database_name: str, graph_name: str, subscription_id: str, **kwargs: Any) -> HttpRequest:
+    if False:
+        for i in range(10):
+            print('nop')
+    _headers = case_insensitive_dict(kwargs.pop('headers', {}) or {})
+    _params = case_insensitive_dict(kwargs.pop('params', {}) or {})
+    api_version: str = kwargs.pop('api_version', _params.pop('api-version', '2023-09-15'))
+    content_type: Optional[str] = kwargs.pop('content_type', _headers.pop('Content-Type', None))
+    accept = _headers.pop('Accept', 'application/json')
+    _url = kwargs.pop('template_url', '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/gremlinDatabases/{databaseName}/graphs/{graphName}/retrieveContinuousBackupInformation')
+    path_format_arguments = {'subscriptionId': _SERIALIZER.url('subscription_id', subscription_id, 'str', min_length=1), 'resourceGroupName': _SERIALIZER.url('resource_group_name', resource_group_name, 'str', max_length=90, min_length=1), 'accountName': _SERIALIZER.url('account_name', account_name, 'str', max_length=50, min_length=3, pattern='^[a-z0-9]+(-[a-z0-9]+)*'), 'databaseName': _SERIALIZER.url('database_name', database_name, 'str'), 'graphName': _SERIALIZER.url('graph_name', graph_name, 'str')}
+    _url: str = _url.format(**path_format_arguments)
+    _params['api-version'] = _SERIALIZER.query('api_version', api_version, 'str')
+    if content_type is not None:
+        _headers['Content-Type'] = _SERIALIZER.header('content_type', content_type, 'str')
+    _headers['Accept'] = _SERIALIZER.header('accept', accept, 'str')
+    return HttpRequest(method='POST', url=_url, params=_params, headers=_headers, **kwargs)
+
+class GremlinResourcesOperations:
+    """
+    .. warning::
+        **DO NOT** instantiate this class directly.
+
+        Instead, you should access the following operations through
+        :class:`~azure.mgmt.cosmosdb.CosmosDBManagementClient`'s
+        :attr:`gremlin_resources` attribute.
+    """
+    models = _models
+
+    def __init__(self, *args, **kwargs):
+        if False:
+            print('Hello World!')
+        input_args = list(args)
+        self._client = input_args.pop(0) if input_args else kwargs.pop('client')
+        self._config = input_args.pop(0) if input_args else kwargs.pop('config')
+        self._serialize = input_args.pop(0) if input_args else kwargs.pop('serializer')
+        self._deserialize = input_args.pop(0) if input_args else kwargs.pop('deserializer')
+
+    @distributed_trace
+    def list_gremlin_databases(self, resource_group_name: str, account_name: str, **kwargs: Any) -> Iterable['_models.GremlinDatabaseGetResults']:
+        if False:
+            return 10
+        'Lists the Gremlin databases under an existing Azure Cosmos DB database account.\n\n        :param resource_group_name: The name of the resource group. The name is case insensitive.\n         Required.\n        :type resource_group_name: str\n        :param account_name: Cosmos DB database account name. Required.\n        :type account_name: str\n        :keyword callable cls: A custom type or function that will be passed the direct response\n        :return: An iterator like instance of either GremlinDatabaseGetResults or the result of\n         cls(response)\n        :rtype: ~azure.core.paging.ItemPaged[~azure.mgmt.cosmosdb.models.GremlinDatabaseGetResults]\n        :raises ~azure.core.exceptions.HttpResponseError:\n        '
+        _headers = kwargs.pop('headers', {}) or {}
+        _params = case_insensitive_dict(kwargs.pop('params', {}) or {})
+        api_version: str = kwargs.pop('api_version', _params.pop('api-version', self._config.api_version))
+        cls: ClsType[_models.GremlinDatabaseListResult] = kwargs.pop('cls', None)
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError, 304: ResourceNotModifiedError}
+        error_map.update(kwargs.pop('error_map', {}) or {})
+
+        def prepare_request(next_link=None):
+            if False:
+                i = 10
+                return i + 15
+            if not next_link:
+                request = build_list_gremlin_databases_request(resource_group_name=resource_group_name, account_name=account_name, subscription_id=self._config.subscription_id, api_version=api_version, template_url=self.list_gremlin_databases.metadata['url'], headers=_headers, params=_params)
+                request = _convert_request(request)
+                request.url = self._client.format_url(request.url)
+            else:
+                _parsed_next_link = urllib.parse.urlparse(next_link)
+                _next_request_params = case_insensitive_dict({key: [urllib.parse.quote(v) for v in value] for (key, value) in urllib.parse.parse_qs(_parsed_next_link.query).items()})
+                _next_request_params['api-version'] = self._config.api_version
+                request = HttpRequest('GET', urllib.parse.urljoin(next_link, _parsed_next_link.path), params=_next_request_params)
+                request = _convert_request(request)
+                request.url = self._client.format_url(request.url)
+                request.method = 'GET'
+            return request
+
+        def extract_data(pipeline_response):
+            if False:
+                for i in range(10):
+                    print('nop')
+            deserialized = self._deserialize('GremlinDatabaseListResult', pipeline_response)
+            list_of_elem = deserialized.value
+            if cls:
+                list_of_elem = cls(list_of_elem)
+            return (None, iter(list_of_elem))
+
+        def get_next(next_link=None):
+            if False:
+                while True:
+                    i = 10
+            request = prepare_request(next_link)
+            _stream = False
+            pipeline_response: PipelineResponse = self._client._pipeline.run(request, stream=_stream, **kwargs)
+            response = pipeline_response.http_response
+            if response.status_code not in [200]:
+                map_error(status_code=response.status_code, response=response, error_map=error_map)
+                raise HttpResponseError(response=response, error_format=ARMErrorFormat)
+            return pipeline_response
+        return ItemPaged(get_next, extract_data)
+    list_gremlin_databases.metadata = {'url': '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/gremlinDatabases'}
+
+    @distributed_trace
+    def get_gremlin_database(self, resource_group_name: str, account_name: str, database_name: str, **kwargs: Any) -> _models.GremlinDatabaseGetResults:
+        if False:
+            while True:
+                i = 10
+        'Gets the Gremlin databases under an existing Azure Cosmos DB database account with the provided\n        name.\n\n        :param resource_group_name: The name of the resource group. The name is case insensitive.\n         Required.\n        :type resource_group_name: str\n        :param account_name: Cosmos DB database account name. Required.\n        :type account_name: str\n        :param database_name: Cosmos DB database name. Required.\n        :type database_name: str\n        :keyword callable cls: A custom type or function that will be passed the direct response\n        :return: GremlinDatabaseGetResults or the result of cls(response)\n        :rtype: ~azure.mgmt.cosmosdb.models.GremlinDatabaseGetResults\n        :raises ~azure.core.exceptions.HttpResponseError:\n        '
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError, 304: ResourceNotModifiedError}
+        error_map.update(kwargs.pop('error_map', {}) or {})
+        _headers = kwargs.pop('headers', {}) or {}
+        _params = case_insensitive_dict(kwargs.pop('params', {}) or {})
+        api_version: str = kwargs.pop('api_version', _params.pop('api-version', self._config.api_version))
+        cls: ClsType[_models.GremlinDatabaseGetResults] = kwargs.pop('cls', None)
+        request = build_get_gremlin_database_request(resource_group_name=resource_group_name, account_name=account_name, database_name=database_name, subscription_id=self._config.subscription_id, api_version=api_version, template_url=self.get_gremlin_database.metadata['url'], headers=_headers, params=_params)
+        request = _convert_request(request)
+        request.url = self._client.format_url(request.url)
+        _stream = False
+        pipeline_response: PipelineResponse = self._client._pipeline.run(request, stream=_stream, **kwargs)
+        response = pipeline_response.http_response
+        if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            raise HttpResponseError(response=response, error_format=ARMErrorFormat)
+        deserialized = self._deserialize('GremlinDatabaseGetResults', pipeline_response)
+        if cls:
+            return cls(pipeline_response, deserialized, {})
+        return deserialized
+    get_gremlin_database.metadata = {'url': '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/gremlinDatabases/{databaseName}'}
+
+    def _create_update_gremlin_database_initial(self, resource_group_name: str, account_name: str, database_name: str, create_update_gremlin_database_parameters: Union[_models.GremlinDatabaseCreateUpdateParameters, IO], **kwargs: Any) -> Optional[_models.GremlinDatabaseGetResults]:
+        if False:
+            for i in range(10):
+                print('nop')
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError, 304: ResourceNotModifiedError}
+        error_map.update(kwargs.pop('error_map', {}) or {})
+        _headers = case_insensitive_dict(kwargs.pop('headers', {}) or {})
+        _params = case_insensitive_dict(kwargs.pop('params', {}) or {})
+        api_version: str = kwargs.pop('api_version', _params.pop('api-version', self._config.api_version))
+        content_type: Optional[str] = kwargs.pop('content_type', _headers.pop('Content-Type', None))
+        cls: ClsType[Optional[_models.GremlinDatabaseGetResults]] = kwargs.pop('cls', None)
+        content_type = content_type or 'application/json'
+        _json = None
+        _content = None
+        if isinstance(create_update_gremlin_database_parameters, (IOBase, bytes)):
+            _content = create_update_gremlin_database_parameters
+        else:
+            _json = self._serialize.body(create_update_gremlin_database_parameters, 'GremlinDatabaseCreateUpdateParameters')
+        request = build_create_update_gremlin_database_request(resource_group_name=resource_group_name, account_name=account_name, database_name=database_name, subscription_id=self._config.subscription_id, api_version=api_version, content_type=content_type, json=_json, content=_content, template_url=self._create_update_gremlin_database_initial.metadata['url'], headers=_headers, params=_params)
+        request = _convert_request(request)
+        request.url = self._client.format_url(request.url)
+        _stream = False
+        pipeline_response: PipelineResponse = self._client._pipeline.run(request, stream=_stream, **kwargs)
+        response = pipeline_response.http_response
+        if response.status_code not in [200, 202]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            raise HttpResponseError(response=response, error_format=ARMErrorFormat)
+        deserialized = None
+        response_headers = {}
+        if response.status_code == 200:
+            deserialized = self._deserialize('GremlinDatabaseGetResults', pipeline_response)
+        if response.status_code == 202:
+            response_headers['azure-AsyncOperation'] = self._deserialize('str', response.headers.get('azure-AsyncOperation'))
+            response_headers['location'] = self._deserialize('str', response.headers.get('location'))
+        if cls:
+            return cls(pipeline_response, deserialized, response_headers)
+        return deserialized
+    _create_update_gremlin_database_initial.metadata = {'url': '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/gremlinDatabases/{databaseName}'}
+
+    @overload
+    def begin_create_update_gremlin_database(self, resource_group_name: str, account_name: str, database_name: str, create_update_gremlin_database_parameters: _models.GremlinDatabaseCreateUpdateParameters, *, content_type: str='application/json', **kwargs: Any) -> LROPoller[_models.GremlinDatabaseGetResults]:
+        if False:
+            i = 10
+            return i + 15
+        'Create or update an Azure Cosmos DB Gremlin database.\n\n        :param resource_group_name: The name of the resource group. The name is case insensitive.\n         Required.\n        :type resource_group_name: str\n        :param account_name: Cosmos DB database account name. Required.\n        :type account_name: str\n        :param database_name: Cosmos DB database name. Required.\n        :type database_name: str\n        :param create_update_gremlin_database_parameters: The parameters to provide for the current\n         Gremlin database. Required.\n        :type create_update_gremlin_database_parameters:\n         ~azure.mgmt.cosmosdb.models.GremlinDatabaseCreateUpdateParameters\n        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.\n         Default value is "application/json".\n        :paramtype content_type: str\n        :keyword callable cls: A custom type or function that will be passed the direct response\n        :keyword str continuation_token: A continuation token to restart a poller from a saved state.\n        :keyword polling: By default, your polling method will be ARMPolling. Pass in False for this\n         operation to not poll, or pass in your own initialized polling object for a personal polling\n         strategy.\n        :paramtype polling: bool or ~azure.core.polling.PollingMethod\n        :keyword int polling_interval: Default waiting time between two polls for LRO operations if no\n         Retry-After header is present.\n        :return: An instance of LROPoller that returns either GremlinDatabaseGetResults or the result\n         of cls(response)\n        :rtype: ~azure.core.polling.LROPoller[~azure.mgmt.cosmosdb.models.GremlinDatabaseGetResults]\n        :raises ~azure.core.exceptions.HttpResponseError:\n        '
+
+    @overload
+    def begin_create_update_gremlin_database(self, resource_group_name: str, account_name: str, database_name: str, create_update_gremlin_database_parameters: IO, *, content_type: str='application/json', **kwargs: Any) -> LROPoller[_models.GremlinDatabaseGetResults]:
+        if False:
+            print('Hello World!')
+        'Create or update an Azure Cosmos DB Gremlin database.\n\n        :param resource_group_name: The name of the resource group. The name is case insensitive.\n         Required.\n        :type resource_group_name: str\n        :param account_name: Cosmos DB database account name. Required.\n        :type account_name: str\n        :param database_name: Cosmos DB database name. Required.\n        :type database_name: str\n        :param create_update_gremlin_database_parameters: The parameters to provide for the current\n         Gremlin database. Required.\n        :type create_update_gremlin_database_parameters: IO\n        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.\n         Default value is "application/json".\n        :paramtype content_type: str\n        :keyword callable cls: A custom type or function that will be passed the direct response\n        :keyword str continuation_token: A continuation token to restart a poller from a saved state.\n        :keyword polling: By default, your polling method will be ARMPolling. Pass in False for this\n         operation to not poll, or pass in your own initialized polling object for a personal polling\n         strategy.\n        :paramtype polling: bool or ~azure.core.polling.PollingMethod\n        :keyword int polling_interval: Default waiting time between two polls for LRO operations if no\n         Retry-After header is present.\n        :return: An instance of LROPoller that returns either GremlinDatabaseGetResults or the result\n         of cls(response)\n        :rtype: ~azure.core.polling.LROPoller[~azure.mgmt.cosmosdb.models.GremlinDatabaseGetResults]\n        :raises ~azure.core.exceptions.HttpResponseError:\n        '
+
+    @distributed_trace
+    def begin_create_update_gremlin_database(self, resource_group_name: str, account_name: str, database_name: str, create_update_gremlin_database_parameters: Union[_models.GremlinDatabaseCreateUpdateParameters, IO], **kwargs: Any) -> LROPoller[_models.GremlinDatabaseGetResults]:
+        if False:
+            while True:
+                i = 10
+        "Create or update an Azure Cosmos DB Gremlin database.\n\n        :param resource_group_name: The name of the resource group. The name is case insensitive.\n         Required.\n        :type resource_group_name: str\n        :param account_name: Cosmos DB database account name. Required.\n        :type account_name: str\n        :param database_name: Cosmos DB database name. Required.\n        :type database_name: str\n        :param create_update_gremlin_database_parameters: The parameters to provide for the current\n         Gremlin database. Is either a GremlinDatabaseCreateUpdateParameters type or a IO type.\n         Required.\n        :type create_update_gremlin_database_parameters:\n         ~azure.mgmt.cosmosdb.models.GremlinDatabaseCreateUpdateParameters or IO\n        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.\n         Default value is None.\n        :paramtype content_type: str\n        :keyword callable cls: A custom type or function that will be passed the direct response\n        :keyword str continuation_token: A continuation token to restart a poller from a saved state.\n        :keyword polling: By default, your polling method will be ARMPolling. Pass in False for this\n         operation to not poll, or pass in your own initialized polling object for a personal polling\n         strategy.\n        :paramtype polling: bool or ~azure.core.polling.PollingMethod\n        :keyword int polling_interval: Default waiting time between two polls for LRO operations if no\n         Retry-After header is present.\n        :return: An instance of LROPoller that returns either GremlinDatabaseGetResults or the result\n         of cls(response)\n        :rtype: ~azure.core.polling.LROPoller[~azure.mgmt.cosmosdb.models.GremlinDatabaseGetResults]\n        :raises ~azure.core.exceptions.HttpResponseError:\n        "
+        _headers = case_insensitive_dict(kwargs.pop('headers', {}) or {})
+        _params = case_insensitive_dict(kwargs.pop('params', {}) or {})
+        api_version: str = kwargs.pop('api_version', _params.pop('api-version', self._config.api_version))
+        content_type: Optional[str] = kwargs.pop('content_type', _headers.pop('Content-Type', None))
+        cls: ClsType[_models.GremlinDatabaseGetResults] = kwargs.pop('cls', None)
+        polling: Union[bool, PollingMethod] = kwargs.pop('polling', True)
+        lro_delay = kwargs.pop('polling_interval', self._config.polling_interval)
+        cont_token: Optional[str] = kwargs.pop('continuation_token', None)
+        if cont_token is None:
+            raw_result = self._create_update_gremlin_database_initial(resource_group_name=resource_group_name, account_name=account_name, database_name=database_name, create_update_gremlin_database_parameters=create_update_gremlin_database_parameters, api_version=api_version, content_type=content_type, cls=lambda x, y, z: x, headers=_headers, params=_params, **kwargs)
+        kwargs.pop('error_map', None)
+
+        def get_long_running_output(pipeline_response):
+            if False:
+                print('Hello World!')
+            deserialized = self._deserialize('GremlinDatabaseGetResults', pipeline_response)
+            if cls:
+                return cls(pipeline_response, deserialized, {})
+            return deserialized
+        if polling is True:
+            polling_method: PollingMethod = cast(PollingMethod, ARMPolling(lro_delay, **kwargs))
+        elif polling is False:
+            polling_method = cast(PollingMethod, NoPolling())
+        else:
+            polling_method = polling
+        if cont_token:
+            return LROPoller.from_continuation_token(polling_method=polling_method, continuation_token=cont_token, client=self._client, deserialization_callback=get_long_running_output)
+        return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
+    begin_create_update_gremlin_database.metadata = {'url': '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/gremlinDatabases/{databaseName}'}
+
+    def _delete_gremlin_database_initial(self, resource_group_name: str, account_name: str, database_name: str, **kwargs: Any) -> None:
+        if False:
+            for i in range(10):
+                print('nop')
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError, 304: ResourceNotModifiedError}
+        error_map.update(kwargs.pop('error_map', {}) or {})
+        _headers = kwargs.pop('headers', {}) or {}
+        _params = case_insensitive_dict(kwargs.pop('params', {}) or {})
+        api_version: str = kwargs.pop('api_version', _params.pop('api-version', self._config.api_version))
+        cls: ClsType[None] = kwargs.pop('cls', None)
+        request = build_delete_gremlin_database_request(resource_group_name=resource_group_name, account_name=account_name, database_name=database_name, subscription_id=self._config.subscription_id, api_version=api_version, template_url=self._delete_gremlin_database_initial.metadata['url'], headers=_headers, params=_params)
+        request = _convert_request(request)
+        request.url = self._client.format_url(request.url)
+        _stream = False
+        pipeline_response: PipelineResponse = self._client._pipeline.run(request, stream=_stream, **kwargs)
+        response = pipeline_response.http_response
+        if response.status_code not in [202, 204]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            raise HttpResponseError(response=response, error_format=ARMErrorFormat)
+        response_headers = {}
+        if response.status_code == 202:
+            response_headers['azure-AsyncOperation'] = self._deserialize('str', response.headers.get('azure-AsyncOperation'))
+            response_headers['location'] = self._deserialize('str', response.headers.get('location'))
+        if cls:
+            return cls(pipeline_response, None, response_headers)
+    _delete_gremlin_database_initial.metadata = {'url': '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/gremlinDatabases/{databaseName}'}
+
+    @distributed_trace
+    def begin_delete_gremlin_database(self, resource_group_name: str, account_name: str, database_name: str, **kwargs: Any) -> LROPoller[None]:
+        if False:
+            return 10
+        'Deletes an existing Azure Cosmos DB Gremlin database.\n\n        :param resource_group_name: The name of the resource group. The name is case insensitive.\n         Required.\n        :type resource_group_name: str\n        :param account_name: Cosmos DB database account name. Required.\n        :type account_name: str\n        :param database_name: Cosmos DB database name. Required.\n        :type database_name: str\n        :keyword callable cls: A custom type or function that will be passed the direct response\n        :keyword str continuation_token: A continuation token to restart a poller from a saved state.\n        :keyword polling: By default, your polling method will be ARMPolling. Pass in False for this\n         operation to not poll, or pass in your own initialized polling object for a personal polling\n         strategy.\n        :paramtype polling: bool or ~azure.core.polling.PollingMethod\n        :keyword int polling_interval: Default waiting time between two polls for LRO operations if no\n         Retry-After header is present.\n        :return: An instance of LROPoller that returns either None or the result of cls(response)\n        :rtype: ~azure.core.polling.LROPoller[None]\n        :raises ~azure.core.exceptions.HttpResponseError:\n        '
+        _headers = kwargs.pop('headers', {}) or {}
+        _params = case_insensitive_dict(kwargs.pop('params', {}) or {})
+        api_version: str = kwargs.pop('api_version', _params.pop('api-version', self._config.api_version))
+        cls: ClsType[None] = kwargs.pop('cls', None)
+        polling: Union[bool, PollingMethod] = kwargs.pop('polling', True)
+        lro_delay = kwargs.pop('polling_interval', self._config.polling_interval)
+        cont_token: Optional[str] = kwargs.pop('continuation_token', None)
+        if cont_token is None:
+            raw_result = self._delete_gremlin_database_initial(resource_group_name=resource_group_name, account_name=account_name, database_name=database_name, api_version=api_version, cls=lambda x, y, z: x, headers=_headers, params=_params, **kwargs)
+        kwargs.pop('error_map', None)
+
+        def get_long_running_output(pipeline_response):
+            if False:
+                for i in range(10):
+                    print('nop')
+            if cls:
+                return cls(pipeline_response, None, {})
+        if polling is True:
+            polling_method: PollingMethod = cast(PollingMethod, ARMPolling(lro_delay, **kwargs))
+        elif polling is False:
+            polling_method = cast(PollingMethod, NoPolling())
+        else:
+            polling_method = polling
+        if cont_token:
+            return LROPoller.from_continuation_token(polling_method=polling_method, continuation_token=cont_token, client=self._client, deserialization_callback=get_long_running_output)
+        return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
+    begin_delete_gremlin_database.metadata = {'url': '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/gremlinDatabases/{databaseName}'}
+
+    @distributed_trace
+    def get_gremlin_database_throughput(self, resource_group_name: str, account_name: str, database_name: str, **kwargs: Any) -> _models.ThroughputSettingsGetResults:
+        if False:
+            while True:
+                i = 10
+        'Gets the RUs per second of the Gremlin database under an existing Azure Cosmos DB database\n        account with the provided name.\n\n        :param resource_group_name: The name of the resource group. The name is case insensitive.\n         Required.\n        :type resource_group_name: str\n        :param account_name: Cosmos DB database account name. Required.\n        :type account_name: str\n        :param database_name: Cosmos DB database name. Required.\n        :type database_name: str\n        :keyword callable cls: A custom type or function that will be passed the direct response\n        :return: ThroughputSettingsGetResults or the result of cls(response)\n        :rtype: ~azure.mgmt.cosmosdb.models.ThroughputSettingsGetResults\n        :raises ~azure.core.exceptions.HttpResponseError:\n        '
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError, 304: ResourceNotModifiedError}
+        error_map.update(kwargs.pop('error_map', {}) or {})
+        _headers = kwargs.pop('headers', {}) or {}
+        _params = case_insensitive_dict(kwargs.pop('params', {}) or {})
+        api_version: str = kwargs.pop('api_version', _params.pop('api-version', self._config.api_version))
+        cls: ClsType[_models.ThroughputSettingsGetResults] = kwargs.pop('cls', None)
+        request = build_get_gremlin_database_throughput_request(resource_group_name=resource_group_name, account_name=account_name, database_name=database_name, subscription_id=self._config.subscription_id, api_version=api_version, template_url=self.get_gremlin_database_throughput.metadata['url'], headers=_headers, params=_params)
+        request = _convert_request(request)
+        request.url = self._client.format_url(request.url)
+        _stream = False
+        pipeline_response: PipelineResponse = self._client._pipeline.run(request, stream=_stream, **kwargs)
+        response = pipeline_response.http_response
+        if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            raise HttpResponseError(response=response, error_format=ARMErrorFormat)
+        deserialized = self._deserialize('ThroughputSettingsGetResults', pipeline_response)
+        if cls:
+            return cls(pipeline_response, deserialized, {})
+        return deserialized
+    get_gremlin_database_throughput.metadata = {'url': '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/gremlinDatabases/{databaseName}/throughputSettings/default'}
+
+    def _update_gremlin_database_throughput_initial(self, resource_group_name: str, account_name: str, database_name: str, update_throughput_parameters: Union[_models.ThroughputSettingsUpdateParameters, IO], **kwargs: Any) -> Optional[_models.ThroughputSettingsGetResults]:
+        if False:
+            return 10
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError, 304: ResourceNotModifiedError}
+        error_map.update(kwargs.pop('error_map', {}) or {})
+        _headers = case_insensitive_dict(kwargs.pop('headers', {}) or {})
+        _params = case_insensitive_dict(kwargs.pop('params', {}) or {})
+        api_version: str = kwargs.pop('api_version', _params.pop('api-version', self._config.api_version))
+        content_type: Optional[str] = kwargs.pop('content_type', _headers.pop('Content-Type', None))
+        cls: ClsType[Optional[_models.ThroughputSettingsGetResults]] = kwargs.pop('cls', None)
+        content_type = content_type or 'application/json'
+        _json = None
+        _content = None
+        if isinstance(update_throughput_parameters, (IOBase, bytes)):
+            _content = update_throughput_parameters
+        else:
+            _json = self._serialize.body(update_throughput_parameters, 'ThroughputSettingsUpdateParameters')
+        request = build_update_gremlin_database_throughput_request(resource_group_name=resource_group_name, account_name=account_name, database_name=database_name, subscription_id=self._config.subscription_id, api_version=api_version, content_type=content_type, json=_json, content=_content, template_url=self._update_gremlin_database_throughput_initial.metadata['url'], headers=_headers, params=_params)
+        request = _convert_request(request)
+        request.url = self._client.format_url(request.url)
+        _stream = False
+        pipeline_response: PipelineResponse = self._client._pipeline.run(request, stream=_stream, **kwargs)
+        response = pipeline_response.http_response
+        if response.status_code not in [200, 202]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            raise HttpResponseError(response=response, error_format=ARMErrorFormat)
+        deserialized = None
+        response_headers = {}
+        if response.status_code == 200:
+            deserialized = self._deserialize('ThroughputSettingsGetResults', pipeline_response)
+        if response.status_code == 202:
+            response_headers['azure-AsyncOperation'] = self._deserialize('str', response.headers.get('azure-AsyncOperation'))
+            response_headers['location'] = self._deserialize('str', response.headers.get('location'))
+        if cls:
+            return cls(pipeline_response, deserialized, response_headers)
+        return deserialized
+    _update_gremlin_database_throughput_initial.metadata = {'url': '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/gremlinDatabases/{databaseName}/throughputSettings/default'}
+
+    @overload
+    def begin_update_gremlin_database_throughput(self, resource_group_name: str, account_name: str, database_name: str, update_throughput_parameters: _models.ThroughputSettingsUpdateParameters, *, content_type: str='application/json', **kwargs: Any) -> LROPoller[_models.ThroughputSettingsGetResults]:
+        if False:
+            for i in range(10):
+                print('nop')
+        'Update RUs per second of an Azure Cosmos DB Gremlin database.\n\n        :param resource_group_name: The name of the resource group. The name is case insensitive.\n         Required.\n        :type resource_group_name: str\n        :param account_name: Cosmos DB database account name. Required.\n        :type account_name: str\n        :param database_name: Cosmos DB database name. Required.\n        :type database_name: str\n        :param update_throughput_parameters: The RUs per second of the parameters to provide for the\n         current Gremlin database. Required.\n        :type update_throughput_parameters:\n         ~azure.mgmt.cosmosdb.models.ThroughputSettingsUpdateParameters\n        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.\n         Default value is "application/json".\n        :paramtype content_type: str\n        :keyword callable cls: A custom type or function that will be passed the direct response\n        :keyword str continuation_token: A continuation token to restart a poller from a saved state.\n        :keyword polling: By default, your polling method will be ARMPolling. Pass in False for this\n         operation to not poll, or pass in your own initialized polling object for a personal polling\n         strategy.\n        :paramtype polling: bool or ~azure.core.polling.PollingMethod\n        :keyword int polling_interval: Default waiting time between two polls for LRO operations if no\n         Retry-After header is present.\n        :return: An instance of LROPoller that returns either ThroughputSettingsGetResults or the\n         result of cls(response)\n        :rtype: ~azure.core.polling.LROPoller[~azure.mgmt.cosmosdb.models.ThroughputSettingsGetResults]\n        :raises ~azure.core.exceptions.HttpResponseError:\n        '
+
+    @overload
+    def begin_update_gremlin_database_throughput(self, resource_group_name: str, account_name: str, database_name: str, update_throughput_parameters: IO, *, content_type: str='application/json', **kwargs: Any) -> LROPoller[_models.ThroughputSettingsGetResults]:
+        if False:
+            i = 10
+            return i + 15
+        'Update RUs per second of an Azure Cosmos DB Gremlin database.\n\n        :param resource_group_name: The name of the resource group. The name is case insensitive.\n         Required.\n        :type resource_group_name: str\n        :param account_name: Cosmos DB database account name. Required.\n        :type account_name: str\n        :param database_name: Cosmos DB database name. Required.\n        :type database_name: str\n        :param update_throughput_parameters: The RUs per second of the parameters to provide for the\n         current Gremlin database. Required.\n        :type update_throughput_parameters: IO\n        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.\n         Default value is "application/json".\n        :paramtype content_type: str\n        :keyword callable cls: A custom type or function that will be passed the direct response\n        :keyword str continuation_token: A continuation token to restart a poller from a saved state.\n        :keyword polling: By default, your polling method will be ARMPolling. Pass in False for this\n         operation to not poll, or pass in your own initialized polling object for a personal polling\n         strategy.\n        :paramtype polling: bool or ~azure.core.polling.PollingMethod\n        :keyword int polling_interval: Default waiting time between two polls for LRO operations if no\n         Retry-After header is present.\n        :return: An instance of LROPoller that returns either ThroughputSettingsGetResults or the\n         result of cls(response)\n        :rtype: ~azure.core.polling.LROPoller[~azure.mgmt.cosmosdb.models.ThroughputSettingsGetResults]\n        :raises ~azure.core.exceptions.HttpResponseError:\n        '
+
+    @distributed_trace
+    def begin_update_gremlin_database_throughput(self, resource_group_name: str, account_name: str, database_name: str, update_throughput_parameters: Union[_models.ThroughputSettingsUpdateParameters, IO], **kwargs: Any) -> LROPoller[_models.ThroughputSettingsGetResults]:
+        if False:
+            print('Hello World!')
+        "Update RUs per second of an Azure Cosmos DB Gremlin database.\n\n        :param resource_group_name: The name of the resource group. The name is case insensitive.\n         Required.\n        :type resource_group_name: str\n        :param account_name: Cosmos DB database account name. Required.\n        :type account_name: str\n        :param database_name: Cosmos DB database name. Required.\n        :type database_name: str\n        :param update_throughput_parameters: The RUs per second of the parameters to provide for the\n         current Gremlin database. Is either a ThroughputSettingsUpdateParameters type or a IO type.\n         Required.\n        :type update_throughput_parameters:\n         ~azure.mgmt.cosmosdb.models.ThroughputSettingsUpdateParameters or IO\n        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.\n         Default value is None.\n        :paramtype content_type: str\n        :keyword callable cls: A custom type or function that will be passed the direct response\n        :keyword str continuation_token: A continuation token to restart a poller from a saved state.\n        :keyword polling: By default, your polling method will be ARMPolling. Pass in False for this\n         operation to not poll, or pass in your own initialized polling object for a personal polling\n         strategy.\n        :paramtype polling: bool or ~azure.core.polling.PollingMethod\n        :keyword int polling_interval: Default waiting time between two polls for LRO operations if no\n         Retry-After header is present.\n        :return: An instance of LROPoller that returns either ThroughputSettingsGetResults or the\n         result of cls(response)\n        :rtype: ~azure.core.polling.LROPoller[~azure.mgmt.cosmosdb.models.ThroughputSettingsGetResults]\n        :raises ~azure.core.exceptions.HttpResponseError:\n        "
+        _headers = case_insensitive_dict(kwargs.pop('headers', {}) or {})
+        _params = case_insensitive_dict(kwargs.pop('params', {}) or {})
+        api_version: str = kwargs.pop('api_version', _params.pop('api-version', self._config.api_version))
+        content_type: Optional[str] = kwargs.pop('content_type', _headers.pop('Content-Type', None))
+        cls: ClsType[_models.ThroughputSettingsGetResults] = kwargs.pop('cls', None)
+        polling: Union[bool, PollingMethod] = kwargs.pop('polling', True)
+        lro_delay = kwargs.pop('polling_interval', self._config.polling_interval)
+        cont_token: Optional[str] = kwargs.pop('continuation_token', None)
+        if cont_token is None:
+            raw_result = self._update_gremlin_database_throughput_initial(resource_group_name=resource_group_name, account_name=account_name, database_name=database_name, update_throughput_parameters=update_throughput_parameters, api_version=api_version, content_type=content_type, cls=lambda x, y, z: x, headers=_headers, params=_params, **kwargs)
+        kwargs.pop('error_map', None)
+
+        def get_long_running_output(pipeline_response):
+            if False:
+                while True:
+                    i = 10
+            deserialized = self._deserialize('ThroughputSettingsGetResults', pipeline_response)
+            if cls:
+                return cls(pipeline_response, deserialized, {})
+            return deserialized
+        if polling is True:
+            polling_method: PollingMethod = cast(PollingMethod, ARMPolling(lro_delay, **kwargs))
+        elif polling is False:
+            polling_method = cast(PollingMethod, NoPolling())
+        else:
+            polling_method = polling
+        if cont_token:
+            return LROPoller.from_continuation_token(polling_method=polling_method, continuation_token=cont_token, client=self._client, deserialization_callback=get_long_running_output)
+        return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
+    begin_update_gremlin_database_throughput.metadata = {'url': '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/gremlinDatabases/{databaseName}/throughputSettings/default'}
+
+    def _migrate_gremlin_database_to_autoscale_initial(self, resource_group_name: str, account_name: str, database_name: str, **kwargs: Any) -> Optional[_models.ThroughputSettingsGetResults]:
+        if False:
+            while True:
+                i = 10
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError, 304: ResourceNotModifiedError}
+        error_map.update(kwargs.pop('error_map', {}) or {})
+        _headers = kwargs.pop('headers', {}) or {}
+        _params = case_insensitive_dict(kwargs.pop('params', {}) or {})
+        api_version: str = kwargs.pop('api_version', _params.pop('api-version', self._config.api_version))
+        cls: ClsType[Optional[_models.ThroughputSettingsGetResults]] = kwargs.pop('cls', None)
+        request = build_migrate_gremlin_database_to_autoscale_request(resource_group_name=resource_group_name, account_name=account_name, database_name=database_name, subscription_id=self._config.subscription_id, api_version=api_version, template_url=self._migrate_gremlin_database_to_autoscale_initial.metadata['url'], headers=_headers, params=_params)
+        request = _convert_request(request)
+        request.url = self._client.format_url(request.url)
+        _stream = False
+        pipeline_response: PipelineResponse = self._client._pipeline.run(request, stream=_stream, **kwargs)
+        response = pipeline_response.http_response
+        if response.status_code not in [200, 202]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            raise HttpResponseError(response=response, error_format=ARMErrorFormat)
+        deserialized = None
+        response_headers = {}
+        if response.status_code == 200:
+            deserialized = self._deserialize('ThroughputSettingsGetResults', pipeline_response)
+        if response.status_code == 202:
+            response_headers['azure-AsyncOperation'] = self._deserialize('str', response.headers.get('azure-AsyncOperation'))
+            response_headers['location'] = self._deserialize('str', response.headers.get('location'))
+        if cls:
+            return cls(pipeline_response, deserialized, response_headers)
+        return deserialized
+    _migrate_gremlin_database_to_autoscale_initial.metadata = {'url': '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/gremlinDatabases/{databaseName}/throughputSettings/default/migrateToAutoscale'}
+
+    @distributed_trace
+    def begin_migrate_gremlin_database_to_autoscale(self, resource_group_name: str, account_name: str, database_name: str, **kwargs: Any) -> LROPoller[_models.ThroughputSettingsGetResults]:
+        if False:
+            i = 10
+            return i + 15
+        'Migrate an Azure Cosmos DB Gremlin database from manual throughput to autoscale.\n\n        :param resource_group_name: The name of the resource group. The name is case insensitive.\n         Required.\n        :type resource_group_name: str\n        :param account_name: Cosmos DB database account name. Required.\n        :type account_name: str\n        :param database_name: Cosmos DB database name. Required.\n        :type database_name: str\n        :keyword callable cls: A custom type or function that will be passed the direct response\n        :keyword str continuation_token: A continuation token to restart a poller from a saved state.\n        :keyword polling: By default, your polling method will be ARMPolling. Pass in False for this\n         operation to not poll, or pass in your own initialized polling object for a personal polling\n         strategy.\n        :paramtype polling: bool or ~azure.core.polling.PollingMethod\n        :keyword int polling_interval: Default waiting time between two polls for LRO operations if no\n         Retry-After header is present.\n        :return: An instance of LROPoller that returns either ThroughputSettingsGetResults or the\n         result of cls(response)\n        :rtype: ~azure.core.polling.LROPoller[~azure.mgmt.cosmosdb.models.ThroughputSettingsGetResults]\n        :raises ~azure.core.exceptions.HttpResponseError:\n        '
+        _headers = kwargs.pop('headers', {}) or {}
+        _params = case_insensitive_dict(kwargs.pop('params', {}) or {})
+        api_version: str = kwargs.pop('api_version', _params.pop('api-version', self._config.api_version))
+        cls: ClsType[_models.ThroughputSettingsGetResults] = kwargs.pop('cls', None)
+        polling: Union[bool, PollingMethod] = kwargs.pop('polling', True)
+        lro_delay = kwargs.pop('polling_interval', self._config.polling_interval)
+        cont_token: Optional[str] = kwargs.pop('continuation_token', None)
+        if cont_token is None:
+            raw_result = self._migrate_gremlin_database_to_autoscale_initial(resource_group_name=resource_group_name, account_name=account_name, database_name=database_name, api_version=api_version, cls=lambda x, y, z: x, headers=_headers, params=_params, **kwargs)
+        kwargs.pop('error_map', None)
+
+        def get_long_running_output(pipeline_response):
+            if False:
+                while True:
+                    i = 10
+            deserialized = self._deserialize('ThroughputSettingsGetResults', pipeline_response)
+            if cls:
+                return cls(pipeline_response, deserialized, {})
+            return deserialized
+        if polling is True:
+            polling_method: PollingMethod = cast(PollingMethod, ARMPolling(lro_delay, **kwargs))
+        elif polling is False:
+            polling_method = cast(PollingMethod, NoPolling())
+        else:
+            polling_method = polling
+        if cont_token:
+            return LROPoller.from_continuation_token(polling_method=polling_method, continuation_token=cont_token, client=self._client, deserialization_callback=get_long_running_output)
+        return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
+    begin_migrate_gremlin_database_to_autoscale.metadata = {'url': '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/gremlinDatabases/{databaseName}/throughputSettings/default/migrateToAutoscale'}
+
+    def _migrate_gremlin_database_to_manual_throughput_initial(self, resource_group_name: str, account_name: str, database_name: str, **kwargs: Any) -> Optional[_models.ThroughputSettingsGetResults]:
+        if False:
+            return 10
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError, 304: ResourceNotModifiedError}
+        error_map.update(kwargs.pop('error_map', {}) or {})
+        _headers = kwargs.pop('headers', {}) or {}
+        _params = case_insensitive_dict(kwargs.pop('params', {}) or {})
+        api_version: str = kwargs.pop('api_version', _params.pop('api-version', self._config.api_version))
+        cls: ClsType[Optional[_models.ThroughputSettingsGetResults]] = kwargs.pop('cls', None)
+        request = build_migrate_gremlin_database_to_manual_throughput_request(resource_group_name=resource_group_name, account_name=account_name, database_name=database_name, subscription_id=self._config.subscription_id, api_version=api_version, template_url=self._migrate_gremlin_database_to_manual_throughput_initial.metadata['url'], headers=_headers, params=_params)
+        request = _convert_request(request)
+        request.url = self._client.format_url(request.url)
+        _stream = False
+        pipeline_response: PipelineResponse = self._client._pipeline.run(request, stream=_stream, **kwargs)
+        response = pipeline_response.http_response
+        if response.status_code not in [200, 202]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            raise HttpResponseError(response=response, error_format=ARMErrorFormat)
+        deserialized = None
+        response_headers = {}
+        if response.status_code == 200:
+            deserialized = self._deserialize('ThroughputSettingsGetResults', pipeline_response)
+        if response.status_code == 202:
+            response_headers['azure-AsyncOperation'] = self._deserialize('str', response.headers.get('azure-AsyncOperation'))
+            response_headers['location'] = self._deserialize('str', response.headers.get('location'))
+        if cls:
+            return cls(pipeline_response, deserialized, response_headers)
+        return deserialized
+    _migrate_gremlin_database_to_manual_throughput_initial.metadata = {'url': '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/gremlinDatabases/{databaseName}/throughputSettings/default/migrateToManualThroughput'}
+
+    @distributed_trace
+    def begin_migrate_gremlin_database_to_manual_throughput(self, resource_group_name: str, account_name: str, database_name: str, **kwargs: Any) -> LROPoller[_models.ThroughputSettingsGetResults]:
+        if False:
+            print('Hello World!')
+        'Migrate an Azure Cosmos DB Gremlin database from autoscale to manual throughput.\n\n        :param resource_group_name: The name of the resource group. The name is case insensitive.\n         Required.\n        :type resource_group_name: str\n        :param account_name: Cosmos DB database account name. Required.\n        :type account_name: str\n        :param database_name: Cosmos DB database name. Required.\n        :type database_name: str\n        :keyword callable cls: A custom type or function that will be passed the direct response\n        :keyword str continuation_token: A continuation token to restart a poller from a saved state.\n        :keyword polling: By default, your polling method will be ARMPolling. Pass in False for this\n         operation to not poll, or pass in your own initialized polling object for a personal polling\n         strategy.\n        :paramtype polling: bool or ~azure.core.polling.PollingMethod\n        :keyword int polling_interval: Default waiting time between two polls for LRO operations if no\n         Retry-After header is present.\n        :return: An instance of LROPoller that returns either ThroughputSettingsGetResults or the\n         result of cls(response)\n        :rtype: ~azure.core.polling.LROPoller[~azure.mgmt.cosmosdb.models.ThroughputSettingsGetResults]\n        :raises ~azure.core.exceptions.HttpResponseError:\n        '
+        _headers = kwargs.pop('headers', {}) or {}
+        _params = case_insensitive_dict(kwargs.pop('params', {}) or {})
+        api_version: str = kwargs.pop('api_version', _params.pop('api-version', self._config.api_version))
+        cls: ClsType[_models.ThroughputSettingsGetResults] = kwargs.pop('cls', None)
+        polling: Union[bool, PollingMethod] = kwargs.pop('polling', True)
+        lro_delay = kwargs.pop('polling_interval', self._config.polling_interval)
+        cont_token: Optional[str] = kwargs.pop('continuation_token', None)
+        if cont_token is None:
+            raw_result = self._migrate_gremlin_database_to_manual_throughput_initial(resource_group_name=resource_group_name, account_name=account_name, database_name=database_name, api_version=api_version, cls=lambda x, y, z: x, headers=_headers, params=_params, **kwargs)
+        kwargs.pop('error_map', None)
+
+        def get_long_running_output(pipeline_response):
+            if False:
+                i = 10
+                return i + 15
+            deserialized = self._deserialize('ThroughputSettingsGetResults', pipeline_response)
+            if cls:
+                return cls(pipeline_response, deserialized, {})
+            return deserialized
+        if polling is True:
+            polling_method: PollingMethod = cast(PollingMethod, ARMPolling(lro_delay, **kwargs))
+        elif polling is False:
+            polling_method = cast(PollingMethod, NoPolling())
+        else:
+            polling_method = polling
+        if cont_token:
+            return LROPoller.from_continuation_token(polling_method=polling_method, continuation_token=cont_token, client=self._client, deserialization_callback=get_long_running_output)
+        return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
+    begin_migrate_gremlin_database_to_manual_throughput.metadata = {'url': '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/gremlinDatabases/{databaseName}/throughputSettings/default/migrateToManualThroughput'}
+
+    @distributed_trace
+    def list_gremlin_graphs(self, resource_group_name: str, account_name: str, database_name: str, **kwargs: Any) -> Iterable['_models.GremlinGraphGetResults']:
+        if False:
+            return 10
+        'Lists the Gremlin graph under an existing Azure Cosmos DB database account.\n\n        :param resource_group_name: The name of the resource group. The name is case insensitive.\n         Required.\n        :type resource_group_name: str\n        :param account_name: Cosmos DB database account name. Required.\n        :type account_name: str\n        :param database_name: Cosmos DB database name. Required.\n        :type database_name: str\n        :keyword callable cls: A custom type or function that will be passed the direct response\n        :return: An iterator like instance of either GremlinGraphGetResults or the result of\n         cls(response)\n        :rtype: ~azure.core.paging.ItemPaged[~azure.mgmt.cosmosdb.models.GremlinGraphGetResults]\n        :raises ~azure.core.exceptions.HttpResponseError:\n        '
+        _headers = kwargs.pop('headers', {}) or {}
+        _params = case_insensitive_dict(kwargs.pop('params', {}) or {})
+        api_version: str = kwargs.pop('api_version', _params.pop('api-version', self._config.api_version))
+        cls: ClsType[_models.GremlinGraphListResult] = kwargs.pop('cls', None)
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError, 304: ResourceNotModifiedError}
+        error_map.update(kwargs.pop('error_map', {}) or {})
+
+        def prepare_request(next_link=None):
+            if False:
+                print('Hello World!')
+            if not next_link:
+                request = build_list_gremlin_graphs_request(resource_group_name=resource_group_name, account_name=account_name, database_name=database_name, subscription_id=self._config.subscription_id, api_version=api_version, template_url=self.list_gremlin_graphs.metadata['url'], headers=_headers, params=_params)
+                request = _convert_request(request)
+                request.url = self._client.format_url(request.url)
+            else:
+                _parsed_next_link = urllib.parse.urlparse(next_link)
+                _next_request_params = case_insensitive_dict({key: [urllib.parse.quote(v) for v in value] for (key, value) in urllib.parse.parse_qs(_parsed_next_link.query).items()})
+                _next_request_params['api-version'] = self._config.api_version
+                request = HttpRequest('GET', urllib.parse.urljoin(next_link, _parsed_next_link.path), params=_next_request_params)
+                request = _convert_request(request)
+                request.url = self._client.format_url(request.url)
+                request.method = 'GET'
+            return request
+
+        def extract_data(pipeline_response):
+            if False:
+                return 10
+            deserialized = self._deserialize('GremlinGraphListResult', pipeline_response)
+            list_of_elem = deserialized.value
+            if cls:
+                list_of_elem = cls(list_of_elem)
+            return (None, iter(list_of_elem))
+
+        def get_next(next_link=None):
+            if False:
+                for i in range(10):
+                    print('nop')
+            request = prepare_request(next_link)
+            _stream = False
+            pipeline_response: PipelineResponse = self._client._pipeline.run(request, stream=_stream, **kwargs)
+            response = pipeline_response.http_response
+            if response.status_code not in [200]:
+                map_error(status_code=response.status_code, response=response, error_map=error_map)
+                raise HttpResponseError(response=response, error_format=ARMErrorFormat)
+            return pipeline_response
+        return ItemPaged(get_next, extract_data)
+    list_gremlin_graphs.metadata = {'url': '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/gremlinDatabases/{databaseName}/graphs'}
+
+    @distributed_trace
+    def get_gremlin_graph(self, resource_group_name: str, account_name: str, database_name: str, graph_name: str, **kwargs: Any) -> _models.GremlinGraphGetResults:
+        if False:
+            for i in range(10):
+                print('nop')
+        'Gets the Gremlin graph under an existing Azure Cosmos DB database account.\n\n        :param resource_group_name: The name of the resource group. The name is case insensitive.\n         Required.\n        :type resource_group_name: str\n        :param account_name: Cosmos DB database account name. Required.\n        :type account_name: str\n        :param database_name: Cosmos DB database name. Required.\n        :type database_name: str\n        :param graph_name: Cosmos DB graph name. Required.\n        :type graph_name: str\n        :keyword callable cls: A custom type or function that will be passed the direct response\n        :return: GremlinGraphGetResults or the result of cls(response)\n        :rtype: ~azure.mgmt.cosmosdb.models.GremlinGraphGetResults\n        :raises ~azure.core.exceptions.HttpResponseError:\n        '
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError, 304: ResourceNotModifiedError}
+        error_map.update(kwargs.pop('error_map', {}) or {})
+        _headers = kwargs.pop('headers', {}) or {}
+        _params = case_insensitive_dict(kwargs.pop('params', {}) or {})
+        api_version: str = kwargs.pop('api_version', _params.pop('api-version', self._config.api_version))
+        cls: ClsType[_models.GremlinGraphGetResults] = kwargs.pop('cls', None)
+        request = build_get_gremlin_graph_request(resource_group_name=resource_group_name, account_name=account_name, database_name=database_name, graph_name=graph_name, subscription_id=self._config.subscription_id, api_version=api_version, template_url=self.get_gremlin_graph.metadata['url'], headers=_headers, params=_params)
+        request = _convert_request(request)
+        request.url = self._client.format_url(request.url)
+        _stream = False
+        pipeline_response: PipelineResponse = self._client._pipeline.run(request, stream=_stream, **kwargs)
+        response = pipeline_response.http_response
+        if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            raise HttpResponseError(response=response, error_format=ARMErrorFormat)
+        deserialized = self._deserialize('GremlinGraphGetResults', pipeline_response)
+        if cls:
+            return cls(pipeline_response, deserialized, {})
+        return deserialized
+    get_gremlin_graph.metadata = {'url': '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/gremlinDatabases/{databaseName}/graphs/{graphName}'}
+
+    def _create_update_gremlin_graph_initial(self, resource_group_name: str, account_name: str, database_name: str, graph_name: str, create_update_gremlin_graph_parameters: Union[_models.GremlinGraphCreateUpdateParameters, IO], **kwargs: Any) -> Optional[_models.GremlinGraphGetResults]:
+        if False:
+            print('Hello World!')
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError, 304: ResourceNotModifiedError}
+        error_map.update(kwargs.pop('error_map', {}) or {})
+        _headers = case_insensitive_dict(kwargs.pop('headers', {}) or {})
+        _params = case_insensitive_dict(kwargs.pop('params', {}) or {})
+        api_version: str = kwargs.pop('api_version', _params.pop('api-version', self._config.api_version))
+        content_type: Optional[str] = kwargs.pop('content_type', _headers.pop('Content-Type', None))
+        cls: ClsType[Optional[_models.GremlinGraphGetResults]] = kwargs.pop('cls', None)
+        content_type = content_type or 'application/json'
+        _json = None
+        _content = None
+        if isinstance(create_update_gremlin_graph_parameters, (IOBase, bytes)):
+            _content = create_update_gremlin_graph_parameters
+        else:
+            _json = self._serialize.body(create_update_gremlin_graph_parameters, 'GremlinGraphCreateUpdateParameters')
+        request = build_create_update_gremlin_graph_request(resource_group_name=resource_group_name, account_name=account_name, database_name=database_name, graph_name=graph_name, subscription_id=self._config.subscription_id, api_version=api_version, content_type=content_type, json=_json, content=_content, template_url=self._create_update_gremlin_graph_initial.metadata['url'], headers=_headers, params=_params)
+        request = _convert_request(request)
+        request.url = self._client.format_url(request.url)
+        _stream = False
+        pipeline_response: PipelineResponse = self._client._pipeline.run(request, stream=_stream, **kwargs)
+        response = pipeline_response.http_response
+        if response.status_code not in [200, 202]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            raise HttpResponseError(response=response, error_format=ARMErrorFormat)
+        deserialized = None
+        response_headers = {}
+        if response.status_code == 200:
+            deserialized = self._deserialize('GremlinGraphGetResults', pipeline_response)
+        if response.status_code == 202:
+            response_headers['azure-AsyncOperation'] = self._deserialize('str', response.headers.get('azure-AsyncOperation'))
+            response_headers['location'] = self._deserialize('str', response.headers.get('location'))
+        if cls:
+            return cls(pipeline_response, deserialized, response_headers)
+        return deserialized
+    _create_update_gremlin_graph_initial.metadata = {'url': '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/gremlinDatabases/{databaseName}/graphs/{graphName}'}
+
+    @overload
+    def begin_create_update_gremlin_graph(self, resource_group_name: str, account_name: str, database_name: str, graph_name: str, create_update_gremlin_graph_parameters: _models.GremlinGraphCreateUpdateParameters, *, content_type: str='application/json', **kwargs: Any) -> LROPoller[_models.GremlinGraphGetResults]:
+        if False:
+            while True:
+                i = 10
+        'Create or update an Azure Cosmos DB Gremlin graph.\n\n        :param resource_group_name: The name of the resource group. The name is case insensitive.\n         Required.\n        :type resource_group_name: str\n        :param account_name: Cosmos DB database account name. Required.\n        :type account_name: str\n        :param database_name: Cosmos DB database name. Required.\n        :type database_name: str\n        :param graph_name: Cosmos DB graph name. Required.\n        :type graph_name: str\n        :param create_update_gremlin_graph_parameters: The parameters to provide for the current\n         Gremlin graph. Required.\n        :type create_update_gremlin_graph_parameters:\n         ~azure.mgmt.cosmosdb.models.GremlinGraphCreateUpdateParameters\n        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.\n         Default value is "application/json".\n        :paramtype content_type: str\n        :keyword callable cls: A custom type or function that will be passed the direct response\n        :keyword str continuation_token: A continuation token to restart a poller from a saved state.\n        :keyword polling: By default, your polling method will be ARMPolling. Pass in False for this\n         operation to not poll, or pass in your own initialized polling object for a personal polling\n         strategy.\n        :paramtype polling: bool or ~azure.core.polling.PollingMethod\n        :keyword int polling_interval: Default waiting time between two polls for LRO operations if no\n         Retry-After header is present.\n        :return: An instance of LROPoller that returns either GremlinGraphGetResults or the result of\n         cls(response)\n        :rtype: ~azure.core.polling.LROPoller[~azure.mgmt.cosmosdb.models.GremlinGraphGetResults]\n        :raises ~azure.core.exceptions.HttpResponseError:\n        '
+
+    @overload
+    def begin_create_update_gremlin_graph(self, resource_group_name: str, account_name: str, database_name: str, graph_name: str, create_update_gremlin_graph_parameters: IO, *, content_type: str='application/json', **kwargs: Any) -> LROPoller[_models.GremlinGraphGetResults]:
+        if False:
+            while True:
+                i = 10
+        'Create or update an Azure Cosmos DB Gremlin graph.\n\n        :param resource_group_name: The name of the resource group. The name is case insensitive.\n         Required.\n        :type resource_group_name: str\n        :param account_name: Cosmos DB database account name. Required.\n        :type account_name: str\n        :param database_name: Cosmos DB database name. Required.\n        :type database_name: str\n        :param graph_name: Cosmos DB graph name. Required.\n        :type graph_name: str\n        :param create_update_gremlin_graph_parameters: The parameters to provide for the current\n         Gremlin graph. Required.\n        :type create_update_gremlin_graph_parameters: IO\n        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.\n         Default value is "application/json".\n        :paramtype content_type: str\n        :keyword callable cls: A custom type or function that will be passed the direct response\n        :keyword str continuation_token: A continuation token to restart a poller from a saved state.\n        :keyword polling: By default, your polling method will be ARMPolling. Pass in False for this\n         operation to not poll, or pass in your own initialized polling object for a personal polling\n         strategy.\n        :paramtype polling: bool or ~azure.core.polling.PollingMethod\n        :keyword int polling_interval: Default waiting time between two polls for LRO operations if no\n         Retry-After header is present.\n        :return: An instance of LROPoller that returns either GremlinGraphGetResults or the result of\n         cls(response)\n        :rtype: ~azure.core.polling.LROPoller[~azure.mgmt.cosmosdb.models.GremlinGraphGetResults]\n        :raises ~azure.core.exceptions.HttpResponseError:\n        '
+
+    @distributed_trace
+    def begin_create_update_gremlin_graph(self, resource_group_name: str, account_name: str, database_name: str, graph_name: str, create_update_gremlin_graph_parameters: Union[_models.GremlinGraphCreateUpdateParameters, IO], **kwargs: Any) -> LROPoller[_models.GremlinGraphGetResults]:
+        if False:
+            while True:
+                i = 10
+        "Create or update an Azure Cosmos DB Gremlin graph.\n\n        :param resource_group_name: The name of the resource group. The name is case insensitive.\n         Required.\n        :type resource_group_name: str\n        :param account_name: Cosmos DB database account name. Required.\n        :type account_name: str\n        :param database_name: Cosmos DB database name. Required.\n        :type database_name: str\n        :param graph_name: Cosmos DB graph name. Required.\n        :type graph_name: str\n        :param create_update_gremlin_graph_parameters: The parameters to provide for the current\n         Gremlin graph. Is either a GremlinGraphCreateUpdateParameters type or a IO type. Required.\n        :type create_update_gremlin_graph_parameters:\n         ~azure.mgmt.cosmosdb.models.GremlinGraphCreateUpdateParameters or IO\n        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.\n         Default value is None.\n        :paramtype content_type: str\n        :keyword callable cls: A custom type or function that will be passed the direct response\n        :keyword str continuation_token: A continuation token to restart a poller from a saved state.\n        :keyword polling: By default, your polling method will be ARMPolling. Pass in False for this\n         operation to not poll, or pass in your own initialized polling object for a personal polling\n         strategy.\n        :paramtype polling: bool or ~azure.core.polling.PollingMethod\n        :keyword int polling_interval: Default waiting time between two polls for LRO operations if no\n         Retry-After header is present.\n        :return: An instance of LROPoller that returns either GremlinGraphGetResults or the result of\n         cls(response)\n        :rtype: ~azure.core.polling.LROPoller[~azure.mgmt.cosmosdb.models.GremlinGraphGetResults]\n        :raises ~azure.core.exceptions.HttpResponseError:\n        "
+        _headers = case_insensitive_dict(kwargs.pop('headers', {}) or {})
+        _params = case_insensitive_dict(kwargs.pop('params', {}) or {})
+        api_version: str = kwargs.pop('api_version', _params.pop('api-version', self._config.api_version))
+        content_type: Optional[str] = kwargs.pop('content_type', _headers.pop('Content-Type', None))
+        cls: ClsType[_models.GremlinGraphGetResults] = kwargs.pop('cls', None)
+        polling: Union[bool, PollingMethod] = kwargs.pop('polling', True)
+        lro_delay = kwargs.pop('polling_interval', self._config.polling_interval)
+        cont_token: Optional[str] = kwargs.pop('continuation_token', None)
+        if cont_token is None:
+            raw_result = self._create_update_gremlin_graph_initial(resource_group_name=resource_group_name, account_name=account_name, database_name=database_name, graph_name=graph_name, create_update_gremlin_graph_parameters=create_update_gremlin_graph_parameters, api_version=api_version, content_type=content_type, cls=lambda x, y, z: x, headers=_headers, params=_params, **kwargs)
+        kwargs.pop('error_map', None)
+
+        def get_long_running_output(pipeline_response):
+            if False:
+                while True:
+                    i = 10
+            deserialized = self._deserialize('GremlinGraphGetResults', pipeline_response)
+            if cls:
+                return cls(pipeline_response, deserialized, {})
+            return deserialized
+        if polling is True:
+            polling_method: PollingMethod = cast(PollingMethod, ARMPolling(lro_delay, **kwargs))
+        elif polling is False:
+            polling_method = cast(PollingMethod, NoPolling())
+        else:
+            polling_method = polling
+        if cont_token:
+            return LROPoller.from_continuation_token(polling_method=polling_method, continuation_token=cont_token, client=self._client, deserialization_callback=get_long_running_output)
+        return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
+    begin_create_update_gremlin_graph.metadata = {'url': '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/gremlinDatabases/{databaseName}/graphs/{graphName}'}
+
+    def _delete_gremlin_graph_initial(self, resource_group_name: str, account_name: str, database_name: str, graph_name: str, **kwargs: Any) -> None:
+        if False:
+            print('Hello World!')
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError, 304: ResourceNotModifiedError}
+        error_map.update(kwargs.pop('error_map', {}) or {})
+        _headers = kwargs.pop('headers', {}) or {}
+        _params = case_insensitive_dict(kwargs.pop('params', {}) or {})
+        api_version: str = kwargs.pop('api_version', _params.pop('api-version', self._config.api_version))
+        cls: ClsType[None] = kwargs.pop('cls', None)
+        request = build_delete_gremlin_graph_request(resource_group_name=resource_group_name, account_name=account_name, database_name=database_name, graph_name=graph_name, subscription_id=self._config.subscription_id, api_version=api_version, template_url=self._delete_gremlin_graph_initial.metadata['url'], headers=_headers, params=_params)
+        request = _convert_request(request)
+        request.url = self._client.format_url(request.url)
+        _stream = False
+        pipeline_response: PipelineResponse = self._client._pipeline.run(request, stream=_stream, **kwargs)
+        response = pipeline_response.http_response
+        if response.status_code not in [202, 204]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            raise HttpResponseError(response=response, error_format=ARMErrorFormat)
+        response_headers = {}
+        if response.status_code == 202:
+            response_headers['azure-AsyncOperation'] = self._deserialize('str', response.headers.get('azure-AsyncOperation'))
+            response_headers['location'] = self._deserialize('str', response.headers.get('location'))
+        if cls:
+            return cls(pipeline_response, None, response_headers)
+    _delete_gremlin_graph_initial.metadata = {'url': '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/gremlinDatabases/{databaseName}/graphs/{graphName}'}
+
+    @distributed_trace
+    def begin_delete_gremlin_graph(self, resource_group_name: str, account_name: str, database_name: str, graph_name: str, **kwargs: Any) -> LROPoller[None]:
+        if False:
+            print('Hello World!')
+        'Deletes an existing Azure Cosmos DB Gremlin graph.\n\n        :param resource_group_name: The name of the resource group. The name is case insensitive.\n         Required.\n        :type resource_group_name: str\n        :param account_name: Cosmos DB database account name. Required.\n        :type account_name: str\n        :param database_name: Cosmos DB database name. Required.\n        :type database_name: str\n        :param graph_name: Cosmos DB graph name. Required.\n        :type graph_name: str\n        :keyword callable cls: A custom type or function that will be passed the direct response\n        :keyword str continuation_token: A continuation token to restart a poller from a saved state.\n        :keyword polling: By default, your polling method will be ARMPolling. Pass in False for this\n         operation to not poll, or pass in your own initialized polling object for a personal polling\n         strategy.\n        :paramtype polling: bool or ~azure.core.polling.PollingMethod\n        :keyword int polling_interval: Default waiting time between two polls for LRO operations if no\n         Retry-After header is present.\n        :return: An instance of LROPoller that returns either None or the result of cls(response)\n        :rtype: ~azure.core.polling.LROPoller[None]\n        :raises ~azure.core.exceptions.HttpResponseError:\n        '
+        _headers = kwargs.pop('headers', {}) or {}
+        _params = case_insensitive_dict(kwargs.pop('params', {}) or {})
+        api_version: str = kwargs.pop('api_version', _params.pop('api-version', self._config.api_version))
+        cls: ClsType[None] = kwargs.pop('cls', None)
+        polling: Union[bool, PollingMethod] = kwargs.pop('polling', True)
+        lro_delay = kwargs.pop('polling_interval', self._config.polling_interval)
+        cont_token: Optional[str] = kwargs.pop('continuation_token', None)
+        if cont_token is None:
+            raw_result = self._delete_gremlin_graph_initial(resource_group_name=resource_group_name, account_name=account_name, database_name=database_name, graph_name=graph_name, api_version=api_version, cls=lambda x, y, z: x, headers=_headers, params=_params, **kwargs)
+        kwargs.pop('error_map', None)
+
+        def get_long_running_output(pipeline_response):
+            if False:
+                return 10
+            if cls:
+                return cls(pipeline_response, None, {})
+        if polling is True:
+            polling_method: PollingMethod = cast(PollingMethod, ARMPolling(lro_delay, **kwargs))
+        elif polling is False:
+            polling_method = cast(PollingMethod, NoPolling())
+        else:
+            polling_method = polling
+        if cont_token:
+            return LROPoller.from_continuation_token(polling_method=polling_method, continuation_token=cont_token, client=self._client, deserialization_callback=get_long_running_output)
+        return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
+    begin_delete_gremlin_graph.metadata = {'url': '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/gremlinDatabases/{databaseName}/graphs/{graphName}'}
+
+    @distributed_trace
+    def get_gremlin_graph_throughput(self, resource_group_name: str, account_name: str, database_name: str, graph_name: str, **kwargs: Any) -> _models.ThroughputSettingsGetResults:
+        if False:
+            for i in range(10):
+                print('nop')
+        'Gets the Gremlin graph throughput under an existing Azure Cosmos DB database account with the\n        provided name.\n\n        :param resource_group_name: The name of the resource group. The name is case insensitive.\n         Required.\n        :type resource_group_name: str\n        :param account_name: Cosmos DB database account name. Required.\n        :type account_name: str\n        :param database_name: Cosmos DB database name. Required.\n        :type database_name: str\n        :param graph_name: Cosmos DB graph name. Required.\n        :type graph_name: str\n        :keyword callable cls: A custom type or function that will be passed the direct response\n        :return: ThroughputSettingsGetResults or the result of cls(response)\n        :rtype: ~azure.mgmt.cosmosdb.models.ThroughputSettingsGetResults\n        :raises ~azure.core.exceptions.HttpResponseError:\n        '
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError, 304: ResourceNotModifiedError}
+        error_map.update(kwargs.pop('error_map', {}) or {})
+        _headers = kwargs.pop('headers', {}) or {}
+        _params = case_insensitive_dict(kwargs.pop('params', {}) or {})
+        api_version: str = kwargs.pop('api_version', _params.pop('api-version', self._config.api_version))
+        cls: ClsType[_models.ThroughputSettingsGetResults] = kwargs.pop('cls', None)
+        request = build_get_gremlin_graph_throughput_request(resource_group_name=resource_group_name, account_name=account_name, database_name=database_name, graph_name=graph_name, subscription_id=self._config.subscription_id, api_version=api_version, template_url=self.get_gremlin_graph_throughput.metadata['url'], headers=_headers, params=_params)
+        request = _convert_request(request)
+        request.url = self._client.format_url(request.url)
+        _stream = False
+        pipeline_response: PipelineResponse = self._client._pipeline.run(request, stream=_stream, **kwargs)
+        response = pipeline_response.http_response
+        if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            raise HttpResponseError(response=response, error_format=ARMErrorFormat)
+        deserialized = self._deserialize('ThroughputSettingsGetResults', pipeline_response)
+        if cls:
+            return cls(pipeline_response, deserialized, {})
+        return deserialized
+    get_gremlin_graph_throughput.metadata = {'url': '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/gremlinDatabases/{databaseName}/graphs/{graphName}/throughputSettings/default'}
+
+    def _update_gremlin_graph_throughput_initial(self, resource_group_name: str, account_name: str, database_name: str, graph_name: str, update_throughput_parameters: Union[_models.ThroughputSettingsUpdateParameters, IO], **kwargs: Any) -> Optional[_models.ThroughputSettingsGetResults]:
+        if False:
+            for i in range(10):
+                print('nop')
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError, 304: ResourceNotModifiedError}
+        error_map.update(kwargs.pop('error_map', {}) or {})
+        _headers = case_insensitive_dict(kwargs.pop('headers', {}) or {})
+        _params = case_insensitive_dict(kwargs.pop('params', {}) or {})
+        api_version: str = kwargs.pop('api_version', _params.pop('api-version', self._config.api_version))
+        content_type: Optional[str] = kwargs.pop('content_type', _headers.pop('Content-Type', None))
+        cls: ClsType[Optional[_models.ThroughputSettingsGetResults]] = kwargs.pop('cls', None)
+        content_type = content_type or 'application/json'
+        _json = None
+        _content = None
+        if isinstance(update_throughput_parameters, (IOBase, bytes)):
+            _content = update_throughput_parameters
+        else:
+            _json = self._serialize.body(update_throughput_parameters, 'ThroughputSettingsUpdateParameters')
+        request = build_update_gremlin_graph_throughput_request(resource_group_name=resource_group_name, account_name=account_name, database_name=database_name, graph_name=graph_name, subscription_id=self._config.subscription_id, api_version=api_version, content_type=content_type, json=_json, content=_content, template_url=self._update_gremlin_graph_throughput_initial.metadata['url'], headers=_headers, params=_params)
+        request = _convert_request(request)
+        request.url = self._client.format_url(request.url)
+        _stream = False
+        pipeline_response: PipelineResponse = self._client._pipeline.run(request, stream=_stream, **kwargs)
+        response = pipeline_response.http_response
+        if response.status_code not in [200, 202]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            raise HttpResponseError(response=response, error_format=ARMErrorFormat)
+        deserialized = None
+        response_headers = {}
+        if response.status_code == 200:
+            deserialized = self._deserialize('ThroughputSettingsGetResults', pipeline_response)
+        if response.status_code == 202:
+            response_headers['azure-AsyncOperation'] = self._deserialize('str', response.headers.get('azure-AsyncOperation'))
+            response_headers['location'] = self._deserialize('str', response.headers.get('location'))
+        if cls:
+            return cls(pipeline_response, deserialized, response_headers)
+        return deserialized
+    _update_gremlin_graph_throughput_initial.metadata = {'url': '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/gremlinDatabases/{databaseName}/graphs/{graphName}/throughputSettings/default'}
+
+    @overload
+    def begin_update_gremlin_graph_throughput(self, resource_group_name: str, account_name: str, database_name: str, graph_name: str, update_throughput_parameters: _models.ThroughputSettingsUpdateParameters, *, content_type: str='application/json', **kwargs: Any) -> LROPoller[_models.ThroughputSettingsGetResults]:
+        if False:
+            print('Hello World!')
+        'Update RUs per second of an Azure Cosmos DB Gremlin graph.\n\n        :param resource_group_name: The name of the resource group. The name is case insensitive.\n         Required.\n        :type resource_group_name: str\n        :param account_name: Cosmos DB database account name. Required.\n        :type account_name: str\n        :param database_name: Cosmos DB database name. Required.\n        :type database_name: str\n        :param graph_name: Cosmos DB graph name. Required.\n        :type graph_name: str\n        :param update_throughput_parameters: The RUs per second of the parameters to provide for the\n         current Gremlin graph. Required.\n        :type update_throughput_parameters:\n         ~azure.mgmt.cosmosdb.models.ThroughputSettingsUpdateParameters\n        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.\n         Default value is "application/json".\n        :paramtype content_type: str\n        :keyword callable cls: A custom type or function that will be passed the direct response\n        :keyword str continuation_token: A continuation token to restart a poller from a saved state.\n        :keyword polling: By default, your polling method will be ARMPolling. Pass in False for this\n         operation to not poll, or pass in your own initialized polling object for a personal polling\n         strategy.\n        :paramtype polling: bool or ~azure.core.polling.PollingMethod\n        :keyword int polling_interval: Default waiting time between two polls for LRO operations if no\n         Retry-After header is present.\n        :return: An instance of LROPoller that returns either ThroughputSettingsGetResults or the\n         result of cls(response)\n        :rtype: ~azure.core.polling.LROPoller[~azure.mgmt.cosmosdb.models.ThroughputSettingsGetResults]\n        :raises ~azure.core.exceptions.HttpResponseError:\n        '
+
+    @overload
+    def begin_update_gremlin_graph_throughput(self, resource_group_name: str, account_name: str, database_name: str, graph_name: str, update_throughput_parameters: IO, *, content_type: str='application/json', **kwargs: Any) -> LROPoller[_models.ThroughputSettingsGetResults]:
+        if False:
+            print('Hello World!')
+        'Update RUs per second of an Azure Cosmos DB Gremlin graph.\n\n        :param resource_group_name: The name of the resource group. The name is case insensitive.\n         Required.\n        :type resource_group_name: str\n        :param account_name: Cosmos DB database account name. Required.\n        :type account_name: str\n        :param database_name: Cosmos DB database name. Required.\n        :type database_name: str\n        :param graph_name: Cosmos DB graph name. Required.\n        :type graph_name: str\n        :param update_throughput_parameters: The RUs per second of the parameters to provide for the\n         current Gremlin graph. Required.\n        :type update_throughput_parameters: IO\n        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.\n         Default value is "application/json".\n        :paramtype content_type: str\n        :keyword callable cls: A custom type or function that will be passed the direct response\n        :keyword str continuation_token: A continuation token to restart a poller from a saved state.\n        :keyword polling: By default, your polling method will be ARMPolling. Pass in False for this\n         operation to not poll, or pass in your own initialized polling object for a personal polling\n         strategy.\n        :paramtype polling: bool or ~azure.core.polling.PollingMethod\n        :keyword int polling_interval: Default waiting time between two polls for LRO operations if no\n         Retry-After header is present.\n        :return: An instance of LROPoller that returns either ThroughputSettingsGetResults or the\n         result of cls(response)\n        :rtype: ~azure.core.polling.LROPoller[~azure.mgmt.cosmosdb.models.ThroughputSettingsGetResults]\n        :raises ~azure.core.exceptions.HttpResponseError:\n        '
+
+    @distributed_trace
+    def begin_update_gremlin_graph_throughput(self, resource_group_name: str, account_name: str, database_name: str, graph_name: str, update_throughput_parameters: Union[_models.ThroughputSettingsUpdateParameters, IO], **kwargs: Any) -> LROPoller[_models.ThroughputSettingsGetResults]:
+        if False:
+            print('Hello World!')
+        "Update RUs per second of an Azure Cosmos DB Gremlin graph.\n\n        :param resource_group_name: The name of the resource group. The name is case insensitive.\n         Required.\n        :type resource_group_name: str\n        :param account_name: Cosmos DB database account name. Required.\n        :type account_name: str\n        :param database_name: Cosmos DB database name. Required.\n        :type database_name: str\n        :param graph_name: Cosmos DB graph name. Required.\n        :type graph_name: str\n        :param update_throughput_parameters: The RUs per second of the parameters to provide for the\n         current Gremlin graph. Is either a ThroughputSettingsUpdateParameters type or a IO type.\n         Required.\n        :type update_throughput_parameters:\n         ~azure.mgmt.cosmosdb.models.ThroughputSettingsUpdateParameters or IO\n        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.\n         Default value is None.\n        :paramtype content_type: str\n        :keyword callable cls: A custom type or function that will be passed the direct response\n        :keyword str continuation_token: A continuation token to restart a poller from a saved state.\n        :keyword polling: By default, your polling method will be ARMPolling. Pass in False for this\n         operation to not poll, or pass in your own initialized polling object for a personal polling\n         strategy.\n        :paramtype polling: bool or ~azure.core.polling.PollingMethod\n        :keyword int polling_interval: Default waiting time between two polls for LRO operations if no\n         Retry-After header is present.\n        :return: An instance of LROPoller that returns either ThroughputSettingsGetResults or the\n         result of cls(response)\n        :rtype: ~azure.core.polling.LROPoller[~azure.mgmt.cosmosdb.models.ThroughputSettingsGetResults]\n        :raises ~azure.core.exceptions.HttpResponseError:\n        "
+        _headers = case_insensitive_dict(kwargs.pop('headers', {}) or {})
+        _params = case_insensitive_dict(kwargs.pop('params', {}) or {})
+        api_version: str = kwargs.pop('api_version', _params.pop('api-version', self._config.api_version))
+        content_type: Optional[str] = kwargs.pop('content_type', _headers.pop('Content-Type', None))
+        cls: ClsType[_models.ThroughputSettingsGetResults] = kwargs.pop('cls', None)
+        polling: Union[bool, PollingMethod] = kwargs.pop('polling', True)
+        lro_delay = kwargs.pop('polling_interval', self._config.polling_interval)
+        cont_token: Optional[str] = kwargs.pop('continuation_token', None)
+        if cont_token is None:
+            raw_result = self._update_gremlin_graph_throughput_initial(resource_group_name=resource_group_name, account_name=account_name, database_name=database_name, graph_name=graph_name, update_throughput_parameters=update_throughput_parameters, api_version=api_version, content_type=content_type, cls=lambda x, y, z: x, headers=_headers, params=_params, **kwargs)
+        kwargs.pop('error_map', None)
+
+        def get_long_running_output(pipeline_response):
+            if False:
+                i = 10
+                return i + 15
+            deserialized = self._deserialize('ThroughputSettingsGetResults', pipeline_response)
+            if cls:
+                return cls(pipeline_response, deserialized, {})
+            return deserialized
+        if polling is True:
+            polling_method: PollingMethod = cast(PollingMethod, ARMPolling(lro_delay, **kwargs))
+        elif polling is False:
+            polling_method = cast(PollingMethod, NoPolling())
+        else:
+            polling_method = polling
+        if cont_token:
+            return LROPoller.from_continuation_token(polling_method=polling_method, continuation_token=cont_token, client=self._client, deserialization_callback=get_long_running_output)
+        return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
+    begin_update_gremlin_graph_throughput.metadata = {'url': '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/gremlinDatabases/{databaseName}/graphs/{graphName}/throughputSettings/default'}
+
+    def _migrate_gremlin_graph_to_autoscale_initial(self, resource_group_name: str, account_name: str, database_name: str, graph_name: str, **kwargs: Any) -> Optional[_models.ThroughputSettingsGetResults]:
+        if False:
+            for i in range(10):
+                print('nop')
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError, 304: ResourceNotModifiedError}
+        error_map.update(kwargs.pop('error_map', {}) or {})
+        _headers = kwargs.pop('headers', {}) or {}
+        _params = case_insensitive_dict(kwargs.pop('params', {}) or {})
+        api_version: str = kwargs.pop('api_version', _params.pop('api-version', self._config.api_version))
+        cls: ClsType[Optional[_models.ThroughputSettingsGetResults]] = kwargs.pop('cls', None)
+        request = build_migrate_gremlin_graph_to_autoscale_request(resource_group_name=resource_group_name, account_name=account_name, database_name=database_name, graph_name=graph_name, subscription_id=self._config.subscription_id, api_version=api_version, template_url=self._migrate_gremlin_graph_to_autoscale_initial.metadata['url'], headers=_headers, params=_params)
+        request = _convert_request(request)
+        request.url = self._client.format_url(request.url)
+        _stream = False
+        pipeline_response: PipelineResponse = self._client._pipeline.run(request, stream=_stream, **kwargs)
+        response = pipeline_response.http_response
+        if response.status_code not in [200, 202]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            raise HttpResponseError(response=response, error_format=ARMErrorFormat)
+        deserialized = None
+        response_headers = {}
+        if response.status_code == 200:
+            deserialized = self._deserialize('ThroughputSettingsGetResults', pipeline_response)
+        if response.status_code == 202:
+            response_headers['azure-AsyncOperation'] = self._deserialize('str', response.headers.get('azure-AsyncOperation'))
+            response_headers['location'] = self._deserialize('str', response.headers.get('location'))
+        if cls:
+            return cls(pipeline_response, deserialized, response_headers)
+        return deserialized
+    _migrate_gremlin_graph_to_autoscale_initial.metadata = {'url': '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/gremlinDatabases/{databaseName}/graphs/{graphName}/throughputSettings/default/migrateToAutoscale'}
+
+    @distributed_trace
+    def begin_migrate_gremlin_graph_to_autoscale(self, resource_group_name: str, account_name: str, database_name: str, graph_name: str, **kwargs: Any) -> LROPoller[_models.ThroughputSettingsGetResults]:
+        if False:
+            i = 10
+            return i + 15
+        'Migrate an Azure Cosmos DB Gremlin graph from manual throughput to autoscale.\n\n        :param resource_group_name: The name of the resource group. The name is case insensitive.\n         Required.\n        :type resource_group_name: str\n        :param account_name: Cosmos DB database account name. Required.\n        :type account_name: str\n        :param database_name: Cosmos DB database name. Required.\n        :type database_name: str\n        :param graph_name: Cosmos DB graph name. Required.\n        :type graph_name: str\n        :keyword callable cls: A custom type or function that will be passed the direct response\n        :keyword str continuation_token: A continuation token to restart a poller from a saved state.\n        :keyword polling: By default, your polling method will be ARMPolling. Pass in False for this\n         operation to not poll, or pass in your own initialized polling object for a personal polling\n         strategy.\n        :paramtype polling: bool or ~azure.core.polling.PollingMethod\n        :keyword int polling_interval: Default waiting time between two polls for LRO operations if no\n         Retry-After header is present.\n        :return: An instance of LROPoller that returns either ThroughputSettingsGetResults or the\n         result of cls(response)\n        :rtype: ~azure.core.polling.LROPoller[~azure.mgmt.cosmosdb.models.ThroughputSettingsGetResults]\n        :raises ~azure.core.exceptions.HttpResponseError:\n        '
+        _headers = kwargs.pop('headers', {}) or {}
+        _params = case_insensitive_dict(kwargs.pop('params', {}) or {})
+        api_version: str = kwargs.pop('api_version', _params.pop('api-version', self._config.api_version))
+        cls: ClsType[_models.ThroughputSettingsGetResults] = kwargs.pop('cls', None)
+        polling: Union[bool, PollingMethod] = kwargs.pop('polling', True)
+        lro_delay = kwargs.pop('polling_interval', self._config.polling_interval)
+        cont_token: Optional[str] = kwargs.pop('continuation_token', None)
+        if cont_token is None:
+            raw_result = self._migrate_gremlin_graph_to_autoscale_initial(resource_group_name=resource_group_name, account_name=account_name, database_name=database_name, graph_name=graph_name, api_version=api_version, cls=lambda x, y, z: x, headers=_headers, params=_params, **kwargs)
+        kwargs.pop('error_map', None)
+
+        def get_long_running_output(pipeline_response):
+            if False:
+                return 10
+            deserialized = self._deserialize('ThroughputSettingsGetResults', pipeline_response)
+            if cls:
+                return cls(pipeline_response, deserialized, {})
+            return deserialized
+        if polling is True:
+            polling_method: PollingMethod = cast(PollingMethod, ARMPolling(lro_delay, **kwargs))
+        elif polling is False:
+            polling_method = cast(PollingMethod, NoPolling())
+        else:
+            polling_method = polling
+        if cont_token:
+            return LROPoller.from_continuation_token(polling_method=polling_method, continuation_token=cont_token, client=self._client, deserialization_callback=get_long_running_output)
+        return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
+    begin_migrate_gremlin_graph_to_autoscale.metadata = {'url': '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/gremlinDatabases/{databaseName}/graphs/{graphName}/throughputSettings/default/migrateToAutoscale'}
+
+    def _migrate_gremlin_graph_to_manual_throughput_initial(self, resource_group_name: str, account_name: str, database_name: str, graph_name: str, **kwargs: Any) -> Optional[_models.ThroughputSettingsGetResults]:
+        if False:
+            while True:
+                i = 10
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError, 304: ResourceNotModifiedError}
+        error_map.update(kwargs.pop('error_map', {}) or {})
+        _headers = kwargs.pop('headers', {}) or {}
+        _params = case_insensitive_dict(kwargs.pop('params', {}) or {})
+        api_version: str = kwargs.pop('api_version', _params.pop('api-version', self._config.api_version))
+        cls: ClsType[Optional[_models.ThroughputSettingsGetResults]] = kwargs.pop('cls', None)
+        request = build_migrate_gremlin_graph_to_manual_throughput_request(resource_group_name=resource_group_name, account_name=account_name, database_name=database_name, graph_name=graph_name, subscription_id=self._config.subscription_id, api_version=api_version, template_url=self._migrate_gremlin_graph_to_manual_throughput_initial.metadata['url'], headers=_headers, params=_params)
+        request = _convert_request(request)
+        request.url = self._client.format_url(request.url)
+        _stream = False
+        pipeline_response: PipelineResponse = self._client._pipeline.run(request, stream=_stream, **kwargs)
+        response = pipeline_response.http_response
+        if response.status_code not in [200, 202]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            raise HttpResponseError(response=response, error_format=ARMErrorFormat)
+        deserialized = None
+        response_headers = {}
+        if response.status_code == 200:
+            deserialized = self._deserialize('ThroughputSettingsGetResults', pipeline_response)
+        if response.status_code == 202:
+            response_headers['azure-AsyncOperation'] = self._deserialize('str', response.headers.get('azure-AsyncOperation'))
+            response_headers['location'] = self._deserialize('str', response.headers.get('location'))
+        if cls:
+            return cls(pipeline_response, deserialized, response_headers)
+        return deserialized
+    _migrate_gremlin_graph_to_manual_throughput_initial.metadata = {'url': '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/gremlinDatabases/{databaseName}/graphs/{graphName}/throughputSettings/default/migrateToManualThroughput'}
+
+    @distributed_trace
+    def begin_migrate_gremlin_graph_to_manual_throughput(self, resource_group_name: str, account_name: str, database_name: str, graph_name: str, **kwargs: Any) -> LROPoller[_models.ThroughputSettingsGetResults]:
+        if False:
+            i = 10
+            return i + 15
+        'Migrate an Azure Cosmos DB Gremlin graph from autoscale to manual throughput.\n\n        :param resource_group_name: The name of the resource group. The name is case insensitive.\n         Required.\n        :type resource_group_name: str\n        :param account_name: Cosmos DB database account name. Required.\n        :type account_name: str\n        :param database_name: Cosmos DB database name. Required.\n        :type database_name: str\n        :param graph_name: Cosmos DB graph name. Required.\n        :type graph_name: str\n        :keyword callable cls: A custom type or function that will be passed the direct response\n        :keyword str continuation_token: A continuation token to restart a poller from a saved state.\n        :keyword polling: By default, your polling method will be ARMPolling. Pass in False for this\n         operation to not poll, or pass in your own initialized polling object for a personal polling\n         strategy.\n        :paramtype polling: bool or ~azure.core.polling.PollingMethod\n        :keyword int polling_interval: Default waiting time between two polls for LRO operations if no\n         Retry-After header is present.\n        :return: An instance of LROPoller that returns either ThroughputSettingsGetResults or the\n         result of cls(response)\n        :rtype: ~azure.core.polling.LROPoller[~azure.mgmt.cosmosdb.models.ThroughputSettingsGetResults]\n        :raises ~azure.core.exceptions.HttpResponseError:\n        '
+        _headers = kwargs.pop('headers', {}) or {}
+        _params = case_insensitive_dict(kwargs.pop('params', {}) or {})
+        api_version: str = kwargs.pop('api_version', _params.pop('api-version', self._config.api_version))
+        cls: ClsType[_models.ThroughputSettingsGetResults] = kwargs.pop('cls', None)
+        polling: Union[bool, PollingMethod] = kwargs.pop('polling', True)
+        lro_delay = kwargs.pop('polling_interval', self._config.polling_interval)
+        cont_token: Optional[str] = kwargs.pop('continuation_token', None)
+        if cont_token is None:
+            raw_result = self._migrate_gremlin_graph_to_manual_throughput_initial(resource_group_name=resource_group_name, account_name=account_name, database_name=database_name, graph_name=graph_name, api_version=api_version, cls=lambda x, y, z: x, headers=_headers, params=_params, **kwargs)
+        kwargs.pop('error_map', None)
+
+        def get_long_running_output(pipeline_response):
+            if False:
+                while True:
+                    i = 10
+            deserialized = self._deserialize('ThroughputSettingsGetResults', pipeline_response)
+            if cls:
+                return cls(pipeline_response, deserialized, {})
+            return deserialized
+        if polling is True:
+            polling_method: PollingMethod = cast(PollingMethod, ARMPolling(lro_delay, **kwargs))
+        elif polling is False:
+            polling_method = cast(PollingMethod, NoPolling())
+        else:
+            polling_method = polling
+        if cont_token:
+            return LROPoller.from_continuation_token(polling_method=polling_method, continuation_token=cont_token, client=self._client, deserialization_callback=get_long_running_output)
+        return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
+    begin_migrate_gremlin_graph_to_manual_throughput.metadata = {'url': '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/gremlinDatabases/{databaseName}/graphs/{graphName}/throughputSettings/default/migrateToManualThroughput'}
+
+    def _retrieve_continuous_backup_information_initial(self, resource_group_name: str, account_name: str, database_name: str, graph_name: str, location: Union[_models.ContinuousBackupRestoreLocation, IO], **kwargs: Any) -> Optional[_models.BackupInformation]:
+        if False:
+            return 10
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError, 304: ResourceNotModifiedError}
+        error_map.update(kwargs.pop('error_map', {}) or {})
+        _headers = case_insensitive_dict(kwargs.pop('headers', {}) or {})
+        _params = case_insensitive_dict(kwargs.pop('params', {}) or {})
+        api_version: str = kwargs.pop('api_version', _params.pop('api-version', self._config.api_version))
+        content_type: Optional[str] = kwargs.pop('content_type', _headers.pop('Content-Type', None))
+        cls: ClsType[Optional[_models.BackupInformation]] = kwargs.pop('cls', None)
+        content_type = content_type or 'application/json'
+        _json = None
+        _content = None
+        if isinstance(location, (IOBase, bytes)):
+            _content = location
+        else:
+            _json = self._serialize.body(location, 'ContinuousBackupRestoreLocation')
+        request = build_retrieve_continuous_backup_information_request(resource_group_name=resource_group_name, account_name=account_name, database_name=database_name, graph_name=graph_name, subscription_id=self._config.subscription_id, api_version=api_version, content_type=content_type, json=_json, content=_content, template_url=self._retrieve_continuous_backup_information_initial.metadata['url'], headers=_headers, params=_params)
+        request = _convert_request(request)
+        request.url = self._client.format_url(request.url)
+        _stream = False
+        pipeline_response: PipelineResponse = self._client._pipeline.run(request, stream=_stream, **kwargs)
+        response = pipeline_response.http_response
+        if response.status_code not in [200, 202]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            raise HttpResponseError(response=response, error_format=ARMErrorFormat)
+        deserialized = None
+        if response.status_code == 200:
+            deserialized = self._deserialize('BackupInformation', pipeline_response)
+        if cls:
+            return cls(pipeline_response, deserialized, {})
+        return deserialized
+    _retrieve_continuous_backup_information_initial.metadata = {'url': '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/gremlinDatabases/{databaseName}/graphs/{graphName}/retrieveContinuousBackupInformation'}
+
+    @overload
+    def begin_retrieve_continuous_backup_information(self, resource_group_name: str, account_name: str, database_name: str, graph_name: str, location: _models.ContinuousBackupRestoreLocation, *, content_type: str='application/json', **kwargs: Any) -> LROPoller[_models.BackupInformation]:
+        if False:
+            for i in range(10):
+                print('nop')
+        'Retrieves continuous backup information for a gremlin graph.\n\n        :param resource_group_name: The name of the resource group. The name is case insensitive.\n         Required.\n        :type resource_group_name: str\n        :param account_name: Cosmos DB database account name. Required.\n        :type account_name: str\n        :param database_name: Cosmos DB database name. Required.\n        :type database_name: str\n        :param graph_name: Cosmos DB graph name. Required.\n        :type graph_name: str\n        :param location: The name of the continuous backup restore location. Required.\n        :type location: ~azure.mgmt.cosmosdb.models.ContinuousBackupRestoreLocation\n        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.\n         Default value is "application/json".\n        :paramtype content_type: str\n        :keyword callable cls: A custom type or function that will be passed the direct response\n        :keyword str continuation_token: A continuation token to restart a poller from a saved state.\n        :keyword polling: By default, your polling method will be ARMPolling. Pass in False for this\n         operation to not poll, or pass in your own initialized polling object for a personal polling\n         strategy.\n        :paramtype polling: bool or ~azure.core.polling.PollingMethod\n        :keyword int polling_interval: Default waiting time between two polls for LRO operations if no\n         Retry-After header is present.\n        :return: An instance of LROPoller that returns either BackupInformation or the result of\n         cls(response)\n        :rtype: ~azure.core.polling.LROPoller[~azure.mgmt.cosmosdb.models.BackupInformation]\n        :raises ~azure.core.exceptions.HttpResponseError:\n        '
+
+    @overload
+    def begin_retrieve_continuous_backup_information(self, resource_group_name: str, account_name: str, database_name: str, graph_name: str, location: IO, *, content_type: str='application/json', **kwargs: Any) -> LROPoller[_models.BackupInformation]:
+        if False:
+            print('Hello World!')
+        'Retrieves continuous backup information for a gremlin graph.\n\n        :param resource_group_name: The name of the resource group. The name is case insensitive.\n         Required.\n        :type resource_group_name: str\n        :param account_name: Cosmos DB database account name. Required.\n        :type account_name: str\n        :param database_name: Cosmos DB database name. Required.\n        :type database_name: str\n        :param graph_name: Cosmos DB graph name. Required.\n        :type graph_name: str\n        :param location: The name of the continuous backup restore location. Required.\n        :type location: IO\n        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.\n         Default value is "application/json".\n        :paramtype content_type: str\n        :keyword callable cls: A custom type or function that will be passed the direct response\n        :keyword str continuation_token: A continuation token to restart a poller from a saved state.\n        :keyword polling: By default, your polling method will be ARMPolling. Pass in False for this\n         operation to not poll, or pass in your own initialized polling object for a personal polling\n         strategy.\n        :paramtype polling: bool or ~azure.core.polling.PollingMethod\n        :keyword int polling_interval: Default waiting time between two polls for LRO operations if no\n         Retry-After header is present.\n        :return: An instance of LROPoller that returns either BackupInformation or the result of\n         cls(response)\n        :rtype: ~azure.core.polling.LROPoller[~azure.mgmt.cosmosdb.models.BackupInformation]\n        :raises ~azure.core.exceptions.HttpResponseError:\n        '
+
+    @distributed_trace
+    def begin_retrieve_continuous_backup_information(self, resource_group_name: str, account_name: str, database_name: str, graph_name: str, location: Union[_models.ContinuousBackupRestoreLocation, IO], **kwargs: Any) -> LROPoller[_models.BackupInformation]:
+        if False:
+            while True:
+                i = 10
+        "Retrieves continuous backup information for a gremlin graph.\n\n        :param resource_group_name: The name of the resource group. The name is case insensitive.\n         Required.\n        :type resource_group_name: str\n        :param account_name: Cosmos DB database account name. Required.\n        :type account_name: str\n        :param database_name: Cosmos DB database name. Required.\n        :type database_name: str\n        :param graph_name: Cosmos DB graph name. Required.\n        :type graph_name: str\n        :param location: The name of the continuous backup restore location. Is either a\n         ContinuousBackupRestoreLocation type or a IO type. Required.\n        :type location: ~azure.mgmt.cosmosdb.models.ContinuousBackupRestoreLocation or IO\n        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.\n         Default value is None.\n        :paramtype content_type: str\n        :keyword callable cls: A custom type or function that will be passed the direct response\n        :keyword str continuation_token: A continuation token to restart a poller from a saved state.\n        :keyword polling: By default, your polling method will be ARMPolling. Pass in False for this\n         operation to not poll, or pass in your own initialized polling object for a personal polling\n         strategy.\n        :paramtype polling: bool or ~azure.core.polling.PollingMethod\n        :keyword int polling_interval: Default waiting time between two polls for LRO operations if no\n         Retry-After header is present.\n        :return: An instance of LROPoller that returns either BackupInformation or the result of\n         cls(response)\n        :rtype: ~azure.core.polling.LROPoller[~azure.mgmt.cosmosdb.models.BackupInformation]\n        :raises ~azure.core.exceptions.HttpResponseError:\n        "
+        _headers = case_insensitive_dict(kwargs.pop('headers', {}) or {})
+        _params = case_insensitive_dict(kwargs.pop('params', {}) or {})
+        api_version: str = kwargs.pop('api_version', _params.pop('api-version', self._config.api_version))
+        content_type: Optional[str] = kwargs.pop('content_type', _headers.pop('Content-Type', None))
+        cls: ClsType[_models.BackupInformation] = kwargs.pop('cls', None)
+        polling: Union[bool, PollingMethod] = kwargs.pop('polling', True)
+        lro_delay = kwargs.pop('polling_interval', self._config.polling_interval)
+        cont_token: Optional[str] = kwargs.pop('continuation_token', None)
+        if cont_token is None:
+            raw_result = self._retrieve_continuous_backup_information_initial(resource_group_name=resource_group_name, account_name=account_name, database_name=database_name, graph_name=graph_name, location=location, api_version=api_version, content_type=content_type, cls=lambda x, y, z: x, headers=_headers, params=_params, **kwargs)
+        kwargs.pop('error_map', None)
+
+        def get_long_running_output(pipeline_response):
+            if False:
+                i = 10
+                return i + 15
+            deserialized = self._deserialize('BackupInformation', pipeline_response)
+            if cls:
+                return cls(pipeline_response, deserialized, {})
+            return deserialized
+        if polling is True:
+            polling_method: PollingMethod = cast(PollingMethod, ARMPolling(lro_delay, lro_options={'final-state-via': 'location'}, **kwargs))
+        elif polling is False:
+            polling_method = cast(PollingMethod, NoPolling())
+        else:
+            polling_method = polling
+        if cont_token:
+            return LROPoller.from_continuation_token(polling_method=polling_method, continuation_token=cont_token, client=self._client, deserialization_callback=get_long_running_output)
+        return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
+    begin_retrieve_continuous_backup_information.metadata = {'url': '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/gremlinDatabases/{databaseName}/graphs/{graphName}/retrieveContinuousBackupInformation'}

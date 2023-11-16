@@ -1,0 +1,158 @@
+""" Testing suite for the PyTorch DecisionTransformer model. """
+import inspect
+import unittest
+from transformers import DecisionTransformerConfig, is_torch_available
+from transformers.testing_utils import require_torch, slow, torch_device
+from ...generation.test_utils import GenerationTesterMixin
+from ...test_configuration_common import ConfigTester
+from ...test_modeling_common import ModelTesterMixin, floats_tensor, ids_tensor, random_attention_mask
+from ...test_pipeline_mixin import PipelineTesterMixin
+if is_torch_available():
+    import torch
+    from transformers import DecisionTransformerModel
+    from transformers.models.decision_transformer.modeling_decision_transformer import DECISION_TRANSFORMER_PRETRAINED_MODEL_ARCHIVE_LIST
+
+class DecisionTransformerModelTester:
+
+    def __init__(self, parent, batch_size=13, seq_length=7, act_dim=6, state_dim=17, hidden_size=23, max_length=11, is_training=True):
+        if False:
+            return 10
+        self.parent = parent
+        self.batch_size = batch_size
+        self.seq_length = seq_length
+        self.act_dim = act_dim
+        self.state_dim = state_dim
+        self.hidden_size = hidden_size
+        self.max_length = max_length
+        self.is_training = is_training
+
+    def prepare_config_and_inputs(self):
+        if False:
+            print('Hello World!')
+        states = floats_tensor((self.batch_size, self.seq_length, self.state_dim))
+        actions = floats_tensor((self.batch_size, self.seq_length, self.act_dim))
+        rewards = floats_tensor((self.batch_size, self.seq_length, 1))
+        returns_to_go = floats_tensor((self.batch_size, self.seq_length, 1))
+        timesteps = ids_tensor((self.batch_size, self.seq_length), vocab_size=1000)
+        attention_mask = random_attention_mask((self.batch_size, self.seq_length))
+        config = self.get_config()
+        return (config, states, actions, rewards, returns_to_go, timesteps, attention_mask)
+
+    def get_config(self):
+        if False:
+            while True:
+                i = 10
+        return DecisionTransformerConfig(batch_size=self.batch_size, seq_length=self.seq_length, act_dim=self.act_dim, state_dim=self.state_dim, hidden_size=self.hidden_size, max_length=self.max_length)
+
+    def create_and_check_model(self, config, states, actions, rewards, returns_to_go, timesteps, attention_mask):
+        if False:
+            i = 10
+            return i + 15
+        model = DecisionTransformerModel(config=config)
+        model.to(torch_device)
+        model.eval()
+        result = model(states, actions, rewards, returns_to_go, timesteps, attention_mask)
+        self.parent.assertEqual(result.state_preds.shape, states.shape)
+        self.parent.assertEqual(result.action_preds.shape, actions.shape)
+        self.parent.assertEqual(result.return_preds.shape, returns_to_go.shape)
+        self.parent.assertEqual(result.last_hidden_state.shape, (self.batch_size, self.seq_length * 3, self.hidden_size))
+
+    def prepare_config_and_inputs_for_common(self):
+        if False:
+            while True:
+                i = 10
+        config_and_inputs = self.prepare_config_and_inputs()
+        (config, states, actions, rewards, returns_to_go, timesteps, attention_mask) = config_and_inputs
+        inputs_dict = {'states': states, 'actions': actions, 'rewards': rewards, 'returns_to_go': returns_to_go, 'timesteps': timesteps, 'attention_mask': attention_mask}
+        return (config, inputs_dict)
+
+@require_torch
+class DecisionTransformerModelTest(ModelTesterMixin, GenerationTesterMixin, PipelineTesterMixin, unittest.TestCase):
+    all_model_classes = (DecisionTransformerModel,) if is_torch_available() else ()
+    all_generative_model_classes = ()
+    pipeline_model_mapping = {'feature-extraction': DecisionTransformerModel} if is_torch_available() else {}
+    test_generate_without_input_ids = False
+    test_pruning = False
+    test_resize_embeddings = False
+    test_head_masking = False
+    test_attention_outputs = False
+    test_hidden_states_output = False
+    test_inputs_embeds = False
+    test_model_common_attributes = False
+    test_gradient_checkpointing = False
+    test_torchscript = False
+
+    def setUp(self):
+        if False:
+            print('Hello World!')
+        self.model_tester = DecisionTransformerModelTester(self)
+        self.config_tester = ConfigTester(self, config_class=DecisionTransformerConfig, hidden_size=37)
+
+    def test_config(self):
+        if False:
+            return 10
+        self.config_tester.run_common_tests()
+
+    def test_model(self):
+        if False:
+            for i in range(10):
+                print('nop')
+        config_and_inputs = self.model_tester.prepare_config_and_inputs()
+        self.model_tester.create_and_check_model(*config_and_inputs)
+
+    @slow
+    def test_model_from_pretrained(self):
+        if False:
+            i = 10
+            return i + 15
+        for model_name in DECISION_TRANSFORMER_PRETRAINED_MODEL_ARCHIVE_LIST[:1]:
+            model = DecisionTransformerModel.from_pretrained(model_name)
+            self.assertIsNotNone(model)
+
+    def test_forward_signature(self):
+        if False:
+            print('Hello World!')
+        (config, _) = self.model_tester.prepare_config_and_inputs_for_common()
+        for model_class in self.all_model_classes:
+            model = model_class(config)
+            signature = inspect.signature(model.forward)
+            arg_names = [*signature.parameters.keys()]
+            expected_arg_names = ['states', 'actions', 'rewards', 'returns_to_go', 'timesteps', 'attention_mask']
+            self.assertListEqual(arg_names[:len(expected_arg_names)], expected_arg_names)
+
+@require_torch
+class DecisionTransformerModelIntegrationTest(unittest.TestCase):
+
+    @slow
+    def test_autoregressive_prediction(self):
+        if False:
+            while True:
+                i = 10
+        '\n        An integration test that performs autoregressive prediction of state, action and return\n        from a sequence of state, actions and returns. Test is performed over two timesteps.\n\n        '
+        NUM_STEPS = 2
+        TARGET_RETURN = 10
+        model = DecisionTransformerModel.from_pretrained('edbeeching/decision-transformer-gym-hopper-expert')
+        model = model.to(torch_device)
+        config = model.config
+        torch.manual_seed(0)
+        state = torch.randn(1, 1, config.state_dim).to(device=torch_device, dtype=torch.float32)
+        expected_outputs = torch.tensor([[0.242793, -0.28693074, 0.8742613], [0.67815274, -0.08101085, -0.12952147]], device=torch_device)
+        returns_to_go = torch.tensor(TARGET_RETURN, device=torch_device, dtype=torch.float32).reshape(1, 1, 1)
+        states = state
+        actions = torch.zeros(1, 0, config.act_dim, device=torch_device, dtype=torch.float32)
+        rewards = torch.zeros(1, 0, device=torch_device, dtype=torch.float32)
+        timesteps = torch.tensor(0, device=torch_device, dtype=torch.long).reshape(1, 1)
+        for step in range(NUM_STEPS):
+            actions = torch.cat([actions, torch.zeros(1, 1, config.act_dim, device=torch_device)], dim=1)
+            rewards = torch.cat([rewards, torch.zeros(1, 1, device=torch_device)], dim=1)
+            attention_mask = torch.ones(1, states.shape[1]).to(dtype=torch.long, device=states.device)
+            with torch.no_grad():
+                (_, action_pred, _) = model(states=states, actions=actions, rewards=rewards, returns_to_go=returns_to_go, timesteps=timesteps, attention_mask=attention_mask, return_dict=False)
+            self.assertEqual(action_pred.shape, actions.shape)
+            self.assertTrue(torch.allclose(action_pred[0, -1], expected_outputs[step], atol=0.0001))
+            (state, reward, _, _) = (torch.randn(1, 1, config.state_dim).to(device=torch_device, dtype=torch.float32), 1.0, False, {})
+            actions[-1] = action_pred[0, -1]
+            states = torch.cat([states, state], dim=1)
+            pred_return = returns_to_go[0, -1] - reward
+            returns_to_go = torch.cat([returns_to_go, pred_return.reshape(1, 1, 1)], dim=1)
+            timesteps = torch.cat([timesteps, torch.ones((1, 1), device=torch_device, dtype=torch.long) * (step + 1)], dim=1)

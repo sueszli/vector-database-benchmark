@@ -1,0 +1,24 @@
+"""Utility functions for dataloader."""
+import tensorflow.compat.v2 as tf
+from official.vision.detection.utils import input_utils
+
+def process_source_id(source_id):
+    if False:
+        print('Hello World!')
+    'Processes source_id to the right format.'
+    if source_id.dtype == tf.string:
+        source_id = tf.cast(tf.strings.to_number(source_id), tf.int64)
+    with tf.control_dependencies([source_id]):
+        source_id = tf.cond(pred=tf.equal(tf.size(input=source_id), 0), true_fn=lambda : tf.cast(tf.constant(-1), tf.int64), false_fn=lambda : tf.identity(source_id))
+    return source_id
+
+def pad_groundtruths_to_fixed_size(gt, n):
+    if False:
+        while True:
+            i = 10
+    'Pads the first dimension of groundtruths labels to the fixed size.'
+    gt['boxes'] = input_utils.pad_to_fixed_size(gt['boxes'], n, -1)
+    gt['is_crowds'] = input_utils.pad_to_fixed_size(gt['is_crowds'], n, 0)
+    gt['areas'] = input_utils.pad_to_fixed_size(gt['areas'], n, -1)
+    gt['classes'] = input_utils.pad_to_fixed_size(gt['classes'], n, -1)
+    return gt

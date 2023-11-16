@@ -1,0 +1,14 @@
+from azure.identity import DefaultAzureCredential
+from azure.mgmt.apimanagement import ApiManagementClient
+'\n# PREREQUISITES\n    pip install azure-identity\n    pip install azure-mgmt-apimanagement\n# USAGE\n    python api_management_get_reports_by_user.py\n\n    Before run the sample, please set the values of the client ID, tenant ID and client secret\n    of the AAD application as environment variables: AZURE_CLIENT_ID, AZURE_TENANT_ID,\n    AZURE_CLIENT_SECRET. For more info about how to get the value, please see:\n    https://docs.microsoft.com/azure/active-directory/develop/howto-create-service-principal-portal\n'
+
+def main():
+    if False:
+        i = 10
+        return i + 15
+    client = ApiManagementClient(credential=DefaultAzureCredential(), subscription_id='subid')
+    response = client.reports.list_by_user(resource_group_name='rg1', service_name='apimService1', filter="timestamp ge datetime'2017-06-01T00:00:00' and timestamp le datetime'2017-06-04T00:00:00'")
+    for item in response:
+        print(item)
+if __name__ == '__main__':
+    main()

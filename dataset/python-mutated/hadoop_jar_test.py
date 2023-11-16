@@ -1,0 +1,117 @@
+import luigi
+import tempfile
+import shlex
+from helpers import unittest
+from luigi.contrib.hadoop_jar import HadoopJarJobError, HadoopJarJobTask, fix_paths
+from mock import patch, Mock
+import pytest
+
+class TestHadoopJarJob(HadoopJarJobTask):
+    path = luigi.Parameter()
+
+    def jar(self):
+        if False:
+            return 10
+        return self.path
+
+class TestMissingJarJob(HadoopJarJobTask):
+    pass
+
+class TestRemoteHadoopJarJob(TestHadoopJarJob):
+
+    def ssh(self):
+        if False:
+            return 10
+        return {'host': 'myhost', 'key_file': 'file', 'username': 'user'}
+
+class TestRemoteMissingJarJob(TestHadoopJarJob):
+
+    def ssh(self):
+        if False:
+            for i in range(10):
+                print('nop')
+        return {'host': 'myhost', 'key_file': 'file'}
+
+class TestRemoteHadoopJarTwoParamJob(TestRemoteHadoopJarJob):
+    param2 = luigi.Parameter()
+
+@pytest.mark.apache
+class FixPathsTest(unittest.TestCase):
+
+    def test_fix_paths_non_hdfs_target_path(self):
+        if False:
+            print('Hello World!')
+        mock_job = Mock()
+        mock_arg = Mock()
+        mock_job.args.return_value = [mock_arg]
+        mock_arg.path = 'right_path'
+        self.assertEqual(([], ['right_path']), fix_paths(mock_job))
+
+    def test_fix_paths_non_hdfs_target_str(self):
+        if False:
+            print('Hello World!')
+        mock_job = Mock()
+        mock_arg = Mock(spec=[])
+        mock_job.args.return_value = [mock_arg]
+        self.assertEqual(([], [str(mock_arg)]), fix_paths(mock_job))
+
+class HadoopJarJobTaskTest(unittest.TestCase):
+
+    @patch('luigi.contrib.hadoop.run_and_track_hadoop_job')
+    def test_good(self, mock_job):
+        if False:
+            for i in range(10):
+                print('nop')
+        mock_job.return_value = None
+        with tempfile.NamedTemporaryFile() as temp_file:
+            task = TestHadoopJarJob(temp_file.name)
+            task.run()
+
+    @patch('luigi.contrib.hadoop.run_and_track_hadoop_job')
+    def test_missing_jar(self, mock_job):
+        if False:
+            while True:
+                i = 10
+        mock_job.return_value = None
+        task = TestMissingJarJob()
+        self.assertRaises(HadoopJarJobError, task.run)
+
+    @patch('luigi.contrib.hadoop.run_and_track_hadoop_job')
+    def test_remote_job(self, mock_job):
+        if False:
+            return 10
+        mock_job.return_value = None
+        with tempfile.NamedTemporaryFile() as temp_file:
+            task = TestRemoteHadoopJarJob(temp_file.name)
+            task.run()
+
+    @patch('luigi.contrib.hadoop.run_and_track_hadoop_job')
+    def test_remote_job_with_space_in_task_id(self, mock_job):
+        if False:
+            i = 10
+            return i + 15
+        with tempfile.NamedTemporaryFile() as temp_file:
+
+            def check_space(arr, task_id):
+                if False:
+                    print('Hello World!')
+                for a in arr:
+                    if a.startswith('hadoop jar'):
+                        found = False
+                        for x in shlex.split(a):
+                            if task_id in x:
+                                found = True
+                        if not found:
+                            raise AssertionError
+            task = TestRemoteHadoopJarTwoParamJob(temp_file.name, 'test')
+            mock_job.side_effect = lambda x, _: check_space(x, str(task))
+            task.run()
+
+    @patch('luigi.contrib.hadoop.run_and_track_hadoop_job')
+    def test_remote_job_missing_config(self, mock_job):
+        if False:
+            print('Hello World!')
+        mock_job.return_value = None
+        with tempfile.NamedTemporaryFile() as temp_file:
+            task = TestRemoteMissingJarJob(temp_file.name)
+            self.assertRaises(HadoopJarJobError, task.run)

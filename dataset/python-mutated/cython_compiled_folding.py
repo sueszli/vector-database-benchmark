@@ -1,0 +1,31 @@
+import cython
+from cython import compiled
+if not cython.compiled:
+    from math import sin
+if cython.compiled:
+    pass
+else:
+    from math import cos
+if 'aa' == 'bb':
+    pass
+elif cython.compiled:
+    pass
+elif True:
+    from math import sqrt
+if 'aa' == 'bb':
+    pass
+elif compiled:
+    pass
+else:
+    from math import tan
+from math import log10
+
+@cython.test_fail_if_path_exists('//FromImportStatNode//ImportNode')
+@cython.test_assert_path_exists('//AddNode')
+def import_log(x, y):
+    if False:
+        print('Hello World!')
+    if compiled:
+        return x + y
+    else:
+        from math import log

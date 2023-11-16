@@ -1,0 +1,25 @@
+"""Sells new columns
+
+Revision ID: ca0445063714
+Revises: 4eef03e27d49
+Create Date: 2023-07-23 19:22:05.421903
+
+"""
+from alembic import op
+import sqlalchemy as sa
+revision = 'ca0445063714'
+down_revision = '4eef03e27d49'
+branch_labels = None
+depends_on = None
+
+def upgrade() -> None:
+    if False:
+        i = 10
+        return i + 15
+    op.create_table('sells', sa.Column('id', sa.Integer(), autoincrement=True, nullable=False), sa.Column('id_sell', sa.Integer(), nullable=False), sa.Column('id_product', sa.String(), nullable=False), sa.Column('amount', sa.Float(), nullable=False), sa.Column('sell_price', sa.Float(), nullable=False), sa.Column('buy_price', sa.Float(), nullable=False), sa.Column('total', sa.Float(), nullable=False), sa.Column('date', sa.DateTime(), nullable=False), sa.ForeignKeyConstraint(['id_product'], ['product.key']), sa.PrimaryKeyConstraint('id'))
+
+def downgrade() -> None:
+    if False:
+        while True:
+            i = 10
+    op.drop_table('sells')

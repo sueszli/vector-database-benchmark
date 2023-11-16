@@ -1,0 +1,33 @@
+from typing import Any, Callable, Literal, Optional
+from ..element import Element
+from ..events import GenericEventArguments, ScrollEventArguments, handle_event
+
+class ScrollArea(Element):
+
+    def __init__(self, *, on_scroll: Optional[Callable[..., Any]]=None) -> None:
+        if False:
+            return 10
+        'Scroll Area\n\n        A way of customizing the scrollbars by encapsulating your content.\n        This element exposes the Quasar `ScrollArea <https://quasar.dev/vue-components/scroll-area/>`_ component.\n\n        :param on_scroll: function to be called when the scroll position changes\n        '
+        super().__init__('q-scroll-area')
+        self._classes.append('nicegui-scroll-area')
+        if on_scroll:
+            self.on('scroll', lambda e: self._handle_scroll(on_scroll, e), args=['verticalPosition', 'verticalPercentage', 'verticalSize', 'verticalContainerSize', 'horizontalPosition', 'horizontalPercentage', 'horizontalSize', 'horizontalContainerSize'])
+
+    def _handle_scroll(self, handler: Optional[Callable[..., Any]], e: GenericEventArguments) -> None:
+        if False:
+            return 10
+        handle_event(handler, ScrollEventArguments(sender=self, client=self.client, vertical_position=e.args['verticalPosition'], vertical_percentage=e.args['verticalPercentage'], vertical_size=e.args['verticalSize'], vertical_container_size=e.args['verticalContainerSize'], horizontal_position=e.args['horizontalPosition'], horizontal_percentage=e.args['horizontalPercentage'], horizontal_size=e.args['horizontalSize'], horizontal_container_size=e.args['horizontalContainerSize']))
+
+    def scroll_to(self, *, pixels: Optional[float]=None, percent: Optional[float]=None, axis: Literal['vertical', 'horizontal']='vertical', duration: float=0.0) -> None:
+        if False:
+            while True:
+                i = 10
+        'Set the scroll area position in percentage (float) or pixel number (int).\n\n        You can add a delay to the actual scroll action with the `duration_ms` parameter.\n\n        :param pixels: scroll position offset from top in pixels\n        :param percent: scroll position offset from top in percentage of the total scrolling size\n        :param axis: scroll axis\n        :param duration: animation duration (in seconds, default: 0.0 means no animation)\n        '
+        if pixels is not None and percent is not None:
+            raise ValueError('You can only specify one of pixels or percent')
+        if pixels is not None:
+            self.run_method('setScrollPosition', axis, pixels, 1000 * duration)
+        elif percent is not None:
+            self.run_method('setScrollPercentage', axis, percent, 1000 * duration)
+        else:
+            raise ValueError('You must specify one of pixels or percent')

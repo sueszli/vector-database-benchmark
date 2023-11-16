@@ -1,0 +1,11 @@
+"""Python API for random indexing into a dataset."""
+from tensorflow.python.data.util import structure
+from tensorflow.python.ops import gen_experimental_dataset_ops
+from tensorflow.python.util.tf_export import tf_export
+
+@tf_export('data.experimental.at', v1=[])
+def at(dataset, index):
+    if False:
+        print('Hello World!')
+    'Returns the element at a specific index in a datasest.\n\n  Currently, random access is supported for the following tf.data operations:\n\n     - `tf.data.Dataset.from_tensor_slices`,\n     - `tf.data.Dataset.from_tensors`,\n     - `tf.data.Dataset.shuffle`,\n     - `tf.data.Dataset.batch`,\n     - `tf.data.Dataset.shard`,\n     - `tf.data.Dataset.map`,\n     - `tf.data.Dataset.range`,\n     - `tf.data.Dataset.zip`,\n     - `tf.data.Dataset.skip`,\n     - `tf.data.Dataset.repeat`,\n     - `tf.data.Dataset.list_files`,\n     - `tf.data.Dataset.SSTableDataset`,\n     - `tf.data.Dataset.concatenate`,\n     - `tf.data.Dataset.enumerate`,\n     - `tf.data.Dataset.parallel_map`,\n     - `tf.data.Dataset.prefetch`,\n     - `tf.data.Dataset.take`,\n     - `tf.data.Dataset.cache` (in-memory only)\n\n     Users can use the cache operation to enable random access for any dataset,\n     even one comprised of transformations which are not on this list.\n     E.g., to get the third element of a TFDS dataset:\n\n       ```python\n       ds = tfds.load("mnist", split="train").cache()\n       elem = tf.data.Dataset.experimental.at(ds, 3)\n       ```\n\n  Args:\n    dataset: A `tf.data.Dataset` to determine whether it supports random access.\n    index: The index at which to fetch the element.\n\n  Returns:\n      A (nested) structure of values matching `tf.data.Dataset.element_spec`.\n\n   Raises:\n     UnimplementedError: If random access is not yet supported for a dataset.\n  '
+    return structure.from_tensor_list(dataset.element_spec, gen_experimental_dataset_ops.get_element_at_index(dataset._variant_tensor, index, output_types=structure.get_flat_tensor_types(dataset.element_spec), output_shapes=structure.get_flat_tensor_shapes(dataset.element_spec)))

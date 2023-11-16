@@ -1,0 +1,33 @@
+import django.db.models.deletion
+from django.conf import settings
+from django.core.paginator import Paginator
+from django.db import migrations, models
+import posthog.models.utils
+
+def migrate_playlist_item_recording_relations(apps, _) -> None:
+    if False:
+        for i in range(10):
+            print('nop')
+    Recording = apps.get_model('posthog', 'SessionRecording')
+    PlaylistItem = apps.get_model('posthog', 'SessionRecordingPlaylistItem')
+    PlaylistItem.objects.filter(deleted=True).delete()
+    batch_size = 1000
+    playlist_item_paginator = Paginator(PlaylistItem.objects.order_by('created_at'), batch_size)
+    for playlist_item_page in playlist_item_paginator.page_range:
+        playlist_items = playlist_item_paginator.get_page(playlist_item_page)
+        Recording.objects.bulk_create([Recording(session_id=playlist_item_object.session_id, team=playlist_item_object.playlist.team) for playlist_item_object in playlist_items], ignore_conflicts=True)
+        playlist_items_to_update = []
+        for playlist_item_object in playlist_items:
+            playlist_item_object.recording_id = playlist_item_object.session_id
+            playlist_items_to_update.append(playlist_item_object)
+        PlaylistItem.objects.bulk_update(playlist_items_to_update, fields=['recording_id'])
+
+def reverse(apps, _) -> None:
+    if False:
+        return 10
+    Recording = apps.get_model('posthog', 'SessionRecording')
+    Recording.objects.all().delete()
+
+class Migration(migrations.Migration):
+    dependencies = [('posthog', '0286_index_insightcachingstate_lookup')]
+    operations = [migrations.AlterField(model_name='sessionrecordingplaylist', name='last_modified_by', field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='modified_playlists', to=settings.AUTH_USER_MODEL)), migrations.AlterField(model_name='sessionrecordingplaylistitem', name='session_id', field=models.CharField(blank=True, max_length=200, null=True)), migrations.CreateModel(name='SessionRecording', fields=[('id', models.UUIDField(default=posthog.models.utils.UUIDT, editable=False, primary_key=True, serialize=False)), ('session_id', models.CharField(max_length=200, unique=True)), ('created_at', models.DateTimeField(auto_now_add=True, null=True)), ('team', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='posthog.team'))], options={'unique_together': {('team', 'session_id')}}), migrations.AddField(model_name='sessionrecordingplaylistitem', name='recording', field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, related_name='playlist_items', to='posthog.sessionrecording', to_field='session_id')), migrations.RunPython(migrate_playlist_item_recording_relations, reverse), migrations.AlterUniqueTogether(name='sessionrecordingplaylistitem', unique_together={('recording', 'playlist')})]

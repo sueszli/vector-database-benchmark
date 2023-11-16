@@ -1,0 +1,47 @@
+from datetime import timedelta
+import intezer_sdk.consts
+from intezer_sdk import api as intezer_api
+from intezer_sdk import errors as intezer_errors
+from intezer_sdk.analysis import FileAnalysis
+from api_app.analyzers_manager.classes import ObservableAnalyzer
+from api_app.analyzers_manager.exceptions import AnalyzerRunException
+from tests.mock_utils import if_mock_connections, patch
+
+class IntezerGet(ObservableAnalyzer):
+    soft_time_limit: int
+    _api_key_name: str
+
+    def config(self):
+        if False:
+            return 10
+        super().config()
+        self.timeout = self.soft_time_limit - 5
+        self.poll_interval = 3
+        intezer_api.set_global_api(api_key=self._api_key_name)
+        intezer_sdk.consts.USER_AGENT = 'IntelOwl'
+
+    def run(self):
+        if False:
+            print('Hello World!')
+        result = {}
+        try:
+            analysis = FileAnalysis(file_hash=self.observable_name)
+            analysis.send(wait=False)
+            analysis.wait_for_completion(interval=self.poll_interval, sleep_before_first_check=True, timeout=timedelta(seconds=self.timeout))
+        except (intezer_errors.HashDoesNotExistError, intezer_errors.InsufficientQuota):
+            result.update(hash_found=False)
+        except intezer_errors.IntezerError as e:
+            raise AnalyzerRunException(e)
+        except TimeoutError as e:
+            raise AnalyzerRunException(e)
+        else:
+            result.update(analysis.result(), hash_found=True)
+        return result
+
+    @classmethod
+    def _monkeypatch(cls):
+        if False:
+            for i in range(10):
+                print('nop')
+        patches = [if_mock_connections(patch.object(FileAnalysis, 'send', return_value=None), patch.object(FileAnalysis, 'wait_for_completion', return_value=None), patch.object(FileAnalysis, 'result', return_value={'test': 'test'}))]
+        return super()._monkeypatch(patches=patches)

@@ -1,0 +1,163 @@
+import argparse
+import glob
+import nvidia.dali.ops as ops
+import nvidia.dali.tfrecord as tfrec
+import nvidia.dali.types as types
+import os
+from nvidia.dali.pipeline import Pipeline
+from test_utils import get_dali_extra_path
+
+class CommonPipeline(Pipeline):
+
+    def __init__(self, batch_size, num_threads, device_id):
+        if False:
+            for i in range(10):
+                print('nop')
+        super(CommonPipeline, self).__init__(batch_size, num_threads, device_id)
+        self.decode_gpu = ops.decoders.Image(device='mixed', output_type=types.RGB)
+        self.decode_host = ops.decoders.Image(device='cpu', output_type=types.RGB)
+
+    def base_define_graph(self, inputs, labels):
+        if False:
+            return 10
+        images_gpu = self.decode_gpu(inputs)
+        images_host = self.decode_host(inputs)
+        return (images_gpu, images_host, labels)
+
+class MXNetReaderPipeline(CommonPipeline):
+
+    def __init__(self, batch_size, num_threads, device_id, num_gpus, data_paths, dont_use_mmap):
+        if False:
+            for i in range(10):
+                print('nop')
+        super(MXNetReaderPipeline, self).__init__(batch_size, num_threads, device_id)
+        self.input = ops.readers.MXNet(path=data_paths[0], index_path=data_paths[1], shard_id=device_id, num_shards=num_gpus, dont_use_mmap=dont_use_mmap)
+
+    def define_graph(self):
+        if False:
+            while True:
+                i = 10
+        (images, labels) = self.input(name='Reader')
+        return self.base_define_graph(images, labels)
+
+class CaffeReadPipeline(CommonPipeline):
+
+    def __init__(self, batch_size, num_threads, device_id, num_gpus, data_paths, dont_use_mmap):
+        if False:
+            i = 10
+            return i + 15
+        super(CaffeReadPipeline, self).__init__(batch_size, num_threads, device_id)
+        self.input = ops.readers.Caffe(path=data_paths[0], shard_id=device_id, num_shards=num_gpus, dont_use_mmap=dont_use_mmap)
+
+    def define_graph(self):
+        if False:
+            print('Hello World!')
+        (images, labels) = self.input(name='Reader')
+        return self.base_define_graph(images, labels)
+
+class Caffe2ReadPipeline(CommonPipeline):
+
+    def __init__(self, batch_size, num_threads, device_id, num_gpus, data_paths, dont_use_mmap):
+        if False:
+            for i in range(10):
+                print('nop')
+        super(Caffe2ReadPipeline, self).__init__(batch_size, num_threads, device_id)
+        self.input = ops.readers.Caffe2(path=data_paths[0], shard_id=device_id, num_shards=num_gpus, dont_use_mmap=dont_use_mmap)
+
+    def define_graph(self):
+        if False:
+            while True:
+                i = 10
+        (images, labels) = self.input(name='Reader')
+        return self.base_define_graph(images, labels)
+
+class FileReadPipeline(CommonPipeline):
+
+    def __init__(self, batch_size, num_threads, device_id, num_gpus, data_paths, dont_use_mmap):
+        if False:
+            print('Hello World!')
+        super(FileReadPipeline, self).__init__(batch_size, num_threads, device_id)
+        self.input = ops.readers.File(file_root=data_paths[0], shard_id=device_id, num_shards=num_gpus, dont_use_mmap=dont_use_mmap)
+
+    def define_graph(self):
+        if False:
+            print('Hello World!')
+        (images, labels) = self.input(name='Reader')
+        return self.base_define_graph(images, labels)
+
+class TFRecordPipeline(CommonPipeline):
+
+    def __init__(self, batch_size, num_threads, device_id, num_gpus, data_paths, dont_use_mmap):
+        if False:
+            print('Hello World!')
+        super(TFRecordPipeline, self).__init__(batch_size, num_threads, device_id)
+        tfrecord = sorted(glob.glob(data_paths[0]))
+        tfrecord_idx = sorted(glob.glob(data_paths[1]))
+        self.input = ops.readers.TFRecord(path=tfrecord, index_path=tfrecord_idx, shard_id=device_id, num_shards=num_gpus, features={'image/encoded': tfrec.FixedLenFeature((), tfrec.string, ''), 'image/class/label': tfrec.FixedLenFeature([1], tfrec.int64, -1)}, dont_use_mmap=dont_use_mmap)
+
+    def define_graph(self):
+        if False:
+            i = 10
+            return i + 15
+        inputs = self.input(name='Reader')
+        images = inputs['image/encoded']
+        labels = inputs['image/class/label']
+        return self.base_define_graph(images, labels)
+
+class COCOReaderPipeline(CommonPipeline):
+
+    def __init__(self, batch_size, num_threads, device_id, num_gpus, data_paths, dont_use_mmap):
+        if False:
+            print('Hello World!')
+        super(COCOReaderPipeline, self).__init__(batch_size, num_threads, device_id)
+        self.input = ops.readers.COCO(file_root=data_paths[0], annotations_file=data_paths[1], shard_id=device_id, num_shards=num_gpus, dont_use_mmap=dont_use_mmap)
+
+    def define_graph(self):
+        if False:
+            i = 10
+            return i + 15
+        (images, bb, labels) = self.input(name='Reader')
+        return self.base_define_graph(images, labels)
+test_data = {FileReadPipeline: [['/data/imagenet/train-jpeg'], ['/data/imagenet/val-jpeg']], MXNetReaderPipeline: [['/data/imagenet/train-480-val-256-recordio/train.rec', '/data/imagenet/train-480-val-256-recordio/train.idx'], ['/data/imagenet/train-480-val-256-recordio/val.rec', '/data/imagenet/train-480-val-256-recordio/val.idx']], CaffeReadPipeline: [['/data/imagenet/train-lmdb-256x256'], ['/data/imagenet/val-lmdb-256x256']], Caffe2ReadPipeline: [['/data/imagenet/train-c2lmdb-480'], ['/data/imagenet/val-c2lmdb-256']], TFRecordPipeline: [['/data/imagenet/train-val-tfrecord-480/train-*', '/data/imagenet/train-val-tfrecord-480.idx/train-*']], COCOReaderPipeline: [['/data/coco/coco-2017/coco2017/train2017', '/data/coco/coco-2017/coco2017/annotations/instances_train2017.json'], ['/data/coco/coco-2017/coco2017/val2017', '/data/coco/coco-2017/coco2017/annotations/instances_val2017.json']]}
+data_root = get_dali_extra_path()
+small_test_data = {FileReadPipeline: [[os.path.join(data_root, 'db/single/jpeg/')]], MXNetReaderPipeline: [[os.path.join(data_root, 'db/recordio/train.rec'), os.path.join(data_root, 'db/recordio/train.idx')]], CaffeReadPipeline: [[os.path.join(data_root, 'db/lmdb')]], Caffe2ReadPipeline: [[os.path.join(data_root, 'db/c2lmdb')]], TFRecordPipeline: [[os.path.join(data_root, 'db/tfrecord/train'), os.path.join(data_root, 'db/tfrecord/train.idx')]], COCOReaderPipeline: [[os.path.join(data_root, 'db/coco/images'), os.path.join(data_root, 'db/coco/instances.json')]]}
+parser = argparse.ArgumentParser(description='ImageDecoder RN50 dataset test')
+parser.add_argument('-g', '--gpus', default=1, type=int, metavar='N', help='number of GPUs (default: 1)')
+parser.add_argument('-b', '--batch', default=2048, type=int, metavar='N', help='batch size (default: 2048)')
+parser.add_argument('-p', '--print-freq', default=10, type=int, metavar='N', help='print frequency (default: 10)')
+parser.add_argument('-s', '--small', action='store_true', help='use small dataset, DALI_EXTRA_PATH needs to be set')
+parser.add_argument('-n', '--no-mmap', action='store_true', help="don't mmap files from data set")
+args = parser.parse_args()
+N = args.gpus
+BATCH_SIZE = args.batch
+LOG_INTERVAL = args.print_freq
+SMALL_DATA_SET = args.small
+USE_MMAP = not args.no_mmap
+print(f'GPUs: {N}, batch: {BATCH_SIZE}, loging interval: {LOG_INTERVAL}, small dataset: {SMALL_DATA_SET}, use mmap: {USE_MMAP}')
+if SMALL_DATA_SET:
+    test_data = small_test_data
+for pipe_name in test_data.keys():
+    data_set_len = len(test_data[pipe_name])
+    for (i, data_set) in enumerate(test_data[pipe_name]):
+        pipes = [pipe_name(batch_size=BATCH_SIZE, num_threads=4, device_id=n, num_gpus=N, data_paths=data_set, dont_use_mmap=not USE_MMAP) for n in range(N)]
+        [pipe.build() for pipe in pipes]
+        iters = pipes[0].epoch_size('Reader')
+        assert all((pipe.epoch_size('Reader') == iters for pipe in pipes))
+        iters_tmp = iters
+        iters = iters // BATCH_SIZE
+        if iters_tmp != iters * BATCH_SIZE:
+            iters += 1
+        iters_tmp = iters
+        iters = iters // N
+        if iters_tmp != iters * N:
+            iters += 1
+        print('RUN {0}/{1}: {2}'.format(i + 1, data_set_len, pipe_name.__name__))
+        print(data_set)
+        for j in range(iters):
+            for pipe in pipes:
+                pipe.schedule_run()
+            for pipe in pipes:
+                pipe.outputs()
+            if j % LOG_INTERVAL == 0:
+                print(pipe_name.__name__, j + 1, '/', iters)
+        print('OK {0}/{1}: {2}'.format(i + 1, data_set_len, pipe_name.__name__))

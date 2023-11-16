@@ -1,0 +1,155 @@
+"""
+The following tests ensure that the types are resolved using the correct
+module. Concrete types should be non-problematic and are only included
+here for completeness. A problematic case is when a type is a string
+(forward reference) and can only be resolved at schema construction.
+"""
+from typing import List
+import a_mod
+import b_mod
+import c_mod
+import x_mod
+import strawberry
+
+def test_a():
+    if False:
+        i = 10
+        return i + 15
+
+    @strawberry.type
+    class Query:
+        a_list: List[a_mod.AObject]
+    [field] = Query.__strawberry_definition__.fields
+    assert field.type == List[a_mod.AObject]
+
+def test_a_resolver():
+    if False:
+        print('Hello World!')
+
+    @strawberry.type
+    class Query:
+        a_list: List[a_mod.AObject] = strawberry.field(resolver=a_mod.a_resolver)
+    [field] = Query.__strawberry_definition__.fields
+    assert field.type == List[a_mod.AObject]
+
+def test_a_only_resolver():
+    if False:
+        i = 10
+        return i + 15
+
+    @strawberry.type
+    class Query:
+        a_list = strawberry.field(resolver=a_mod.a_resolver)
+    [field] = Query.__strawberry_definition__.fields
+    assert field.type == List[a_mod.AObject]
+
+def test_a_typeless_resolver():
+    if False:
+        while True:
+            i = 10
+
+    @strawberry.type
+    class Query:
+        a_list: List[a_mod.AObject] = strawberry.field(resolver=x_mod.typeless_resolver)
+    [field] = Query.__strawberry_definition__.fields
+    assert field.type == List[a_mod.AObject]
+
+def test_c_composition_by_name():
+    if False:
+        return 10
+    [a_field, b_field, a_method, b_method] = c_mod.CCompositionByName.__strawberry_definition__.fields
+    assert a_field.type == List[a_mod.AObject]
+    assert b_field.type == List[b_mod.BObject]
+    assert a_method.type == List[a_mod.AObject]
+    assert b_method.type == List[b_mod.BObject]
+
+def test_c_inheritance():
+    if False:
+        return 10
+    [a_name, a_age, a_is_of_full_age, b_name, b_age, b_is_of_full_age] = c_mod.CInheritance.__strawberry_definition__.fields
+    assert a_name.origin == a_mod.ABase
+    assert a_age.origin == a_mod.AObject
+    assert a_is_of_full_age.origin == a_mod.AObject
+    assert b_name.origin == b_mod.BBase
+    assert b_age.origin == b_mod.BObject
+    assert b_is_of_full_age.origin == b_mod.BObject
+
+def test_c_inheritance_resolver():
+    if False:
+        i = 10
+        return i + 15
+
+    @strawberry.type
+    class Query:
+        c: List[c_mod.CInheritance] = strawberry.field(resolver=c_mod.c_inheritance_resolver)
+    [field] = Query.__strawberry_definition__.fields
+    assert field.type == List[c_mod.CInheritance]
+
+def test_c_inheritance_typeless_resolver():
+    if False:
+        while True:
+            i = 10
+
+    @strawberry.type
+    class Query:
+        c: List[c_mod.CInheritance] = strawberry.field(resolver=x_mod.typeless_resolver)
+    [field] = Query.__strawberry_definition__.fields
+    assert field.type == List[c_mod.CInheritance]
+
+def test_c_inheritance_resolver_only():
+    if False:
+        while True:
+            i = 10
+
+    @strawberry.type
+    class Query:
+        c = strawberry.field(resolver=c_mod.c_inheritance_resolver)
+    [field] = Query.__strawberry_definition__.fields
+    assert field.type == List[c_mod.CInheritance]
+
+def test_c_composition_resolver():
+    if False:
+        return 10
+
+    @strawberry.type
+    class Query:
+        c: List[c_mod.CComposition] = strawberry.field(resolver=c_mod.c_composition_resolver)
+    [field] = Query.__strawberry_definition__.fields
+    assert field.type == List[c_mod.CComposition]
+    [a_field, b_field] = field.type.of_type.__strawberry_definition__.fields
+    assert a_field.type == List[a_mod.AObject]
+    assert b_field.type == List[b_mod.BObject]
+
+def test_c_composition_by_name_with_resolvers():
+    if False:
+        while True:
+            i = 10
+    [a_field, b_field] = c_mod.CCompositionByNameWithResolvers.__strawberry_definition__.fields
+    assert a_field.type == List[a_mod.AObject]
+    assert b_field.type == List[b_mod.BObject]
+
+def test_c_composition_by_name_with_typeless_resolvers():
+    if False:
+        i = 10
+        return i + 15
+    [a_field, b_field] = c_mod.CCompositionByNameWithTypelessResolvers.__strawberry_definition__.fields
+    assert a_field.type == List[a_mod.AObject]
+    assert b_field.type == List[b_mod.BObject]
+
+def test_c_composition_only_resolvers():
+    if False:
+        print('Hello World!')
+    [a_field, b_field] = c_mod.CCompositionOnlyResolvers.__strawberry_definition__.fields
+    assert a_field.type == List[a_mod.AObject]
+    assert b_field.type == List[b_mod.BObject]
+
+def test_x_resolver():
+    if False:
+        i = 10
+        return i + 15
+
+    @strawberry.type
+    class Query:
+        c: List[a_mod.AObject] = strawberry.field(resolver=x_mod.typeless_resolver)
+    [c_field] = Query.__strawberry_definition__.fields
+    assert c_field.type == List[a_mod.AObject]

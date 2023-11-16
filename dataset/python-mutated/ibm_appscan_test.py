@@ -1,0 +1,43 @@
+from selenium.webdriver.support.ui import Select
+import unittest
+import sys
+import os
+from base_test_class import BaseTestCase
+from product_test import ProductTest
+from selenium.webdriver.common.by import By
+dir_path = os.path.dirname(os.path.realpath(__file__))
+
+class IBMAppScanTest(BaseTestCase):
+
+    def test_import_ibm_app_scan_result(self):
+        if False:
+            for i in range(10):
+                print('nop')
+        driver = self.driver
+        self.goto_product_overview(driver)
+        driver.find_element(By.ID, 'products_wrapper')
+        driver.find_element(By.LINK_TEXT, 'QA Test').click()
+        driver.find_element(By.PARTIAL_LINK_TEXT, 'Findings').click()
+        driver.find_element(By.LINK_TEXT, 'Import Scan Results').click()
+        Select(driver.find_element(By.ID, 'id_scan_type')).select_by_visible_text('IBM AppScan DAST')
+        Select(driver.find_element(By.ID, 'id_environment')).select_by_visible_text('Development')
+        scanner_file = os.path.join(dir_path, 'ibm_appscan_xml_file.xml')
+        driver.find_element(By.NAME, 'file').send_keys(scanner_file)
+        driver.find_elements(By.CSS_SELECTOR, 'button.btn.btn-primary')[1].click()
+        self.assertTrue(self.is_success_message_present(text='IBM AppScan DAST processed a total of 27 findings'))
+
+def suite():
+    if False:
+        print('Hello World!')
+    suite = unittest.TestSuite()
+    suite.addTest(BaseTestCase('test_login'))
+    suite.addTest(BaseTestCase('disable_block_execution'))
+    suite.addTest(ProductTest('test_create_product'))
+    suite.addTest(IBMAppScanTest('test_import_ibm_app_scan_result'))
+    suite.addTest(ProductTest('test_delete_product'))
+    return suite
+if __name__ == '__main__':
+    runner = unittest.TextTestRunner(descriptions=True, failfast=True, verbosity=2)
+    ret = not runner.run(suite()).wasSuccessful()
+    BaseTestCase.tearDownDriver()
+    sys.exit(ret)

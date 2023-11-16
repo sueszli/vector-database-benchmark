@@ -1,0 +1,42 @@
+"""
+Add a table to maintain a count of table rows
+
+Revision ID: 3bc5176b880
+Revises: 18e4cf2bb3e
+Create Date: 2015-11-15 15:10:38.681814
+"""
+import sqlalchemy as sa
+from alembic import op
+from sqlalchemy.dialects import postgresql
+revision = '3bc5176b880'
+down_revision = '18e4cf2bb3e'
+
+def upgrade():
+    if False:
+        while True:
+            i = 10
+    op.create_table('row_counts', sa.Column('id', postgresql.UUID(as_uuid=True), server_default=sa.text('gen_random_uuid()'), nullable=False), sa.Column('table_name', sa.Text(), nullable=False, unique=True), sa.Column('count', sa.BigInteger(), server_default=sa.text('0'), nullable=False), sa.PrimaryKeyConstraint('id'))
+    op.execute(" CREATE FUNCTION count_rows()\n            RETURNS TRIGGER AS\n            '\n                BEGIN\n                    IF TG_OP = ''INSERT'' THEN\n                        UPDATE row_counts\n                        SET count = count + 1\n                        WHERE table_name = TG_RELNAME;\n                    ELSIF TG_OP = ''DELETE'' THEN\n                        UPDATE row_counts\n                        SET count = count - 1\n                        WHERE table_name = TG_RELNAME;\n                    END IF;\n\n                    RETURN NULL;\n                END;\n            ' LANGUAGE plpgsql;\n        ")
+    op.execute('LOCK TABLE packages IN SHARE ROW EXCLUSIVE MODE')
+    op.execute('LOCK TABLE releases IN SHARE ROW EXCLUSIVE MODE')
+    op.execute('LOCK TABLE release_files IN SHARE ROW EXCLUSIVE MODE')
+    op.execute('LOCK TABLE accounts_user IN SHARE ROW EXCLUSIVE MODE')
+    op.execute(' CREATE TRIGGER update_row_count\n            AFTER INSERT OR DELETE ON packages\n            FOR EACH ROW\n            EXECUTE PROCEDURE count_rows();\n        ')
+    op.execute(' CREATE TRIGGER update_row_count\n            AFTER INSERT OR DELETE ON releases\n            FOR EACH ROW\n            EXECUTE PROCEDURE count_rows();\n        ')
+    op.execute(' CREATE TRIGGER update_row_count\n            AFTER INSERT OR DELETE ON release_files\n            FOR EACH ROW\n            EXECUTE PROCEDURE count_rows();\n        ')
+    op.execute(' CREATE TRIGGER update_row_count\n            AFTER INSERT OR DELETE ON accounts_user\n            FOR EACH ROW\n            EXECUTE PROCEDURE count_rows();\n        ')
+    op.execute(" INSERT INTO row_counts (table_name, count)\n            VALUES  ('packages',  (SELECT COUNT(*) FROM packages));\n        ")
+    op.execute(" INSERT INTO row_counts (table_name, count)\n            VALUES  ('releases',  (SELECT COUNT(*) FROM releases));\n        ")
+    op.execute(" INSERT INTO row_counts (table_name, count)\n            VALUES  ('release_files',  (SELECT COUNT(*) FROM release_files));\n        ")
+    op.execute(" INSERT INTO row_counts (table_name, count)\n            VALUES  ('accounts_user',  (SELECT COUNT(*) FROM accounts_user));\n        ")
+
+def downgrade():
+    if False:
+        for i in range(10):
+            print('nop')
+    op.execute('DROP TRIGGER update_row_count ON accounts_user')
+    op.execute('DROP TRIGGER update_row_count ON release_files')
+    op.execute('DROP TRIGGER update_row_count ON releases')
+    op.execute('DROP TRIGGER update_row_count ON packages')
+    op.execute('DROP FUNCTION count_rows()')
+    op.drop_table('row_counts')

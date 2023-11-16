@@ -1,0 +1,507 @@
+"""
+Tasks related to projects.
+
+This includes fetching repository code, cleaning ``conf.py`` files, and
+rebuilding documentation.
+"""
+import os
+import signal
+import socket
+import subprocess
+from dataclasses import dataclass, field
+import structlog
+from celery import Task
+from django.conf import settings
+from django.utils import timezone
+from slumber import API
+from slumber.exceptions import HttpClientError
+from readthedocs.api.v2.client import setup_api
+from readthedocs.builds import tasks as build_tasks
+from readthedocs.builds.constants import ARTIFACT_TYPES, ARTIFACT_TYPES_WITHOUT_MULTIPLE_FILES_SUPPORT, BUILD_FINAL_STATES, BUILD_STATE_BUILDING, BUILD_STATE_CLONING, BUILD_STATE_FINISHED, BUILD_STATE_INSTALLING, BUILD_STATE_TRIGGERED, BUILD_STATE_UPLOADING, BUILD_STATUS_FAILURE, BUILD_STATUS_SUCCESS, EXTERNAL, UNDELETABLE_ARTIFACT_TYPES
+from readthedocs.builds.models import APIVersion, Build
+from readthedocs.builds.signals import build_complete
+from readthedocs.builds.utils import memcache_lock
+from readthedocs.config import ConfigError
+from readthedocs.config.config import BuildConfigV2
+from readthedocs.doc_builder.director import BuildDirector
+from readthedocs.doc_builder.environments import DockerBuildEnvironment, LocalBuildEnvironment
+from readthedocs.doc_builder.exceptions import BuildAppError, BuildCancelled, BuildMaxConcurrencyError, BuildUserError, BuildUserSkip, MkDocsYAMLParseError, ProjectBuildsSkippedError, YAMLParseError
+from readthedocs.projects.models import Feature
+from readthedocs.storage import build_media_storage
+from readthedocs.telemetry.collectors import BuildDataCollector
+from readthedocs.telemetry.tasks import save_build_data
+from readthedocs.worker import app
+from ..exceptions import ProjectConfigurationError, RepositoryError, SyncRepositoryLocked
+from ..models import APIProject, WebHookEvent
+from ..signals import before_vcs
+from .mixins import SyncRepositoryMixin
+from .search import index_build
+from .utils import BuildRequest, clean_build, send_external_build_status, set_builder_scale_in_protection
+log = structlog.get_logger(__name__)
+
+@dataclass(slots=True)
+class TaskData:
+    """
+    Object to store all data related to a Celery task excecution.
+
+    We use this object from inside the task to store data while we are runnig
+    the task. This is to avoid using `self.` inside the task due to its
+    limitations: it's instanciated once and that instance is re-used for all
+    the tasks ran. This could produce sharing instance state between two
+    different and unrelated tasks.
+
+    Note that *all the data* that needs to be saved in the task to share among
+    different task's method, should be stored in this object. Normally, under
+    `self.data` inside the Celery task itself.
+
+    See https://docs.celeryproject.org/en/master/userguide/tasks.html#instantiation
+
+    .. note::
+
+       Dataclasses require type annotations, this doesn't mean we are using
+       type hints or enforcing them in our codebase.
+    """
+    version_pk: int = None
+    build_pk: int = None
+    build_commit: str = None
+    api_client: API = None
+    start_time: timezone.datetime = None
+    environment_class: type[DockerBuildEnvironment] | type[LocalBuildEnvironment] = None
+    build_director: BuildDirector = None
+    config: BuildConfigV2 = None
+    project: APIProject = None
+    version: APIVersion = None
+    build: dict = field(default_factory=dict)
+    build_data: dict = field(default_factory=dict)
+
+class SyncRepositoryTask(SyncRepositoryMixin, Task):
+    """
+    Entry point to synchronize the VCS documentation.
+
+    This task checks all the branches/tags from the external repository (by
+    cloning) and update/sync the versions (by hitting the API) we have
+    stored in the database to match these branches/tags.
+
+    This task is executed on the builders and use the API to update the version
+    in our database.
+    """
+    name = __name__ + '.sync_repository_task'
+    max_retries = 5
+    default_retry_delay = 7 * 60
+    throws = (RepositoryError, SyncRepositoryLocked)
+
+    def before_start(self, task_id, args, kwargs):
+        if False:
+            i = 10
+            return i + 15
+        log.info('Running task.', name=self.name)
+        self.data = TaskData()
+        self.data.environment_class = DockerBuildEnvironment
+        if not settings.DOCKER_ENABLE:
+            self.data.environment_class = LocalBuildEnvironment
+        self.data.version_pk = args[0]
+        self.data.api_client = setup_api(kwargs['build_api_key'])
+        self.data.version = self.get_version(self.data.version_pk)
+        self.data.project = self.data.version.project
+        self.data.build_commit = kwargs.get('build_commit')
+        log.bind(project_slug=self.data.project.slug, version_slug=self.data.version.slug)
+
+    def on_failure(self, exc, task_id, args, kwargs, einfo):
+        if False:
+            for i in range(10):
+                print('nop')
+        if isinstance(exc, RepositoryError):
+            log.warning('There was an error with the repository.')
+        elif isinstance(exc, SyncRepositoryLocked):
+            log.warning('Skipping syncing repository because there is another task running.')
+        else:
+            log.error('An unhandled exception was raised during VCS syncing.', exc_info=exc)
+
+    def after_return(self, status, retval, task_id, args, kwargs, einfo):
+        if False:
+            return 10
+        '\n        Celery handler to be executed after a task runs.\n\n        .. note::\n\n           This handler is called even if the task has failed,\n           so some attributes from the `self.data` object may not be defined.\n        '
+        if self.data.version:
+            clean_build(self.data.version)
+
+    def execute(self):
+        if False:
+            for i in range(10):
+                print('nop')
+        environment = self.data.environment_class(project=self.data.project, version=self.data.version, environment={'GIT_TERMINAL_PROMPT': '0'}, api_client=self.data.api_client, record=False)
+        with environment:
+            before_vcs.send(sender=self.data.version, environment=environment)
+            vcs_repository = self.data.project.vcs_repo(version=self.data.version.slug, environment=environment, verbose_name=self.data.version.verbose_name, version_type=self.data.version.type)
+            if not vcs_repository.supports_lsremote:
+                log.info('Syncing repository via full clone.')
+                vcs_repository.update()
+            else:
+                log.info('Syncing repository via remote listing.')
+            self.sync_versions(vcs_repository)
+
+@app.task(base=SyncRepositoryTask, bind=True)
+def sync_repository_task(self, version_id, *, build_api_key, **kwargs):
+    if False:
+        for i in range(10):
+            print('nop')
+    if kwargs:
+        log.warning('Extra arguments passed to sync_repository_task', arguments=kwargs)
+    lock_id = f'{self.name}-lock-{self.data.project.slug}'
+    with memcache_lock(lock_id=lock_id, lock_expire=60, app_identifier=self.app.oid) as lock_acquired:
+        if not lock_acquired:
+            raise SyncRepositoryLocked
+        self.execute()
+
+class UpdateDocsTask(SyncRepositoryMixin, Task):
+    """
+    The main entry point for updating documentation.
+
+    It handles all of the logic around whether a project is imported, was
+    created or a webhook is received. Then it will sync the repository and
+    build all the documentation formats and upload them to the storage.
+    """
+    name = __name__ + '.update_docs_task'
+    autoretry_for = (BuildMaxConcurrencyError,)
+    max_retries = settings.RTD_BUILDS_MAX_RETRIES
+    default_retry_delay = settings.RTD_BUILDS_RETRY_DELAY
+    retry_backoff = False
+    throws = (ProjectBuildsSkippedError, ConfigError, YAMLParseError, BuildCancelled, BuildUserError, BuildUserSkip, RepositoryError, MkDocsYAMLParseError, ProjectConfigurationError)
+    exceptions_without_notifications = (BuildCancelled, BuildMaxConcurrencyError, BuildUserSkip, ProjectBuildsSkippedError)
+    exceptions_without_external_build_status = (BuildMaxConcurrencyError,)
+    acks_late = True
+    track_started = True
+    time_limit = None
+    soft_time_limit = None
+    Request = BuildRequest
+
+    def _setup_sigterm(self):
+        if False:
+            for i in range(10):
+                print('nop')
+
+        def sigterm_received(*args, **kwargs):
+            if False:
+                for i in range(10):
+                    print('nop')
+            log.warning('SIGTERM received. Waiting for build to stop gracefully after it finishes.')
+
+        def sigint_received(*args, **kwargs):
+            if False:
+                while True:
+                    i = 10
+            log.warning('SIGINT received. Canceling the build running.')
+            if self.data.build.get('state') == BUILD_STATE_UPLOADING:
+                log.warning('Ignoring cancelling the build at "Uploading" state.')
+                return
+            raise BuildCancelled
+        signal.signal(signal.SIGTERM, sigterm_received)
+        signal.signal(signal.SIGINT, sigint_received)
+
+    def _check_concurrency_limit(self):
+        if False:
+            return 10
+        try:
+            response = self.data.api_client.build.concurrent.get(project__slug=self.data.project.slug)
+            concurrency_limit_reached = response.get('limit_reached', False)
+            max_concurrent_builds = response.get('max_concurrent', settings.RTD_MAX_CONCURRENT_BUILDS)
+        except Exception:
+            log.exception('Error while hitting/parsing API for concurrent limit checks from builder.', project_slug=self.data.project.slug, version_slug=self.data.version.slug)
+            concurrency_limit_reached = False
+            max_concurrent_builds = settings.RTD_MAX_CONCURRENT_BUILDS
+        if concurrency_limit_reached:
+            log.info('Concurrency limit reached, retrying task.')
+            self.retry(exc=BuildMaxConcurrencyError(BuildMaxConcurrencyError.message.format(limit=max_concurrent_builds)))
+
+    def _check_project_disabled(self):
+        if False:
+            while True:
+                i = 10
+        if self.data.project.skip:
+            log.warning('Project build skipped.')
+            raise ProjectBuildsSkippedError
+
+    def before_start(self, task_id, args, kwargs):
+        if False:
+            return 10
+        self.data = TaskData()
+        (self.data.version_pk, self.data.build_pk) = args
+        log.bind(build_id=self.data.build_pk)
+        log.info('Running task.', name=self.name)
+        self.data.start_time = timezone.now()
+        self.data.environment_class = DockerBuildEnvironment
+        if not settings.DOCKER_ENABLE:
+            self.data.environment_class = LocalBuildEnvironment
+        self.data.api_client = setup_api(kwargs['build_api_key'])
+        self.data.build = self.get_build(self.data.build_pk)
+        self.data.version = self.get_version(self.data.version_pk)
+        self.data.project = self.data.version.project
+        self.data.build['builder'] = socket.gethostname()
+        self.data.build['error'] = ''
+        self.data.build_commit = kwargs.get('build_commit')
+        log.bind(builder=self.data.build['builder'], commit=self.data.build_commit, project_slug=self.data.project.slug, version_slug=self.data.version.slug)
+        if self.data.project.has_feature(Feature.SCALE_IN_PROTECTION):
+            set_builder_scale_in_protection.delay(instance=socket.gethostname(), protected_from_scale_in=True)
+        clean_build(self.data.version)
+        self._setup_sigterm()
+        self._check_project_disabled()
+        self._check_concurrency_limit()
+        self._reset_build()
+
+    def _reset_build(self):
+        if False:
+            for i in range(10):
+                print('nop')
+        if self.data.build.get('commands'):
+            log.info('Resetting build.')
+            self.data.api_client.build(self.data.build['id']).reset.post()
+
+    def on_failure(self, exc, task_id, args, kwargs, einfo):
+        if False:
+            while True:
+                i = 10
+        '\n        Celery handler to be executed when a task fails.\n\n        Updates build data, adds tasks to send build notifications.\n\n        .. note::\n\n           Since the task has failed, some attributes from the `self.data`\n           object may not be defined.\n        '
+        log.info('Task failed.')
+        if not self.data.build:
+            self.data.build = {'id': self.data.build_pk}
+        if isinstance(exc, ConfigError):
+            self.data.build['error'] = str(YAMLParseError(YAMLParseError.GENERIC_WITH_PARSE_EXCEPTION.format(exception=str(exc))))
+        elif isinstance(exc, BuildAppError):
+            self.data.build['error'] = BuildAppError.GENERIC_WITH_BUILD_ID.format(build_id=self.data.build['id'])
+        elif isinstance(exc, BuildUserError):
+            if hasattr(exc, 'message') and exc.message is not None:
+                self.data.build['error'] = exc.message
+            else:
+                self.data.build['error'] = BuildUserError.GENERIC
+            if hasattr(exc, 'state'):
+                self.data.build['state'] = exc.state
+        else:
+            log.error('Build failed with unhandled exception.', exc_info=exc)
+            self.data.build['error'] = BuildAppError.GENERIC_WITH_BUILD_ID.format(build_id=self.data.build['id'])
+        if not isinstance(exc, self.exceptions_without_notifications):
+            self.send_notifications(self.data.version_pk, self.data.build['id'], event=WebHookEvent.BUILD_FAILED)
+        if self.data.build_commit and (not isinstance(exc, self.exceptions_without_external_build_status)):
+            version_type = None
+            if self.data.version:
+                version_type = self.data.version.type
+            status = BUILD_STATUS_FAILURE
+            if isinstance(exc, BuildUserSkip):
+                status = BUILD_STATUS_SUCCESS
+            send_external_build_status(version_type=version_type, build_pk=self.data.build['id'], commit=self.data.build_commit, status=status)
+        self.data.build['success'] = False
+
+    def get_valid_artifact_types(self):
+        if False:
+            while True:
+                i = 10
+        '\n        Return a list of all the valid artifact types for this build.\n\n        It performs the following checks on each output format type path:\n         - it exists\n         - it is a directory\n         - does not contains more than 1 files (only PDF, HTMLZip, ePUB)\n         - it contains an "index.html" file at its root directory (only HTML)\n\n        TODO: remove the limitation of only 1 file.\n        Add support for multiple PDF files in the output directory and\n        grab them by using glob syntaxt between other files that could be garbage.\n        '
+        valid_artifacts = []
+        for artifact_type in ARTIFACT_TYPES:
+            artifact_directory = self.data.project.artifact_path(version=self.data.version.slug, type_=artifact_type)
+            if artifact_type == 'html':
+                index_html_filepath = os.path.join(artifact_directory, 'index.html')
+                if not os.path.exists(index_html_filepath):
+                    log.info("Failing the build. HTML output does not contain an 'index.html' at its root directory.", index_html=index_html_filepath)
+                    raise BuildUserError(BuildUserError.BUILD_OUTPUT_HTML_NO_INDEX_FILE)
+            if not os.path.exists(artifact_directory):
+                continue
+            if not os.path.isdir(artifact_directory):
+                log.error('The output path is not a directory.', output_format=artifact_type)
+                raise BuildUserError(BuildUserError.BUILD_OUTPUT_IS_NOT_A_DIRECTORY.format(artifact_type=artifact_type))
+            if artifact_type in ARTIFACT_TYPES_WITHOUT_MULTIPLE_FILES_SUPPORT:
+                artifact_format_files = len(os.listdir(artifact_directory))
+                if artifact_format_files > 1:
+                    log.error('Multiple files are not supported for this format. Skipping this output format.', output_format=artifact_type)
+                    raise BuildUserError(BuildUserError.BUILD_OUTPUT_HAS_MULTIPLE_FILES.format(artifact_type=artifact_type))
+                if artifact_format_files == 0:
+                    raise BuildUserError(BuildUserError.BUILD_OUTPUT_HAS_0_FILES.format(artifact_type=artifact_type))
+            valid_artifacts.append(artifact_type)
+        return valid_artifacts
+
+    def on_success(self, retval, task_id, args, kwargs):
+        if False:
+            for i in range(10):
+                print('nop')
+        valid_artifacts = self.get_valid_artifact_types()
+        if 'html' in valid_artifacts:
+            try:
+                self.data.api_client.version(self.data.version.pk).patch({'built': True, 'documentation_type': self.data.version.documentation_type, 'has_pdf': 'pdf' in valid_artifacts, 'has_epub': 'epub' in valid_artifacts, 'has_htmlzip': 'htmlzip' in valid_artifacts, 'build_data': self.data.version.build_data, 'addons': self.data.version.addons})
+            except HttpClientError:
+                log.exception('Updating version db object failed. Files are synced in the storage, but "Version" object is not updated')
+        index_build.delay(build_id=self.data.build['id'])
+        if not self.data.project.has_valid_clone:
+            self.set_valid_clone()
+        self.send_notifications(self.data.version.pk, self.data.build['id'], event=WebHookEvent.BUILD_PASSED)
+        if self.data.build_commit:
+            send_external_build_status(version_type=self.data.version.type, build_pk=self.data.build['id'], commit=self.data.build_commit, status=BUILD_STATUS_SUCCESS)
+        self.data.build['success'] = True
+
+    def on_retry(self, exc, task_id, args, kwargs, einfo):
+        if False:
+            while True:
+                i = 10
+        '\n        Celery helper called when the task is retried.\n\n        This happens when any of the exceptions defined in ``autoretry_for``\n        argument is raised or when ``self.retry`` is called from inside the\n        task.\n\n        See https://docs.celeryproject.org/en/master/userguide/tasks.html#retrying\n        '
+        log.info('Retrying this task.')
+        if isinstance(exc, BuildMaxConcurrencyError):
+            log.warning('Delaying tasks due to concurrency limit.', project_slug=self.data.project.slug, version_slug=self.data.version.slug)
+            self.data.build['error'] = exc.message
+            self.update_build(state=BUILD_STATE_TRIGGERED)
+
+    def after_return(self, status, retval, task_id, args, kwargs, einfo):
+        if False:
+            i = 10
+            return i + 15
+        '\n        Celery handler to be executed after a task runs.\n\n        .. note::\n\n           This handler is called even if the task has failed,\n           so some attributes from the `self.data` object may not be defined.\n        '
+        self.data.build['length'] = (timezone.now() - self.data.start_time).seconds
+        build_state = None
+        if self.data.build.get('state') not in BUILD_FINAL_STATES:
+            build_state = BUILD_STATE_FINISHED
+        self.update_build(build_state)
+        self.save_build_data()
+        build_complete.send(sender=Build, build=self.data.build)
+        if self.data.version:
+            clean_build(self.data.version)
+        try:
+            self.data.api_client.revoke.post()
+        except Exception:
+            log.exception('Failed to revoke build api key.', exc_info=True)
+        if self.data.project.has_feature(Feature.SCALE_IN_PROTECTION):
+            set_builder_scale_in_protection.delay(instance=socket.gethostname(), protected_from_scale_in=False)
+        log.info('Build finished.', length=self.data.build['length'], success=self.data.build['success'])
+
+    def update_build(self, state=None):
+        if False:
+            print('Hello World!')
+        if state:
+            self.data.build['state'] = state
+        try:
+            self.data.api_client.build(self.data.build['id']).patch(self.data.build)
+        except Exception:
+            log.exception('Error while updating the build object.', state=state)
+
+    def execute(self):
+        if False:
+            for i in range(10):
+                print('nop')
+        self.data.build_director = BuildDirector(data=self.data)
+        self.update_build(state=BUILD_STATE_CLONING)
+        self.data.build_director.create_vcs_environment()
+        with self.data.build_director.vcs_environment:
+            self.data.build_director.setup_vcs()
+            self.sync_versions(self.data.build_director.vcs_repository)
+        self.data.build_director.create_build_environment()
+        with self.data.build_director.build_environment:
+            try:
+                if getattr(self.data.config.build, 'commands', False):
+                    self.update_build(state=BUILD_STATE_INSTALLING)
+                    self.data.build_director.install_build_tools()
+                    self.update_build(state=BUILD_STATE_BUILDING)
+                    self.data.build_director.run_build_commands()
+                else:
+                    self.update_build(state=BUILD_STATE_INSTALLING)
+                    self.data.build_director.setup_environment()
+                    self.update_build(state=BUILD_STATE_BUILDING)
+                    self.data.build_director.build()
+            finally:
+                self.data.build_director.check_old_output_directory()
+                self.data.build_data = self.collect_build_data()
+        self.store_build_artifacts()
+
+    def collect_build_data(self):
+        if False:
+            return 10
+        '\n        Collect data from the current build.\n\n        The data is collected from inside the container,\n        so this must be called before killing the container.\n        '
+        try:
+            return BuildDataCollector(self.data.build_director.build_environment).collect()
+        except Exception:
+            log.exception('Error while collecting build data')
+
+    def save_build_data(self):
+        if False:
+            print('Hello World!')
+        "\n        Save the data collected from the build after it has ended.\n\n        This must be called after the build has finished updating its state,\n        otherwise some attributes like ``length`` won't be available.\n        "
+        try:
+            if self.data.build_data:
+                save_build_data.delay(build_id=self.data.build_pk, data=self.data.build_data)
+        except Exception:
+            log.exception('Error while saving build data')
+
+    def get_build(self, build_pk):
+        if False:
+            return 10
+        '\n        Retrieve build object from API.\n\n        :param build_pk: Build primary key\n        '
+        build = {}
+        if build_pk:
+            build = self.data.api_client.build(build_pk).get()
+        private_keys = ['project', 'version', 'resource_uri', 'absolute_uri']
+        return {key: val for (key, val) in build.items() if key not in private_keys}
+
+    def set_valid_clone(self):
+        if False:
+            i = 10
+            return i + 15
+        'Mark on the project that it has been cloned properly.'
+        self.data.api_client.project(self.data.project.pk).patch({'has_valid_clone': True})
+        self.data.project.has_valid_clone = True
+        self.data.version.project.has_valid_clone = True
+
+    def store_build_artifacts(self):
+        if False:
+            return 10
+        '\n        Save build artifacts to "storage" using Django\'s storage API.\n\n        The storage could be local filesystem storage OR cloud blob storage\n        such as S3, Azure storage or Google Cloud Storage.\n\n        Remove build artifacts of types not included in this build (PDF, ePub, zip only).\n        '
+        time_before_store_build_artifacts = timezone.now()
+        log.info('Writing build artifacts to media storage')
+        self.update_build(state=BUILD_STATE_UPLOADING)
+        valid_artifacts = self.get_valid_artifact_types()
+        log.bind(artifacts=valid_artifacts)
+        types_to_copy = []
+        types_to_delete = []
+        for artifact_type in ARTIFACT_TYPES:
+            if artifact_type in valid_artifacts:
+                types_to_copy.append(artifact_type)
+            elif artifact_type not in UNDELETABLE_ARTIFACT_TYPES:
+                types_to_delete.append(artifact_type)
+        for media_type in types_to_copy:
+            from_path = self.data.project.artifact_path(version=self.data.version.slug, type_=media_type)
+            to_path = self.data.project.get_storage_path(type_=media_type, version_slug=self.data.version.slug, include_file=False, version_type=self.data.version.type)
+            self._log_directory_size(from_path, media_type)
+            try:
+                build_media_storage.rclone_sync_directory(from_path, to_path)
+            except Exception as exc:
+                log.exception('Error copying to storage', media_type=media_type, from_path=from_path, to_path=to_path)
+                raise BuildAppError('Error uploading files to the storage.') from exc
+        for media_type in types_to_delete:
+            media_path = self.data.version.project.get_storage_path(type_=media_type, version_slug=self.data.version.slug, include_file=False, version_type=self.data.version.type)
+            try:
+                build_media_storage.delete_directory(media_path)
+            except Exception as exc:
+                log.exception('Error deleting files from storage', media_type=media_type, media_path=media_path)
+                raise BuildAppError('Error deleting files from storage.') from exc
+        log.info('Store build artifacts finished.', time=(timezone.now() - time_before_store_build_artifacts).seconds)
+
+    def _log_directory_size(self, directory, media_type):
+        if False:
+            for i in range(10):
+                print('nop')
+        try:
+            output = subprocess.check_output(['du', '--summarize', '-m', '--', directory])
+            directory_size = int(output.decode().split()[0])
+            log.info('Build artifacts directory size.', directory=directory, size=directory_size, media_type=media_type)
+        except Exception:
+            log.info('Error getting build artifacts directory size.', exc_info=True)
+
+    def send_notifications(self, version_pk, build_pk, event):
+        if False:
+            while True:
+                i = 10
+        'Send notifications to all subscribers of `event`.'
+        if not self.data.version or self.data.version.type != EXTERNAL:
+            build_tasks.send_build_notifications.delay(version_pk=version_pk, build_pk=build_pk, event=event)
+
+@app.task(base=UpdateDocsTask, bind=True, ignore_result=True)
+def update_docs_task(self, version_id, build_id, *, build_api_key, build_commit=None, **kwargs):
+    if False:
+        i = 10
+        return i + 15
+    if kwargs:
+        log.warning('Extra arguments passed to update_docs_task', arguments=kwargs)
+    self.execute()

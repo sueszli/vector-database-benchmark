@@ -1,0 +1,31 @@
+""" Benchmark linalg.sqrtm for various blocksizes.
+
+"""
+import numpy as np
+from .common import Benchmark, safe_import
+with safe_import():
+    import scipy.linalg
+
+class Sqrtm(Benchmark):
+    params = [['float64', 'complex128'], [64, 256], [32, 64, 256]]
+    param_names = ['dtype', 'n', 'blocksize']
+
+    def setup(self, dtype, n, blocksize):
+        if False:
+            for i in range(10):
+                print('nop')
+        n = int(n)
+        dtype = np.dtype(dtype)
+        blocksize = int(blocksize)
+        A = np.random.rand(n, n)
+        if dtype == np.complex128:
+            A = A + 1j * np.random.rand(n, n)
+        self.A = A
+        if blocksize > n:
+            raise NotImplementedError()
+
+    def time_sqrtm(self, dtype, n, blocksize):
+        if False:
+            for i in range(10):
+                print('nop')
+        scipy.linalg.sqrtm(self.A, disp=False, blocksize=blocksize)

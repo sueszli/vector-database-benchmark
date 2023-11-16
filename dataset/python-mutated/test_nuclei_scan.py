@@ -1,0 +1,13 @@
+import unittest
+from app.services.nuclei_scan import nuclei_scan
+
+class TestCDNName(unittest.TestCase):
+
+    def test_nuclei_scan(self):
+        if False:
+            i = 10
+            return i + 15
+        result = nuclei_scan(['http://www.baidu.com'])
+        print('Result: ', result)
+if __name__ == '__main__':
+    unittest.main()

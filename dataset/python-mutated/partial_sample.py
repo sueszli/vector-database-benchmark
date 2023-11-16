@@ -1,0 +1,31 @@
+from typing import Tuple, Optional, Union
+import numpy as np
+
+class PartialSample:
+    """Represents a sample that is initialized by just shape and the data is updated later."""
+
+    def __init__(self, sample_shape: Tuple[int, ...], tile_shape: Optional[Tuple[int, ...]]=None, dtype: Optional[Union[str, np.dtype]]=np.dtype('uint8')):
+        if False:
+            while True:
+                i = 10
+        self.sample_shape = sample_shape
+        self.tile_shape = tile_shape
+        self.dtype = dtype
+
+    @property
+    def shape(self):
+        if False:
+            print('Hello World!')
+        return self.sample_shape
+
+    def astype(self, dtype: Union[str, np.dtype]):
+        if False:
+            print('Hello World!')
+        return self.__class__(self.sample_shape, self.tile_shape, dtype)
+
+    def downsample(self, factor: int):
+        if False:
+            while True:
+                i = 10
+        shape = (self.sample_shape[0] // factor, self.sample_shape[1] // factor) + self.sample_shape[2:]
+        return self.__class__(shape, self.tile_shape, self.dtype)

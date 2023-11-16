@@ -1,0 +1,117 @@
+"""
+This package contains the decision tree model class and the create function.
+"""
+from __future__ import print_function as _
+from __future__ import division as _
+from __future__ import absolute_import as _
+from turicreate.toolkits._supervised_learning import SupervisedLearningModel as _SupervisedLearningModel
+import turicreate.toolkits._supervised_learning as _sl
+from turicreate.toolkits._internal_utils import _toolkit_repr_print
+from turicreate.toolkits._internal_utils import _raise_error_evaluation_metric_is_valid
+from turicreate.toolkits._tree_model_mixin import TreeModelMixin as _TreeModelMixin
+_DECISION_TREE_MODEL_PARAMS_KEYS = ['max_depth', 'min_child_weight', 'min_loss_reduction']
+_DECISION_TREE_TRAINING_PARAMS_KEYS = ['objective', 'training_time', 'training_error', 'validation_error', 'evaluation_metric']
+_DECISION_TREE_TRAINING_DATA_PARAMS_KEYS = ['target', 'features', 'num_features', 'num_examples', 'num_validation_examples']
+
+class DecisionTreeRegression(_SupervisedLearningModel, _TreeModelMixin):
+    """
+
+    The prediction is based on a collection of base learners, `regression trees
+    <http://en.wikipedia.org/wiki/Decision_tree_learning>`_. This algorithm is
+    a special case for boosted trees regression with number of trees set to 1.
+
+
+    Different from linear models, e.g. linear regression, the gradient boost
+    trees model is able to model non-linear interactions between the features
+    and the target using decision trees as the subroutine.  It is good for
+    handling numerical features and categorical features with tens of
+    categories but is less suitable for highly sparse features such as text
+    data.
+
+    This model cannot be constructed directly.  Instead, use
+    :func:`turicreate.decision_tree_regression.create` to create an instance of
+    this model. A detailed list of parameter options and code samples are
+    available in the documentation for the create function.
+
+    See Also
+    --------
+    create
+    """
+
+    def __init__(self, proxy):
+        if False:
+            for i in range(10):
+                print('nop')
+        '__init__(self)'
+        self.__proxy__ = proxy
+        self.__name__ = self.__class__._native_name()
+
+    @classmethod
+    def _native_name(cls):
+        if False:
+            i = 10
+            return i + 15
+        return 'decision_tree_regression'
+
+    def __str__(self):
+        if False:
+            return 10
+        '\n        Return a string description of the model to the ``print`` method.\n\n        Returns\n        -------\n        out : string\n            A description of the model.\n        '
+        return self.__repr__()
+
+    def _get_summary_struct(self):
+        if False:
+            return 10
+        "\n        Returns a structured description of the model, including (where relevant)\n        the schema of the training data, description of the training data,\n        training statistics, and model hyperparameters.\n\n        Returns\n        -------\n        sections : list (of list of tuples)\n            A list of summary sections.\n              Each section is a list.\n                Each item in a section list is a tuple of the form:\n                  ('<label>','<field>')\n        section_titles: list\n            A list of section titles.\n              The order matches that of the 'sections' object.\n        "
+        data_fields = [('Number of examples', 'num_examples'), ('Number of feature columns', 'num_features'), ('Number of unpacked features', 'num_unpacked_features')]
+        training_fields = [('Max tree depth', 'max_depth'), ('Train RMSE', 'training_rmse'), ('Validation RMSE', 'validation_rmse'), ('Training time (sec)', 'training_time')]
+        return ([data_fields, training_fields], ['Schema', 'Settings'])
+
+    def __repr__(self):
+        if False:
+            return 10
+        '\n        Print a string description of the model, when the model name is entered\n        in the terminal.\n        '
+        (sections, section_titles) = self._get_summary_struct()
+        return _toolkit_repr_print(self, sections, section_titles, width=30)
+
+    def _get(self, field):
+        if False:
+            while True:
+                i = 10
+        "\n        Get the value of a given field. The list of all queryable fields is\n        detailed below, and can be obtained programmatically using the\n        :func:`~turicreate.decision_tree_regression._list_fields` method.\n\n        +-------------------------+--------------------------------------------------------------------------------+\n        | Field                   | Description                                                                    |\n        +=========================+================================================================================+\n        | column_subsample        | Percentage of the columns for training each individual tree                    |\n        +-------------------------+--------------------------------------------------------------------------------+\n        | features                | Names of the feature columns                                                   |\n        +-------------------------+--------------------------------------------------------------------------------+\n        | max_depth               | The maximum depth of individual trees                                          |\n        +-------------------------+--------------------------------------------------------------------------------+\n        | min_child_weight        | Minimum weight required on the leave nodes                                     |\n        +-------------------------+--------------------------------------------------------------------------------+\n        | min_loss_reduction      | Minimum loss reduction required for splitting a node                           |\n        +-------------------------+--------------------------------------------------------------------------------+\n        | num_features            | Number of features in the model                                                |\n        +-------------------------+--------------------------------------------------------------------------------+\n        | num_unpacked_features   | Number of features in the model (including unpacked dict/list type columns)    |\n        +-------------------------+--------------------------------------------------------------------------------+\n        | num_examples            | Number of training examples                                                    |\n        +-------------------------+--------------------------------------------------------------------------------+\n        | num_validation_examples | Number of validation examples                                                  |\n        +-------------------------+--------------------------------------------------------------------------------+\n        | target                  | Name of the target column                                                      |\n        +-------------------------+--------------------------------------------------------------------------------+\n        | training_error          | Error on training data                                                         |\n        +-------------------------+--------------------------------------------------------------------------------+\n        | training_time           | Time spent on training the model in seconds                                    |\n        +-------------------------+--------------------------------------------------------------------------------+\n        | trees_json              | Tree encoded using JSON                                                        |\n        +-------------------------+--------------------------------------------------------------------------------+\n        | validation_error        | Error on validation data                                                       |\n        +-------------------------+--------------------------------------------------------------------------------+\n        | unpacked_features       | Feature names (including expanded list/dict features)                          |\n        +-------------------------+--------------------------------------------------------------------------------+\n        | random_seed             | Seed for row and column subselection                                           |\n        +-------------------------+--------------------------------------------------------------------------------+\n        | metric                  | Performance metric(s) that are tracked during training                         |\n        +-------------------------+--------------------------------------------------------------------------------+\n\n        Parameters\n        ----------\n        field : string\n            Name of the field to be retrieved.\n\n        Returns\n        -------\n        out : [various]\n            The current value of the requested field.\n\n        Examples\n        --------\n        >>> m.get('training_error')\n        "
+        return super(DecisionTreeRegression, self)._get(field)
+
+    def evaluate(self, dataset, metric='auto', missing_value_action='auto'):
+        if False:
+            print('Hello World!')
+        "\n        Evaluate the model on the given dataset.\n\n        Parameters\n        ----------\n        dataset : SFrame\n            Dataset in the same format used for training. The columns names and\n            types of the dataset must be the same as that used in training.\n\n        metric : str, optional\n            Name of the evaluation metric.  Can be one of:\n\n            - 'auto': Compute all metrics.\n            - 'rmse': Rooted mean squared error.\n            - 'max_error': Maximum error.\n\n        missing_value_action : str, optional\n            Action to perform when missing values are encountered. Can be\n            one of:\n\n            - 'auto': By default the model will treat missing value as is.\n            - 'impute': Proceed with evaluation by filling in the missing\n              values with the mean of the training data. Missing\n              values are also imputed if an entire column of data is\n              missing during evaluation.\n            - 'error': Do not proceed with evaluation and terminate with\n              an error message.\n\n        Returns\n        -------\n        out : dict\n            A dictionary containing the evaluation result.\n\n        See Also\n        ----------\n        create, predict\n\n        Examples\n        --------\n        ..sourcecode:: python\n\n          >>> results = model.evaluate(test_data, 'rmse')\n\n        "
+        _raise_error_evaluation_metric_is_valid(metric, ['auto', 'rmse', 'max_error'])
+        return super(DecisionTreeRegression, self).evaluate(dataset, missing_value_action=missing_value_action, metric=metric)
+
+    def export_coreml(self, filename):
+        if False:
+            while True:
+                i = 10
+        '\n        Export the model in Core ML format.\n\n        Parameters\n        ----------\n        filename: str\n          A valid filename where the model can be saved.\n\n        Examples\n        --------\n        >>> model.export_coreml("MyModel.mlmodel")\n        '
+        from turicreate.toolkits import _coreml_utils
+        display_name = 'decision tree regression'
+        short_description = _coreml_utils._mlmodel_short_description(display_name)
+        context = {'mode': 'regression', 'model_type': 'decision_tree', 'class': self.__class__.__name__, 'short_description': short_description}
+        self._export_coreml_impl(filename, context)
+
+    def predict(self, dataset, missing_value_action='auto'):
+        if False:
+            for i in range(10):
+                print('nop')
+        "\n        Predict the target column of the given dataset.\n\n        The target column is provided during\n        :func:`~turicreate.decision_tree_regression.create`. If the target column is in the\n        `dataset` it will be ignored.\n\n        Parameters\n        ----------\n        dataset : SFrame\n          A dataset that has the same columns that were used during training.\n          If the target column exists in ``dataset`` it will be ignored\n          while making predictions.\n\n        missing_value_action : str, optional\n            Action to perform when missing values are encountered. Can be\n            one of:\n\n            - 'auto': By default the model will treat missing value as is.\n            - 'impute': Proceed with evaluation by filling in the missing\n              values with the mean of the training data. Missing\n              values are also imputed if an entire column of data is\n              missing during evaluation.\n            - 'error': Do not proceed with evaluation and terminate with\n              an error message.\n\n        Returns\n        -------\n        out : SArray\n           Predicted target value for each example (i.e. row) in the dataset.\n\n        See Also\n        ----------\n        create, predict\n\n        Examples\n        --------\n        >>> m.predict(testdata)\n        "
+        return super(DecisionTreeRegression, self).predict(dataset, output_type='margin', missing_value_action=missing_value_action)
+
+def create(dataset, target, features=None, validation_set='auto', max_depth=6, min_loss_reduction=0.0, min_child_weight=0.1, verbose=True, random_seed=None, metric='auto', **kwargs):
+    if False:
+        i = 10
+        return i + 15
+    "\n    Create a :class:`~turicreate.decision_tree_regression.DecisionTreeRegression` to predict\n    a scalar target variable using one or more features. In addition to standard\n    numeric and categorical types, features can also be extracted automatically\n    from list- or dictionary-type SFrame columns.\n\n\n    Parameters\n    ----------\n    dataset : SFrame\n        A training dataset containing feature columns and a target column.\n        Only numerical typed (int, float) target column is allowed.\n\n    target : str\n        The name of the column in ``dataset`` that is the prediction target.\n        This column must have a numeric type.\n\n    features : list[str], optional\n        A list of columns names of features used for training the model.\n        Defaults to None, using all columns.\n\n    validation_set : SFrame, optional\n        The validation set that is used to watch the validation result as\n        boosting progress.\n\n    max_depth : float, optional\n        Maximum depth of a tree. Must be at least 1.\n\n    min_loss_reduction : float, optional (non-negative)\n        Minimum loss reduction required to make a further partition/split a\n        node during the tree learning phase. Larger (more positive) values\n        can help prevent overfitting by avoiding splits that do not\n        sufficiently reduce the loss function.\n\n    min_child_weight : float, optional (non-negative)\n        Controls the minimum weight of each leaf node. Larger values result in\n        more conservative tree learning and help prevent overfitting.\n        Formally, this is minimum sum of instance weights (hessians) in each\n        node. If the tree learning algorithm results in a leaf node with the\n        sum of instance weights less than `min_child_weight`, tree building\n        will terminate.\n\n    verbose : boolean, optional\n        If True, print progress information during training.\n\n    random_seed: int, optional\n        Seeds random operations such as column and row subsampling, such that\n        results are reproducible.\n\n    metric : str or list[str], optional\n        Performance metric(s) that are tracked during training. When specified,\n        the progress table will display the tracked metric(s) on training and\n        validation set.\n        Supported metrics are: {'rmse', 'max_error'}\n\n    Returns\n    -------\n      out : DecisionTreeRegression\n          A trained decision tree model\n\n    References\n    ----------\n    - `Wikipedia - Gradient tree boosting\n      <http://en.wikipedia.org/wiki/Gradient_boosting#Gradient_tree_boosting>`_\n    - `Trevor Hastie's slides on Boosted Trees and Random Forest\n      <http://jessica2.msri.org/attachments/10778/10778-boost.pdf>`_\n\n    See Also\n    --------\n    DecisionTreeRegression, turicreate.linear_regression.LinearRegression, turicreate.regression.create\n\n    Examples\n    --------\n\n    Setup the data:\n\n    >>> url = 'https://static.turi.com/datasets/xgboost/mushroom.csv'\n    >>> data = turicreate.SFrame.read_csv(url)\n    >>> data['label'] = data['label'] == 'p'\n\n    Split the data into training and test data:\n\n    >>> train, test = data.random_split(0.8)\n\n    Create the model:\n\n    >>> model = turicreate.decision_tree_regression.create(train, target='label')\n\n    Make predictions and evaluate the model:\n\n    >>> predictions = model.predict(test)\n    >>> results = model.evaluate(test)\n\n    "
+    if random_seed is not None:
+        kwargs['random_seed'] = random_seed
+    model = _sl.create(dataset=dataset, target=target, features=features, model_name='decision_tree_regression', validation_set=validation_set, max_depth=max_depth, min_loss_reduction=min_loss_reduction, min_child_weight=min_child_weight, verbose=verbose, **kwargs)
+    return DecisionTreeRegression(model.__proxy__)

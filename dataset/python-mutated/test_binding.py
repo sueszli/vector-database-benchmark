@@ -1,0 +1,100 @@
+from selenium.webdriver.common.keys import Keys
+from nicegui import ui
+from .screen import Screen
+
+def test_ui_select_with_tuple_as_key(screen: Screen):
+    if False:
+        return 10
+
+    class Model:
+        selection = None
+    data = Model()
+    options = {(2, 1): 'option A', (1, 2): 'option B'}
+    data.selection = list(options.keys())[0]
+    ui.select(options).bind_value(data, 'selection')
+    screen.open('/')
+    screen.should_not_contain('option B')
+    element = screen.click('option A')
+    screen.click_at_position(element, x=20, y=100)
+    screen.wait(0.3)
+    screen.should_contain('option B')
+    screen.should_not_contain('option A')
+    assert data.selection == (1, 2)
+
+def test_ui_select_with_list_of_tuples(screen: Screen):
+    if False:
+        print('Hello World!')
+
+    class Model:
+        selection = None
+    data = Model()
+    options = [(1, 1), (2, 2), (3, 3)]
+    data.selection = options[0]
+    ui.select(options).bind_value(data, 'selection')
+    screen.open('/')
+    screen.should_not_contain('2,2')
+    element = screen.click('1,1')
+    screen.click_at_position(element, x=20, y=100)
+    screen.wait(0.3)
+    screen.should_contain('2,2')
+    screen.should_not_contain('1,1')
+    assert data.selection == (2, 2)
+
+def test_ui_select_with_list_of_lists(screen: Screen):
+    if False:
+        print('Hello World!')
+
+    class Model:
+        selection = None
+    data = Model()
+    options = [[1, 1], [2, 2], [3, 3]]
+    data.selection = options[0]
+    ui.select(options).bind_value(data, 'selection')
+    screen.open('/')
+    screen.should_not_contain('2,2')
+    element = screen.click('1,1')
+    screen.click_at_position(element, x=20, y=100)
+    screen.wait(0.3)
+    screen.should_contain('2,2')
+    screen.should_not_contain('1,1')
+    assert data.selection == [2, 2]
+
+def test_binding_to_input(screen: Screen):
+    if False:
+        while True:
+            i = 10
+
+    class Model:
+        text = 'one'
+    data = Model()
+    element = ui.input().bind_value(data, 'text')
+    screen.open('/')
+    screen.should_contain_input('one')
+    screen.type(Keys.TAB)
+    screen.type('two')
+    screen.should_contain_input('two')
+    assert data.text == 'two'
+    data.text = 'three'
+    screen.should_contain_input('three')
+    element.set_value('four')
+    screen.should_contain_input('four')
+    assert data.text == 'four'
+    element.value = 'five'
+    screen.should_contain_input('five')
+    assert data.text == 'five'
+
+def test_binding_refresh_before_page_delivery(screen: Screen):
+    if False:
+        i = 10
+        return i + 15
+    state = {'count': 0}
+
+    @ui.page('/')
+    def main_page() -> None:
+        if False:
+            for i in range(10):
+                print('nop')
+        ui.label().bind_text_from(state, 'count')
+        state['count'] += 1
+    screen.open('/')
+    screen.should_contain('1')

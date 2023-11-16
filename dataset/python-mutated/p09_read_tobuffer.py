@@ -1,0 +1,28 @@
+"""
+Topic: 读取二进制数据到可变缓冲区中
+Desc : 
+"""
+import os.path
+
+def read_into_buffer(filename):
+    if False:
+        return 10
+    buf = bytearray(os.path.getsize(filename))
+    with open(filename, 'rb') as f:
+        f.readinto(buf)
+    return buf
+
+def read_tobuffer():
+    if False:
+        for i in range(10):
+            print('nop')
+    buf = bytearray(os.path.getsize('filename'))
+    print(buf)
+    m1 = memoryview(buf)
+    m2 = m1[-5:]
+    print(m2)
+    m2[:] = b'WORLD'
+    print(buf)
+    bytearray(b'Hello World')
+if __name__ == '__main__':
+    read_tobuffer()

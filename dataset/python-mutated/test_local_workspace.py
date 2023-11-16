@@ -1,0 +1,650 @@
+import json
+import os
+import unittest
+from semver import VersionInfo
+from typing import List, Optional
+import pytest
+from pulumi import Config, export
+from pulumi.automation import create_stack, create_or_select_stack, CommandError, ConfigMap, ConfigValue, EngineEvent, InvalidVersionError, LocalWorkspace, LocalWorkspaceOptions, OpType, PluginInfo, ProjectSettings, StackSummary, Stack, StackSettings, StackAlreadyExistsError, fully_qualified_stack_name
+from pulumi.automation._local_workspace import _parse_and_validate_pulumi_version
+from .test_utils import get_test_org, get_test_suffix, stack_namer
+extensions = ['json', 'yaml', 'yml']
+MAJOR = 'Major version mismatch.'
+MINIMAL = 'Minimum version requirement failed.'
+PARSE = 'Could not parse the Pulumi CLI'
+version_tests = [('100.0.0', MAJOR, False), ('1.0.0', MINIMAL, False), ('2.22.0', None, False), ('2.1.0', MINIMAL, False), ('2.21.2', None, False), ('2.21.1', None, False), ('2.21.0', MINIMAL, False), ('2.21.1-alpha.1234', MINIMAL, False), ('2.20.0', None, True), ('2.22.0', None, True), ('invalid', PARSE, False), ('invalid', None, True)]
+test_min_version = VersionInfo.parse('2.21.1')
+
+def test_path(*paths):
+    if False:
+        while True:
+            i = 10
+    return os.path.join(os.path.dirname(os.path.abspath(__file__)), *paths)
+
+def normalize_config_key(key: str, project_name: str):
+    if False:
+        for i in range(10):
+            print('nop')
+    parts = key.split(':')
+    if len(parts) < 2:
+        return f'{project_name}:{key}'
+
+def found_plugin(plugin_list: List[PluginInfo], name: str, version: str) -> bool:
+    if False:
+        while True:
+            i = 10
+    for plugin in plugin_list:
+        if plugin.name == name and plugin.version == version:
+            return True
+    return False
+
+def get_stack(stack_list: List[StackSummary], name: str) -> Optional[StackSummary]:
+    if False:
+        return 10
+    for stack in stack_list:
+        if stack.name == name:
+            return stack
+    return None
+
+@pytest.mark.skipif('PULUMI_ACCESS_TOKEN' not in os.environ, reason='PULUMI_ACCESS_TOKEN not set')
+class TestLocalWorkspace(unittest.TestCase):
+
+    def test_project_settings(self):
+        if False:
+            return 10
+        for ext in extensions:
+            ws = LocalWorkspace(work_dir=test_path('data', ext))
+            settings = ws.project_settings()
+            self.assertEqual(settings.name, 'testproj')
+            self.assertEqual(settings.runtime, 'go')
+            self.assertEqual(settings.description, 'A minimal Go Pulumi program')
+
+    def test_stack_settings(self):
+        if False:
+            i = 10
+            return i + 15
+        for ext in extensions:
+            ws = LocalWorkspace(work_dir=test_path('data', ext))
+            settings = ws.stack_settings('dev')
+            self.assertEqual(settings.secrets_provider, 'abc')
+            self.assertEqual(settings.encryption_salt, 'blahblah')
+            self.assertEqual(settings.encrypted_key, 'thisiskey')
+            self.assertEqual(settings.config['plain'], 'plain')
+            self.assertEqual(settings.config['secure'].secure, 'secret')
+        settings_with_no_config = StackSettings(secrets_provider='blah', encrypted_key='thisiskey', encryption_salt='salty')
+        self.assertEqual(settings_with_no_config._serialize(), {'secretsprovider': 'blah', 'encryptedkey': 'thisiskey', 'encryptionsalt': 'salty'})
+        config = {'cool': 'sup', 'foo': {'secure': 'thisisasecret'}}
+        settings_with_only_config = StackSettings(config=config)
+        self.assertEqual(settings_with_only_config._serialize(), {'config': config})
+
+    def test_plugin_functions(self):
+        if False:
+            while True:
+                i = 10
+        ws = LocalWorkspace()
+        ws.install_plugin('aws', 'v3.0.0')
+        plugin_list = ws.list_plugins()
+        self.assertTrue(found_plugin(plugin_list, 'aws', '3.0.0'))
+        ws.remove_plugin('aws', '3.0.0')
+        plugin_list = ws.list_plugins()
+        self.assertFalse(found_plugin(plugin_list, 'aws', '3.0.0'))
+
+    def test_stack_functions(self):
+        if False:
+            print('Hello World!')
+        project_settings = ProjectSettings(name='python_test', runtime='python')
+        ws = LocalWorkspace(project_settings=project_settings)
+        stack_1_name = f'python_int_test_first_{get_test_suffix()}'
+        stack_2_name = f'python_int_test_second_{get_test_suffix()}'
+        ws.create_stack(stack_1_name)
+        stacks = ws.list_stacks()
+        stack_1 = get_stack(stacks, stack_1_name)
+        self.assertIsNotNone(stack_1)
+        self.assertTrue(stack_1.current)
+        ws.create_stack(stack_2_name)
+        stacks = ws.list_stacks()
+        stack_1 = get_stack(stacks, stack_1_name)
+        stack_2 = get_stack(stacks, stack_2_name)
+        self.assertIsNotNone(stack_2)
+        self.assertFalse(stack_1.current)
+        self.assertTrue(stack_2.current)
+        ws.select_stack(stack_1_name)
+        stacks = ws.list_stacks()
+        stack_1 = get_stack(stacks, stack_1_name)
+        self.assertTrue(stack_1.current)
+        current_stack = ws.stack()
+        self.assertEqual(current_stack.name, stack_1_name)
+        ws.remove_stack(stack_1_name)
+        ws.remove_stack(stack_2_name)
+        stacks = ws.list_stacks()
+        stack_1 = get_stack(stacks, stack_1_name)
+        stack_2 = get_stack(stacks, stack_2_name)
+        self.assertIsNone(stack_1)
+        self.assertIsNone(stack_2)
+
+    def test_who_am_i(self):
+        if False:
+            i = 10
+            return i + 15
+        ws = LocalWorkspace()
+        result = ws.who_am_i()
+        self.assertIsNotNone(result.user)
+        self.assertIsNotNone(result.url)
+
+    def test_stack_init(self):
+        if False:
+            while True:
+                i = 10
+        project_name = 'python_test'
+        project_settings = ProjectSettings(name=project_name, runtime='python')
+        ws = LocalWorkspace(project_settings=project_settings)
+        stack_name = stack_namer(project_name)
+        Stack.create(stack_name, ws)
+        self.assertRaises(StackAlreadyExistsError, Stack.create, stack_name, ws)
+        self.assertEqual(Stack.select(stack_name, ws).name, stack_name)
+        self.assertEqual(Stack.create_or_select(stack_name, ws).name, stack_name)
+        ws.remove_stack(stack_name)
+
+    def test_config_functions(self):
+        if False:
+            while True:
+                i = 10
+        project_name = 'python_test'
+        project_settings = ProjectSettings(project_name, runtime='python')
+        ws = LocalWorkspace(project_settings=project_settings)
+        stack_name = stack_namer(project_name)
+        stack = Stack.create(stack_name, ws)
+        config: ConfigMap = {'plain': ConfigValue(value='abc'), 'secret': ConfigValue(value='def', secret=True)}
+        plain_key = normalize_config_key('plain', project_name)
+        secret_key = normalize_config_key('secret', project_name)
+        self.assertRaises(CommandError, stack.get_config, plain_key)
+        values = stack.get_all_config()
+        self.assertEqual(len(values), 0)
+        stack.set_all_config(config)
+        values = stack.get_all_config()
+        self.assertEqual(values[plain_key].value, 'abc')
+        self.assertFalse(values[plain_key].secret)
+        self.assertEqual(values[secret_key].value, 'def')
+        self.assertTrue(values[secret_key].secret)
+        stack.remove_config('plain')
+        values = stack.get_all_config()
+        self.assertEqual(len(values), 1)
+        stack.set_config('foo', ConfigValue(value='bar'))
+        values = stack.get_all_config()
+        self.assertEqual(len(values), 2)
+        ws.remove_stack(stack_name)
+
+    def test_config_functions_path(self):
+        if False:
+            i = 10
+            return i + 15
+        project_name = 'python_test'
+        project_settings = ProjectSettings(project_name, runtime='python')
+        ws = LocalWorkspace(project_settings=project_settings)
+        stack_name = stack_namer(project_name)
+        stack = Stack.create(stack_name, ws)
+        stack.set_config('key1', ConfigValue(value='value1'))
+        stack.set_config('key2', ConfigValue(value='value2'), path=False)
+        stack.set_config('key3.subKey1', ConfigValue(value='value3'), path=True)
+        stack.set_config('key4', ConfigValue(value='value4', secret=True))
+        stack.set_config('key5.subKey1', ConfigValue(value='value5', secret=True), path=True)
+        stack.set_config('key6.subKey1', ConfigValue(value='value6', secret=True))
+        stack.set_config('key7.subKey1', ConfigValue(value='value7', secret=True), path=False)
+        stack.set_config('key7.subKey2', ConfigValue(value='value8'), path=True)
+        stack.set_config('key7.subKey3', ConfigValue(value='value9'), path=True)
+        cv1 = stack.get_config('key1')
+        self.assertEqual(cv1.value, 'value1')
+        self.assertFalse(cv1.secret)
+        cv2 = stack.get_config('key2', path=False)
+        self.assertEqual(cv2.value, 'value2')
+        self.assertFalse(cv2.secret)
+        cv3 = stack.get_config('key3.subKey1', path=True)
+        self.assertEqual(cv3.value, 'value3')
+        self.assertFalse(cv3.secret)
+        cv4 = stack.get_config('key4')
+        self.assertEqual(cv4.value, 'value4')
+        self.assertTrue(cv4.secret)
+        cv5 = stack.get_config('key5.subKey1', path=True)
+        self.assertEqual(cv5.value, 'value5')
+        self.assertTrue(cv5.secret)
+        cv6 = stack.get_config('key6.subKey1')
+        self.assertEqual(cv6.value, 'value6')
+        self.assertTrue(cv6.secret)
+        cv7 = stack.get_config('key7.subKey1', path=False)
+        self.assertEqual(cv7.value, 'value7')
+        self.assertTrue(cv7.secret)
+        cv8 = stack.get_config('key7.subKey2', path=True)
+        self.assertEqual(cv8.value, 'value8')
+        self.assertFalse(cv8.secret)
+        cv9 = stack.get_config('key7.subKey3', path=True)
+        self.assertEqual(cv9.value, 'value9')
+        self.assertFalse(cv9.secret)
+        stack.remove_config('key1')
+        stack.remove_config('key2', path=False)
+        stack.remove_config('key3', path=False)
+        stack.remove_config('key4', path=False)
+        stack.remove_config('key5', path=False)
+        stack.remove_config('key6.subKey1', path=False)
+        stack.remove_config('key7.subKey1', path=False)
+        cfg = stack.get_all_config()
+        self.assertEqual(cfg['python_test:key7'].value, '{"subKey2":"value8","subKey3":"value9"}')
+        ws.remove_stack(stack_name)
+
+    def test_config_all_functions_path(self):
+        if False:
+            for i in range(10):
+                print('nop')
+        project_name = 'python_test'
+        project_settings = ProjectSettings(project_name, runtime='python')
+        ws = LocalWorkspace(project_settings=project_settings)
+        stack_name = stack_namer(project_name)
+        stack = Stack.create(stack_name, ws)
+        stack.set_all_config({'key1': ConfigValue(value='value1', secret=False), 'key2': ConfigValue(value='value2', secret=True), 'key3.subKey1': ConfigValue(value='value3', secret=False), 'key3.subKey2': ConfigValue(value='value4', secret=False), 'key3.subKey3': ConfigValue(value='value5', secret=False), 'key4.subKey1': ConfigValue(value='value6', secret=True)}, path=True)
+        cv1 = stack.get_config('key1')
+        self.assertEqual(cv1.value, 'value1')
+        self.assertFalse(cv1.secret)
+        cv2 = stack.get_config('key2', path=False)
+        self.assertEqual(cv2.value, 'value2')
+        self.assertTrue(cv2.secret)
+        cv3 = stack.get_config('key3.subKey1', path=True)
+        self.assertEqual(cv3.value, 'value3')
+        self.assertFalse(cv3.secret)
+        cv4 = stack.get_config('key3.subKey2', path=True)
+        self.assertEqual(cv4.value, 'value4')
+        self.assertFalse(cv4.secret)
+        cv5 = stack.get_config('key4.subKey1', path=True)
+        self.assertEqual(cv5.value, 'value6')
+        self.assertTrue(cv5.secret)
+        stack.remove_all_config(['key1', 'key2', 'key3.subKey1', 'key3.subKey2', 'key4'], path=True)
+        cfg = stack.get_all_config()
+        self.assertEqual(cfg['python_test:key3'].value, '{"subKey3":"value5"}')
+        ws.remove_stack(stack_name)
+
+    def test_bulk_config_ops(self):
+        if False:
+            print('Hello World!')
+        project_name = 'python_test'
+        project_settings = ProjectSettings(project_name, runtime='python')
+        ws = LocalWorkspace(project_settings=project_settings)
+        stack_name = stack_namer(project_name)
+        stack = Stack.create(stack_name, ws)
+        config: ConfigMap = {'one': ConfigValue(value='one'), 'two': ConfigValue(value='two'), 'three': ConfigValue(value='three', secret=True), 'four': ConfigValue(value='four', secret=True), 'five': ConfigValue(value='five'), 'six': ConfigValue(value='six'), 'seven': ConfigValue(value='seven', secret=True), 'eight': ConfigValue(value='eight', secret=True), 'nine': ConfigValue(value='nine'), 'ten': ConfigValue(value='ten')}
+        stack.set_all_config(config)
+        stack.remove_all_config([key for key in config])
+        ws.remove_stack(stack_name)
+
+    def test_config_flag_like(self):
+        if False:
+            while True:
+                i = 10
+        project_name = 'python_test'
+        project_settings = ProjectSettings(project_name, runtime='python')
+        ws = LocalWorkspace(project_settings=project_settings)
+        stack_name = stack_namer(project_name)
+        stack = Stack.create(stack_name, ws)
+        stack.set_config('key', ConfigValue(value='-value'))
+        stack.set_config('secret-key', ConfigValue(value='-value', secret=True))
+        all_config = stack.get_all_config()
+        self.assertFalse(all_config['python_test:key'].secret)
+        self.assertEqual(all_config['python_test:key'].value, '-value')
+        self.assertTrue(all_config['python_test:secret-key'].secret)
+        self.assertEqual(all_config['python_test:secret-key'].value, '-value')
+        ws.remove_stack(stack_name)
+
+    def test_nested_config(self):
+        if False:
+            while True:
+                i = 10
+        if get_test_org() != 'pulumi-test':
+            return
+        stack_name = fully_qualified_stack_name('pulumi-test', 'nested_config', 'dev')
+        project_dir = test_path('data', 'nested_config')
+        stack = create_or_select_stack(stack_name, work_dir=project_dir)
+        all_config = stack.get_all_config()
+        outer_val = all_config['nested_config:outer']
+        self.assertTrue(outer_val.secret)
+        self.assertEqual(outer_val.value, '{"inner":"my_secret","other":"something_else"}')
+        list_val = all_config['nested_config:myList']
+        self.assertFalse(list_val.secret)
+        self.assertEqual(list_val.value, '["one","two","three"]')
+        outer = stack.get_config('outer')
+        self.assertTrue(outer.secret)
+        self.assertEqual(outer_val.value, '{"inner":"my_secret","other":"something_else"}')
+        arr = stack.get_config('myList')
+        self.assertFalse(arr.secret)
+        self.assertEqual(arr.value, '["one","two","three"]')
+
+    def test_tag_methods(self):
+        if False:
+            i = 10
+            return i + 15
+        project_name = 'python_test'
+        runtime = 'python'
+        project_settings = ProjectSettings(name=project_name, runtime=runtime)
+        ws = LocalWorkspace(project_settings=project_settings)
+        stack_name = stack_namer(project_name)
+        _ = Stack.create(stack_name, ws)
+        result = ws.list_tags(stack_name)
+        self.assertEqual(result['pulumi:project'], project_name)
+        self.assertEqual(result['pulumi:runtime'], runtime)
+        ws.set_tag(stack_name, 'foo', 'bar')
+        result = ws.list_tags(stack_name)
+        self.assertEqual(result['foo'], 'bar')
+        ws.remove_tag(stack_name, 'foo')
+        result = ws.list_tags(stack_name)
+        self.assertTrue('foo' not in result)
+        result = ws.get_tag(stack_name, 'pulumi:project')
+        self.assertEqual(result, project_name)
+        ws.remove_stack(stack_name)
+
+    def test_stack_status_methods(self):
+        if False:
+            for i in range(10):
+                print('nop')
+        project_name = 'python_test'
+        project_settings = ProjectSettings(name=project_name, runtime='python')
+        ws = LocalWorkspace(project_settings=project_settings)
+        stack_name = stack_namer(project_name)
+        stack = Stack.create(stack_name, ws)
+        history = stack.history()
+        self.assertEqual(len(history), 0)
+        info = stack.info()
+        self.assertIsNone(info)
+        ws.remove_stack(stack_name)
+
+    def test_stack_lifecycle_local_program(self):
+        if False:
+            i = 10
+            return i + 15
+        project_name = 'testproj'
+        stack_name = stack_namer(project_name)
+        work_dir = test_path('data', project_name)
+        stack = create_stack(stack_name, work_dir=work_dir)
+        self.assertIsNone(print(stack))
+        config: ConfigMap = {'bar': ConfigValue(value='abc'), 'buzz': ConfigValue(value='secret', secret=True)}
+        stack.set_all_config(config)
+        up_res = stack.up()
+        self.assertEqual(len(up_res.outputs), 3)
+        self.assertEqual(up_res.outputs['exp_static'].value, 'foo')
+        self.assertFalse(up_res.outputs['exp_static'].secret)
+        self.assertEqual(up_res.outputs['exp_cfg'].value, 'abc')
+        self.assertFalse(up_res.outputs['exp_cfg'].secret)
+        self.assertEqual(up_res.outputs['exp_secret'].value, 'secret')
+        self.assertTrue(up_res.outputs['exp_secret'].secret)
+        self.assertEqual(up_res.summary.kind, 'update')
+        self.assertEqual(up_res.summary.result, 'succeeded')
+        preview_result = stack.preview()
+        self.assertEqual(preview_result.change_summary.get(OpType.SAME), 1)
+        refresh_res = stack.refresh()
+        self.assertEqual(refresh_res.summary.kind, 'refresh')
+        self.assertEqual(refresh_res.summary.result, 'succeeded')
+        destroy_res = stack.destroy()
+        self.assertEqual(destroy_res.summary.kind, 'destroy')
+        self.assertEqual(destroy_res.summary.result, 'succeeded')
+        stack.workspace.remove_stack(stack_name)
+
+    def test_stack_lifecycle_inline_program(self):
+        if False:
+            while True:
+                i = 10
+        project_name = 'inline_python'
+        stack_name = stack_namer(project_name)
+        stack = create_stack(stack_name, program=pulumi_program, project_name=project_name)
+        stack_config: ConfigMap = {'bar': ConfigValue(value='abc'), 'buzz': ConfigValue(value='secret', secret=True)}
+        try:
+            stack.set_all_config(stack_config)
+            up_res = stack.up()
+            self.assertEqual(len(up_res.outputs), 3)
+            self.assertEqual(up_res.outputs['exp_static'].value, 'foo')
+            self.assertFalse(up_res.outputs['exp_static'].secret)
+            self.assertEqual(up_res.outputs['exp_cfg'].value, 'abc')
+            self.assertFalse(up_res.outputs['exp_cfg'].secret)
+            self.assertEqual(up_res.outputs['exp_secret'].value, 'secret')
+            self.assertTrue(up_res.outputs['exp_secret'].secret)
+            self.assertEqual(up_res.summary.kind, 'update')
+            self.assertEqual(up_res.summary.result, 'succeeded')
+            preview_result = stack.preview()
+            self.assertEqual(preview_result.change_summary.get(OpType.SAME), 1)
+            refresh_res = stack.refresh()
+            self.assertEqual(refresh_res.summary.kind, 'refresh')
+            self.assertEqual(refresh_res.summary.result, 'succeeded')
+            destroy_res = stack.destroy()
+            self.assertEqual(destroy_res.summary.kind, 'destroy')
+            self.assertEqual(destroy_res.summary.result, 'succeeded')
+        finally:
+            stack.workspace.remove_stack(stack_name)
+
+    def test_supports_stack_outputs(self):
+        if False:
+            for i in range(10):
+                print('nop')
+        project_name = 'inline_python'
+        stack_name = stack_namer(project_name)
+        stack = create_stack(stack_name, program=pulumi_program, project_name=project_name)
+        stack_config: ConfigMap = {'bar': ConfigValue(value='abc'), 'buzz': ConfigValue(value='secret', secret=True)}
+
+        def assert_outputs(outputs):
+            if False:
+                return 10
+            self.assertEqual(len(outputs), 3)
+            self.assertEqual(outputs['exp_static'].value, 'foo')
+            self.assertFalse(outputs['exp_static'].secret)
+            self.assertEqual(outputs['exp_cfg'].value, 'abc')
+            self.assertFalse(outputs['exp_cfg'].secret)
+            self.assertEqual(outputs['exp_secret'].value, 'secret')
+            self.assertTrue(outputs['exp_secret'].secret)
+        try:
+            stack.set_all_config(stack_config)
+            initial_outputs = stack.outputs()
+            self.assertEqual(len(initial_outputs), 0)
+            up_res = stack.up()
+            self.assertEqual(up_res.summary.kind, 'update')
+            self.assertEqual(up_res.summary.result, 'succeeded')
+            assert_outputs(up_res.outputs)
+            outputs_after_up = stack.outputs()
+            assert_outputs(outputs_after_up)
+            destroy_res = stack.destroy()
+            self.assertEqual(destroy_res.summary.kind, 'destroy')
+            self.assertEqual(destroy_res.summary.result, 'succeeded')
+            outputs_after_destroy = stack.outputs()
+            self.assertEqual(len(outputs_after_destroy), 0)
+        finally:
+            stack.workspace.remove_stack(stack_name)
+
+    def test_pulumi_version(self):
+        if False:
+            i = 10
+            return i + 15
+        ws = LocalWorkspace()
+        self.assertIsNotNone(ws.pulumi_version)
+        self.assertRegex(ws.pulumi_version, '(\\d+\\.)(\\d+\\.)(\\d+)(-.*)?')
+
+    def test_validate_pulumi_version(self):
+        if False:
+            i = 10
+            return i + 15
+        for (current_version, expected_error, opt_out) in version_tests:
+            with self.subTest():
+                if expected_error:
+                    with self.assertRaisesRegex(InvalidVersionError, expected_error, msg=f'min_version:{test_min_version}, current_version:{current_version}'):
+                        _parse_and_validate_pulumi_version(test_min_version, current_version, opt_out)
+                else:
+                    _parse_and_validate_pulumi_version(test_min_version, current_version, opt_out)
+
+    def test_project_settings_respected(self):
+        if False:
+            while True:
+                i = 10
+        project_name = 'correct_project'
+        stack_name = stack_namer(project_name)
+        stack = create_stack(stack_name, program=pulumi_program, project_name=project_name, opts=LocalWorkspaceOptions(work_dir=test_path('data', project_name)))
+        project_settings = stack.workspace.project_settings()
+        self.assertEqual(project_settings.description, 'This is a description')
+        stack.workspace.remove_stack(stack_name)
+
+    def test_structured_events(self):
+        if False:
+            while True:
+                i = 10
+        project_name = 'structured_events'
+        stack_name = stack_namer(project_name)
+        stack = create_stack(stack_name, program=pulumi_program, project_name=project_name)
+        stack_config: ConfigMap = {'bar': ConfigValue(value='abc'), 'buzz': ConfigValue(value='secret', secret=True)}
+        try:
+            stack.set_all_config(stack_config)
+            seen_summary_event = [False]
+
+            def find_summary_event(event: EngineEvent):
+                if False:
+                    i = 10
+                    return i + 15
+                if event.summary_event:
+                    seen_summary_event[0] = True
+            up_res = stack.up(on_event=find_summary_event)
+            self.assertEqual(seen_summary_event[0], True, 'No SummaryEvent for `up`')
+            self.assertEqual(up_res.summary.kind, 'update')
+            self.assertEqual(up_res.summary.result, 'succeeded')
+            seen_summary_event[0] = False
+            pre_res = stack.preview(on_event=find_summary_event)
+            self.assertEqual(seen_summary_event[0], True, 'No SummaryEvent for `preview`')
+            self.assertEqual(pre_res.change_summary.get(OpType.SAME), 1)
+            seen_summary_event[0] = False
+            refresh_res = stack.refresh(on_event=find_summary_event)
+            self.assertEqual(seen_summary_event[0], True, 'No SummaryEvent for `refresh`')
+            self.assertEqual(refresh_res.summary.kind, 'refresh')
+            self.assertEqual(refresh_res.summary.result, 'succeeded')
+            seen_summary_event[0] = False
+            destroy_res = stack.destroy(on_event=find_summary_event)
+            self.assertEqual(seen_summary_event[0], True, 'No SummaryEvent for `destroy`')
+            self.assertEqual(destroy_res.summary.kind, 'destroy')
+            self.assertEqual(destroy_res.summary.result, 'succeeded')
+        finally:
+            stack.workspace.remove_stack(stack_name)
+
+    @unittest.skip("Temporarily skipping test until we've re-enabled the warning - pulumi/pulumi#7127")
+    def test_secret_config_warnings(self):
+        if False:
+            print('Hello World!')
+
+        def program():
+            if False:
+                i = 10
+                return i + 15
+            config = Config()
+            config.get('plainstr1')
+            config.require('plainstr2')
+            config.get_secret('plainstr3')
+            config.require_secret('plainstr4')
+            config.get_bool('plainbool1')
+            config.require_bool('plainbool2')
+            config.get_secret_bool('plainbool3')
+            config.require_secret_bool('plainbool4')
+            config.get_int('plainint1')
+            config.require_int('plainint2')
+            config.get_secret_int('plainint3')
+            config.require_secret_int('plainint4')
+            config.get_float('plainfloat1')
+            config.require_float('plainfloat2')
+            config.get_secret_float('plainfloat3')
+            config.require_secret_float('plainfloat4')
+            config.get_object('plainobj1')
+            config.require_object('plainobj2')
+            config.get_secret_object('plainobj3')
+            config.require_secret_object('plainobj4')
+            config.get('str1')
+            config.require('str2')
+            config.get_secret('str3')
+            config.require_secret('str4')
+            config.get_bool('bool1')
+            config.require_bool('bool2')
+            config.get_secret_bool('bool3')
+            config.require_secret_bool('bool4')
+            config.get_int('int1')
+            config.require_int('int2')
+            config.get_secret_int('int3')
+            config.require_secret_int('int4')
+            config.get_float('float1')
+            config.require_float('float2')
+            config.get_secret_float('float3')
+            config.require_secret_float('float4')
+            config.get_object('obj1')
+            config.require_object('obj2')
+            config.get_secret_object('obj3')
+            config.require_secret_object('obj4')
+        project_name = 'inline_python'
+        stack_name = stack_namer(project_name)
+        stack = create_stack(stack_name, program=program, project_name=project_name)
+        stack_config: ConfigMap = {'plainstr1': ConfigValue(value='1'), 'plainstr2': ConfigValue(value='2'), 'plainstr3': ConfigValue(value='3'), 'plainstr4': ConfigValue(value='4'), 'plainbool1': ConfigValue(value='true'), 'plainbool2': ConfigValue(value='true'), 'plainbool3': ConfigValue(value='true'), 'plainbool4': ConfigValue(value='true'), 'plainint1': ConfigValue(value='1'), 'plainint2': ConfigValue(value='2'), 'plainint3': ConfigValue(value='3'), 'plainint4': ConfigValue(value='4'), 'plainfloat1': ConfigValue(value='1.1'), 'plainfloat2': ConfigValue(value='2.2'), 'plainfloat3': ConfigValue(value='3.3'), 'plainfloat4': ConfigValue(value='4.3'), 'plainobj1': ConfigValue(value='{}'), 'plainobj2': ConfigValue(value='{}'), 'plainobj3': ConfigValue(value='{}'), 'plainobj4': ConfigValue(value='{}'), 'str1': ConfigValue(value='1', secret=True), 'str2': ConfigValue(value='2', secret=True), 'str3': ConfigValue(value='3', secret=True), 'str4': ConfigValue(value='4', secret=True), 'bool1': ConfigValue(value='true', secret=True), 'bool2': ConfigValue(value='true', secret=True), 'bool3': ConfigValue(value='true', secret=True), 'bool4': ConfigValue(value='true', secret=True), 'int1': ConfigValue(value='1', secret=True), 'int2': ConfigValue(value='2', secret=True), 'int3': ConfigValue(value='3', secret=True), 'int4': ConfigValue(value='4', secret=True), 'float1': ConfigValue(value='1.1', secret=True), 'float2': ConfigValue(value='2.2', secret=True), 'float3': ConfigValue(value='3.3', secret=True), 'float4': ConfigValue(value='4.4', secret=True), 'obj1': ConfigValue(value='{}', secret=True), 'obj2': ConfigValue(value='{}', secret=True), 'obj3': ConfigValue(value='{}', secret=True), 'obj4': ConfigValue(value='{}', secret=True)}
+        try:
+            stack.set_all_config(stack_config)
+            events: List[str] = []
+
+            def find_diagnostic_events(event: EngineEvent):
+                if False:
+                    while True:
+                        i = 10
+                if event.diagnostic_event and event.diagnostic_event.severity == 'warning':
+                    events.append(event.diagnostic_event.message)
+            expected_warnings = ["Configuration 'inline_python:str1' value is a secret; use `get_secret` instead of `get`", "Configuration 'inline_python:str2' value is a secret; use `require_secret` instead of `require`", "Configuration 'inline_python:bool1' value is a secret; use `get_secret_bool` instead of `get_bool`", "Configuration 'inline_python:bool2' value is a secret; use `require_secret_bool` instead of `require_bool`", "Configuration 'inline_python:int1' value is a secret; use `get_secret_int` instead of `get_int`", "Configuration 'inline_python:int2' value is a secret; use `require_secret_int` instead of `require_int`", "Configuration 'inline_python:float1' value is a secret; use `get_secret_float` instead of `get_float`", "Configuration 'inline_python:float2' value is a secret; use `require_secret_float` instead of `require_float`", "Configuration 'inline_python:obj1' value is a secret; use `get_secret_object` instead of `get_object`", "Configuration 'inline_python:obj2' value is a secret; use `require_secret_object` instead of `require_object`"]
+            unexpected_warnings = ['plainstr1', 'plainstr2', 'plainstr3', 'plainstr4', 'plainbool1', 'plainbool2', 'plainbool3', 'plainbool4', 'plainint1', 'plainint2', 'plainint3', 'plainint4', 'plainfloat1', 'plainfloat2', 'plainfloat3', 'plainfloat4', 'plainobj1', 'plainobj2', 'plainobj3', 'plainobj4', 'str3', 'str4', 'bool3', 'bool4', 'int3', 'int4', 'float3', 'float4', 'obj3', 'obj4']
+
+            def validate(warnings: List[str]):
+                if False:
+                    i = 10
+                    return i + 15
+                for expected in expected_warnings:
+                    found = False
+                    for warning in warnings:
+                        if expected in warning:
+                            found = True
+                            break
+                    self.assertTrue(found, 'expected warning not found')
+                for unexpected in unexpected_warnings:
+                    for warning in warnings:
+                        self.assertFalse(unexpected in warning, f"Unexpected ${unexpected}' found in warning")
+            stack.preview(on_event=find_diagnostic_events)
+            validate(events)
+            events = []
+            stack.up(on_event=find_diagnostic_events)
+            validate(events)
+        finally:
+            stack.workspace.remove_stack(stack_name)
+
+def pulumi_program():
+    if False:
+        for i in range(10):
+            print('nop')
+    config = Config()
+    export('exp_static', 'foo')
+    export('exp_cfg', config.get('bar'))
+    export('exp_secret', config.get_secret('buzz'))
+
+@pytest.mark.parametrize('key,default', [('string', None), ('bar', 'baz'), ('doesnt-exist', None)])
+def test_config_get_with_defaults(key, default, mock_config, config_settings):
+    if False:
+        i = 10
+        return i + 15
+    assert mock_config.get(key, default) == config_settings.get(f'test-config:{key}', default)
+
+def test_config_get_int(mock_config, config_settings):
+    if False:
+        i = 10
+        return i + 15
+    assert mock_config.get_int('int') == int(config_settings.get('test-config:int'))
+
+def test_config_get_bool(mock_config):
+    if False:
+        while True:
+            i = 10
+    assert mock_config.get_bool('bool') is False
+
+def test_config_get_object(mock_config, config_settings):
+    if False:
+        i = 10
+        return i + 15
+    assert mock_config.get_object('object') == json.loads(config_settings.get('test-config:object'))
+
+def test_config_get_float(mock_config, config_settings):
+    if False:
+        return 10
+    assert mock_config.get_float('float') == float(config_settings.get('test-config:float'))

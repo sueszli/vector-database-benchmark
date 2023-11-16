@@ -1,0 +1,54 @@
+from onnx.backend.base import BackendRep, namedtupledict
+
+class Caffe2CppRep(BackendRep):
+
+    def __init__(self, cpp_rep):
+        if False:
+            for i in range(10):
+                print('nop')
+        super().__init__()
+        self.__core = cpp_rep
+        self.__external_outputs = cpp_rep.external_outputs()
+        self.__external_inputs = cpp_rep.external_inputs()
+        self.__uninitialized_inputs = cpp_rep.uninitialized_inputs()
+
+    def init_net(self):
+        if False:
+            for i in range(10):
+                print('nop')
+        return self.__core.init_net()
+
+    def pred_net(self):
+        if False:
+            while True:
+                i = 10
+        return self.__core.pred_net()
+
+    def external_outputs(self):
+        if False:
+            return 10
+        return self.__core.external_outputs()
+
+    def external_inputs(self):
+        if False:
+            while True:
+                i = 10
+        return self.__core.external_inputs()
+
+    def run(self, inputs):
+        if False:
+            i = 10
+            return i + 15
+        output_values = None
+        if isinstance(inputs, dict):
+            output_values = self.__core.run(inputs)
+        elif isinstance(inputs, list) or isinstance(inputs, tuple):
+            if len(inputs) != len(self.__uninitialized_inputs):
+                raise RuntimeError('Expected {} values for uninitialized graph inputs ({}), but got {}.'.format(len(self.__uninitialized_inputs), ', '.join(self.__uninitialized_inputs), len(inputs)))
+            input_map = {}
+            for (k, v) in zip(self.__uninitialized_inputs, inputs):
+                input_map[k] = v
+            output_values = self.__core.run(input_map)
+        else:
+            output_values = self.__core.run([inputs])
+        return namedtupledict('Outputs', self.__external_outputs)(*output_values)

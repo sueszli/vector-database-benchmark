@@ -1,0 +1,249 @@
+"""Bio.SeqIO support for the SnapGene file format.
+
+The SnapGene binary format is the native format used by the SnapGene program
+from GSL Biotech LLC.
+"""
+from datetime import datetime
+from re import sub
+from struct import unpack
+from xml.dom.minidom import parseString
+from Bio.Seq import Seq
+from Bio.SeqFeature import SimpleLocation
+from Bio.SeqFeature import SeqFeature
+from Bio.SeqRecord import SeqRecord
+from .Interfaces import SequenceIterator
+
+def _iterate(handle):
+    if False:
+        return 10
+    "Iterate over the packets of a SnapGene file.\n\n    A SnapGene file is made of packets, each packet being a TLV-like\n    structure comprising:\n\n      - 1 single byte indicating the packet's type;\n      - 1 big-endian long integer (4 bytes) indicating the length of the\n        packet's data;\n      - the actual data.\n    "
+    while True:
+        packet_type = handle.read(1)
+        if len(packet_type) < 1:
+            return
+        packet_type = unpack('>B', packet_type)[0]
+        length = handle.read(4)
+        if len(length) < 4:
+            raise ValueError('Unexpected end of packet')
+        length = unpack('>I', length)[0]
+        data = handle.read(length)
+        if len(data) < length:
+            raise ValueError('Unexpected end of packet')
+        yield (packet_type, length, data)
+
+def _parse_dna_packet(length, data, record):
+    if False:
+        return 10
+    'Parse a DNA sequence packet.\n\n    A DNA sequence packet contains a single byte flag followed by the\n    sequence itself.\n    '
+    if record.seq:
+        raise ValueError('The file contains more than one DNA packet')
+    (flags, sequence) = unpack('>B%ds' % (length - 1), data)
+    record.seq = Seq(sequence.decode('ASCII'))
+    record.annotations['molecule_type'] = 'DNA'
+    if flags & 1:
+        record.annotations['topology'] = 'circular'
+    else:
+        record.annotations['topology'] = 'linear'
+
+def _parse_notes_packet(length, data, record):
+    if False:
+        for i in range(10):
+            print('nop')
+    "Parse a 'Notes' packet.\n\n    This type of packet contains some metadata about the sequence. They\n    are stored as a XML string with a 'Notes' root node.\n    "
+    xml = parseString(data.decode('UTF-8'))
+    type = _get_child_value(xml, 'Type')
+    if type == 'Synthetic':
+        record.annotations['data_file_division'] = 'SYN'
+    else:
+        record.annotations['data_file_division'] = 'UNC'
+    date = _get_child_value(xml, 'LastModified')
+    if date:
+        record.annotations['date'] = datetime.strptime(date, '%Y.%m.%d')
+    acc = _get_child_value(xml, 'AccessionNumber')
+    if acc:
+        record.id = acc
+    comment = _get_child_value(xml, 'Comments')
+    if comment:
+        record.name = comment.split(' ', 1)[0]
+        record.description = comment
+        if not acc:
+            record.id = record.name
+
+def _parse_cookie_packet(length, data, record):
+    if False:
+        return 10
+    'Parse a SnapGene cookie packet.\n\n    Every SnapGene file starts with a packet of this type. It acts as\n    a magic cookie identifying the file as a SnapGene file.\n    '
+    (cookie, seq_type, exp_version, imp_version) = unpack('>8sHHH', data)
+    if cookie.decode('ASCII') != 'SnapGene':
+        raise ValueError('The file is not a valid SnapGene file')
+
+def _parse_location(rangespec, strand, record, is_primer=False):
+    if False:
+        for i in range(10):
+            print('nop')
+    (start, end) = (int(x) for x in rangespec.split('-'))
+    start = start - 1
+    if is_primer:
+        start += 1
+        end += 1
+    if start > end:
+        l1 = SimpleLocation(start, len(record), strand=strand)
+        l2 = SimpleLocation(0, end, strand=strand)
+        location = l1 + l2
+    else:
+        location = SimpleLocation(start, end, strand=strand)
+    return location
+
+def _parse_features_packet(length, data, record):
+    if False:
+        for i in range(10):
+            print('nop')
+    "Parse a sequence features packet.\n\n    This packet stores sequence features (except primer binding sites,\n    which are in a dedicated Primers packet). The data is a XML string\n    starting with a 'Features' root node.\n    "
+    xml = parseString(data.decode('UTF-8'))
+    for feature in xml.getElementsByTagName('Feature'):
+        quals = {}
+        type = _get_attribute_value(feature, 'type', default='misc_feature')
+        strand = +1
+        directionality = int(_get_attribute_value(feature, 'directionality', default='1'))
+        if directionality == 2:
+            strand = -1
+        location = None
+        subparts = []
+        n_parts = 0
+        for segment in feature.getElementsByTagName('Segment'):
+            if _get_attribute_value(segment, 'type', 'standard') == 'gap':
+                continue
+            rng = _get_attribute_value(segment, 'range')
+            n_parts += 1
+            next_location = _parse_location(rng, strand, record)
+            if not location:
+                location = next_location
+            elif strand == -1:
+                location = next_location + location
+            else:
+                location = location + next_location
+            name = _get_attribute_value(segment, 'name')
+            if name:
+                subparts.append([n_parts, name])
+        if len(subparts) > 0:
+            if strand == -1:
+                subparts = reversed([[n_parts - i + 1, name] for (i, name) in subparts])
+            quals['parts'] = [';'.join((f'{i}:{name}' for (i, name) in subparts))]
+        if not location:
+            raise ValueError('Missing feature location')
+        for qualifier in feature.getElementsByTagName('Q'):
+            qname = _get_attribute_value(qualifier, 'name', error='Missing qualifier name')
+            qvalues = []
+            for value in qualifier.getElementsByTagName('V'):
+                if value.hasAttribute('text'):
+                    qvalues.append(_decode(value.attributes['text'].value))
+                elif value.hasAttribute('predef'):
+                    qvalues.append(_decode(value.attributes['predef'].value))
+                elif value.hasAttribute('int'):
+                    qvalues.append(int(value.attributes['int'].value))
+            quals[qname] = qvalues
+        name = _get_attribute_value(feature, 'name')
+        if name:
+            if 'label' not in quals:
+                quals['label'] = [name]
+            elif name not in quals['label']:
+                quals['name'] = [name]
+        feature = SeqFeature(location, type=type, qualifiers=quals)
+        record.features.append(feature)
+
+def _parse_primers_packet(length, data, record):
+    if False:
+        i = 10
+        return i + 15
+    "Parse a Primers packet.\n\n    A Primers packet is similar to a Features packet but specifically\n    stores primer binding features. The data is a XML string starting\n    with a 'Primers' root node.\n    "
+    xml = parseString(data.decode('UTF-8'))
+    for primer in xml.getElementsByTagName('Primer'):
+        quals = {}
+        name = _get_attribute_value(primer, 'name')
+        if name:
+            quals['label'] = [name]
+        locations = []
+        for site in primer.getElementsByTagName('BindingSite'):
+            rng = _get_attribute_value(site, 'location', error='Missing binding site location')
+            strand = int(_get_attribute_value(site, 'boundStrand', default='0'))
+            if strand == 1:
+                strand = -1
+            else:
+                strand = +1
+            location = _parse_location(rng, strand, record, is_primer=True)
+            simplified = int(_get_attribute_value(site, 'simplified', default='0')) == 1
+            if simplified and location in locations:
+                continue
+            locations.append(location)
+            feature = SeqFeature(location, type='primer_bind', qualifiers=quals)
+            record.features.append(feature)
+_packet_handlers = {0: _parse_dna_packet, 5: _parse_primers_packet, 6: _parse_notes_packet, 10: _parse_features_packet}
+
+def _decode(text):
+    if False:
+        i = 10
+        return i + 15
+    return sub('<[^>]+>', '', text)
+
+def _get_attribute_value(node, name, default=None, error=None):
+    if False:
+        for i in range(10):
+            print('nop')
+    if node.hasAttribute(name):
+        return _decode(node.attributes[name].value)
+    elif error:
+        raise ValueError(error)
+    else:
+        return default
+
+def _get_child_value(node, name, default=None, error=None):
+    if False:
+        i = 10
+        return i + 15
+    children = node.getElementsByTagName(name)
+    if children and children[0].childNodes and (children[0].firstChild.nodeType == node.TEXT_NODE):
+        return _decode(children[0].firstChild.data)
+    elif error:
+        raise ValueError(error)
+    else:
+        return default
+
+class SnapGeneIterator(SequenceIterator):
+    """Parser for SnapGene files."""
+
+    def __init__(self, source):
+        if False:
+            while True:
+                i = 10
+        'Parse a SnapGene file and return a SeqRecord object.\n\n        Argument source is a file-like object or a path to a file.\n\n        Note that a SnapGene file can only contain one sequence, so this\n        iterator will always return a single record.\n        '
+        super().__init__(source, mode='b', fmt='SnapGene')
+
+    def parse(self, handle):
+        if False:
+            for i in range(10):
+                print('nop')
+        'Start parsing the file, and return a SeqRecord generator.'
+        records = self.iterate(handle)
+        return records
+
+    def iterate(self, handle):
+        if False:
+            i = 10
+            return i + 15
+        'Iterate over the records in the SnapGene file.'
+        record = SeqRecord(None)
+        packets = _iterate(handle)
+        try:
+            (packet_type, length, data) = next(packets)
+        except StopIteration:
+            raise ValueError('Empty file.') from None
+        if packet_type != 9:
+            raise ValueError('The file does not start with a SnapGene cookie packet')
+        _parse_cookie_packet(length, data, record)
+        for (packet_type, length, data) in packets:
+            handler = _packet_handlers.get(packet_type)
+            if handler is not None:
+                handler(length, data, record)
+        if not record.seq:
+            raise ValueError('No DNA packet in file')
+        yield record

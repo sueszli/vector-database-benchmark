@@ -1,0 +1,26 @@
+"""add is_universal in apps
+
+Revision ID: 2beac44e5f5f
+Revises: d3d503a3471c
+Create Date: 2023-07-07 12:11:29.156057
+
+"""
+from alembic import op
+import sqlalchemy as sa
+revision = '2beac44e5f5f'
+down_revision = 'a5b56fb053ef'
+branch_labels = None
+depends_on = None
+
+def upgrade():
+    if False:
+        return 10
+    with op.batch_alter_table('apps', schema=None) as batch_op:
+        batch_op.add_column(sa.Column('is_universal', sa.Boolean(), server_default=sa.text('false'), nullable=False))
+
+def downgrade():
+    if False:
+        i = 10
+        return i + 15
+    with op.batch_alter_table('apps', schema=None) as batch_op:
+        batch_op.drop_column('is_universal')

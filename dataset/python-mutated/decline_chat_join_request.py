@@ -1,0 +1,23 @@
+from __future__ import annotations
+from typing import TYPE_CHECKING, Any, Union
+from .base import TelegramMethod
+
+class DeclineChatJoinRequest(TelegramMethod[bool]):
+    """
+    Use this method to decline a chat join request. The bot must be an administrator in the chat for this to work and must have the *can_invite_users* administrator right. Returns :code:`True` on success.
+
+    Source: https://core.telegram.org/bots/api#declinechatjoinrequest
+    """
+    __returning__ = bool
+    __api_method__ = 'declineChatJoinRequest'
+    chat_id: Union[int, str]
+    'Unique identifier for the target chat or username of the target channel (in the format :code:`@channelusername`)'
+    user_id: int
+    'Unique identifier of the target user'
+    if TYPE_CHECKING:
+
+        def __init__(__pydantic__self__, *, chat_id: Union[int, str], user_id: int, **__pydantic_kwargs: Any) -> None:
+            if False:
+                for i in range(10):
+                    print('nop')
+            super().__init__(chat_id=chat_id, user_id=user_id, **__pydantic_kwargs)

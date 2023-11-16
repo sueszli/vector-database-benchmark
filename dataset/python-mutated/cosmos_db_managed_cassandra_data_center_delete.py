@@ -1,0 +1,12 @@
+from azure.identity import DefaultAzureCredential
+from azure.mgmt.cosmosdb import CosmosDBManagementClient
+'\n# PREREQUISITES\n    pip install azure-identity\n    pip install azure-mgmt-cosmosdb\n# USAGE\n    python cosmos_db_managed_cassandra_data_center_delete.py\n\n    Before run the sample, please set the values of the client ID, tenant ID and client secret\n    of the AAD application as environment variables: AZURE_CLIENT_ID, AZURE_TENANT_ID,\n    AZURE_CLIENT_SECRET. For more info about how to get the value, please see:\n    https://docs.microsoft.com/azure/active-directory/develop/howto-create-service-principal-portal\n'
+
+def main():
+    if False:
+        for i in range(10):
+            print('nop')
+    client = CosmosDBManagementClient(credential=DefaultAzureCredential(), subscription_id='00000000-0000-0000-0000-000000000000')
+    client.cassandra_data_centers.begin_delete(resource_group_name='cassandra-prod-rg', cluster_name='cassandra-prod', data_center_name='dc1').result()
+if __name__ == '__main__':
+    main()

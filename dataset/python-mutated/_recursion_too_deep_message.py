@@ -1,0 +1,7 @@
+msg = "\n=============================================================\nA RecursionError (maximum recursion depth exceeded) occurred.\nFor working around please follow these instructions\n=============================================================\n\n1. In your program's .spec file add this line near the top::\n\n     import sys ; sys.setrecursionlimit(sys.getrecursionlimit() * 5)\n\n2. Build your program by running PyInstaller with the .spec file as\n   argument::\n\n     pyinstaller myprog.spec\n\n3. If this fails, you most probably hit an endless recursion in\n   PyInstaller. Please try to track this down has far as possible,\n   create a minimal example so we can reproduce and open an issue at\n   https://github.com/pyinstaller/pyinstaller/issues following the\n   instructions in the issue template. Many thanks.\n\nExplanation: Python's stack-limit is a safety-belt against endless recursion,\neating up memory. PyInstaller imports modules recursively. If the structure\nhow modules are imported within your program is awkward, this leads to the\nnesting being too deep and hitting Python's stack-limit.\n\nWith the default recursion limit (1000), the recursion error occurs at about\n115 nested imported, with limit 2000 at about 240, with limit 5000 at about\n660.\n"
+
+def raise_with_msg():
+    if False:
+        for i in range(10):
+            print('nop')
+    raise SystemExit(msg)

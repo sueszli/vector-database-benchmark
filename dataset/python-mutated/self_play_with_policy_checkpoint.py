@@ -1,0 +1,58 @@
+"""Example showing how one can restore a connector enabled TF policy
+checkpoint for a new self-play PyTorch training job.
+The checkpointed policy may be trained with a different algorithm too.
+"""
+import argparse
+from functools import partial
+import os
+import tempfile
+import ray
+from ray import air, tune
+from ray.rllib.algorithms.callbacks import DefaultCallbacks
+from ray.rllib.algorithms.sac import SACConfig
+from ray.rllib.env.utils import try_import_pyspiel
+from ray.rllib.env.wrappers.open_spiel import OpenSpielEnv
+from ray.rllib.examples.connectors.prepare_checkpoint import create_open_spiel_checkpoint
+from ray.rllib.policy.policy import Policy
+from ray.tune import CLIReporter, register_env
+pyspiel = try_import_pyspiel(error=True)
+register_env('open_spiel_env', lambda _: OpenSpielEnv(pyspiel.load_game('connect_four')))
+parser = argparse.ArgumentParser()
+parser.add_argument('--train_iteration', type=int, default=10, help='Number of iterations to train.')
+args = parser.parse_args()
+MAIN_POLICY_ID = 'main'
+OPPONENT_POLICY_ID = 'opponent'
+
+class AddPolicyCallback(DefaultCallbacks):
+
+    def __init__(self, checkpoint_dir):
+        if False:
+            return 10
+        self._checkpoint_dir = checkpoint_dir
+        super().__init__()
+
+    def on_algorithm_init(self, *, algorithm, **kwargs):
+        if False:
+            print('Hello World!')
+        policy = Policy.from_checkpoint(self._checkpoint_dir, policy_ids=[OPPONENT_POLICY_ID])
+        algorithm.add_policy(policy_id=OPPONENT_POLICY_ID, policy=policy, evaluation_workers=True)
+
+def policy_mapping_fn(agent_id, episode, worker, **kwargs):
+    if False:
+        print('Hello World!')
+    return MAIN_POLICY_ID if episode.episode_id % 2 == agent_id else OPPONENT_POLICY_ID
+
+def main(checkpoint_dir):
+    if False:
+        print('Hello World!')
+    config = SACConfig().environment('open_spiel_env').framework('torch').callbacks(partial(AddPolicyCallback, checkpoint_dir)).rollouts(num_rollout_workers=1, num_envs_per_worker=5, enable_tf1_exec_eagerly=True).training(model={'fcnet_hiddens': [512, 512]}).multi_agent(policies={MAIN_POLICY_ID}, policy_mapping_fn=policy_mapping_fn, policies_to_train=[MAIN_POLICY_ID])
+    stop = {'training_iteration': args.train_iteration}
+    tuner = tune.Tuner('SAC', param_space=config.to_dict(), run_config=air.RunConfig(stop=stop, checkpoint_config=air.CheckpointConfig(checkpoint_at_end=True, checkpoint_frequency=10), verbose=2, progress_reporter=CLIReporter(metric_columns={'training_iteration': 'iter', 'time_total_s': 'time_total_s', 'timesteps_total': 'ts', 'episodes_this_iter': 'train_episodes', 'policy_reward_mean/main': 'reward_main'}, sort_by_metric=True)))
+    tuner.fit()
+if __name__ == '__main__':
+    ray.init()
+    with tempfile.TemporaryDirectory() as tmpdir:
+        create_open_spiel_checkpoint(tmpdir)
+        policy_checkpoint_path = os.path.join(tmpdir, 'checkpoint_000000', 'policies', OPPONENT_POLICY_ID)
+        main(policy_checkpoint_path)
+    ray.shutdown()

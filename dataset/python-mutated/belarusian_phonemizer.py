@@ -1,0 +1,66 @@
+from typing import Dict
+from TTS.tts.utils.text.belarusian.phonemizer import belarusian_text_to_phonemes
+from TTS.tts.utils.text.phonemizers.base import BasePhonemizer
+_DEF_BE_PUNCS = ',!.'
+
+class BEL_Phonemizer(BasePhonemizer):
+    """🐸TTS be phonemizer using functions in `TTS.tts.utils.text.belarusian.phonemizer`
+
+    Args:
+        punctuations (str):
+            Set of characters to be treated as punctuation. Defaults to `_DEF_BE_PUNCS`.
+
+        keep_puncs (bool):
+            If True, keep the punctuations after phonemization. Defaults to False.
+    """
+    language = 'be'
+
+    def __init__(self, punctuations=_DEF_BE_PUNCS, keep_puncs=True, **kwargs):
+        if False:
+            return 10
+        super().__init__(self.language, punctuations=punctuations, keep_puncs=keep_puncs)
+
+    @staticmethod
+    def name():
+        if False:
+            for i in range(10):
+                print('nop')
+        return 'be_phonemizer'
+
+    @staticmethod
+    def phonemize_be(text: str, separator: str='|') -> str:
+        if False:
+            print('Hello World!')
+        return belarusian_text_to_phonemes(text)
+
+    def _phonemize(self, text, separator):
+        if False:
+            i = 10
+            return i + 15
+        return self.phonemize_be(text, separator)
+
+    @staticmethod
+    def supported_languages() -> Dict:
+        if False:
+            i = 10
+            return i + 15
+        return {'be': 'Belarusian'}
+
+    def version(self) -> str:
+        if False:
+            print('Hello World!')
+        return '0.0.1'
+
+    def is_available(self) -> bool:
+        if False:
+            return 10
+        return True
+if __name__ == '__main__':
+    txt = 'тэст'
+    e = BEL_Phonemizer()
+    print(e.supported_languages())
+    print(e.version())
+    print(e.language)
+    print(e.name())
+    print(e.is_available())
+    print('`' + e.phonemize(txt) + '`')

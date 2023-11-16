@@ -1,0 +1,13 @@
+from azure.identity import DefaultAzureCredential
+from azure.mgmt.cognitiveservices import CognitiveServicesManagementClient
+'\n# PREREQUISITES\n    pip install azure-identity\n    pip install azure-mgmt-cognitiveservices\n# USAGE\n    python put_deployment.py\n\n    Before run the sample, please set the values of the client ID, tenant ID and client secret\n    of the AAD application as environment variables: AZURE_CLIENT_ID, AZURE_TENANT_ID,\n    AZURE_CLIENT_SECRET. For more info about how to get the value, please see:\n    https://docs.microsoft.com/azure/active-directory/develop/howto-create-service-principal-portal\n'
+
+def main():
+    if False:
+        for i in range(10):
+            print('nop')
+    client = CognitiveServicesManagementClient(credential=DefaultAzureCredential(), subscription_id='subscriptionId')
+    response = client.deployments.begin_create_or_update(resource_group_name='resourceGroupName', account_name='accountName', deployment_name='deploymentName', deployment={'properties': {'model': {'format': 'OpenAI', 'name': 'ada', 'version': '1'}}, 'sku': {'capacity': 1, 'name': 'Standard'}}).result()
+    print(response)
+if __name__ == '__main__':
+    main()

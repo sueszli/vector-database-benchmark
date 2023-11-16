@@ -1,0 +1,48 @@
+from sympy.core import Integer, Pow, Mod
+from sympy import factorint
+
+def is_nilpotent_number(n):
+    if False:
+        return 10
+    '\n    Check whether `n` is a nilpotent number. A number `n` is said to be\n    nilpotent if and only if every finite group of order `n` is nilpotent.\n    For more information see [1]_.\n\n    Examples\n    ========\n\n    >>> from sympy.combinatorics.group_numbers import is_nilpotent_number\n    >>> from sympy import randprime\n    >>> is_nilpotent_number(21)\n    False\n    >>> is_nilpotent_number(randprime(1, 30)**12)\n    True\n\n    References\n    ==========\n\n    .. [1] Pakianathan, J., Shankar, K., *Nilpotent Numbers*,\n            The American Mathematical Monthly, 107(7), 631-634.\n\n\n    '
+    if n <= 0 or int(n) != n:
+        raise ValueError('n must be a positive integer, not %i' % n)
+    n = Integer(n)
+    prime_factors = list(factorint(n).items())
+    is_nilpotent = True
+    for (p_j, a_j) in prime_factors:
+        for (p_i, a_i) in prime_factors:
+            if any((Mod(Pow(p_i, k), p_j) == 1 for k in range(1, a_i + 1))):
+                is_nilpotent = False
+                break
+        if not is_nilpotent:
+            break
+    return is_nilpotent
+
+def is_abelian_number(n):
+    if False:
+        for i in range(10):
+            print('nop')
+    '\n    Check whether `n` is an abelian number. A number `n` is said to be abelian\n    if and only if every finite group of order `n` is abelian. For more\n    information see [1]_.\n\n    Examples\n    ========\n\n    >>> from sympy.combinatorics.group_numbers import is_abelian_number\n    >>> from sympy import randprime\n    >>> is_abelian_number(4)\n    True\n    >>> is_abelian_number(randprime(1, 2000)**2)\n    True\n    >>> is_abelian_number(60)\n    False\n\n    References\n    ==========\n\n    .. [1] Pakianathan, J., Shankar, K., *Nilpotent Numbers*,\n            The American Mathematical Monthly, 107(7), 631-634.\n\n\n    '
+    if n <= 0 or int(n) != n:
+        raise ValueError('n must be a positive integer, not %i' % n)
+    n = Integer(n)
+    if not is_nilpotent_number(n):
+        return False
+    prime_factors = list(factorint(n).items())
+    is_abelian = all((a_i < 3 for (p_i, a_i) in prime_factors))
+    return is_abelian
+
+def is_cyclic_number(n):
+    if False:
+        for i in range(10):
+            print('nop')
+    '\n    Check whether `n` is a cyclic number. A number `n` is said to be cyclic\n    if and only if every finite group of order `n` is cyclic. For more\n    information see [1]_.\n\n    Examples\n    ========\n\n    >>> from sympy.combinatorics.group_numbers import is_cyclic_number\n    >>> from sympy import randprime\n    >>> is_cyclic_number(15)\n    True\n    >>> is_cyclic_number(randprime(1, 2000)**2)\n    False\n    >>> is_cyclic_number(4)\n    False\n\n    References\n    ==========\n\n    .. [1] Pakianathan, J., Shankar, K., *Nilpotent Numbers*,\n            The American Mathematical Monthly, 107(7), 631-634.\n\n    '
+    if n <= 0 or int(n) != n:
+        raise ValueError('n must be a positive integer, not %i' % n)
+    n = Integer(n)
+    if not is_nilpotent_number(n):
+        return False
+    prime_factors = list(factorint(n).items())
+    is_cyclic = all((a_i < 2 for (p_i, a_i) in prime_factors))
+    return is_cyclic

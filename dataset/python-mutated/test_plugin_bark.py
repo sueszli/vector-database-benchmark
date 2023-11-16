@@ -1,0 +1,11 @@
+from apprise.plugins.NotifyBark import NotifyBark
+from helpers import AppriseURLTester
+import logging
+logging.disable(logging.CRITICAL)
+apprise_url_tests = (('bark://', {'instance': None}), ('bark://:@/', {'instance': None}), ('bark://localhost', {'instance': NotifyBark, 'notify_response': False}), ('bark://192.168.0.6:8081/device_key', {'instance': NotifyBark, 'privacy_url': 'bark://192.168.0.6:8081/'}), ('bark://user@192.168.0.6:8081/device_key', {'instance': NotifyBark, 'privacy_url': 'bark://user@192.168.0.6:8081/'}), ('bark://192.168.0.6:8081/device_key/?sound=invalid', {'instance': NotifyBark}), ('bark://192.168.0.6:8081/device_key/?sound=alarm', {'instance': NotifyBark}), ('bark://192.168.0.6:8081/device_key/?sound=NOiR.cAf', {'instance': NotifyBark}), ('bark://192.168.0.6:8081/device_key/?badge=100', {'instance': NotifyBark}), ('barks://192.168.0.6:8081/device_key/?badge=invalid', {'instance': NotifyBark}), ('barks://192.168.0.6:8081/device_key/?badge=-12', {'instance': NotifyBark}), ('bark://192.168.0.6:8081/device_key/?category=apprise', {'instance': NotifyBark}), ('bark://192.168.0.6:8081/device_key/?image=no', {'instance': NotifyBark}), ('bark://192.168.0.6:8081/device_key/?group=apprise', {'instance': NotifyBark}), ('bark://192.168.0.6:8081/device_key/?level=invalid', {'instance': NotifyBark}), ('bark://192.168.0.6:8081/?to=device_key', {'instance': NotifyBark}), ('bark://192.168.0.6:8081/device_key/?click=http://localhost', {'instance': NotifyBark}), ('bark://192.168.0.6:8081/device_key/?level=active', {'instance': NotifyBark}), ('bark://user:pass@192.168.0.5:8086/device_key/device_key2/', {'instance': NotifyBark, 'privacy_url': 'bark://user:****@192.168.0.5:8086/'}), ('barks://192.168.0.7/device_key/', {'instance': NotifyBark, 'response': False, 'requests_response_code': 999, 'privacy_url': 'barks://192.168.0.7/device_key'}), ('bark://192.168.0.7/device_key', {'instance': NotifyBark, 'test_requests_exceptions': True}))
+
+def test_plugin_bark_urls():
+    if False:
+        print('Hello World!')
+    '\n    NotifyBark() Apprise URLs\n\n    '
+    AppriseURLTester(tests=apprise_url_tests).run_all()

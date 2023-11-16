@@ -1,0 +1,112 @@
+import unittest
+import numpy as np
+from get_test_cover_info import XPUOpTestWrapper, create_test_class, get_xpu_op_support_types
+from op_test_xpu import XPUOpTest
+import paddle
+from paddle import base
+from paddle.base.executor import Executor
+paddle.enable_static()
+
+class XPUTestTruncatedGaussianRandomOp(XPUOpTestWrapper):
+
+    def __init__(self):
+        if False:
+            while True:
+                i = 10
+        self.op_name = 'truncated_gaussian_random'
+        self.use_dynamic_create_class = False
+
+    class TestTruncatedGaussianRandomOp(XPUOpTest):
+
+        def init(self):
+            if False:
+                return 10
+            self.dtype = self.in_type
+            self.place = paddle.XPUPlace(0)
+            self.__class__.op_type = 'truncated_gaussian_random'
+
+        def setUp(self):
+            if False:
+                for i in range(10):
+                    print('nop')
+            self.init()
+            self.inputs = {}
+            self.set_attrs()
+            self.attrs = {'shape': self.shape, 'mean': self.mean, 'std': self.std, 'seed': 10}
+            self.outputs = {'Out': np.zeros(self.shape, dtype=self.dtype)}
+
+        def set_attrs(self):
+            if False:
+                while True:
+                    i = 10
+            self.shape = [10000]
+            self.mean = 0.0
+            self.std = 1.0
+
+        def test_check_output(self):
+            if False:
+                while True:
+                    i = 10
+            self.gaussian_random_test(place=base.XPUPlace(0))
+
+        def gaussian_random_test(self, place):
+            if False:
+                while True:
+                    i = 10
+            program = base.Program()
+            block = program.global_block()
+            vout = block.create_var(name='Out')
+            op = block.append_op(type=self.op_type, outputs={'Out': vout}, attrs=self.attrs)
+            op.desc.infer_var_type(block.desc)
+            op.desc.infer_shape(block.desc)
+            fetch_list = []
+            for var_name in self.outputs:
+                fetch_list.append(block.var(var_name))
+            exe = Executor(place)
+            outs = exe.run(program, fetch_list=fetch_list)
+            tensor = outs[0]
+            np.testing.assert_allclose(np.mean(tensor), self.mean, atol=0.05)
+            np.testing.assert_allclose(np.var(tensor), 0.773, atol=0.05)
+
+    class TestTruncatedGaussianRandomOp_1(TestTruncatedGaussianRandomOp):
+
+        def set_attrs(self):
+            if False:
+                for i in range(10):
+                    print('nop')
+            self.shape = [4096, 2]
+            self.mean = 5.0
+            self.std = 1.0
+
+    class TestTruncatedGaussianRandomOp_2(TestTruncatedGaussianRandomOp):
+
+        def set_attrs(self):
+            if False:
+                i = 10
+                return i + 15
+            self.shape = [1024]
+            self.mean = -2.0
+            self.std = 1.0
+
+    class TestTruncatedGaussianRandomOp_3(TestTruncatedGaussianRandomOp):
+
+        def set_attrs(self):
+            if False:
+                return 10
+            self.shape = [11 * 13 * 17]
+            self.mean = -1.0
+            self.std = 1.0
+
+    class TestTruncatedGaussianRandomOp_4(TestTruncatedGaussianRandomOp):
+
+        def set_attrs(self):
+            if False:
+                print('Hello World!')
+            self.shape = [2049]
+            self.mean = 5.1234
+            self.std = 1.0
+support_types = get_xpu_op_support_types('truncated_gaussian_random')
+for stype in support_types:
+    create_test_class(globals(), XPUTestTruncatedGaussianRandomOp, stype)
+if __name__ == '__main__':
+    unittest.main()

@@ -1,0 +1,290 @@
+import logging
+import pandas as pd
+import numpy as np
+from functools import lru_cache, wraps
+from recommenders.utils.constants import DEFAULT_USER_COL, DEFAULT_ITEM_COL, DEFAULT_RATING_COL, DEFAULT_LABEL_COL
+logger = logging.getLogger(__name__)
+
+def user_item_pairs(user_df, item_df, user_col=DEFAULT_USER_COL, item_col=DEFAULT_ITEM_COL, user_item_filter_df=None, shuffle=True, seed=None):
+    if False:
+        return 10
+    'Get all pairs of users and items data.\n\n    Args:\n        user_df (pandas.DataFrame): User data containing unique user ids and maybe their features.\n        item_df (pandas.DataFrame): Item data containing unique item ids and maybe their features.\n        user_col (str): User id column name.\n        item_col (str): Item id column name.\n        user_item_filter_df (pd.DataFrame): User-item pairs to be used as a filter.\n        shuffle (bool): If True, shuffles the result.\n        seed (int): Random seed for shuffle\n\n    Returns:\n        pandas.DataFrame: All pairs of user-item from user_df and item_df, excepting the pairs in user_item_filter_df.\n    '
+    user_df['key'] = 1
+    item_df['key'] = 1
+    users_items = user_df.merge(item_df, on='key')
+    user_df.drop('key', axis=1, inplace=True)
+    item_df.drop('key', axis=1, inplace=True)
+    users_items.drop('key', axis=1, inplace=True)
+    if user_item_filter_df is not None:
+        users_items = filter_by(users_items, user_item_filter_df, [user_col, item_col])
+    if shuffle:
+        users_items = users_items.sample(frac=1, random_state=seed).reset_index(drop=True)
+    return users_items
+
+def filter_by(df, filter_by_df, filter_by_cols):
+    if False:
+        return 10
+    'From the input DataFrame `df`, remove the records whose target column `filter_by_cols` values are\n    exist in the filter-by DataFrame `filter_by_df`.\n\n    Args:\n        df (pandas.DataFrame): Source dataframe.\n        filter_by_df (pandas.DataFrame): Filter dataframe.\n        filter_by_cols (iterable of str): Filter columns.\n\n    Returns:\n        pandas.DataFrame: Dataframe filtered by `filter_by_df` on `filter_by_cols`.\n\n    '
+    return df.loc[~df.set_index(filter_by_cols).index.isin(filter_by_df.set_index(filter_by_cols).index)]
+
+class LibffmConverter:
+    """Converts an input dataframe to another dataframe in libffm format. A text file of the converted
+    Dataframe is optionally generated.
+
+    .. note::
+
+        The input dataframe is expected to represent the feature data in the following schema:
+
+        .. code-block:: python
+
+            |field-1|field-2|...|field-n|rating|
+            |feature-1-1|feature-2-1|...|feature-n-1|1|
+            |feature-1-2|feature-2-2|...|feature-n-2|0|
+            ...
+            |feature-1-i|feature-2-j|...|feature-n-k|0|
+
+        Where
+        1. each `field-*` is the column name of the dataframe (column of label/rating is excluded), and
+        2. `feature-*-*` can be either a string or a numerical value, representing the categorical variable or
+        actual numerical variable of the feature value in the field, respectively.
+        3. If there are ordinal variables represented in int types, users should make sure these columns
+        are properly converted to string type.
+
+        The above data will be converted to the libffm format by following the convention as explained in
+        `this paper <https://www.csie.ntu.edu.tw/~r01922136/slides/ffm.pdf>`_.
+
+        i.e. `<field_index>:<field_feature_index>:1` or `<field_index>:<field_feature_index>:<field_feature_value>`,
+        depending on the data type of the features in the original dataframe.
+
+    Args:
+        filepath (str): path to save the converted data.
+
+    Attributes:
+        field_count (int): count of field in the libffm format data
+        feature_count (int): count of feature in the libffm format data
+        filepath (str or None): file path where the output is stored - it can be None or a string
+
+    Examples:
+        >>> import pandas as pd
+        >>> df_feature = pd.DataFrame({
+                'rating': [1, 0, 0, 1, 1],
+                'field1': ['xxx1', 'xxx2', 'xxx4', 'xxx4', 'xxx4'],
+                'field2': [3, 4, 5, 6, 7],
+                'field3': [1.0, 2.0, 3.0, 4.0, 5.0],
+                'field4': ['1', '2', '3', '4', '5']
+            })
+        >>> converter = LibffmConverter().fit(df_feature, col_rating='rating')
+        >>> df_out = converter.transform(df_feature)
+        >>> df_out
+            rating field1 field2   field3 field4
+        0       1  1:1:1  2:4:3  3:5:1.0  4:6:1
+        1       0  1:2:1  2:4:4  3:5:2.0  4:7:1
+        2       0  1:3:1  2:4:5  3:5:3.0  4:8:1
+        3       1  1:3:1  2:4:6  3:5:4.0  4:9:1
+        4       1  1:3:1  2:4:7  3:5:5.0  4:10:1
+    """
+
+    def __init__(self, filepath=None):
+        if False:
+            while True:
+                i = 10
+        self.filepath = filepath
+        self.col_rating = None
+        self.field_names = None
+        self.field_count = None
+        self.feature_count = None
+
+    def fit(self, df, col_rating=DEFAULT_RATING_COL):
+        if False:
+            i = 10
+            return i + 15
+        'Fit the dataframe for libffm format.\n        This method does nothing but check the validity of the input columns\n\n        Args:\n            df (pandas.DataFrame): input Pandas dataframe.\n            col_rating (str): rating of the data.\n\n        Return:\n            object: the instance of the converter\n        '
+        types = df.dtypes
+        if not all([x == object or np.issubdtype(x, np.integer) or x == np.float for x in types]):
+            raise TypeError('Input columns should be only object and/or numeric types.')
+        if col_rating not in df.columns:
+            raise TypeError('Column of {} is not in input dataframe columns'.format(col_rating))
+        self.col_rating = col_rating
+        self.field_names = list(df.drop(col_rating, axis=1).columns)
+        return self
+
+    def transform(self, df):
+        if False:
+            while True:
+                i = 10
+        'Tranform an input dataset with the same schema (column names and dtypes) to libffm format\n        by using the fitted converter.\n\n        Args:\n            df (pandas.DataFrame): input Pandas dataframe.\n\n        Return:\n            pandas.DataFrame: Output libffm format dataframe.\n        '
+        if self.col_rating not in df.columns:
+            raise ValueError('Input dataset does not contain the label column {} in the fitting dataset'.format(self.col_rating))
+        if not all([x in df.columns for x in self.field_names]):
+            raise ValueError('Not all columns in the input dataset appear in the fitting dataset')
+        idx = 1
+        self.field_feature_dict = {}
+        for field in self.field_names:
+            for feature in df[field].values:
+                if (field, feature) not in self.field_feature_dict:
+                    self.field_feature_dict[field, feature] = idx
+                    if df[field].dtype == object:
+                        idx += 1
+            if df[field].dtype != object:
+                idx += 1
+        self.field_count = len(self.field_names)
+        self.feature_count = idx - 1
+
+        def _convert(field, feature, field_index, field_feature_index_dict):
+            if False:
+                i = 10
+                return i + 15
+            field_feature_index = field_feature_index_dict[field, feature]
+            if isinstance(feature, str):
+                feature = 1
+            return '{}:{}:{}'.format(field_index, field_feature_index, feature)
+        for (col_index, col) in enumerate(self.field_names):
+            df[col] = df[col].apply(lambda x: _convert(col, x, col_index + 1, self.field_feature_dict))
+        column_names = self.field_names[:]
+        column_names.insert(0, self.col_rating)
+        df = df[column_names]
+        if self.filepath is not None:
+            np.savetxt(self.filepath, df.values, delimiter=' ', fmt='%s')
+        return df
+
+    def fit_transform(self, df, col_rating=DEFAULT_RATING_COL):
+        if False:
+            for i in range(10):
+                print('nop')
+        'Do fit and transform in a row\n\n        Args:\n            df (pandas.DataFrame): input Pandas dataframe.\n            col_rating (str): rating of the data.\n\n        Return:\n            pandas.DataFrame: Output libffm format dataframe.\n        '
+        return self.fit(df, col_rating=col_rating).transform(df)
+
+    def get_params(self):
+        if False:
+            while True:
+                i = 10
+        'Get parameters (attributes) of the libffm converter\n\n        Return:\n            dict: A dictionary that contains parameters field count, feature count, and file path.\n        '
+        return {'field count': self.field_count, 'feature count': self.feature_count, 'file path': self.filepath}
+
+def negative_feedback_sampler(df, col_user=DEFAULT_USER_COL, col_item=DEFAULT_ITEM_COL, col_label=DEFAULT_LABEL_COL, col_feedback='feedback', ratio_neg_per_user=1, pos_value=1, neg_value=0, seed=42):
+    if False:
+        for i in range(10):
+            print('nop')
+    "Utility function to sample negative feedback from user-item interaction dataset.\n    This negative sampling function will take the user-item interaction data to create\n    binarized feedback, i.e., 1 and 0 indicate positive and negative feedback,\n    respectively.\n\n    Negative sampling is used in the literature frequently to generate negative samples\n    from a user-item interaction data.\n\n    See for example the `neural collaborative filtering paper <https://www.comp.nus.edu.sg/~xiangnan/papers/ncf.pdf>`_.\n\n    Args:\n        df (pandas.DataFrame): input data that contains user-item tuples.\n        col_user (str): user id column name.\n        col_item (str): item id column name.\n        col_label (str): label column name in df.\n        col_feedback (str): feedback column name in the returned data frame; it is used for the generated column\n            of positive and negative feedback.\n        ratio_neg_per_user (int): ratio of negative feedback w.r.t to the number of positive feedback for each user.\n            If the samples exceed the number of total possible negative feedback samples, it will be reduced to the\n            number of all the possible samples.\n        pos_value (float): value of positive feedback.\n        neg_value (float): value of negative feedback.\n        inplace (bool):\n        seed (int): seed for the random state of the sampling function.\n\n    Returns:\n        pandas.DataFrame: Data with negative feedback.\n\n    Examples:\n        >>> import pandas as pd\n        >>> df = pd.DataFrame({\n            'userID': [1, 2, 3],\n            'itemID': [1, 2, 3],\n            'rating': [5, 5, 5]\n        })\n        >>> df_neg_sampled = negative_feedback_sampler(\n            df, col_user='userID', col_item='itemID', ratio_neg_per_user=1\n        )\n        >>> df_neg_sampled\n        userID  itemID  feedback\n        1   1   1\n        1   2   0\n        2   2   1\n        2   1   0\n        3   3   1\n        3   1   0\n    "
+    items = df[col_item].unique()
+    rng = np.random.default_rng(seed=seed)
+
+    def sample_items(user_df):
+        if False:
+            while True:
+                i = 10
+        n_u = len(user_df)
+        neg_sample_size = max(round(n_u * ratio_neg_per_user), 1)
+        sample_size = min(n_u + neg_sample_size, len(items))
+        items_sample = rng.choice(items, sample_size, replace=False)
+        new_items = np.setdiff1d(items_sample, user_df[col_item])[:neg_sample_size]
+        new_df = pd.DataFrame(data={col_user: user_df.name, col_item: new_items, col_label: neg_value})
+        return pd.concat([user_df, new_df], ignore_index=True)
+    res_df = df.copy()
+    res_df[col_label] = pos_value
+    return res_df.groupby(col_user).apply(sample_items).reset_index(drop=True).rename(columns={col_label: col_feedback})
+
+def has_columns(df, columns):
+    if False:
+        while True:
+            i = 10
+    'Check if DataFrame has necessary columns\n\n    Args:\n        df (pandas.DataFrame): DataFrame\n        columns (list(str): columns to check for\n\n    Returns:\n        bool: True if DataFrame has specified columns.\n    '
+    result = True
+    for column in columns:
+        if column not in df.columns:
+            logger.error('Missing column: {} in DataFrame'.format(column))
+            result = False
+    return result
+
+def has_same_base_dtype(df_1, df_2, columns=None):
+    if False:
+        i = 10
+        return i + 15
+    'Check if specified columns have the same base dtypes across both DataFrames\n\n    Args:\n        df_1 (pandas.DataFrame): first DataFrame\n        df_2 (pandas.DataFrame): second DataFrame\n        columns (list(str)): columns to check, None checks all columns\n\n    Returns:\n        bool: True if DataFrames columns have the same base dtypes.\n    '
+    if columns is None:
+        if any(set(df_1.columns).symmetric_difference(set(df_2.columns))):
+            logger.error('Cannot test all columns because they are not all shared across DataFrames')
+            return False
+        columns = df_1.columns
+    if not (has_columns(df=df_1, columns=columns) and has_columns(df=df_2, columns=columns)):
+        return False
+    result = True
+    for column in columns:
+        if df_1[column].dtype.type.__base__ != df_2[column].dtype.type.__base__:
+            logger.error('Columns {} do not have the same base datatype'.format(column))
+            result = False
+    return result
+
+class PandasHash:
+    """Wrapper class to allow pandas objects (DataFrames or Series) to be hashable"""
+    __slots__ = 'pandas_object'
+
+    def __init__(self, pandas_object):
+        if False:
+            print('Hello World!')
+        'Initialize class\n\n        Args:\n            pandas_object (pandas.DataFrame|pandas.Series): pandas object\n        '
+        if not isinstance(pandas_object, (pd.DataFrame, pd.Series)):
+            raise TypeError('Can only wrap pandas DataFrame or Series objects')
+        self.pandas_object = pandas_object
+
+    def __eq__(self, other):
+        if False:
+            while True:
+                i = 10
+        'Overwrite equality comparison\n\n        Args:\n            other (pandas.DataFrame|pandas.Series): pandas object to compare\n\n        Returns:\n            bool: whether other object is the same as this one\n        '
+        return hash(self) == hash(other)
+
+    def __hash__(self):
+        if False:
+            return 10
+        'Overwrite hash operator for use with pandas objects\n\n        Returns:\n            int: hashed value of object\n        '
+        hashable = tuple(self.pandas_object.values.tobytes())
+        if isinstance(self.pandas_object, pd.DataFrame):
+            hashable += tuple(self.pandas_object.columns)
+        else:
+            hashable += tuple(self.pandas_object.name)
+        return hash(hashable)
+
+def lru_cache_df(maxsize, typed=False):
+    if False:
+        i = 10
+        return i + 15
+    'Least-recently-used cache decorator for pandas Dataframes.\n\n    Decorator to wrap a function with a memoizing callable that saves up to the maxsize most recent calls. It can\n    save time when an expensive or I/O bound function is periodically called with the same arguments.\n\n    Inspired in the `lru_cache function <https://docs.python.org/3/library/functools.html#functools.lru_cache>`_.\n\n    Args:\n        maxsize (int|None): max size of cache, if set to None cache is boundless\n        typed (bool): arguments of different types are cached separately\n    '
+
+    def to_pandas_hash(val):
+        if False:
+            for i in range(10):
+                print('nop')
+        'Return PandaHash object if input is a DataFrame otherwise return input unchanged'
+        return PandasHash(val) if isinstance(val, pd.DataFrame) else val
+
+    def from_pandas_hash(val):
+        if False:
+            i = 10
+            return i + 15
+        'Extract DataFrame if input is PandaHash object otherwise return input unchanged'
+        return val.pandas_object if isinstance(val, PandasHash) else val
+
+    def decorating_function(user_function):
+        if False:
+            return 10
+
+        @wraps(user_function)
+        def wrapper(*args, **kwargs):
+            if False:
+                print('Hello World!')
+            args = tuple([to_pandas_hash(a) for a in args])
+            kwargs = {k: to_pandas_hash(v) for (k, v) in kwargs.items()}
+            return cached_wrapper(*args, **kwargs)
+
+        @lru_cache(maxsize=maxsize, typed=typed)
+        def cached_wrapper(*args, **kwargs):
+            if False:
+                print('Hello World!')
+            args = tuple([from_pandas_hash(a) for a in args])
+            kwargs = {k: from_pandas_hash(v) for (k, v) in kwargs.items()}
+            return user_function(*args, **kwargs)
+        wrapper.cache_info = cached_wrapper.cache_info
+        wrapper.cache_clear = cached_wrapper.cache_clear
+        return wrapper
+    return decorating_function

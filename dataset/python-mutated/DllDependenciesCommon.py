@@ -1,0 +1,41 @@
+"""DLL dependency scan methods that are shared. """
+import os
+from nuitka.containers.OrderedSets import OrderedSet
+from nuitka.importing.Importing import locateModule
+from nuitka.plugins.Plugins import Plugins
+from nuitka.utils.FileOperations import getSubDirectoriesWithDlls
+from nuitka.utils.ModuleNames import ModuleName
+_ld_library_cache = {}
+
+def getLdLibraryPath(package_name, python_rpaths, original_dir):
+    if False:
+        while True:
+            i = 10
+    key = (package_name, tuple(python_rpaths), original_dir)
+    if key not in _ld_library_cache:
+        ld_library_path = OrderedSet()
+        if python_rpaths:
+            ld_library_path.update(python_rpaths)
+        ld_library_path.update(getPackageSpecificDLLDirectories(package_name))
+        if original_dir is not None:
+            ld_library_path.add(original_dir)
+        _ld_library_cache[key] = ld_library_path
+    return _ld_library_cache[key]
+
+def getPackageSpecificDLLDirectories(package_name, consider_plugins=True):
+    if False:
+        return 10
+    scan_dirs = OrderedSet()
+    if package_name is not None:
+        package_dir = locateModule(module_name=package_name, parent_package=None, level=0)[1]
+        if os.path.isdir(package_dir):
+            scan_dirs.add(package_dir)
+            scan_dirs.update(getSubDirectoriesWithDlls(package_dir))
+        if consider_plugins:
+            for plugin_provided_dir in Plugins.getModuleSpecificDllPaths(package_name):
+                if os.path.isdir(plugin_provided_dir):
+                    scan_dirs.add(plugin_provided_dir)
+                    scan_dirs.update(getSubDirectoriesWithDlls(plugin_provided_dir))
+    if package_name == 'torchvision' and consider_plugins:
+        scan_dirs.update(getPackageSpecificDLLDirectories(ModuleName('torch')))
+    return scan_dirs

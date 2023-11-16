@@ -1,0 +1,436 @@
+"""Tests for Unified APIs' python bindings."""
+import timeit
+from absl.testing import parameterized
+from tensorflow.python.eager import backprop
+from tensorflow.python.eager import context
+from tensorflow.python.framework import constant_op
+from tensorflow.python.framework import dtypes
+from tensorflow.python.framework import ops
+from tensorflow.python.framework.experimental import _unified_api
+from tensorflow.python.framework.experimental import context_stack as context_lib
+from tensorflow.python.framework.experimental import def_function
+from tensorflow.python.framework.experimental import math_ops as unified_math_ops
+from tensorflow.python.framework.experimental import nn_ops as unified_nn_ops
+from tensorflow.python.framework.experimental import tape as tape_lib
+from tensorflow.python.ops import array_ops
+from tensorflow.python.ops import math_ops
+from tensorflow.python.ops import nn_grad
+from tensorflow.python.ops import nn_ops
+from tensorflow.python.ops import random_ops
+from tensorflow.python.platform import test
+SetTracingImplementation = _unified_api.SetTracingImplementation
+TensorCastHelper = _unified_api.EagerTensorToImmediateExecutionTensorHandle
+
+def get_immediate_execution_context():
+    if False:
+        print('Hello World!')
+    context._reset_context()
+    context.context().ensure_initialized()
+    return _unified_api.EagerContextToImmediateExecutionContext(context.context()._handle)
+
+def maybe_cast(t, perform_cast):
+    if False:
+        print('Hello World!')
+    if perform_cast:
+        return TensorCastHelper(t)
+    return t
+
+class UnifiedApiTest(test.TestCase, parameterized.TestCase):
+
+    @parameterized.named_parameters([('Graph', False), ('Mlir', True)])
+    def testAdd(self, use_mlir):
+        if False:
+            for i in range(10):
+                print('nop')
+        if use_mlir:
+            SetTracingImplementation('mlir')
+
+        def model(a, b):
+            if False:
+                print('Hello World!')
+            return unified_math_ops.add(a, b)
+        with context_lib.set_default(get_immediate_execution_context()):
+            a = TensorCastHelper(constant_op.constant([1.0, 2.0]))
+            b = TensorCastHelper(constant_op.constant([3.0, 4.0]))
+            func_output = def_function.function(model)(a, b)
+            self.assertAllEqual(func_output.numpy(), [4.0, 6.0])
+            eager_output = model(a, b)
+            self.assertAllEqual(eager_output.numpy(), [4.0, 6.0])
+
+    @parameterized.named_parameters([('Graph', False), ('Mlir', True)])
+    def testAddGrad(self, use_mlir):
+        if False:
+            i = 10
+            return i + 15
+        if use_mlir:
+            SetTracingImplementation('mlir')
+
+        def model(a, b):
+            if False:
+                while True:
+                    i = 10
+            with tape_lib.GradientTape() as tape:
+                tape.watch(a)
+                tape.watch(b)
+                result = unified_math_ops.add(a, b)
+            grads = tape.gradient(result, [a, b])
+            return grads
+        with context_lib.set_default(get_immediate_execution_context()):
+            a = TensorCastHelper(constant_op.constant([1.0, 2.0]))
+            b = TensorCastHelper(constant_op.constant([3.0, 4.0]))
+            func_outputs = def_function.function(model)(a, b)
+            self.assertAllEqual(func_outputs[0].numpy(), [1.0, 1.0])
+            self.assertAllEqual(func_outputs[1].numpy(), [1.0, 1.0])
+            eager_outputs = model(a, b)
+            self.assertAllEqual(eager_outputs[0].numpy(), [1.0, 1.0])
+            self.assertAllEqual(eager_outputs[1].numpy(), [1.0, 1.0])
+
+    @parameterized.named_parameters([('Graph', False), ('Mlir', True)])
+    def testRelu(self, use_mlir):
+        if False:
+            print('Hello World!')
+        if use_mlir:
+            SetTracingImplementation('mlir')
+
+        def model(t):
+            if False:
+                for i in range(10):
+                    print('nop')
+            return unified_nn_ops.relu(t)
+        with context_lib.set_default(get_immediate_execution_context()):
+            positive = TensorCastHelper(constant_op.constant([1.0]))
+            negative = TensorCastHelper(constant_op.constant([-1.0]))
+            model_fn = def_function.function(model)
+            func_output = model_fn(positive)
+            self.assertAllEqual(func_output.numpy(), [1.0])
+            func_output = model_fn(negative)
+            self.assertAllEqual(func_output.numpy(), [0.0])
+            eager_output = model(positive)
+            self.assertAllEqual(eager_output.numpy(), [1.0])
+            eager_output = model(negative)
+            self.assertAllEqual(eager_output.numpy(), [0.0])
+
+    @parameterized.named_parameters([('Graph', False), ('Mlir', True)])
+    def testReluGrad(self, use_mlir):
+        if False:
+            return 10
+        if use_mlir:
+            SetTracingImplementation('mlir')
+
+        def model(t):
+            if False:
+                return 10
+            with tape_lib.GradientTape() as tape:
+                tape.watch(t)
+                result = unified_nn_ops.relu(t)
+            grads = tape.gradient(result, t)
+            return grads
+        with context_lib.set_default(get_immediate_execution_context()):
+            positive = TensorCastHelper(constant_op.constant([1.0]))
+            negative = TensorCastHelper(constant_op.constant([-1.0]))
+            model_fn = def_function.function(model)
+            func_output = model_fn(positive)
+            self.assertAllEqual(func_output.numpy(), [1.0])
+            func_output = model_fn(negative)
+            self.assertAllEqual(func_output.numpy(), [0.0])
+            eager_output = model(positive)
+            self.assertAllEqual(eager_output.numpy(), [1.0])
+            eager_output = model(negative)
+            self.assertAllEqual(eager_output.numpy(), [0.0])
+
+    @parameterized.named_parameters([('Graph', False), ('Mlir', True)])
+    def testNeg(self, use_mlir):
+        if False:
+            print('Hello World!')
+        if use_mlir:
+            SetTracingImplementation('mlir')
+
+        def model(a):
+            if False:
+                while True:
+                    i = 10
+            return unified_math_ops.neg(a)
+        with context_lib.set_default(get_immediate_execution_context()):
+            a = TensorCastHelper(constant_op.constant([2.0]))
+            func_output = def_function.function(model)(a)
+            self.assertAllEqual(func_output.numpy(), [-2.0])
+            eager_output = model(a)
+            self.assertAllEqual(eager_output.numpy(), [-2.0])
+
+    @parameterized.named_parameters([('Graph', False), ('Mlir', True)])
+    def testNegGrad(self, use_mlir):
+        if False:
+            i = 10
+            return i + 15
+        if use_mlir:
+            SetTracingImplementation('mlir')
+
+        def model(a):
+            if False:
+                print('Hello World!')
+            with tape_lib.GradientTape() as tape:
+                tape.watch(a)
+                result = unified_math_ops.neg(a)
+            grads = tape.gradient(result, a)
+            return grads
+        with context_lib.set_default(get_immediate_execution_context()):
+            a = TensorCastHelper(constant_op.constant([2.0]))
+            func_outputs = def_function.function(model)(a)
+            self.assertAllEqual(func_outputs.numpy(), [-1.0])
+            eager_outputs = model(a)
+            self.assertAllEqual(eager_outputs.numpy(), [-1.0])
+
+    @parameterized.named_parameters([('Graph', False), ('Mlir', True)])
+    def testSub(self, use_mlir):
+        if False:
+            print('Hello World!')
+        if use_mlir:
+            SetTracingImplementation('mlir')
+
+        def model(a, b):
+            if False:
+                for i in range(10):
+                    print('nop')
+            return unified_math_ops.sub(a, b)
+        with context_lib.set_default(get_immediate_execution_context()):
+            a = TensorCastHelper(constant_op.constant([1.0, 2.0]))
+            b = TensorCastHelper(constant_op.constant([3.0, 4.0]))
+            func_output = def_function.function(model)(a, b)
+            self.assertAllEqual(func_output.numpy(), [-2.0, -2.0])
+            eager_output = model(a, b)
+            self.assertAllEqual(eager_output.numpy(), [-2.0, -2.0])
+
+    @parameterized.named_parameters([('Graph', False), ('Mlir', True)])
+    def testSubGrad(self, use_mlir):
+        if False:
+            while True:
+                i = 10
+        if use_mlir:
+            SetTracingImplementation('mlir')
+
+        def model(a, b):
+            if False:
+                i = 10
+                return i + 15
+            with tape_lib.GradientTape() as tape:
+                tape.watch(a)
+                tape.watch(b)
+                result = unified_math_ops.sub(a, b)
+            grads = tape.gradient(result, [a, b])
+            return grads
+        with context_lib.set_default(get_immediate_execution_context()):
+            a = TensorCastHelper(constant_op.constant([1.0, 2.0]))
+            b = TensorCastHelper(constant_op.constant([3.0, 4.0]))
+            func_outputs = def_function.function(model)(a, b)
+            self.assertAllEqual(func_outputs[0].numpy(), [1.0, 1.0])
+            self.assertAllEqual(func_outputs[1].numpy(), [-1.0, -1.0])
+            eager_outputs = model(a, b)
+            self.assertAllEqual(eager_outputs[0].numpy(), [1.0, 1.0])
+            self.assertAllEqual(eager_outputs[1].numpy(), [-1.0, -1.0])
+
+    @parameterized.named_parameters([('Graph', False), ('Mlir', True)])
+    def testMul(self, use_mlir):
+        if False:
+            while True:
+                i = 10
+        if use_mlir:
+            SetTracingImplementation('mlir')
+
+        def model(a, b):
+            if False:
+                for i in range(10):
+                    print('nop')
+            return unified_math_ops.mul(a, b)
+        with context_lib.set_default(get_immediate_execution_context()):
+            a = TensorCastHelper(constant_op.constant([1.0, 2.0]))
+            b = TensorCastHelper(constant_op.constant([3.0, 4.0]))
+            func_output = def_function.function(model)(a, b)
+            self.assertAllEqual(func_output.numpy(), [3.0, 8.0])
+            eager_output = model(a, b)
+            self.assertAllEqual(eager_output.numpy(), [3.0, 8.0])
+
+    @parameterized.named_parameters([('Graph', False), ('Mlir', True)])
+    def testMulGrad(self, use_mlir):
+        if False:
+            i = 10
+            return i + 15
+        if use_mlir:
+            SetTracingImplementation('mlir')
+
+        def model(a, b):
+            if False:
+                while True:
+                    i = 10
+            with tape_lib.GradientTape() as tape:
+                tape.watch(a)
+                tape.watch(b)
+                result = unified_math_ops.mul(a, b)
+            grads = tape.gradient(result, [a, b])
+            return grads
+        with context_lib.set_default(get_immediate_execution_context()):
+            a = TensorCastHelper(constant_op.constant([1.0, 2.0]))
+            b = TensorCastHelper(constant_op.constant([3.0, 4.0]))
+            func_outputs = def_function.function(model)(a, b)
+            self.assertAllEqual(func_outputs[0].numpy(), [3.0, 4.0])
+            self.assertAllEqual(func_outputs[1].numpy(), [1.0, 2.0])
+            eager_outputs = model(a, b)
+            self.assertAllEqual(eager_outputs[0].numpy(), [3.0, 4.0])
+            self.assertAllEqual(eager_outputs[1].numpy(), [1.0, 2.0])
+
+    @parameterized.named_parameters([('Graph', False), ('Mlir', True)])
+    def testLog1p(self, use_mlir):
+        if False:
+            print('Hello World!')
+        if use_mlir:
+            SetTracingImplementation('mlir')
+
+        def model(a):
+            if False:
+                return 10
+            return unified_math_ops.log1p(a)
+        with context_lib.set_default(get_immediate_execution_context()):
+            a = TensorCastHelper(constant_op.constant([1.0]))
+            func_output = def_function.function(model)(a)
+            self.assertArrayNear(func_output.numpy(), [0.69314], 0.001)
+            eager_output = model(a)
+            self.assertArrayNear(eager_output.numpy(), [0.69314], 0.001)
+
+    @parameterized.named_parameters([('Graph', False), ('Mlir', True)])
+    def testLog1pGrad(self, use_mlir):
+        if False:
+            i = 10
+            return i + 15
+        if use_mlir:
+            SetTracingImplementation('mlir')
+
+        def model(a):
+            if False:
+                print('Hello World!')
+            with tape_lib.GradientTape() as tape:
+                tape.watch(a)
+                result = unified_math_ops.log1p(a)
+            grads = tape.gradient(result, a)
+            return grads
+        with context_lib.set_default(get_immediate_execution_context()):
+            a = TensorCastHelper(constant_op.constant([1.0]))
+            func_outputs = def_function.function(model)(a)
+            self.assertArrayNear(func_outputs.numpy(), [0.5], 0.001)
+            eager_outputs = model(a)
+            self.assertArrayNear(eager_outputs.numpy(), [0.5], 0.001)
+
+    @parameterized.named_parameters([('Graph', False), ('Mlir', True)])
+    def testDivNoNan(self, use_mlir):
+        if False:
+            while True:
+                i = 10
+        if use_mlir:
+            SetTracingImplementation('mlir')
+
+        def model(a, b):
+            if False:
+                print('Hello World!')
+            return unified_math_ops.div_no_nan(a, b)
+        with context_lib.set_default(get_immediate_execution_context()):
+            a = TensorCastHelper(constant_op.constant([2.0]))
+            b = TensorCastHelper(constant_op.constant([4.0]))
+            func_output = def_function.function(model)(a, b)
+            self.assertArrayNear(func_output.numpy(), [0.5], 0.001)
+            eager_output = model(a, b)
+            self.assertArrayNear(eager_output.numpy(), [0.5], 0.001)
+
+    @parameterized.named_parameters([('Graph', False), ('Mlir', True)])
+    def testDivNoNanGrad(self, use_mlir):
+        if False:
+            while True:
+                i = 10
+        if use_mlir:
+            SetTracingImplementation('mlir')
+
+        def model(a, b):
+            if False:
+                while True:
+                    i = 10
+            with tape_lib.GradientTape() as tape:
+                tape.watch(a)
+                tape.watch(b)
+                result = unified_math_ops.div_no_nan(a, b)
+            grads = tape.gradient(result, [a, b])
+            return grads
+        with context_lib.set_default(get_immediate_execution_context()):
+            a = TensorCastHelper(constant_op.constant([2.0]))
+            b = TensorCastHelper(constant_op.constant([4.0]))
+            func_outputs = def_function.function(model)(a, b)
+            self.assertArrayNear(func_outputs[0].numpy(), [0.25], 0.001)
+            self.assertArrayNear(func_outputs[1].numpy(), [-0.125], 0.001)
+            eager_outputs = model(a, b)
+            self.assertArrayNear(eager_outputs[0].numpy(), [0.25], 0.001)
+            self.assertArrayNear(eager_outputs[1].numpy(), [-0.125], 0.001)
+
+class UnifiedTapeBenchmark(test.Benchmark):
+
+    def _computeMnistMlpGrads(self, math_ops_lib, nn_ops_lib, backprop_lib, cast, num_iters, hidden_layers, hidden_size, batch_size):
+        if False:
+            for i in range(10):
+                print('nop')
+        batch_size = 1
+        image_size = 28 * 28
+        num_classes = 10
+
+        def model(x, hidden_weights, softmax_weight, labels):
+            if False:
+                while True:
+                    i = 10
+            with backprop_lib.GradientTape() as tape:
+                for weight in hidden_weights + [softmax_weight]:
+                    tape.watch(weight)
+                for hidden_weight in hidden_weights:
+                    x = math_ops_lib.mat_mul(x, hidden_weight)
+                    x = nn_ops_lib.relu(x)
+                logits = math_ops_lib.mat_mul(x, softmax_weight)
+                loss = nn_ops_lib.sparse_softmax_cross_entropy_with_logits(logits=logits, labels=labels)
+            grads = tape.gradient(loss, hidden_weights + [softmax_weight])
+            return grads
+        x = maybe_cast(array_ops.ones([batch_size, image_size]), cast)
+        hidden_weights = []
+        for i in range(hidden_layers):
+            hidden_weights.append(maybe_cast(random_ops.random_uniform([hidden_size if i else image_size, hidden_size]), cast))
+        softmax_weight = maybe_cast(random_ops.random_uniform([hidden_size, num_classes]), cast)
+        labels = maybe_cast(array_ops.zeros([batch_size], dtype=dtypes.int32), cast)
+        with context_lib.set_default(get_immediate_execution_context()):
+            for _ in range(10):
+                model(x, hidden_weights, softmax_weight, labels)
+            runtimes = timeit.repeat(lambda : model(x, hidden_weights, softmax_weight, labels), repeat=num_iters, number=10)
+        return min(runtimes) / 10
+
+    def benchmarkTwoHiddenLayerMnistEagerUnified(self):
+        if False:
+            return 10
+        num_iters = 100
+        duration = self._computeMnistMlpGrads(unified_math_ops, unified_nn_ops, tape_lib, True, num_iters, hidden_layers=2, hidden_size=100, batch_size=1)
+        self.report_benchmark(name='TwoHiddenLayerMnistEagerUnified', iters=num_iters, wall_time=duration)
+
+    def benchmarkTwoHiddenLayerMnistEager(self):
+        if False:
+            print('Hello World!')
+        num_iters = 100
+        duration = self._computeMnistMlpGrads(math_ops, nn_ops, backprop, False, num_iters, hidden_layers=2, hidden_size=100, batch_size=1)
+        self.report_benchmark(name='TwoHiddenLayerMnistEager', iters=num_iters, wall_time=duration)
+
+    def benchmarkTenHiddenLayerMnistEagerUnified(self):
+        if False:
+            while True:
+                i = 10
+        num_iters = 100
+        duration = self._computeMnistMlpGrads(unified_math_ops, unified_nn_ops, tape_lib, True, num_iters, hidden_layers=10, hidden_size=100, batch_size=1)
+        self.report_benchmark(name='TenHiddenLayerMnistEagerUnified', iters=num_iters, wall_time=duration)
+
+    def benchmarkTenHiddenLayerMnistEager(self):
+        if False:
+            for i in range(10):
+                print('nop')
+        num_iters = 100
+        duration = self._computeMnistMlpGrads(math_ops, nn_ops, backprop, False, num_iters, hidden_layers=10, hidden_size=100, batch_size=1)
+        self.report_benchmark(name='TenHiddenLayerMnistEager', iters=num_iters, wall_time=duration)
+if __name__ == '__main__':
+    ops.enable_eager_execution()
+    test.main()

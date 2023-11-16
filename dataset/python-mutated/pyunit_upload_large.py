@@ -1,0 +1,31 @@
+import sys
+sys.path.insert(1, '../../')
+import h2o
+import os
+import tempfile
+from tests import pyunit_utils
+
+def generate_large_file(path, size):
+    if False:
+        i = 10
+        return i + 15
+    with open(path, 'wb') as f:
+        f.seek(size - 1)
+        f.write(b'\x00')
+    assert size == os.stat(path).st_size
+
+def upload_large_file():
+    if False:
+        while True:
+            i = 10
+    path = os.path.join(tempfile.mkdtemp(), 'large.bin')
+    byte_size = 2 * 1024 * 1024 * 1024 + 1
+    generate_large_file(path, byte_size)
+    raw_data = h2o.api('POST /3/PostFile', filename=path)
+    print(raw_data)
+    assert raw_data['total_bytes'] == byte_size
+    h2o.remove(raw_data['destination_frame'])
+if __name__ == '__main__':
+    pyunit_utils.standalone_test(upload_large_file)
+else:
+    upload_large_file()

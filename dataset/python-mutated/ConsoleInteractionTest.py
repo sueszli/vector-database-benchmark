@@ -1,0 +1,778 @@
+import os
+import unittest
+from unittest.mock import patch
+from collections import OrderedDict
+from os.path import abspath, relpath
+import logging
+from pyprint.ConsolePrinter import ConsolePrinter
+from testfixtures import LogCapture, StringComparison
+from coalib.bearlib.spacing.SpacingHelper import SpacingHelper
+from coalib.bears.Bear import Bear
+from coalib import coala
+from coala_utils.ContextManagers import make_temp, retrieve_stdout, simulate_console_inputs
+from coalib.output.ConsoleInteraction import acquire_actions_and_apply, acquire_settings, get_action_info, nothing_done, print_affected_files, print_result, print_results, print_results_formatted, print_results_no_input, print_section_beginning, show_bear, show_bears, ask_for_action_and_apply, print_diffs_info, show_language_bears_capabilities, get_alternate_patch_actions
+from coalib.output.ConsoleInteraction import BackgroundSourceRangeStyle, BackgroundMessageStyle, highlight_text, color_letter
+from coalib.output.printers.ListLogPrinter import ListLogPrinter
+from coalib.parsing.DefaultArgParser import default_arg_parser
+from coalib.results.Diff import Diff
+from coalib.results.Result import Result
+from coalib.results.result_actions.ApplyPatchAction import ApplyPatchAction
+from coalib.results.result_actions.OpenEditorAction import OpenEditorAction
+from coalib.results.result_actions.DoNothingAction import DoNothingAction
+from coalib.results.result_actions.ShowAppliedPatchesAction import ShowAppliedPatchesAction
+from coalib.results.result_actions.GeneratePatchesAction import GeneratePatchesAction
+from coalib.results.result_actions.ResultAction import ResultAction
+from coalib.results.SourceRange import SourceRange
+from coalib.settings.Section import Section
+from coalib.settings.Setting import Setting
+from pygments.filters import VisibleWhitespaceFilter
+from pygments.lexers import TextLexer
+from pygments.style import Style
+from pygments.token import Token
+from tests.TestUtilities import bear_test_module, execute_coala
+STR_GET_VAL_FOR_SETTING = 'Please enter a value for the setting "{}" ({}) needed by {}: '
+STR_LINE_DOESNT_EXIST = "The line belonging to the following result cannot be printed because it refers to a line that doesn't seem to exist in the given file."
+STR_PROJECT_WIDE = 'Project wide:'
+
+class NoColorStyle(Style):
+    styles = {Token: 'noinherit'}
+
+class TestAction(ResultAction):
+
+    def apply(self, result, original_file_dict, file_diff_dict, param):
+        if False:
+            for i in range(10):
+                print('nop')
+        '\n        Test (A)ction\n        '
+
+class BearAction(ResultAction):
+
+    def apply(self, result, original_file_dict, file_diff_dict):
+        if False:
+            for i in range(10):
+                print('nop')
+        '\n        (B)ear Action\n        '
+        return file_diff_dict
+
+class TestBear(Bear):
+    CAN_DETECT = {'Formatting'}
+    CAN_FIX = {'Formatting'}
+    LANGUAGES = list(sorted({'F#', 'Shakespearean Programming Language'}))
+
+    def run(self, setting1, setting2: int=None):
+        if False:
+            return 10
+        '\n        Test bear Description.\n\n        :param setting1: Required Setting.\n        :param setting2: Optional Setting.\n        '
+        return None
+
+class TestBear2(Bear):
+    LANGUAGES = {'TestLanguage'}
+
+    def run(self, setting1):
+        if False:
+            return 10
+        '\n        Test bear 2 description.\n\n        :param setting1: Required Setting.\n        '
+        return None
+
+class SomeBear(Bear):
+
+    def run(self):
+        if False:
+            while True:
+                i = 10
+        '\n        Some Description.\n        '
+        return None
+
+class SomeOtherBear(Bear):
+
+    def run(self, setting: int=None):
+        if False:
+            return 10
+        '\n        This is a Bear.\n        :param setting: This is an optional setting.\n        '
+        return None
+
+class SomeglobalBear(Bear):
+
+    def run(self):
+        if False:
+            return 10
+        '\n        Some global-bear Description.\n        '
+        return None
+
+class SomelocalBear(Bear):
+
+    def run(self):
+        if False:
+            for i in range(10):
+                print('nop')
+        '\n        Some local-bear Description.\n        '
+        return None
+
+class aSomelocalBear(Bear):
+
+    def run(self):
+        if False:
+            return 10
+        '\n        Some local-bear Description.\n        '
+        return None
+
+class BSomeglobalBear(Bear):
+
+    def run(self):
+        if False:
+            i = 10
+            return i + 15
+        '\n        Some global-bear Description.\n        '
+        return None
+
+class ConsoleInteractionTest(unittest.TestCase):
+
+    def setUp(self):
+        if False:
+            print('Hello World!')
+        self.log_printer = ListLogPrinter()
+        self.console_printer = ConsolePrinter(print_colored=False)
+        self.no_color = not self.console_printer.print_colored
+        self.file_diff_dict = {}
+        self.section = Section('t')
+        self.local_bears = OrderedDict([('default', [SomelocalBear]), ('test', [SomelocalBear])])
+        self.global_bears = OrderedDict([('default', [SomeglobalBear]), ('test', [SomeglobalBear])])
+        self.old_open_editor_applicable = OpenEditorAction.is_applicable
+        OpenEditorAction.is_applicable = staticmethod(lambda *args: 'OpenEditorAction cannot be applied')
+        self.old_apply_patch_applicable = ApplyPatchAction.is_applicable
+        ApplyPatchAction.is_applicable = staticmethod(lambda *args: 'ApplyPatchAction cannot be applied')
+        self.lexer = TextLexer()
+        self.lexer.add_filter(VisibleWhitespaceFilter(spaces=True, tabs=True, tabsize=SpacingHelper.DEFAULT_TAB_WIDTH))
+        patcher = patch('coalib.results.result_actions.OpenEditorAction.subprocess')
+        self.addCleanup(patcher.stop)
+        patcher.start()
+
+    def tearDown(self):
+        if False:
+            for i in range(10):
+                print('nop')
+        OpenEditorAction.is_applicable = self.old_open_editor_applicable
+        ApplyPatchAction.is_applicable = self.old_apply_patch_applicable
+
+    def test_color_letter(self):
+        if False:
+            return 10
+        line1 = '[  ] 1. (A)pply Patch'
+        with retrieve_stdout() as stdout:
+            color_letter(self.console_printer, line1)
+            self.assertEqual(line1 + '\n', stdout.getvalue())
+        line2 = '[  ] *0. Apply (P)atch'
+        with retrieve_stdout() as stdout:
+            color_letter(self.console_printer, line2)
+            self.assertEqual(line2 + '\n', stdout.getvalue())
+        line3 = '[  ] 3. Apply (P)atch [Note: This will do something]'
+        with retrieve_stdout() as stdout:
+            color_letter(self.console_printer, line3)
+            self.assertEqual(line3 + '\n', stdout.getvalue())
+
+    def test_require_settings(self):
+        if False:
+            while True:
+                i = 10
+        curr_section = Section('')
+        self.assertRaises(TypeError, acquire_settings, self.log_printer, 0, curr_section)
+        with simulate_console_inputs('n', 'a', 'o') as generator:
+            self.assertEqual(acquire_settings(self.log_printer, {'setting': ['help text', 'SomeBear']}, curr_section), {'setting': 'n'})
+            self.assertEqual(acquire_settings(self.log_printer, {'setting': ['help text', 'SomeBear', 'AnotherBear']}, curr_section), {'setting': 'a'})
+            self.assertEqual(acquire_settings(self.log_printer, {'setting': ['help text', 'SomeBear', 'AnotherBear', 'YetAnotherBear']}, curr_section), {'setting': 'o'})
+            self.assertEqual(generator.last_input, 2)
+
+    def test_print_diffs_info(self):
+        if False:
+            i = 10
+            return i + 15
+        file_dict = {'a': ['a\n', 'b\n', 'c\n'], 'b': ['old_first\n']}
+        diff_dict = {'a': Diff(file_dict['a']), 'b': Diff(file_dict['b'])}
+        diff_dict['a'].add_lines(1, ['test\n'])
+        diff_dict['a'].delete_line(3)
+        diff_dict['b'].add_lines(0, ['first\n'])
+        previous_diffs = {'a': Diff(file_dict['a'])}
+        previous_diffs['a'].change_line(2, 'b\n', 'b_changed\n')
+        with retrieve_stdout() as stdout:
+            print_diffs_info(diff_dict, self.console_printer)
+            self.assertEqual(stdout.getvalue(), '!    ! +1 -1 in a\n!    ! +1 -0 in b\n')
+
+    @patch('coalib.output.ConsoleInteraction.acquire_actions_and_apply')
+    @patch('coalib.output.ConsoleInteraction.ShowPatchAction.apply_from_section')
+    def test_print_result_interactive_small_patch(self, apply_from_section, _):
+        if False:
+            for i in range(10):
+                print('nop')
+        file_dict = {'a': ['a\n', 'b\n', 'c\n'], 'b': ['old_first\n']}
+        diff_dict = {'a': Diff(file_dict['a']), 'b': Diff(file_dict['b'])}
+        diff_dict['a'].add_lines(1, ['test\n'])
+        diff_dict['a'].delete_line(3)
+        result = Result('origin', 'msg', diffs=diff_dict)
+        section = Section('test')
+        print_result(self.console_printer, section, self.file_diff_dict, result, file_dict, True)
+        apply_from_section.assert_called_once_with(result, file_dict, self.file_diff_dict, section)
+
+    @patch('coalib.output.ConsoleInteraction.acquire_actions_and_apply')
+    @patch('coalib.output.ConsoleInteraction.print_diffs_info')
+    def test_print_result_interactive_big_patch(self, diffs_info, _):
+        if False:
+            for i in range(10):
+                print('nop')
+        file_dict = {'a': ['a\n', 'b\n', 'c\n'], 'b': ['old_first\n']}
+        diff_dict = {'a': Diff(file_dict['a']), 'b': Diff(file_dict['b'])}
+        diff_dict['a'].add_lines(1, ['test\n', 'test1\n', 'test2\n'])
+        diff_dict['a'].delete_line(3)
+        diff_dict['a'].add_lines(3, ['3test\n'])
+        result = Result('origin', 'msg', diffs=diff_dict)
+        section = Section('test')
+        print_result(self.console_printer, section, self.file_diff_dict, result, file_dict, True)
+        diffs_info.assert_called_once_with(diff_dict, self.console_printer)
+
+    def test_print_result(self):
+        if False:
+            print('Hello World!')
+        print_result(self.console_printer, None, self.file_diff_dict, 'illegal value', {})
+        with simulate_console_inputs('n'):
+            print_result(self.console_printer, self.section, self.file_diff_dict, Result('origin', 'msg', diffs={}), {})
+        with make_temp() as testfile_path:
+            file_dict = {testfile_path: ['1\n', '2\n', '3\n'], 'f_b': ['1', '2', '3']}
+            diff = Diff(file_dict[testfile_path])
+            diff.delete_line(2)
+            diff.change_line(3, '3\n', '3_changed\n')
+            ApplyPatchAction.is_applicable = staticmethod(lambda *args: True)
+            with simulate_console_inputs('x', -1, 1, 0, 'n', 0) as input_generator:
+                curr_section = Section('')
+                print_section_beginning(self.console_printer, curr_section)
+                print_result(self.console_printer, curr_section, self.file_diff_dict, Result('origin', 'msg', diffs={testfile_path: diff}), file_dict)
+                self.assertEqual(input_generator.last_input, 3)
+                self.file_diff_dict.clear()
+                with open(testfile_path) as f:
+                    self.assertEqual(f.readlines(), ['1\n', '3_changed\n'])
+                os.remove(testfile_path + '.orig')
+                (name, section) = get_action_info(curr_section, TestAction().get_metadata(), failed_actions=set())
+                self.assertEqual(input_generator.last_input, 4)
+                self.assertEqual(str(section), " {param : 'n'}")
+                self.assertEqual(name, 'TestAction')
+        with simulate_console_inputs('o', 'test_editor', 'n', 'o', 'n') as generator:
+            OpenEditorAction.is_applicable = staticmethod(lambda *args: True)
+            patch_result = Result('origin', 'msg', diffs={testfile_path: diff})
+            patch_result.file = 'f_b'
+            print_result(self.console_printer, curr_section, self.file_diff_dict, patch_result, file_dict)
+            self.assertEqual(generator.last_input, 2)
+            print_result(self.console_printer, curr_section, self.file_diff_dict, patch_result, file_dict)
+            self.assertEqual(generator.last_input, 4)
+
+    def test_print_affected_files(self):
+        if False:
+            print('Hello World!')
+        with retrieve_stdout() as stdout, make_temp() as some_file:
+            file_dict = {some_file: ['1\n', '2\n', '3\n']}
+            affected_code = (SourceRange.from_values(some_file),)
+            print_affected_files(self.console_printer, self.log_printer, Result('origin', 'message', affected_code=affected_code), file_dict)
+            self.assertEqual(stdout.getvalue(), '\n' + relpath(some_file) + '\n')
+
+    def test_get_alternate_patch_actions(self):
+        if False:
+            return 10
+        result = Result('origin', 'message')
+        retval = get_alternate_patch_actions(result)
+        self.assertEqual(retval, ())
+        diffs = {'filename': 'diff1'}
+        alternate_diffs = [{'filename': 'diff 2'}, {'filename': 'diff 3'}, {'filename': 'diff 4'}]
+        result = Result('origin', 'message', diffs=diffs, alternate_diffs=alternate_diffs)
+        retval = get_alternate_patch_actions(result)
+        self.assertEqual(len(retval), 3)
+        self.assertEqual(retval[0].diffs, {'filename': 'diff 2'})
+        self.assertEqual(retval[1].diffs, {'filename': 'diff 3'})
+        self.assertEqual(retval[2].diffs, {'filename': 'diff 4'})
+        self.assertEqual(retval[0].description, 'Show Alternate Patch 1')
+        self.assertEqual(retval[1].description, 'Show Alternate Patch 2')
+        self.assertEqual(retval[2].description, 'Show Alternate Patch 3')
+
+    def test_acquire_actions_and_apply(self):
+        if False:
+            while True:
+                i = 10
+        with make_temp() as testfile_path:
+            file_dict = {testfile_path: ['1\n', '2\n', '3\n']}
+            diff = Diff(file_dict[testfile_path])
+            diff.delete_line(2)
+            diff.change_line(3, '3\n', '3_changed\n')
+            with simulate_console_inputs('a', 'n') as generator:
+                with retrieve_stdout() as sio:
+                    ApplyPatchAction.is_applicable = staticmethod(lambda *args: True)
+                    acquire_actions_and_apply(self.console_printer, Section(''), self.file_diff_dict, Result('origin', 'message', diffs={testfile_path: diff}, actions=[BearAction()]), file_dict)
+                    self.assertEqual(generator.last_input, 1)
+                    self.assertIn(ApplyPatchAction.SUCCESS_MESSAGE, sio.getvalue())
+
+            class InvalidateTestAction(ResultAction):
+                is_applicable = staticmethod(lambda *args: True)
+
+                def apply(*args, **kwargs):
+                    if False:
+                        return 10
+                    ApplyPatchAction.is_applicable = staticmethod(lambda *args: 'ApplyPatchAction cannot be applied.')
+            old_applypatch_is_applicable = ApplyPatchAction.is_applicable
+            ApplyPatchAction.is_applicable = staticmethod(lambda *args: True)
+            cli_actions = [ApplyPatchAction(), InvalidateTestAction()]
+            with simulate_console_inputs('a', 'o', 'n') as generator:
+                with retrieve_stdout() as sio:
+                    acquire_actions_and_apply(self.console_printer, Section(''), self.file_diff_dict, Result('origin', 'message', diffs={testfile_path: diff}, actions=[BearAction()]), file_dict, cli_actions=cli_actions)
+                    self.assertEqual(generator.last_input, 2)
+                    action_fail = 'Failed to execute the action'
+                    self.assertNotIn(action_fail, sio.getvalue())
+                    apply_path_desc = ApplyPatchAction().get_metadata().desc
+                    self.assertEqual(sio.getvalue().count(apply_path_desc), 3)
+            ApplyPatchAction.is_applicable = old_applypatch_is_applicable
+
+    def test_acquire_actions_and_apply_single(self):
+        if False:
+            while True:
+                i = 10
+        with make_temp() as testfile_path:
+            file_dict = {testfile_path: ['1\n', '2\n', '3\n']}
+            diff = Diff(file_dict[testfile_path])
+            diff.delete_line(2)
+            diff.change_line(3, '3\n', '3_changed\n')
+            with simulate_console_inputs('a', 'n') as generator:
+                with retrieve_stdout() as sio:
+                    ApplyPatchAction.is_applicable = staticmethod(lambda *args: True)
+                    acquire_actions_and_apply(self.console_printer, Section(''), self.file_diff_dict, Result('origin', 'message', diffs={testfile_path: diff}, actions=[BearAction()]), file_dict, apply_single=True)
+                    self.assertEqual(generator.last_input, -1)
+                    self.assertIn('', sio.getvalue())
+
+            class InvalidateTestAction(ResultAction):
+                is_applicable = staticmethod(lambda *args: True)
+
+                def apply(*args, **kwargs):
+                    if False:
+                        while True:
+                            i = 10
+                    ApplyPatchAction.is_applicable = staticmethod(lambda *args: 'ApplyPatchAction cannot be applied.')
+            old_applypatch_is_applicable = ApplyPatchAction.is_applicable
+            ApplyPatchAction.is_applicable = staticmethod(lambda *args: True)
+            cli_actions = [ApplyPatchAction(), InvalidateTestAction()]
+            with simulate_console_inputs('a') as generator:
+                with retrieve_stdout() as sio:
+                    acquire_actions_and_apply(self.console_printer, Section(''), self.file_diff_dict, Result('origin', 'message', diffs={testfile_path: diff}, actions=[BearAction()]), file_dict, cli_actions=cli_actions, apply_single=True)
+                    self.assertEqual(generator.last_input, -1)
+                    action_fail = 'Failed to execute the action'
+                    self.assertNotIn(action_fail, sio.getvalue())
+                    apply_path_desc = ApplyPatchAction().get_metadata().desc
+                    self.assertEqual(sio.getvalue().count(apply_path_desc), 0)
+            ApplyPatchAction.is_applicable = old_applypatch_is_applicable
+
+    def test_acquire_action_and_apply_bear_actions(self):
+        if False:
+            while True:
+                i = 10
+        with make_temp() as testfile_path:
+            file_dict = {testfile_path: ['1\n', '2\n', '3\n']}
+            diff = Diff(file_dict[testfile_path])
+            diff.delete_line(2)
+            diff.change_line(3, '3\n', '3_changed\n')
+            with simulate_console_inputs('b', 'n') as generator:
+                with retrieve_stdout() as sio:
+                    BearAction.is_applicable = lambda *args: True
+                    acquire_actions_and_apply(self.console_printer, Section(''), self.file_diff_dict, Result('origin', 'message', diffs={testfile_path: diff}, actions=[BearAction()]), file_dict)
+                    self.assertEqual(generator.last_input, 1)
+                    self.assertIn(BearAction.SUCCESS_MESSAGE, sio.getvalue())
+            BearAction.is_applicable = lambda *args: 'BearAction cannot be applied'
+            with simulate_console_inputs('b', 'n') as generator:
+                with retrieve_stdout() as sio:
+                    acquire_actions_and_apply(self.console_printer, Section(''), self.file_diff_dict, Result('origin', 'message', diffs={testfile_path: diff}, actions=[BearAction()]), file_dict)
+                    action_fail = 'BearAction cannot be applied'
+                    self.assertNotIn(action_fail, sio.getvalue())
+                    apply_path_desc = ApplyPatchAction().get_metadata().desc
+                    self.assertEqual(sio.getvalue().count(apply_path_desc), 0)
+
+    def test_ask_for_actions_and_apply(self):
+        if False:
+            while True:
+                i = 10
+        failed_actions = set()
+        action = TestAction()
+        do_nothing_action = DoNothingAction()
+        args = [[self.console_printer, Section(''), [do_nothing_action.get_metadata(), action.get_metadata()], {id(do_nothing_action): do_nothing_action, id(action): action}, failed_actions, Result('origin', 'message'), {}, {}, {}], [self.console_printer, Section(''), [action.get_metadata()], {id(action): action}, failed_actions, Result('origin', 'message'), {}, {}, {}]]
+        for arg in args:
+            with simulate_console_inputs('a', 'param1', 'a', 'param2') as generator:
+                action.apply = unittest.mock.Mock(side_effect=AssertionError)
+                ask_for_action_and_apply(*arg)
+                self.assertEqual(generator.last_input, 1)
+                self.assertIn('TestAction', failed_actions)
+                action.apply = lambda *arg, **kwargs: {}
+                ask_for_action_and_apply(*arg)
+                self.assertEqual(generator.last_input, 3)
+                self.assertNotIn('TestAction', failed_actions)
+
+    def test_default_input(self):
+        if False:
+            while True:
+                i = 10
+        action = TestAction()
+        args = [self.console_printer, Section(''), [action.get_metadata()], {id(action): action}, set(), Result('origin', 'message'), {}, {}, {}]
+        with simulate_console_inputs('') as generator:
+            self.assertFalse(ask_for_action_and_apply(*args))
+
+    def test_default_input2(self):
+        if False:
+            return 10
+        action = TestAction()
+        args = [self.console_printer, Section(''), [action.get_metadata()], {id(action): action}, set(), Result('origin', 'message'), {}, {}, {}]
+        with simulate_console_inputs(1, 1) as generator:
+            self.assertTrue(ask_for_action_and_apply(*args))
+
+    def test_default_input3(self):
+        if False:
+            return 10
+        action = TestAction()
+        args = [self.console_printer, Section(''), [action.get_metadata()], {id(action): action}, set(), Result('origin', 'message'), {}, {}, {}]
+        with simulate_console_inputs(1, 'a') as generator:
+            self.assertTrue(ask_for_action_and_apply(*args))
+
+    def test_default_input4(self):
+        if False:
+            return 10
+        action = TestAction()
+        args = [self.console_printer, Section(''), [action.get_metadata()], {id(action): action}, set(), Result('origin', 'message'), {}, {}, {}]
+        with simulate_console_inputs(5, 0) as generator:
+            self.assertTrue(ask_for_action_and_apply(*args))
+
+    def test_default_input_apply_single_nothing(self):
+        if False:
+            i = 10
+            return i + 15
+        action = TestAction()
+        args = [self.console_printer, Section(''), [action.get_metadata()], {id(action): action}, set(), Result('origin', 'message'), {}, {}, {}]
+        with simulate_console_inputs(1, 'a') as generator:
+            apply_single = 'Do (N)othing'
+            se = Section('cli')
+            args = [self.console_printer, se, [action.get_metadata()], {'TestAction': action}, set(), Result('origin', 'message'), {}, {}, {}, apply_single]
+            self.assertFalse(ask_for_action_and_apply(*args))
+        with simulate_console_inputs('') as generator:
+            self.assertFalse(ask_for_action_and_apply(*args))
+
+    def test_default_input_apply_single_test(self):
+        if False:
+            while True:
+                i = 10
+        action = TestAction()
+        do_nothing_action = DoNothingAction()
+        apply_single = 'Test (A)ction'
+        se = Section('cli')
+        args = [self.console_printer, se, [do_nothing_action.get_metadata(), action.get_metadata()], {id(do_nothing_action): do_nothing_action, id(action): action}, set(), Result('origin', 'message'), {}, {}, {}, apply_single]
+        with simulate_console_inputs('a') as generator:
+            self.assertFalse(ask_for_action_and_apply(*args))
+
+    def test_default_input_apply_single_fail(self):
+        if False:
+            while True:
+                i = 10
+        action = TestAction()
+        args = [self.console_printer, Section(''), [action.get_metadata()], {id(action): action}, set(), Result('origin', 'message'), {}, {}]
+        with simulate_console_inputs(5, 0) as generator:
+            apply_single = 'Test (X)ction'
+            se = Section('cli')
+            args = [self.console_printer, se, [action.get_metadata()], {'TestAction': action}, set(), Result('origin', 'message'), {}, {}, {}, apply_single]
+        with simulate_console_inputs('a') as generator:
+            self.assertFalse(ask_for_action_and_apply(*args))
+
+    def test_print_result_no_input(self):
+        if False:
+            i = 10
+            return i + 15
+        with make_temp() as testfile_path:
+            file_dict = {testfile_path: ['1\n', '2\n', '3\n']}
+            diff = Diff(file_dict[testfile_path])
+            diff.delete_line(2)
+            diff.change_line(3, '3\n', '3_changed\n')
+            with simulate_console_inputs(1, 2, 3) as generator:
+                with retrieve_stdout() as stdout:
+                    ApplyPatchAction.is_applicable = staticmethod(lambda *args: True)
+                    print_results_no_input(self.log_printer, Section('someSection'), [Result('origin', 'message', diffs={testfile_path: diff})], file_dict, self.file_diff_dict, self.console_printer)
+                    self.assertEqual(generator.last_input, -1)
+                    self.assertEqual(stdout.getvalue(), '\nProject wide:\n**** origin [Section: someSection | Severity: NORMAL] ****\n!    ! {}\n'.format(highlight_text(self.no_color, 'message', style=BackgroundMessageStyle)))
+
+    def test_print_section_beginning(self):
+        if False:
+            while True:
+                i = 10
+        with retrieve_stdout() as stdout:
+            print_section_beginning(self.console_printer, Section('name'))
+            self.assertEqual(stdout.getvalue(), 'Executing section name...\n')
+
+    def test_nothing_done(self):
+        if False:
+            for i in range(10):
+                print('nop')
+        with LogCapture() as capture:
+            nothing_done(self.log_printer)
+        capture.check(('root', 'WARNING', 'No existent section was targeted or enabled. Nothing to do.'))
+
+    def test_print_results_empty(self):
+        if False:
+            print('Hello World!')
+        with retrieve_stdout() as stdout:
+            print_results(self.log_printer, Section(''), [], {}, {}, self.console_printer)
+            self.assertEqual(stdout.getvalue(), '')
+
+    def test_print_results_project_wide(self):
+        if False:
+            return 10
+        with retrieve_stdout() as stdout:
+            print_results(self.log_printer, Section(''), [Result('origin', 'message')], {}, {}, self.console_printer)
+            self.assertEqual('\nProject wide:\n**** origin [Section:  | Severity: NORMAL] ****\n!    ! {1}\n'.format(STR_PROJECT_WIDE, highlight_text(self.no_color, 'message', style=BackgroundMessageStyle)), stdout.getvalue())
+
+    def test_print_results_for_file(self):
+        if False:
+            i = 10
+            return i + 15
+        with retrieve_stdout() as stdout:
+            print_results(self.log_printer, Section(''), [Result.from_values('SpaceConsistencyBear', 'Trailing whitespace found', file='filename', line=2)], {abspath('filename'): ['test line\n', 'line 2\n', 'line 3\n']}, {}, self.console_printer)
+            self.assertEqual('\nfilename\n[   2] {0}\n**** SpaceConsistencyBear [Section:  | Severity: NORMAL] ****\n!    ! {1}\n'.format(highlight_text(self.no_color, 'line 2', NoColorStyle, self.lexer), highlight_text(self.no_color, 'Trailing whitespace found', style=BackgroundMessageStyle), ''), stdout.getvalue())
+        with retrieve_stdout() as stdout:
+            print_results(self.log_printer, Section(''), [Result.from_values('SpaceConsistencyBear', 'Trailing whitespace found', file='filename', line=5)], {abspath('filename'): ['test line\n', 'line 2\n', 'line 3\n', 'line 4\n', 'line 5\n']}, {}, self.console_printer)
+            self.assertEqual('\nfilename\n[   5] {0}\n**** SpaceConsistencyBear [Section:  | Severity: NORMAL] ****\n!    ! {1}\n'.format(highlight_text(self.no_color, 'line 5', NoColorStyle, self.lexer), highlight_text(self.no_color, 'Trailing whitespace found', style=BackgroundMessageStyle), ''), stdout.getvalue())
+
+    def test_print_results_sorting(self):
+        if False:
+            while True:
+                i = 10
+        with retrieve_stdout() as stdout:
+            print_results(self.log_printer, Section(''), [Result.from_values('SpaceConsistencyBear', 'Trailing whitespace found', file='file', line=5), Result.from_values('SpaceConsistencyBear', 'Trailing whitespace found', file='file', line=2)], {abspath('file'): ['test line\n', '\t\n', 'line 3\n', 'line 4\n', 'line 5\t\n']}, {}, self.console_printer)
+            self.assertEqual('\nfile\n[   2] {0}\n**** SpaceConsistencyBear [Section:  | Severity: NORMAL] ****\n!    ! Trailing whitespace found\n\nfile\n[   5] {2}\n**** SpaceConsistencyBear [Section:  | Severity: NORMAL] ****\n!    ! {1}\n'.format(highlight_text(self.no_color, '\t', NoColorStyle, self.lexer), highlight_text(self.no_color, 'Trailing whitespace found', style=BackgroundMessageStyle), highlight_text(self.no_color, 'line 5\t', NoColorStyle, self.lexer)), stdout.getvalue())
+
+    def test_print_results_multiple_ranges(self):
+        if False:
+            return 10
+        affected_code = (SourceRange.from_values('some_file', 5, end_line=7), SourceRange.from_values('another_file', 1, 3, 1, 5), SourceRange.from_values('another_file', 3, 3, 3, 5))
+        with retrieve_stdout() as stdout:
+            print_results(self.log_printer, Section(''), [Result('Bear_for_detecting_clone', 'Clone Found', affected_code)], {abspath('some_file'): ['line ' + str(i + 1) + '\n' for i in range(10)], abspath('another_file'): ['line ' + str(i + 1) for i in range(10)]}, {}, self.console_printer)
+            self.assertEqual('\nanother_file\n[   1] li{0}{1}\n\nanother_file\n[   3] li{0}{2}\n\nsome_file\n[   5] li{0}{3}\n[   6] li{0}{4}\n[   7] li{0}{5}\n**** Bear_for_detecting_clone [Section:  | Severity: NORMAL] ****\n!    ! {6}\n'.format(highlight_text(self.no_color, 'ne', BackgroundSourceRangeStyle, self.lexer), highlight_text(self.no_color, ' 1', NoColorStyle, self.lexer), highlight_text(self.no_color, ' 3', NoColorStyle, self.lexer), highlight_text(self.no_color, ' 5', NoColorStyle, self.lexer), highlight_text(self.no_color, ' 6', NoColorStyle, self.lexer), highlight_text(self.no_color, ' 7', NoColorStyle, self.lexer), highlight_text(self.no_color, 'Clone Found', style=BackgroundMessageStyle), ' '), stdout.getvalue())
+
+    def test_print_results_missing_file(self):
+        if False:
+            print('Hello World!')
+        logging.getLogger().setLevel(logging.CRITICAL)
+        with retrieve_stdout() as stdout:
+            print_results(self.log_printer, Section(''), [Result('t', 'msg'), Result.from_values('t', 'msg', file='file', line=5)], {}, {}, self.console_printer)
+            self.assertEqual('\n' + STR_PROJECT_WIDE + '\n**** t [Section:  | Severity: NORMAL] ****\n!    ! msg\n**** t [Section:  | Severity: NORMAL] ****\n!    ! {0}\n'.format(highlight_text(self.no_color, 'msg', style=BackgroundMessageStyle)), stdout.getvalue())
+
+    def test_print_results_missing_line(self):
+        if False:
+            i = 10
+            return i + 15
+        with retrieve_stdout() as stdout:
+            print_results(self.log_printer, Section(''), [Result.from_values('t', 'msg', file='file', line=5), Result.from_values('t', 'msg', file='file', line=6)], {abspath('file'): ['line ' + str(i + 1) for i in range(5)]}, {}, self.console_printer)
+            self.assertEqual('\nfile\n[   5] {0}\n**** t [Section:  | Severity: NORMAL] ****\n!    ! {1}\n\nfile\n!   6! {2}\n**** t [Section:  | Severity: NORMAL] ****\n!    ! {1}\n'.format(highlight_text(self.no_color, 'line 5', NoColorStyle, self.lexer), highlight_text(self.no_color, 'msg', style=BackgroundMessageStyle), STR_LINE_DOESNT_EXIST, ' '), stdout.getvalue())
+
+    def test_print_results_without_line(self):
+        if False:
+            i = 10
+            return i + 15
+        with retrieve_stdout() as stdout:
+            print_results(self.log_printer, Section(''), [Result.from_values('t', 'msg', file='file')], {abspath('file'): []}, {}, self.console_printer)
+            self.assertEqual('\nfile\n**** t [Section:  | Severity: NORMAL] ****\n!    ! {}\n'.format(highlight_text(self.no_color, 'msg', style=BackgroundMessageStyle)), stdout.getvalue())
+
+class ShowBearsTest(unittest.TestCase):
+
+    def setUp(self):
+        if False:
+            for i in range(10):
+                print('nop')
+        self.console_printer = ConsolePrinter(print_colored=False)
+        self.logs = LogCapture()
+        self.logs.__enter__()
+    deprecation_messages = [('root', 'WARNING', 'show_description parameter is deprecated'), ('root', 'WARNING', 'show_params parameter is deprecated')]
+
+    def tearDown(self):
+        if False:
+            print('Hello World!')
+        self.logs.__exit__(None, None, None)
+
+    def test_show_bear_minimal(self):
+        if False:
+            for i in range(10):
+                print('nop')
+        with retrieve_stdout() as stdout:
+            show_bear(SomelocalBear, False, False, self.console_printer)
+            self.assertEqual(stdout.getvalue(), 'SomelocalBear\n')
+        self.logs.check(*self.deprecation_messages)
+
+    def test_show_bear_desc_only(self):
+        if False:
+            return 10
+        with retrieve_stdout() as stdout:
+            show_bear(SomelocalBear, True, False, self.console_printer)
+            self.assertEqual(stdout.getvalue(), 'SomelocalBear\n  Some local-bear Description.\n\n')
+        self.logs.check(*self.deprecation_messages)
+
+    def test_show_bear_details_only(self):
+        if False:
+            i = 10
+            return i + 15
+        with retrieve_stdout() as stdout:
+            show_bear(SomelocalBear, False, True, self.console_printer)
+            self.assertEqual(stdout.getvalue(), 'SomelocalBear\n  The bear does not provide information about which languages it can analyze.\n\n  No needed settings.\n\n  No optional settings.\n\n  This bear does not provide information about what categories it can detect.\n\n  This bear cannot fix issues or does not provide information about what categories it can fix.\n\n  Path:\n   ' + repr(SomelocalBear.source_location) + '\n\n')
+        self.logs.check(*self.deprecation_messages)
+
+    def test_show_bear_long_without_content(self):
+        if False:
+            for i in range(10):
+                print('nop')
+        with retrieve_stdout() as stdout:
+            show_bear(SomelocalBear, True, True, self.console_printer)
+            self.assertEqual(stdout.getvalue(), 'SomelocalBear\n  Some local-bear Description.\n\n  The bear does not provide information about which languages it can analyze.\n\n  No needed settings.\n\n  No optional settings.\n\n  This bear does not provide information about what categories it can detect.\n\n  This bear cannot fix issues or does not provide information about what categories it can fix.\n\n  Path:\n   ' + repr(SomelocalBear.source_location) + '\n\n')
+        self.logs.check(*self.deprecation_messages)
+
+    def test_show_bear_with_content(self):
+        if False:
+            for i in range(10):
+                print('nop')
+        with retrieve_stdout() as stdout:
+            show_bear(TestBear, True, True, self.console_printer)
+            self.assertEqual(stdout.getvalue(), "TestBear\n  Test bear Description.\n\n  Supported languages:\n   * F#\n   * Shakespearean Programming Language\n\n  Needed Settings:\n   * setting1: Required Setting.\n\n  Optional Settings:\n   * setting2: Optional Setting. (Optional, defaults to 'None'.)\n\n  Can detect:\n   * Formatting\n\n  Can fix:\n   * Formatting\n\n  Path:\n   " + repr(TestBear.source_location) + '\n\n')
+        self.logs.check(*self.deprecation_messages)
+
+    def test_show_bear_settings_only(self):
+        if False:
+            print('Hello World!')
+        with retrieve_stdout() as stdout:
+            args = default_arg_parser().parse_args(['--show-settings'])
+            show_bear(TestBear, False, False, self.console_printer, args)
+            self.assertEqual(stdout.getvalue(), "TestBear\n  Needed Settings:\n   * setting1: Required Setting.\n\n  Optional Settings:\n   * setting2: Optional Setting. (Optional, defaults to 'None'.)\n\n")
+        self.logs.check(*self.deprecation_messages)
+
+    def test_show_bears_empty(self):
+        if False:
+            i = 10
+            return i + 15
+        with retrieve_stdout() as stdout:
+            show_bears({}, {}, True, True, self.console_printer)
+            self.assertIn('No bears to show.', stdout.getvalue())
+        self.logs.check(*self.deprecation_messages)
+
+    def test_show_bears_with_json(self):
+        if False:
+            for i in range(10):
+                print('nop')
+        args = default_arg_parser().parse_args(['--json'])
+        with retrieve_stdout() as stdout:
+            show_bears({}, {}, True, True, self.console_printer, args)
+            self.assertEqual('{\n  "bears": []\n}\n', stdout.getvalue())
+        self.logs.check(*self.deprecation_messages)
+
+    @patch('coalib.output.ConsoleInteraction.show_bear')
+    def test_show_bears(self, show_bear):
+        if False:
+            return 10
+        local_bears = OrderedDict([('default', [SomelocalBear]), ('test', [SomelocalBear])])
+        show_bears(local_bears, {}, True, True, self.console_printer)
+        show_bear.assert_called_once_with(SomelocalBear, True, True, self.console_printer, None)
+        self.logs.check(*self.deprecation_messages)
+
+    def test_show_bears_sorted(self):
+        if False:
+            for i in range(10):
+                print('nop')
+        local_bears = OrderedDict([('default', [SomelocalBear]), ('test', [aSomelocalBear])])
+        global_bears = OrderedDict([('default', [SomeglobalBear]), ('test', [BSomeglobalBear])])
+        with retrieve_stdout() as stdout:
+            show_bears(local_bears, global_bears, False, False, self.console_printer)
+            self.assertEqual(stdout.getvalue(), 'aSomelocalBear\nBSomeglobalBear\nSomeglobalBear\nSomelocalBear\n')
+        self.logs.check(*self.deprecation_messages * 5)
+
+    def test_show_bears_capabilities(self):
+        if False:
+            for i in range(10):
+                print('nop')
+        with retrieve_stdout() as stdout:
+            show_language_bears_capabilities({'some_language': ({'Formatting', 'Security'}, {'Formatting'})}, self.console_printer)
+            self.assertIn('coala can do the following for SOME_LANGUAGE\n    Can detect only: Formatting, Security\n    Can fix        : Formatting\n', stdout.getvalue())
+            show_language_bears_capabilities({'some_language': (set(), set())}, self.console_printer)
+            self.assertIn('coala does not support some_language', stdout.getvalue())
+            show_language_bears_capabilities({}, self.console_printer)
+            self.assertIn('There is no bear available for this language', stdout.getvalue())
+            show_language_bears_capabilities({'some_language': ({'Formatting', 'Security'}, set())}, self.console_printer)
+            self.assertIn('coala can do the following for SOME_LANGUAGE\n    Can detect only: Formatting, Security\n', stdout.getvalue())
+
+class PrintFormattedResultsTest(unittest.TestCase):
+
+    def setUp(self):
+        if False:
+            while True:
+                i = 10
+        self.logger = ListLogPrinter()
+        self.section = Section('t')
+
+    def test_default_format(self):
+        if False:
+            return 10
+        expected_string = 'id:-?[0-9]+:origin:1:file:None:line:None:column:None:end_line:None:end_column:None:severity:1:severity_str:NORMAL:message:2\n'
+        with retrieve_stdout() as stdout:
+            print_results_formatted(self.logger, self.section, [Result('1', '2')], None, None)
+            self.assertRegex(stdout.getvalue(), expected_string)
+        self.section.append(Setting('format', 'True'))
+        with retrieve_stdout() as stdout:
+            print_results_formatted(self.logger, self.section, [Result('1', '2')], None, None)
+            self.assertRegex(stdout.getvalue(), expected_string)
+
+    def test_multiple_ranges(self):
+        if False:
+            return 10
+        expected_string = 'id:-?[0-9]+:origin:1:.*file:.*another_file:line:5:column:3:end_line:5:end_column:5:severity:1:severity_str:NORMAL:message:2\nid:-?[0-9]+:origin:1:.*file:.*some_file:line:5:column:None:end_line:7:end_column:None:severity:1:severity_str:NORMAL:message:2\n'
+        affected_code = (SourceRange.from_values('some_file', 5, end_line=7), SourceRange.from_values('another_file', 5, 3, 5, 5))
+        with retrieve_stdout() as stdout:
+            print_results_formatted(self.logger, self.section, [Result('1', '2', affected_code)], {}, None)
+            self.assertRegex(stdout.getvalue(), expected_string)
+
+    def test_bad_format(self):
+        if False:
+            for i in range(10):
+                print('nop')
+        self.section.append(Setting('format', '{nonexistant}'))
+        with LogCapture() as capture:
+            print_results_formatted(self.logger, self.section, [Result('1', '2')], None, None)
+        capture.check(('root', 'ERROR', StringComparison('.*Unable to print.*')), ('root', 'INFO', StringComparison('.*Exception was.*')))
+
+    def test_good_format(self):
+        if False:
+            print('Hello World!')
+        self.section.append(Setting('format', '{origin}'))
+        with retrieve_stdout() as stdout:
+            print_results_formatted(self.logger, self.section, [Result('1', '2')], None, None)
+            self.assertEqual(stdout.getvalue(), '1\n')
+
+    def test_empty_list(self):
+        if False:
+            for i in range(10):
+                print('nop')
+        self.section.append(Setting('format', '{origin}'))
+        print_results_formatted(None, self.section, [], None, None, None)
+
+    def test_source_lines(self):
+        if False:
+            i = 10
+            return i + 15
+        self.section.append(Setting(key='format', value='{source_lines}'))
+        affected_code = (SourceRange.from_values('file', 2, end_line=2),)
+        with retrieve_stdout() as stdout:
+            print_results_formatted(self.logger, self.section, [Result('SpaceConsistencyBear', message='msg', affected_code=affected_code)], {abspath('file'): ('def fun():\n', '    pass  \n')})
+            self.assertEqual(stdout.getvalue(), "('    pass  \\n',)\n")
+
+    def test_show_bears_specified_in_args(self):
+        if False:
+            for i in range(10):
+                print('nop')
+        with bear_test_module():
+            (retval, stdout, stderr) = execute_coala(coala.main, 'coala', '-B', '--bears', 'JavaTestBear', '--no-color')
+            self.assertEqual(retval, 0)
+            self.assertEqual(stdout.strip(), 'JavaTestBear')
+
+    def test_show_bears_specified_in_args_regex(self):
+        if False:
+            return 10
+        with bear_test_module():
+            (retval, stdout, stderr) = execute_coala(coala.main, 'coala', '-B', '--bears', '*Java*', '*Space*', '--no-color')
+            self.assertEqual(retval, 0)
+            self.assertEqual(['JavaTestBear', 'SpaceConsistencyTestBear'], [bear.strip() for bear in stdout.splitlines()])

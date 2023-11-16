@@ -1,0 +1,46 @@
+'foo'.encode('utf-8')
+'foo'.encode('u8')
+'foo'.encode()
+'foo'.encode('UTF8')
+'foo'.encode('utf-8')
+'foo'.encode(encoding='utf-8')
+'\nLorem\n\nIpsum\n'.encode('utf-8')
+'Lorem Ipsum'.encode()
+'Lorem Ipsum'.encode()
+'Lorem Ipsum'.encode()
+string = 'hello there'
+string.encode('utf-8')
+bar = 'bar'
+f'foo{bar}'.encode('utf-8')
+encoding = 'latin'
+'foo'.encode(encoding)
+f'foo{bar}'.encode(encoding)
+f'a={a!r} b={b!r}'.encode('utf-8')
+'foo'.encode('utf-8', errors='replace')
+'foo'.encode('utf-8', 'replace')
+'foo'.encode(errors='replace')
+'foo'.encode(encoding='utf-8', errors='replace')
+'unicode text©'.encode('utf-8', errors='replace')
+'unicode text©'.encode('utf-8', 'replace')
+'unicode text©'.encode(errors='replace')
+'unicode text©'.encode(encoding='utf-8', errors='replace')
+'unicode text©'.encode('utf-8')
+'unicode text©'.encode()
+'unicode text©'.encode(encoding='UTF8')
+'foo\\o'.encode('utf-8')
+u'foo'.encode('utf-8')
+'foo\\o'.encode('utf-8')
+'foo'.encode('utf-8')
+print('foo'.encode())
+'abcdef'.encode()
+'abcdef'.encode()
+f'foo{bar}'.encode('utf-8')
+f'foo{bar}'.encode(encoding='utf-8')
+'unicode text©'.encode('utf-8')
+'unicode text©'.encode(encoding='utf-8')
+
+def _match_ignore(line):
+    if False:
+        for i in range(10):
+            print('nop')
+    input = stdin and '\n'.encode() or None

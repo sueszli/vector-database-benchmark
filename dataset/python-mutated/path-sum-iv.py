@@ -1,0 +1,42 @@
+import collections
+
+class Solution(object):
+
+    def pathSum(self, nums):
+        if False:
+            print('Hello World!')
+        '\n        :type nums: List[int]\n        :rtype: int\n        '
+
+        class Node(object):
+
+            def __init__(self, num):
+                if False:
+                    for i in range(10):
+                        print('nop')
+                self.level = num / 100 - 1
+                self.i = num % 100 / 10 - 1
+                self.val = num % 10
+                self.leaf = True
+
+            def isParent(self, other):
+                if False:
+                    for i in range(10):
+                        print('nop')
+                return self.level == other.level - 1 and self.i == other.i / 2
+        if not nums:
+            return 0
+        result = 0
+        q = collections.deque()
+        dummy = Node(10)
+        parent = dummy
+        for num in nums:
+            child = Node(num)
+            while not parent.isParent(child):
+                result += parent.val if parent.leaf else 0
+                parent = q.popleft()
+            parent.leaf = False
+            child.val += parent.val
+            q.append(child)
+        while q:
+            result += q.pop().val
+        return result

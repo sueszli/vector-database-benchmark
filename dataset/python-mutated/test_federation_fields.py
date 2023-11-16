@@ -1,0 +1,9 @@
+from .utils import Result, requires_pyright, run_pyright, skip_on_windows
+pytestmark = [skip_on_windows, requires_pyright]
+CODE = '\nimport strawberry\n\ndef some_resolver(root: "User") -> str:\n    return "An address"\n\ndef some_resolver_2() -> str:\n    return "Another address"\n\n@strawberry.federation.type\nclass User:\n    age: int = strawberry.federation.field(description="Age")\n    name: str\n    address: str = strawberry.federation.field(resolver=some_resolver)\n    another_address: str = strawberry.federation.field(resolver=some_resolver_2)\n\n@strawberry.federation.input\nclass UserInput:\n    age: int = strawberry.federation.field(description="Age")\n    name: str\n\n\nUser(name="Patrick", age=1)\nUser(n="Patrick", age=1)\n\nUserInput(name="Patrick", age=1)\nUserInput(n="Patrick", age=1)\n\nreveal_type(User)\nreveal_type(User.__init__)\n\nreveal_type(UserInput)\nreveal_type(UserInput.__init__)\n'
+
+def test_pyright():
+    if False:
+        print('Hello World!')
+    results = run_pyright(CODE)
+    assert results == [Result(type='error', message='No parameter named "n"', line=24, column=6), Result(type='error', message='Argument missing for parameter "name"', line=24, column=1), Result(type='error', message='No parameter named "n"', line=27, column=11), Result(type='error', message='Argument missing for parameter "name"', line=27, column=1), Result(type='information', message='Type of "User" is "type[User]"', line=29, column=13), Result(type='information', message='Type of "User.__init__" is "(self: User, *, age: int, name: str) -> None"', line=30, column=13), Result(type='information', message='Type of "UserInput" is "type[UserInput]"', line=32, column=13), Result(type='information', message='Type of "UserInput.__init__" is "(self: UserInput, *, age: int, name: str) -> None"', line=33, column=13)]

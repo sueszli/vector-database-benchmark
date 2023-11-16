@@ -1,0 +1,14 @@
+from django.db import migrations, models, transaction
+
+def remove_iso_instances(apps, schema_editor):
+    if False:
+        for i in range(10):
+            print('nop')
+    Instance = apps.get_model('main', 'Instance')
+    with transaction.atomic():
+        Instance.objects.filter(rampart_groups__controller__isnull=False).delete()
+
+class Migration(migrations.Migration):
+    atomic = False
+    dependencies = [('main', '0138_custom_inventory_scripts_removal')]
+    operations = [migrations.RunPython(remove_iso_instances), migrations.RemoveField(model_name='instance', name='last_isolated_check'), migrations.RemoveField(model_name='instancegroup', name='controller'), migrations.AlterField(model_name='unifiedjob', name='controller_node', field=models.TextField(blank=True, default='', editable=False, help_text='The instance that managed the execution environment.'))]

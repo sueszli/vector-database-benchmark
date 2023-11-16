@@ -1,0 +1,666 @@
+"""ClusterClient: Master for multi-piping or PC clusters."""
+from panda3d.core import ClockObject, ConnectionWriter, Point3, QueuedConnectionManager, QueuedConnectionReader, VBase3, Vec3, decomposeMatrix
+from .ClusterMsgs import CLUSTER_DAEMON_PORT, CLUSTER_NAMED_MOVEMENT_DONE, CLUSTER_NAMED_OBJECT_MOVEMENT, CLUSTER_NONE, CLUSTER_SERVER_PORT, CLUSTER_SWAP_READY, SERVER_STARTUP_STRING, ClusterMsgHandler
+from .ClusterConfig import ClientConfigs
+from direct.directnotify import DirectNotifyGlobal
+from direct.showbase import DirectObject
+from direct.task import Task
+from direct.task.TaskManagerGlobal import taskMgr
+import os
+
+class ClusterClient(DirectObject.DirectObject):
+    notify = DirectNotifyGlobal.directNotify.newCategory('ClusterClient')
+    MGR_NUM = 1000000
+
+    def __init__(self, configList, clusterSyncFlag):
+        if False:
+            i = 10
+            return i + 15
+        self.__name__ = 'cluster'
+        clusterClientDaemonHost = base.config.GetString('cluster-client-daemon', 'None')
+        if clusterClientDaemonHost == 'None':
+            clusterClientDaemonHost = os.popen('uname -n').read()
+            clusterClientDaemonHost = clusterClientDaemonHost.replace('\n', '')
+        clusterClientDaemonPort = base.config.GetInt('cluster-client-daemon-port', CLUSTER_DAEMON_PORT)
+        self.daemon = DirectD()
+        self.daemon.listenTo(clusterClientDaemonPort)
+        for serverConfig in configList:
+            self.daemon.tellServer(serverConfig.serverName, serverConfig.serverDaemonPort, 'ka')
+            serverCommand = SERVER_STARTUP_STRING % (serverConfig.serverMsgPort, clusterSyncFlag, clusterClientDaemonHost, clusterClientDaemonPort)
+            self.daemon.tellServer(serverConfig.serverName, serverConfig.serverDaemonPort, serverCommand)
+        print('Begin waitForServers')
+        if not self.daemon.waitForServers(len(configList)):
+            print('Cluster Client, no response from servers')
+        print('End waitForServers')
+        self.qcm = QueuedConnectionManager()
+        self.serverList = []
+        self.serverQueues = []
+        self.msgHandler = ClusterMsgHandler(ClusterClient.MGR_NUM, self.notify)
+        self.objectMappings = {}
+        self.objectHasColor = {}
+        self.controlMappings = {}
+        self.controlOffsets = {}
+        self.taggedObjects = {}
+        self.controlPriorities = {}
+        self.sortedControlMappings = []
+        for serverConfig in configList:
+            server = DisplayConnection(self.qcm, serverConfig.serverName, serverConfig.serverMsgPort, self.msgHandler)
+            if server is None:
+                self.notify.error('Could not open %s on %s port %d' % (serverConfig.serverConfigName, serverConfig.serverName, serverConfig.serverMsgPort))
+            else:
+                self.notify.debug('send cam pos')
+                self.notify.debug('send cam offset')
+                server.sendCamOffset(serverConfig.xyz, serverConfig.hpr)
+                if serverConfig.fFrustum:
+                    self.notify.debug('send cam frustum')
+                    server.sendCamFrustum(serverConfig.focalLength, serverConfig.filmSize, serverConfig.filmOffset)
+                self.serverList.append(server)
+                self.serverQueues.append([])
+        self.notify.debug('pre startTimeTask')
+        self.startSynchronizeTimeTask()
+        self.notify.debug('pre startMoveCam')
+        self.startMoveCamTask()
+        self.notify.debug('post startMoveCam')
+        self.startMoveSelectedTask()
+
+    def startReaderPollTask(self):
+        if False:
+            i = 10
+            return i + 15
+        ' Task to handle datagrams from server '
+        taskMgr.add(self._readerPollTask, 'clientReaderPollTask', -39)
+
+    def _readerPollTask(self, state):
+        if False:
+            while True:
+                i = 10
+        ' Non blocking task to read all available datagrams '
+        for i in range(len(self.serverList)):
+            server = self.serverList[i]
+            datagrams = server.poll()
+            for data in datagrams:
+                self.handleDatagram(data[0], data[1], i)
+        return Task.cont
+
+    def startControlObjectTask(self):
+        if False:
+            print('Hello World!')
+        self.notify.debug('moving control objects')
+        taskMgr.add(self.controlObjectTask, 'controlObjectTask', 50)
+
+    def startSynchronizeTimeTask(self):
+        if False:
+            return 10
+        self.notify.debug('broadcasting frame time')
+        taskMgr.add(self.synchronizeTimeTask, 'synchronizeTimeTask', -40)
+
+    def synchronizeTimeTask(self, task):
+        if False:
+            while True:
+                i = 10
+        clock = ClockObject.getGlobalClock()
+        frameCount = clock.getFrameCount()
+        frameTime = clock.getFrameTime()
+        dt = clock.dt
+        for server in self.serverList:
+            server.sendTimeData(frameCount, frameTime, dt)
+        return Task.cont
+
+    def startMoveCamTask(self):
+        if False:
+            i = 10
+            return i + 15
+        self.notify.debug('adding move cam')
+        taskMgr.add(self.moveCameraTask, 'moveCamTask', 49)
+
+    def controlObjectTask(self, task):
+        if False:
+            while True:
+                i = 10
+        for pair in self.sortedControlMappings:
+            object = pair[1]
+            name = self.controlMappings[object][0]
+            serverList = self.controlMappings[object][1]
+            if object in self.objectMappings:
+                self.moveObject(self.objectMappings[object], name, serverList, self.controlOffsets[object], self.objectHasColor[object])
+        self.sendNamedMovementDone()
+        return Task.cont
+
+    def sendNamedMovementDone(self, serverList=None):
+        if False:
+            while True:
+                i = 10
+        if serverList is None:
+            serverList = range(len(self.serverList))
+        for server in serverList:
+            self.serverList[server].sendNamedMovementDone()
+
+    def redoSortedPriorities(self):
+        if False:
+            return 10
+        self.sortedControlMappings = sorted(([self.controlPriorities[key], key] for key in self.controlMappings))
+
+    def moveObject(self, nodePath, object, serverList, offset, hasColor=True):
+        if False:
+            i = 10
+            return i + 15
+        self.notify.debug('moving object ' + object)
+        xyz = nodePath.getPos(render) + offset
+        hpr = nodePath.getHpr(render)
+        scale = nodePath.getScale(render)
+        hidden = nodePath.isHidden()
+        if hasColor:
+            color = nodePath.getColor()
+        else:
+            color = [1, 1, 1, 1]
+        for server in serverList:
+            self.serverList[server].sendMoveNamedObject(xyz, hpr, scale, color, hidden, object)
+
+    def moveCameraTask(self, task):
+        if False:
+            i = 10
+            return i + 15
+        self.moveCamera(base.camera.getPos(render), base.camera.getHpr(render))
+        return Task.cont
+
+    def moveCamera(self, xyz, hpr):
+        if False:
+            for i in range(10):
+                print('nop')
+        self.notify.debug('moving unsynced camera')
+        for server in self.serverList:
+            server.sendMoveCam(xyz, hpr)
+
+    def startMoveSelectedTask(self):
+        if False:
+            for i in range(10):
+                print('nop')
+        taskMgr.add(self.moveSelectedTask, 'moveSelectedTask', 48)
+
+    def moveSelectedTask(self, state):
+        if False:
+            while True:
+                i = 10
+        if last is not None:
+            self.notify.debug('moving selected node path')
+            xyz = Point3(0)
+            hpr = VBase3(0)
+            scale = VBase3(1)
+            decomposeMatrix(last.getMat(), scale, hpr, xyz)
+            for server in self.serverList:
+                server.sendMoveSelected(xyz, hpr, scale)
+        return Task.cont
+
+    def addNamedObjectMapping(self, object, name, hasColor=True):
+        if False:
+            print('Hello World!')
+        if name not in self.objectMappings:
+            self.objectMappings[name] = object
+            self.objectHasColor[name] = hasColor
+        else:
+            self.notify.debug('attempt to add duplicate named object: ' + name)
+
+    def removeObjectMapping(self, name):
+        if False:
+            i = 10
+            return i + 15
+        if name in self.objectMappings:
+            self.objectMappings.pop(name)
+
+    def addControlMapping(self, objectName, controlledName, serverList=None, offset=None, priority=0):
+        if False:
+            while True:
+                i = 10
+        if objectName not in self.controlMappings:
+            if serverList is None:
+                serverList = range(len(self.serverList))
+            if offset is None:
+                offset = Vec3(0, 0, 0)
+            self.controlMappings[objectName] = [controlledName, serverList]
+            self.controlOffsets[objectName] = offset
+            self.controlPriorities[objectName] = priority
+        else:
+            oldList = self.controlMappings[objectName]
+            mergedList = []
+            for item in oldList:
+                mergedList.append(item)
+            for item in serverList:
+                if item not in mergedList:
+                    mergedList.append(item)
+        self.redoSortedPriorities()
+
+    def setControlMappingOffset(self, objectName, offset):
+        if False:
+            return 10
+        if objectName in self.controlMappings:
+            self.controlOffsets[objectName] = offset
+
+    def removeControlMapping(self, name, serverList=None):
+        if False:
+            while True:
+                i = 10
+        if name in self.controlMappings:
+            if serverList is None:
+                self.controlMappings.pop(name)
+                self.controlPriorities.pop(name)
+            else:
+                oldList = self.controlMappings[key][1]
+                newList = []
+                for server in oldList:
+                    if server not in serverList:
+                        newList.append(server)
+                self.controlMappings[key][1] = newList
+                if len(newList) == 0:
+                    self.controlMappings.pop(name)
+                    self.controlPriorities.pop(name)
+        self.redoSortedPriorities()
+
+    def getNodePathFindCmd(self, nodePath):
+        if False:
+            while True:
+                i = 10
+        pathString = repr(nodePath)
+        index = pathString.find('/')
+        if index != -1:
+            rootName = pathString[:index]
+            searchString = pathString[index + 1:]
+            return rootName + '.find("%s")' % searchString
+        else:
+            return rootName
+
+    def getNodePathName(self, nodePath):
+        if False:
+            for i in range(10):
+                print('nop')
+        pathString = repr(nodePath)
+        index = pathString.find('/')
+        if index != -1:
+            name = pathString[index + 1:]
+            return name
+        else:
+            return pathString
+
+    def addObjectTag(self, object, selectFunction, deselectFunction, selectArgs, deselectArgs):
+        if False:
+            return 10
+        newTag = {}
+        newTag['selectFunction'] = selectFunction
+        newTag['selectArgs'] = selectArgs
+        newTag['deselectFunction'] = deselectFunction
+        newTag['deselectArgs'] = deselectArgs
+        self.taggedObjects[object] = newTag
+
+    def removeObjectTag(self, object):
+        if False:
+            return 10
+        self.taggedObjects.pop(object)
+
+    def selectNodePath(self, nodePath):
+        if False:
+            print('Hello World!')
+        name = self.getNodePathName(nodePath)
+        if name in self.taggedObjects:
+            taskMgr.remove('moveSelectedTask')
+            tag = self.taggedObjects[name]
+            function = tag['selectFunction']
+            args = tag['selectArgs']
+            if function is not None:
+                function(*args)
+        else:
+            self(self.getNodePathFindCmd(nodePath) + '.select()', 0)
+
+    def deselectNodePath(self, nodePath):
+        if False:
+            i = 10
+            return i + 15
+        name = self.getNodePathName(nodePath)
+        if name in self.taggedObjects:
+            tag = self.taggedObjects[name]
+            function = tag['deselectFunction']
+            args = tag['deselectArgs']
+            if function is not None:
+                function(*args)
+            self.startMoveSelectedTask()
+        self(self.getNodePathFindCmd(nodePath) + '.deselect()', 0)
+
+    def sendCamFrustum(self, focalLength, filmSize, filmOffset, indexList=[]):
+        if False:
+            i = 10
+            return i + 15
+        if indexList:
+            serverList = [self.serverList[i] for i in indexList]
+        else:
+            serverList = self.serverList
+        for server in serverList:
+            self.notify.debug('updating camera frustum')
+            server.sendCamFrustum(focalLength, filmSize, filmOffset)
+
+    def loadModel(self, nodePath):
+        if False:
+            for i in range(10):
+                print('nop')
+        pass
+
+    def __call__(self, commandString, fLocally=1, serverList=[]):
+        if False:
+            for i in range(10):
+                print('nop')
+        if serverList:
+            for serverNum in serverList:
+                self.serverList[serverNum].sendCommandString(commandString)
+        else:
+            for server in self.serverList:
+                server.sendCommandString(commandString)
+        if fLocally:
+            exec(commandString, __builtins__)
+
+    def handleDatagram(self, dgi, type, server):
+        if False:
+            return 10
+        if type == CLUSTER_NONE:
+            pass
+        elif type == CLUSTER_NAMED_OBJECT_MOVEMENT:
+            self.serverQueues[server].append(self.msgHandler.parseNamedMovementDatagram(dgi))
+        elif type == CLUSTER_NAMED_MOVEMENT_DONE:
+            self.handleMessageQueue(server)
+        else:
+            self.notify.warning('Received unsupported packet type:' % type)
+        return type
+
+    def handleMessageQueue(self, server):
+        if False:
+            for i in range(10):
+                print('nop')
+        queue = self.serverQueues[server]
+        for data in queue:
+            self.handleNamedMovement(data)
+        self.serverQueues[server] = []
+
+    def handleNamedMovement(self, data):
+        if False:
+            i = 10
+            return i + 15
+        ' Update cameraJig position to reflect latest position '
+        (name, x, y, z, h, p, r, sx, sy, sz, red, g, b, a, hidden) = data
+        if name in self.objectMappings:
+            self.objectMappings[name].setPosHpr(render, x, y, z, h, p, r)
+            self.objectMappings[name].setScale(render, sx, sy, sz)
+            if self.objectHasColor[name]:
+                self.objectMappings[name].setColor(red, g, b, a)
+            if hidden:
+                self.objectMappings[name].hide()
+            else:
+                self.objectMappings[name].show()
+        else:
+            self.notify.debug('recieved unknown named object command: ' + name)
+
+    def exit(self):
+        if False:
+            return 10
+        for server in self.serverList:
+            server.sendExit()
+        import sys
+        sys.exit()
+
+class ClusterClientSync(ClusterClient):
+
+    def __init__(self, configList, clusterSyncFlag):
+        if False:
+            print('Hello World!')
+        ClusterClient.__init__(self, configList, clusterSyncFlag)
+        self.waitForSwap = 0
+        self.ready = 0
+        print('creating synced client')
+        self.startSwapCoordinatorTask()
+
+    def startSwapCoordinatorTask(self):
+        if False:
+            return 10
+        taskMgr.add(self.swapCoordinator, 'clientSwapCoordinator', 51)
+
+    def swapCoordinator(self, task):
+        if False:
+            return 10
+        self.ready = 1
+        if self.waitForSwap:
+            self.waitForSwap = 0
+            self.notify.debug('START get swaps----------------------------------')
+            for server in self.serverList:
+                server.getSwapReady()
+            self.notify.debug('----------------START swap now--------------------')
+            for server in self.serverList:
+                server.sendSwapNow()
+            self.notify.debug('------------------------------START swap----------')
+            base.graphicsEngine.flipFrame()
+            self.notify.debug('------------------------------------------END swap')
+        return Task.cont
+
+    def moveCamera(self, xyz, hpr):
+        if False:
+            while True:
+                i = 10
+        if self.ready:
+            self.notify.debug('moving synced camera')
+            ClusterClient.moveCamera(self, xyz, hpr)
+            self.waitForSwap = 1
+
+class DisplayConnection:
+
+    def __init__(self, qcm, serverName, port, msgHandler):
+        if False:
+            i = 10
+            return i + 15
+        self.msgHandler = msgHandler
+        gameServerTimeoutMs = base.config.GetInt('cluster-server-timeout-ms', 300000)
+        self.tcpConn = qcm.openTCPClientConnection(serverName, port, gameServerTimeoutMs)
+        if self.tcpConn is None:
+            return None
+        else:
+            self.tcpConn.setNoDelay(1)
+            self.qcr = QueuedConnectionReader(qcm, 0)
+            self.qcr.addConnection(self.tcpConn)
+            self.cw = ConnectionWriter(qcm, 0)
+
+    def poll(self):
+        if False:
+            return 10
+        ' Non blocking task to read all available datagrams '
+        dataGrams = []
+        while 1:
+            (datagram, dgi, type) = self.msgHandler.nonBlockingRead(self.qcr)
+            if type is CLUSTER_NONE:
+                break
+            else:
+                dataGrams.append([dgi, type, datagram])
+        return dataGrams
+
+    def sendCamOffset(self, xyz, hpr):
+        if False:
+            while True:
+                i = 10
+        ClusterClient.notify.debug('send cam offset...')
+        ClusterClient.notify.debug('packet %d xyz, hpr=%f %f %f %f %f %f' % (self.msgHandler.packetNumber, xyz[0], xyz[1], xyz[2], hpr[0], hpr[1], hpr[2]))
+        datagram = self.msgHandler.makeCamOffsetDatagram(xyz, hpr)
+        self.cw.send(datagram, self.tcpConn)
+
+    def sendCamFrustum(self, focalLength, filmSize, filmOffset):
+        if False:
+            return 10
+        ClusterClient.notify.info('send cam frustum...')
+        ClusterClient.notify.info('packet %d' % self.msgHandler.packetNumber + ' fl, fs, fo=%0.3f, (%0.3f, %0.3f), (%0.3f, %0.3f)' % (focalLength, filmSize[0], filmSize[1], filmOffset[0], filmOffset[1]))
+        datagram = self.msgHandler.makeCamFrustumDatagram(focalLength, filmSize, filmOffset)
+        self.cw.send(datagram, self.tcpConn)
+
+    def sendNamedMovementDone(self):
+        if False:
+            return 10
+        datagram = self.msgHandler.makeNamedMovementDone()
+        self.cw.send(datagram, self.tcpConn)
+
+    def sendMoveNamedObject(self, xyz, hpr, scale, color, hidden, name):
+        if False:
+            i = 10
+            return i + 15
+        ClusterClient.notify.debug('send named object move...')
+        ClusterClient.notify.debug('packet %d xyz, hpr=%f %f %f %f %f %f' % (self.msgHandler.packetNumber, xyz[0], xyz[1], xyz[2], hpr[0], hpr[1], hpr[2]))
+        datagram = self.msgHandler.makeNamedObjectMovementDatagram(xyz, hpr, scale, color, hidden, name)
+        self.cw.send(datagram, self.tcpConn)
+
+    def sendMoveCam(self, xyz, hpr):
+        if False:
+            for i in range(10):
+                print('nop')
+        ClusterClient.notify.debug('send cam move...')
+        ClusterClient.notify.debug('packet %d xyz, hpr=%f %f %f %f %f %f' % (self.msgHandler.packetNumber, xyz[0], xyz[1], xyz[2], hpr[0], hpr[1], hpr[2]))
+        datagram = self.msgHandler.makeCamMovementDatagram(xyz, hpr)
+        self.cw.send(datagram, self.tcpConn)
+
+    def sendMoveSelected(self, xyz, hpr, scale):
+        if False:
+            print('Hello World!')
+        ClusterClient.notify.debug('send move selected...')
+        ClusterClient.notify.debug('packet %d xyz, hpr=%f %f %f %f %f %f %f %f %f' % (self.msgHandler.packetNumber, xyz[0], xyz[1], xyz[2], hpr[0], hpr[1], hpr[2], scale[0], scale[1], scale[2]))
+        datagram = self.msgHandler.makeSelectedMovementDatagram(xyz, hpr, scale)
+        self.cw.send(datagram, self.tcpConn)
+
+    def getSwapReady(self):
+        if False:
+            i = 10
+            return i + 15
+        while 1:
+            (datagram, dgi, type) = self.msgHandler.blockingRead(self.qcr)
+            if type == CLUSTER_SWAP_READY:
+                break
+            else:
+                self.notify.warning('was expecting SWAP_READY, got %d' % type)
+
+    def sendSwapNow(self):
+        if False:
+            print('Hello World!')
+        ClusterClient.notify.debug('display connect send swap now, packet %d' % self.msgHandler.packetNumber)
+        datagram = self.msgHandler.makeSwapNowDatagram()
+        self.cw.send(datagram, self.tcpConn)
+
+    def sendCommandString(self, commandString):
+        if False:
+            return 10
+        ClusterClient.notify.debug('send command string: %s' % commandString)
+        datagram = self.msgHandler.makeCommandStringDatagram(commandString)
+        self.cw.send(datagram, self.tcpConn)
+
+    def sendExit(self):
+        if False:
+            for i in range(10):
+                print('nop')
+        ClusterClient.notify.debug('display connect send exit, packet %d' % self.msgHandler.packetNumber)
+        datagram = self.msgHandler.makeExitDatagram()
+        self.cw.send(datagram, self.tcpConn)
+
+    def sendTimeData(self, frameCount, frameTime, dt):
+        if False:
+            for i in range(10):
+                print('nop')
+        ClusterClient.notify.debug('send time data...')
+        datagram = self.msgHandler.makeTimeDataDatagram(frameCount, frameTime, dt)
+        self.cw.send(datagram, self.tcpConn)
+
+class ClusterConfigItem:
+
+    def __init__(self, serverConfigName, serverName, serverDaemonPort, serverMsgPort):
+        if False:
+            i = 10
+            return i + 15
+        self.serverConfigName = serverConfigName
+        self.serverName = serverName
+        self.serverDaemonPort = serverDaemonPort
+        self.serverMsgPort = serverMsgPort
+        self.xyz = Vec3(0)
+        self.hpr = Vec3(0)
+        self.fFrustum = 0
+        self.focalLength = None
+        self.filmSize = None
+        self.filmOffset = None
+
+    def setCamOffset(self, xyz, hpr):
+        if False:
+            return 10
+        self.xyz = xyz
+        self.hpr = hpr
+
+    def setCamFrustum(self, focalLength, filmSize, filmOffset):
+        if False:
+            for i in range(10):
+                print('nop')
+        self.fFrustum = 1
+        self.focalLength = focalLength
+        self.filmSize = filmSize
+        self.filmOffset = filmOffset
+
+def createClusterClient():
+    if False:
+        for i in range(10):
+            print('nop')
+    clusterConfig = base.config.GetString('cluster-config', 'single-server')
+    if clusterConfig not in ClientConfigs:
+        base.notify.warning('createClusterClient: %s cluster-config is undefined.' % clusterConfig)
+        return None
+    displayConfigs = []
+    configList = ClientConfigs[clusterConfig]
+    numConfigs = len(configList)
+    for i in range(numConfigs):
+        configData = configList[i]
+        displayName = configData.get('display name', 'display%d' % i)
+        displayMode = configData.get('display mode', 'server')
+        pos = configData.get('pos', Vec3(0))
+        hpr = configData.get('hpr', Vec3(0))
+        fl = configData.get('focal length', None)
+        fs = configData.get('film size', None)
+        fo = configData.get('film offset', None)
+        if displayMode == 'client':
+            base.cam.setPos(pos)
+            lens = base.cam.node().getLens()
+            lens.setViewHpr(hpr)
+            if fl is not None:
+                lens.setFocalLength(fl)
+            if fs is not None:
+                lens.setFilmSize(fs[0], fs[1])
+            if fo is not None:
+                lens.setFilmOffset(fo[0], fo[1])
+        else:
+            serverConfigName = 'cluster-server-%s' % displayName
+            serverName = base.config.GetString(serverConfigName, '')
+            if serverName == '':
+                base.notify.warning('%s undefined in Configrc: expected by %s display client.' % (serverConfigName, clusterConfig))
+                base.notify.warning('%s will not be used.' % serverConfigName)
+            else:
+                serverDaemonPortConfigName = 'cluster-server-daemon-port-%s' % displayName
+                serverDaemonPort = base.config.GetInt(serverDaemonPortConfigName, CLUSTER_DAEMON_PORT)
+                serverMsgPortConfigName = 'cluster-server-msg-port-%s' % displayName
+                serverMsgPort = base.config.GetInt(serverMsgPortConfigName, CLUSTER_SERVER_PORT)
+                cci = ClusterConfigItem(serverConfigName, serverName, serverDaemonPort, serverMsgPort)
+                cci.setCamOffset(pos, hpr)
+                if fl and fs and fo:
+                    cci.setCamFrustum(fl, fs, fo)
+                displayConfigs.append(cci)
+    if base.clusterSyncFlag:
+        base.notify.warning('autoflip')
+        base.graphicsEngine.setAutoFlip(0)
+        base.notify.warning('ClusterClientSync')
+        return ClusterClientSync(displayConfigs, base.clusterSyncFlag)
+    else:
+        return ClusterClient(displayConfigs, base.clusterSyncFlag)
+
+class DummyClusterClient(DirectObject.DirectObject):
+    """ Dummy class to handle command strings when not in cluster mode """
+    notify = DirectNotifyGlobal.directNotify.newCategory('DummyClusterClient')
+
+    def __init__(self):
+        if False:
+            return 10
+        pass
+
+    def __call__(self, commandString, fLocally=1, serverList=None):
+        if False:
+            print('Hello World!')
+        if fLocally:
+            exec(commandString, __builtins__)

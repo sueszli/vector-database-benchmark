@@ -1,0 +1,135 @@
+import logging
+import time
+import unittest
+from random import randint
+from threading import Thread
+from slack_sdk.errors import SlackClientConfigurationError, SlackClientNotConnectedError
+from slack_sdk.socket_mode.request import SocketModeRequest
+from slack_sdk.socket_mode.client import BaseSocketModeClient
+from slack_sdk import WebClient
+from slack_sdk.socket_mode import SocketModeClient
+from tests.helpers import is_ci_unstable_test_skip_enabled
+from tests.slack_sdk.socket_mode.mock_socket_mode_server import start_socket_mode_server, socket_mode_envelopes, socket_mode_hello_message
+from tests.slack_sdk.socket_mode.mock_web_api_server import setup_mock_web_api_server, cleanup_mock_web_api_server
+import sys
+
+class TestInteractionsBuiltin(unittest.TestCase):
+    logger = logging.getLogger(__name__)
+
+    def setUp(self):
+        if False:
+            print('Hello World!')
+        setup_mock_web_api_server(self)
+        self.web_client = WebClient(token='xoxb-api_test', base_url='http://localhost:8888')
+
+    def tearDown(self):
+        if False:
+            print('Hello World!')
+        cleanup_mock_web_api_server(self)
+
+    def test_buffer_size_validation(self):
+        if False:
+            i = 10
+            return i + 15
+        try:
+            SocketModeClient(app_token='xapp-A111-222-xyz', receive_buffer_size=1)
+            self.fail('SlackClientConfigurationError is expected here')
+        except SlackClientConfigurationError:
+            pass
+
+    def test_interactions(self):
+        if False:
+            return 10
+        if is_ci_unstable_test_skip_enabled():
+            return
+        default_recursion_limit = sys.getrecursionlimit()
+        sys.setrecursionlimit(10000)
+        t = Thread(target=start_socket_mode_server(self, 3011))
+        t.daemon = True
+        t.start()
+        time.sleep(2)
+        try:
+            buffer_size_list = [1024, 9000, 35, 49] + list([randint(16, 128) for _ in range(10)])
+            for buffer_size in buffer_size_list:
+                self.reset_sever_state()
+                received_messages = []
+                received_socket_mode_requests = []
+
+                def message_handler(message):
+                    if False:
+                        return 10
+                    self.logger.info(f'Raw Message: {message}')
+                    time.sleep(randint(50, 200) / 1000)
+                    received_messages.append(message)
+
+                def socket_mode_request_handler(client: BaseSocketModeClient, request: SocketModeRequest):
+                    if False:
+                        return 10
+                    self.logger.info(f'Socket Mode Request: {request}')
+                    time.sleep(randint(50, 200) / 1000)
+                    received_socket_mode_requests.append(request)
+                self.logger.info(f'Started testing with buffer size: {buffer_size}')
+                client = SocketModeClient(app_token='xapp-A111-222-xyz', web_client=self.web_client, on_message_listeners=[message_handler], receive_buffer_size=buffer_size, auto_reconnect_enabled=False, trace_enabled=True)
+                try:
+                    client.socket_mode_request_listeners.append(socket_mode_request_handler)
+                    client.wss_uri = 'ws://0.0.0.0:3011/link'
+                    client.connect()
+                    self.assertTrue(client.is_connected())
+                    time.sleep(2)
+                    repeat = 2
+                    for _ in range(repeat):
+                        client.send_message('foo')
+                        client.send_message('bar')
+                        client.send_message('baz')
+                    self.assertTrue(client.is_connected())
+                    expected = socket_mode_envelopes + [socket_mode_hello_message] + ['foo', 'bar', 'baz'] * repeat
+                    expected.sort()
+                    count = 0
+                    while count < 5 and len(received_messages) < len(expected):
+                        time.sleep(0.1)
+                        self.logger.debug(f'Received messages: {len(received_messages)}')
+                        count += 0.1
+                    received_messages.sort()
+                    self.assertEqual(len(received_messages), len(expected))
+                    self.assertEqual(received_messages, expected)
+                    self.assertEqual(len(socket_mode_envelopes), len(received_socket_mode_requests))
+                finally:
+                    pass
+                self.logger.info(f'Passed with buffer size: {buffer_size}')
+        finally:
+            sys.setrecursionlimit(default_recursion_limit)
+            client.close()
+            self.server.stop()
+            self.server.close()
+        self.logger.info(f'Passed with buffer size: {buffer_size_list}')
+
+    def test_send_message_while_disconnection(self):
+        if False:
+            return 10
+        if is_ci_unstable_test_skip_enabled():
+            return
+        t = Thread(target=start_socket_mode_server(self, 3011))
+        t.daemon = True
+        t.start()
+        time.sleep(2)
+        try:
+            self.reset_sever_state()
+            client = SocketModeClient(app_token='xapp-A111-222-xyz', web_client=self.web_client, auto_reconnect_enabled=False, trace_enabled=True)
+            client.wss_uri = 'ws://0.0.0.0:3011/link'
+            client.connect()
+            time.sleep(1)
+            client.send_message('foo')
+            client.disconnect()
+            time.sleep(1)
+            try:
+                client.send_message('foo')
+                self.fail('SlackClientNotConnectedError is expected here')
+            except SlackClientNotConnectedError as _:
+                pass
+            client.connect()
+            time.sleep(1)
+            client.send_message('foo')
+        finally:
+            client.close()
+            self.server.stop()
+            self.server.close()

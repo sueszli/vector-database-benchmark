@@ -1,0 +1,86 @@
+from bigdl.chronos.utils import LazyImport
+AutoProphet = LazyImport('bigdl.chronos.autots.model.auto_prophet.AutoProphet')
+hp = LazyImport('bigdl.orca.automl.hp')
+import os
+import numpy as np
+import pandas as pd
+import tempfile
+from unittest import TestCase
+from ... import op_distributed, op_diff_set_all
+
+def get_data():
+    if False:
+        print('Hello World!')
+    seq_len = 480
+    data = pd.DataFrame(pd.date_range('20130101', periods=seq_len), columns=['ds'])
+    data.insert(1, 'y', np.random.rand(seq_len))
+    expect_horizon = np.random.randint(40, 50)
+    return (data, expect_horizon)
+
+@op_distributed
+@op_diff_set_all
+class TestAutoProphet(TestCase):
+
+    def setUp(self) -> None:
+        if False:
+            i = 10
+            return i + 15
+        from bigdl.orca import init_orca_context
+        init_orca_context(cores=4, init_ray_on_spark=True)
+
+    def tearDown(self) -> None:
+        if False:
+            while True:
+                i = 10
+        from bigdl.orca import stop_orca_context
+        stop_orca_context()
+
+    def test_auto_prophet_fit(self):
+        if False:
+            return 10
+        (data, expect_horizon) = get_data()
+        auto_prophet = AutoProphet(metric='mse', changepoint_prior_scale=hp.loguniform(0.001, 0.5), seasonality_prior_scale=hp.loguniform(0.01, 10), holidays_prior_scale=hp.loguniform(0.01, 10), seasonality_mode=hp.choice(['additive', 'multiplicative']), changepoint_range=hp.uniform(0.8, 0.95))
+        auto_prophet.fit(data=data, expect_horizon=expect_horizon, n_sampling=1)
+        best_model = auto_prophet.get_best_model()
+        assert 0.001 <= best_model.changepoint_prior_scale <= 0.5
+        assert 0.01 <= best_model.seasonality_prior_scale <= 10
+        assert 0.01 <= best_model.holidays_prior_scale <= 10
+        assert best_model.seasonality_mode in ['additive', 'multiplicative']
+        assert 0.8 <= best_model.changepoint_range <= 0.95
+
+    def test_auto_prophet_predict_evaluate(self):
+        if False:
+            while True:
+                i = 10
+        (data, expect_horizon) = get_data()
+        from torchmetrics.functional import mean_squared_error
+        import torch
+
+        def customized_metric(y_true, y_pred):
+            if False:
+                while True:
+                    i = 10
+            return mean_squared_error(torch.from_numpy(y_pred), torch.from_numpy(y_true)).numpy()
+        auto_prophet = AutoProphet(metric=customized_metric, metric_mode='min', changepoint_prior_scale=hp.loguniform(0.001, 0.5), seasonality_prior_scale=hp.loguniform(0.01, 10), holidays_prior_scale=hp.loguniform(0.01, 10), seasonality_mode=hp.choice(['additive', 'multiplicative']), changepoint_range=hp.uniform(0.8, 0.95))
+        auto_prophet.fit(data=data, cross_validation=False, expect_horizon=expect_horizon, n_sampling=1)
+        auto_prophet.predict(horizon=1, freq='D')
+        test_data = pd.DataFrame(pd.date_range('20150101', periods=10), columns=['ds'])
+        test_data.insert(1, 'y', np.random.rand(10))
+        auto_prophet.evaluate(test_data)
+
+    def test_auto_prophet_save_load(self):
+        if False:
+            print('Hello World!')
+        (data, expect_horizon) = get_data()
+        auto_prophet = AutoProphet(metric='mse', changepoint_prior_scale=hp.loguniform(0.001, 0.5), seasonality_prior_scale=hp.loguniform(0.01, 10), holidays_prior_scale=hp.loguniform(0.01, 10), seasonality_mode=hp.choice(['additive', 'multiplicative']), changepoint_range=hp.uniform(0.8, 0.95))
+        auto_prophet.fit(data=data, expect_horizon=expect_horizon, n_sampling=1)
+        with tempfile.TemporaryDirectory() as tmp_dir_name:
+            ckpt_name = os.path.join(tmp_dir_name, 'json')
+            auto_prophet.save(ckpt_name)
+            pred = auto_prophet.predict(horizon=10, freq='D')
+            auto_prophet.restore(ckpt_name)
+            pred_old = auto_prophet.predict(horizon=10, freq='D')
+            new_auto_prophet = AutoProphet(load_dir=ckpt_name)
+            pred_new = new_auto_prophet.predict(horizon=10, freq='D')
+            np.testing.assert_almost_equal(pred.yhat.values, pred_new.yhat.values)
+            np.testing.assert_almost_equal(pred.yhat.values, pred_old.yhat.values)

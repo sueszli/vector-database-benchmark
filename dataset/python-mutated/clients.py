@@ -1,0 +1,132 @@
+import abc
+import asyncio
+from types import TracebackType
+from typing import Any, ClassVar, Dict, List, Optional, Tuple, Type
+from websockets.client import WebSocketClientProtocol, connect
+from websockets.exceptions import ConnectionClosed
+from prefect.events import Event
+
+class EventsClient(abc.ABC):
+    """The abstract interface for all Prefect Events clients"""
+
+    async def emit(self, event: Event) -> None:
+        """Emit a single event"""
+        if not hasattr(self, '_in_context'):
+            raise TypeError('Events may only be emitted while this client is being used as a context manager')
+        return await self._emit(event)
+
+    @abc.abstractmethod
+    async def _emit(self, event: Event) -> None:
+        ...
+
+    async def __aenter__(self) -> 'EventsClient':
+        self._in_context = True
+        return self
+
+    async def __aexit__(self, exc_type: Optional[Type[Exception]], exc_val: Optional[Exception], exc_tb: Optional[TracebackType]) -> None:
+        del self._in_context
+        return None
+
+class NullEventsClient(EventsClient):
+    """A Prefect Events client implementation that does nothing"""
+
+    async def _emit(self, event: Event) -> None:
+        pass
+
+class AssertingEventsClient(EventsClient):
+    """A Prefect Events client that records all events sent to it for inspection during
+    tests."""
+    last: ClassVar['AssertingEventsClient | None'] = None
+    all: ClassVar[List['AssertingEventsClient']] = []
+    args: Tuple
+    kwargs: Dict[str, Any]
+    events: List[Event]
+
+    def __init__(self, *args, **kwargs):
+        if False:
+            print('Hello World!')
+        AssertingEventsClient.last = self
+        AssertingEventsClient.all.append(self)
+        self.args = args
+        self.kwargs = kwargs
+
+    @classmethod
+    def reset(cls) -> None:
+        if False:
+            while True:
+                i = 10
+        'Reset all captured instances and their events. For use between\n        tests'
+        cls.last = None
+        cls.all = []
+
+    async def _emit(self, event: Event) -> None:
+        self.events.append(event)
+
+    async def __aenter__(self) -> 'AssertingEventsClient':
+        await super().__aenter__()
+        self.events = []
+        return self
+
+class PrefectCloudEventsClient(EventsClient):
+    """A Prefect Events client that streams Events to a Prefect Cloud Workspace"""
+    _websocket: Optional[WebSocketClientProtocol]
+    _unconfirmed_events: List[Event]
+
+    def __init__(self, api_url: str, api_key: str, reconnection_attempts: int=10, checkpoint_every: int=20):
+        if False:
+            i = 10
+            return i + 15
+        '\n        Args:\n            api_url: The base URL for a Prefect Cloud workspace\n            api_key: The API of an actor with the manage_events scope\n            reconnection_attempts: When the client is disconnected, how many times\n                the client should attempt to reconnect\n            checkpoint_every: How often the client should sync with the server to\n                confirm receipt of all previously sent events\n        '
+        socket_url = api_url.replace('https://', 'wss://').replace('http://', 'ws://').rstrip('/')
+        self._connect = connect(socket_url + '/events/in', extra_headers={'Authorization': f'bearer {api_key}'})
+        self._websocket = None
+        self._reconnection_attempts = reconnection_attempts
+        self._unconfirmed_events = []
+        self._checkpoint_every = checkpoint_every
+
+    async def __aenter__(self) -> 'PrefectCloudEventsClient':
+        await super().__aenter__()
+        await self._reconnect()
+        return self
+
+    async def __aexit__(self, exc_type: Optional[Type[Exception]], exc_val: Optional[Exception], exc_tb: Optional[TracebackType]) -> None:
+        self._websocket = None
+        await self._connect.__aexit__(exc_type, exc_val, exc_tb)
+        return await super().__aexit__(exc_type, exc_val, exc_tb)
+
+    async def _reconnect(self) -> None:
+        if self._websocket:
+            self._websocket = None
+            await self._connect.__aexit__(None, None, None)
+        self._websocket = await self._connect.__aenter__()
+        pong = await self._websocket.ping()
+        await pong
+        events_to_resend = self._unconfirmed_events
+        self._unconfirmed_events = []
+        for event in events_to_resend:
+            await self.emit(event)
+
+    async def _checkpoint(self, event: Event) -> None:
+        assert self._websocket
+        self._unconfirmed_events.append(event)
+        unconfirmed_count = len(self._unconfirmed_events)
+        if unconfirmed_count < self._checkpoint_every:
+            return
+        pong = await self._websocket.ping()
+        await pong
+        self._unconfirmed_events = self._unconfirmed_events[unconfirmed_count:]
+
+    async def _emit(self, event: Event) -> None:
+        for i in range(self._reconnection_attempts + 1):
+            try:
+                if not self._websocket or i > 0:
+                    await self._reconnect()
+                    assert self._websocket
+                await self._websocket.send(event.json())
+                await self._checkpoint(event)
+                return
+            except ConnectionClosed:
+                if i == self._reconnection_attempts:
+                    raise
+                if i > 2:
+                    await asyncio.sleep(1)

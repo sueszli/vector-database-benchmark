@@ -1,0 +1,18 @@
+from __future__ import print_function
+import sys
+sys.path.insert(1, '../../')
+import h2o
+from tests import pyunit_utils
+
+def test_sort_multiCluster():
+    if False:
+        return 10
+    df = h2o.import_file(pyunit_utils.locate('bigdata/laptop/sort_merge_tests/pubdev_8866_mem_leak_data.csv'))
+    dfsorted = df.sort('C2')
+    checkCol = 10
+    prob = checkCol / df.nrow
+    pyunit_utils.check_sorted_1_column(dfsorted, 1, prob=prob)
+if __name__ == '__main__':
+    pyunit_utils.standalone_test(test_sort_multiCluster)
+else:
+    test_sort_multiCluster()

@@ -1,0 +1,82 @@
+"""
+Closeness centrality measures.
+"""
+import functools
+import networkx as nx
+from networkx.exception import NetworkXError
+from networkx.utils.decorators import not_implemented_for
+__all__ = ['closeness_centrality', 'incremental_closeness_centrality']
+
+@nx._dispatch(edge_attrs='distance')
+def closeness_centrality(G, u=None, distance=None, wf_improved=True):
+    if False:
+        return 10
+    'Compute closeness centrality for nodes.\n\n    Closeness centrality [1]_ of a node `u` is the reciprocal of the\n    average shortest path distance to `u` over all `n-1` reachable nodes.\n\n    .. math::\n\n        C(u) = \\frac{n - 1}{\\sum_{v=1}^{n-1} d(v, u)},\n\n    where `d(v, u)` is the shortest-path distance between `v` and `u`,\n    and `n-1` is the number of nodes reachable from `u`. Notice that the\n    closeness distance function computes the incoming distance to `u`\n    for directed graphs. To use outward distance, act on `G.reverse()`.\n\n    Notice that higher values of closeness indicate higher centrality.\n\n    Wasserman and Faust propose an improved formula for graphs with\n    more than one connected component. The result is "a ratio of the\n    fraction of actors in the group who are reachable, to the average\n    distance" from the reachable actors [2]_. You might think this\n    scale factor is inverted but it is not. As is, nodes from small\n    components receive a smaller closeness value. Letting `N` denote\n    the number of nodes in the graph,\n\n    .. math::\n\n        C_{WF}(u) = \\frac{n-1}{N-1} \\frac{n - 1}{\\sum_{v=1}^{n-1} d(v, u)},\n\n    Parameters\n    ----------\n    G : graph\n      A NetworkX graph\n\n    u : node, optional\n      Return only the value for node u\n\n    distance : edge attribute key, optional (default=None)\n      Use the specified edge attribute as the edge distance in shortest\n      path calculations.  If `None` (the default) all edges have a distance of 1.\n      Absent edge attributes are assigned a distance of 1. Note that no check\n      is performed to ensure that edges have the provided attribute.\n\n    wf_improved : bool, optional (default=True)\n      If True, scale by the fraction of nodes reachable. This gives the\n      Wasserman and Faust improved formula. For single component graphs\n      it is the same as the original formula.\n\n    Returns\n    -------\n    nodes : dictionary\n      Dictionary of nodes with closeness centrality as the value.\n\n    Examples\n    --------\n    >>> G = nx.Graph([(0, 1), (0, 2), (0, 3), (1, 2), (1, 3)])\n    >>> nx.closeness_centrality(G)\n    {0: 1.0, 1: 1.0, 2: 0.75, 3: 0.75}\n\n    See Also\n    --------\n    betweenness_centrality, load_centrality, eigenvector_centrality,\n    degree_centrality, incremental_closeness_centrality\n\n    Notes\n    -----\n    The closeness centrality is normalized to `(n-1)/(|G|-1)` where\n    `n` is the number of nodes in the connected part of graph\n    containing the node.  If the graph is not completely connected,\n    this algorithm computes the closeness centrality for each\n    connected part separately scaled by that parts size.\n\n    If the \'distance\' keyword is set to an edge attribute key then the\n    shortest-path length will be computed using Dijkstra\'s algorithm with\n    that edge attribute as the edge weight.\n\n    The closeness centrality uses *inward* distance to a node, not outward.\n    If you want to use outword distances apply the function to `G.reverse()`\n\n    In NetworkX 2.2 and earlier a bug caused Dijkstra\'s algorithm to use the\n    outward distance rather than the inward distance. If you use a \'distance\'\n    keyword and a DiGraph, your results will change between v2.2 and v2.3.\n\n    References\n    ----------\n    .. [1] Linton C. Freeman: Centrality in networks: I.\n       Conceptual clarification. Social Networks 1:215-239, 1979.\n       https://doi.org/10.1016/0378-8733(78)90021-7\n    .. [2] pg. 201 of Wasserman, S. and Faust, K.,\n       Social Network Analysis: Methods and Applications, 1994,\n       Cambridge University Press.\n    '
+    if G.is_directed():
+        G = G.reverse()
+    if distance is not None:
+        path_length = functools.partial(nx.single_source_dijkstra_path_length, weight=distance)
+    else:
+        path_length = nx.single_source_shortest_path_length
+    if u is None:
+        nodes = G.nodes
+    else:
+        nodes = [u]
+    closeness_dict = {}
+    for n in nodes:
+        sp = path_length(G, n)
+        totsp = sum(sp.values())
+        len_G = len(G)
+        _closeness_centrality = 0.0
+        if totsp > 0.0 and len_G > 1:
+            _closeness_centrality = (len(sp) - 1.0) / totsp
+            if wf_improved:
+                s = (len(sp) - 1.0) / (len_G - 1)
+                _closeness_centrality *= s
+        closeness_dict[n] = _closeness_centrality
+    if u is not None:
+        return closeness_dict[u]
+    return closeness_dict
+
+@not_implemented_for('directed')
+@nx._dispatch
+def incremental_closeness_centrality(G, edge, prev_cc=None, insertion=True, wf_improved=True):
+    if False:
+        while True:
+            i = 10
+    'Incremental closeness centrality for nodes.\n\n    Compute closeness centrality for nodes using level-based work filtering\n    as described in Incremental Algorithms for Closeness Centrality by Sariyuce et al.\n\n    Level-based work filtering detects unnecessary updates to the closeness\n    centrality and filters them out.\n\n    ---\n    From "Incremental Algorithms for Closeness Centrality":\n\n    Theorem 1: Let :math:`G = (V, E)` be a graph and u and v be two vertices in V\n    such that there is no edge (u, v) in E. Let :math:`G\' = (V, E \\cup uv)`\n    Then :math:`cc[s] = cc\'[s]` if and only if :math:`\\left|dG(s, u) - dG(s, v)\\right| \\leq 1`.\n\n    Where :math:`dG(u, v)` denotes the length of the shortest path between\n    two vertices u, v in a graph G, cc[s] is the closeness centrality for a\n    vertex s in V, and cc\'[s] is the closeness centrality for a\n    vertex s in V, with the (u, v) edge added.\n    ---\n\n    We use Theorem 1 to filter out updates when adding or removing an edge.\n    When adding an edge (u, v), we compute the shortest path lengths from all\n    other nodes to u and to v before the node is added. When removing an edge,\n    we compute the shortest path lengths after the edge is removed. Then we\n    apply Theorem 1 to use previously computed closeness centrality for nodes\n    where :math:`\\left|dG(s, u) - dG(s, v)\\right| \\leq 1`. This works only for\n    undirected, unweighted graphs; the distance argument is not supported.\n\n    Closeness centrality [1]_ of a node `u` is the reciprocal of the\n    sum of the shortest path distances from `u` to all `n-1` other nodes.\n    Since the sum of distances depends on the number of nodes in the\n    graph, closeness is normalized by the sum of minimum possible\n    distances `n-1`.\n\n    .. math::\n\n        C(u) = \\frac{n - 1}{\\sum_{v=1}^{n-1} d(v, u)},\n\n    where `d(v, u)` is the shortest-path distance between `v` and `u`,\n    and `n` is the number of nodes in the graph.\n\n    Notice that higher values of closeness indicate higher centrality.\n\n    Parameters\n    ----------\n    G : graph\n      A NetworkX graph\n\n    edge : tuple\n      The modified edge (u, v) in the graph.\n\n    prev_cc : dictionary\n      The previous closeness centrality for all nodes in the graph.\n\n    insertion : bool, optional\n      If True (default) the edge was inserted, otherwise it was deleted from the graph.\n\n    wf_improved : bool, optional (default=True)\n      If True, scale by the fraction of nodes reachable. This gives the\n      Wasserman and Faust improved formula. For single component graphs\n      it is the same as the original formula.\n\n    Returns\n    -------\n    nodes : dictionary\n      Dictionary of nodes with closeness centrality as the value.\n\n    See Also\n    --------\n    betweenness_centrality, load_centrality, eigenvector_centrality,\n    degree_centrality, closeness_centrality\n\n    Notes\n    -----\n    The closeness centrality is normalized to `(n-1)/(|G|-1)` where\n    `n` is the number of nodes in the connected part of graph\n    containing the node.  If the graph is not completely connected,\n    this algorithm computes the closeness centrality for each\n    connected part separately.\n\n    References\n    ----------\n    .. [1] Freeman, L.C., 1979. Centrality in networks: I.\n       Conceptual clarification.  Social Networks 1, 215--239.\n       https://doi.org/10.1016/0378-8733(78)90021-7\n    .. [2] Sariyuce, A.E. ; Kaya, K. ; Saule, E. ; Catalyiirek, U.V. Incremental\n       Algorithms for Closeness Centrality. 2013 IEEE International Conference on Big Data\n       http://sariyuce.com/papers/bigdata13.pdf\n    '
+    if prev_cc is not None and set(prev_cc.keys()) != set(G.nodes()):
+        raise NetworkXError('prev_cc and G do not have the same nodes')
+    (u, v) = edge
+    path_length = nx.single_source_shortest_path_length
+    if insertion:
+        du = path_length(G, u)
+        dv = path_length(G, v)
+        G.add_edge(u, v)
+    else:
+        G.remove_edge(u, v)
+        du = path_length(G, u)
+        dv = path_length(G, v)
+    if prev_cc is None:
+        return nx.closeness_centrality(G)
+    nodes = G.nodes()
+    closeness_dict = {}
+    for n in nodes:
+        if n in du and n in dv and (abs(du[n] - dv[n]) <= 1):
+            closeness_dict[n] = prev_cc[n]
+        else:
+            sp = path_length(G, n)
+            totsp = sum(sp.values())
+            len_G = len(G)
+            _closeness_centrality = 0.0
+            if totsp > 0.0 and len_G > 1:
+                _closeness_centrality = (len(sp) - 1.0) / totsp
+                if wf_improved:
+                    s = (len(sp) - 1.0) / (len_G - 1)
+                    _closeness_centrality *= s
+            closeness_dict[n] = _closeness_centrality
+    if insertion:
+        G.remove_edge(u, v)
+    else:
+        G.add_edge(u, v)
+    return closeness_dict

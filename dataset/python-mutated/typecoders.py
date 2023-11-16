@@ -1,0 +1,173 @@
+"""Type coders registration.
+
+This module contains functionality to define and use coders for custom classes.
+Let's say we have a class Xyz and we are processing a PCollection with elements
+of type Xyz. If we do not register a coder for Xyz, a default pickle-based
+fallback coder will be used. This can be undesirable for two reasons. First, we
+may want a faster coder or a more space efficient one. Second, the pickle-based
+coder is not deterministic in the sense that objects like dictionaries or sets
+are not guaranteed to be encoded in the same way every time (elements are not
+really ordered).
+
+Two (sometimes three) steps are needed to define and use a custom coder:
+  - define the coder class
+  - associate the code with the class (a.k.a. coder registration)
+  - typehint DoFns or transforms with the new class or composite types using
+    the class.
+
+A coder class is defined by subclassing from CoderBase and defining the
+encode_to_bytes and decode_from_bytes methods. The framework uses duck-typing
+for coders so it is not strictly required to subclass from CoderBase as long as
+the encode/decode methods are defined.
+
+Registering a coder class is made with a register_coder() call::
+
+  from apache_beam import coders
+  ...
+  coders.registry.register_coder(Xyz, XyzCoder)
+
+Additionally, DoFns and PTransforms may need type hints. This is not always
+necessary since there is functionality to infer the return types of DoFns by
+analyzing the code. For instance, for the function below the return type of
+'Xyz' will be inferred::
+
+  def MakeXyzs(v):
+    return Xyz(v)
+
+If Xyz is inferred then its coder will be used whenever the framework needs to
+serialize data (e.g., writing to the shuffler subsystem responsible for group by
+key operations). If a typehint is needed it can be specified by decorating the
+DoFns or using with_input_types/with_output_types methods on PTransforms. For
+example, the above function can be decorated::
+
+  @with_output_types(Xyz)
+  def MakeXyzs(v):
+    return complex_operation_returning_Xyz(v)
+
+See apache_beam.typehints.decorators module for more details.
+"""
+from typing import Any
+from typing import Dict
+from typing import Iterable
+from typing import List
+from typing import Type
+from apache_beam.coders import coders
+from apache_beam.typehints import typehints
+__all__ = ['registry']
+
+class CoderRegistry(object):
+    """A coder registry for typehint/coder associations."""
+
+    def __init__(self, fallback_coder=None):
+        if False:
+            i = 10
+            return i + 15
+        self._coders = {}
+        self.custom_types = []
+        self.register_standard_coders(fallback_coder)
+
+    def register_standard_coders(self, fallback_coder):
+        if False:
+            while True:
+                i = 10
+        'Register coders for all basic and composite types.'
+        self._register_coder_internal(int, coders.VarIntCoder)
+        self._register_coder_internal(float, coders.FloatCoder)
+        self._register_coder_internal(bytes, coders.BytesCoder)
+        self._register_coder_internal(bool, coders.BooleanCoder)
+        self._register_coder_internal(str, coders.StrUtf8Coder)
+        self._register_coder_internal(typehints.TupleConstraint, coders.TupleCoder)
+        self._register_coder_internal(typehints.DictConstraint, coders.MapCoder)
+        default_fallback_coders = [coders.ProtoCoder, coders.ProtoPlusCoder, coders.FastPrimitivesCoder]
+        self._fallback_coder = fallback_coder or FirstOf(default_fallback_coders)
+
+    def register_fallback_coder(self, fallback_coder):
+        if False:
+            return 10
+        self._fallback_coder = FirstOf([fallback_coder, self._fallback_coder])
+
+    def _register_coder_internal(self, typehint_type, typehint_coder_class):
+        if False:
+            while True:
+                i = 10
+        self._coders[typehint_type] = typehint_coder_class
+
+    def register_coder(self, typehint_type, typehint_coder_class):
+        if False:
+            print('Hello World!')
+        if not isinstance(typehint_coder_class, type):
+            raise TypeError('Coder registration requires a coder class object. Received %r instead.' % typehint_coder_class)
+        if typehint_type not in self.custom_types:
+            self.custom_types.append(typehint_type)
+        if typehint_type.__module__ == '__main__':
+            typehint_type = getattr(typehint_type, '__name__', str(typehint_type))
+        self._register_coder_internal(typehint_type, typehint_coder_class)
+
+    def get_coder(self, typehint):
+        if False:
+            return 10
+        if typehint and typehint.__module__ == '__main__':
+            typehint = getattr(typehint, '__name__', str(typehint))
+        coder = self._coders.get(typehint.__class__ if isinstance(typehint, typehints.TypeConstraint) else typehint, None)
+        if isinstance(typehint, typehints.TypeConstraint) and coder is not None:
+            return coder.from_type_hint(typehint, self)
+        if coder is None:
+            if not hasattr(self, '_fallback_coder'):
+                raise RuntimeError('Coder registry has no fallback coder. This can happen if the fast_coders module could not be imported.')
+            if isinstance(typehint, typehints.IterableTypeConstraint):
+                return coders.IterableCoder.from_type_hint(typehint, self)
+            elif isinstance(typehint, typehints.ListConstraint):
+                return coders.ListCoder.from_type_hint(typehint, self)
+            elif typehints.is_nullable(typehint):
+                return coders.NullableCoder.from_type_hint(typehint, self)
+            elif typehint is None:
+                pass
+            elif typehint is object or typehint == typehints.Any:
+                pass
+            elif isinstance(typehint, typehints.TypeVariable):
+                pass
+            else:
+                pass
+            coder = self._fallback_coder
+        return coder.from_type_hint(typehint, self)
+
+    def get_custom_type_coder_tuples(self, types):
+        if False:
+            print('Hello World!')
+        'Returns type/coder tuples for all custom types passed in.'
+        return [(t, self._coders[t]) for t in types if t in self.custom_types]
+
+    def verify_deterministic(self, key_coder, op_name, silent=True):
+        if False:
+            i = 10
+            return i + 15
+        if not key_coder.is_deterministic():
+            error_msg = 'The key coder "%s" for %s is not deterministic. This may result in incorrect pipeline output. This can be fixed by adding a type hint to the operation preceding the GroupByKey step, and for custom key classes, by writing a deterministic custom Coder. Please see the documentation for more details.' % (key_coder, op_name)
+            return key_coder.as_deterministic_coder(op_name, error_msg)
+        else:
+            return key_coder
+
+class FirstOf(object):
+    """For internal use only; no backwards-compatibility guarantees.
+
+  A class used to get the first matching coder from a list of coders."""
+
+    def __init__(self, coders):
+        if False:
+            while True:
+                i = 10
+        self._coders = coders
+
+    def from_type_hint(self, typehint, registry):
+        if False:
+            for i in range(10):
+                print('nop')
+        messages = []
+        for coder in self._coders:
+            try:
+                return coder.from_type_hint(typehint, registry)
+            except Exception as e:
+                msg = '%s could not provide a Coder for type %s: %s' % (coder, typehint, e)
+                messages.append(msg)
+        raise ValueError('Cannot provide coder for %s: %s' % (typehint, ';'.join(messages)))
+registry = CoderRegistry()

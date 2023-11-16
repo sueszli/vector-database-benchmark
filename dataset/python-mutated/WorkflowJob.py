@@ -1,0 +1,34 @@
+from datetime import datetime, timezone
+from . import Framework
+
+class WorkflowJob(Framework.TestCase):
+
+    def setUp(self):
+        if False:
+            i = 10
+            return i + 15
+        super().setUp()
+        self.repo = self.g.get_repo('PyGithub/PyGithub')
+        self.job = self.repo.get_workflow_run(4205440316).jobs()[0]
+
+    def testAttributes(self):
+        if False:
+            while True:
+                i = 10
+        self.assertEqual(self.job.id, 11421878319)
+        self.assertEqual(self.job.run_id, 4205440316)
+        self.assertEqual(self.job.run_url, 'https://api.github.com/repos/PyGithub/PyGithub/actions/runs/4205440316')
+        self.assertEqual(self.job.node_id, 'CR_kwDOGpsAJ88AAAACqMwILw')
+        self.assertEqual(self.job.head_sha, '06ec040b2eeef6c0316dd5abcda0608525a3f205')
+        self.assertEqual(self.job.url, 'https://api.github.com/repos/PyGithub/PyGithub/actions/jobs/11421878319')
+        self.assertEqual(self.job.html_url, 'https://github.com/PyGithub/PyGithub/actions/runs/4205440316/jobs/7297536068')
+        self.assertEqual(self.job.status, 'completed')
+        self.assertEqual(self.job.conclusion, 'success')
+        started_at = datetime(2023, 2, 17, 16, 3, 46, tzinfo=timezone.utc)
+        self.assertEqual(self.job.started_at, started_at)
+        completed_at = datetime(2023, 2, 17, 16, 4, 52, tzinfo=timezone.utc)
+        self.assertEqual(self.job.completed_at, completed_at)
+        self.assertEqual(self.job.name, 'test (Python 3.7)')
+        self.assertEqual(self.job.check_run_url, 'https://api.github.com/repos/PyGithub/PyGithub/check-runs/11421878319')
+        self.assertListKeyEqual(self.job.steps, lambda s: s.name, ['Set up job', 'Run actions/checkout@v2', 'Set up Python', 'Install tox', 'Run tests', 'Upload coverage to Codecov', 'Post Set up Python', 'Post Run actions/checkout@v2', 'Complete job'])
+        self.assertEqual(self.job.logs_url(), 'https://pipelines.actions.githubusercontent.com/serviceHosts/d560a817-28d4-4544-a539-eb35c2a56899/_apis/pipelines/1/runs/5/signedlogcontent/5?urlExpires=2023-03-15T17%3A02%3A58.1305046Z&urlSigningMethod=HMACV1&urlSignature=abcdefghijklmn')

@@ -1,0 +1,22 @@
+from typing import Any, Optional, Tuple
+from ray.util.annotations import DeveloperAPI
+
+@DeveloperAPI
+class NodeLaunchException(Exception):
+    """A structured exception that can be thrown by a node provider during a
+    `create_node` call to pass additional information for observability.
+    """
+
+    def __init__(self, category: str, description: str, src_exc_info: Optional[Tuple[Any, Any, Any]]):
+        if False:
+            print('Hello World!')
+        'Args:\n        category: A short (<20 chars) label for the error.\n        description: A longer, human readable description of the error.\n        src_exc_info: The source exception info if applicable. This is a\n              tuple of (type, exception, traceback) as returned by\n              sys.exc_info()\n\n        '
+        super().__init__(f'Node Launch Exception ({category}): {description}')
+        self.category = category
+        self.description = description
+        self.src_exc_info = src_exc_info
+
+    def __reduce__(self):
+        if False:
+            return 10
+        return (self.__class__, (self.category, self.description, None))

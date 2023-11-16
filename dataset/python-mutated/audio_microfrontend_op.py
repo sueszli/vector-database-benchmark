@@ -1,0 +1,20 @@
+"""AudioMicrofrontend Op creates filterbanks from audio data."""
+from tensorflow.lite.experimental.microfrontend.ops import gen_audio_microfrontend_op
+from tensorflow.python.framework import dtypes
+from tensorflow.python.framework import load_library
+from tensorflow.python.framework import ops
+from tensorflow.python.ops import array_ops
+from tensorflow.python.platform import resource_loader
+_audio_microfrontend_op = load_library.load_op_library(resource_loader.get_path_to_datafile('_audio_microfrontend_op.so'))
+
+def audio_microfrontend(audio, sample_rate=16000, window_size=25, window_step=10, num_channels=32, upper_band_limit=7500.0, lower_band_limit=125.0, smoothing_bits=10, even_smoothing=0.025, odd_smoothing=0.06, min_signal_remaining=0.05, enable_pcan=True, pcan_strength=0.95, pcan_offset=80.0, gain_bits=21, enable_log=True, scale_shift=6, left_context=0, right_context=0, frame_stride=1, zero_padding=False, out_scale=1, out_type=dtypes.uint16):
+    if False:
+        print('Hello World!')
+    'Audio Microfrontend Op.\n\n  This Op converts a sequence of audio data into one or more\n  feature vectors containing filterbanks of the input. The\n  conversion process uses a lightweight library to perform:\n\n  1. A slicing window function\n  2. Short-time FFTs\n  3. Filterbank calculations\n  4. Noise reduction\n  5. PCAN Auto Gain Control\n  6. Logarithmic scaling\n\n  Args:\n    audio: 1D Tensor, int16 audio data in temporal ordering.\n    sample_rate: Integer, the sample rate of the audio in Hz.\n    window_size: Integer, length of desired time frames in ms.\n    window_step: Integer, length of step size for the next frame in ms.\n    num_channels: Integer, the number of filterbank channels to use.\n    upper_band_limit: Float, the highest frequency included in the filterbanks.\n    lower_band_limit: Float, the lowest frequency included in the filterbanks.\n    smoothing_bits: Int, scale up signal by 2^(smoothing_bits) before reduction.\n    even_smoothing: Float, smoothing coefficient for even-numbered channels.\n    odd_smoothing: Float, smoothing coefficient for odd-numbered channels.\n    min_signal_remaining: Float, fraction of signal to preserve in smoothing.\n    enable_pcan: Bool, enable PCAN auto gain control.\n    pcan_strength: Float, gain normalization exponent.\n    pcan_offset: Float, positive value added in the normalization denominator.\n    gain_bits: Int, number of fractional bits in the gain.\n    enable_log: Bool, enable logarithmic scaling of filterbanks.\n    scale_shift: Integer, scale filterbanks by 2^(scale_shift).\n    left_context: Integer, number of preceding frames to attach to each frame.\n    right_context: Integer, number of preceding frames to attach to each frame.\n    frame_stride: Integer, M frames to skip over, where output[n] = frame[n*M].\n    zero_padding: Bool, if left/right context is out-of-bounds, attach frame of\n      zeroes. Otherwise, frame[0] or frame[size-1] will be copied.\n    out_scale: Integer, divide all filterbanks by this number.\n    out_type: DType, type of the output Tensor, defaults to UINT16.\n\n  Returns:\n    filterbanks: 2D Tensor, each row is a time frame, each column is a channel.\n\n  Raises:\n    ValueError: If the audio tensor is not explicitly a vector.\n  '
+    audio_shape = audio.shape
+    if audio_shape.ndims is None:
+        raise ValueError('Input to `AudioMicrofrontend` should have known rank.')
+    if len(audio_shape) > 1:
+        audio = array_ops.reshape(audio, [-1])
+    return gen_audio_microfrontend_op.audio_microfrontend(audio, sample_rate, window_size, window_step, num_channels, upper_band_limit, lower_band_limit, smoothing_bits, even_smoothing, odd_smoothing, min_signal_remaining, enable_pcan, pcan_strength, pcan_offset, gain_bits, enable_log, scale_shift, left_context, right_context, frame_stride, zero_padding, out_scale, out_type)
+ops.NotDifferentiable('AudioMicrofrontend')

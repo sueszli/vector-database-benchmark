@@ -1,0 +1,84 @@
+"""
+This example demonstrates the creation of a plot with 
+DateAxisItem and a customized ViewBox. 
+"""
+import numpy as np
+import pyqtgraph as pg
+from pyqtgraph.Qt import QtCore
+
+class CustomViewBox(pg.ViewBox):
+
+    def __init__(self, *args, **kwds):
+        if False:
+            for i in range(10):
+                print('nop')
+        kwds['enableMenu'] = False
+        pg.ViewBox.__init__(self, *args, **kwds)
+        self.setMouseMode(self.RectMode)
+
+    def mouseClickEvent(self, ev):
+        if False:
+            i = 10
+            return i + 15
+        if ev.button() == QtCore.Qt.MouseButton.RightButton:
+            self.autoRange()
+
+    def mouseDragEvent(self, ev, axis=None):
+        if False:
+            print('Hello World!')
+        if axis is not None and ev.button() == QtCore.Qt.MouseButton.RightButton:
+            ev.ignore()
+        else:
+            pg.ViewBox.mouseDragEvent(self, ev, axis=axis)
+
+class CustomTickSliderItem(pg.TickSliderItem):
+
+    def __init__(self, *args, **kwds):
+        if False:
+            while True:
+                i = 10
+        pg.TickSliderItem.__init__(self, *args, **kwds)
+        self.all_ticks = {}
+        self._range = [0, 1]
+
+    def setTicks(self, ticks):
+        if False:
+            print('Hello World!')
+        for (tick, pos) in self.listTicks():
+            self.removeTick(tick)
+        for pos in ticks:
+            tickItem = self.addTick(pos, movable=False, color='#333333')
+            self.all_ticks[pos] = tickItem
+        self.updateRange(None, self._range)
+
+    def updateRange(self, vb, viewRange):
+        if False:
+            return 10
+        origin = self.tickSize / 2.0
+        length = self.length
+        lengthIncludingPadding = length + self.tickSize + 2
+        self._range = viewRange
+        for pos in self.all_ticks:
+            tickValueIncludingPadding = (pos - viewRange[0]) / (viewRange[1] - viewRange[0])
+            tickValue = (tickValueIncludingPadding * lengthIncludingPadding - origin) / length
+            visible = bool(tickValue >= 0 and tickValue <= 1)
+            tick = self.all_ticks[pos]
+            tick.setVisible(visible)
+            if visible:
+                self.setTickValue(tick, tickValue)
+app = pg.mkQApp()
+axis = pg.DateAxisItem(orientation='bottom')
+vb = CustomViewBox()
+pw = pg.PlotWidget(viewBox=vb, axisItems={'bottom': axis}, enableMenu=False, title='PlotItem with DateAxisItem, custom ViewBox and markers on x axis<br>Menu disabled, mouse behavior changed: left-drag to zoom, right-click to reset zoom')
+dates = np.arange(8) * (3600 * 24 * 356)
+pw.plot(x=dates, y=[1, 6, 2, 4, 3, 5, 6, 8], symbol='o')
+tickViewer = CustomTickSliderItem(allowAdd=False, allowRemove=False)
+vb.sigXRangeChanged.connect(tickViewer.updateRange)
+pw.plotItem.layout.addItem(tickViewer, 4, 1)
+tickViewer.setTicks([dates[0], dates[2], dates[-1]])
+pw.show()
+pw.setWindowTitle('pyqtgraph example: customPlot')
+r = pg.PolyLineROI([(0, 0), (10, 10)])
+pw.addItem(r)
+if __name__ == '__main__':
+    pg.exec()

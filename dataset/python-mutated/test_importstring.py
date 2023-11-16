@@ -1,0 +1,27 @@
+"""Tests for IPython.utils.importstring."""
+import pytest
+from IPython.utils.importstring import import_item
+
+def test_import_plain():
+    if False:
+        while True:
+            i = 10
+    'Test simple imports'
+    import os
+    os2 = import_item('os')
+    assert os is os2
+
+def test_import_nested():
+    if False:
+        return 10
+    'Test nested imports from the stdlib'
+    from os import path
+    path2 = import_item('os.path')
+    assert path is path2
+
+def test_import_raises():
+    if False:
+        while True:
+            i = 10
+    'Test that failing imports raise the right exception'
+    pytest.raises(ImportError, import_item, 'IPython.foobar')

@@ -1,0 +1,12 @@
+import sys
+from asm_test import Asm_Test_32
+
+class Test_DAS(Asm_Test_32):
+    TXT = '\n    main:\n       MOV     EBP, ESP\n       LEA     ESI, DWORD PTR [array_al]\n    loop:\n\n       ; load original cf\n       LODSB\n       MOV     BL, AL\n       ; load original af\n       LODSB\n       SHL     AL, 4\n       OR      AL, BL\n       MOV     AH, AL\n       SAHF\n       ; load original al\n       LODSB\n\n       DAS\n       MOV     BL, AL\n\n       LAHF\n       MOV     CL, AH\n\n       ; test cf\n       LODSB\n       MOV     DL, CL\n       AND     DL, 1\n       CMP     DL, AL\n       JNZ BAD\n\n       MOV     DL, CL\n       SHR     DL, 4\n       AND     DL, 1\n       ; test af\n       LODSB\n       CMP     DL, AL\n       JNZ BAD\n\n       ; test value\n       LODSB\n       CMP     AL, BL\n       JNZ BAD\n\n       CMP     ESI, array_al_end\n       JB      loop\n\n\n    end:\n       RET\n\nBAD:\n       INT     0x3\n       RET\n\narray_al:\n.byte 0, 0, 0x05, 0, 0, 0x05\n.byte 0, 1, 0x05, 1, 1, 0xFF\n.byte 1, 0, 0x05, 1, 0, 0xA5\n.byte 1, 1, 0x05, 1, 1, 0x9F\n.byte 0, 0, 0x06, 0, 0, 0x06\n.byte 0, 1, 0x06, 0, 1, 0x00\n.byte 1, 0, 0x06, 1, 0, 0xA6\n.byte 1, 1, 0x06, 1, 1, 0xA0\n.byte 0, 0, 0x07, 0, 0, 0x07\n.byte 0, 1, 0x07, 0, 1, 0x01\n.byte 1, 0, 0x07, 1, 0, 0xA7\n.byte 1, 1, 0x07, 1, 1, 0xA1\n.byte 0, 0, 0x08, 0, 0, 0x08\n.byte 0, 1, 0x08, 0, 1, 0x02\n.byte 1, 0, 0x08, 1, 0, 0xA8\n.byte 1, 1, 0x08, 1, 1, 0xA2\n.byte 0, 0, 0x09, 0, 0, 0x09\n.byte 0, 1, 0x09, 0, 1, 0x03\n.byte 1, 0, 0x09, 1, 0, 0xA9\n.byte 1, 1, 0x09, 1, 1, 0xA3\n.byte 0, 0, 0x0A, 0, 1, 0x04\n.byte 0, 1, 0x0A, 0, 1, 0x04\n.byte 1, 0, 0x0A, 1, 1, 0xA4\n.byte 1, 1, 0x0A, 1, 1, 0xA4\n.byte 0, 0, 0x98, 0, 0, 0x98\n.byte 0, 1, 0x98, 0, 1, 0x92\n.byte 1, 0, 0x98, 1, 0, 0x38\n.byte 1, 1, 0x98, 1, 1, 0x32\n.byte 0, 0, 0x99, 0, 0, 0x99\n.byte 0, 1, 0x99, 0, 1, 0x93\n.byte 1, 0, 0x99, 1, 0, 0x39\n.byte 1, 1, 0x99, 1, 1, 0x33\n.byte 0, 0, 0x9A, 1, 1, 0x34\n.byte 0, 1, 0x9A, 1, 1, 0x34\n.byte 1, 0, 0x9A, 1, 1, 0x34\n.byte 1, 1, 0x9A, 1, 1, 0x34\narray_al_end:\n.long 0\n    '
+
+    def check(self):
+        if False:
+            return 10
+        pass
+if __name__ == '__main__':
+    [test(*sys.argv[1:])() for test in [Test_DAS]]

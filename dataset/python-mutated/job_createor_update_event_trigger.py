@@ -1,0 +1,13 @@
+from azure.identity import DefaultAzureCredential
+from azure.mgmt.appcontainers import ContainerAppsAPIClient
+'\n# PREREQUISITES\n    pip install azure-identity\n    pip install azure-mgmt-appcontainers\n# USAGE\n    python job_createor_update_event_trigger.py\n\n    Before run the sample, please set the values of the client ID, tenant ID and client secret\n    of the AAD application as environment variables: AZURE_CLIENT_ID, AZURE_TENANT_ID,\n    AZURE_CLIENT_SECRET. For more info about how to get the value, please see:\n    https://docs.microsoft.com/azure/active-directory/develop/howto-create-service-principal-portal\n'
+
+def main():
+    if False:
+        i = 10
+        return i + 15
+    client = ContainerAppsAPIClient(credential=DefaultAzureCredential(), subscription_id='34adfa4f-cedf-4dc0-ba29-b6d1a69ab345')
+    response = client.jobs.begin_create_or_update(resource_group_name='rg', job_name='testcontainerAppsJob0', job_envelope={'location': 'East US', 'properties': {'configuration': {'eventTriggerConfig': {'parallelism': 4, 'replicaCompletionCount': 1, 'scale': {'maxExecutions': 5, 'minExecutions': 1, 'pollingInterval': 40, 'rules': [{'metadata': {'topicName': 'my-topic'}, 'name': 'servicebuscalingrule', 'type': 'azure-servicebus'}]}}, 'replicaRetryLimit': 10, 'replicaTimeout': 10, 'triggerType': 'Event'}, 'environmentId': '/subscriptions/34adfa4f-cedf-4dc0-ba29-b6d1a69ab345/resourceGroups/rg/providers/Microsoft.App/managedEnvironments/demokube', 'template': {'containers': [{'image': 'repo/testcontainerAppsJob0:v1', 'name': 'testcontainerAppsJob0'}], 'initContainers': [{'args': ['-c', 'while true; do echo hello; sleep 10;done'], 'command': ['/bin/sh'], 'image': 'repo/testcontainerAppsJob0:v4', 'name': 'testinitcontainerAppsJob0', 'resources': {'cpu': 0.2, 'memory': '100Mi'}}]}}}).result()
+    print(response)
+if __name__ == '__main__':
+    main()

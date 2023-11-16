@@ -1,0 +1,9 @@
+from google.cloud import securitycenter_v1
+
+def sample_update_big_query_export():
+    if False:
+        return 10
+    client = securitycenter_v1.SecurityCenterClient()
+    request = securitycenter_v1.UpdateBigQueryExportRequest()
+    response = client.update_big_query_export(request=request)
+    print(response)

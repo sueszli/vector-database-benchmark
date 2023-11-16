@@ -1,0 +1,43 @@
+import unittest
+from io import StringIO
+from ..helperfunctions import _xml_to_list
+from ...styles import Styles
+from ...workbook import Workbook
+
+class TestAssembleStyles(unittest.TestCase):
+    """
+    Test assembling a complete Styles file.
+
+    """
+
+    def test_assemble_xml_file(self):
+        if False:
+            while True:
+                i = 10
+        'Test for border styles.'
+        self.maxDiff = None
+        fh = StringIO()
+        style = Styles()
+        style._set_filehandle(fh)
+        workbook = Workbook()
+        workbook.fileclosed = 1
+        workbook.add_format({'top': 7})
+        workbook.add_format({'top': 4})
+        workbook.add_format({'top': 11})
+        workbook.add_format({'top': 9})
+        workbook.add_format({'top': 3})
+        workbook.add_format({'top': 1})
+        workbook.add_format({'top': 12})
+        workbook.add_format({'top': 13})
+        workbook.add_format({'top': 10})
+        workbook.add_format({'top': 8})
+        workbook.add_format({'top': 2})
+        workbook.add_format({'top': 5})
+        workbook.add_format({'top': 6})
+        workbook._set_default_xf_indices()
+        workbook._prepare_format_properties()
+        style._set_style_properties([workbook.xf_formats, workbook.palette, workbook.font_count, workbook.num_formats, workbook.border_count, workbook.fill_count, workbook.custom_colors, workbook.dxf_formats, workbook.has_comments])
+        style._assemble_xml_file()
+        exp = _xml_to_list('\n                <?xml version="1.0" encoding="UTF-8" standalone="yes"?>\n                <styleSheet xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main">\n                  <fonts count="1">\n                    <font>\n                      <sz val="11"/>\n                      <color theme="1"/>\n                      <name val="Calibri"/>\n                      <family val="2"/>\n                      <scheme val="minor"/>\n                    </font>\n                  </fonts>\n                  <fills count="2">\n                    <fill>\n                      <patternFill patternType="none"/>\n                    </fill>\n                    <fill>\n                      <patternFill patternType="gray125"/>\n                    </fill>\n                  </fills>\n                  <borders count="14">\n                    <border>\n                      <left/>\n                      <right/>\n                      <top/>\n                      <bottom/>\n                      <diagonal/>\n                    </border>\n                    <border>\n                      <left/>\n                      <right/>\n                      <top style="hair">\n                        <color auto="1"/>\n                      </top>\n                      <bottom/>\n                      <diagonal/>\n                    </border>\n                    <border>\n                      <left/>\n                      <right/>\n                      <top style="dotted">\n                        <color auto="1"/>\n                      </top>\n                      <bottom/>\n                      <diagonal/>\n                    </border>\n                    <border>\n                      <left/>\n                      <right/>\n                      <top style="dashDotDot">\n                        <color auto="1"/>\n                      </top>\n                      <bottom/>\n                      <diagonal/>\n                    </border>\n                    <border>\n                      <left/>\n                      <right/>\n                      <top style="dashDot">\n                        <color auto="1"/>\n                      </top>\n                      <bottom/>\n                      <diagonal/>\n                    </border>\n                    <border>\n                      <left/>\n                      <right/>\n                      <top style="dashed">\n                        <color auto="1"/>\n                      </top>\n                      <bottom/>\n                      <diagonal/>\n                    </border>\n                    <border>\n                      <left/>\n                      <right/>\n                      <top style="thin">\n                        <color auto="1"/>\n                      </top>\n                      <bottom/>\n                      <diagonal/>\n                    </border>\n                    <border>\n                      <left/>\n                      <right/>\n                      <top style="mediumDashDotDot">\n                        <color auto="1"/>\n                      </top>\n                      <bottom/>\n                      <diagonal/>\n                    </border>\n                    <border>\n                      <left/>\n                      <right/>\n                      <top style="slantDashDot">\n                        <color auto="1"/>\n                      </top>\n                      <bottom/>\n                      <diagonal/>\n                    </border>\n                    <border>\n                      <left/>\n                      <right/>\n                      <top style="mediumDashDot">\n                        <color auto="1"/>\n                      </top>\n                      <bottom/>\n                      <diagonal/>\n                    </border>\n                    <border>\n                      <left/>\n                      <right/>\n                      <top style="mediumDashed">\n                        <color auto="1"/>\n                      </top>\n                      <bottom/>\n                      <diagonal/>\n                    </border>\n                    <border>\n                      <left/>\n                      <right/>\n                      <top style="medium">\n                        <color auto="1"/>\n                      </top>\n                      <bottom/>\n                      <diagonal/>\n                    </border>\n                    <border>\n                      <left/>\n                      <right/>\n                      <top style="thick">\n                        <color auto="1"/>\n                      </top>\n                      <bottom/>\n                      <diagonal/>\n                    </border>\n                    <border>\n                      <left/>\n                      <right/>\n                      <top style="double">\n                        <color auto="1"/>\n                      </top>\n                      <bottom/>\n                      <diagonal/>\n                    </border>\n                  </borders>\n                  <cellStyleXfs count="1">\n                    <xf numFmtId="0" fontId="0" fillId="0" borderId="0"/>\n                  </cellStyleXfs>\n                  <cellXfs count="14">\n                    <xf numFmtId="0" fontId="0" fillId="0" borderId="0" xfId="0"/>\n                    <xf numFmtId="0" fontId="0" fillId="0" borderId="1" xfId="0" applyBorder="1"/>\n                    <xf numFmtId="0" fontId="0" fillId="0" borderId="2" xfId="0" applyBorder="1"/>\n                    <xf numFmtId="0" fontId="0" fillId="0" borderId="3" xfId="0" applyBorder="1"/>\n                    <xf numFmtId="0" fontId="0" fillId="0" borderId="4" xfId="0" applyBorder="1"/>\n                    <xf numFmtId="0" fontId="0" fillId="0" borderId="5" xfId="0" applyBorder="1"/>\n                    <xf numFmtId="0" fontId="0" fillId="0" borderId="6" xfId="0" applyBorder="1"/>\n                    <xf numFmtId="0" fontId="0" fillId="0" borderId="7" xfId="0" applyBorder="1"/>\n                    <xf numFmtId="0" fontId="0" fillId="0" borderId="8" xfId="0" applyBorder="1"/>\n                    <xf numFmtId="0" fontId="0" fillId="0" borderId="9" xfId="0" applyBorder="1"/>\n                    <xf numFmtId="0" fontId="0" fillId="0" borderId="10" xfId="0" applyBorder="1"/>\n                    <xf numFmtId="0" fontId="0" fillId="0" borderId="11" xfId="0" applyBorder="1"/>\n                    <xf numFmtId="0" fontId="0" fillId="0" borderId="12" xfId="0" applyBorder="1"/>\n                    <xf numFmtId="0" fontId="0" fillId="0" borderId="13" xfId="0" applyBorder="1"/>\n                  </cellXfs>\n                  <cellStyles count="1">\n                    <cellStyle name="Normal" xfId="0" builtinId="0"/>\n                  </cellStyles>\n                  <dxfs count="0"/>\n                  <tableStyles count="0" defaultTableStyle="TableStyleMedium9" defaultPivotStyle="PivotStyleLight16"/>\n                </styleSheet>\n                ')
+        got = _xml_to_list(fh.getvalue())
+        self.assertEqual(got, exp)

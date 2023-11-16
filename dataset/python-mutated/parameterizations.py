@@ -1,0 +1,43 @@
+"""Parameterization utilities for the SVI volatility model."""
+import tensorflow.compat.v2 as tf
+from tf_quant_finance import types
+__all__ = ['total_variance_from_raw_svi_parameters', 'implied_volatility_from_raw_svi_parameters']
+
+def total_variance_from_raw_svi_parameters(*, svi_parameters: types.RealTensor, log_moneyness: types.RealTensor=None, forwards: types.RealTensor=None, strikes: types.RealTensor=None, dtype: tf.DType=None, name: str=None) -> types.RealTensor:
+    if False:
+        for i in range(10):
+            print('nop')
+    "Computes modeled total variance using raw SVI parameters.\n\n  The SVI volatility model parameterizes an option's total implied variance,\n  defined as w(k,t) := sigmaBS(k,t)^2 * t, where k := log(K/F) is the options's\n  log-moneyness, t is the time to expiry, and sigmaBS(k,t) is the Black-Scholes\n  market implied volatility. For a fixed timeslice (i.e. given expiry t), the\n  raw SVI parameterization consists of 5 parameters (a,b,rho,m,sigma), and\n  the model approximation formula for w(k,t) as a function of k is (cf.[1]):\n  ```None\n  w(k) = a + b * (rho * (k - m) + sqrt{(k - m)^2 + sigma^2)}\n  ```\n  The raw parameters have the following interpretations (cf.[2]):\n  a      vertically shifts the variance graph\n  b      controls the angle between the left and right asymptotes\n  rho    controls the rotation of the variance graph\n  m      horizontally shifts the variance graph\n  sigma  controls the graph smoothness at the vertex (ATM)\n\n  #### Example\n\n  ```python\n  import numpy as np\n  import tensorflow.compat.v2 as tf\n  import tf_quant_finance as tff\n\n  svi_parameters = np.array([-0.1825, 0.3306, -0.0988, 0.0368, 0.6011])\n\n  forwards = np.array([2402.])\n  strikes = np.array([[1800., 2000., 2200., 2400., 2600., 2800., 3000.]])\n\n  total_var = tff.experimental.svi.total_variance_from_raw_svi_parameters(\n      svi_parameters=svi_parameters, forwards=forwards, strikes=strikes)\n\n  # Expected: total_var tensor (rounded to 4 decimal places) should contain\n  # [[0.0541, 0.0363, 0.02452, 0.0178, 0.0153, 0.0161, 0.0194]]\n  ```\n\n  #### References:\n  [1] Gatheral J., Jaquier A., Arbitrage-free SVI volatility surfaces.\n  https://arxiv.org/pdf/1204.0646.pdf\n  [2] Gatheral J, A parsimonious arbitrage-free implied volatility\n  parameterization with application to the valuation of volatility derivatives.\n  http://faculty.baruch.cuny.edu/jgatheral/madrid2004.pdf\n\n  Args:\n    svi_parameters: A rank 2 real `Tensor` of shape [batch_size, 5]. The raw SVI\n      parameters for each volatility skew.\n    log_moneyness: A rank 2 real `Tensor` of shape [batch_size, num_strikes].\n      The log-moneyness of the option.\n    forwards: A rank 2 real `Tensor` of shape [batch_size, num_strikes]. The\n      forward price of the option at expiry.\n    strikes: A rank 2 real `Tensor` of shape [batch_size, num_strikes]. The\n      option's strike price.\n    dtype: Optional `tf.Dtype`. If supplied, the dtype for the input and output\n      `Tensor`s will be converted to this.\n      Default value: `None` which maps to the dtype inferred from\n        `log_moneyness`.\n    name: Python str. The name to give to the ops created by this function.\n      Default value: `None` which maps to `svi_total_variance`.\n\n  Returns:\n    A rank 2 real `Tensor` of shape [batch_size, num_strikes].\n\n  Raises:\n    ValueError: If exactly one of `forwards` and `strikes` is supplied.\n    ValueError: If both `log_moneyness' and `forwards` are supplied or if\n    neither is supplied.\n  "
+    if (strikes is None) != (forwards is None):
+        raise ValueError('Either both `forwards` and `strikes` must be supplied, or neither.')
+    if (log_moneyness is None) == (forwards is None):
+        raise ValueError('Exactly one of `log_moneyness` or `forwards` must be provided.')
+    name = name or 'svi_total_variance'
+    with tf.name_scope(name):
+        if log_moneyness is None:
+            forwards = tf.convert_to_tensor(forwards, dtype=dtype, name='forwards')
+            strikes = tf.convert_to_tensor(strikes, dtype=dtype, name='strikes')
+            log_moneyness = tf.math.log(strikes / forwards)
+        else:
+            log_moneyness = tf.convert_to_tensor(log_moneyness, dtype=dtype, name='log_moneyness')
+        dtype = dtype or log_moneyness.dtype
+        svi_parameters = tf.convert_to_tensor(svi_parameters, dtype=dtype, name='svi_parameters')
+        a = svi_parameters[..., 0:1]
+        b = svi_parameters[..., 1:2]
+        rho = svi_parameters[..., 2:3]
+        m = svi_parameters[..., 3:4]
+        sigma = svi_parameters[..., 4:5]
+        k = log_moneyness
+        return a + b * (rho * (k - m) + tf.sqrt((k - m) ** 2 + sigma ** 2))
+
+def implied_volatility_from_raw_svi_parameters(*, svi_parameters: types.RealTensor, log_moneyness: types.RealTensor=None, forwards: types.RealTensor=None, strikes: types.RealTensor=None, expiries: types.RealTensor=None, dtype: tf.DType=None, name: str=None) -> types.RealTensor:
+    if False:
+        return 10
+    "Computes modeled implied volatility using raw SVI parameters.\n\n  The SVI volatility model parameterizes an option's total implied variance. For\n  a fixed timeslice (i.e. given expiry t), raw SVI parameters (a,b,rho,m,sigma)\n  and option's log-moneyness k:=log(K/F), the modeled total variance is\n  ```None\n  w(k) = a + b * (rho * (k - m) + sqrt{(k - m)^2 + sigma^2)}\n  ```\n\n  The modeled Black-Scholes implied volatility sigmaBS is computed from w(k)\n  and the option's expiry t from the equation\n  ```None\n  w(k,t) = sigmaBS(k,t)^2 * t\n  ```\n\n  See [1] and documentation for `total_variance_from_raw_svi_parameters` for\n  additional details.\n\n  #### Example\n\n  ```python\n  import numpy as np\n  import tensorflow.compat.v2 as tf\n  import tf_quant_finance as tff\n\n  svi_parameters = np.array([-0.1825, 0.3306, -0.0988, 0.0368, 0.6011])\n\n  forwards = np.array([2402.])\n  expiries = np.array([0.23])\n  strikes = np.array([[1800., 2000., 2200., 2400., 2600., 2800., 3000.]])\n\n  implied_vol = tff.experimental.svi.implied_volatility_from_raw_svi_parameters(\n      svi_parameters=svi_parameters,\n      forwards=forwards,\n      strikes=strikes,\n      expiries=expiries)\n\n  # Expected: implied_vol tensor (rounded to 4 decimal places) should contain\n  # [[0.4849, 0.3972, 0.3265, 0.2785, 0.2582, 0.2647, 0.2905]]\n  ```\n\n  #### References:\n  [1] Gatheral J., Jaquier A., Arbitrage-free SVI volatility surfaces.\n  https://arxiv.org/pdf/1204.0646.pdf\n\n  Args:\n    svi_parameters: A rank 2 real `Tensor` of shape [batch_size, 5]. The raw SVI\n      parameters for each volatility skew.\n    log_moneyness: A rank 2 real `Tensor` of shape [batch_size, num_strikes].\n      The log-moneyness of the options.\n    forwards: A rank 2 real `Tensor` of shape [batch_size, num_strikes]. The\n      forward prices of the options at expiries.\n    strikes: A rank 2 real `Tensor` of shape [batch_size, num_strikes]. The\n      options strike prices.\n    expiries: A rank 1 real `Tensor` of shape [batch_size]. The options\n      expiries.\n    dtype: Optional `tf.Dtype`. If supplied, the dtype for the input and output\n      `Tensor`s will be converted to this.\n      Default value: `None` which maps to the dtype inferred from\n        `log_moneyness`.\n    name: Python str. The name to give to the ops created by this function.\n      Default value: `None` which maps to `svi_implied_volatility`.\n\n  Returns:\n    A rank 2 real `Tensor` of shape [batch_size, num_strikes].\n\n  Raises:\n    ValueError: If exactly one of `forwards` and `strikes` is supplied.\n    ValueError: If both `log_moneyness' and `forwards` are supplied or if\n    neither is supplied.\n  "
+    name = name or 'svi_implied_volatility'
+    with tf.name_scope(name):
+        total_variance = total_variance_from_raw_svi_parameters(svi_parameters=svi_parameters, log_moneyness=log_moneyness, forwards=forwards, strikes=strikes, name=name)
+        dtype = dtype or total_variance.dtype
+        expiries = tf.convert_to_tensor(expiries, dtype, name='expiries')
+        implied_volatilities = tf.math.sqrt(total_variance / expiries[:, None])
+        return implied_volatilities

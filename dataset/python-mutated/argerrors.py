@@ -1,0 +1,13 @@
+def test_single_arg(a):
+    if False:
+        i = 10
+        return i + 15
+    "\n    >>> test_single_arg(1)\n    1\n    >>> test_single_arg(1, **{})\n    1\n    >>> test_single_arg()                  # doctest: +ELLIPSIS\n    Traceback (most recent call last):\n    TypeError: ...\n    >>> test_single_arg(1,2)               # doctest: +ELLIPSIS\n    Traceback (most recent call last):\n    TypeError: ...\n    >>> test_single_arg(1,2, **{})         # doctest: +ELLIPSIS\n    Traceback (most recent call last):\n    TypeError: ...\n    >>> test_single_arg(**{})              # doctest: +ELLIPSIS\n    Traceback (most recent call last):\n    TypeError: ...\n    >>> test_single_arg(*(), **{})         # doctest: +ELLIPSIS\n    Traceback (most recent call last):\n    TypeError: ...\n    >>> test_single_arg(**{'b':2})         # doctest: +ELLIPSIS\n    Traceback (most recent call last):\n    TypeError: ...\n    >>> test_single_arg(**{'a':1, 'b':2})  # doctest: +ELLIPSIS\n    Traceback (most recent call last):\n    TypeError: ...\n    "
+    return a
+
+def test_two_args(a, b):
+    if False:
+        while True:
+            i = 10
+    "\n    >>> test_two_args(1,2)\n    (1, 2)\n    >>> test_two_args(1,2, **{})\n    (1, 2)\n    >>> test_two_args(1,**{'b':2})\n    (1, 2)\n    >>> test_two_args(**{'a':1, 'b':2})\n    (1, 2)\n    >>> test_two_args()                 # doctest: +ELLIPSIS\n    Traceback (most recent call last):\n    TypeError: ...\n    >>> test_two_args(1)                # doctest: +ELLIPSIS\n    Traceback (most recent call last):\n    TypeError: ...\n    >>> test_two_args(1, **{})          # doctest: +ELLIPSIS\n    Traceback (most recent call last):\n    TypeError: ...\n    >>> test_two_args(1,2,3)            # doctest: +ELLIPSIS\n    Traceback (most recent call last):\n    TypeError: ...\n    >>> test_two_args(1,2,3, **{})      # doctest: +ELLIPSIS\n    Traceback (most recent call last):\n    TypeError: ...\n    >>> test_two_args(**{})             # doctest: +ELLIPSIS\n    Traceback (most recent call last):\n    TypeError: ...\n    >>> test_two_args(*(), **{})        # doctest: +ELLIPSIS\n    Traceback (most recent call last):\n    TypeError: ...\n    >>> test_two_args(**{'a':1})        # doctest: +ELLIPSIS\n    Traceback (most recent call last):\n    TypeError: ...\n    >>> test_two_args(**{'a':1, 'b':2, 'c':3})  # doctest: +ELLIPSIS\n    Traceback (most recent call last):\n    TypeError: ...\n    "
+    return (a, b)

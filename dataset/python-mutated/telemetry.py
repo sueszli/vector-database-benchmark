@@ -1,0 +1,53 @@
+import os
+from typing import Optional
+import analytics
+import click
+
+def build_user_agent(octavia_version: str) -> str:
+    if False:
+        i = 10
+        return i + 15
+    'Build user-agent for the API client according to octavia version.\n\n    Args:\n        octavia_version (str): Current octavia version.\n\n    Returns:\n        str: the user-agent string.\n    '
+    return f'octavia-cli/{octavia_version}'
+
+class TelemetryClient:
+    WRITE_KEY = 'ER8EjdRVFut7n05XPaaTKrSEnjLscyKr'
+
+    def __init__(self, send_data: bool=False) -> None:
+        if False:
+            i = 10
+            return i + 15
+        'Create a TelemetryClient instance.\n\n        Args:\n            send_data (bool, optional): Whether the telemetry should be sent. Defaults to False.\n        '
+        self.segment_client = analytics.Client(self.write_key, send=send_data)
+
+    @property
+    def write_key(self) -> str:
+        if False:
+            while True:
+                i = 10
+        'Retrieve the write key according to environment.\n        Developer can set the OCTAVIA_TELEMETRY_WRITE_KEY env var to send telemetry to another Segment source.\n\n        Returns:\n            str: The write key to use with the analytics client.\n        '
+        return os.getenv('OCTAVIA_TELEMETRY_WRITE_KEY', TelemetryClient.WRITE_KEY)
+
+    def _create_command_name(self, ctx: click.Context, command_names: Optional[list]=None, extra_info_name: Optional[str]=None) -> str:
+        if False:
+            return 10
+        'Build the full command name by concatenating info names the context and its parents.\n\n        Args:\n            ctx (click.Context): The click context from which we want to build the command name.\n            command_names (Optional[list], optional): Previously builds commands name (used for recursion). Defaults to None.\n            extra_info_name (Optional[str], optional): Extra info name if the context was not built yet. Defaults to None.\n\n        Returns:\n            str: The full command name.\n        '
+        if command_names is None:
+            command_names = [ctx.info_name]
+        else:
+            command_names.insert(0, ctx.info_name)
+        if ctx.parent is not None:
+            self._create_command_name(ctx.parent, command_names)
+        return ' '.join(command_names) if not extra_info_name else ' '.join(command_names + [extra_info_name])
+
+    def send_command_telemetry(self, ctx: click.Context, error: Optional[Exception]=None, extra_info_name: Optional[str]=None, is_help: bool=False):
+        if False:
+            i = 10
+            return i + 15
+        'Send telemetry with the analytics client.\n        The event name is the command name.\n        The context has the octavia version.\n        The properties hold success or failure of command run, error type if exists and other metadata.\n\n        Args:\n            ctx (click.Context): Context from which the telemetry is built.\n            error (Optional[Exception], optional): The error that was raised. Defaults to None.\n            extra_info_name (Optional[str], optional): Extra info name if the context was not built yet. Defaults to None.\n        '
+        user_id = ctx.obj.get('WORKSPACE_ID') if ctx.obj.get('ANONYMOUS_DATA_COLLECTION', True) is False else None
+        anonymous_id = None if user_id else 'anonymous'
+        segment_context = {'app': {'name': 'octavia-cli', 'version': ctx.obj.get('OCTAVIA_VERSION')}}
+        segment_properties = {'success': error is None, 'is_help': is_help, 'error_type': error.__class__.__name__ if error is not None else None, 'project_is_initialized': ctx.obj.get('PROJECT_IS_INITIALIZED'), 'airbyter': os.getenv('AIRBYTE_ROLE') == 'airbyter'}
+        command_name = self._create_command_name(ctx, extra_info_name=extra_info_name)
+        self.segment_client.track(user_id=user_id, anonymous_id=anonymous_id, event=command_name, properties=segment_properties, context=segment_context)

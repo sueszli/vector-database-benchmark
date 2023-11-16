@@ -1,0 +1,27 @@
+from typing import Optional
+import pytest
+from sqlmodel import Field, SQLModel
+
+def test_missing_sql_type():
+    if False:
+        for i in range(10):
+            print('nop')
+
+    class CustomType:
+
+        @classmethod
+        def __get_validators__(cls):
+            if False:
+                print('Hello World!')
+            yield cls.validate
+
+        @classmethod
+        def validate(cls, v):
+            if False:
+                return 10
+            return v
+    with pytest.raises(ValueError):
+
+        class Item(SQLModel, table=True):
+            id: Optional[int] = Field(default=None, primary_key=True)
+            item: CustomType

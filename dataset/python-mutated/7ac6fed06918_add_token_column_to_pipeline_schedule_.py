@@ -1,0 +1,26 @@
+"""Add token column to pipeline_schedule table
+
+Revision ID: 7ac6fed06918
+Revises: ec5df57a1c60
+Create Date: 2023-01-02 14:32:01.533214
+
+"""
+from alembic import op
+import sqlalchemy as sa
+revision = '7ac6fed06918'
+down_revision = 'ec5df57a1c60'
+branch_labels = None
+depends_on = None
+
+def upgrade() -> None:
+    if False:
+        for i in range(10):
+            print('nop')
+    op.add_column('pipeline_schedule', sa.Column('token', sa.String(length=255), nullable=True))
+    op.create_index(op.f('ix_pipeline_schedule_token'), 'pipeline_schedule', ['token'], unique=False)
+
+def downgrade() -> None:
+    if False:
+        return 10
+    op.drop_index(op.f('ix_pipeline_schedule_token'), table_name='pipeline_schedule')
+    op.drop_column('pipeline_schedule', 'token')

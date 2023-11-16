@@ -1,0 +1,180 @@
+"""
+Copyright 2022, the CVXPY developers.
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+"""
+from typing import Tuple
+import numpy as np
+import cvxpy as cp
+from cvxpy.tests.base_test import BaseTest
+
+class TestKron(BaseTest):
+    """
+    The Kronecker product of matrices M, N is :
+
+        kron(M, N) = [M[0,0] * N   , ..., M[0, end] * N  ]
+                     [M[1,0] * N   , ..., M[1, end] * N  ]
+                     ...
+                     [M[end, 0] * N, ..., M[end, end] * N]
+    """
+
+    @staticmethod
+    def make_kron_prob(z_dims: Tuple[int], c_dims: Tuple[int], param: bool, var_left: bool, seed: int):
+        if False:
+            while True:
+                i = 10
+        "\n        Construct random nonnegative matrices (C, L) of shapes\n        (c_dims, z_dims) respectively. Define an optimization\n        problem with a matrix variable of shape z_dims:\n\n            min sum(Z)\n            s.t.  kron(Z, C) >= kron(L, C)   ---   if var_left is True\n                  kron(C, Z) >= kron(C, L)   ---   if var_left is False\n                  Z >= 0\n\n        Regardless of whether var_left is True or False, the optimal\n        solution to that problem is Z = L.\n\n        If param is True, then C is defined as a CVXPY Parameter.\n        If param is False, then C is a CVXPY Constant.\n\n        A small remark: the constraint that Z >= 0 is redundant.\n        It's there because it's easier to set break points that distinguish\n        objective canonicalization and constraint canonicalization\n        when there's more than one constraint.\n        "
+        np.random.seed(seed)
+        C_value = np.random.rand(*c_dims).round(decimals=2)
+        if param:
+            C = cp.Parameter(shape=c_dims)
+            C.value = C_value
+        else:
+            C = cp.Constant(C_value)
+        Z = cp.Variable(shape=z_dims)
+        L = np.random.rand(*Z.shape).round(decimals=2)
+        if var_left:
+            constraints = [cp.kron(Z, C) >= cp.kron(L, C), Z >= 0]
+        else:
+            constraints = [cp.kron(C, Z) >= cp.kron(C, L), Z >= 0]
+        obj_expr = cp.sum(Z)
+        prob = cp.Problem(cp.Minimize(obj_expr), constraints)
+        return (Z, C, L, prob)
+
+class TestKronRightVar(TestKron):
+    C_DIMS = [(1, 1), (2, 1), (1, 2), (2, 2)]
+
+    def test_gen_kronr_param(self):
+        if False:
+            print('Hello World!')
+        z_dims = (2, 2)
+        for c_dims in TestKronRightVar.C_DIMS:
+            (Z, C, L, prob) = self.make_kron_prob(z_dims, c_dims, param=True, var_left=False, seed=0)
+            prob.solve(solver='ECOS', abstol=1e-08, reltol=1e-08)
+            self.assertEqual(prob.status, cp.OPTIMAL)
+            con_viols = prob.constraints[0].violation()
+            self.assertLessEqual(np.max(con_viols), 0.0001)
+            self.assertItemsAlmostEqual(Z.value, L, places=4)
+
+    def test_gen_kronr_const(self):
+        if False:
+            i = 10
+            return i + 15
+        z_dims = (2, 2)
+        for c_dims in TestKronRightVar.C_DIMS:
+            (Z, C, L, prob) = self.make_kron_prob(z_dims, c_dims, param=False, var_left=False, seed=0)
+            prob.solve(solver='ECOS', abstol=1e-08, reltol=1e-08)
+            self.assertEqual(prob.status, cp.OPTIMAL)
+            con_viols = prob.constraints[0].violation()
+            self.assertLessEqual(np.max(con_viols), 0.0001)
+            self.assertItemsAlmostEqual(Z.value, L, places=4)
+
+class TestKronLeftVar(TestKron):
+    C_DIMS = [(1, 1), (2, 1), (1, 2), (2, 2)]
+
+    def symvar_kronl(self, param):
+        if False:
+            print('Hello World!')
+        X = cp.Variable(shape=(2, 2), symmetric=True)
+        b_val = 1.5 * np.ones((1, 1))
+        if param:
+            b = cp.Parameter(shape=(1, 1))
+            b.value = b_val
+        else:
+            b = cp.Constant(b_val)
+        L = np.array([[0.5, 1], [2, 3]])
+        U = np.array([[10, 11], [12, 13]])
+        kronX = cp.kron(X, b)
+        objective = cp.Minimize(cp.sum(X.flatten()))
+        constraints = [U >= kronX, kronX >= L]
+        prob = cp.Problem(objective, constraints)
+        prob.solve()
+        self.assertItemsAlmostEqual(X.value, np.array([[0.5, 2], [2, 3]]) / 1.5)
+        objective = cp.Maximize(cp.sum(X.flatten()))
+        prob = cp.Problem(objective, constraints)
+        prob.solve()
+        self.assertItemsAlmostEqual(X.value, np.array([[10, 11], [11, 13]]) / 1.5)
+        pass
+
+    def test_symvar_kronl_param(self):
+        if False:
+            i = 10
+            return i + 15
+        self.symvar_kronl(param=True)
+
+    def test_symvar_kronl_const(self):
+        if False:
+            i = 10
+            return i + 15
+        self.symvar_kronl(param=False)
+
+    def scalar_kronl(self, param):
+        if False:
+            i = 10
+            return i + 15
+        y = cp.Variable(shape=(1, 1))
+        A_val = np.array([[1.0, 2.0], [3.0, 4.0]])
+        L = np.array([[0.5, 1], [2, 3]])
+        U = np.array([[10, 11], [12, 13]])
+        if param:
+            A = cp.Parameter(shape=(2, 2))
+            A.value = A_val
+        else:
+            A = cp.Constant(A_val)
+        krony = cp.kron(y, A)
+        constraints = [U >= krony, krony >= L]
+        objective = cp.Minimize(y)
+        prob = cp.Problem(objective, constraints)
+        prob.solve()
+        self.assertItemsAlmostEqual(y.value, np.array([[np.max(L / A_val)]]))
+        objective = cp.Maximize(y)
+        prob = cp.Problem(objective, constraints)
+        prob.solve()
+        self.assertItemsAlmostEqual(y.value, np.array([[np.min(U / A_val)]]))
+        pass
+
+    def test_scalar_kronl_param(self):
+        if False:
+            i = 10
+            return i + 15
+        self.scalar_kronl(param=True)
+
+    def test_scalar_kronl_const(self):
+        if False:
+            return 10
+        self.scalar_kronl(param=False)
+
+    def test_gen_kronl_param(self):
+        if False:
+            i = 10
+            return i + 15
+        z_dims = (2, 2)
+        for c_dims in TestKronLeftVar.C_DIMS:
+            (Z, C, L, prob) = self.make_kron_prob(z_dims, c_dims, param=True, var_left=True, seed=0)
+            prob.solve(solver='ECOS', abstol=1e-08, reltol=1e-08)
+            self.assertEqual(prob.status, cp.OPTIMAL)
+            con_viols = prob.constraints[0].violation()
+            self.assertLessEqual(np.max(con_viols), 0.0001)
+            self.assertItemsAlmostEqual(Z.value, L, places=4)
+
+    def test_gen_kronr_const(self):
+        if False:
+            print('Hello World!')
+        z_dims = (2, 2)
+        for c_dims in TestKronLeftVar.C_DIMS:
+            (Z, C, L, prob) = self.make_kron_prob(z_dims, c_dims, param=False, var_left=True, seed=0)
+            prob.solve(solver='ECOS', abstol=1e-08, reltol=1e-08)
+            self.assertEqual(prob.status, cp.OPTIMAL)
+            con_viols = prob.constraints[0].violation()
+            self.assertLessEqual(np.max(con_viols), 0.0001)
+            self.assertItemsAlmostEqual(Z.value, L, places=4)

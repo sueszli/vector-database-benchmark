@@ -1,0 +1,28 @@
+"""Unit tests for action plugins."""
+from InvenTree.unit_test import InvenTreeTestCase
+from plugin.samples.integration.simpleactionplugin import SimpleActionPlugin
+
+class SimpleActionPluginTests(InvenTreeTestCase):
+    """Tests for SampleIntegrationPlugin."""
+
+    def setUp(self):
+        if False:
+            return 10
+        'Setup for tests.'
+        super().setUp()
+        self.plugin = SimpleActionPlugin()
+
+    def test_name(self):
+        if False:
+            return 10
+        'Check plugn names.'
+        self.assertEqual(self.plugin.plugin_name(), 'SimpleActionPlugin')
+        self.assertEqual(self.plugin.action_name(), 'simple')
+
+    def test_function(self):
+        if False:
+            return 10
+        'Check if functions work.'
+        response = self.client.post('/api/action/', data={'action': 'simple', 'data': {'foo': 'bar'}})
+        self.assertEqual(response.status_code, 200)
+        self.assertJSONEqual(str(response.content, encoding='utf8'), {'action': 'simple', 'result': True, 'info': {'user': self.username, 'hello': 'world'}})

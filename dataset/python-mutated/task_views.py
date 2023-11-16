@@ -1,0 +1,35 @@
+"""Endpoints relating to task/job status, etc."""
+import structlog
+from django.core.cache import cache
+from django.urls import reverse
+from rest_framework import decorators, permissions
+from rest_framework.renderers import JSONRenderer
+from rest_framework.response import Response
+from readthedocs.oauth import tasks
+log = structlog.get_logger(__name__)
+
+@decorators.api_view(['GET'])
+@decorators.permission_classes((permissions.AllowAny,))
+@decorators.renderer_classes((JSONRenderer,))
+def job_status(request, task_id):
+    if False:
+        i = 10
+        return i + 15
+    'Retrieve Celery task function state from frontend.'
+    poll_n = cache.get(task_id, 0)
+    poll_n += 1
+    cache.set(task_id, poll_n, 5 * 60)
+    finished = poll_n == 5
+    data = {'name': 'sync_remote_repositories', 'data': {}, 'started': True, 'finished': finished, 'success': finished}
+    return Response(data)
+
+@decorators.api_view(['POST'])
+@decorators.permission_classes((permissions.IsAuthenticated,))
+@decorators.renderer_classes((JSONRenderer,))
+def sync_remote_repositories(request):
+    if False:
+        print('Hello World!')
+    'Trigger a re-sync of remote repositories for the user.'
+    result = tasks.sync_remote_repositories.delay(user_id=request.user.id)
+    task_id = result.task_id
+    return Response({'task_id': task_id, 'url': reverse('api_job_status', kwargs={'task_id': task_id})})

@@ -1,0 +1,13 @@
+from azure.identity import DefaultAzureCredential
+from azure.mgmt.web import WebSiteManagementClient
+'\n# PREREQUISITES\n    pip install azure-identity\n    pip install azure-mgmt-web\n# USAGE\n    python create_or_update_static_site.py\n\n    Before run the sample, please set the values of the client ID, tenant ID and client secret\n    of the AAD application as environment variables: AZURE_CLIENT_ID, AZURE_TENANT_ID,\n    AZURE_CLIENT_SECRET. For more info about how to get the value, please see:\n    https://docs.microsoft.com/azure/active-directory/develop/howto-create-service-principal-portal\n'
+
+def main():
+    if False:
+        for i in range(10):
+            print('nop')
+    client = WebSiteManagementClient(credential=DefaultAzureCredential(), subscription_id='34adfa4f-cedf-4dc0-ba29-b6d1a69ab345')
+    response = client.static_sites.begin_create_or_update_static_site(resource_group_name='rg', name='testStaticSite0', static_site_envelope={'location': 'West US 2', 'properties': {'branch': 'master', 'buildProperties': {'apiLocation': 'api', 'appArtifactLocation': 'build', 'appLocation': 'app'}, 'repositoryToken': 'repoToken123', 'repositoryUrl': 'https://github.com/username/RepoName'}, 'sku': {'name': 'Basic', 'tier': 'Basic'}}).result()
+    print(response)
+if __name__ == '__main__':
+    main()

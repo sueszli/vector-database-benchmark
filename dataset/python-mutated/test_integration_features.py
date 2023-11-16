@@ -1,0 +1,35 @@
+from rest_framework import status
+from sentry.models.integrations.integration_feature import Feature, IntegrationFeature
+from sentry.testutils.cases import APITestCase
+from sentry.testutils.silo import control_silo_test
+
+@control_silo_test(stable=True)
+class IntegrationFeaturesTest(APITestCase):
+    endpoint = 'sentry-api-0-integration-features'
+    method = 'GET'
+
+    def setUp(self):
+        if False:
+            while True:
+                i = 10
+        self.user = self.create_user(email='cynthia@poke.mon')
+        self.login_as(self.user)
+
+    def test_returns_all_features(self):
+        if False:
+            return 10
+        '\n        Tests that all of the default IntegrationFeatures were returned\n        '
+        response = self.get_success_response(status_code=status.HTTP_200_OK)
+        all_features = Feature.as_choices()
+        assert len({item['featureId'] for item in response.data}) == len(all_features)
+        for feature in response.data:
+            assert feature['featureGate'] == Feature.as_str(feature['featureId'])
+
+    def test_no_records_are_created(self):
+        if False:
+            for i in range(10):
+                print('nop')
+        '\n        Tests that calling this endpoint does not save any\n        IntegrationFeatures to the database\n        '
+        existing_count = IntegrationFeature.objects.count()
+        self.get_success_response(status_code=status.HTTP_200_OK)
+        assert existing_count == IntegrationFeature.objects.count()

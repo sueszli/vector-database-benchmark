@@ -1,0 +1,36 @@
+from rich.table import Table
+from textual.app import App, ComposeResult
+from textual.geometry import Size
+from textual.widgets import Static
+
+class FizzBuzz(Static):
+
+    def on_mount(self) -> None:
+        if False:
+            while True:
+                i = 10
+        table = Table('Number', 'Fizz?', 'Buzz?', expand=True)
+        for n in range(1, 16):
+            fizz = not n % 3
+            buzz = not n % 5
+            table.add_row(str(n), 'fizz' if fizz else '', 'buzz' if buzz else '')
+        self.update(table)
+
+    def get_content_width(self, container: Size, viewport: Size) -> int:
+        if False:
+            while True:
+                i = 10
+        'Force content width size.'
+        return 50
+
+class FizzBuzzApp(App):
+    CSS_PATH = 'fizzbuzz02.tcss'
+
+    def compose(self) -> ComposeResult:
+        if False:
+            for i in range(10):
+                print('nop')
+        yield FizzBuzz()
+if __name__ == '__main__':
+    app = FizzBuzzApp()
+    app.run()

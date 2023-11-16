@@ -1,0 +1,636 @@
+"""Abstract representation of a function loaded from a type stub."""
+import collections
+import contextlib
+import itertools
+import logging
+from typing import Any, Dict, List, Optional, Tuple
+from pytype import datatypes
+from pytype import utils
+from pytype.abstract import _base
+from pytype.abstract import _classes
+from pytype.abstract import _function_base
+from pytype.abstract import _instance_base
+from pytype.abstract import _singletons
+from pytype.abstract import _typing
+from pytype.abstract import abstract_utils
+from pytype.abstract import function
+from pytype.abstract import mixin
+from pytype.pytd import optimize
+from pytype.pytd import pytd
+from pytype.pytd import pytd_utils
+from pytype.pytd import visitors
+from pytype.typegraph import cfg
+log = logging.getLogger(__name__)
+_isinstance = abstract_utils._isinstance
+_GoodMatchType = Any
+
+class SignatureMutationError(Exception):
+    """Raise an error for invalid signature mutation in a pyi file."""
+
+    def __init__(self, pytd_sig):
+        if False:
+            return 10
+        self.pytd_sig = pytd_sig
+
+def _is_literal(annot: Optional[_base.BaseValue]):
+    if False:
+        return 10
+    if isinstance(annot, _typing.Union):
+        return all((_is_literal(o) for o in annot.options))
+    return isinstance(annot, _classes.LiteralClass)
+
+class _MatchedSignatures:
+    """Function call matches."""
+
+    def __init__(self, args, can_match_multiple):
+        if False:
+            return 10
+        self._args_vars = set(args.get_variables())
+        self._can_match_multiple = can_match_multiple
+        self._data: List[List[Tuple[PyTDSignature, Dict[str, cfg.Variable], _GoodMatchType]]] = []
+        self._sig = self._cur_data = None
+
+    def __bool__(self):
+        if False:
+            i = 10
+            return i + 15
+        return bool(self._data)
+
+    @contextlib.contextmanager
+    def with_signature(self, sig):
+        if False:
+            return 10
+        'Sets the signature that we are collecting matches for.'
+        assert self._sig is self._cur_data is None
+        self._sig = sig
+        self._cur_data = []
+        try:
+            yield
+        finally:
+            self._data.extend(self._cur_data)
+            self._sig = self._cur_data = None
+
+    def add(self, arg_dict, match):
+        if False:
+            print('Hello World!')
+        'Adds a new match.'
+        for sigs in self._data:
+            if sigs[-1][0] == self._sig:
+                continue
+            new_view = match.view.accessed_subset
+            old_view = sigs[0][2].view.accessed_subset
+            if all((new_view[k] == old_view[k] for k in new_view if k in old_view)):
+                if self._can_match_multiple:
+                    sigs.append((self._sig, arg_dict, match))
+                break
+        else:
+            assert self._cur_data is not None
+            self._cur_data.append([(self._sig, arg_dict, match)])
+
+    def get(self):
+        if False:
+            i = 10
+            return i + 15
+        'Gets the matches.'
+        return self._data
+
+class PyTDFunction(_function_base.Function):
+    """A PyTD function (name + list of signatures).
+
+  This represents (potentially overloaded) functions.
+  """
+
+    @classmethod
+    def make(cls, name, ctx, module, pyval_name=None):
+        if False:
+            while True:
+                i = 10
+        'Create a PyTDFunction.\n\n    Args:\n      name: The function name.\n      ctx: The abstract context.\n      module: The module that the function is in.\n      pyval_name: Optionally, the name of the pytd.Function object to look up,\n        if it is different from the function name.\n\n    Returns:\n      A new PyTDFunction.\n    '
+        pyval = ctx.loader.lookup_pytd(module, pyval_name or name)
+        if isinstance(pyval, pytd.Alias) and isinstance(pyval.type, pytd.Function):
+            pyval = pyval.type
+        pyval = pyval.Replace(name=f'{module}.{name}')
+        f = ctx.convert.constant_to_value(pyval, {}, ctx.root_node)
+        self = cls(name, f.signatures, pyval.kind, pyval.decorators, ctx)
+        self.module = module
+        return self
+
+    def __init__(self, name, signatures, kind, decorators, ctx):
+        if False:
+            return 10
+        super().__init__(name, ctx)
+        assert signatures
+        self.kind = kind
+        self.bound_class = _function_base.BoundPyTDFunction
+        self.signatures = signatures
+        self._signature_cache = {}
+        self._return_types = {sig.pytd_sig.return_type for sig in signatures}
+        self._mutated_type_parameters = set()
+        for sig in signatures:
+            for param in sig.pytd_sig.params:
+                for params in sig.mutated_type_parameters[param]:
+                    for (template, value) in params:
+                        if template.type_param != value:
+                            self._mutated_type_parameters.add(template.type_param.full_name)
+        for sig in signatures:
+            sig.function = self
+            sig.name = self.name
+        self.decorators = [d.type.name for d in decorators]
+
+    def property_get(self, callself, is_class=False):
+        if False:
+            while True:
+                i = 10
+        if self.kind == pytd.MethodKind.STATICMETHOD:
+            if is_class:
+                callself = None
+            return _function_base.StaticMethod(self.name, self, callself, self.ctx)
+        elif self.kind == pytd.MethodKind.CLASSMETHOD:
+            if not is_class:
+                callself = abstract_utils.get_atomic_value(callself, default=self.ctx.convert.unsolvable)
+                if isinstance(callself, _typing.TypeParameterInstance):
+                    callself = abstract_utils.get_atomic_value(callself.instance.get_instance_type_parameter(callself.name), default=self.ctx.convert.unsolvable)
+                callself = callself.cls.to_variable(self.ctx.root_node)
+            return _function_base.ClassMethod(self.name, self, callself, self.ctx)
+        elif self.kind == pytd.MethodKind.PROPERTY and (not is_class):
+            return _function_base.Property(self.name, self, callself, self.ctx)
+        else:
+            return super().property_get(callself, is_class)
+
+    def argcount(self, _):
+        if False:
+            while True:
+                i = 10
+        return min((sig.signature.mandatory_param_count() for sig in self.signatures))
+
+    def _log_args(self, arg_values_list, level=0, logged=None):
+        if False:
+            while True:
+                i = 10
+        'Log the argument values.'
+        if log.isEnabledFor(logging.DEBUG):
+            if logged is None:
+                logged = set()
+            for (i, arg_values) in enumerate(arg_values_list):
+                arg_values = list(arg_values)
+                if level:
+                    if arg_values and any((v.data not in logged for v in arg_values)):
+                        log.debug('%s%s:', '  ' * level, arg_values[0].variable.id)
+                else:
+                    log.debug('Arg %d', i)
+                for value in arg_values:
+                    if value.data not in logged:
+                        log.debug('%s%s [var %d]', '  ' * (level + 1), value.data, value.variable.id)
+                        self._log_args(value.data.unique_parameter_values(), level + 2, logged | {value.data})
+
+    def call(self, node, func, args, alias_map=None):
+        if False:
+            return 10
+        if len(self.signatures) == 1:
+            args = args.simplify(node, self.ctx, self.signatures[0].signature)
+        else:
+            args = args.simplify(node, self.ctx)
+        self._log_args((arg.bindings for arg in args.posargs))
+        ret_map = {}
+        retvar = self.ctx.program.NewVariable()
+        all_mutations = {}
+        possible_calls = self.match_args(node, args, alias_map)
+        combined_view = datatypes.AccessTrackingDict()
+        for signatures in possible_calls:
+            view = datatypes.AccessTrackingDict()
+            for (_, _, match) in signatures:
+                view.update(match.view)
+            if len(signatures) > 1:
+                ret = self._call_with_signatures(node, func, args, view, signatures)
+            else:
+                ((sig, arg_dict, match),) = signatures
+                ret = sig.call_with_args(node, func, arg_dict, match, ret_map)
+            (node, result, mutations) = ret
+            retvar.PasteVariable(result, node)
+            for mutation in mutations:
+                all_mutations[mutation] = view
+            combined_view.update(view)
+        if all_mutations and len(func.variable.Bindings(node)) == 1:
+
+            def should_check(value):
+                if False:
+                    i = 10
+                    return i + 15
+                return not _isinstance(value, 'AMBIGUOUS_OR_EMPTY')
+
+            def compatible_with(new, existing, view):
+                if False:
+                    for i in range(10):
+                        print('nop')
+                'Check whether a new type can be added to a container.'
+                new_key = view[new].data.get_type_key()
+                for data in existing:
+                    k = (new_key, data.get_type_key())
+                    if k not in compatible_with_cache:
+                        compatible_with_cache[k] = self.ctx.matcher(node).match_var_against_type(new, data.cls, {}, view)
+                    if compatible_with_cache[k] is not None:
+                        return True
+                return False
+            compatible_with_cache = {}
+            filtered_mutations = []
+            errors = collections.defaultdict(dict)
+            for (mutation, view) in all_mutations.items():
+                obj = mutation.instance
+                name = mutation.name
+                values = mutation.value
+                if obj.from_annotation:
+                    params = obj.get_instance_type_parameter(name)
+                    ps = {v for v in params.data if should_check(v)}
+                    if ps:
+                        filtered_values = self.ctx.program.NewVariable()
+                        new = []
+                        short_name = name.rsplit('.', 1)[-1]
+                        for b in values.bindings:
+                            if not should_check(b.data) or b.data in ps:
+                                filtered_values.PasteBinding(b)
+                                continue
+                            new_view = datatypes.AccessTrackingDict.merge(combined_view, view, {values: b})
+                            if not compatible_with(values, ps, new_view):
+                                combination = [b]
+                                bad_param = b.data.get_instance_type_parameter(short_name)
+                                if bad_param in new_view:
+                                    combination.append(new_view[bad_param])
+                                if not node.HasCombination(combination):
+                                    continue
+                                filtered_values.PasteBinding(b)
+                                new.append(b.data)
+                        filtered_mutations.append(function.Mutation(obj, name, filtered_values))
+                        if new:
+                            errors[obj][short_name] = (params, values, obj.from_annotation)
+                else:
+                    filtered_mutations.append(function.Mutation(obj, name, values))
+            all_mutations = filtered_mutations
+            for (obj, errs) in errors.items():
+                names = {name for (_, _, name) in errs.values()}
+                name = list(names)[0] if len(names) == 1 else None
+                self.ctx.errorlog.container_type_mismatch(self.ctx.vm.frames, obj, errs, name)
+        node = abstract_utils.apply_mutations(node, all_mutations.__iter__)
+        return (node, retvar)
+
+    def _get_mutation_to_unknown(self, node, values):
+        if False:
+            return 10
+        'Mutation for making all type parameters in a list of instances "unknown".\n\n    This is used if we call a function that has mutable parameters and\n    multiple signatures with unknown parameters.\n\n    Args:\n      node: The current CFG node.\n      values: A list of instances of BaseValue.\n\n    Returns:\n      A list of function.Mutation instances.\n    '
+        mutations = []
+        for v in values:
+            if isinstance(v, _instance_base.SimpleValue):
+                for name in v.instance_type_parameters:
+                    if name in self._mutated_type_parameters:
+                        mutations.append(function.Mutation(v, name, self.ctx.convert.create_new_unknown(node, action='type_param_' + name)))
+        return mutations
+
+    def _can_match_multiple(self, args):
+        if False:
+            i = 10
+            return i + 15
+        if len(self.signatures) <= 1:
+            return False
+        for var in args.get_variables():
+            if any((_isinstance(v, 'AMBIGUOUS_OR_EMPTY') for v in var.data)):
+                return True
+        return args.has_opaque_starargs_or_starstarargs()
+
+    def _call_with_signatures(self, node, func, args, view, signatures):
+        if False:
+            return 10
+        'Perform a function call that involves multiple signatures.'
+        ret_type = self._combine_multiple_returns(signatures)
+        if self.ctx.options.protocols and isinstance(ret_type, pytd.AnythingType):
+            log.debug('Creating unknown return')
+            result = self.ctx.convert.create_new_unknown(node, action='pytd_call')
+        else:
+            log.debug('Unknown args. But return is %s', pytd_utils.Print(ret_type))
+            result = self.ctx.convert.constant_to_var(abstract_utils.AsReturnValue(ret_type), {}, node)
+        for (i, arg) in enumerate(args.posargs):
+            if arg in view and isinstance(view[arg].data, _singletons.Unknown):
+                for (sig, _, _) in signatures:
+                    if len(sig.param_types) > i and isinstance(sig.param_types[i], _typing.TypeParameter):
+                        view[arg] = arg.AddBinding(self.ctx.convert.unsolvable, [], node)
+                        break
+        if self._mutated_type_parameters:
+            mutations = self._get_mutation_to_unknown(node, (view[p].data if p in view else self.ctx.convert.unsolvable for p in itertools.chain(args.posargs, args.namedargs.values())))
+        else:
+            mutations = []
+        self.ctx.vm.trace_call(node, func, tuple((sig[0] for sig in signatures)), args.posargs, args.namedargs, result)
+        return (node, result, mutations)
+
+    def _combine_multiple_returns(self, signatures):
+        if False:
+            print('Hello World!')
+        'Combines multiple return types.\n\n    Args:\n      signatures: The candidate signatures.\n\n    Returns:\n      The combined return type.\n    '
+        options = []
+        for (sig, _, _) in signatures:
+            t = sig.pytd_sig.return_type
+            params = pytd_utils.GetTypeParameters(t)
+            if params:
+                replacement = {}
+                for param_type in params:
+                    replacement[param_type] = pytd.AnythingType()
+                replace_visitor = visitors.ReplaceTypeParameters(replacement)
+                t = t.Visit(replace_visitor)
+            options.append(t)
+        if len(set(options)) == 1:
+            return options[0]
+        ret_type = optimize.Optimize(pytd_utils.JoinTypes(options))
+        return ret_type.Visit(visitors.ReplaceUnionsWithAny())
+
+    def _match_args_sequentially(self, node, args, alias_map, match_all_views):
+        if False:
+            for i in range(10):
+                print('nop')
+        error = None
+        matched_signatures = _MatchedSignatures(args, self._can_match_multiple(args))
+        literal_matches = set()
+        for sig in self.signatures:
+            if any((not _is_literal(sig.signature.annotations.get(name)) for name in literal_matches)):
+                continue
+            try:
+                (arg_dict, matches) = sig.substitute_formal_args(node, args, match_all_views, keep_all_views=sig is not self.signatures[-1])
+            except function.FailedFunctionCall as e:
+                if e > error:
+                    if hasattr(self, 'parent'):
+                        e.name = f'{self.parent.name}.{e.name}'
+                    error = e
+            else:
+                with matched_signatures.with_signature(sig):
+                    for match in matches:
+                        matched_signatures.add(arg_dict, match)
+                for (name, var) in arg_dict.items():
+                    if any((isinstance(v, mixin.PythonConstant) for v in var.data)) and _is_literal(sig.signature.annotations.get(name)):
+                        literal_matches.add(name)
+        if not matched_signatures:
+            raise error
+        return matched_signatures.get()
+
+    def set_function_defaults(self, node, defaults_var):
+        if False:
+            print('Hello World!')
+        "Attempts to set default arguments for a function's signatures.\n\n    If defaults_var is not an unambiguous tuple (i.e. one that can be processed\n    by abstract_utils.get_atomic_python_constant), every argument is made\n    optional and a warning is issued. This function emulates __defaults__.\n\n    If this function is part of a class (or has a parent), that parent is\n    updated so the change is stored.\n\n    Args:\n      node: the node that defaults are being set at.\n      defaults_var: a Variable with a single binding to a tuple of default\n                    values.\n    "
+        defaults = self._extract_defaults(defaults_var)
+        new_sigs = []
+        for sig in self.signatures:
+            if defaults:
+                new_sigs.append(sig.set_defaults(defaults))
+            else:
+                d = sig.param_types
+                if hasattr(self, 'parent'):
+                    d = d[1:]
+                new_sigs.append(sig.set_defaults(d))
+        self.signatures = new_sigs
+        if hasattr(self, 'parent'):
+            self.parent._member_map[self.name] = self.to_pytd_def(node, self.name)
+
+class PyTDSignature(utils.ContextWeakrefMixin):
+    """A PyTD function type (signature).
+
+  This represents instances of functions with specific arguments and return
+  type.
+  """
+
+    def __init__(self, name, pytd_sig, ctx):
+        if False:
+            while True:
+                i = 10
+        super().__init__(ctx)
+        self.name = name
+        self.pytd_sig = pytd_sig
+        self.param_types = [self.ctx.convert.constant_to_value(p.type, subst=datatypes.AliasingDict(), node=self.ctx.root_node) for p in self.pytd_sig.params]
+        self.signature = function.Signature.from_pytd(ctx, name, pytd_sig)
+        self.mutated_type_parameters = {}
+        for p in self.pytd_sig.params:
+            try:
+                self.mutated_type_parameters[p] = self._collect_mutated_parameters(p.type, p.mutated_type)
+            except ValueError as e:
+                log.error('Old: %s', pytd_utils.Print(p.type))
+                log.error('New: %s', pytd_utils.Print(p.mutated_type))
+                raise SignatureMutationError(pytd_sig) from e
+
+    def _map_args(self, node, args):
+        if False:
+            print('Hello World!')
+        "Map the passed arguments to a name->binding dictionary.\n\n    Args:\n      node: The current node.\n      args: The passed arguments.\n\n    Returns:\n      A tuple of:\n        a list of formal arguments, each a (name, abstract value) pair;\n        a name->variable dictionary of the passed arguments.\n\n    Raises:\n      InvalidParameters: If the passed arguments don't match this signature.\n    "
+        formal_args = [(p.name, self.signature.annotations[p.name]) for p in self.pytd_sig.params]
+        arg_dict = {}
+        for (name, arg) in zip(self.signature.param_names, args.posargs):
+            arg_dict[name] = arg
+        num_expected_posargs = len(self.signature.param_names)
+        if len(args.posargs) > num_expected_posargs and (not self.pytd_sig.starargs):
+            raise function.WrongArgCount(self.signature, args, self.ctx)
+        varargs_type = self.signature.annotations.get(self.signature.varargs_name)
+        if isinstance(varargs_type, _classes.ParameterizedClass):
+            for (i, vararg) in enumerate(args.posargs[num_expected_posargs:]):
+                name = function.argname(num_expected_posargs + i)
+                arg_dict[name] = vararg
+                formal_args.append((name, varargs_type.get_formal_type_parameter(abstract_utils.T)))
+        posonly_names = set(self.signature.posonly_params)
+        for (name, arg) in args.namedargs.items():
+            if name in posonly_names:
+                continue
+            elif name in arg_dict:
+                raise function.DuplicateKeyword(self.signature, args, self.ctx, name)
+            else:
+                arg_dict[name] = arg
+        kws = set(args.namedargs)
+        extra_kwargs = kws - {p.name for p in self.pytd_sig.params}
+        if extra_kwargs and (not self.pytd_sig.starstarargs):
+            if function.has_visible_namedarg(node, args, extra_kwargs):
+                raise function.WrongKeywordArgs(self.signature, args, self.ctx, extra_kwargs)
+        posonly_kwargs = kws & posonly_names
+        if posonly_kwargs and (not self.signature.kwargs_name):
+            raise function.WrongKeywordArgs(self.signature, args, self.ctx, posonly_kwargs)
+        kwargs_type = self.signature.annotations.get(self.signature.kwargs_name)
+        if isinstance(kwargs_type, _classes.ParameterizedClass):
+            for name in sorted(extra_kwargs):
+                formal_args.append((name, kwargs_type.get_formal_type_parameter(abstract_utils.V)))
+        packed_args = [('starargs', self.signature.varargs_name), ('starstarargs', self.signature.kwargs_name)]
+        for (arg_type, name) in packed_args:
+            actual = getattr(args, arg_type)
+            pytd_val = getattr(self.pytd_sig, arg_type)
+            if actual and pytd_val:
+                arg_dict[name] = actual
+                typ = self.ctx.convert.widen_type(self.signature.annotations[name])
+                formal_args.append((name, typ))
+        return (formal_args, arg_dict)
+
+    def _fill_in_missing_parameters(self, node, args, arg_dict):
+        if False:
+            while True:
+                i = 10
+        for p in self.pytd_sig.params:
+            if p.name not in arg_dict:
+                if not p.optional and args.starargs is None and (args.starstarargs is None):
+                    raise function.MissingParameter(self.signature, args, self.ctx, p.name)
+                arg_dict[p.name] = self.ctx.new_unsolvable(node)
+
+    def substitute_formal_args(self, node, args, match_all_views, keep_all_views):
+        if False:
+            while True:
+                i = 10
+        'Substitute matching args into this signature. Used by PyTDFunction.'
+        (formal_args, arg_dict) = self._map_args(node, args)
+        self._fill_in_missing_parameters(node, args, arg_dict)
+        args_to_match = [function.Arg(name, arg_dict[name], formal) for (name, formal) in formal_args]
+        matcher = self.ctx.matcher(node)
+        try:
+            matches = matcher.compute_matches(args_to_match, match_all_views, keep_all_views)
+        except matcher.MatchError as e:
+            raise function.WrongArgTypes(self.signature, args, self.ctx, e.bad_type)
+        if log.isEnabledFor(logging.DEBUG):
+            log.debug('Matched arguments against sig%s', pytd_utils.Print(self.pytd_sig))
+        for (nr, p) in enumerate(self.pytd_sig.params):
+            log.info('param %d) %s: %s <=> %s', nr, p.name, p.type, arg_dict[p.name])
+        return (arg_dict, matches)
+
+    def _paramspec_signature(self, callable_type, return_value, subst):
+        if False:
+            i = 10
+            return i + 15
+        rhs = callable_type.args[0]
+        if isinstance(rhs, pytd.Concatenate):
+            r_pspec = rhs.paramspec
+            r_args = rhs.args
+        else:
+            r_pspec = rhs
+            r_args = ()
+        if r_pspec.full_name not in subst:
+            return
+        ret = self.ctx.program.NewVariable()
+        for pspec_match in subst[r_pspec.full_name].data:
+            ret_sig = function.build_paramspec_signature(pspec_match, r_args, return_value, self.ctx)
+            ret.AddBinding(_function_base.SimpleFunction(ret_sig, self.ctx))
+        return ret
+
+    def _handle_paramspec(self, node, key, ret_map):
+        if False:
+            return 10
+        'Construct a new function based on ParamSpec matching.'
+        (return_callable, subst) = key
+        val = self.ctx.convert.constant_to_value(return_callable.ret, subst=subst, node=node)
+        if _isinstance(val, 'ParameterizedClass'):
+            inner_types = []
+            for (k, v) in val.formal_type_parameters.items():
+                if _isinstance(v, 'TypeParameter') and v.full_name in subst:
+                    typ = self.ctx.convert.merge_classes(subst[v.full_name].data)
+                    inner_types.append((k, typ))
+                else:
+                    inner_types.append((k, v))
+            val = val.replace(inner_types)
+        elif _isinstance(val, 'TypeParameter') and val.full_name in subst:
+            val = self.ctx.convert.merge_classes(subst[val.full_name].data)
+        ret = self._paramspec_signature(return_callable, val, subst)
+        if ret:
+            ret_map[key] = ret
+
+    def call_with_args(self, node, func, arg_dict, match, ret_map):
+        if False:
+            print('Hello World!')
+        'Call this signature. Used by PyTDFunction.'
+        subst = match.subst
+        ret = self.pytd_sig.return_type
+        t = (ret, subst)
+        if isinstance(ret, pytd.CallableType) and ret.has_paramspec():
+            self._handle_paramspec(node, t, ret_map)
+        sources = [func]
+        for v in arg_dict.values():
+            sources.append(match.view.get(v, v.bindings[0]))
+        visible = node.CanHaveCombination(sources)
+        if visible and t in ret_map:
+            for data in ret_map[t].data:
+                ret_map[t].AddBinding(data, sources, node)
+        elif visible:
+            first_arg = self.signature.get_first_arg(arg_dict)
+            ret_type = function.PyTDReturnType(ret, subst, sources, self.ctx)
+            if first_arg:
+                typeguard_return = function.handle_typeguard(node, ret_type, first_arg, self.ctx, func_name=self.name)
+            else:
+                typeguard_return = None
+            if typeguard_return:
+                ret_map[t] = typeguard_return
+            else:
+                (node, ret_map[t]) = ret_type.instantiate(node)
+        elif t not in ret_map:
+            ret_map[t] = self.ctx.program.NewVariable()
+        mutations = self._get_mutation(node, arg_dict, subst, ret_map[t])
+        self.ctx.vm.trace_call(node, func, (self,), tuple((arg_dict[p.name] for p in self.pytd_sig.params)), {}, ret_map[t])
+        return (node, ret_map[t], mutations)
+
+    @classmethod
+    def _collect_mutated_parameters(cls, typ, mutated_type):
+        if False:
+            return 10
+        if not mutated_type:
+            return []
+        if isinstance(typ, pytd.UnionType) and isinstance(mutated_type, pytd.UnionType):
+            if len(typ.type_list) != len(mutated_type.type_list):
+                raise ValueError('Type list lengths do not match:\nOld: %s\nNew: %s' % (typ.type_list, mutated_type.type_list))
+            return list(itertools.chain.from_iterable((cls._collect_mutated_parameters(t1, t2) for (t1, t2) in zip(typ.type_list, mutated_type.type_list))))
+        if typ == mutated_type and isinstance(typ, pytd.ClassType):
+            return []
+        if not isinstance(typ, pytd.GenericType) or not isinstance(mutated_type, pytd.GenericType) or typ.base_type != mutated_type.base_type or (not isinstance(typ.base_type, (pytd.ClassType, pytd.LateType))):
+            raise ValueError(f'Unsupported mutation:\n{typ!r} ->\n{mutated_type!r}')
+        if isinstance(typ.base_type, pytd.LateType):
+            return []
+        return [list(zip(mutated_type.base_type.cls.template, mutated_type.parameters))]
+
+    def _get_mutation(self, node, arg_dict, subst, retvar):
+        if False:
+            while True:
+                i = 10
+        "Mutation for changing the type parameters of mutable arguments.\n\n    This will adjust the type parameters as needed for pytd functions like:\n      def append_float(x: list[int]):\n        x = list[int or float]\n    This is called after all the signature matching has succeeded, and we\n    know we're actually calling this function.\n\n    Args:\n      node: The current CFG node.\n      arg_dict: A map of strings to cfg.Variable instances.\n      subst: Current type parameters.\n      retvar: A variable of the return value.\n    Returns:\n      A list of Mutation instances.\n    Raises:\n      ValueError: If the pytd contains invalid information for mutated params.\n    "
+        mutations = []
+        if any((f.mutated_type for f in self.pytd_sig.params)):
+            subst = abstract_utils.with_empty_substitutions(subst, self.pytd_sig, node, self.ctx)
+        for formal in self.pytd_sig.params:
+            actual = arg_dict[formal.name]
+            if formal.mutated_type is None:
+                continue
+            args = actual.data
+            for arg in args:
+                if isinstance(arg, _instance_base.SimpleValue):
+                    for names_actuals in self.mutated_type_parameters[formal]:
+                        for (tparam, type_actual) in names_actuals:
+                            log.info('Mutating %s to %s', tparam.name, pytd_utils.Print(type_actual))
+                            type_actual_val = self.ctx.convert.constant_to_var(abstract_utils.AsInstance(type_actual), subst, node, discard_concrete_values=True)
+                            mutations.append(function.Mutation(arg, tparam.full_name, type_actual_val))
+        if self.name == '__new__':
+            for ret in retvar.data:
+                if ret.cls.full_name != 'builtins.type':
+                    for t in ret.cls.template:
+                        if t.full_name in subst:
+                            mutations.append(function.Mutation(ret, t.full_name, subst[t.full_name]))
+        return mutations
+
+    def get_positional_names(self):
+        if False:
+            i = 10
+            return i + 15
+        return [p.name for p in self.pytd_sig.params if p.kind != pytd.ParameterKind.KWONLY]
+
+    def set_defaults(self, defaults):
+        if False:
+            for i in range(10):
+                print('nop')
+        "Set signature's default arguments. Requires rebuilding PyTD signature.\n\n    Args:\n      defaults: An iterable of function argument defaults.\n\n    Returns:\n      Self with an updated signature.\n    "
+        defaults = list(defaults)
+        params = []
+        for param in reversed(self.pytd_sig.params):
+            if defaults:
+                defaults.pop()
+                params.append(pytd.Parameter(name=param.name, type=param.type, kind=param.kind, optional=True, mutated_type=param.mutated_type))
+            else:
+                params.append(pytd.Parameter(name=param.name, type=param.type, kind=param.kind, optional=False, mutated_type=param.mutated_type))
+        new_sig = pytd.Signature(params=tuple(reversed(params)), starargs=self.pytd_sig.starargs, starstarargs=self.pytd_sig.starstarargs, return_type=self.pytd_sig.return_type, exceptions=self.pytd_sig.exceptions, template=self.pytd_sig.template)
+        self.pytd_sig = new_sig
+        self.param_types = [self.ctx.convert.constant_to_value(p.type, subst=datatypes.AliasingDict(), node=self.ctx.root_node) for p in self.pytd_sig.params]
+        self.signature = function.Signature.from_pytd(self.ctx, self.name, self.pytd_sig)
+        return self
+
+    def __repr__(self):
+        if False:
+            return 10
+        return pytd_utils.Print(self.pytd_sig)

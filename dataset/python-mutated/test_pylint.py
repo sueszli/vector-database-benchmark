@@ -1,0 +1,46 @@
+import logging
+try:
+    import pylint
+except ImportError:
+    pylint = None
+import subprocess
+from distutils.version import LooseVersion
+from os import devnull
+from os.path import join
+from odoo.tests.common import TransactionCase
+from odoo import tools
+from odoo.modules import get_modules, get_module_path
+_logger = logging.getLogger(__name__)
+
+class TestPyLint(TransactionCase):
+    ENABLED_CODES = ['E0601', 'W0123', 'W0101']
+
+    def _skip_test(self, reason):
+        if False:
+            while True:
+                i = 10
+        _logger.warn(reason)
+        self.skipTest(reason)
+
+    def test_pylint(self):
+        if False:
+            print('Hello World!')
+        if pylint is None:
+            self._skip_test('please install pylint')
+        if LooseVersion(getattr(pylint, '__version__', '0.0.1')) < LooseVersion('1.6.4'):
+            self._skip_test('please upgrade pylint to >= 1.6.4')
+        paths = [tools.config['root_path']]
+        for module in get_modules():
+            module_path = get_module_path(module)
+            if not module_path.startswith(join(tools.config['root_path'], 'addons')):
+                paths.append(module_path)
+        options = ['--disable=all', '--enable=%s' % ','.join(self.ENABLED_CODES), '--reports=n', "--msg-template='{msg} ({msg_id}) at {path}:{line}'"]
+        try:
+            with open(devnull, 'w') as devnull_file:
+                process = subprocess.Popen(['pylint'] + options + paths, stdout=subprocess.PIPE, stderr=devnull_file)
+        except (OSError, IOError):
+            self._skip_test('pylint executable not found in the path')
+        else:
+            out = process.communicate()[0]
+            if process.returncode:
+                self.fail(msg='\n' + out)

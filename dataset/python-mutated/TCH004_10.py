@@ -1,0 +1,14 @@
+from __future__ import annotations
+from typing import TYPE_CHECKING
+if TYPE_CHECKING:
+    from typing import Tuple, List, Dict
+x: Tuple
+
+class C:
+    x: List
+
+def f():
+    if False:
+        i = 10
+        return i + 15
+    x: Dict
