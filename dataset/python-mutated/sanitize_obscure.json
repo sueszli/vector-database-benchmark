@@ -1,0 +1,519 @@
+[
+    {
+        "func_name": "sanitize_all",
+        "original": "def sanitize_all(x: T) -> T:\n    ...",
+        "mutated": [
+            "def sanitize_all(x: T) -> T:\n    if False:\n        i = 10\n    ...",
+            "def sanitize_all(x: T) -> T:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    ...",
+            "def sanitize_all(x: T) -> T:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    ...",
+            "def sanitize_all(x: T) -> T:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    ...",
+            "def sanitize_all(x: T) -> T:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    ..."
+        ]
+    },
+    {
+        "func_name": "test1",
+        "original": "def test1(x):\n    y = sanitize_all(x)\n    _test_sink(y)",
+        "mutated": [
+            "def test1(x):\n    if False:\n        i = 10\n    y = sanitize_all(x)\n    _test_sink(y)",
+            "def test1(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    y = sanitize_all(x)\n    _test_sink(y)",
+            "def test1(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    y = sanitize_all(x)\n    _test_sink(y)",
+            "def test1(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    y = sanitize_all(x)\n    _test_sink(y)",
+            "def test1(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    y = sanitize_all(x)\n    _test_sink(y)"
+        ]
+    },
+    {
+        "func_name": "test2",
+        "original": "def test2():\n    x = _test_source()\n    y = sanitize_all(x)\n    _test_sink(y)",
+        "mutated": [
+            "def test2():\n    if False:\n        i = 10\n    x = _test_source()\n    y = sanitize_all(x)\n    _test_sink(y)",
+            "def test2():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    x = _test_source()\n    y = sanitize_all(x)\n    _test_sink(y)",
+            "def test2():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    x = _test_source()\n    y = sanitize_all(x)\n    _test_sink(y)",
+            "def test2():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    x = _test_source()\n    y = sanitize_all(x)\n    _test_sink(y)",
+            "def test2():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    x = _test_source()\n    y = sanitize_all(x)\n    _test_sink(y)"
+        ]
+    },
+    {
+        "func_name": "sanitize_tito",
+        "original": "def sanitize_tito(x: T) -> T:\n    ...",
+        "mutated": [
+            "def sanitize_tito(x: T) -> T:\n    if False:\n        i = 10\n    ...",
+            "def sanitize_tito(x: T) -> T:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    ...",
+            "def sanitize_tito(x: T) -> T:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    ...",
+            "def sanitize_tito(x: T) -> T:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    ...",
+            "def sanitize_tito(x: T) -> T:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    ..."
+        ]
+    },
+    {
+        "func_name": "test3",
+        "original": "def test3(x):\n    y = sanitize_tito(x)\n    _test_sink(y)",
+        "mutated": [
+            "def test3(x):\n    if False:\n        i = 10\n    y = sanitize_tito(x)\n    _test_sink(y)",
+            "def test3(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    y = sanitize_tito(x)\n    _test_sink(y)",
+            "def test3(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    y = sanitize_tito(x)\n    _test_sink(y)",
+            "def test3(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    y = sanitize_tito(x)\n    _test_sink(y)",
+            "def test3(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    y = sanitize_tito(x)\n    _test_sink(y)"
+        ]
+    },
+    {
+        "func_name": "test4",
+        "original": "def test4():\n    x = _test_source()\n    y = sanitize_tito(x)\n    _test_sink(y)",
+        "mutated": [
+            "def test4():\n    if False:\n        i = 10\n    x = _test_source()\n    y = sanitize_tito(x)\n    _test_sink(y)",
+            "def test4():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    x = _test_source()\n    y = sanitize_tito(x)\n    _test_sink(y)",
+            "def test4():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    x = _test_source()\n    y = sanitize_tito(x)\n    _test_sink(y)",
+            "def test4():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    x = _test_source()\n    y = sanitize_tito(x)\n    _test_sink(y)",
+            "def test4():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    x = _test_source()\n    y = sanitize_tito(x)\n    _test_sink(y)"
+        ]
+    },
+    {
+        "func_name": "a_source",
+        "original": "def a_source():\n    return",
+        "mutated": [
+            "def a_source():\n    if False:\n        i = 10\n    return",
+            "def a_source():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return",
+            "def a_source():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return",
+            "def a_source():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return",
+            "def a_source():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return"
+        ]
+    },
+    {
+        "func_name": "b_source",
+        "original": "def b_source():\n    return",
+        "mutated": [
+            "def b_source():\n    if False:\n        i = 10\n    return",
+            "def b_source():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return",
+            "def b_source():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return",
+            "def b_source():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return",
+            "def b_source():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return"
+        ]
+    },
+    {
+        "func_name": "a_sink",
+        "original": "def a_sink(x):\n    return",
+        "mutated": [
+            "def a_sink(x):\n    if False:\n        i = 10\n    return",
+            "def a_sink(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return",
+            "def a_sink(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return",
+            "def a_sink(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return",
+            "def a_sink(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return"
+        ]
+    },
+    {
+        "func_name": "b_sink",
+        "original": "def b_sink(x):\n    return",
+        "mutated": [
+            "def b_sink(x):\n    if False:\n        i = 10\n    return",
+            "def b_sink(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return",
+            "def b_sink(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return",
+            "def b_sink(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return",
+            "def b_sink(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return"
+        ]
+    },
+    {
+        "func_name": "sanitize_a_tito",
+        "original": "def sanitize_a_tito(x):\n    ...",
+        "mutated": [
+            "def sanitize_a_tito(x):\n    if False:\n        i = 10\n    ...",
+            "def sanitize_a_tito(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    ...",
+            "def sanitize_a_tito(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    ...",
+            "def sanitize_a_tito(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    ...",
+            "def sanitize_a_tito(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    ..."
+        ]
+    },
+    {
+        "func_name": "no_propagation_with_sanitize_a_tito",
+        "original": "def no_propagation_with_sanitize_a_tito():\n    a = a_source()\n    b = sanitize_a_tito(a)\n    return b",
+        "mutated": [
+            "def no_propagation_with_sanitize_a_tito():\n    if False:\n        i = 10\n    a = a_source()\n    b = sanitize_a_tito(a)\n    return b",
+            "def no_propagation_with_sanitize_a_tito():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    a = a_source()\n    b = sanitize_a_tito(a)\n    return b",
+            "def no_propagation_with_sanitize_a_tito():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    a = a_source()\n    b = sanitize_a_tito(a)\n    return b",
+            "def no_propagation_with_sanitize_a_tito():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    a = a_source()\n    b = sanitize_a_tito(a)\n    return b",
+            "def no_propagation_with_sanitize_a_tito():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    a = a_source()\n    b = sanitize_a_tito(a)\n    return b"
+        ]
+    },
+    {
+        "func_name": "propagation_of_b_with_sanitize_a_tito",
+        "original": "def propagation_of_b_with_sanitize_a_tito():\n    b = b_source()\n    tito = sanitize_a_tito(b)\n    return tito",
+        "mutated": [
+            "def propagation_of_b_with_sanitize_a_tito():\n    if False:\n        i = 10\n    b = b_source()\n    tito = sanitize_a_tito(b)\n    return tito",
+            "def propagation_of_b_with_sanitize_a_tito():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    b = b_source()\n    tito = sanitize_a_tito(b)\n    return tito",
+            "def propagation_of_b_with_sanitize_a_tito():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    b = b_source()\n    tito = sanitize_a_tito(b)\n    return tito",
+            "def propagation_of_b_with_sanitize_a_tito():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    b = b_source()\n    tito = sanitize_a_tito(b)\n    return tito",
+            "def propagation_of_b_with_sanitize_a_tito():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    b = b_source()\n    tito = sanitize_a_tito(b)\n    return tito"
+        ]
+    },
+    {
+        "func_name": "sanitize_a_sink_tito",
+        "original": "def sanitize_a_sink_tito(x):\n    ...",
+        "mutated": [
+            "def sanitize_a_sink_tito(x):\n    if False:\n        i = 10\n    ...",
+            "def sanitize_a_sink_tito(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    ...",
+            "def sanitize_a_sink_tito(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    ...",
+            "def sanitize_a_sink_tito(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    ...",
+            "def sanitize_a_sink_tito(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    ..."
+        ]
+    },
+    {
+        "func_name": "no_propagation_of_a_sink",
+        "original": "def no_propagation_of_a_sink(x):\n    y = sanitize_a_sink_tito(x)\n    a_sink(y)",
+        "mutated": [
+            "def no_propagation_of_a_sink(x):\n    if False:\n        i = 10\n    y = sanitize_a_sink_tito(x)\n    a_sink(y)",
+            "def no_propagation_of_a_sink(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    y = sanitize_a_sink_tito(x)\n    a_sink(y)",
+            "def no_propagation_of_a_sink(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    y = sanitize_a_sink_tito(x)\n    a_sink(y)",
+            "def no_propagation_of_a_sink(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    y = sanitize_a_sink_tito(x)\n    a_sink(y)",
+            "def no_propagation_of_a_sink(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    y = sanitize_a_sink_tito(x)\n    a_sink(y)"
+        ]
+    },
+    {
+        "func_name": "propagation_of_b_sink",
+        "original": "def propagation_of_b_sink(x):\n    y = sanitize_a_sink_tito(x)\n    b_sink(y)",
+        "mutated": [
+            "def propagation_of_b_sink(x):\n    if False:\n        i = 10\n    y = sanitize_a_sink_tito(x)\n    b_sink(y)",
+            "def propagation_of_b_sink(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    y = sanitize_a_sink_tito(x)\n    b_sink(y)",
+            "def propagation_of_b_sink(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    y = sanitize_a_sink_tito(x)\n    b_sink(y)",
+            "def propagation_of_b_sink(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    y = sanitize_a_sink_tito(x)\n    b_sink(y)",
+            "def propagation_of_b_sink(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    y = sanitize_a_sink_tito(x)\n    b_sink(y)"
+        ]
+    },
+    {
+        "func_name": "sanitize_a_source_tito",
+        "original": "def sanitize_a_source_tito(x):\n    ...",
+        "mutated": [
+            "def sanitize_a_source_tito(x):\n    if False:\n        i = 10\n    ...",
+            "def sanitize_a_source_tito(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    ...",
+            "def sanitize_a_source_tito(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    ...",
+            "def sanitize_a_source_tito(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    ...",
+            "def sanitize_a_source_tito(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    ..."
+        ]
+    },
+    {
+        "func_name": "no_propagation_of_a_source",
+        "original": "def no_propagation_of_a_source():\n    x = a_source()\n    return sanitize_a_source_tito(x)",
+        "mutated": [
+            "def no_propagation_of_a_source():\n    if False:\n        i = 10\n    x = a_source()\n    return sanitize_a_source_tito(x)",
+            "def no_propagation_of_a_source():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    x = a_source()\n    return sanitize_a_source_tito(x)",
+            "def no_propagation_of_a_source():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    x = a_source()\n    return sanitize_a_source_tito(x)",
+            "def no_propagation_of_a_source():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    x = a_source()\n    return sanitize_a_source_tito(x)",
+            "def no_propagation_of_a_source():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    x = a_source()\n    return sanitize_a_source_tito(x)"
+        ]
+    },
+    {
+        "func_name": "propagation_of_b_source",
+        "original": "def propagation_of_b_source():\n    x = b_source()\n    return sanitize_a_source_tito(x)",
+        "mutated": [
+            "def propagation_of_b_source():\n    if False:\n        i = 10\n    x = b_source()\n    return sanitize_a_source_tito(x)",
+            "def propagation_of_b_source():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    x = b_source()\n    return sanitize_a_source_tito(x)",
+            "def propagation_of_b_source():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    x = b_source()\n    return sanitize_a_source_tito(x)",
+            "def propagation_of_b_source():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    x = b_source()\n    return sanitize_a_source_tito(x)",
+            "def propagation_of_b_source():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    x = b_source()\n    return sanitize_a_source_tito(x)"
+        ]
+    },
+    {
+        "func_name": "sanitize_parameter_source_a_tito",
+        "original": "def sanitize_parameter_source_a_tito(x, y):\n    ...",
+        "mutated": [
+            "def sanitize_parameter_source_a_tito(x, y):\n    if False:\n        i = 10\n    ...",
+            "def sanitize_parameter_source_a_tito(x, y):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    ...",
+            "def sanitize_parameter_source_a_tito(x, y):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    ...",
+            "def sanitize_parameter_source_a_tito(x, y):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    ...",
+            "def sanitize_parameter_source_a_tito(x, y):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    ..."
+        ]
+    },
+    {
+        "func_name": "no_propagation_of_a_source_via_parameter_tito",
+        "original": "def no_propagation_of_a_source_via_parameter_tito():\n    x = a_source()\n    return sanitize_parameter_source_a_tito(x)",
+        "mutated": [
+            "def no_propagation_of_a_source_via_parameter_tito():\n    if False:\n        i = 10\n    x = a_source()\n    return sanitize_parameter_source_a_tito(x)",
+            "def no_propagation_of_a_source_via_parameter_tito():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    x = a_source()\n    return sanitize_parameter_source_a_tito(x)",
+            "def no_propagation_of_a_source_via_parameter_tito():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    x = a_source()\n    return sanitize_parameter_source_a_tito(x)",
+            "def no_propagation_of_a_source_via_parameter_tito():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    x = a_source()\n    return sanitize_parameter_source_a_tito(x)",
+            "def no_propagation_of_a_source_via_parameter_tito():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    x = a_source()\n    return sanitize_parameter_source_a_tito(x)"
+        ]
+    },
+    {
+        "func_name": "propagation_of_a_source_via_other_parameter_tito",
+        "original": "def propagation_of_a_source_via_other_parameter_tito():\n    x = a_source()\n    return sanitize_parameter_source_a_tito(y=x, x='foo')",
+        "mutated": [
+            "def propagation_of_a_source_via_other_parameter_tito():\n    if False:\n        i = 10\n    x = a_source()\n    return sanitize_parameter_source_a_tito(y=x, x='foo')",
+            "def propagation_of_a_source_via_other_parameter_tito():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    x = a_source()\n    return sanitize_parameter_source_a_tito(y=x, x='foo')",
+            "def propagation_of_a_source_via_other_parameter_tito():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    x = a_source()\n    return sanitize_parameter_source_a_tito(y=x, x='foo')",
+            "def propagation_of_a_source_via_other_parameter_tito():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    x = a_source()\n    return sanitize_parameter_source_a_tito(y=x, x='foo')",
+            "def propagation_of_a_source_via_other_parameter_tito():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    x = a_source()\n    return sanitize_parameter_source_a_tito(y=x, x='foo')"
+        ]
+    },
+    {
+        "func_name": "propagation_of_b_source_via_parameter_tito",
+        "original": "def propagation_of_b_source_via_parameter_tito():\n    x = b_source()\n    return sanitize_parameter_source_a_tito(x)",
+        "mutated": [
+            "def propagation_of_b_source_via_parameter_tito():\n    if False:\n        i = 10\n    x = b_source()\n    return sanitize_parameter_source_a_tito(x)",
+            "def propagation_of_b_source_via_parameter_tito():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    x = b_source()\n    return sanitize_parameter_source_a_tito(x)",
+            "def propagation_of_b_source_via_parameter_tito():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    x = b_source()\n    return sanitize_parameter_source_a_tito(x)",
+            "def propagation_of_b_source_via_parameter_tito():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    x = b_source()\n    return sanitize_parameter_source_a_tito(x)",
+            "def propagation_of_b_source_via_parameter_tito():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    x = b_source()\n    return sanitize_parameter_source_a_tito(x)"
+        ]
+    },
+    {
+        "func_name": "sanitize_parameter_sink_a_tito",
+        "original": "def sanitize_parameter_sink_a_tito(x, y):\n    ...",
+        "mutated": [
+            "def sanitize_parameter_sink_a_tito(x, y):\n    if False:\n        i = 10\n    ...",
+            "def sanitize_parameter_sink_a_tito(x, y):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    ...",
+            "def sanitize_parameter_sink_a_tito(x, y):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    ...",
+            "def sanitize_parameter_sink_a_tito(x, y):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    ...",
+            "def sanitize_parameter_sink_a_tito(x, y):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    ..."
+        ]
+    },
+    {
+        "func_name": "no_propagation_of_a_sink_via_parameter_tito",
+        "original": "def no_propagation_of_a_sink_via_parameter_tito(x):\n    y = sanitize_parameter_sink_a_tito(x)\n    a_sink(y)",
+        "mutated": [
+            "def no_propagation_of_a_sink_via_parameter_tito(x):\n    if False:\n        i = 10\n    y = sanitize_parameter_sink_a_tito(x)\n    a_sink(y)",
+            "def no_propagation_of_a_sink_via_parameter_tito(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    y = sanitize_parameter_sink_a_tito(x)\n    a_sink(y)",
+            "def no_propagation_of_a_sink_via_parameter_tito(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    y = sanitize_parameter_sink_a_tito(x)\n    a_sink(y)",
+            "def no_propagation_of_a_sink_via_parameter_tito(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    y = sanitize_parameter_sink_a_tito(x)\n    a_sink(y)",
+            "def no_propagation_of_a_sink_via_parameter_tito(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    y = sanitize_parameter_sink_a_tito(x)\n    a_sink(y)"
+        ]
+    },
+    {
+        "func_name": "propagation_of_a_sink_via_other_parameter_tito",
+        "original": "def propagation_of_a_sink_via_other_parameter_tito(x):\n    y = sanitize_parameter_sink_a_tito('foo', x)\n    a_sink(y)",
+        "mutated": [
+            "def propagation_of_a_sink_via_other_parameter_tito(x):\n    if False:\n        i = 10\n    y = sanitize_parameter_sink_a_tito('foo', x)\n    a_sink(y)",
+            "def propagation_of_a_sink_via_other_parameter_tito(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    y = sanitize_parameter_sink_a_tito('foo', x)\n    a_sink(y)",
+            "def propagation_of_a_sink_via_other_parameter_tito(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    y = sanitize_parameter_sink_a_tito('foo', x)\n    a_sink(y)",
+            "def propagation_of_a_sink_via_other_parameter_tito(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    y = sanitize_parameter_sink_a_tito('foo', x)\n    a_sink(y)",
+            "def propagation_of_a_sink_via_other_parameter_tito(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    y = sanitize_parameter_sink_a_tito('foo', x)\n    a_sink(y)"
+        ]
+    },
+    {
+        "func_name": "propagation_of_b_sink_via_parameter_tito",
+        "original": "def propagation_of_b_sink_via_parameter_tito(x):\n    y = sanitize_parameter_sink_a_tito(x)\n    b_sink(y)",
+        "mutated": [
+            "def propagation_of_b_sink_via_parameter_tito(x):\n    if False:\n        i = 10\n    y = sanitize_parameter_sink_a_tito(x)\n    b_sink(y)",
+            "def propagation_of_b_sink_via_parameter_tito(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    y = sanitize_parameter_sink_a_tito(x)\n    b_sink(y)",
+            "def propagation_of_b_sink_via_parameter_tito(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    y = sanitize_parameter_sink_a_tito(x)\n    b_sink(y)",
+            "def propagation_of_b_sink_via_parameter_tito(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    y = sanitize_parameter_sink_a_tito(x)\n    b_sink(y)",
+            "def propagation_of_b_sink_via_parameter_tito(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    y = sanitize_parameter_sink_a_tito(x)\n    b_sink(y)"
+        ]
+    },
+    {
+        "func_name": "sanitize_return_source_a_tito",
+        "original": "def sanitize_return_source_a_tito(x):\n    ...",
+        "mutated": [
+            "def sanitize_return_source_a_tito(x):\n    if False:\n        i = 10\n    ...",
+            "def sanitize_return_source_a_tito(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    ...",
+            "def sanitize_return_source_a_tito(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    ...",
+            "def sanitize_return_source_a_tito(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    ...",
+            "def sanitize_return_source_a_tito(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    ..."
+        ]
+    },
+    {
+        "func_name": "no_propagation_of_a_source_via_return_tito",
+        "original": "def no_propagation_of_a_source_via_return_tito():\n    x = a_source()\n    return sanitize_return_source_a_tito(x)",
+        "mutated": [
+            "def no_propagation_of_a_source_via_return_tito():\n    if False:\n        i = 10\n    x = a_source()\n    return sanitize_return_source_a_tito(x)",
+            "def no_propagation_of_a_source_via_return_tito():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    x = a_source()\n    return sanitize_return_source_a_tito(x)",
+            "def no_propagation_of_a_source_via_return_tito():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    x = a_source()\n    return sanitize_return_source_a_tito(x)",
+            "def no_propagation_of_a_source_via_return_tito():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    x = a_source()\n    return sanitize_return_source_a_tito(x)",
+            "def no_propagation_of_a_source_via_return_tito():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    x = a_source()\n    return sanitize_return_source_a_tito(x)"
+        ]
+    },
+    {
+        "func_name": "propagation_of_b_source_via_return_tito",
+        "original": "def propagation_of_b_source_via_return_tito():\n    x = b_source()\n    return sanitize_return_source_a_tito(x)",
+        "mutated": [
+            "def propagation_of_b_source_via_return_tito():\n    if False:\n        i = 10\n    x = b_source()\n    return sanitize_return_source_a_tito(x)",
+            "def propagation_of_b_source_via_return_tito():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    x = b_source()\n    return sanitize_return_source_a_tito(x)",
+            "def propagation_of_b_source_via_return_tito():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    x = b_source()\n    return sanitize_return_source_a_tito(x)",
+            "def propagation_of_b_source_via_return_tito():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    x = b_source()\n    return sanitize_return_source_a_tito(x)",
+            "def propagation_of_b_source_via_return_tito():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    x = b_source()\n    return sanitize_return_source_a_tito(x)"
+        ]
+    },
+    {
+        "func_name": "sanitize_return_sink_a_tito",
+        "original": "def sanitize_return_sink_a_tito(x):\n    ...",
+        "mutated": [
+            "def sanitize_return_sink_a_tito(x):\n    if False:\n        i = 10\n    ...",
+            "def sanitize_return_sink_a_tito(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    ...",
+            "def sanitize_return_sink_a_tito(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    ...",
+            "def sanitize_return_sink_a_tito(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    ...",
+            "def sanitize_return_sink_a_tito(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    ..."
+        ]
+    },
+    {
+        "func_name": "no_propagation_of_a_sink_via_return_tito",
+        "original": "def no_propagation_of_a_sink_via_return_tito(x):\n    y = sanitize_return_sink_a_tito(x)\n    a_sink(y)",
+        "mutated": [
+            "def no_propagation_of_a_sink_via_return_tito(x):\n    if False:\n        i = 10\n    y = sanitize_return_sink_a_tito(x)\n    a_sink(y)",
+            "def no_propagation_of_a_sink_via_return_tito(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    y = sanitize_return_sink_a_tito(x)\n    a_sink(y)",
+            "def no_propagation_of_a_sink_via_return_tito(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    y = sanitize_return_sink_a_tito(x)\n    a_sink(y)",
+            "def no_propagation_of_a_sink_via_return_tito(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    y = sanitize_return_sink_a_tito(x)\n    a_sink(y)",
+            "def no_propagation_of_a_sink_via_return_tito(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    y = sanitize_return_sink_a_tito(x)\n    a_sink(y)"
+        ]
+    },
+    {
+        "func_name": "propagation_of_b_sink_via_return_tito",
+        "original": "def propagation_of_b_sink_via_return_tito(x):\n    y = sanitize_return_sink_a_tito(x)\n    b_sink(y)",
+        "mutated": [
+            "def propagation_of_b_sink_via_return_tito(x):\n    if False:\n        i = 10\n    y = sanitize_return_sink_a_tito(x)\n    b_sink(y)",
+            "def propagation_of_b_sink_via_return_tito(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    y = sanitize_return_sink_a_tito(x)\n    b_sink(y)",
+            "def propagation_of_b_sink_via_return_tito(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    y = sanitize_return_sink_a_tito(x)\n    b_sink(y)",
+            "def propagation_of_b_sink_via_return_tito(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    y = sanitize_return_sink_a_tito(x)\n    b_sink(y)",
+            "def propagation_of_b_sink_via_return_tito(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    y = sanitize_return_sink_a_tito(x)\n    b_sink(y)"
+        ]
+    },
+    {
+        "func_name": "sanitize_parameter_source_a",
+        "original": "def sanitize_parameter_source_a(x):\n    ...",
+        "mutated": [
+            "def sanitize_parameter_source_a(x):\n    if False:\n        i = 10\n    ...",
+            "def sanitize_parameter_source_a(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    ...",
+            "def sanitize_parameter_source_a(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    ...",
+            "def sanitize_parameter_source_a(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    ...",
+            "def sanitize_parameter_source_a(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    ..."
+        ]
+    },
+    {
+        "func_name": "no_propagation_of_a_source_via_parameter",
+        "original": "def no_propagation_of_a_source_via_parameter():\n    x = a_source()\n    return sanitize_parameter_source_a(x)",
+        "mutated": [
+            "def no_propagation_of_a_source_via_parameter():\n    if False:\n        i = 10\n    x = a_source()\n    return sanitize_parameter_source_a(x)",
+            "def no_propagation_of_a_source_via_parameter():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    x = a_source()\n    return sanitize_parameter_source_a(x)",
+            "def no_propagation_of_a_source_via_parameter():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    x = a_source()\n    return sanitize_parameter_source_a(x)",
+            "def no_propagation_of_a_source_via_parameter():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    x = a_source()\n    return sanitize_parameter_source_a(x)",
+            "def no_propagation_of_a_source_via_parameter():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    x = a_source()\n    return sanitize_parameter_source_a(x)"
+        ]
+    },
+    {
+        "func_name": "propagation_of_b_source_via_parameter",
+        "original": "def propagation_of_b_source_via_parameter():\n    x = b_source()\n    return sanitize_parameter_source_a(x)",
+        "mutated": [
+            "def propagation_of_b_source_via_parameter():\n    if False:\n        i = 10\n    x = b_source()\n    return sanitize_parameter_source_a(x)",
+            "def propagation_of_b_source_via_parameter():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    x = b_source()\n    return sanitize_parameter_source_a(x)",
+            "def propagation_of_b_source_via_parameter():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    x = b_source()\n    return sanitize_parameter_source_a(x)",
+            "def propagation_of_b_source_via_parameter():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    x = b_source()\n    return sanitize_parameter_source_a(x)",
+            "def propagation_of_b_source_via_parameter():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    x = b_source()\n    return sanitize_parameter_source_a(x)"
+        ]
+    },
+    {
+        "func_name": "sanitize_parameter_sink_a",
+        "original": "def sanitize_parameter_sink_a(x):\n    ...",
+        "mutated": [
+            "def sanitize_parameter_sink_a(x):\n    if False:\n        i = 10\n    ...",
+            "def sanitize_parameter_sink_a(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    ...",
+            "def sanitize_parameter_sink_a(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    ...",
+            "def sanitize_parameter_sink_a(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    ...",
+            "def sanitize_parameter_sink_a(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    ..."
+        ]
+    },
+    {
+        "func_name": "no_propagation_of_a_sink_via_parameter",
+        "original": "def no_propagation_of_a_sink_via_parameter(x):\n    y = sanitize_parameter_sink_a(x)\n    a_sink(y)",
+        "mutated": [
+            "def no_propagation_of_a_sink_via_parameter(x):\n    if False:\n        i = 10\n    y = sanitize_parameter_sink_a(x)\n    a_sink(y)",
+            "def no_propagation_of_a_sink_via_parameter(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    y = sanitize_parameter_sink_a(x)\n    a_sink(y)",
+            "def no_propagation_of_a_sink_via_parameter(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    y = sanitize_parameter_sink_a(x)\n    a_sink(y)",
+            "def no_propagation_of_a_sink_via_parameter(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    y = sanitize_parameter_sink_a(x)\n    a_sink(y)",
+            "def no_propagation_of_a_sink_via_parameter(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    y = sanitize_parameter_sink_a(x)\n    a_sink(y)"
+        ]
+    },
+    {
+        "func_name": "propagation_of_b_sink_via_parameter",
+        "original": "def propagation_of_b_sink_via_parameter(x):\n    y = sanitize_parameter_sink_a(x)\n    b_sink(y)",
+        "mutated": [
+            "def propagation_of_b_sink_via_parameter(x):\n    if False:\n        i = 10\n    y = sanitize_parameter_sink_a(x)\n    b_sink(y)",
+            "def propagation_of_b_sink_via_parameter(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    y = sanitize_parameter_sink_a(x)\n    b_sink(y)",
+            "def propagation_of_b_sink_via_parameter(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    y = sanitize_parameter_sink_a(x)\n    b_sink(y)",
+            "def propagation_of_b_sink_via_parameter(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    y = sanitize_parameter_sink_a(x)\n    b_sink(y)",
+            "def propagation_of_b_sink_via_parameter(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    y = sanitize_parameter_sink_a(x)\n    b_sink(y)"
+        ]
+    },
+    {
+        "func_name": "sanitize_return_source_a",
+        "original": "def sanitize_return_source_a(x):\n    ...",
+        "mutated": [
+            "def sanitize_return_source_a(x):\n    if False:\n        i = 10\n    ...",
+            "def sanitize_return_source_a(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    ...",
+            "def sanitize_return_source_a(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    ...",
+            "def sanitize_return_source_a(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    ...",
+            "def sanitize_return_source_a(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    ..."
+        ]
+    },
+    {
+        "func_name": "no_propagation_of_a_source_via_return",
+        "original": "def no_propagation_of_a_source_via_return():\n    x = a_source()\n    return sanitize_return_source_a(x)",
+        "mutated": [
+            "def no_propagation_of_a_source_via_return():\n    if False:\n        i = 10\n    x = a_source()\n    return sanitize_return_source_a(x)",
+            "def no_propagation_of_a_source_via_return():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    x = a_source()\n    return sanitize_return_source_a(x)",
+            "def no_propagation_of_a_source_via_return():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    x = a_source()\n    return sanitize_return_source_a(x)",
+            "def no_propagation_of_a_source_via_return():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    x = a_source()\n    return sanitize_return_source_a(x)",
+            "def no_propagation_of_a_source_via_return():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    x = a_source()\n    return sanitize_return_source_a(x)"
+        ]
+    },
+    {
+        "func_name": "propagation_of_b_source_via_return",
+        "original": "def propagation_of_b_source_via_return():\n    x = b_source()\n    return sanitize_return_source_a(x)",
+        "mutated": [
+            "def propagation_of_b_source_via_return():\n    if False:\n        i = 10\n    x = b_source()\n    return sanitize_return_source_a(x)",
+            "def propagation_of_b_source_via_return():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    x = b_source()\n    return sanitize_return_source_a(x)",
+            "def propagation_of_b_source_via_return():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    x = b_source()\n    return sanitize_return_source_a(x)",
+            "def propagation_of_b_source_via_return():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    x = b_source()\n    return sanitize_return_source_a(x)",
+            "def propagation_of_b_source_via_return():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    x = b_source()\n    return sanitize_return_source_a(x)"
+        ]
+    },
+    {
+        "func_name": "sanitize_return_sink_a",
+        "original": "def sanitize_return_sink_a(x):\n    ...",
+        "mutated": [
+            "def sanitize_return_sink_a(x):\n    if False:\n        i = 10\n    ...",
+            "def sanitize_return_sink_a(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    ...",
+            "def sanitize_return_sink_a(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    ...",
+            "def sanitize_return_sink_a(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    ...",
+            "def sanitize_return_sink_a(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    ..."
+        ]
+    },
+    {
+        "func_name": "no_propagation_of_a_sink_via_return",
+        "original": "def no_propagation_of_a_sink_via_return(x):\n    y = sanitize_return_sink_a(x)\n    a_sink(y)",
+        "mutated": [
+            "def no_propagation_of_a_sink_via_return(x):\n    if False:\n        i = 10\n    y = sanitize_return_sink_a(x)\n    a_sink(y)",
+            "def no_propagation_of_a_sink_via_return(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    y = sanitize_return_sink_a(x)\n    a_sink(y)",
+            "def no_propagation_of_a_sink_via_return(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    y = sanitize_return_sink_a(x)\n    a_sink(y)",
+            "def no_propagation_of_a_sink_via_return(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    y = sanitize_return_sink_a(x)\n    a_sink(y)",
+            "def no_propagation_of_a_sink_via_return(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    y = sanitize_return_sink_a(x)\n    a_sink(y)"
+        ]
+    },
+    {
+        "func_name": "propagation_of_b_sink_via_return",
+        "original": "def propagation_of_b_sink_via_return(x):\n    y = sanitize_return_sink_a(x)\n    b_sink(y)",
+        "mutated": [
+            "def propagation_of_b_sink_via_return(x):\n    if False:\n        i = 10\n    y = sanitize_return_sink_a(x)\n    b_sink(y)",
+            "def propagation_of_b_sink_via_return(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    y = sanitize_return_sink_a(x)\n    b_sink(y)",
+            "def propagation_of_b_sink_via_return(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    y = sanitize_return_sink_a(x)\n    b_sink(y)",
+            "def propagation_of_b_sink_via_return(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    y = sanitize_return_sink_a(x)\n    b_sink(y)",
+            "def propagation_of_b_sink_via_return(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    y = sanitize_return_sink_a(x)\n    b_sink(y)"
+        ]
+    },
+    {
+        "func_name": "sanitize_obscure_single_argument",
+        "original": "def sanitize_obscure_single_argument(x, y):\n    ...",
+        "mutated": [
+            "def sanitize_obscure_single_argument(x, y):\n    if False:\n        i = 10\n    ...",
+            "def sanitize_obscure_single_argument(x, y):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    ...",
+            "def sanitize_obscure_single_argument(x, y):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    ...",
+            "def sanitize_obscure_single_argument(x, y):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    ...",
+            "def sanitize_obscure_single_argument(x, y):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    ..."
+        ]
+    },
+    {
+        "func_name": "sanitize_obscure_single_argument_tito",
+        "original": "def sanitize_obscure_single_argument_tito(x, y):\n    return sanitize_obscure_single_argument(x, y)",
+        "mutated": [
+            "def sanitize_obscure_single_argument_tito(x, y):\n    if False:\n        i = 10\n    return sanitize_obscure_single_argument(x, y)",
+            "def sanitize_obscure_single_argument_tito(x, y):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return sanitize_obscure_single_argument(x, y)",
+            "def sanitize_obscure_single_argument_tito(x, y):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return sanitize_obscure_single_argument(x, y)",
+            "def sanitize_obscure_single_argument_tito(x, y):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return sanitize_obscure_single_argument(x, y)",
+            "def sanitize_obscure_single_argument_tito(x, y):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return sanitize_obscure_single_argument(x, y)"
+        ]
+    }
+]

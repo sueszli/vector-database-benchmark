@@ -1,0 +1,90 @@
+[
+    {
+        "func_name": "__call__",
+        "original": "def __call__(self, *args, **kwargs):\n    raise TypeError(\"Can't instantiate directly\")",
+        "mutated": [
+            "def __call__(self, *args, **kwargs):\n    if False:\n        i = 10\n    raise TypeError(\"Can't instantiate directly\")",
+            "def __call__(self, *args, **kwargs):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    raise TypeError(\"Can't instantiate directly\")",
+            "def __call__(self, *args, **kwargs):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    raise TypeError(\"Can't instantiate directly\")",
+            "def __call__(self, *args, **kwargs):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    raise TypeError(\"Can't instantiate directly\")",
+            "def __call__(self, *args, **kwargs):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    raise TypeError(\"Can't instantiate directly\")"
+        ]
+    },
+    {
+        "func_name": "grok",
+        "original": "@staticmethod\ndef grok(x):\n    print('Spam.grok')",
+        "mutated": [
+            "@staticmethod\ndef grok(x):\n    if False:\n        i = 10\n    print('Spam.grok')",
+            "@staticmethod\ndef grok(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    print('Spam.grok')",
+            "@staticmethod\ndef grok(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    print('Spam.grok')",
+            "@staticmethod\ndef grok(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    print('Spam.grok')",
+            "@staticmethod\ndef grok(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    print('Spam.grok')"
+        ]
+    },
+    {
+        "func_name": "__init__",
+        "original": "def __init__(self, *args, **kwargs):\n    self.__instance = None\n    super().__init__(*args, **kwargs)",
+        "mutated": [
+            "def __init__(self, *args, **kwargs):\n    if False:\n        i = 10\n    self.__instance = None\n    super().__init__(*args, **kwargs)",
+            "def __init__(self, *args, **kwargs):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    self.__instance = None\n    super().__init__(*args, **kwargs)",
+            "def __init__(self, *args, **kwargs):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    self.__instance = None\n    super().__init__(*args, **kwargs)",
+            "def __init__(self, *args, **kwargs):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    self.__instance = None\n    super().__init__(*args, **kwargs)",
+            "def __init__(self, *args, **kwargs):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    self.__instance = None\n    super().__init__(*args, **kwargs)"
+        ]
+    },
+    {
+        "func_name": "__call__",
+        "original": "def __call__(self, *args, **kwargs):\n    if self.__instance is None:\n        self.__instance = super().__call__(*args, **kwargs)\n        return self.__instance\n    else:\n        return self.__instance",
+        "mutated": [
+            "def __call__(self, *args, **kwargs):\n    if False:\n        i = 10\n    if self.__instance is None:\n        self.__instance = super().__call__(*args, **kwargs)\n        return self.__instance\n    else:\n        return self.__instance",
+            "def __call__(self, *args, **kwargs):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    if self.__instance is None:\n        self.__instance = super().__call__(*args, **kwargs)\n        return self.__instance\n    else:\n        return self.__instance",
+            "def __call__(self, *args, **kwargs):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    if self.__instance is None:\n        self.__instance = super().__call__(*args, **kwargs)\n        return self.__instance\n    else:\n        return self.__instance",
+            "def __call__(self, *args, **kwargs):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    if self.__instance is None:\n        self.__instance = super().__call__(*args, **kwargs)\n        return self.__instance\n    else:\n        return self.__instance",
+            "def __call__(self, *args, **kwargs):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    if self.__instance is None:\n        self.__instance = super().__call__(*args, **kwargs)\n        return self.__instance\n    else:\n        return self.__instance"
+        ]
+    },
+    {
+        "func_name": "__init__",
+        "original": "def __init__(self):\n    print('Creating Spam')",
+        "mutated": [
+            "def __init__(self):\n    if False:\n        i = 10\n    print('Creating Spam')",
+            "def __init__(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    print('Creating Spam')",
+            "def __init__(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    print('Creating Spam')",
+            "def __init__(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    print('Creating Spam')",
+            "def __init__(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    print('Creating Spam')"
+        ]
+    },
+    {
+        "func_name": "__init__",
+        "original": "def __init__(self, *args, **kwargs):\n    super().__init__(*args, **kwargs)\n    self.__cache = weakref.WeakValueDictionary()",
+        "mutated": [
+            "def __init__(self, *args, **kwargs):\n    if False:\n        i = 10\n    super().__init__(*args, **kwargs)\n    self.__cache = weakref.WeakValueDictionary()",
+            "def __init__(self, *args, **kwargs):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    super().__init__(*args, **kwargs)\n    self.__cache = weakref.WeakValueDictionary()",
+            "def __init__(self, *args, **kwargs):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    super().__init__(*args, **kwargs)\n    self.__cache = weakref.WeakValueDictionary()",
+            "def __init__(self, *args, **kwargs):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    super().__init__(*args, **kwargs)\n    self.__cache = weakref.WeakValueDictionary()",
+            "def __init__(self, *args, **kwargs):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    super().__init__(*args, **kwargs)\n    self.__cache = weakref.WeakValueDictionary()"
+        ]
+    },
+    {
+        "func_name": "__call__",
+        "original": "def __call__(self, *args):\n    if args in self.__cache:\n        return self.__cache[args]\n    else:\n        obj = super().__call__(*args)\n        self.__cache[args] = obj\n        return obj",
+        "mutated": [
+            "def __call__(self, *args):\n    if False:\n        i = 10\n    if args in self.__cache:\n        return self.__cache[args]\n    else:\n        obj = super().__call__(*args)\n        self.__cache[args] = obj\n        return obj",
+            "def __call__(self, *args):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    if args in self.__cache:\n        return self.__cache[args]\n    else:\n        obj = super().__call__(*args)\n        self.__cache[args] = obj\n        return obj",
+            "def __call__(self, *args):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    if args in self.__cache:\n        return self.__cache[args]\n    else:\n        obj = super().__call__(*args)\n        self.__cache[args] = obj\n        return obj",
+            "def __call__(self, *args):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    if args in self.__cache:\n        return self.__cache[args]\n    else:\n        obj = super().__call__(*args)\n        self.__cache[args] = obj\n        return obj",
+            "def __call__(self, *args):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    if args in self.__cache:\n        return self.__cache[args]\n    else:\n        obj = super().__call__(*args)\n        self.__cache[args] = obj\n        return obj"
+        ]
+    },
+    {
+        "func_name": "__init__",
+        "original": "def __init__(self, name):\n    print('Creating Spam({!r})'.format(name))\n    self.name = name",
+        "mutated": [
+            "def __init__(self, name):\n    if False:\n        i = 10\n    print('Creating Spam({!r})'.format(name))\n    self.name = name",
+            "def __init__(self, name):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    print('Creating Spam({!r})'.format(name))\n    self.name = name",
+            "def __init__(self, name):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    print('Creating Spam({!r})'.format(name))\n    self.name = name",
+            "def __init__(self, name):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    print('Creating Spam({!r})'.format(name))\n    self.name = name",
+            "def __init__(self, name):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    print('Creating Spam({!r})'.format(name))\n    self.name = name"
+        ]
+    }
+]

@@ -1,0 +1,46 @@
+[
+    {
+        "func_name": "test_with_instance",
+        "original": "def test_with_instance():\n    provider = providers.Provider()\n    assert providers.ensure_is_provider(provider), provider",
+        "mutated": [
+            "def test_with_instance():\n    if False:\n        i = 10\n    provider = providers.Provider()\n    assert providers.ensure_is_provider(provider), provider",
+            "def test_with_instance():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    provider = providers.Provider()\n    assert providers.ensure_is_provider(provider), provider",
+            "def test_with_instance():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    provider = providers.Provider()\n    assert providers.ensure_is_provider(provider), provider",
+            "def test_with_instance():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    provider = providers.Provider()\n    assert providers.ensure_is_provider(provider), provider",
+            "def test_with_instance():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    provider = providers.Provider()\n    assert providers.ensure_is_provider(provider), provider"
+        ]
+    },
+    {
+        "func_name": "test_with_class",
+        "original": "def test_with_class():\n    with raises(errors.Error):\n        providers.ensure_is_provider(providers.Provider)",
+        "mutated": [
+            "def test_with_class():\n    if False:\n        i = 10\n    with raises(errors.Error):\n        providers.ensure_is_provider(providers.Provider)",
+            "def test_with_class():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    with raises(errors.Error):\n        providers.ensure_is_provider(providers.Provider)",
+            "def test_with_class():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    with raises(errors.Error):\n        providers.ensure_is_provider(providers.Provider)",
+            "def test_with_class():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    with raises(errors.Error):\n        providers.ensure_is_provider(providers.Provider)",
+            "def test_with_class():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    with raises(errors.Error):\n        providers.ensure_is_provider(providers.Provider)"
+        ]
+    },
+    {
+        "func_name": "test_with_string",
+        "original": "def test_with_string():\n    with raises(errors.Error):\n        providers.ensure_is_provider('some_string')",
+        "mutated": [
+            "def test_with_string():\n    if False:\n        i = 10\n    with raises(errors.Error):\n        providers.ensure_is_provider('some_string')",
+            "def test_with_string():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    with raises(errors.Error):\n        providers.ensure_is_provider('some_string')",
+            "def test_with_string():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    with raises(errors.Error):\n        providers.ensure_is_provider('some_string')",
+            "def test_with_string():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    with raises(errors.Error):\n        providers.ensure_is_provider('some_string')",
+            "def test_with_string():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    with raises(errors.Error):\n        providers.ensure_is_provider('some_string')"
+        ]
+    },
+    {
+        "func_name": "test_with_object",
+        "original": "def test_with_object():\n    with raises(errors.Error):\n        providers.ensure_is_provider(object())",
+        "mutated": [
+            "def test_with_object():\n    if False:\n        i = 10\n    with raises(errors.Error):\n        providers.ensure_is_provider(object())",
+            "def test_with_object():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    with raises(errors.Error):\n        providers.ensure_is_provider(object())",
+            "def test_with_object():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    with raises(errors.Error):\n        providers.ensure_is_provider(object())",
+            "def test_with_object():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    with raises(errors.Error):\n        providers.ensure_is_provider(object())",
+            "def test_with_object():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    with raises(errors.Error):\n        providers.ensure_is_provider(object())"
+        ]
+    }
+]

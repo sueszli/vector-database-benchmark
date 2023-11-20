@@ -1,0 +1,57 @@
+[
+    {
+        "func_name": "__init__",
+        "original": "def __init__(self, **extra):\n    self.keywords = dict(KEYWORDS, **extra)",
+        "mutated": [
+            "def __init__(self, **extra):\n    if False:\n        i = 10\n    self.keywords = dict(KEYWORDS, **extra)",
+            "def __init__(self, **extra):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    self.keywords = dict(KEYWORDS, **extra)",
+            "def __init__(self, **extra):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    self.keywords = dict(KEYWORDS, **extra)",
+            "def __init__(self, **extra):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    self.keywords = dict(KEYWORDS, **extra)",
+            "def __init__(self, **extra):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    self.keywords = dict(KEYWORDS, **extra)"
+        ]
+    },
+    {
+        "func_name": "get_keyword_names",
+        "original": "def get_keyword_names(self):\n    return self.keywords.keys()",
+        "mutated": [
+            "def get_keyword_names(self):\n    if False:\n        i = 10\n    return self.keywords.keys()",
+            "def get_keyword_names(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return self.keywords.keys()",
+            "def get_keyword_names(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return self.keywords.keys()",
+            "def get_keyword_names(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return self.keywords.keys()",
+            "def get_keyword_names(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return self.keywords.keys()"
+        ]
+    },
+    {
+        "func_name": "run_keyword",
+        "original": "def run_keyword(self, kw_name, args):\n    return self._pretty(*args)",
+        "mutated": [
+            "def run_keyword(self, kw_name, args):\n    if False:\n        i = 10\n    return self._pretty(*args)",
+            "def run_keyword(self, kw_name, args):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return self._pretty(*args)",
+            "def run_keyword(self, kw_name, args):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return self._pretty(*args)",
+            "def run_keyword(self, kw_name, args):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return self._pretty(*args)",
+            "def run_keyword(self, kw_name, args):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return self._pretty(*args)"
+        ]
+    },
+    {
+        "func_name": "_pretty",
+        "original": "def _pretty(self, *args, **kwargs):\n    return pretty(*args, **kwargs)",
+        "mutated": [
+            "def _pretty(self, *args, **kwargs):\n    if False:\n        i = 10\n    return pretty(*args, **kwargs)",
+            "def _pretty(self, *args, **kwargs):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return pretty(*args, **kwargs)",
+            "def _pretty(self, *args, **kwargs):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return pretty(*args, **kwargs)",
+            "def _pretty(self, *args, **kwargs):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return pretty(*args, **kwargs)",
+            "def _pretty(self, *args, **kwargs):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return pretty(*args, **kwargs)"
+        ]
+    },
+    {
+        "func_name": "get_keyword_arguments",
+        "original": "def get_keyword_arguments(self, kw_name):\n    return self.keywords[kw_name]",
+        "mutated": [
+            "def get_keyword_arguments(self, kw_name):\n    if False:\n        i = 10\n    return self.keywords[kw_name]",
+            "def get_keyword_arguments(self, kw_name):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return self.keywords[kw_name]",
+            "def get_keyword_arguments(self, kw_name):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return self.keywords[kw_name]",
+            "def get_keyword_arguments(self, kw_name):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return self.keywords[kw_name]",
+            "def get_keyword_arguments(self, kw_name):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return self.keywords[kw_name]"
+        ]
+    }
+]

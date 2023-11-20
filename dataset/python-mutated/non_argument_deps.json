@@ -1,0 +1,35 @@
+[
+    {
+        "func_name": "execute_query",
+        "original": "def execute_query(query):\n    del query",
+        "mutated": [
+            "def execute_query(query):\n    if False:\n        i = 10\n    del query",
+            "def execute_query(query):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    del query",
+            "def execute_query(query):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    del query",
+            "def execute_query(query):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    del query",
+            "def execute_query(query):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    del query"
+        ]
+    },
+    {
+        "func_name": "sugary_cereals",
+        "original": "@asset\ndef sugary_cereals() -> None:\n    execute_query('CREATE TABLE sugary_cereals AS SELECT * FROM cereals')",
+        "mutated": [
+            "@asset\ndef sugary_cereals() -> None:\n    if False:\n        i = 10\n    execute_query('CREATE TABLE sugary_cereals AS SELECT * FROM cereals')",
+            "@asset\ndef sugary_cereals() -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    execute_query('CREATE TABLE sugary_cereals AS SELECT * FROM cereals')",
+            "@asset\ndef sugary_cereals() -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    execute_query('CREATE TABLE sugary_cereals AS SELECT * FROM cereals')",
+            "@asset\ndef sugary_cereals() -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    execute_query('CREATE TABLE sugary_cereals AS SELECT * FROM cereals')",
+            "@asset\ndef sugary_cereals() -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    execute_query('CREATE TABLE sugary_cereals AS SELECT * FROM cereals')"
+        ]
+    },
+    {
+        "func_name": "shopping_list",
+        "original": "@asset(deps=[sugary_cereals])\ndef shopping_list() -> None:\n    execute_query('CREATE TABLE shopping_list AS SELECT * FROM sugary_cereals')",
+        "mutated": [
+            "@asset(deps=[sugary_cereals])\ndef shopping_list() -> None:\n    if False:\n        i = 10\n    execute_query('CREATE TABLE shopping_list AS SELECT * FROM sugary_cereals')",
+            "@asset(deps=[sugary_cereals])\ndef shopping_list() -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    execute_query('CREATE TABLE shopping_list AS SELECT * FROM sugary_cereals')",
+            "@asset(deps=[sugary_cereals])\ndef shopping_list() -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    execute_query('CREATE TABLE shopping_list AS SELECT * FROM sugary_cereals')",
+            "@asset(deps=[sugary_cereals])\ndef shopping_list() -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    execute_query('CREATE TABLE shopping_list AS SELECT * FROM sugary_cereals')",
+            "@asset(deps=[sugary_cereals])\ndef shopping_list() -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    execute_query('CREATE TABLE shopping_list AS SELECT * FROM sugary_cereals')"
+        ]
+    }
+]

@@ -1,0 +1,35 @@
+[
+    {
+        "func_name": "__init__",
+        "original": "def __init__(self, *args, **kwargs):\n    super().__init__(*args, **kwargs)\n    self.api_client = HttpSession(base_url=os.environ['API_HOST'], request_event=self.client.request_event, user=self)",
+        "mutated": [
+            "def __init__(self, *args, **kwargs):\n    if False:\n        i = 10\n    super().__init__(*args, **kwargs)\n    self.api_client = HttpSession(base_url=os.environ['API_HOST'], request_event=self.client.request_event, user=self)",
+            "def __init__(self, *args, **kwargs):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    super().__init__(*args, **kwargs)\n    self.api_client = HttpSession(base_url=os.environ['API_HOST'], request_event=self.client.request_event, user=self)",
+            "def __init__(self, *args, **kwargs):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    super().__init__(*args, **kwargs)\n    self.api_client = HttpSession(base_url=os.environ['API_HOST'], request_event=self.client.request_event, user=self)",
+            "def __init__(self, *args, **kwargs):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    super().__init__(*args, **kwargs)\n    self.api_client = HttpSession(base_url=os.environ['API_HOST'], request_event=self.client.request_event, user=self)",
+            "def __init__(self, *args, **kwargs):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    super().__init__(*args, **kwargs)\n    self.api_client = HttpSession(base_url=os.environ['API_HOST'], request_event=self.client.request_event, user=self)"
+        ]
+    },
+    {
+        "func_name": "index",
+        "original": "@task\ndef index(self):\n    self.user.client.get('/')",
+        "mutated": [
+            "@task\ndef index(self):\n    if False:\n        i = 10\n    self.user.client.get('/')",
+            "@task\ndef index(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    self.user.client.get('/')",
+            "@task\ndef index(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    self.user.client.get('/')",
+            "@task\ndef index(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    self.user.client.get('/')",
+            "@task\ndef index(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    self.user.client.get('/')"
+        ]
+    },
+    {
+        "func_name": "index_other_host",
+        "original": "@task\ndef index_other_host(self):\n    self.user.api_client.get('/stats/requests')",
+        "mutated": [
+            "@task\ndef index_other_host(self):\n    if False:\n        i = 10\n    self.user.api_client.get('/stats/requests')",
+            "@task\ndef index_other_host(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    self.user.api_client.get('/stats/requests')",
+            "@task\ndef index_other_host(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    self.user.api_client.get('/stats/requests')",
+            "@task\ndef index_other_host(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    self.user.api_client.get('/stats/requests')",
+            "@task\ndef index_other_host(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    self.user.api_client.get('/stats/requests')"
+        ]
+    }
+]

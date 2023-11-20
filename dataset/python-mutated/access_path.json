@@ -1,0 +1,57 @@
+[
+    {
+        "func_name": "indexes_are_strings",
+        "original": "def indexes_are_strings() -> None:\n    d = {}\n    d[1] = _test_source()\n    _test_sink(d['1'])",
+        "mutated": [
+            "def indexes_are_strings() -> None:\n    if False:\n        i = 10\n    d = {}\n    d[1] = _test_source()\n    _test_sink(d['1'])",
+            "def indexes_are_strings() -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    d = {}\n    d[1] = _test_source()\n    _test_sink(d['1'])",
+            "def indexes_are_strings() -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    d = {}\n    d[1] = _test_source()\n    _test_sink(d['1'])",
+            "def indexes_are_strings() -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    d = {}\n    d[1] = _test_source()\n    _test_sink(d['1'])",
+            "def indexes_are_strings() -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    d = {}\n    d[1] = _test_source()\n    _test_sink(d['1'])"
+        ]
+    },
+    {
+        "func_name": "__init__",
+        "original": "def __init__(self) -> None:\n    self.attribute: Optional[str] = None\n    self.dict: Dict[str, str] = {}",
+        "mutated": [
+            "def __init__(self) -> None:\n    if False:\n        i = 10\n    self.attribute: Optional[str] = None\n    self.dict: Dict[str, str] = {}",
+            "def __init__(self) -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    self.attribute: Optional[str] = None\n    self.dict: Dict[str, str] = {}",
+            "def __init__(self) -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    self.attribute: Optional[str] = None\n    self.dict: Dict[str, str] = {}",
+            "def __init__(self) -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    self.attribute: Optional[str] = None\n    self.dict: Dict[str, str] = {}",
+            "def __init__(self) -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    self.attribute: Optional[str] = None\n    self.dict: Dict[str, str] = {}"
+        ]
+    },
+    {
+        "func_name": "__getitem__",
+        "original": "def __getitem__(self, key: str) -> str:\n    return self.dict.get(key, '')",
+        "mutated": [
+            "def __getitem__(self, key: str) -> str:\n    if False:\n        i = 10\n    return self.dict.get(key, '')",
+            "def __getitem__(self, key: str) -> str:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return self.dict.get(key, '')",
+            "def __getitem__(self, key: str) -> str:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return self.dict.get(key, '')",
+            "def __getitem__(self, key: str) -> str:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return self.dict.get(key, '')",
+            "def __getitem__(self, key: str) -> str:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return self.dict.get(key, '')"
+        ]
+    },
+    {
+        "func_name": "indexes_and_attributes",
+        "original": "def indexes_and_attributes():\n    o = SpecialDict()\n    o.attribute = _test_source()\n    _test_sink(o['attribute'])",
+        "mutated": [
+            "def indexes_and_attributes():\n    if False:\n        i = 10\n    o = SpecialDict()\n    o.attribute = _test_source()\n    _test_sink(o['attribute'])",
+            "def indexes_and_attributes():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    o = SpecialDict()\n    o.attribute = _test_source()\n    _test_sink(o['attribute'])",
+            "def indexes_and_attributes():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    o = SpecialDict()\n    o.attribute = _test_source()\n    _test_sink(o['attribute'])",
+            "def indexes_and_attributes():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    o = SpecialDict()\n    o.attribute = _test_source()\n    _test_sink(o['attribute'])",
+            "def indexes_and_attributes():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    o = SpecialDict()\n    o.attribute = _test_source()\n    _test_sink(o['attribute'])"
+        ]
+    },
+    {
+        "func_name": "indexes_are_attributes_for___dict__",
+        "original": "def indexes_are_attributes_for___dict__():\n    o = object()\n    o.attribute = _test_source()\n    _test_sink(o.__dict__['attribute'])",
+        "mutated": [
+            "def indexes_are_attributes_for___dict__():\n    if False:\n        i = 10\n    o = object()\n    o.attribute = _test_source()\n    _test_sink(o.__dict__['attribute'])",
+            "def indexes_are_attributes_for___dict__():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    o = object()\n    o.attribute = _test_source()\n    _test_sink(o.__dict__['attribute'])",
+            "def indexes_are_attributes_for___dict__():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    o = object()\n    o.attribute = _test_source()\n    _test_sink(o.__dict__['attribute'])",
+            "def indexes_are_attributes_for___dict__():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    o = object()\n    o.attribute = _test_source()\n    _test_sink(o.__dict__['attribute'])",
+            "def indexes_are_attributes_for___dict__():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    o = object()\n    o.attribute = _test_source()\n    _test_sink(o.__dict__['attribute'])"
+        ]
+    }
+]

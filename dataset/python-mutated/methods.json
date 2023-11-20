@@ -1,0 +1,123 @@
+[
+    {
+        "func_name": "__init__",
+        "original": "@to_ivy_arrays_and_back\ndef __init__(self, *args):\n    data = ivy.broadcast_arrays(*map(ivy.array, args))\n    self._shape = data[0].shape\n    self._ndim = data[0].ndim\n    self._index = 0\n    self._numiter = len(data)\n    self._size = data[0].size\n    self._data = tuple((*zip(*(ivy.flatten(i) for i in data)),))\n    self._iters = tuple((iter(ivy.flatten(i)) for i in data))",
+        "mutated": [
+            "@to_ivy_arrays_and_back\ndef __init__(self, *args):\n    if False:\n        i = 10\n    data = ivy.broadcast_arrays(*map(ivy.array, args))\n    self._shape = data[0].shape\n    self._ndim = data[0].ndim\n    self._index = 0\n    self._numiter = len(data)\n    self._size = data[0].size\n    self._data = tuple((*zip(*(ivy.flatten(i) for i in data)),))\n    self._iters = tuple((iter(ivy.flatten(i)) for i in data))",
+            "@to_ivy_arrays_and_back\ndef __init__(self, *args):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    data = ivy.broadcast_arrays(*map(ivy.array, args))\n    self._shape = data[0].shape\n    self._ndim = data[0].ndim\n    self._index = 0\n    self._numiter = len(data)\n    self._size = data[0].size\n    self._data = tuple((*zip(*(ivy.flatten(i) for i in data)),))\n    self._iters = tuple((iter(ivy.flatten(i)) for i in data))",
+            "@to_ivy_arrays_and_back\ndef __init__(self, *args):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    data = ivy.broadcast_arrays(*map(ivy.array, args))\n    self._shape = data[0].shape\n    self._ndim = data[0].ndim\n    self._index = 0\n    self._numiter = len(data)\n    self._size = data[0].size\n    self._data = tuple((*zip(*(ivy.flatten(i) for i in data)),))\n    self._iters = tuple((iter(ivy.flatten(i)) for i in data))",
+            "@to_ivy_arrays_and_back\ndef __init__(self, *args):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    data = ivy.broadcast_arrays(*map(ivy.array, args))\n    self._shape = data[0].shape\n    self._ndim = data[0].ndim\n    self._index = 0\n    self._numiter = len(data)\n    self._size = data[0].size\n    self._data = tuple((*zip(*(ivy.flatten(i) for i in data)),))\n    self._iters = tuple((iter(ivy.flatten(i)) for i in data))",
+            "@to_ivy_arrays_and_back\ndef __init__(self, *args):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    data = ivy.broadcast_arrays(*map(ivy.array, args))\n    self._shape = data[0].shape\n    self._ndim = data[0].ndim\n    self._index = 0\n    self._numiter = len(data)\n    self._size = data[0].size\n    self._data = tuple((*zip(*(ivy.flatten(i) for i in data)),))\n    self._iters = tuple((iter(ivy.flatten(i)) for i in data))"
+        ]
+    },
+    {
+        "func_name": "shape",
+        "original": "@property\ndef shape(self):\n    return self._shape",
+        "mutated": [
+            "@property\ndef shape(self):\n    if False:\n        i = 10\n    return self._shape",
+            "@property\ndef shape(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return self._shape",
+            "@property\ndef shape(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return self._shape",
+            "@property\ndef shape(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return self._shape",
+            "@property\ndef shape(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return self._shape"
+        ]
+    },
+    {
+        "func_name": "ndim",
+        "original": "@property\ndef ndim(self):\n    return self._ndim",
+        "mutated": [
+            "@property\ndef ndim(self):\n    if False:\n        i = 10\n    return self._ndim",
+            "@property\ndef ndim(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return self._ndim",
+            "@property\ndef ndim(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return self._ndim",
+            "@property\ndef ndim(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return self._ndim",
+            "@property\ndef ndim(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return self._ndim"
+        ]
+    },
+    {
+        "func_name": "nd",
+        "original": "@property\ndef nd(self):\n    return self._ndim",
+        "mutated": [
+            "@property\ndef nd(self):\n    if False:\n        i = 10\n    return self._ndim",
+            "@property\ndef nd(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return self._ndim",
+            "@property\ndef nd(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return self._ndim",
+            "@property\ndef nd(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return self._ndim",
+            "@property\ndef nd(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return self._ndim"
+        ]
+    },
+    {
+        "func_name": "numiter",
+        "original": "@property\ndef numiter(self):\n    return self._numiter",
+        "mutated": [
+            "@property\ndef numiter(self):\n    if False:\n        i = 10\n    return self._numiter",
+            "@property\ndef numiter(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return self._numiter",
+            "@property\ndef numiter(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return self._numiter",
+            "@property\ndef numiter(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return self._numiter",
+            "@property\ndef numiter(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return self._numiter"
+        ]
+    },
+    {
+        "func_name": "size",
+        "original": "@property\ndef size(self):\n    return self._size",
+        "mutated": [
+            "@property\ndef size(self):\n    if False:\n        i = 10\n    return self._size",
+            "@property\ndef size(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return self._size",
+            "@property\ndef size(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return self._size",
+            "@property\ndef size(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return self._size",
+            "@property\ndef size(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return self._size"
+        ]
+    },
+    {
+        "func_name": "iters",
+        "original": "@property\ndef iters(self):\n    return self._iters",
+        "mutated": [
+            "@property\ndef iters(self):\n    if False:\n        i = 10\n    return self._iters",
+            "@property\ndef iters(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return self._iters",
+            "@property\ndef iters(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return self._iters",
+            "@property\ndef iters(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return self._iters",
+            "@property\ndef iters(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return self._iters"
+        ]
+    },
+    {
+        "func_name": "index",
+        "original": "@property\ndef index(self):\n    return self._index",
+        "mutated": [
+            "@property\ndef index(self):\n    if False:\n        i = 10\n    return self._index",
+            "@property\ndef index(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return self._index",
+            "@property\ndef index(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return self._index",
+            "@property\ndef index(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return self._index",
+            "@property\ndef index(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return self._index"
+        ]
+    },
+    {
+        "func_name": "__next__",
+        "original": "def __next__(self):\n    if self.index < self.size:\n        self._index += 1\n        return self._data[self.index - 1]\n    raise StopIteration",
+        "mutated": [
+            "def __next__(self):\n    if False:\n        i = 10\n    if self.index < self.size:\n        self._index += 1\n        return self._data[self.index - 1]\n    raise StopIteration",
+            "def __next__(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    if self.index < self.size:\n        self._index += 1\n        return self._data[self.index - 1]\n    raise StopIteration",
+            "def __next__(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    if self.index < self.size:\n        self._index += 1\n        return self._data[self.index - 1]\n    raise StopIteration",
+            "def __next__(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    if self.index < self.size:\n        self._index += 1\n        return self._data[self.index - 1]\n    raise StopIteration",
+            "def __next__(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    if self.index < self.size:\n        self._index += 1\n        return self._data[self.index - 1]\n    raise StopIteration"
+        ]
+    },
+    {
+        "func_name": "__iter__",
+        "original": "def __iter__(self):\n    return self",
+        "mutated": [
+            "def __iter__(self):\n    if False:\n        i = 10\n    return self",
+            "def __iter__(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return self",
+            "def __iter__(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return self",
+            "def __iter__(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return self",
+            "def __iter__(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return self"
+        ]
+    },
+    {
+        "func_name": "reset",
+        "original": "def reset(self):\n    self._index = 0",
+        "mutated": [
+            "def reset(self):\n    if False:\n        i = 10\n    self._index = 0",
+            "def reset(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    self._index = 0",
+            "def reset(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    self._index = 0",
+            "def reset(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    self._index = 0",
+            "def reset(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    self._index = 0"
+        ]
+    }
+]

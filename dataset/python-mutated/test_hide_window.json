@@ -1,0 +1,24 @@
+[
+    {
+        "func_name": "test_hide_show_window",
+        "original": "def test_hide_show_window():\n    window = webview.create_window('Hide/show window test', 'https://www.example.org', hidden=True)\n    run_test(webview, window, hide_show_window)",
+        "mutated": [
+            "def test_hide_show_window():\n    if False:\n        i = 10\n    window = webview.create_window('Hide/show window test', 'https://www.example.org', hidden=True)\n    run_test(webview, window, hide_show_window)",
+            "def test_hide_show_window():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    window = webview.create_window('Hide/show window test', 'https://www.example.org', hidden=True)\n    run_test(webview, window, hide_show_window)",
+            "def test_hide_show_window():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    window = webview.create_window('Hide/show window test', 'https://www.example.org', hidden=True)\n    run_test(webview, window, hide_show_window)",
+            "def test_hide_show_window():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    window = webview.create_window('Hide/show window test', 'https://www.example.org', hidden=True)\n    run_test(webview, window, hide_show_window)",
+            "def test_hide_show_window():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    window = webview.create_window('Hide/show window test', 'https://www.example.org', hidden=True)\n    run_test(webview, window, hide_show_window)"
+        ]
+    },
+    {
+        "func_name": "hide_show_window",
+        "original": "def hide_show_window(window):\n    window.show()\n    window.hide()",
+        "mutated": [
+            "def hide_show_window(window):\n    if False:\n        i = 10\n    window.show()\n    window.hide()",
+            "def hide_show_window(window):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    window.show()\n    window.hide()",
+            "def hide_show_window(window):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    window.show()\n    window.hide()",
+            "def hide_show_window(window):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    window.show()\n    window.hide()",
+            "def hide_show_window(window):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    window.show()\n    window.hide()"
+        ]
+    }
+]

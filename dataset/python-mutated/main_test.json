@@ -1,0 +1,57 @@
+[
+    {
+        "func_name": "client",
+        "original": "@pytest.fixture\ndef client():\n    main.app.testing = True\n    return main.app.test_client()",
+        "mutated": [
+            "@pytest.fixture\ndef client():\n    if False:\n        i = 10\n    main.app.testing = True\n    return main.app.test_client()",
+            "@pytest.fixture\ndef client():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    main.app.testing = True\n    return main.app.test_client()",
+            "@pytest.fixture\ndef client():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    main.app.testing = True\n    return main.app.test_client()",
+            "@pytest.fixture\ndef client():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    main.app.testing = True\n    return main.app.test_client()",
+            "@pytest.fixture\ndef client():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    main.app.testing = True\n    return main.app.test_client()"
+        ]
+    },
+    {
+        "func_name": "test_empty_query_string",
+        "original": "def test_empty_query_string(client):\n    r = client.get('/diagram.png')\n    assert r.status_code == 400",
+        "mutated": [
+            "def test_empty_query_string(client):\n    if False:\n        i = 10\n    r = client.get('/diagram.png')\n    assert r.status_code == 400",
+            "def test_empty_query_string(client):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    r = client.get('/diagram.png')\n    assert r.status_code == 400",
+            "def test_empty_query_string(client):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    r = client.get('/diagram.png')\n    assert r.status_code == 400",
+            "def test_empty_query_string(client):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    r = client.get('/diagram.png')\n    assert r.status_code == 400",
+            "def test_empty_query_string(client):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    r = client.get('/diagram.png')\n    assert r.status_code == 400"
+        ]
+    },
+    {
+        "func_name": "test_empty_dot_parameter",
+        "original": "def test_empty_dot_parameter(client):\n    r = client.get('/diagram.png?dot=')\n    assert r.status_code == 400",
+        "mutated": [
+            "def test_empty_dot_parameter(client):\n    if False:\n        i = 10\n    r = client.get('/diagram.png?dot=')\n    assert r.status_code == 400",
+            "def test_empty_dot_parameter(client):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    r = client.get('/diagram.png?dot=')\n    assert r.status_code == 400",
+            "def test_empty_dot_parameter(client):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    r = client.get('/diagram.png?dot=')\n    assert r.status_code == 400",
+            "def test_empty_dot_parameter(client):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    r = client.get('/diagram.png?dot=')\n    assert r.status_code == 400",
+            "def test_empty_dot_parameter(client):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    r = client.get('/diagram.png?dot=')\n    assert r.status_code == 400"
+        ]
+    },
+    {
+        "func_name": "test_bad_dot_parameter",
+        "original": "def test_bad_dot_parameter(client):\n    r = client.get('/diagram.png?dot=digraph')\n    assert r.status_code == 400",
+        "mutated": [
+            "def test_bad_dot_parameter(client):\n    if False:\n        i = 10\n    r = client.get('/diagram.png?dot=digraph')\n    assert r.status_code == 400",
+            "def test_bad_dot_parameter(client):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    r = client.get('/diagram.png?dot=digraph')\n    assert r.status_code == 400",
+            "def test_bad_dot_parameter(client):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    r = client.get('/diagram.png?dot=digraph')\n    assert r.status_code == 400",
+            "def test_bad_dot_parameter(client):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    r = client.get('/diagram.png?dot=digraph')\n    assert r.status_code == 400",
+            "def test_bad_dot_parameter(client):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    r = client.get('/diagram.png?dot=digraph')\n    assert r.status_code == 400"
+        ]
+    },
+    {
+        "func_name": "test_good_dot_parameter",
+        "original": "def test_good_dot_parameter(client):\n    r = client.get('/diagram.png?dot=digraph G { A -> {B, C, D} -> {F} }')\n    assert r.content_type == 'image/png'",
+        "mutated": [
+            "def test_good_dot_parameter(client):\n    if False:\n        i = 10\n    r = client.get('/diagram.png?dot=digraph G { A -> {B, C, D} -> {F} }')\n    assert r.content_type == 'image/png'",
+            "def test_good_dot_parameter(client):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    r = client.get('/diagram.png?dot=digraph G { A -> {B, C, D} -> {F} }')\n    assert r.content_type == 'image/png'",
+            "def test_good_dot_parameter(client):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    r = client.get('/diagram.png?dot=digraph G { A -> {B, C, D} -> {F} }')\n    assert r.content_type == 'image/png'",
+            "def test_good_dot_parameter(client):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    r = client.get('/diagram.png?dot=digraph G { A -> {B, C, D} -> {F} }')\n    assert r.content_type == 'image/png'",
+            "def test_good_dot_parameter(client):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    r = client.get('/diagram.png?dot=digraph G { A -> {B, C, D} -> {F} }')\n    assert r.content_type == 'image/png'"
+        ]
+    }
+]

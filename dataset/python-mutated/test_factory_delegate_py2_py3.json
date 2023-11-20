@@ -1,0 +1,46 @@
+[
+    {
+        "func_name": "factory",
+        "original": "@fixture\ndef factory():\n    return providers.Factory(object)",
+        "mutated": [
+            "@fixture\ndef factory():\n    if False:\n        i = 10\n    return providers.Factory(object)",
+            "@fixture\ndef factory():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return providers.Factory(object)",
+            "@fixture\ndef factory():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return providers.Factory(object)",
+            "@fixture\ndef factory():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return providers.Factory(object)",
+            "@fixture\ndef factory():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return providers.Factory(object)"
+        ]
+    },
+    {
+        "func_name": "delegate",
+        "original": "@fixture\ndef delegate(factory):\n    return providers.FactoryDelegate(factory)",
+        "mutated": [
+            "@fixture\ndef delegate(factory):\n    if False:\n        i = 10\n    return providers.FactoryDelegate(factory)",
+            "@fixture\ndef delegate(factory):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return providers.FactoryDelegate(factory)",
+            "@fixture\ndef delegate(factory):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return providers.FactoryDelegate(factory)",
+            "@fixture\ndef delegate(factory):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return providers.FactoryDelegate(factory)",
+            "@fixture\ndef delegate(factory):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return providers.FactoryDelegate(factory)"
+        ]
+    },
+    {
+        "func_name": "test_is_delegate",
+        "original": "def test_is_delegate(delegate):\n    assert isinstance(delegate, providers.Delegate)",
+        "mutated": [
+            "def test_is_delegate(delegate):\n    if False:\n        i = 10\n    assert isinstance(delegate, providers.Delegate)",
+            "def test_is_delegate(delegate):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    assert isinstance(delegate, providers.Delegate)",
+            "def test_is_delegate(delegate):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    assert isinstance(delegate, providers.Delegate)",
+            "def test_is_delegate(delegate):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    assert isinstance(delegate, providers.Delegate)",
+            "def test_is_delegate(delegate):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    assert isinstance(delegate, providers.Delegate)"
+        ]
+    },
+    {
+        "func_name": "test_init_with_not_factory",
+        "original": "def test_init_with_not_factory():\n    with raises(errors.Error):\n        providers.FactoryDelegate(providers.Object(object()))",
+        "mutated": [
+            "def test_init_with_not_factory():\n    if False:\n        i = 10\n    with raises(errors.Error):\n        providers.FactoryDelegate(providers.Object(object()))",
+            "def test_init_with_not_factory():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    with raises(errors.Error):\n        providers.FactoryDelegate(providers.Object(object()))",
+            "def test_init_with_not_factory():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    with raises(errors.Error):\n        providers.FactoryDelegate(providers.Object(object()))",
+            "def test_init_with_not_factory():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    with raises(errors.Error):\n        providers.FactoryDelegate(providers.Object(object()))",
+            "def test_init_with_not_factory():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    with raises(errors.Error):\n        providers.FactoryDelegate(providers.Object(object()))"
+        ]
+    }
+]

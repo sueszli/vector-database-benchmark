@@ -1,0 +1,112 @@
+[
+    {
+        "func_name": "__init__",
+        "original": "def __init__(self, scale, validate_args=None):\n    base_dist = Normal(0, scale, validate_args=False)\n    super().__init__(base_dist, AbsTransform(), validate_args=validate_args)",
+        "mutated": [
+            "def __init__(self, scale, validate_args=None):\n    if False:\n        i = 10\n    base_dist = Normal(0, scale, validate_args=False)\n    super().__init__(base_dist, AbsTransform(), validate_args=validate_args)",
+            "def __init__(self, scale, validate_args=None):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    base_dist = Normal(0, scale, validate_args=False)\n    super().__init__(base_dist, AbsTransform(), validate_args=validate_args)",
+            "def __init__(self, scale, validate_args=None):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    base_dist = Normal(0, scale, validate_args=False)\n    super().__init__(base_dist, AbsTransform(), validate_args=validate_args)",
+            "def __init__(self, scale, validate_args=None):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    base_dist = Normal(0, scale, validate_args=False)\n    super().__init__(base_dist, AbsTransform(), validate_args=validate_args)",
+            "def __init__(self, scale, validate_args=None):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    base_dist = Normal(0, scale, validate_args=False)\n    super().__init__(base_dist, AbsTransform(), validate_args=validate_args)"
+        ]
+    },
+    {
+        "func_name": "expand",
+        "original": "def expand(self, batch_shape, _instance=None):\n    new = self._get_checked_instance(HalfNormal, _instance)\n    return super().expand(batch_shape, _instance=new)",
+        "mutated": [
+            "def expand(self, batch_shape, _instance=None):\n    if False:\n        i = 10\n    new = self._get_checked_instance(HalfNormal, _instance)\n    return super().expand(batch_shape, _instance=new)",
+            "def expand(self, batch_shape, _instance=None):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    new = self._get_checked_instance(HalfNormal, _instance)\n    return super().expand(batch_shape, _instance=new)",
+            "def expand(self, batch_shape, _instance=None):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    new = self._get_checked_instance(HalfNormal, _instance)\n    return super().expand(batch_shape, _instance=new)",
+            "def expand(self, batch_shape, _instance=None):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    new = self._get_checked_instance(HalfNormal, _instance)\n    return super().expand(batch_shape, _instance=new)",
+            "def expand(self, batch_shape, _instance=None):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    new = self._get_checked_instance(HalfNormal, _instance)\n    return super().expand(batch_shape, _instance=new)"
+        ]
+    },
+    {
+        "func_name": "scale",
+        "original": "@property\ndef scale(self):\n    return self.base_dist.scale",
+        "mutated": [
+            "@property\ndef scale(self):\n    if False:\n        i = 10\n    return self.base_dist.scale",
+            "@property\ndef scale(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return self.base_dist.scale",
+            "@property\ndef scale(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return self.base_dist.scale",
+            "@property\ndef scale(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return self.base_dist.scale",
+            "@property\ndef scale(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return self.base_dist.scale"
+        ]
+    },
+    {
+        "func_name": "mean",
+        "original": "@property\ndef mean(self):\n    return self.scale * math.sqrt(2 / math.pi)",
+        "mutated": [
+            "@property\ndef mean(self):\n    if False:\n        i = 10\n    return self.scale * math.sqrt(2 / math.pi)",
+            "@property\ndef mean(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return self.scale * math.sqrt(2 / math.pi)",
+            "@property\ndef mean(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return self.scale * math.sqrt(2 / math.pi)",
+            "@property\ndef mean(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return self.scale * math.sqrt(2 / math.pi)",
+            "@property\ndef mean(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return self.scale * math.sqrt(2 / math.pi)"
+        ]
+    },
+    {
+        "func_name": "mode",
+        "original": "@property\ndef mode(self):\n    return torch.zeros_like(self.scale)",
+        "mutated": [
+            "@property\ndef mode(self):\n    if False:\n        i = 10\n    return torch.zeros_like(self.scale)",
+            "@property\ndef mode(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return torch.zeros_like(self.scale)",
+            "@property\ndef mode(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return torch.zeros_like(self.scale)",
+            "@property\ndef mode(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return torch.zeros_like(self.scale)",
+            "@property\ndef mode(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return torch.zeros_like(self.scale)"
+        ]
+    },
+    {
+        "func_name": "variance",
+        "original": "@property\ndef variance(self):\n    return self.scale.pow(2) * (1 - 2 / math.pi)",
+        "mutated": [
+            "@property\ndef variance(self):\n    if False:\n        i = 10\n    return self.scale.pow(2) * (1 - 2 / math.pi)",
+            "@property\ndef variance(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return self.scale.pow(2) * (1 - 2 / math.pi)",
+            "@property\ndef variance(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return self.scale.pow(2) * (1 - 2 / math.pi)",
+            "@property\ndef variance(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return self.scale.pow(2) * (1 - 2 / math.pi)",
+            "@property\ndef variance(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return self.scale.pow(2) * (1 - 2 / math.pi)"
+        ]
+    },
+    {
+        "func_name": "log_prob",
+        "original": "def log_prob(self, value):\n    if self._validate_args:\n        self._validate_sample(value)\n    log_prob = self.base_dist.log_prob(value) + math.log(2)\n    log_prob = torch.where(value >= 0, log_prob, -inf)\n    return log_prob",
+        "mutated": [
+            "def log_prob(self, value):\n    if False:\n        i = 10\n    if self._validate_args:\n        self._validate_sample(value)\n    log_prob = self.base_dist.log_prob(value) + math.log(2)\n    log_prob = torch.where(value >= 0, log_prob, -inf)\n    return log_prob",
+            "def log_prob(self, value):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    if self._validate_args:\n        self._validate_sample(value)\n    log_prob = self.base_dist.log_prob(value) + math.log(2)\n    log_prob = torch.where(value >= 0, log_prob, -inf)\n    return log_prob",
+            "def log_prob(self, value):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    if self._validate_args:\n        self._validate_sample(value)\n    log_prob = self.base_dist.log_prob(value) + math.log(2)\n    log_prob = torch.where(value >= 0, log_prob, -inf)\n    return log_prob",
+            "def log_prob(self, value):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    if self._validate_args:\n        self._validate_sample(value)\n    log_prob = self.base_dist.log_prob(value) + math.log(2)\n    log_prob = torch.where(value >= 0, log_prob, -inf)\n    return log_prob",
+            "def log_prob(self, value):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    if self._validate_args:\n        self._validate_sample(value)\n    log_prob = self.base_dist.log_prob(value) + math.log(2)\n    log_prob = torch.where(value >= 0, log_prob, -inf)\n    return log_prob"
+        ]
+    },
+    {
+        "func_name": "cdf",
+        "original": "def cdf(self, value):\n    if self._validate_args:\n        self._validate_sample(value)\n    return 2 * self.base_dist.cdf(value) - 1",
+        "mutated": [
+            "def cdf(self, value):\n    if False:\n        i = 10\n    if self._validate_args:\n        self._validate_sample(value)\n    return 2 * self.base_dist.cdf(value) - 1",
+            "def cdf(self, value):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    if self._validate_args:\n        self._validate_sample(value)\n    return 2 * self.base_dist.cdf(value) - 1",
+            "def cdf(self, value):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    if self._validate_args:\n        self._validate_sample(value)\n    return 2 * self.base_dist.cdf(value) - 1",
+            "def cdf(self, value):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    if self._validate_args:\n        self._validate_sample(value)\n    return 2 * self.base_dist.cdf(value) - 1",
+            "def cdf(self, value):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    if self._validate_args:\n        self._validate_sample(value)\n    return 2 * self.base_dist.cdf(value) - 1"
+        ]
+    },
+    {
+        "func_name": "icdf",
+        "original": "def icdf(self, prob):\n    return self.base_dist.icdf((prob + 1) / 2)",
+        "mutated": [
+            "def icdf(self, prob):\n    if False:\n        i = 10\n    return self.base_dist.icdf((prob + 1) / 2)",
+            "def icdf(self, prob):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return self.base_dist.icdf((prob + 1) / 2)",
+            "def icdf(self, prob):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return self.base_dist.icdf((prob + 1) / 2)",
+            "def icdf(self, prob):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return self.base_dist.icdf((prob + 1) / 2)",
+            "def icdf(self, prob):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return self.base_dist.icdf((prob + 1) / 2)"
+        ]
+    },
+    {
+        "func_name": "entropy",
+        "original": "def entropy(self):\n    return self.base_dist.entropy() - math.log(2)",
+        "mutated": [
+            "def entropy(self):\n    if False:\n        i = 10\n    return self.base_dist.entropy() - math.log(2)",
+            "def entropy(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return self.base_dist.entropy() - math.log(2)",
+            "def entropy(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return self.base_dist.entropy() - math.log(2)",
+            "def entropy(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return self.base_dist.entropy() - math.log(2)",
+            "def entropy(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return self.base_dist.entropy() - math.log(2)"
+        ]
+    }
+]

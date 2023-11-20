@@ -1,0 +1,35 @@
+[
+    {
+        "func_name": "handler",
+        "original": "def handler(event, context):\n    return 'hello'",
+        "mutated": [
+            "def handler(event, context):\n    if False:\n        i = 10\n    return 'hello'",
+            "def handler(event, context):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return 'hello'",
+            "def handler(event, context):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return 'hello'",
+            "def handler(event, context):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return 'hello'",
+            "def handler(event, context):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return 'hello'"
+        ]
+    },
+    {
+        "func_name": "custom_layer_handler",
+        "original": "def custom_layer_handler(event, context):\n    from my_layer.simple_python import layer_ping\n    return layer_ping()",
+        "mutated": [
+            "def custom_layer_handler(event, context):\n    if False:\n        i = 10\n    from my_layer.simple_python import layer_ping\n    return layer_ping()",
+            "def custom_layer_handler(event, context):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    from my_layer.simple_python import layer_ping\n    return layer_ping()",
+            "def custom_layer_handler(event, context):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    from my_layer.simple_python import layer_ping\n    return layer_ping()",
+            "def custom_layer_handler(event, context):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    from my_layer.simple_python import layer_ping\n    return layer_ping()",
+            "def custom_layer_handler(event, context):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    from my_layer.simple_python import layer_ping\n    return layer_ping()"
+        ]
+    },
+    {
+        "func_name": "one_layer_hanlder",
+        "original": "def one_layer_hanlder(event, context):\n    from simple_python_module.simple_python import which_layer\n    return which_layer()",
+        "mutated": [
+            "def one_layer_hanlder(event, context):\n    if False:\n        i = 10\n    from simple_python_module.simple_python import which_layer\n    return which_layer()",
+            "def one_layer_hanlder(event, context):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    from simple_python_module.simple_python import which_layer\n    return which_layer()",
+            "def one_layer_hanlder(event, context):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    from simple_python_module.simple_python import which_layer\n    return which_layer()",
+            "def one_layer_hanlder(event, context):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    from simple_python_module.simple_python import which_layer\n    return which_layer()",
+            "def one_layer_hanlder(event, context):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    from simple_python_module.simple_python import which_layer\n    return which_layer()"
+        ]
+    }
+]

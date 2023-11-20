@@ -1,0 +1,68 @@
+[
+    {
+        "func_name": "mocked_do_payout",
+        "original": "def mocked_do_payout(*_, **__):\n    return succeed(None)",
+        "mutated": [
+            "def mocked_do_payout(*_, **__):\n    if False:\n        i = 10\n    return succeed(None)",
+            "def mocked_do_payout(*_, **__):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return succeed(None)",
+            "def mocked_do_payout(*_, **__):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return succeed(None)",
+            "def mocked_do_payout(*_, **__):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return succeed(None)",
+            "def mocked_do_payout(*_, **__):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return succeed(None)"
+        ]
+    },
+    {
+        "func_name": "err_connect_peer",
+        "original": "def err_connect_peer(_):\n    raise RuntimeError('test')",
+        "mutated": [
+            "def err_connect_peer(_):\n    if False:\n        i = 10\n    raise RuntimeError('test')",
+            "def err_connect_peer(_):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    raise RuntimeError('test')",
+            "def err_connect_peer(_):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    raise RuntimeError('test')",
+            "def err_connect_peer(_):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    raise RuntimeError('test')",
+            "def err_connect_peer(_):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    raise RuntimeError('test')"
+        ]
+    },
+    {
+        "func_name": "connect_peer",
+        "original": "def connect_peer(_):\n    return succeed([])",
+        "mutated": [
+            "def connect_peer(_):\n    if False:\n        i = 10\n    return succeed([])",
+            "def connect_peer(_):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return succeed([])",
+            "def connect_peer(_):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return succeed([])",
+            "def connect_peer(_):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return succeed([])",
+            "def connect_peer(_):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return succeed([])"
+        ]
+    },
+    {
+        "func_name": "connect_peer",
+        "original": "def connect_peer(_):\n    return succeed([b'abc'])",
+        "mutated": [
+            "def connect_peer(_):\n    if False:\n        i = 10\n    return succeed([b'abc'])",
+            "def connect_peer(_):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return succeed([b'abc'])",
+            "def connect_peer(_):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return succeed([b'abc'])",
+            "def connect_peer(_):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return succeed([b'abc'])",
+            "def connect_peer(_):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return succeed([b'abc'])"
+        ]
+    },
+    {
+        "func_name": "do_payout",
+        "original": "def do_payout(*_):\n    raise RuntimeError('test')",
+        "mutated": [
+            "def do_payout(*_):\n    if False:\n        i = 10\n    raise RuntimeError('test')",
+            "def do_payout(*_):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    raise RuntimeError('test')",
+            "def do_payout(*_):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    raise RuntimeError('test')",
+            "def do_payout(*_):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    raise RuntimeError('test')",
+            "def do_payout(*_):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    raise RuntimeError('test')"
+        ]
+    },
+    {
+        "func_name": "test_update_peer",
+        "original": "def test_update_peer(payout_manager):\n    \"\"\"\n    Test the updating of a specific peer\n    \"\"\"\n    payout_manager.update_peer(b'a', b'b', 1337)\n    assert b'a' in payout_manager.tribler_peers\n    assert b'b' in payout_manager.tribler_peers[b'a']\n    assert payout_manager.tribler_peers[b'a'][b'b'] == 1337\n    payout_manager.update_peer(b'a', b'b', 1338)\n    assert payout_manager.tribler_peers[b'a'][b'b'] == 1338",
+        "mutated": [
+            "def test_update_peer(payout_manager):\n    if False:\n        i = 10\n    '\\n    Test the updating of a specific peer\\n    '\n    payout_manager.update_peer(b'a', b'b', 1337)\n    assert b'a' in payout_manager.tribler_peers\n    assert b'b' in payout_manager.tribler_peers[b'a']\n    assert payout_manager.tribler_peers[b'a'][b'b'] == 1337\n    payout_manager.update_peer(b'a', b'b', 1338)\n    assert payout_manager.tribler_peers[b'a'][b'b'] == 1338",
+            "def test_update_peer(payout_manager):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    '\\n    Test the updating of a specific peer\\n    '\n    payout_manager.update_peer(b'a', b'b', 1337)\n    assert b'a' in payout_manager.tribler_peers\n    assert b'b' in payout_manager.tribler_peers[b'a']\n    assert payout_manager.tribler_peers[b'a'][b'b'] == 1337\n    payout_manager.update_peer(b'a', b'b', 1338)\n    assert payout_manager.tribler_peers[b'a'][b'b'] == 1338",
+            "def test_update_peer(payout_manager):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    '\\n    Test the updating of a specific peer\\n    '\n    payout_manager.update_peer(b'a', b'b', 1337)\n    assert b'a' in payout_manager.tribler_peers\n    assert b'b' in payout_manager.tribler_peers[b'a']\n    assert payout_manager.tribler_peers[b'a'][b'b'] == 1337\n    payout_manager.update_peer(b'a', b'b', 1338)\n    assert payout_manager.tribler_peers[b'a'][b'b'] == 1338",
+            "def test_update_peer(payout_manager):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    '\\n    Test the updating of a specific peer\\n    '\n    payout_manager.update_peer(b'a', b'b', 1337)\n    assert b'a' in payout_manager.tribler_peers\n    assert b'b' in payout_manager.tribler_peers[b'a']\n    assert payout_manager.tribler_peers[b'a'][b'b'] == 1337\n    payout_manager.update_peer(b'a', b'b', 1338)\n    assert payout_manager.tribler_peers[b'a'][b'b'] == 1338",
+            "def test_update_peer(payout_manager):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    '\\n    Test the updating of a specific peer\\n    '\n    payout_manager.update_peer(b'a', b'b', 1337)\n    assert b'a' in payout_manager.tribler_peers\n    assert b'b' in payout_manager.tribler_peers[b'a']\n    assert payout_manager.tribler_peers[b'a'][b'b'] == 1337\n    payout_manager.update_peer(b'a', b'b', 1338)\n    assert payout_manager.tribler_peers[b'a'][b'b'] == 1338"
+        ]
+    }
+]

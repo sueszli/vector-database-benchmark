@@ -1,0 +1,46 @@
+[
+    {
+        "func_name": "__init__",
+        "original": "def __init__(self):\n    self.args = None",
+        "mutated": [
+            "def __init__(self):\n    if False:\n        i = 10\n    self.args = None",
+            "def __init__(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    self.args = None",
+            "def __init__(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    self.args = None",
+            "def __init__(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    self.args = None",
+            "def __init__(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    self.args = None"
+        ]
+    },
+    {
+        "func_name": "my_method",
+        "original": "def my_method(self, *args):\n    if args == ('FAIL!',):\n        raise RuntimeError('Expected failure')\n    self.args = args",
+        "mutated": [
+            "def my_method(self, *args):\n    if False:\n        i = 10\n    if args == ('FAIL!',):\n        raise RuntimeError('Expected failure')\n    self.args = args",
+            "def my_method(self, *args):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    if args == ('FAIL!',):\n        raise RuntimeError('Expected failure')\n    self.args = args",
+            "def my_method(self, *args):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    if args == ('FAIL!',):\n        raise RuntimeError('Expected failure')\n    self.args = args",
+            "def my_method(self, *args):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    if args == ('FAIL!',):\n        raise RuntimeError('Expected failure')\n    self.args = args",
+            "def my_method(self, *args):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    if args == ('FAIL!',):\n        raise RuntimeError('Expected failure')\n    self.args = args"
+        ]
+    },
+    {
+        "func_name": "kwargs",
+        "original": "def kwargs(self, arg1, arg2='default', **kwargs):\n    kwargs = ['%s: %s' % item for item in sorted(kwargs.items())]\n    return ', '.join([arg1, arg2] + kwargs)",
+        "mutated": [
+            "def kwargs(self, arg1, arg2='default', **kwargs):\n    if False:\n        i = 10\n    kwargs = ['%s: %s' % item for item in sorted(kwargs.items())]\n    return ', '.join([arg1, arg2] + kwargs)",
+            "def kwargs(self, arg1, arg2='default', **kwargs):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    kwargs = ['%s: %s' % item for item in sorted(kwargs.items())]\n    return ', '.join([arg1, arg2] + kwargs)",
+            "def kwargs(self, arg1, arg2='default', **kwargs):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    kwargs = ['%s: %s' % item for item in sorted(kwargs.items())]\n    return ', '.join([arg1, arg2] + kwargs)",
+            "def kwargs(self, arg1, arg2='default', **kwargs):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    kwargs = ['%s: %s' % item for item in sorted(kwargs.items())]\n    return ', '.join([arg1, arg2] + kwargs)",
+            "def kwargs(self, arg1, arg2='default', **kwargs):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    kwargs = ['%s: %s' % item for item in sorted(kwargs.items())]\n    return ', '.join([arg1, arg2] + kwargs)"
+        ]
+    },
+    {
+        "func_name": "__str__",
+        "original": "def __str__(self):\n    return 'String presentation of MyObject'",
+        "mutated": [
+            "def __str__(self):\n    if False:\n        i = 10\n    return 'String presentation of MyObject'",
+            "def __str__(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return 'String presentation of MyObject'",
+            "def __str__(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return 'String presentation of MyObject'",
+            "def __str__(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return 'String presentation of MyObject'",
+            "def __str__(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return 'String presentation of MyObject'"
+        ]
+    }
+]

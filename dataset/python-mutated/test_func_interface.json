@@ -1,0 +1,90 @@
+[
+    {
+        "func_name": "add",
+        "original": "def add(x, y):\n    \"\"\"Return sum of two numbers\"\"\"\n    return x + y",
+        "mutated": [
+            "def add(x, y):\n    if False:\n        i = 10\n    'Return sum of two numbers'\n    return x + y",
+            "def add(x, y):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    'Return sum of two numbers'\n    return x + y",
+            "def add(x, y):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    'Return sum of two numbers'\n    return x + y",
+            "def add(x, y):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    'Return sum of two numbers'\n    return x + y",
+            "def add(x, y):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    'Return sum of two numbers'\n    return x + y"
+        ]
+    },
+    {
+        "func_name": "test_jit_function_docstring",
+        "original": "def test_jit_function_docstring(self):\n\n    def add(x, y):\n        \"\"\"Return sum of two numbers\"\"\"\n        return x + y\n    c_add = jit(add)\n    self.assertEqual(c_add.__doc__, 'Return sum of two numbers')",
+        "mutated": [
+            "def test_jit_function_docstring(self):\n    if False:\n        i = 10\n\n    def add(x, y):\n        \"\"\"Return sum of two numbers\"\"\"\n        return x + y\n    c_add = jit(add)\n    self.assertEqual(c_add.__doc__, 'Return sum of two numbers')",
+            "def test_jit_function_docstring(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n\n    def add(x, y):\n        \"\"\"Return sum of two numbers\"\"\"\n        return x + y\n    c_add = jit(add)\n    self.assertEqual(c_add.__doc__, 'Return sum of two numbers')",
+            "def test_jit_function_docstring(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n    def add(x, y):\n        \"\"\"Return sum of two numbers\"\"\"\n        return x + y\n    c_add = jit(add)\n    self.assertEqual(c_add.__doc__, 'Return sum of two numbers')",
+            "def test_jit_function_docstring(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n\n    def add(x, y):\n        \"\"\"Return sum of two numbers\"\"\"\n        return x + y\n    c_add = jit(add)\n    self.assertEqual(c_add.__doc__, 'Return sum of two numbers')",
+            "def test_jit_function_docstring(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n\n    def add(x, y):\n        \"\"\"Return sum of two numbers\"\"\"\n        return x + y\n    c_add = jit(add)\n    self.assertEqual(c_add.__doc__, 'Return sum of two numbers')"
+        ]
+    },
+    {
+        "func_name": "add",
+        "original": "def add(x, y):\n    return x + y",
+        "mutated": [
+            "def add(x, y):\n    if False:\n        i = 10\n    return x + y",
+            "def add(x, y):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return x + y",
+            "def add(x, y):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return x + y",
+            "def add(x, y):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return x + y",
+            "def add(x, y):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return x + y"
+        ]
+    },
+    {
+        "func_name": "test_jit_function_name",
+        "original": "def test_jit_function_name(self):\n\n    def add(x, y):\n        return x + y\n    c_add = jit(add)\n    self.assertEqual(c_add.__name__, 'add')",
+        "mutated": [
+            "def test_jit_function_name(self):\n    if False:\n        i = 10\n\n    def add(x, y):\n        return x + y\n    c_add = jit(add)\n    self.assertEqual(c_add.__name__, 'add')",
+            "def test_jit_function_name(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n\n    def add(x, y):\n        return x + y\n    c_add = jit(add)\n    self.assertEqual(c_add.__name__, 'add')",
+            "def test_jit_function_name(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n    def add(x, y):\n        return x + y\n    c_add = jit(add)\n    self.assertEqual(c_add.__name__, 'add')",
+            "def test_jit_function_name(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n\n    def add(x, y):\n        return x + y\n    c_add = jit(add)\n    self.assertEqual(c_add.__name__, 'add')",
+            "def test_jit_function_name(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n\n    def add(x, y):\n        return x + y\n    c_add = jit(add)\n    self.assertEqual(c_add.__name__, 'add')"
+        ]
+    },
+    {
+        "func_name": "add",
+        "original": "def add(x, y):\n    return x + y",
+        "mutated": [
+            "def add(x, y):\n    if False:\n        i = 10\n    return x + y",
+            "def add(x, y):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return x + y",
+            "def add(x, y):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return x + y",
+            "def add(x, y):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return x + y",
+            "def add(x, y):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return x + y"
+        ]
+    },
+    {
+        "func_name": "test_jit_function_module",
+        "original": "def test_jit_function_module(self):\n\n    def add(x, y):\n        return x + y\n    c_add = jit(add)\n    self.assertEqual(c_add.__module__, add.__module__)",
+        "mutated": [
+            "def test_jit_function_module(self):\n    if False:\n        i = 10\n\n    def add(x, y):\n        return x + y\n    c_add = jit(add)\n    self.assertEqual(c_add.__module__, add.__module__)",
+            "def test_jit_function_module(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n\n    def add(x, y):\n        return x + y\n    c_add = jit(add)\n    self.assertEqual(c_add.__module__, add.__module__)",
+            "def test_jit_function_module(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n    def add(x, y):\n        return x + y\n    c_add = jit(add)\n    self.assertEqual(c_add.__module__, add.__module__)",
+            "def test_jit_function_module(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n\n    def add(x, y):\n        return x + y\n    c_add = jit(add)\n    self.assertEqual(c_add.__module__, add.__module__)",
+            "def test_jit_function_module(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n\n    def add(x, y):\n        return x + y\n    c_add = jit(add)\n    self.assertEqual(c_add.__module__, add.__module__)"
+        ]
+    },
+    {
+        "func_name": "add",
+        "original": "def add(x, y):\n    return x + y",
+        "mutated": [
+            "def add(x, y):\n    if False:\n        i = 10\n    return x + y",
+            "def add(x, y):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return x + y",
+            "def add(x, y):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return x + y",
+            "def add(x, y):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return x + y",
+            "def add(x, y):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return x + y"
+        ]
+    },
+    {
+        "func_name": "test_jit_function_code_object",
+        "original": "def test_jit_function_code_object(self):\n\n    def add(x, y):\n        return x + y\n    c_add = jit(add)\n    self.assertEqual(c_add.__code__, add.__code__)\n    self.assertEqual(c_add.func_code, add.__code__)",
+        "mutated": [
+            "def test_jit_function_code_object(self):\n    if False:\n        i = 10\n\n    def add(x, y):\n        return x + y\n    c_add = jit(add)\n    self.assertEqual(c_add.__code__, add.__code__)\n    self.assertEqual(c_add.func_code, add.__code__)",
+            "def test_jit_function_code_object(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n\n    def add(x, y):\n        return x + y\n    c_add = jit(add)\n    self.assertEqual(c_add.__code__, add.__code__)\n    self.assertEqual(c_add.func_code, add.__code__)",
+            "def test_jit_function_code_object(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n    def add(x, y):\n        return x + y\n    c_add = jit(add)\n    self.assertEqual(c_add.__code__, add.__code__)\n    self.assertEqual(c_add.func_code, add.__code__)",
+            "def test_jit_function_code_object(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n\n    def add(x, y):\n        return x + y\n    c_add = jit(add)\n    self.assertEqual(c_add.__code__, add.__code__)\n    self.assertEqual(c_add.func_code, add.__code__)",
+            "def test_jit_function_code_object(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n\n    def add(x, y):\n        return x + y\n    c_add = jit(add)\n    self.assertEqual(c_add.__code__, add.__code__)\n    self.assertEqual(c_add.func_code, add.__code__)"
+        ]
+    }
+]

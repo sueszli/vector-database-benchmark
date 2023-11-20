@@ -1,0 +1,57 @@
+[
+    {
+        "func_name": "asm_add",
+        "original": "@micropython.asm_thumb\ndef asm_add(r0, r1):\n    add(r0, r0, r1)",
+        "mutated": [
+            "@micropython.asm_thumb\ndef asm_add(r0, r1):\n    if False:\n        i = 10\n    add(r0, r0, r1)",
+            "@micropython.asm_thumb\ndef asm_add(r0, r1):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    add(r0, r0, r1)",
+            "@micropython.asm_thumb\ndef asm_add(r0, r1):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    add(r0, r0, r1)",
+            "@micropython.asm_thumb\ndef asm_add(r0, r1):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    add(r0, r0, r1)",
+            "@micropython.asm_thumb\ndef asm_add(r0, r1):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    add(r0, r0, r1)"
+        ]
+    },
+    {
+        "func_name": "asm_add1",
+        "original": "@micropython.asm_thumb\ndef asm_add1(r0) -> object:\n    lsl(r0, r0, 1)\n    add(r0, r0, 3)",
+        "mutated": [
+            "@micropython.asm_thumb\ndef asm_add1(r0) -> object:\n    if False:\n        i = 10\n    lsl(r0, r0, 1)\n    add(r0, r0, 3)",
+            "@micropython.asm_thumb\ndef asm_add1(r0) -> object:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    lsl(r0, r0, 1)\n    add(r0, r0, 3)",
+            "@micropython.asm_thumb\ndef asm_add1(r0) -> object:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    lsl(r0, r0, 1)\n    add(r0, r0, 3)",
+            "@micropython.asm_thumb\ndef asm_add1(r0) -> object:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    lsl(r0, r0, 1)\n    add(r0, r0, 3)",
+            "@micropython.asm_thumb\ndef asm_add1(r0) -> object:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    lsl(r0, r0, 1)\n    add(r0, r0, 3)"
+        ]
+    },
+    {
+        "func_name": "asm_cast_bool",
+        "original": "@micropython.asm_thumb\ndef asm_cast_bool(r0) -> bool:\n    pass",
+        "mutated": [
+            "@micropython.asm_thumb\ndef asm_cast_bool(r0) -> bool:\n    if False:\n        i = 10\n    pass",
+            "@micropython.asm_thumb\ndef asm_cast_bool(r0) -> bool:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    pass",
+            "@micropython.asm_thumb\ndef asm_cast_bool(r0) -> bool:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    pass",
+            "@micropython.asm_thumb\ndef asm_cast_bool(r0) -> bool:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    pass",
+            "@micropython.asm_thumb\ndef asm_cast_bool(r0) -> bool:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    pass"
+        ]
+    },
+    {
+        "func_name": "asm_shift_int",
+        "original": "@micropython.asm_thumb\ndef asm_shift_int(r0) -> int:\n    lsl(r0, r0, 29)",
+        "mutated": [
+            "@micropython.asm_thumb\ndef asm_shift_int(r0) -> int:\n    if False:\n        i = 10\n    lsl(r0, r0, 29)",
+            "@micropython.asm_thumb\ndef asm_shift_int(r0) -> int:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    lsl(r0, r0, 29)",
+            "@micropython.asm_thumb\ndef asm_shift_int(r0) -> int:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    lsl(r0, r0, 29)",
+            "@micropython.asm_thumb\ndef asm_shift_int(r0) -> int:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    lsl(r0, r0, 29)",
+            "@micropython.asm_thumb\ndef asm_shift_int(r0) -> int:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    lsl(r0, r0, 29)"
+        ]
+    },
+    {
+        "func_name": "asm_shift_uint",
+        "original": "@micropython.asm_thumb\ndef asm_shift_uint(r0) -> uint:\n    lsl(r0, r0, 29)",
+        "mutated": [
+            "@micropython.asm_thumb\ndef asm_shift_uint(r0) -> uint:\n    if False:\n        i = 10\n    lsl(r0, r0, 29)",
+            "@micropython.asm_thumb\ndef asm_shift_uint(r0) -> uint:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    lsl(r0, r0, 29)",
+            "@micropython.asm_thumb\ndef asm_shift_uint(r0) -> uint:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    lsl(r0, r0, 29)",
+            "@micropython.asm_thumb\ndef asm_shift_uint(r0) -> uint:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    lsl(r0, r0, 29)",
+            "@micropython.asm_thumb\ndef asm_shift_uint(r0) -> uint:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    lsl(r0, r0, 29)"
+        ]
+    }
+]

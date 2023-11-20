@@ -1,0 +1,13 @@
+[
+    {
+        "func_name": "delete_photos_with_metadata_as_main",
+        "original": "def delete_photos_with_metadata_as_main(apps, schema_editor):\n    Photo = apps.get_model('api', 'Photo')\n    for photo in Photo.objects.filter(main_file__type=3):\n        photo.delete()",
+        "mutated": [
+            "def delete_photos_with_metadata_as_main(apps, schema_editor):\n    if False:\n        i = 10\n    Photo = apps.get_model('api', 'Photo')\n    for photo in Photo.objects.filter(main_file__type=3):\n        photo.delete()",
+            "def delete_photos_with_metadata_as_main(apps, schema_editor):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    Photo = apps.get_model('api', 'Photo')\n    for photo in Photo.objects.filter(main_file__type=3):\n        photo.delete()",
+            "def delete_photos_with_metadata_as_main(apps, schema_editor):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    Photo = apps.get_model('api', 'Photo')\n    for photo in Photo.objects.filter(main_file__type=3):\n        photo.delete()",
+            "def delete_photos_with_metadata_as_main(apps, schema_editor):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    Photo = apps.get_model('api', 'Photo')\n    for photo in Photo.objects.filter(main_file__type=3):\n        photo.delete()",
+            "def delete_photos_with_metadata_as_main(apps, schema_editor):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    Photo = apps.get_model('api', 'Photo')\n    for photo in Photo.objects.filter(main_file__type=3):\n        photo.delete()"
+        ]
+    }
+]

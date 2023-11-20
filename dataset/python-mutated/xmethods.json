@@ -1,0 +1,112 @@
+[
+    {
+        "func_name": "__init__",
+        "original": "def __init__(self, t):\n    self.t = t",
+        "mutated": [
+            "def __init__(self, t):\n    if False:\n        i = 10\n    self.t = t",
+            "def __init__(self, t):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    self.t = t",
+            "def __init__(self, t):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    self.t = t",
+            "def __init__(self, t):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    self.t = t",
+            "def __init__(self, t):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    self.t = t"
+        ]
+    },
+    {
+        "func_name": "get_arg_types",
+        "original": "def get_arg_types(self):\n    return gdb.lookup_type('int')",
+        "mutated": [
+            "def get_arg_types(self):\n    if False:\n        i = 10\n    return gdb.lookup_type('int')",
+            "def get_arg_types(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return gdb.lookup_type('int')",
+            "def get_arg_types(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return gdb.lookup_type('int')",
+            "def get_arg_types(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return gdb.lookup_type('int')",
+            "def get_arg_types(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return gdb.lookup_type('int')"
+        ]
+    },
+    {
+        "func_name": "get_result_type",
+        "original": "def get_result_type(self, *args):\n    return self.t",
+        "mutated": [
+            "def get_result_type(self, *args):\n    if False:\n        i = 10\n    return self.t",
+            "def get_result_type(self, *args):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return self.t",
+            "def get_result_type(self, *args):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return self.t",
+            "def get_result_type(self, *args):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return self.t",
+            "def get_result_type(self, *args):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return self.t"
+        ]
+    },
+    {
+        "func_name": "__call__",
+        "original": "def __call__(self, obj, i):\n    return (obj['m_begin_ptr'].cast(self.t.pointer()) + i).dereference()",
+        "mutated": [
+            "def __call__(self, obj, i):\n    if False:\n        i = 10\n    return (obj['m_begin_ptr'].cast(self.t.pointer()) + i).dereference()",
+            "def __call__(self, obj, i):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return (obj['m_begin_ptr'].cast(self.t.pointer()) + i).dereference()",
+            "def __call__(self, obj, i):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return (obj['m_begin_ptr'].cast(self.t.pointer()) + i).dereference()",
+            "def __call__(self, obj, i):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return (obj['m_begin_ptr'].cast(self.t.pointer()) + i).dereference()",
+            "def __call__(self, obj, i):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return (obj['m_begin_ptr'].cast(self.t.pointer()) + i).dereference()"
+        ]
+    },
+    {
+        "func_name": "__init__",
+        "original": "def __init__(self, t):\n    self.t = t",
+        "mutated": [
+            "def __init__(self, t):\n    if False:\n        i = 10\n    self.t = t",
+            "def __init__(self, t):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    self.t = t",
+            "def __init__(self, t):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    self.t = t",
+            "def __init__(self, t):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    self.t = t",
+            "def __init__(self, t):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    self.t = t"
+        ]
+    },
+    {
+        "func_name": "get_arg_types",
+        "original": "def get_arg_types(self):\n    return None",
+        "mutated": [
+            "def get_arg_types(self):\n    if False:\n        i = 10\n    return None",
+            "def get_arg_types(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return None",
+            "def get_arg_types(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return None",
+            "def get_arg_types(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return None",
+            "def get_arg_types(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return None"
+        ]
+    },
+    {
+        "func_name": "get_result_type",
+        "original": "def get_result_type(self, *args):\n    return gdb.lookup_type('int')",
+        "mutated": [
+            "def get_result_type(self, *args):\n    if False:\n        i = 10\n    return gdb.lookup_type('int')",
+            "def get_result_type(self, *args):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return gdb.lookup_type('int')",
+            "def get_result_type(self, *args):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return gdb.lookup_type('int')",
+            "def get_result_type(self, *args):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return gdb.lookup_type('int')",
+            "def get_result_type(self, *args):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return gdb.lookup_type('int')"
+        ]
+    },
+    {
+        "func_name": "__call__",
+        "original": "def __call__(self, obj):\n    return obj['m_end_ptr'].cast(self.t.pointer()) - obj['m_begin_ptr'].cast(self.t.pointer())",
+        "mutated": [
+            "def __call__(self, obj):\n    if False:\n        i = 10\n    return obj['m_end_ptr'].cast(self.t.pointer()) - obj['m_begin_ptr'].cast(self.t.pointer())",
+            "def __call__(self, obj):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return obj['m_end_ptr'].cast(self.t.pointer()) - obj['m_begin_ptr'].cast(self.t.pointer())",
+            "def __call__(self, obj):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return obj['m_end_ptr'].cast(self.t.pointer()) - obj['m_begin_ptr'].cast(self.t.pointer())",
+            "def __call__(self, obj):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return obj['m_end_ptr'].cast(self.t.pointer()) - obj['m_begin_ptr'].cast(self.t.pointer())",
+            "def __call__(self, obj):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return obj['m_end_ptr'].cast(self.t.pointer()) - obj['m_begin_ptr'].cast(self.t.pointer())"
+        ]
+    },
+    {
+        "func_name": "__init__",
+        "original": "def __init__(self):\n    super().__init__('SmallVectorImplMatcher')",
+        "mutated": [
+            "def __init__(self):\n    if False:\n        i = 10\n    super().__init__('SmallVectorImplMatcher')",
+            "def __init__(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    super().__init__('SmallVectorImplMatcher')",
+            "def __init__(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    super().__init__('SmallVectorImplMatcher')",
+            "def __init__(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    super().__init__('SmallVectorImplMatcher')",
+            "def __init__(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    super().__init__('SmallVectorImplMatcher')"
+        ]
+    },
+    {
+        "func_name": "match",
+        "original": "def match(self, class_type, method_name):\n    if re.match('^megdnn::SmallVector(Impl)?<.*>', class_type.tag):\n        if method_name == 'at':\n            return SmallVectorImplWorker_at(class_type.template_argument(0))\n        if method_name == 'operator[]':\n            return SmallVectorImplWorker_at(class_type.template_argument(0))\n        if method_name == 'size':\n            return SmallVectorImplWorker_size(class_type.template_argument(0))",
+        "mutated": [
+            "def match(self, class_type, method_name):\n    if False:\n        i = 10\n    if re.match('^megdnn::SmallVector(Impl)?<.*>', class_type.tag):\n        if method_name == 'at':\n            return SmallVectorImplWorker_at(class_type.template_argument(0))\n        if method_name == 'operator[]':\n            return SmallVectorImplWorker_at(class_type.template_argument(0))\n        if method_name == 'size':\n            return SmallVectorImplWorker_size(class_type.template_argument(0))",
+            "def match(self, class_type, method_name):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    if re.match('^megdnn::SmallVector(Impl)?<.*>', class_type.tag):\n        if method_name == 'at':\n            return SmallVectorImplWorker_at(class_type.template_argument(0))\n        if method_name == 'operator[]':\n            return SmallVectorImplWorker_at(class_type.template_argument(0))\n        if method_name == 'size':\n            return SmallVectorImplWorker_size(class_type.template_argument(0))",
+            "def match(self, class_type, method_name):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    if re.match('^megdnn::SmallVector(Impl)?<.*>', class_type.tag):\n        if method_name == 'at':\n            return SmallVectorImplWorker_at(class_type.template_argument(0))\n        if method_name == 'operator[]':\n            return SmallVectorImplWorker_at(class_type.template_argument(0))\n        if method_name == 'size':\n            return SmallVectorImplWorker_size(class_type.template_argument(0))",
+            "def match(self, class_type, method_name):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    if re.match('^megdnn::SmallVector(Impl)?<.*>', class_type.tag):\n        if method_name == 'at':\n            return SmallVectorImplWorker_at(class_type.template_argument(0))\n        if method_name == 'operator[]':\n            return SmallVectorImplWorker_at(class_type.template_argument(0))\n        if method_name == 'size':\n            return SmallVectorImplWorker_size(class_type.template_argument(0))",
+            "def match(self, class_type, method_name):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    if re.match('^megdnn::SmallVector(Impl)?<.*>', class_type.tag):\n        if method_name == 'at':\n            return SmallVectorImplWorker_at(class_type.template_argument(0))\n        if method_name == 'operator[]':\n            return SmallVectorImplWorker_at(class_type.template_argument(0))\n        if method_name == 'size':\n            return SmallVectorImplWorker_size(class_type.template_argument(0))"
+        ]
+    }
+]

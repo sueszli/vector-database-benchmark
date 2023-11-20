@@ -1,0 +1,475 @@
+[
+    {
+        "func_name": "return_via_parameter_name",
+        "original": "def return_via_parameter_name(parameter=None):\n    return 0",
+        "mutated": [
+            "def return_via_parameter_name(parameter=None):\n    if False:\n        i = 10\n    return 0",
+            "def return_via_parameter_name(parameter=None):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return 0",
+            "def return_via_parameter_name(parameter=None):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return 0",
+            "def return_via_parameter_name(parameter=None):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return 0",
+            "def return_via_parameter_name(parameter=None):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return 0"
+        ]
+    },
+    {
+        "func_name": "test_string_literals",
+        "original": "def test_string_literals():\n    return return_via_parameter_name('A')",
+        "mutated": [
+            "def test_string_literals():\n    if False:\n        i = 10\n    return return_via_parameter_name('A')",
+            "def test_string_literals():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return return_via_parameter_name('A')",
+            "def test_string_literals():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return return_via_parameter_name('A')",
+            "def test_string_literals():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return return_via_parameter_name('A')",
+            "def test_string_literals():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return return_via_parameter_name('A')"
+        ]
+    },
+    {
+        "func_name": "test_numerals",
+        "original": "def test_numerals():\n    return return_via_parameter_name(1)",
+        "mutated": [
+            "def test_numerals():\n    if False:\n        i = 10\n    return return_via_parameter_name(1)",
+            "def test_numerals():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return return_via_parameter_name(1)",
+            "def test_numerals():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return return_via_parameter_name(1)",
+            "def test_numerals():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return return_via_parameter_name(1)",
+            "def test_numerals():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return return_via_parameter_name(1)"
+        ]
+    },
+    {
+        "func_name": "test_bool",
+        "original": "def test_bool():\n    return return_via_parameter_name(False)",
+        "mutated": [
+            "def test_bool():\n    if False:\n        i = 10\n    return return_via_parameter_name(False)",
+            "def test_bool():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return return_via_parameter_name(False)",
+            "def test_bool():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return return_via_parameter_name(False)",
+            "def test_bool():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return return_via_parameter_name(False)",
+            "def test_bool():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return return_via_parameter_name(False)"
+        ]
+    },
+    {
+        "func_name": "test_enums",
+        "original": "def test_enums():\n    return return_via_parameter_name(MyEnum.FOO)",
+        "mutated": [
+            "def test_enums():\n    if False:\n        i = 10\n    return return_via_parameter_name(MyEnum.FOO)",
+            "def test_enums():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return return_via_parameter_name(MyEnum.FOO)",
+            "def test_enums():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return return_via_parameter_name(MyEnum.FOO)",
+            "def test_enums():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return return_via_parameter_name(MyEnum.FOO)",
+            "def test_enums():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return return_via_parameter_name(MyEnum.FOO)"
+        ]
+    },
+    {
+        "func_name": "test_missing",
+        "original": "def test_missing():\n    return return_via_parameter_name()",
+        "mutated": [
+            "def test_missing():\n    if False:\n        i = 10\n    return return_via_parameter_name()",
+            "def test_missing():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return return_via_parameter_name()",
+            "def test_missing():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return return_via_parameter_name()",
+            "def test_missing():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return return_via_parameter_name()",
+            "def test_missing():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return return_via_parameter_name()"
+        ]
+    },
+    {
+        "func_name": "meta",
+        "original": "def meta(parameter):\n    return return_via_parameter_name(parameter)",
+        "mutated": [
+            "def meta(parameter):\n    if False:\n        i = 10\n    return return_via_parameter_name(parameter)",
+            "def meta(parameter):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return return_via_parameter_name(parameter)",
+            "def meta(parameter):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return return_via_parameter_name(parameter)",
+            "def meta(parameter):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return return_via_parameter_name(parameter)",
+            "def meta(parameter):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return return_via_parameter_name(parameter)"
+        ]
+    },
+    {
+        "func_name": "meta_named",
+        "original": "def meta_named(parameter):\n    return return_via_parameter_name(parameter=parameter)",
+        "mutated": [
+            "def meta_named(parameter):\n    if False:\n        i = 10\n    return return_via_parameter_name(parameter=parameter)",
+            "def meta_named(parameter):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return return_via_parameter_name(parameter=parameter)",
+            "def meta_named(parameter):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return return_via_parameter_name(parameter=parameter)",
+            "def meta_named(parameter):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return return_via_parameter_name(parameter=parameter)",
+            "def meta_named(parameter):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return return_via_parameter_name(parameter=parameter)"
+        ]
+    },
+    {
+        "func_name": "test_via_value_of_does_not_propagate",
+        "original": "def test_via_value_of_does_not_propagate():\n    return meta('Name')",
+        "mutated": [
+            "def test_via_value_of_does_not_propagate():\n    if False:\n        i = 10\n    return meta('Name')",
+            "def test_via_value_of_does_not_propagate():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return meta('Name')",
+            "def test_via_value_of_does_not_propagate():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return meta('Name')",
+            "def test_via_value_of_does_not_propagate():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return meta('Name')",
+            "def test_via_value_of_does_not_propagate():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return meta('Name')"
+        ]
+    },
+    {
+        "func_name": "tito",
+        "original": "def tito(parameter, other):\n    pass",
+        "mutated": [
+            "def tito(parameter, other):\n    if False:\n        i = 10\n    pass",
+            "def tito(parameter, other):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    pass",
+            "def tito(parameter, other):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    pass",
+            "def tito(parameter, other):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    pass",
+            "def tito(parameter, other):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    pass"
+        ]
+    },
+    {
+        "func_name": "test_tito",
+        "original": "def test_tito():\n    a = tito(_test_source(), 'second')\n    return a",
+        "mutated": [
+            "def test_tito():\n    if False:\n        i = 10\n    a = tito(_test_source(), 'second')\n    return a",
+            "def test_tito():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    a = tito(_test_source(), 'second')\n    return a",
+            "def test_tito():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    a = tito(_test_source(), 'second')\n    return a",
+            "def test_tito():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    a = tito(_test_source(), 'second')\n    return a",
+            "def test_tito():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    a = tito(_test_source(), 'second')\n    return a"
+        ]
+    },
+    {
+        "func_name": "sink_via_value_of",
+        "original": "def sink_via_value_of(x, y):\n    pass",
+        "mutated": [
+            "def sink_via_value_of(x, y):\n    if False:\n        i = 10\n    pass",
+            "def sink_via_value_of(x, y):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    pass",
+            "def sink_via_value_of(x, y):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    pass",
+            "def sink_via_value_of(x, y):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    pass",
+            "def sink_via_value_of(x, y):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    pass"
+        ]
+    },
+    {
+        "func_name": "test_sink",
+        "original": "def test_sink(element):\n    return sink_via_value_of(element, 'second')",
+        "mutated": [
+            "def test_sink(element):\n    if False:\n        i = 10\n    return sink_via_value_of(element, 'second')",
+            "def test_sink(element):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return sink_via_value_of(element, 'second')",
+            "def test_sink(element):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return sink_via_value_of(element, 'second')",
+            "def test_sink(element):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return sink_via_value_of(element, 'second')",
+            "def test_sink(element):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return sink_via_value_of(element, 'second')"
+        ]
+    },
+    {
+        "func_name": "test_backwards_tito",
+        "original": "def test_backwards_tito(parameter):\n    return tito(parameter, 'by_backwards')",
+        "mutated": [
+            "def test_backwards_tito(parameter):\n    if False:\n        i = 10\n    return tito(parameter, 'by_backwards')",
+            "def test_backwards_tito(parameter):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return tito(parameter, 'by_backwards')",
+            "def test_backwards_tito(parameter):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return tito(parameter, 'by_backwards')",
+            "def test_backwards_tito(parameter):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return tito(parameter, 'by_backwards')",
+            "def test_backwards_tito(parameter):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return tito(parameter, 'by_backwards')"
+        ]
+    },
+    {
+        "func_name": "meta_sink",
+        "original": "def meta_sink(parameter, value):\n    sink_via_value_of(parameter, value)",
+        "mutated": [
+            "def meta_sink(parameter, value):\n    if False:\n        i = 10\n    sink_via_value_of(parameter, value)",
+            "def meta_sink(parameter, value):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    sink_via_value_of(parameter, value)",
+            "def meta_sink(parameter, value):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    sink_via_value_of(parameter, value)",
+            "def meta_sink(parameter, value):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    sink_via_value_of(parameter, value)",
+            "def meta_sink(parameter, value):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    sink_via_value_of(parameter, value)"
+        ]
+    },
+    {
+        "func_name": "meta_sink_args",
+        "original": "def meta_sink_args(parameter, value):\n    sink_via_value_of(*[parameter, value])",
+        "mutated": [
+            "def meta_sink_args(parameter, value):\n    if False:\n        i = 10\n    sink_via_value_of(*[parameter, value])",
+            "def meta_sink_args(parameter, value):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    sink_via_value_of(*[parameter, value])",
+            "def meta_sink_args(parameter, value):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    sink_via_value_of(*[parameter, value])",
+            "def meta_sink_args(parameter, value):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    sink_via_value_of(*[parameter, value])",
+            "def meta_sink_args(parameter, value):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    sink_via_value_of(*[parameter, value])"
+        ]
+    },
+    {
+        "func_name": "meta_sink_kwargs",
+        "original": "def meta_sink_kwargs(parameter, value):\n    sink_via_value_of(**{'x': parameter, 'y': value})",
+        "mutated": [
+            "def meta_sink_kwargs(parameter, value):\n    if False:\n        i = 10\n    sink_via_value_of(**{'x': parameter, 'y': value})",
+            "def meta_sink_kwargs(parameter, value):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    sink_via_value_of(**{'x': parameter, 'y': value})",
+            "def meta_sink_kwargs(parameter, value):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    sink_via_value_of(**{'x': parameter, 'y': value})",
+            "def meta_sink_kwargs(parameter, value):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    sink_via_value_of(**{'x': parameter, 'y': value})",
+            "def meta_sink_kwargs(parameter, value):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    sink_via_value_of(**{'x': parameter, 'y': value})"
+        ]
+    },
+    {
+        "func_name": "meta_sink_positional_kwargs",
+        "original": "def meta_sink_positional_kwargs(parameter, value):\n    sink_via_value_of('x', **{'y': value})",
+        "mutated": [
+            "def meta_sink_positional_kwargs(parameter, value):\n    if False:\n        i = 10\n    sink_via_value_of('x', **{'y': value})",
+            "def meta_sink_positional_kwargs(parameter, value):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    sink_via_value_of('x', **{'y': value})",
+            "def meta_sink_positional_kwargs(parameter, value):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    sink_via_value_of('x', **{'y': value})",
+            "def meta_sink_positional_kwargs(parameter, value):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    sink_via_value_of('x', **{'y': value})",
+            "def meta_sink_positional_kwargs(parameter, value):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    sink_via_value_of('x', **{'y': value})"
+        ]
+    },
+    {
+        "func_name": "test_sinks_do_not_propagate",
+        "original": "def test_sinks_do_not_propagate(parameter):\n    meta_sink(parameter, 'not a feature')",
+        "mutated": [
+            "def test_sinks_do_not_propagate(parameter):\n    if False:\n        i = 10\n    meta_sink(parameter, 'not a feature')",
+            "def test_sinks_do_not_propagate(parameter):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    meta_sink(parameter, 'not a feature')",
+            "def test_sinks_do_not_propagate(parameter):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    meta_sink(parameter, 'not a feature')",
+            "def test_sinks_do_not_propagate(parameter):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    meta_sink(parameter, 'not a feature')",
+            "def test_sinks_do_not_propagate(parameter):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    meta_sink(parameter, 'not a feature')"
+        ]
+    },
+    {
+        "func_name": "attach_to_source",
+        "original": "def attach_to_source(parameter):\n    return _test_source()",
+        "mutated": [
+            "def attach_to_source(parameter):\n    if False:\n        i = 10\n    return _test_source()",
+            "def attach_to_source(parameter):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return _test_source()",
+            "def attach_to_source(parameter):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return _test_source()",
+            "def attach_to_source(parameter):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return _test_source()",
+            "def attach_to_source(parameter):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return _test_source()"
+        ]
+    },
+    {
+        "func_name": "test_attach_to_source",
+        "original": "def test_attach_to_source():\n    return attach_to_source('attached to source')",
+        "mutated": [
+            "def test_attach_to_source():\n    if False:\n        i = 10\n    return attach_to_source('attached to source')",
+            "def test_attach_to_source():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return attach_to_source('attached to source')",
+            "def test_attach_to_source():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return attach_to_source('attached to source')",
+            "def test_attach_to_source():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return attach_to_source('attached to source')",
+            "def test_attach_to_source():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return attach_to_source('attached to source')"
+        ]
+    },
+    {
+        "func_name": "attach_to_sink",
+        "original": "def attach_to_sink(parameter, feature):\n    _test_sink(parameter)",
+        "mutated": [
+            "def attach_to_sink(parameter, feature):\n    if False:\n        i = 10\n    _test_sink(parameter)",
+            "def attach_to_sink(parameter, feature):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    _test_sink(parameter)",
+            "def attach_to_sink(parameter, feature):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    _test_sink(parameter)",
+            "def attach_to_sink(parameter, feature):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    _test_sink(parameter)",
+            "def attach_to_sink(parameter, feature):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    _test_sink(parameter)"
+        ]
+    },
+    {
+        "func_name": "test_attach_to_sink",
+        "original": "def test_attach_to_sink(parameter):\n    attach_to_sink(parameter, 'attached to sink')",
+        "mutated": [
+            "def test_attach_to_sink(parameter):\n    if False:\n        i = 10\n    attach_to_sink(parameter, 'attached to sink')",
+            "def test_attach_to_sink(parameter):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    attach_to_sink(parameter, 'attached to sink')",
+            "def test_attach_to_sink(parameter):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    attach_to_sink(parameter, 'attached to sink')",
+            "def test_attach_to_sink(parameter):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    attach_to_sink(parameter, 'attached to sink')",
+            "def test_attach_to_sink(parameter):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    attach_to_sink(parameter, 'attached to sink')"
+        ]
+    },
+    {
+        "func_name": "return_including_name",
+        "original": "def return_including_name(parameter):\n    return 0",
+        "mutated": [
+            "def return_including_name(parameter):\n    if False:\n        i = 10\n    return 0",
+            "def return_including_name(parameter):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return 0",
+            "def return_including_name(parameter):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return 0",
+            "def return_including_name(parameter):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return 0",
+            "def return_including_name(parameter):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return 0"
+        ]
+    },
+    {
+        "func_name": "test_return_including_name",
+        "original": "def test_return_including_name():\n    return return_including_name('parameter_value')",
+        "mutated": [
+            "def test_return_including_name():\n    if False:\n        i = 10\n    return return_including_name('parameter_value')",
+            "def test_return_including_name():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return return_including_name('parameter_value')",
+            "def test_return_including_name():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return return_including_name('parameter_value')",
+            "def test_return_including_name():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return return_including_name('parameter_value')",
+            "def test_return_including_name():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return return_including_name('parameter_value')"
+        ]
+    },
+    {
+        "func_name": "return_via_second_parameter",
+        "original": "def return_via_second_parameter(first, second, third=3, fourth=4, fifth=5):\n    return 0",
+        "mutated": [
+            "def return_via_second_parameter(first, second, third=3, fourth=4, fifth=5):\n    if False:\n        i = 10\n    return 0",
+            "def return_via_second_parameter(first, second, third=3, fourth=4, fifth=5):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return 0",
+            "def return_via_second_parameter(first, second, third=3, fourth=4, fifth=5):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return 0",
+            "def return_via_second_parameter(first, second, third=3, fourth=4, fifth=5):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return 0",
+            "def return_via_second_parameter(first, second, third=3, fourth=4, fifth=5):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return 0"
+        ]
+    },
+    {
+        "func_name": "test_return_second_parameter",
+        "original": "def test_return_second_parameter():\n    return return_via_second_parameter(1, 2)",
+        "mutated": [
+            "def test_return_second_parameter():\n    if False:\n        i = 10\n    return return_via_second_parameter(1, 2)",
+            "def test_return_second_parameter():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return return_via_second_parameter(1, 2)",
+            "def test_return_second_parameter():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return return_via_second_parameter(1, 2)",
+            "def test_return_second_parameter():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return return_via_second_parameter(1, 2)",
+            "def test_return_second_parameter():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return return_via_second_parameter(1, 2)"
+        ]
+    },
+    {
+        "func_name": "test_return_second_parameter_keyword",
+        "original": "def test_return_second_parameter_keyword():\n    return return_via_second_parameter(second=2, first=1)",
+        "mutated": [
+            "def test_return_second_parameter_keyword():\n    if False:\n        i = 10\n    return return_via_second_parameter(second=2, first=1)",
+            "def test_return_second_parameter_keyword():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return return_via_second_parameter(second=2, first=1)",
+            "def test_return_second_parameter_keyword():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return return_via_second_parameter(second=2, first=1)",
+            "def test_return_second_parameter_keyword():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return return_via_second_parameter(second=2, first=1)",
+            "def test_return_second_parameter_keyword():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return return_via_second_parameter(second=2, first=1)"
+        ]
+    },
+    {
+        "func_name": "test_args_parameter",
+        "original": "def test_args_parameter():\n    args = ['first', 'second']\n    return return_via_second_parameter(*args)",
+        "mutated": [
+            "def test_args_parameter():\n    if False:\n        i = 10\n    args = ['first', 'second']\n    return return_via_second_parameter(*args)",
+            "def test_args_parameter():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    args = ['first', 'second']\n    return return_via_second_parameter(*args)",
+            "def test_args_parameter():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    args = ['first', 'second']\n    return return_via_second_parameter(*args)",
+            "def test_args_parameter():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    args = ['first', 'second']\n    return return_via_second_parameter(*args)",
+            "def test_args_parameter():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    args = ['first', 'second']\n    return return_via_second_parameter(*args)"
+        ]
+    },
+    {
+        "func_name": "test_kwargs_parameter",
+        "original": "def test_kwargs_parameter():\n    kwargs = {'first': '1', 'second': '2'}\n    return return_via_second_parameter(**kwargs)",
+        "mutated": [
+            "def test_kwargs_parameter():\n    if False:\n        i = 10\n    kwargs = {'first': '1', 'second': '2'}\n    return return_via_second_parameter(**kwargs)",
+            "def test_kwargs_parameter():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    kwargs = {'first': '1', 'second': '2'}\n    return return_via_second_parameter(**kwargs)",
+            "def test_kwargs_parameter():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    kwargs = {'first': '1', 'second': '2'}\n    return return_via_second_parameter(**kwargs)",
+            "def test_kwargs_parameter():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    kwargs = {'first': '1', 'second': '2'}\n    return return_via_second_parameter(**kwargs)",
+            "def test_kwargs_parameter():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    kwargs = {'first': '1', 'second': '2'}\n    return return_via_second_parameter(**kwargs)"
+        ]
+    },
+    {
+        "func_name": "test_args_kwargs_parameter",
+        "original": "def test_args_kwargs_parameter():\n    args = ['1']\n    kwargs = {'second': '2'}\n    return return_via_second_parameter(*args, **kwargs)",
+        "mutated": [
+            "def test_args_kwargs_parameter():\n    if False:\n        i = 10\n    args = ['1']\n    kwargs = {'second': '2'}\n    return return_via_second_parameter(*args, **kwargs)",
+            "def test_args_kwargs_parameter():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    args = ['1']\n    kwargs = {'second': '2'}\n    return return_via_second_parameter(*args, **kwargs)",
+            "def test_args_kwargs_parameter():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    args = ['1']\n    kwargs = {'second': '2'}\n    return return_via_second_parameter(*args, **kwargs)",
+            "def test_args_kwargs_parameter():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    args = ['1']\n    kwargs = {'second': '2'}\n    return return_via_second_parameter(*args, **kwargs)",
+            "def test_args_kwargs_parameter():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    args = ['1']\n    kwargs = {'second': '2'}\n    return return_via_second_parameter(*args, **kwargs)"
+        ]
+    },
+    {
+        "func_name": "test_positional_kwargs_parameter",
+        "original": "def test_positional_kwargs_parameter():\n    kwargs = {'second': '2'}\n    return return_via_second_parameter('1', **kwargs)",
+        "mutated": [
+            "def test_positional_kwargs_parameter():\n    if False:\n        i = 10\n    kwargs = {'second': '2'}\n    return return_via_second_parameter('1', **kwargs)",
+            "def test_positional_kwargs_parameter():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    kwargs = {'second': '2'}\n    return return_via_second_parameter('1', **kwargs)",
+            "def test_positional_kwargs_parameter():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    kwargs = {'second': '2'}\n    return return_via_second_parameter('1', **kwargs)",
+            "def test_positional_kwargs_parameter():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    kwargs = {'second': '2'}\n    return return_via_second_parameter('1', **kwargs)",
+            "def test_positional_kwargs_parameter():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    kwargs = {'second': '2'}\n    return return_via_second_parameter('1', **kwargs)"
+        ]
+    },
+    {
+        "func_name": "test_named_kwargs_parameter",
+        "original": "def test_named_kwargs_parameter():\n    kwargs = {'first': '1'}\n    return return_via_second_parameter(**kwargs, second='2')",
+        "mutated": [
+            "def test_named_kwargs_parameter():\n    if False:\n        i = 10\n    kwargs = {'first': '1'}\n    return return_via_second_parameter(**kwargs, second='2')",
+            "def test_named_kwargs_parameter():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    kwargs = {'first': '1'}\n    return return_via_second_parameter(**kwargs, second='2')",
+            "def test_named_kwargs_parameter():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    kwargs = {'first': '1'}\n    return return_via_second_parameter(**kwargs, second='2')",
+            "def test_named_kwargs_parameter():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    kwargs = {'first': '1'}\n    return return_via_second_parameter(**kwargs, second='2')",
+            "def test_named_kwargs_parameter():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    kwargs = {'first': '1'}\n    return return_via_second_parameter(**kwargs, second='2')"
+        ]
+    },
+    {
+        "func_name": "test_unknown_named_args",
+        "original": "def test_unknown_named_args(b, e):\n    args = [e]\n    return return_via_second_parameter(*args, second=b)",
+        "mutated": [
+            "def test_unknown_named_args(b, e):\n    if False:\n        i = 10\n    args = [e]\n    return return_via_second_parameter(*args, second=b)",
+            "def test_unknown_named_args(b, e):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    args = [e]\n    return return_via_second_parameter(*args, second=b)",
+            "def test_unknown_named_args(b, e):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    args = [e]\n    return return_via_second_parameter(*args, second=b)",
+            "def test_unknown_named_args(b, e):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    args = [e]\n    return return_via_second_parameter(*args, second=b)",
+            "def test_unknown_named_args(b, e):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    args = [e]\n    return return_via_second_parameter(*args, second=b)"
+        ]
+    },
+    {
+        "func_name": "test_unknown_named_kwargs",
+        "original": "def test_unknown_named_kwargs(b, e):\n    kwargs = {'fifth': e}\n    return return_via_second_parameter(**kwargs, second=b)",
+        "mutated": [
+            "def test_unknown_named_kwargs(b, e):\n    if False:\n        i = 10\n    kwargs = {'fifth': e}\n    return return_via_second_parameter(**kwargs, second=b)",
+            "def test_unknown_named_kwargs(b, e):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    kwargs = {'fifth': e}\n    return return_via_second_parameter(**kwargs, second=b)",
+            "def test_unknown_named_kwargs(b, e):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    kwargs = {'fifth': e}\n    return return_via_second_parameter(**kwargs, second=b)",
+            "def test_unknown_named_kwargs(b, e):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    kwargs = {'fifth': e}\n    return return_via_second_parameter(**kwargs, second=b)",
+            "def test_unknown_named_kwargs(b, e):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    kwargs = {'fifth': e}\n    return return_via_second_parameter(**kwargs, second=b)"
+        ]
+    },
+    {
+        "func_name": "test_unknown_positional_args",
+        "original": "def test_unknown_positional_args(a, b, c):\n    args = [c]\n    return return_via_second_parameter(a, b, *args)",
+        "mutated": [
+            "def test_unknown_positional_args(a, b, c):\n    if False:\n        i = 10\n    args = [c]\n    return return_via_second_parameter(a, b, *args)",
+            "def test_unknown_positional_args(a, b, c):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    args = [c]\n    return return_via_second_parameter(a, b, *args)",
+            "def test_unknown_positional_args(a, b, c):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    args = [c]\n    return return_via_second_parameter(a, b, *args)",
+            "def test_unknown_positional_args(a, b, c):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    args = [c]\n    return return_via_second_parameter(a, b, *args)",
+            "def test_unknown_positional_args(a, b, c):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    args = [c]\n    return return_via_second_parameter(a, b, *args)"
+        ]
+    },
+    {
+        "func_name": "test_unknown_positional_kwargs",
+        "original": "def test_unknown_positional_kwargs(a, b, c):\n    kwargs = {'third': c}\n    return return_via_second_parameter(a, b, **kwargs)",
+        "mutated": [
+            "def test_unknown_positional_kwargs(a, b, c):\n    if False:\n        i = 10\n    kwargs = {'third': c}\n    return return_via_second_parameter(a, b, **kwargs)",
+            "def test_unknown_positional_kwargs(a, b, c):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    kwargs = {'third': c}\n    return return_via_second_parameter(a, b, **kwargs)",
+            "def test_unknown_positional_kwargs(a, b, c):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    kwargs = {'third': c}\n    return return_via_second_parameter(a, b, **kwargs)",
+            "def test_unknown_positional_kwargs(a, b, c):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    kwargs = {'third': c}\n    return return_via_second_parameter(a, b, **kwargs)",
+            "def test_unknown_positional_kwargs(a, b, c):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    kwargs = {'third': c}\n    return return_via_second_parameter(a, b, **kwargs)"
+        ]
+    },
+    {
+        "func_name": "test_unknown_positional_named_args1",
+        "original": "def test_unknown_positional_named_args1(a, b, c):\n    args = [c]\n    return return_via_second_parameter(a, *args, second=b)",
+        "mutated": [
+            "def test_unknown_positional_named_args1(a, b, c):\n    if False:\n        i = 10\n    args = [c]\n    return return_via_second_parameter(a, *args, second=b)",
+            "def test_unknown_positional_named_args1(a, b, c):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    args = [c]\n    return return_via_second_parameter(a, *args, second=b)",
+            "def test_unknown_positional_named_args1(a, b, c):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    args = [c]\n    return return_via_second_parameter(a, *args, second=b)",
+            "def test_unknown_positional_named_args1(a, b, c):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    args = [c]\n    return return_via_second_parameter(a, *args, second=b)",
+            "def test_unknown_positional_named_args1(a, b, c):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    args = [c]\n    return return_via_second_parameter(a, *args, second=b)"
+        ]
+    },
+    {
+        "func_name": "test_unknown_positional_named_args2",
+        "original": "def test_unknown_positional_named_args2(a, b, c, d):\n    args = [d]\n    return return_via_second_parameter(a, c, *args, second=b)",
+        "mutated": [
+            "def test_unknown_positional_named_args2(a, b, c, d):\n    if False:\n        i = 10\n    args = [d]\n    return return_via_second_parameter(a, c, *args, second=b)",
+            "def test_unknown_positional_named_args2(a, b, c, d):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    args = [d]\n    return return_via_second_parameter(a, c, *args, second=b)",
+            "def test_unknown_positional_named_args2(a, b, c, d):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    args = [d]\n    return return_via_second_parameter(a, c, *args, second=b)",
+            "def test_unknown_positional_named_args2(a, b, c, d):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    args = [d]\n    return return_via_second_parameter(a, c, *args, second=b)",
+            "def test_unknown_positional_named_args2(a, b, c, d):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    args = [d]\n    return return_via_second_parameter(a, c, *args, second=b)"
+        ]
+    },
+    {
+        "func_name": "test_unknown_positional_named_kwargs1",
+        "original": "def test_unknown_positional_named_kwargs1(a, b, c):\n    kwargs = {'third': c}\n    return return_via_second_parameter(a, **kwargs, second=b)",
+        "mutated": [
+            "def test_unknown_positional_named_kwargs1(a, b, c):\n    if False:\n        i = 10\n    kwargs = {'third': c}\n    return return_via_second_parameter(a, **kwargs, second=b)",
+            "def test_unknown_positional_named_kwargs1(a, b, c):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    kwargs = {'third': c}\n    return return_via_second_parameter(a, **kwargs, second=b)",
+            "def test_unknown_positional_named_kwargs1(a, b, c):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    kwargs = {'third': c}\n    return return_via_second_parameter(a, **kwargs, second=b)",
+            "def test_unknown_positional_named_kwargs1(a, b, c):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    kwargs = {'third': c}\n    return return_via_second_parameter(a, **kwargs, second=b)",
+            "def test_unknown_positional_named_kwargs1(a, b, c):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    kwargs = {'third': c}\n    return return_via_second_parameter(a, **kwargs, second=b)"
+        ]
+    },
+    {
+        "func_name": "test_unknown_positional_named_kwargs2",
+        "original": "def test_unknown_positional_named_kwargs2(a, b, c, d):\n    kwargs = {'fourth': d}\n    return return_via_second_parameter(a, c, **kwargs, second=b)",
+        "mutated": [
+            "def test_unknown_positional_named_kwargs2(a, b, c, d):\n    if False:\n        i = 10\n    kwargs = {'fourth': d}\n    return return_via_second_parameter(a, c, **kwargs, second=b)",
+            "def test_unknown_positional_named_kwargs2(a, b, c, d):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    kwargs = {'fourth': d}\n    return return_via_second_parameter(a, c, **kwargs, second=b)",
+            "def test_unknown_positional_named_kwargs2(a, b, c, d):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    kwargs = {'fourth': d}\n    return return_via_second_parameter(a, c, **kwargs, second=b)",
+            "def test_unknown_positional_named_kwargs2(a, b, c, d):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    kwargs = {'fourth': d}\n    return return_via_second_parameter(a, c, **kwargs, second=b)",
+            "def test_unknown_positional_named_kwargs2(a, b, c, d):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    kwargs = {'fourth': d}\n    return return_via_second_parameter(a, c, **kwargs, second=b)"
+        ]
+    },
+    {
+        "func_name": "test_unknown_named_args_kwargs",
+        "original": "def test_unknown_named_args_kwargs(a, b, c):\n    args = [a]\n    kwargs = {'third': c}\n    return return_via_second_parameter(*args, **kwargs, second=b)",
+        "mutated": [
+            "def test_unknown_named_args_kwargs(a, b, c):\n    if False:\n        i = 10\n    args = [a]\n    kwargs = {'third': c}\n    return return_via_second_parameter(*args, **kwargs, second=b)",
+            "def test_unknown_named_args_kwargs(a, b, c):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    args = [a]\n    kwargs = {'third': c}\n    return return_via_second_parameter(*args, **kwargs, second=b)",
+            "def test_unknown_named_args_kwargs(a, b, c):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    args = [a]\n    kwargs = {'third': c}\n    return return_via_second_parameter(*args, **kwargs, second=b)",
+            "def test_unknown_named_args_kwargs(a, b, c):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    args = [a]\n    kwargs = {'third': c}\n    return return_via_second_parameter(*args, **kwargs, second=b)",
+            "def test_unknown_named_args_kwargs(a, b, c):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    args = [a]\n    kwargs = {'third': c}\n    return return_via_second_parameter(*args, **kwargs, second=b)"
+        ]
+    },
+    {
+        "func_name": "test_unknown_positional_named_args_kwargs1",
+        "original": "def test_unknown_positional_named_args_kwargs1(a, b, c, d, e):\n    args = [d]\n    kwargs = {'fifth': e}\n    return return_via_second_parameter(a, *args, **kwargs, second=b)",
+        "mutated": [
+            "def test_unknown_positional_named_args_kwargs1(a, b, c, d, e):\n    if False:\n        i = 10\n    args = [d]\n    kwargs = {'fifth': e}\n    return return_via_second_parameter(a, *args, **kwargs, second=b)",
+            "def test_unknown_positional_named_args_kwargs1(a, b, c, d, e):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    args = [d]\n    kwargs = {'fifth': e}\n    return return_via_second_parameter(a, *args, **kwargs, second=b)",
+            "def test_unknown_positional_named_args_kwargs1(a, b, c, d, e):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    args = [d]\n    kwargs = {'fifth': e}\n    return return_via_second_parameter(a, *args, **kwargs, second=b)",
+            "def test_unknown_positional_named_args_kwargs1(a, b, c, d, e):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    args = [d]\n    kwargs = {'fifth': e}\n    return return_via_second_parameter(a, *args, **kwargs, second=b)",
+            "def test_unknown_positional_named_args_kwargs1(a, b, c, d, e):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    args = [d]\n    kwargs = {'fifth': e}\n    return return_via_second_parameter(a, *args, **kwargs, second=b)"
+        ]
+    }
+]

@@ -1,0 +1,24 @@
+[
+    {
+        "func_name": "shape",
+        "original": "@property\ndef shape(self):\n    return self.vector.shape",
+        "mutated": [
+            "@property\ndef shape(self):\n    if False:\n        i = 10\n    return self.vector.shape",
+            "@property\ndef shape(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return self.vector.shape",
+            "@property\ndef shape(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return self.vector.shape",
+            "@property\ndef shape(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return self.vector.shape",
+            "@property\ndef shape(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return self.vector.shape"
+        ]
+    },
+    {
+        "func_name": "_eval_derivative",
+        "original": "def _eval_derivative(self, x):\n    (A, b) = (self.matrix, self.vector)\n    return MatrixSolve(A, b.diff(x) - A.diff(x) * MatrixSolve(A, b))",
+        "mutated": [
+            "def _eval_derivative(self, x):\n    if False:\n        i = 10\n    (A, b) = (self.matrix, self.vector)\n    return MatrixSolve(A, b.diff(x) - A.diff(x) * MatrixSolve(A, b))",
+            "def _eval_derivative(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    (A, b) = (self.matrix, self.vector)\n    return MatrixSolve(A, b.diff(x) - A.diff(x) * MatrixSolve(A, b))",
+            "def _eval_derivative(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    (A, b) = (self.matrix, self.vector)\n    return MatrixSolve(A, b.diff(x) - A.diff(x) * MatrixSolve(A, b))",
+            "def _eval_derivative(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    (A, b) = (self.matrix, self.vector)\n    return MatrixSolve(A, b.diff(x) - A.diff(x) * MatrixSolve(A, b))",
+            "def _eval_derivative(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    (A, b) = (self.matrix, self.vector)\n    return MatrixSolve(A, b.diff(x) - A.diff(x) * MatrixSolve(A, b))"
+        ]
+    }
+]

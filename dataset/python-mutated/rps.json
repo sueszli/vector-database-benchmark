@@ -1,0 +1,46 @@
+[
+    {
+        "func_name": "always_same",
+        "original": "def always_same():\n    return default",
+        "mutated": [
+            "def always_same():\n    if False:\n        i = 10\n    return default",
+            "def always_same():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return default",
+            "def always_same():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return default",
+            "def always_same():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return default",
+            "def always_same():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return default"
+        ]
+    },
+    {
+        "func_name": "random_strategy",
+        "original": "def random_strategy():\n    return random.choice('rps')",
+        "mutated": [
+            "def random_strategy():\n    if False:\n        i = 10\n    return random.choice('rps')",
+            "def random_strategy():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return random.choice('rps')",
+            "def random_strategy():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return random.choice('rps')",
+            "def random_strategy():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return random.choice('rps')",
+            "def random_strategy():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return random.choice('rps')"
+        ]
+    },
+    {
+        "func_name": "beat_last",
+        "original": "def beat_last():\n    if not guesses:\n        return default\n    (last, _) = guesses[-1]\n    return loses[last]",
+        "mutated": [
+            "def beat_last():\n    if False:\n        i = 10\n    if not guesses:\n        return default\n    (last, _) = guesses[-1]\n    return loses[last]",
+            "def beat_last():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    if not guesses:\n        return default\n    (last, _) = guesses[-1]\n    return loses[last]",
+            "def beat_last():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    if not guesses:\n        return default\n    (last, _) = guesses[-1]\n    return loses[last]",
+            "def beat_last():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    if not guesses:\n        return default\n    (last, _) = guesses[-1]\n    return loses[last]",
+            "def beat_last():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    if not guesses:\n        return default\n    (last, _) = guesses[-1]\n    return loses[last]"
+        ]
+    },
+    {
+        "func_name": "get_option",
+        "original": "def get_option():\n    while True:\n        choice = input('Enter \"r\" for rock, \"p\" for paper, \"s\" for scissors: ')\n        if choice not in beats:\n            print('Invalid choice.')\n            continue\n        return choice",
+        "mutated": [
+            "def get_option():\n    if False:\n        i = 10\n    while True:\n        choice = input('Enter \"r\" for rock, \"p\" for paper, \"s\" for scissors: ')\n        if choice not in beats:\n            print('Invalid choice.')\n            continue\n        return choice",
+            "def get_option():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    while True:\n        choice = input('Enter \"r\" for rock, \"p\" for paper, \"s\" for scissors: ')\n        if choice not in beats:\n            print('Invalid choice.')\n            continue\n        return choice",
+            "def get_option():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    while True:\n        choice = input('Enter \"r\" for rock, \"p\" for paper, \"s\" for scissors: ')\n        if choice not in beats:\n            print('Invalid choice.')\n            continue\n        return choice",
+            "def get_option():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    while True:\n        choice = input('Enter \"r\" for rock, \"p\" for paper, \"s\" for scissors: ')\n        if choice not in beats:\n            print('Invalid choice.')\n            continue\n        return choice",
+            "def get_option():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    while True:\n        choice = input('Enter \"r\" for rock, \"p\" for paper, \"s\" for scissors: ')\n        if choice not in beats:\n            print('Invalid choice.')\n            continue\n        return choice"
+        ]
+    }
+]

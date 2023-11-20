@@ -1,0 +1,68 @@
+[
+    {
+        "func_name": "validator",
+        "original": "@pytest.fixture\ndef validator():\n    return Validator(host='145.239.185.126', port=1080)",
+        "mutated": [
+            "@pytest.fixture\ndef validator():\n    if False:\n        i = 10\n    return Validator(host='145.239.185.126', port=1080)",
+            "@pytest.fixture\ndef validator():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return Validator(host='145.239.185.126', port=1080)",
+            "@pytest.fixture\ndef validator():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return Validator(host='145.239.185.126', port=1080)",
+            "@pytest.fixture\ndef validator():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return Validator(host='145.239.185.126', port=1080)",
+            "@pytest.fixture\ndef validator():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return Validator(host='145.239.185.126', port=1080)"
+        ]
+    },
+    {
+        "func_name": "validator2",
+        "original": "@pytest.fixture\ndef validator2():\n    return Validator(host='162.246.200.100', port=80)",
+        "mutated": [
+            "@pytest.fixture\ndef validator2():\n    if False:\n        i = 10\n    return Validator(host='162.246.200.100', port=80)",
+            "@pytest.fixture\ndef validator2():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return Validator(host='162.246.200.100', port=80)",
+            "@pytest.fixture\ndef validator2():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return Validator(host='162.246.200.100', port=80)",
+            "@pytest.fixture\ndef validator2():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return Validator(host='162.246.200.100', port=80)",
+            "@pytest.fixture\ndef validator2():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return Validator(host='162.246.200.100', port=80)"
+        ]
+    },
+    {
+        "func_name": "test_latency",
+        "original": "def test_latency(validator):\n    validator.validate_latency()\n    assert validator.success_rate >= 0\n    assert validator.latency >= 0",
+        "mutated": [
+            "def test_latency(validator):\n    if False:\n        i = 10\n    validator.validate_latency()\n    assert validator.success_rate >= 0\n    assert validator.latency >= 0",
+            "def test_latency(validator):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    validator.validate_latency()\n    assert validator.success_rate >= 0\n    assert validator.latency >= 0",
+            "def test_latency(validator):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    validator.validate_latency()\n    assert validator.success_rate >= 0\n    assert validator.latency >= 0",
+            "def test_latency(validator):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    validator.validate_latency()\n    assert validator.success_rate >= 0\n    assert validator.latency >= 0",
+            "def test_latency(validator):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    validator.validate_latency()\n    assert validator.success_rate >= 0\n    assert validator.latency >= 0"
+        ]
+    },
+    {
+        "func_name": "test_proxy",
+        "original": "def test_proxy(validator):\n    validator.validate_proxy()",
+        "mutated": [
+            "def test_proxy(validator):\n    if False:\n        i = 10\n    validator.validate_proxy()",
+            "def test_proxy(validator):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    validator.validate_proxy()",
+            "def test_proxy(validator):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    validator.validate_proxy()",
+            "def test_proxy(validator):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    validator.validate_proxy()",
+            "def test_proxy(validator):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    validator.validate_proxy()"
+        ]
+    },
+    {
+        "func_name": "test_proxy",
+        "original": "def test_proxy(validator2):\n    validator2.validate_proxy()",
+        "mutated": [
+            "def test_proxy(validator2):\n    if False:\n        i = 10\n    validator2.validate_proxy()",
+            "def test_proxy(validator2):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    validator2.validate_proxy()",
+            "def test_proxy(validator2):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    validator2.validate_proxy()",
+            "def test_proxy(validator2):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    validator2.validate_proxy()",
+            "def test_proxy(validator2):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    validator2.validate_proxy()"
+        ]
+    },
+    {
+        "func_name": "test_proxy",
+        "original": "def test_proxy(validator2, mocker):\n    l = mocker.patch('scylla.validator.Validator.validate_latency')\n    p = mocker.patch('scylla.validator.Validator.validate_proxy')\n    validator2.validate()\n    l.assert_called_once()\n    p.assert_called_once()",
+        "mutated": [
+            "def test_proxy(validator2, mocker):\n    if False:\n        i = 10\n    l = mocker.patch('scylla.validator.Validator.validate_latency')\n    p = mocker.patch('scylla.validator.Validator.validate_proxy')\n    validator2.validate()\n    l.assert_called_once()\n    p.assert_called_once()",
+            "def test_proxy(validator2, mocker):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    l = mocker.patch('scylla.validator.Validator.validate_latency')\n    p = mocker.patch('scylla.validator.Validator.validate_proxy')\n    validator2.validate()\n    l.assert_called_once()\n    p.assert_called_once()",
+            "def test_proxy(validator2, mocker):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    l = mocker.patch('scylla.validator.Validator.validate_latency')\n    p = mocker.patch('scylla.validator.Validator.validate_proxy')\n    validator2.validate()\n    l.assert_called_once()\n    p.assert_called_once()",
+            "def test_proxy(validator2, mocker):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    l = mocker.patch('scylla.validator.Validator.validate_latency')\n    p = mocker.patch('scylla.validator.Validator.validate_proxy')\n    validator2.validate()\n    l.assert_called_once()\n    p.assert_called_once()",
+            "def test_proxy(validator2, mocker):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    l = mocker.patch('scylla.validator.Validator.validate_latency')\n    p = mocker.patch('scylla.validator.Validator.validate_proxy')\n    validator2.validate()\n    l.assert_called_once()\n    p.assert_called_once()"
+        ]
+    }
+]

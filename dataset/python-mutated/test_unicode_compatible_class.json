@@ -1,0 +1,68 @@
+[
+    {
+        "func_name": "__unicode__",
+        "original": "def __unicode__(self):\n    return UNICODE_STRING",
+        "mutated": [
+            "def __unicode__(self):\n    if False:\n        i = 10\n    return UNICODE_STRING",
+            "def __unicode__(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return UNICODE_STRING",
+            "def __unicode__(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return UNICODE_STRING",
+            "def __unicode__(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return UNICODE_STRING",
+            "def __unicode__(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return UNICODE_STRING"
+        ]
+    },
+    {
+        "func_name": "_assert_strings_equal",
+        "original": "def _assert_strings_equal(str1, str2):\n    assert type(str1) is type(str2)\n    assert str1 == str2",
+        "mutated": [
+            "def _assert_strings_equal(str1, str2):\n    if False:\n        i = 10\n    assert type(str1) is type(str2)\n    assert str1 == str2",
+            "def _assert_strings_equal(str1, str2):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    assert type(str1) is type(str2)\n    assert str1 == str2",
+            "def _assert_strings_equal(str1, str2):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    assert type(str1) is type(str2)\n    assert str1 == str2",
+            "def _assert_strings_equal(str1, str2):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    assert type(str1) is type(str2)\n    assert str1 == str2",
+            "def _assert_strings_equal(str1, str2):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    assert type(str1) is type(str2)\n    assert str1 == str2"
+        ]
+    },
+    {
+        "func_name": "test_native_bytes",
+        "original": "@pytest.mark.skipif(not compat.PY3, reason=\"Python 2 doesn't support method `__bytes__`\")\ndef test_native_bytes():\n    returned = bytes(Clazz())\n    _assert_strings_equal(BYTES_STRING, returned)",
+        "mutated": [
+            "@pytest.mark.skipif(not compat.PY3, reason=\"Python 2 doesn't support method `__bytes__`\")\ndef test_native_bytes():\n    if False:\n        i = 10\n    returned = bytes(Clazz())\n    _assert_strings_equal(BYTES_STRING, returned)",
+            "@pytest.mark.skipif(not compat.PY3, reason=\"Python 2 doesn't support method `__bytes__`\")\ndef test_native_bytes():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    returned = bytes(Clazz())\n    _assert_strings_equal(BYTES_STRING, returned)",
+            "@pytest.mark.skipif(not compat.PY3, reason=\"Python 2 doesn't support method `__bytes__`\")\ndef test_native_bytes():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    returned = bytes(Clazz())\n    _assert_strings_equal(BYTES_STRING, returned)",
+            "@pytest.mark.skipif(not compat.PY3, reason=\"Python 2 doesn't support method `__bytes__`\")\ndef test_native_bytes():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    returned = bytes(Clazz())\n    _assert_strings_equal(BYTES_STRING, returned)",
+            "@pytest.mark.skipif(not compat.PY3, reason=\"Python 2 doesn't support method `__bytes__`\")\ndef test_native_bytes():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    returned = bytes(Clazz())\n    _assert_strings_equal(BYTES_STRING, returned)"
+        ]
+    },
+    {
+        "func_name": "test_to_bytes",
+        "original": "def test_to_bytes():\n    returned = compat.to_bytes(Clazz())\n    _assert_strings_equal(BYTES_STRING, returned)",
+        "mutated": [
+            "def test_to_bytes():\n    if False:\n        i = 10\n    returned = compat.to_bytes(Clazz())\n    _assert_strings_equal(BYTES_STRING, returned)",
+            "def test_to_bytes():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    returned = compat.to_bytes(Clazz())\n    _assert_strings_equal(BYTES_STRING, returned)",
+            "def test_to_bytes():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    returned = compat.to_bytes(Clazz())\n    _assert_strings_equal(BYTES_STRING, returned)",
+            "def test_to_bytes():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    returned = compat.to_bytes(Clazz())\n    _assert_strings_equal(BYTES_STRING, returned)",
+            "def test_to_bytes():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    returned = compat.to_bytes(Clazz())\n    _assert_strings_equal(BYTES_STRING, returned)"
+        ]
+    },
+    {
+        "func_name": "test_to_string",
+        "original": "def test_to_string():\n    returned = compat.to_string(Clazz())\n    _assert_strings_equal(NATIVE_STRING, returned)",
+        "mutated": [
+            "def test_to_string():\n    if False:\n        i = 10\n    returned = compat.to_string(Clazz())\n    _assert_strings_equal(NATIVE_STRING, returned)",
+            "def test_to_string():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    returned = compat.to_string(Clazz())\n    _assert_strings_equal(NATIVE_STRING, returned)",
+            "def test_to_string():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    returned = compat.to_string(Clazz())\n    _assert_strings_equal(NATIVE_STRING, returned)",
+            "def test_to_string():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    returned = compat.to_string(Clazz())\n    _assert_strings_equal(NATIVE_STRING, returned)",
+            "def test_to_string():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    returned = compat.to_string(Clazz())\n    _assert_strings_equal(NATIVE_STRING, returned)"
+        ]
+    },
+    {
+        "func_name": "test_to_unicode",
+        "original": "def test_to_unicode():\n    returned = compat.to_unicode(Clazz())\n    _assert_strings_equal(UNICODE_STRING, returned)",
+        "mutated": [
+            "def test_to_unicode():\n    if False:\n        i = 10\n    returned = compat.to_unicode(Clazz())\n    _assert_strings_equal(UNICODE_STRING, returned)",
+            "def test_to_unicode():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    returned = compat.to_unicode(Clazz())\n    _assert_strings_equal(UNICODE_STRING, returned)",
+            "def test_to_unicode():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    returned = compat.to_unicode(Clazz())\n    _assert_strings_equal(UNICODE_STRING, returned)",
+            "def test_to_unicode():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    returned = compat.to_unicode(Clazz())\n    _assert_strings_equal(UNICODE_STRING, returned)",
+            "def test_to_unicode():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    returned = compat.to_unicode(Clazz())\n    _assert_strings_equal(UNICODE_STRING, returned)"
+        ]
+    }
+]

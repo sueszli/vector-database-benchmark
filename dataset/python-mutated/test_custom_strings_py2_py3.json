@@ -1,0 +1,35 @@
+[
+    {
+        "func_name": "provider",
+        "original": "@fixture\ndef provider():\n    return providers.Provider()",
+        "mutated": [
+            "@fixture\ndef provider():\n    if False:\n        i = 10\n    return providers.Provider()",
+            "@fixture\ndef provider():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return providers.Provider()",
+            "@fixture\ndef provider():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return providers.Provider()",
+            "@fixture\ndef provider():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return providers.Provider()",
+            "@fixture\ndef provider():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return providers.Provider()"
+        ]
+    },
+    {
+        "func_name": "test_setattr",
+        "original": "def test_setattr(provider):\n    setattr(Container, CustomString('test_attr'), provider)\n    assert Container.test_attr is provider",
+        "mutated": [
+            "def test_setattr(provider):\n    if False:\n        i = 10\n    setattr(Container, CustomString('test_attr'), provider)\n    assert Container.test_attr is provider",
+            "def test_setattr(provider):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    setattr(Container, CustomString('test_attr'), provider)\n    assert Container.test_attr is provider",
+            "def test_setattr(provider):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    setattr(Container, CustomString('test_attr'), provider)\n    assert Container.test_attr is provider",
+            "def test_setattr(provider):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    setattr(Container, CustomString('test_attr'), provider)\n    assert Container.test_attr is provider",
+            "def test_setattr(provider):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    setattr(Container, CustomString('test_attr'), provider)\n    assert Container.test_attr is provider"
+        ]
+    },
+    {
+        "func_name": "test_delattr",
+        "original": "def test_delattr():\n    setattr(Container, CustomString('test_attr'), provider)\n    delattr(Container, CustomString('test_attr'))\n    with raises(AttributeError):\n        Container.test_attr",
+        "mutated": [
+            "def test_delattr():\n    if False:\n        i = 10\n    setattr(Container, CustomString('test_attr'), provider)\n    delattr(Container, CustomString('test_attr'))\n    with raises(AttributeError):\n        Container.test_attr",
+            "def test_delattr():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    setattr(Container, CustomString('test_attr'), provider)\n    delattr(Container, CustomString('test_attr'))\n    with raises(AttributeError):\n        Container.test_attr",
+            "def test_delattr():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    setattr(Container, CustomString('test_attr'), provider)\n    delattr(Container, CustomString('test_attr'))\n    with raises(AttributeError):\n        Container.test_attr",
+            "def test_delattr():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    setattr(Container, CustomString('test_attr'), provider)\n    delattr(Container, CustomString('test_attr'))\n    with raises(AttributeError):\n        Container.test_attr",
+            "def test_delattr():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    setattr(Container, CustomString('test_attr'), provider)\n    delattr(Container, CustomString('test_attr'))\n    with raises(AttributeError):\n        Container.test_attr"
+        ]
+    }
+]

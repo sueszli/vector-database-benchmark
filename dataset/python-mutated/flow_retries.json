@@ -1,0 +1,24 @@
+[
+    {
+        "func_name": "happy_task",
+        "original": "@task\ndef happy_task():\n    global task_run_count\n    task_run_count += 1\n    return 1",
+        "mutated": [
+            "@task\ndef happy_task():\n    if False:\n        i = 10\n    global task_run_count\n    task_run_count += 1\n    return 1",
+            "@task\ndef happy_task():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    global task_run_count\n    task_run_count += 1\n    return 1",
+            "@task\ndef happy_task():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    global task_run_count\n    task_run_count += 1\n    return 1",
+            "@task\ndef happy_task():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    global task_run_count\n    task_run_count += 1\n    return 1",
+            "@task\ndef happy_task():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    global task_run_count\n    task_run_count += 1\n    return 1"
+        ]
+    },
+    {
+        "func_name": "hello",
+        "original": "@flow(retries=10)\ndef hello():\n    global flow_run_count\n    flow_run_count += 1\n    first = happy_task()\n    if flow_run_count < 3:\n        raise ValueError('Retry me please!')\n    return first + 1",
+        "mutated": [
+            "@flow(retries=10)\ndef hello():\n    if False:\n        i = 10\n    global flow_run_count\n    flow_run_count += 1\n    first = happy_task()\n    if flow_run_count < 3:\n        raise ValueError('Retry me please!')\n    return first + 1",
+            "@flow(retries=10)\ndef hello():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    global flow_run_count\n    flow_run_count += 1\n    first = happy_task()\n    if flow_run_count < 3:\n        raise ValueError('Retry me please!')\n    return first + 1",
+            "@flow(retries=10)\ndef hello():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    global flow_run_count\n    flow_run_count += 1\n    first = happy_task()\n    if flow_run_count < 3:\n        raise ValueError('Retry me please!')\n    return first + 1",
+            "@flow(retries=10)\ndef hello():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    global flow_run_count\n    flow_run_count += 1\n    first = happy_task()\n    if flow_run_count < 3:\n        raise ValueError('Retry me please!')\n    return first + 1",
+            "@flow(retries=10)\ndef hello():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    global flow_run_count\n    flow_run_count += 1\n    first = happy_task()\n    if flow_run_count < 3:\n        raise ValueError('Retry me please!')\n    return first + 1"
+        ]
+    }
+]

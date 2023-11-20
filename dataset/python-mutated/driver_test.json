@@ -1,0 +1,35 @@
+[
+    {
+        "func_name": "test_success",
+        "original": "def test_success(self):\n    pass",
+        "mutated": [
+            "def test_success(self):\n    if False:\n        i = 10\n    pass",
+            "def test_success(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    pass",
+            "def test_success(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    pass",
+            "def test_success(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    pass",
+            "def test_success(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    pass"
+        ]
+    },
+    {
+        "func_name": "test_skip",
+        "original": "def test_skip(self):\n    raise unittest.SkipTest('expected skip')",
+        "mutated": [
+            "def test_skip(self):\n    if False:\n        i = 10\n    raise unittest.SkipTest('expected skip')",
+            "def test_skip(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    raise unittest.SkipTest('expected skip')",
+            "def test_skip(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    raise unittest.SkipTest('expected skip')",
+            "def test_skip(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    raise unittest.SkipTest('expected skip')",
+            "def test_skip(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    raise unittest.SkipTest('expected skip')"
+        ]
+    },
+    {
+        "func_name": "test_driver_passthrough",
+        "original": "def test_driver_passthrough(self):\n    self.assertTrue(os.environ.get('TEST_ENVIRON_SET') is None)",
+        "mutated": [
+            "def test_driver_passthrough(self):\n    if False:\n        i = 10\n    self.assertTrue(os.environ.get('TEST_ENVIRON_SET') is None)",
+            "def test_driver_passthrough(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    self.assertTrue(os.environ.get('TEST_ENVIRON_SET') is None)",
+            "def test_driver_passthrough(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    self.assertTrue(os.environ.get('TEST_ENVIRON_SET') is None)",
+            "def test_driver_passthrough(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    self.assertTrue(os.environ.get('TEST_ENVIRON_SET') is None)",
+            "def test_driver_passthrough(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    self.assertTrue(os.environ.get('TEST_ENVIRON_SET') is None)"
+        ]
+    }
+]

@@ -1,0 +1,35 @@
+[
+    {
+        "func_name": "recursive_yield_from",
+        "original": "def recursive_yield_from(depth, iter_):\n    if depth <= 0:\n        for i in iter_:\n            yield i\n    else:\n        yield from recursive_yield_from(depth - 1, iter_)",
+        "mutated": [
+            "def recursive_yield_from(depth, iter_):\n    if False:\n        i = 10\n    if depth <= 0:\n        for i in iter_:\n            yield i\n    else:\n        yield from recursive_yield_from(depth - 1, iter_)",
+            "def recursive_yield_from(depth, iter_):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    if depth <= 0:\n        for i in iter_:\n            yield i\n    else:\n        yield from recursive_yield_from(depth - 1, iter_)",
+            "def recursive_yield_from(depth, iter_):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    if depth <= 0:\n        for i in iter_:\n            yield i\n    else:\n        yield from recursive_yield_from(depth - 1, iter_)",
+            "def recursive_yield_from(depth, iter_):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    if depth <= 0:\n        for i in iter_:\n            yield i\n    else:\n        yield from recursive_yield_from(depth - 1, iter_)",
+            "def recursive_yield_from(depth, iter_):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    if depth <= 0:\n        for i in iter_:\n            yield i\n    else:\n        yield from recursive_yield_from(depth - 1, iter_)"
+        ]
+    },
+    {
+        "func_name": "test",
+        "original": "def test(n):\n    global result\n    result = 0\n    for i in recursive_yield_from(10, range(n)):\n        result += i",
+        "mutated": [
+            "def test(n):\n    if False:\n        i = 10\n    global result\n    result = 0\n    for i in recursive_yield_from(10, range(n)):\n        result += i",
+            "def test(n):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    global result\n    result = 0\n    for i in recursive_yield_from(10, range(n)):\n        result += i",
+            "def test(n):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    global result\n    result = 0\n    for i in recursive_yield_from(10, range(n)):\n        result += i",
+            "def test(n):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    global result\n    result = 0\n    for i in recursive_yield_from(10, range(n)):\n        result += i",
+            "def test(n):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    global result\n    result = 0\n    for i in recursive_yield_from(10, range(n)):\n        result += i"
+        ]
+    },
+    {
+        "func_name": "bm_setup",
+        "original": "def bm_setup(params):\n    (nloop,) = params\n    return (lambda : test(nloop), lambda : (nloop // 100, result))",
+        "mutated": [
+            "def bm_setup(params):\n    if False:\n        i = 10\n    (nloop,) = params\n    return (lambda : test(nloop), lambda : (nloop // 100, result))",
+            "def bm_setup(params):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    (nloop,) = params\n    return (lambda : test(nloop), lambda : (nloop // 100, result))",
+            "def bm_setup(params):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    (nloop,) = params\n    return (lambda : test(nloop), lambda : (nloop // 100, result))",
+            "def bm_setup(params):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    (nloop,) = params\n    return (lambda : test(nloop), lambda : (nloop // 100, result))",
+            "def bm_setup(params):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    (nloop,) = params\n    return (lambda : test(nloop), lambda : (nloop // 100, result))"
+        ]
+    }
+]

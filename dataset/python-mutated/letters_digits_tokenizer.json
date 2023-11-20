@@ -1,0 +1,13 @@
+[
+    {
+        "func_name": "tokenize",
+        "original": "def tokenize(self, text: str) -> List[Token]:\n    tokens = [Token(m.group(), idx=m.start()) for m in re.finditer('[^\\\\W\\\\d_]+|\\\\d+|\\\\S', text)]\n    return tokens",
+        "mutated": [
+            "def tokenize(self, text: str) -> List[Token]:\n    if False:\n        i = 10\n    tokens = [Token(m.group(), idx=m.start()) for m in re.finditer('[^\\\\W\\\\d_]+|\\\\d+|\\\\S', text)]\n    return tokens",
+            "def tokenize(self, text: str) -> List[Token]:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    tokens = [Token(m.group(), idx=m.start()) for m in re.finditer('[^\\\\W\\\\d_]+|\\\\d+|\\\\S', text)]\n    return tokens",
+            "def tokenize(self, text: str) -> List[Token]:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    tokens = [Token(m.group(), idx=m.start()) for m in re.finditer('[^\\\\W\\\\d_]+|\\\\d+|\\\\S', text)]\n    return tokens",
+            "def tokenize(self, text: str) -> List[Token]:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    tokens = [Token(m.group(), idx=m.start()) for m in re.finditer('[^\\\\W\\\\d_]+|\\\\d+|\\\\S', text)]\n    return tokens",
+            "def tokenize(self, text: str) -> List[Token]:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    tokens = [Token(m.group(), idx=m.start()) for m in re.finditer('[^\\\\W\\\\d_]+|\\\\d+|\\\\S', text)]\n    return tokens"
+        ]
+    }
+]

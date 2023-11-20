@@ -1,0 +1,35 @@
+[
+    {
+        "func_name": "f1",
+        "original": "@micropython.viper\ndef f1(x: bool):\n    print(x)",
+        "mutated": [
+            "@micropython.viper\ndef f1(x: bool):\n    if False:\n        i = 10\n    print(x)",
+            "@micropython.viper\ndef f1(x: bool):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    print(x)",
+            "@micropython.viper\ndef f1(x: bool):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    print(x)",
+            "@micropython.viper\ndef f1(x: bool):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    print(x)",
+            "@micropython.viper\ndef f1(x: bool):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    print(x)"
+        ]
+    },
+    {
+        "func_name": "f2",
+        "original": "@micropython.viper\ndef f2(x: bool) -> bool:\n    return x",
+        "mutated": [
+            "@micropython.viper\ndef f2(x: bool) -> bool:\n    if False:\n        i = 10\n    return x",
+            "@micropython.viper\ndef f2(x: bool) -> bool:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return x",
+            "@micropython.viper\ndef f2(x: bool) -> bool:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return x",
+            "@micropython.viper\ndef f2(x: bool) -> bool:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return x",
+            "@micropython.viper\ndef f2(x: bool) -> bool:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return x"
+        ]
+    },
+    {
+        "func_name": "f3",
+        "original": "@micropython.viper\ndef f3(x) -> bool:\n    return bool(x)",
+        "mutated": [
+            "@micropython.viper\ndef f3(x) -> bool:\n    if False:\n        i = 10\n    return bool(x)",
+            "@micropython.viper\ndef f3(x) -> bool:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return bool(x)",
+            "@micropython.viper\ndef f3(x) -> bool:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return bool(x)",
+            "@micropython.viper\ndef f3(x) -> bool:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return bool(x)",
+            "@micropython.viper\ndef f3(x) -> bool:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return bool(x)"
+        ]
+    }
+]

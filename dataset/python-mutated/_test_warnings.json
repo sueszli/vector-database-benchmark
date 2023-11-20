@@ -1,0 +1,90 @@
+[
+    {
+        "func_name": "warnfun",
+        "original": "def warnfun():\n    warnings.warn('rw', RuntimeWarning)",
+        "mutated": [
+            "def warnfun():\n    if False:\n        i = 10\n    warnings.warn('rw', RuntimeWarning)",
+            "def warnfun():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    warnings.warn('rw', RuntimeWarning)",
+            "def warnfun():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    warnings.warn('rw', RuntimeWarning)",
+            "def warnfun():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    warnings.warn('rw', RuntimeWarning)",
+            "def warnfun():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    warnings.warn('rw', RuntimeWarning)"
+        ]
+    },
+    {
+        "func_name": "test_assert",
+        "original": "def test_assert(self):\n    self.assertEquals(2 + 2, 4)\n    self.assertEquals(2 * 2, 4)\n    self.assertEquals(2 ** 2, 4)",
+        "mutated": [
+            "def test_assert(self):\n    if False:\n        i = 10\n    self.assertEquals(2 + 2, 4)\n    self.assertEquals(2 * 2, 4)\n    self.assertEquals(2 ** 2, 4)",
+            "def test_assert(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    self.assertEquals(2 + 2, 4)\n    self.assertEquals(2 * 2, 4)\n    self.assertEquals(2 ** 2, 4)",
+            "def test_assert(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    self.assertEquals(2 + 2, 4)\n    self.assertEquals(2 * 2, 4)\n    self.assertEquals(2 ** 2, 4)",
+            "def test_assert(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    self.assertEquals(2 + 2, 4)\n    self.assertEquals(2 * 2, 4)\n    self.assertEquals(2 ** 2, 4)",
+            "def test_assert(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    self.assertEquals(2 + 2, 4)\n    self.assertEquals(2 * 2, 4)\n    self.assertEquals(2 ** 2, 4)"
+        ]
+    },
+    {
+        "func_name": "test_fail",
+        "original": "def test_fail(self):\n    self.failUnless(1)\n    self.failUnless(True)",
+        "mutated": [
+            "def test_fail(self):\n    if False:\n        i = 10\n    self.failUnless(1)\n    self.failUnless(True)",
+            "def test_fail(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    self.failUnless(1)\n    self.failUnless(True)",
+            "def test_fail(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    self.failUnless(1)\n    self.failUnless(True)",
+            "def test_fail(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    self.failUnless(1)\n    self.failUnless(True)",
+            "def test_fail(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    self.failUnless(1)\n    self.failUnless(True)"
+        ]
+    },
+    {
+        "func_name": "test_other_unittest",
+        "original": "def test_other_unittest(self):\n    self.assertAlmostEqual(2 + 2, 4)\n    self.assertNotAlmostEqual(4 + 4, 2)",
+        "mutated": [
+            "def test_other_unittest(self):\n    if False:\n        i = 10\n    self.assertAlmostEqual(2 + 2, 4)\n    self.assertNotAlmostEqual(4 + 4, 2)",
+            "def test_other_unittest(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    self.assertAlmostEqual(2 + 2, 4)\n    self.assertNotAlmostEqual(4 + 4, 2)",
+            "def test_other_unittest(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    self.assertAlmostEqual(2 + 2, 4)\n    self.assertNotAlmostEqual(4 + 4, 2)",
+            "def test_other_unittest(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    self.assertAlmostEqual(2 + 2, 4)\n    self.assertNotAlmostEqual(4 + 4, 2)",
+            "def test_other_unittest(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    self.assertAlmostEqual(2 + 2, 4)\n    self.assertNotAlmostEqual(4 + 4, 2)"
+        ]
+    },
+    {
+        "func_name": "test_deprecation",
+        "original": "def test_deprecation(self):\n    warnings.warn('dw', DeprecationWarning)\n    warnings.warn('dw', DeprecationWarning)\n    warnings.warn('dw', DeprecationWarning)",
+        "mutated": [
+            "def test_deprecation(self):\n    if False:\n        i = 10\n    warnings.warn('dw', DeprecationWarning)\n    warnings.warn('dw', DeprecationWarning)\n    warnings.warn('dw', DeprecationWarning)",
+            "def test_deprecation(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    warnings.warn('dw', DeprecationWarning)\n    warnings.warn('dw', DeprecationWarning)\n    warnings.warn('dw', DeprecationWarning)",
+            "def test_deprecation(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    warnings.warn('dw', DeprecationWarning)\n    warnings.warn('dw', DeprecationWarning)\n    warnings.warn('dw', DeprecationWarning)",
+            "def test_deprecation(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    warnings.warn('dw', DeprecationWarning)\n    warnings.warn('dw', DeprecationWarning)\n    warnings.warn('dw', DeprecationWarning)",
+            "def test_deprecation(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    warnings.warn('dw', DeprecationWarning)\n    warnings.warn('dw', DeprecationWarning)\n    warnings.warn('dw', DeprecationWarning)"
+        ]
+    },
+    {
+        "func_name": "test_import",
+        "original": "def test_import(self):\n    warnings.warn('iw', ImportWarning)\n    warnings.warn('iw', ImportWarning)\n    warnings.warn('iw', ImportWarning)",
+        "mutated": [
+            "def test_import(self):\n    if False:\n        i = 10\n    warnings.warn('iw', ImportWarning)\n    warnings.warn('iw', ImportWarning)\n    warnings.warn('iw', ImportWarning)",
+            "def test_import(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    warnings.warn('iw', ImportWarning)\n    warnings.warn('iw', ImportWarning)\n    warnings.warn('iw', ImportWarning)",
+            "def test_import(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    warnings.warn('iw', ImportWarning)\n    warnings.warn('iw', ImportWarning)\n    warnings.warn('iw', ImportWarning)",
+            "def test_import(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    warnings.warn('iw', ImportWarning)\n    warnings.warn('iw', ImportWarning)\n    warnings.warn('iw', ImportWarning)",
+            "def test_import(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    warnings.warn('iw', ImportWarning)\n    warnings.warn('iw', ImportWarning)\n    warnings.warn('iw', ImportWarning)"
+        ]
+    },
+    {
+        "func_name": "test_warning",
+        "original": "def test_warning(self):\n    warnings.warn('uw')\n    warnings.warn('uw')\n    warnings.warn('uw')",
+        "mutated": [
+            "def test_warning(self):\n    if False:\n        i = 10\n    warnings.warn('uw')\n    warnings.warn('uw')\n    warnings.warn('uw')",
+            "def test_warning(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    warnings.warn('uw')\n    warnings.warn('uw')\n    warnings.warn('uw')",
+            "def test_warning(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    warnings.warn('uw')\n    warnings.warn('uw')\n    warnings.warn('uw')",
+            "def test_warning(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    warnings.warn('uw')\n    warnings.warn('uw')\n    warnings.warn('uw')",
+            "def test_warning(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    warnings.warn('uw')\n    warnings.warn('uw')\n    warnings.warn('uw')"
+        ]
+    },
+    {
+        "func_name": "test_function",
+        "original": "def test_function(self):\n    warnfun()\n    warnfun()\n    warnfun()",
+        "mutated": [
+            "def test_function(self):\n    if False:\n        i = 10\n    warnfun()\n    warnfun()\n    warnfun()",
+            "def test_function(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    warnfun()\n    warnfun()\n    warnfun()",
+            "def test_function(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    warnfun()\n    warnfun()\n    warnfun()",
+            "def test_function(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    warnfun()\n    warnfun()\n    warnfun()",
+            "def test_function(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    warnfun()\n    warnfun()\n    warnfun()"
+        ]
+    }
+]

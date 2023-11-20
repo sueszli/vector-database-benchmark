@@ -1,0 +1,46 @@
+[
+    {
+        "func_name": "__init__",
+        "original": "def __init__(self, lag: int):\n    self.window: collections.deque[numbers.Number] = collections.deque(maxlen=lag)\n    self.lag = lag\n    self.pearson = stats.PearsonCorr(ddof=1)",
+        "mutated": [
+            "def __init__(self, lag: int):\n    if False:\n        i = 10\n    self.window: collections.deque[numbers.Number] = collections.deque(maxlen=lag)\n    self.lag = lag\n    self.pearson = stats.PearsonCorr(ddof=1)",
+            "def __init__(self, lag: int):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    self.window: collections.deque[numbers.Number] = collections.deque(maxlen=lag)\n    self.lag = lag\n    self.pearson = stats.PearsonCorr(ddof=1)",
+            "def __init__(self, lag: int):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    self.window: collections.deque[numbers.Number] = collections.deque(maxlen=lag)\n    self.lag = lag\n    self.pearson = stats.PearsonCorr(ddof=1)",
+            "def __init__(self, lag: int):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    self.window: collections.deque[numbers.Number] = collections.deque(maxlen=lag)\n    self.lag = lag\n    self.pearson = stats.PearsonCorr(ddof=1)",
+            "def __init__(self, lag: int):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    self.window: collections.deque[numbers.Number] = collections.deque(maxlen=lag)\n    self.lag = lag\n    self.pearson = stats.PearsonCorr(ddof=1)"
+        ]
+    },
+    {
+        "func_name": "name",
+        "original": "@property\ndef name(self):\n    return f'autocorr_{self.lag}'",
+        "mutated": [
+            "@property\ndef name(self):\n    if False:\n        i = 10\n    return f'autocorr_{self.lag}'",
+            "@property\ndef name(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return f'autocorr_{self.lag}'",
+            "@property\ndef name(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return f'autocorr_{self.lag}'",
+            "@property\ndef name(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return f'autocorr_{self.lag}'",
+            "@property\ndef name(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return f'autocorr_{self.lag}'"
+        ]
+    },
+    {
+        "func_name": "update",
+        "original": "def update(self, x):\n    if len(self.window) == self.lag:\n        self.pearson.update(x, self.window[0])\n    self.window.append(x)\n    return self",
+        "mutated": [
+            "def update(self, x):\n    if False:\n        i = 10\n    if len(self.window) == self.lag:\n        self.pearson.update(x, self.window[0])\n    self.window.append(x)\n    return self",
+            "def update(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    if len(self.window) == self.lag:\n        self.pearson.update(x, self.window[0])\n    self.window.append(x)\n    return self",
+            "def update(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    if len(self.window) == self.lag:\n        self.pearson.update(x, self.window[0])\n    self.window.append(x)\n    return self",
+            "def update(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    if len(self.window) == self.lag:\n        self.pearson.update(x, self.window[0])\n    self.window.append(x)\n    return self",
+            "def update(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    if len(self.window) == self.lag:\n        self.pearson.update(x, self.window[0])\n    self.window.append(x)\n    return self"
+        ]
+    },
+    {
+        "func_name": "get",
+        "original": "def get(self):\n    return self.pearson.get()",
+        "mutated": [
+            "def get(self):\n    if False:\n        i = 10\n    return self.pearson.get()",
+            "def get(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return self.pearson.get()",
+            "def get(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return self.pearson.get()",
+            "def get(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return self.pearson.get()",
+            "def get(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return self.pearson.get()"
+        ]
+    }
+]

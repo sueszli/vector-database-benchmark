@@ -1,0 +1,35 @@
+[
+    {
+        "func_name": "return_five",
+        "original": "@op\ndef return_five():\n    return 5",
+        "mutated": [
+            "@op\ndef return_five():\n    if False:\n        i = 10\n    return 5",
+            "@op\ndef return_five():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return 5",
+            "@op\ndef return_five():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return 5",
+            "@op\ndef return_five():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return 5",
+            "@op\ndef return_five():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return 5"
+        ]
+    },
+    {
+        "func_name": "add_one",
+        "original": "@op\ndef add_one(arg):\n    return arg + 1",
+        "mutated": [
+            "@op\ndef add_one(arg):\n    if False:\n        i = 10\n    return arg + 1",
+            "@op\ndef add_one(arg):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return arg + 1",
+            "@op\ndef add_one(arg):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return arg + 1",
+            "@op\ndef add_one(arg):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return arg + 1",
+            "@op\ndef add_one(arg):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return arg + 1"
+        ]
+    },
+    {
+        "func_name": "do_stuff",
+        "original": "@job\ndef do_stuff():\n    add_one(return_five())",
+        "mutated": [
+            "@job\ndef do_stuff():\n    if False:\n        i = 10\n    add_one(return_five())",
+            "@job\ndef do_stuff():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    add_one(return_five())",
+            "@job\ndef do_stuff():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    add_one(return_five())",
+            "@job\ndef do_stuff():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    add_one(return_five())",
+            "@job\ndef do_stuff():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    add_one(return_five())"
+        ]
+    }
+]

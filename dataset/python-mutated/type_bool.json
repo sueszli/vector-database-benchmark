@@ -1,0 +1,112 @@
+[
+    {
+        "func_name": "__init__",
+        "original": "def __init__(self, v=False):\n    self.val = v",
+        "mutated": [
+            "def __init__(self, v=False):\n    if False:\n        i = 10\n    self.val = v",
+            "def __init__(self, v=False):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    self.val = v",
+            "def __init__(self, v=False):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    self.val = v",
+            "def __init__(self, v=False):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    self.val = v",
+            "def __init__(self, v=False):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    self.val = v"
+        ]
+    },
+    {
+        "func_name": "__type_info__",
+        "original": "@classmethod\ndef __type_info__(cls):\n    return Type('bool', python_class=cls)",
+        "mutated": [
+            "@classmethod\ndef __type_info__(cls):\n    if False:\n        i = 10\n    return Type('bool', python_class=cls)",
+            "@classmethod\ndef __type_info__(cls):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return Type('bool', python_class=cls)",
+            "@classmethod\ndef __type_info__(cls):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return Type('bool', python_class=cls)",
+            "@classmethod\ndef __type_info__(cls):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return Type('bool', python_class=cls)",
+            "@classmethod\ndef __type_info__(cls):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return Type('bool', python_class=cls)"
+        ]
+    },
+    {
+        "func_name": "__eq__",
+        "original": "@annotate(delay_type.bool, other=delay_type.bool)\ndef __eq__(self, other):\n    return bool(self.val == other.val)",
+        "mutated": [
+            "@annotate(delay_type.bool, other=delay_type.bool)\ndef __eq__(self, other):\n    if False:\n        i = 10\n    return bool(self.val == other.val)",
+            "@annotate(delay_type.bool, other=delay_type.bool)\ndef __eq__(self, other):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return bool(self.val == other.val)",
+            "@annotate(delay_type.bool, other=delay_type.bool)\ndef __eq__(self, other):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return bool(self.val == other.val)",
+            "@annotate(delay_type.bool, other=delay_type.bool)\ndef __eq__(self, other):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return bool(self.val == other.val)",
+            "@annotate(delay_type.bool, other=delay_type.bool)\ndef __eq__(self, other):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return bool(self.val == other.val)"
+        ]
+    },
+    {
+        "func_name": "__ne__",
+        "original": "@annotate(delay_type.bool, other=delay_type.bool)\ndef __ne__(self, other):\n    return bool(self.val != other.val)",
+        "mutated": [
+            "@annotate(delay_type.bool, other=delay_type.bool)\ndef __ne__(self, other):\n    if False:\n        i = 10\n    return bool(self.val != other.val)",
+            "@annotate(delay_type.bool, other=delay_type.bool)\ndef __ne__(self, other):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return bool(self.val != other.val)",
+            "@annotate(delay_type.bool, other=delay_type.bool)\ndef __ne__(self, other):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return bool(self.val != other.val)",
+            "@annotate(delay_type.bool, other=delay_type.bool)\ndef __ne__(self, other):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return bool(self.val != other.val)",
+            "@annotate(delay_type.bool, other=delay_type.bool)\ndef __ne__(self, other):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return bool(self.val != other.val)"
+        ]
+    },
+    {
+        "func_name": "__not__",
+        "original": "@annotate(delay_type.bool)\ndef __not__(self, other):\n    return bool(not other.val)",
+        "mutated": [
+            "@annotate(delay_type.bool)\ndef __not__(self, other):\n    if False:\n        i = 10\n    return bool(not other.val)",
+            "@annotate(delay_type.bool)\ndef __not__(self, other):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return bool(not other.val)",
+            "@annotate(delay_type.bool)\ndef __not__(self, other):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return bool(not other.val)",
+            "@annotate(delay_type.bool)\ndef __not__(self, other):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return bool(not other.val)",
+            "@annotate(delay_type.bool)\ndef __not__(self, other):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return bool(not other.val)"
+        ]
+    },
+    {
+        "func_name": "__bool__",
+        "original": "@annotate(delay_type.bool)\ndef __bool__(self):\n    return self.val",
+        "mutated": [
+            "@annotate(delay_type.bool)\ndef __bool__(self):\n    if False:\n        i = 10\n    return self.val",
+            "@annotate(delay_type.bool)\ndef __bool__(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return self.val",
+            "@annotate(delay_type.bool)\ndef __bool__(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return self.val",
+            "@annotate(delay_type.bool)\ndef __bool__(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return self.val",
+            "@annotate(delay_type.bool)\ndef __bool__(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return self.val"
+        ]
+    },
+    {
+        "func_name": "__int__",
+        "original": "@annotate(delay_type.int)\ndef __int__(self):\n    return int(self)",
+        "mutated": [
+            "@annotate(delay_type.int)\ndef __int__(self):\n    if False:\n        i = 10\n    return int(self)",
+            "@annotate(delay_type.int)\ndef __int__(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return int(self)",
+            "@annotate(delay_type.int)\ndef __int__(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return int(self)",
+            "@annotate(delay_type.int)\ndef __int__(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return int(self)",
+            "@annotate(delay_type.int)\ndef __int__(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return int(self)"
+        ]
+    },
+    {
+        "func_name": "__double__",
+        "original": "@annotate(delay_type.double)\ndef __double__(self):\n    return float(self.val)",
+        "mutated": [
+            "@annotate(delay_type.double)\ndef __double__(self):\n    if False:\n        i = 10\n    return float(self.val)",
+            "@annotate(delay_type.double)\ndef __double__(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return float(self.val)",
+            "@annotate(delay_type.double)\ndef __double__(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return float(self.val)",
+            "@annotate(delay_type.double)\ndef __double__(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return float(self.val)",
+            "@annotate(delay_type.double)\ndef __double__(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return float(self.val)"
+        ]
+    },
+    {
+        "func_name": "__str__",
+        "original": "@annotate(delay_type.str)\ndef __str__(self):\n    return str(self.val)",
+        "mutated": [
+            "@annotate(delay_type.str)\ndef __str__(self):\n    if False:\n        i = 10\n    return str(self.val)",
+            "@annotate(delay_type.str)\ndef __str__(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return str(self.val)",
+            "@annotate(delay_type.str)\ndef __str__(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return str(self.val)",
+            "@annotate(delay_type.str)\ndef __str__(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return str(self.val)",
+            "@annotate(delay_type.str)\ndef __str__(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return str(self.val)"
+        ]
+    },
+    {
+        "func_name": "is_bool",
+        "original": "def is_bool(t):\n    return t is bool or isinstance(t, bool)",
+        "mutated": [
+            "def is_bool(t):\n    if False:\n        i = 10\n    return t is bool or isinstance(t, bool)",
+            "def is_bool(t):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return t is bool or isinstance(t, bool)",
+            "def is_bool(t):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return t is bool or isinstance(t, bool)",
+            "def is_bool(t):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return t is bool or isinstance(t, bool)",
+            "def is_bool(t):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return t is bool or isinstance(t, bool)"
+        ]
+    }
+]

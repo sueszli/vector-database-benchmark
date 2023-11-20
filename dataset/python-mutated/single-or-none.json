@@ -1,0 +1,13 @@
+[
+    {
+        "func_name": "single_or_none",
+        "original": "def single_or_none(elements):\n    if len(elements) != 1:\n        raise Exception('single_or_none expected input list to have a single element')\n    return elements[0]",
+        "mutated": [
+            "def single_or_none(elements):\n    if False:\n        i = 10\n    if len(elements) != 1:\n        raise Exception('single_or_none expected input list to have a single element')\n    return elements[0]",
+            "def single_or_none(elements):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    if len(elements) != 1:\n        raise Exception('single_or_none expected input list to have a single element')\n    return elements[0]",
+            "def single_or_none(elements):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    if len(elements) != 1:\n        raise Exception('single_or_none expected input list to have a single element')\n    return elements[0]",
+            "def single_or_none(elements):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    if len(elements) != 1:\n        raise Exception('single_or_none expected input list to have a single element')\n    return elements[0]",
+            "def single_or_none(elements):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    if len(elements) != 1:\n        raise Exception('single_or_none expected input list to have a single element')\n    return elements[0]"
+        ]
+    }
+]

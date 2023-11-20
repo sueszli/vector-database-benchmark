@@ -1,0 +1,57 @@
+[
+    {
+        "func_name": "__init__",
+        "original": "def __init__(self, data: Dict[str, Any]) -> None:\n    self.data: Dict[str, Any] = data.copy()",
+        "mutated": [
+            "def __init__(self, data: Dict[str, Any]) -> None:\n    if False:\n        i = 10\n    self.data: Dict[str, Any] = data.copy()",
+            "def __init__(self, data: Dict[str, Any]) -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    self.data: Dict[str, Any] = data.copy()",
+            "def __init__(self, data: Dict[str, Any]) -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    self.data: Dict[str, Any] = data.copy()",
+            "def __init__(self, data: Dict[str, Any]) -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    self.data: Dict[str, Any] = data.copy()",
+            "def __init__(self, data: Dict[str, Any]) -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    self.data: Dict[str, Any] = data.copy()"
+        ]
+    },
+    {
+        "func_name": "__getitem__",
+        "original": "def __getitem__(self, key: str) -> NodeMetadataValue:\n    return self.data[key]",
+        "mutated": [
+            "def __getitem__(self, key: str) -> NodeMetadataValue:\n    if False:\n        i = 10\n    return self.data[key]",
+            "def __getitem__(self, key: str) -> NodeMetadataValue:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return self.data[key]",
+            "def __getitem__(self, key: str) -> NodeMetadataValue:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return self.data[key]",
+            "def __getitem__(self, key: str) -> NodeMetadataValue:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return self.data[key]",
+            "def __getitem__(self, key: str) -> NodeMetadataValue:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return self.data[key]"
+        ]
+    },
+    {
+        "func_name": "__setitem__",
+        "original": "def __setitem__(self, key: str, value: NodeMetadataValue) -> NodeMetadataValue:\n    if key in PROTECTED_KEYS:\n        raise RuntimeError(f'Could not override node key: {key}')\n    self.data[key] = value",
+        "mutated": [
+            "def __setitem__(self, key: str, value: NodeMetadataValue) -> NodeMetadataValue:\n    if False:\n        i = 10\n    if key in PROTECTED_KEYS:\n        raise RuntimeError(f'Could not override node key: {key}')\n    self.data[key] = value",
+            "def __setitem__(self, key: str, value: NodeMetadataValue) -> NodeMetadataValue:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    if key in PROTECTED_KEYS:\n        raise RuntimeError(f'Could not override node key: {key}')\n    self.data[key] = value",
+            "def __setitem__(self, key: str, value: NodeMetadataValue) -> NodeMetadataValue:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    if key in PROTECTED_KEYS:\n        raise RuntimeError(f'Could not override node key: {key}')\n    self.data[key] = value",
+            "def __setitem__(self, key: str, value: NodeMetadataValue) -> NodeMetadataValue:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    if key in PROTECTED_KEYS:\n        raise RuntimeError(f'Could not override node key: {key}')\n    self.data[key] = value",
+            "def __setitem__(self, key: str, value: NodeMetadataValue) -> NodeMetadataValue:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    if key in PROTECTED_KEYS:\n        raise RuntimeError(f'Could not override node key: {key}')\n    self.data[key] = value"
+        ]
+    },
+    {
+        "func_name": "__contains__",
+        "original": "def __contains__(self, key: str) -> bool:\n    return key in self.data",
+        "mutated": [
+            "def __contains__(self, key: str) -> bool:\n    if False:\n        i = 10\n    return key in self.data",
+            "def __contains__(self, key: str) -> bool:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return key in self.data",
+            "def __contains__(self, key: str) -> bool:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return key in self.data",
+            "def __contains__(self, key: str) -> bool:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return key in self.data",
+            "def __contains__(self, key: str) -> bool:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return key in self.data"
+        ]
+    },
+    {
+        "func_name": "copy",
+        "original": "def copy(self) -> 'NodeMetadata':\n    return NodeMetadata(self.data.copy())",
+        "mutated": [
+            "def copy(self) -> 'NodeMetadata':\n    if False:\n        i = 10\n    return NodeMetadata(self.data.copy())",
+            "def copy(self) -> 'NodeMetadata':\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return NodeMetadata(self.data.copy())",
+            "def copy(self) -> 'NodeMetadata':\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return NodeMetadata(self.data.copy())",
+            "def copy(self) -> 'NodeMetadata':\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return NodeMetadata(self.data.copy())",
+            "def copy(self) -> 'NodeMetadata':\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return NodeMetadata(self.data.copy())"
+        ]
+    }
+]

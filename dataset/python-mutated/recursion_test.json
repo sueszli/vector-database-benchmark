@@ -1,0 +1,57 @@
+[
+    {
+        "func_name": "output",
+        "original": "def output(self):\n    return MockTarget('/tmp/popularity/%s.txt' % self.date.strftime('%Y-%m-%d'))",
+        "mutated": [
+            "def output(self):\n    if False:\n        i = 10\n    return MockTarget('/tmp/popularity/%s.txt' % self.date.strftime('%Y-%m-%d'))",
+            "def output(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return MockTarget('/tmp/popularity/%s.txt' % self.date.strftime('%Y-%m-%d'))",
+            "def output(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return MockTarget('/tmp/popularity/%s.txt' % self.date.strftime('%Y-%m-%d'))",
+            "def output(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return MockTarget('/tmp/popularity/%s.txt' % self.date.strftime('%Y-%m-%d'))",
+            "def output(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return MockTarget('/tmp/popularity/%s.txt' % self.date.strftime('%Y-%m-%d'))"
+        ]
+    },
+    {
+        "func_name": "requires",
+        "original": "def requires(self):\n    return Popularity(self.date - datetime.timedelta(1))",
+        "mutated": [
+            "def requires(self):\n    if False:\n        i = 10\n    return Popularity(self.date - datetime.timedelta(1))",
+            "def requires(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return Popularity(self.date - datetime.timedelta(1))",
+            "def requires(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return Popularity(self.date - datetime.timedelta(1))",
+            "def requires(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return Popularity(self.date - datetime.timedelta(1))",
+            "def requires(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return Popularity(self.date - datetime.timedelta(1))"
+        ]
+    },
+    {
+        "func_name": "run",
+        "original": "def run(self):\n    f = self.output().open('w')\n    for line in self.input().open('r'):\n        print(int(line.strip()) + 1, file=f)\n    f.close()",
+        "mutated": [
+            "def run(self):\n    if False:\n        i = 10\n    f = self.output().open('w')\n    for line in self.input().open('r'):\n        print(int(line.strip()) + 1, file=f)\n    f.close()",
+            "def run(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    f = self.output().open('w')\n    for line in self.input().open('r'):\n        print(int(line.strip()) + 1, file=f)\n    f.close()",
+            "def run(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    f = self.output().open('w')\n    for line in self.input().open('r'):\n        print(int(line.strip()) + 1, file=f)\n    f.close()",
+            "def run(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    f = self.output().open('w')\n    for line in self.input().open('r'):\n        print(int(line.strip()) + 1, file=f)\n    f.close()",
+            "def run(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    f = self.output().open('w')\n    for line in self.input().open('r'):\n        print(int(line.strip()) + 1, file=f)\n    f.close()"
+        ]
+    },
+    {
+        "func_name": "setUp",
+        "original": "def setUp(self):\n    MockTarget.fs.get_all_data()['/tmp/popularity/2009-01-01.txt'] = b'0\\n'",
+        "mutated": [
+            "def setUp(self):\n    if False:\n        i = 10\n    MockTarget.fs.get_all_data()['/tmp/popularity/2009-01-01.txt'] = b'0\\n'",
+            "def setUp(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    MockTarget.fs.get_all_data()['/tmp/popularity/2009-01-01.txt'] = b'0\\n'",
+            "def setUp(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    MockTarget.fs.get_all_data()['/tmp/popularity/2009-01-01.txt'] = b'0\\n'",
+            "def setUp(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    MockTarget.fs.get_all_data()['/tmp/popularity/2009-01-01.txt'] = b'0\\n'",
+            "def setUp(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    MockTarget.fs.get_all_data()['/tmp/popularity/2009-01-01.txt'] = b'0\\n'"
+        ]
+    },
+    {
+        "func_name": "test_invoke",
+        "original": "def test_invoke(self):\n    luigi.build([Popularity(datetime.date(2009, 1, 5))], local_scheduler=True)\n    self.assertEqual(MockTarget.fs.get_data('/tmp/popularity/2009-01-05.txt'), b'4\\n')",
+        "mutated": [
+            "def test_invoke(self):\n    if False:\n        i = 10\n    luigi.build([Popularity(datetime.date(2009, 1, 5))], local_scheduler=True)\n    self.assertEqual(MockTarget.fs.get_data('/tmp/popularity/2009-01-05.txt'), b'4\\n')",
+            "def test_invoke(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    luigi.build([Popularity(datetime.date(2009, 1, 5))], local_scheduler=True)\n    self.assertEqual(MockTarget.fs.get_data('/tmp/popularity/2009-01-05.txt'), b'4\\n')",
+            "def test_invoke(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    luigi.build([Popularity(datetime.date(2009, 1, 5))], local_scheduler=True)\n    self.assertEqual(MockTarget.fs.get_data('/tmp/popularity/2009-01-05.txt'), b'4\\n')",
+            "def test_invoke(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    luigi.build([Popularity(datetime.date(2009, 1, 5))], local_scheduler=True)\n    self.assertEqual(MockTarget.fs.get_data('/tmp/popularity/2009-01-05.txt'), b'4\\n')",
+            "def test_invoke(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    luigi.build([Popularity(datetime.date(2009, 1, 5))], local_scheduler=True)\n    self.assertEqual(MockTarget.fs.get_data('/tmp/popularity/2009-01-05.txt'), b'4\\n')"
+        ]
+    }
+]

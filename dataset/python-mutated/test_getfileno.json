@@ -1,0 +1,57 @@
+[
+    {
+        "func_name": "fileno",
+        "original": "def fileno(self) -> int:\n    return 123",
+        "mutated": [
+            "def fileno(self) -> int:\n    if False:\n        i = 10\n    return 123",
+            "def fileno(self) -> int:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return 123",
+            "def fileno(self) -> int:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return 123",
+            "def fileno(self) -> int:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return 123",
+            "def fileno(self) -> int:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return 123"
+        ]
+    },
+    {
+        "func_name": "test_get_fileno",
+        "original": "def test_get_fileno():\n\n    class FileLike:\n\n        def fileno(self) -> int:\n            return 123\n    assert get_fileno(FileLike()) == 123",
+        "mutated": [
+            "def test_get_fileno():\n    if False:\n        i = 10\n\n    class FileLike:\n\n        def fileno(self) -> int:\n            return 123\n    assert get_fileno(FileLike()) == 123",
+            "def test_get_fileno():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n\n    class FileLike:\n\n        def fileno(self) -> int:\n            return 123\n    assert get_fileno(FileLike()) == 123",
+            "def test_get_fileno():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n    class FileLike:\n\n        def fileno(self) -> int:\n            return 123\n    assert get_fileno(FileLike()) == 123",
+            "def test_get_fileno():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n\n    class FileLike:\n\n        def fileno(self) -> int:\n            return 123\n    assert get_fileno(FileLike()) == 123",
+            "def test_get_fileno():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n\n    class FileLike:\n\n        def fileno(self) -> int:\n            return 123\n    assert get_fileno(FileLike()) == 123"
+        ]
+    },
+    {
+        "func_name": "test_get_fileno_missing",
+        "original": "def test_get_fileno_missing():\n\n    class FileLike:\n        pass\n    assert get_fileno(FileLike()) is None",
+        "mutated": [
+            "def test_get_fileno_missing():\n    if False:\n        i = 10\n\n    class FileLike:\n        pass\n    assert get_fileno(FileLike()) is None",
+            "def test_get_fileno_missing():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n\n    class FileLike:\n        pass\n    assert get_fileno(FileLike()) is None",
+            "def test_get_fileno_missing():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n    class FileLike:\n        pass\n    assert get_fileno(FileLike()) is None",
+            "def test_get_fileno_missing():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n\n    class FileLike:\n        pass\n    assert get_fileno(FileLike()) is None",
+            "def test_get_fileno_missing():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n\n    class FileLike:\n        pass\n    assert get_fileno(FileLike()) is None"
+        ]
+    },
+    {
+        "func_name": "fileno",
+        "original": "def fileno(self) -> int:\n    1 / 0\n    return 123",
+        "mutated": [
+            "def fileno(self) -> int:\n    if False:\n        i = 10\n    1 / 0\n    return 123",
+            "def fileno(self) -> int:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    1 / 0\n    return 123",
+            "def fileno(self) -> int:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    1 / 0\n    return 123",
+            "def fileno(self) -> int:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    1 / 0\n    return 123",
+            "def fileno(self) -> int:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    1 / 0\n    return 123"
+        ]
+    },
+    {
+        "func_name": "test_get_fileno_broken",
+        "original": "def test_get_fileno_broken():\n\n    class FileLike:\n\n        def fileno(self) -> int:\n            1 / 0\n            return 123\n    assert get_fileno(FileLike()) is None",
+        "mutated": [
+            "def test_get_fileno_broken():\n    if False:\n        i = 10\n\n    class FileLike:\n\n        def fileno(self) -> int:\n            1 / 0\n            return 123\n    assert get_fileno(FileLike()) is None",
+            "def test_get_fileno_broken():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n\n    class FileLike:\n\n        def fileno(self) -> int:\n            1 / 0\n            return 123\n    assert get_fileno(FileLike()) is None",
+            "def test_get_fileno_broken():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n    class FileLike:\n\n        def fileno(self) -> int:\n            1 / 0\n            return 123\n    assert get_fileno(FileLike()) is None",
+            "def test_get_fileno_broken():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n\n    class FileLike:\n\n        def fileno(self) -> int:\n            1 / 0\n            return 123\n    assert get_fileno(FileLike()) is None",
+            "def test_get_fileno_broken():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n\n    class FileLike:\n\n        def fileno(self) -> int:\n            1 / 0\n            return 123\n    assert get_fileno(FileLike()) is None"
+        ]
+    }
+]

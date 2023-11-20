@@ -1,0 +1,35 @@
+[
+    {
+        "func_name": "__init__",
+        "original": "def __init__(self, data):\n    self.data = data\n    self.next = None",
+        "mutated": [
+            "def __init__(self, data):\n    if False:\n        i = 10\n    self.data = data\n    self.next = None",
+            "def __init__(self, data):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    self.data = data\n    self.next = None",
+            "def __init__(self, data):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    self.data = data\n    self.next = None",
+            "def __init__(self, data):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    self.data = data\n    self.next = None",
+            "def __init__(self, data):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    self.data = data\n    self.next = None"
+        ]
+    },
+    {
+        "func_name": "display",
+        "original": "def display(self, head):\n    current = head\n    while current:\n        print(current.data, end=' ')\n        current = current.next",
+        "mutated": [
+            "def display(self, head):\n    if False:\n        i = 10\n    current = head\n    while current:\n        print(current.data, end=' ')\n        current = current.next",
+            "def display(self, head):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    current = head\n    while current:\n        print(current.data, end=' ')\n        current = current.next",
+            "def display(self, head):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    current = head\n    while current:\n        print(current.data, end=' ')\n        current = current.next",
+            "def display(self, head):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    current = head\n    while current:\n        print(current.data, end=' ')\n        current = current.next",
+            "def display(self, head):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    current = head\n    while current:\n        print(current.data, end=' ')\n        current = current.next"
+        ]
+    },
+    {
+        "func_name": "insert",
+        "original": "def insert(self, head, data):\n    if head == None:\n        head = Node(data)\n    elif head.next == None:\n        head.next = Node(data)\n    else:\n        self.insert(head.next, data)\n    return head",
+        "mutated": [
+            "def insert(self, head, data):\n    if False:\n        i = 10\n    if head == None:\n        head = Node(data)\n    elif head.next == None:\n        head.next = Node(data)\n    else:\n        self.insert(head.next, data)\n    return head",
+            "def insert(self, head, data):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    if head == None:\n        head = Node(data)\n    elif head.next == None:\n        head.next = Node(data)\n    else:\n        self.insert(head.next, data)\n    return head",
+            "def insert(self, head, data):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    if head == None:\n        head = Node(data)\n    elif head.next == None:\n        head.next = Node(data)\n    else:\n        self.insert(head.next, data)\n    return head",
+            "def insert(self, head, data):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    if head == None:\n        head = Node(data)\n    elif head.next == None:\n        head.next = Node(data)\n    else:\n        self.insert(head.next, data)\n    return head",
+            "def insert(self, head, data):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    if head == None:\n        head = Node(data)\n    elif head.next == None:\n        head.next = Node(data)\n    else:\n        self.insert(head.next, data)\n    return head"
+        ]
+    }
+]

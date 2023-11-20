@@ -1,0 +1,145 @@
+[
+    {
+        "func_name": "lone_print",
+        "original": "def lone_print(x):\n    print(x)",
+        "mutated": [
+            "def lone_print(x):\n    if False:\n        i = 10\n    print(x)",
+            "def lone_print(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    print(x)",
+            "def lone_print(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    print(x)",
+            "def lone_print(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    print(x)",
+            "def lone_print(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    print(x)"
+        ]
+    },
+    {
+        "func_name": "print_multiple_values",
+        "original": "def print_multiple_values(x):\n    print('x is', x)",
+        "mutated": [
+            "def print_multiple_values(x):\n    if False:\n        i = 10\n    print('x is', x)",
+            "def print_multiple_values(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    print('x is', x)",
+            "def print_multiple_values(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    print('x is', x)",
+            "def print_multiple_values(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    print('x is', x)",
+            "def print_multiple_values(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    print('x is', x)"
+        ]
+    },
+    {
+        "func_name": "multiple_prints",
+        "original": "def multiple_prints(x, y):\n    tf.print('x is', x)\n    tf.print('y is', y)",
+        "mutated": [
+            "def multiple_prints(x, y):\n    if False:\n        i = 10\n    tf.print('x is', x)\n    tf.print('y is', y)",
+            "def multiple_prints(x, y):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    tf.print('x is', x)\n    tf.print('y is', y)",
+            "def multiple_prints(x, y):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    tf.print('x is', x)\n    tf.print('y is', y)",
+            "def multiple_prints(x, y):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    tf.print('x is', x)\n    tf.print('y is', y)",
+            "def multiple_prints(x, y):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    tf.print('x is', x)\n    tf.print('y is', y)"
+        ]
+    },
+    {
+        "func_name": "print_with_nontf_values",
+        "original": "def print_with_nontf_values(x):\n    print('x is', x, {'foo': 'bar'})",
+        "mutated": [
+            "def print_with_nontf_values(x):\n    if False:\n        i = 10\n    print('x is', x, {'foo': 'bar'})",
+            "def print_with_nontf_values(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    print('x is', x, {'foo': 'bar'})",
+            "def print_with_nontf_values(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    print('x is', x, {'foo': 'bar'})",
+            "def print_with_nontf_values(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    print('x is', x, {'foo': 'bar'})",
+            "def print_with_nontf_values(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    print('x is', x, {'foo': 'bar'})"
+        ]
+    },
+    {
+        "func_name": "print_in_cond",
+        "original": "def print_in_cond(x):\n    if x == 0:\n        print(x)",
+        "mutated": [
+            "def print_in_cond(x):\n    if False:\n        i = 10\n    if x == 0:\n        print(x)",
+            "def print_in_cond(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    if x == 0:\n        print(x)",
+            "def print_in_cond(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    if x == 0:\n        print(x)",
+            "def print_in_cond(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    if x == 0:\n        print(x)",
+            "def print_in_cond(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    if x == 0:\n        print(x)"
+        ]
+    },
+    {
+        "func_name": "tf_print",
+        "original": "def tf_print(x):\n    tf.print(x)",
+        "mutated": [
+            "def tf_print(x):\n    if False:\n        i = 10\n    tf.print(x)",
+            "def tf_print(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    tf.print(x)",
+            "def tf_print(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    tf.print(x)",
+            "def tf_print(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    tf.print(x)",
+            "def tf_print(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    tf.print(x)"
+        ]
+    },
+    {
+        "func_name": "setUp",
+        "original": "def setUp(self):\n    super(ReferenceTest, self).setUp()\n    self.autograph_opts = tf.autograph.experimental.Feature.BUILTIN_FUNCTIONS",
+        "mutated": [
+            "def setUp(self):\n    if False:\n        i = 10\n    super(ReferenceTest, self).setUp()\n    self.autograph_opts = tf.autograph.experimental.Feature.BUILTIN_FUNCTIONS",
+            "def setUp(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    super(ReferenceTest, self).setUp()\n    self.autograph_opts = tf.autograph.experimental.Feature.BUILTIN_FUNCTIONS",
+            "def setUp(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    super(ReferenceTest, self).setUp()\n    self.autograph_opts = tf.autograph.experimental.Feature.BUILTIN_FUNCTIONS",
+            "def setUp(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    super(ReferenceTest, self).setUp()\n    self.autograph_opts = tf.autograph.experimental.Feature.BUILTIN_FUNCTIONS",
+            "def setUp(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    super(ReferenceTest, self).setUp()\n    self.autograph_opts = tf.autograph.experimental.Feature.BUILTIN_FUNCTIONS"
+        ]
+    },
+    {
+        "func_name": "test_lone_print",
+        "original": "def test_lone_print(self):\n    self.assertFunctionMatchesEager(lone_print, 1)\n    self.assertFunctionMatchesEager(lone_print, np.array([1, 2, 3]))",
+        "mutated": [
+            "def test_lone_print(self):\n    if False:\n        i = 10\n    self.assertFunctionMatchesEager(lone_print, 1)\n    self.assertFunctionMatchesEager(lone_print, np.array([1, 2, 3]))",
+            "def test_lone_print(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    self.assertFunctionMatchesEager(lone_print, 1)\n    self.assertFunctionMatchesEager(lone_print, np.array([1, 2, 3]))",
+            "def test_lone_print(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    self.assertFunctionMatchesEager(lone_print, 1)\n    self.assertFunctionMatchesEager(lone_print, np.array([1, 2, 3]))",
+            "def test_lone_print(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    self.assertFunctionMatchesEager(lone_print, 1)\n    self.assertFunctionMatchesEager(lone_print, np.array([1, 2, 3]))",
+            "def test_lone_print(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    self.assertFunctionMatchesEager(lone_print, 1)\n    self.assertFunctionMatchesEager(lone_print, np.array([1, 2, 3]))"
+        ]
+    },
+    {
+        "func_name": "test_print_multiple_values",
+        "original": "def test_print_multiple_values(self):\n    self.assertFunctionMatchesEager(print_multiple_values, 1)\n    self.assertFunctionMatchesEager(print_multiple_values, np.array([1, 2, 3]))",
+        "mutated": [
+            "def test_print_multiple_values(self):\n    if False:\n        i = 10\n    self.assertFunctionMatchesEager(print_multiple_values, 1)\n    self.assertFunctionMatchesEager(print_multiple_values, np.array([1, 2, 3]))",
+            "def test_print_multiple_values(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    self.assertFunctionMatchesEager(print_multiple_values, 1)\n    self.assertFunctionMatchesEager(print_multiple_values, np.array([1, 2, 3]))",
+            "def test_print_multiple_values(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    self.assertFunctionMatchesEager(print_multiple_values, 1)\n    self.assertFunctionMatchesEager(print_multiple_values, np.array([1, 2, 3]))",
+            "def test_print_multiple_values(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    self.assertFunctionMatchesEager(print_multiple_values, 1)\n    self.assertFunctionMatchesEager(print_multiple_values, np.array([1, 2, 3]))",
+            "def test_print_multiple_values(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    self.assertFunctionMatchesEager(print_multiple_values, 1)\n    self.assertFunctionMatchesEager(print_multiple_values, np.array([1, 2, 3]))"
+        ]
+    },
+    {
+        "func_name": "test_multiple_prints",
+        "original": "def test_multiple_prints(self):\n    self.assertFunctionMatchesEager(multiple_prints, 1, 2)\n    self.assertFunctionMatchesEager(multiple_prints, np.array([1, 2, 3]), 4)",
+        "mutated": [
+            "def test_multiple_prints(self):\n    if False:\n        i = 10\n    self.assertFunctionMatchesEager(multiple_prints, 1, 2)\n    self.assertFunctionMatchesEager(multiple_prints, np.array([1, 2, 3]), 4)",
+            "def test_multiple_prints(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    self.assertFunctionMatchesEager(multiple_prints, 1, 2)\n    self.assertFunctionMatchesEager(multiple_prints, np.array([1, 2, 3]), 4)",
+            "def test_multiple_prints(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    self.assertFunctionMatchesEager(multiple_prints, 1, 2)\n    self.assertFunctionMatchesEager(multiple_prints, np.array([1, 2, 3]), 4)",
+            "def test_multiple_prints(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    self.assertFunctionMatchesEager(multiple_prints, 1, 2)\n    self.assertFunctionMatchesEager(multiple_prints, np.array([1, 2, 3]), 4)",
+            "def test_multiple_prints(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    self.assertFunctionMatchesEager(multiple_prints, 1, 2)\n    self.assertFunctionMatchesEager(multiple_prints, np.array([1, 2, 3]), 4)"
+        ]
+    },
+    {
+        "func_name": "test_print_with_nontf_values",
+        "original": "def test_print_with_nontf_values(self):\n    self.assertFunctionMatchesEager(print_with_nontf_values, 1)\n    self.assertFunctionMatchesEager(print_with_nontf_values, np.array([1, 2, 3]))",
+        "mutated": [
+            "def test_print_with_nontf_values(self):\n    if False:\n        i = 10\n    self.assertFunctionMatchesEager(print_with_nontf_values, 1)\n    self.assertFunctionMatchesEager(print_with_nontf_values, np.array([1, 2, 3]))",
+            "def test_print_with_nontf_values(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    self.assertFunctionMatchesEager(print_with_nontf_values, 1)\n    self.assertFunctionMatchesEager(print_with_nontf_values, np.array([1, 2, 3]))",
+            "def test_print_with_nontf_values(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    self.assertFunctionMatchesEager(print_with_nontf_values, 1)\n    self.assertFunctionMatchesEager(print_with_nontf_values, np.array([1, 2, 3]))",
+            "def test_print_with_nontf_values(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    self.assertFunctionMatchesEager(print_with_nontf_values, 1)\n    self.assertFunctionMatchesEager(print_with_nontf_values, np.array([1, 2, 3]))",
+            "def test_print_with_nontf_values(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    self.assertFunctionMatchesEager(print_with_nontf_values, 1)\n    self.assertFunctionMatchesEager(print_with_nontf_values, np.array([1, 2, 3]))"
+        ]
+    },
+    {
+        "func_name": "test_print_in_cond",
+        "original": "def test_print_in_cond(self):\n    self.assertFunctionMatchesEager(print_in_cond, 0)\n    self.assertFunctionMatchesEager(print_in_cond, 1)",
+        "mutated": [
+            "def test_print_in_cond(self):\n    if False:\n        i = 10\n    self.assertFunctionMatchesEager(print_in_cond, 0)\n    self.assertFunctionMatchesEager(print_in_cond, 1)",
+            "def test_print_in_cond(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    self.assertFunctionMatchesEager(print_in_cond, 0)\n    self.assertFunctionMatchesEager(print_in_cond, 1)",
+            "def test_print_in_cond(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    self.assertFunctionMatchesEager(print_in_cond, 0)\n    self.assertFunctionMatchesEager(print_in_cond, 1)",
+            "def test_print_in_cond(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    self.assertFunctionMatchesEager(print_in_cond, 0)\n    self.assertFunctionMatchesEager(print_in_cond, 1)",
+            "def test_print_in_cond(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    self.assertFunctionMatchesEager(print_in_cond, 0)\n    self.assertFunctionMatchesEager(print_in_cond, 1)"
+        ]
+    },
+    {
+        "func_name": "test_tf_print",
+        "original": "def test_tf_print(self):\n    self.assertFunctionMatchesEager(tf_print, 0)",
+        "mutated": [
+            "def test_tf_print(self):\n    if False:\n        i = 10\n    self.assertFunctionMatchesEager(tf_print, 0)",
+            "def test_tf_print(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    self.assertFunctionMatchesEager(tf_print, 0)",
+            "def test_tf_print(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    self.assertFunctionMatchesEager(tf_print, 0)",
+            "def test_tf_print(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    self.assertFunctionMatchesEager(tf_print, 0)",
+            "def test_tf_print(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    self.assertFunctionMatchesEager(tf_print, 0)"
+        ]
+    }
+]

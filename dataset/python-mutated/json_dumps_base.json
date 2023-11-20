@@ -1,0 +1,46 @@
+[
+    {
+        "func_name": "bench_json_dumps",
+        "original": "def bench_json_dumps(data):\n    for (obj, count_it) in data:\n        for _ in count_it:\n            json.dumps(obj)",
+        "mutated": [
+            "def bench_json_dumps(data):\n    if False:\n        i = 10\n    for (obj, count_it) in data:\n        for _ in count_it:\n            json.dumps(obj)",
+            "def bench_json_dumps(data):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    for (obj, count_it) in data:\n        for _ in count_it:\n            json.dumps(obj)",
+            "def bench_json_dumps(data):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    for (obj, count_it) in data:\n        for _ in count_it:\n            json.dumps(obj)",
+            "def bench_json_dumps(data):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    for (obj, count_it) in data:\n        for _ in count_it:\n            json.dumps(obj)",
+            "def bench_json_dumps(data):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    for (obj, count_it) in data:\n        for _ in count_it:\n            json.dumps(obj)"
+        ]
+    },
+    {
+        "func_name": "add_cmdline_args",
+        "original": "def add_cmdline_args(cmd, args):\n    if args.cases:\n        cmd.extend(('--cases', args.cases))",
+        "mutated": [
+            "def add_cmdline_args(cmd, args):\n    if False:\n        i = 10\n    if args.cases:\n        cmd.extend(('--cases', args.cases))",
+            "def add_cmdline_args(cmd, args):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    if args.cases:\n        cmd.extend(('--cases', args.cases))",
+            "def add_cmdline_args(cmd, args):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    if args.cases:\n        cmd.extend(('--cases', args.cases))",
+            "def add_cmdline_args(cmd, args):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    if args.cases:\n        cmd.extend(('--cases', args.cases))",
+            "def add_cmdline_args(cmd, args):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    if args.cases:\n        cmd.extend(('--cases', args.cases))"
+        ]
+    },
+    {
+        "func_name": "run_benchmark",
+        "original": "def run_benchmark():\n    data = []\n    for case in CASES:\n        (obj, count) = globals()[case]\n        data.append((obj, range(count)))\n    bench_json_dumps(data)",
+        "mutated": [
+            "def run_benchmark():\n    if False:\n        i = 10\n    data = []\n    for case in CASES:\n        (obj, count) = globals()[case]\n        data.append((obj, range(count)))\n    bench_json_dumps(data)",
+            "def run_benchmark():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    data = []\n    for case in CASES:\n        (obj, count) = globals()[case]\n        data.append((obj, range(count)))\n    bench_json_dumps(data)",
+            "def run_benchmark():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    data = []\n    for case in CASES:\n        (obj, count) = globals()[case]\n        data.append((obj, range(count)))\n    bench_json_dumps(data)",
+            "def run_benchmark():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    data = []\n    for case in CASES:\n        (obj, count) = globals()[case]\n        data.append((obj, range(count)))\n    bench_json_dumps(data)",
+            "def run_benchmark():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    data = []\n    for case in CASES:\n        (obj, count) = globals()[case]\n        data.append((obj, range(count)))\n    bench_json_dumps(data)"
+        ]
+    },
+    {
+        "func_name": "main",
+        "original": "def main():\n    run_benchmark()",
+        "mutated": [
+            "def main():\n    if False:\n        i = 10\n    run_benchmark()",
+            "def main():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    run_benchmark()",
+            "def main():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    run_benchmark()",
+            "def main():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    run_benchmark()",
+            "def main():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    run_benchmark()"
+        ]
+    }
+]

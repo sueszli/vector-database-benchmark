@@ -1,0 +1,35 @@
+[
+    {
+        "func_name": "_mt",
+        "original": "def _mt(path):\n    mt = guess_type(path)[0]\n    if not mt:\n        mt = 'application/octet-stream'\n    return mt",
+        "mutated": [
+            "def _mt(path):\n    if False:\n        i = 10\n    mt = guess_type(path)[0]\n    if not mt:\n        mt = 'application/octet-stream'\n    return mt",
+            "def _mt(path):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    mt = guess_type(path)[0]\n    if not mt:\n        mt = 'application/octet-stream'\n    return mt",
+            "def _mt(path):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    mt = guess_type(path)[0]\n    if not mt:\n        mt = 'application/octet-stream'\n    return mt",
+            "def _mt(path):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    mt = guess_type(path)[0]\n    if not mt:\n        mt = 'application/octet-stream'\n    return mt",
+            "def _mt(path):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    mt = guess_type(path)[0]\n    if not mt:\n        mt = 'application/octet-stream'\n    return mt"
+        ]
+    },
+    {
+        "func_name": "mime_type_ext",
+        "original": "def mime_type_ext(ext):\n    if not ext.startswith('.'):\n        ext = '.' + ext\n    return _mt('a' + ext)",
+        "mutated": [
+            "def mime_type_ext(ext):\n    if False:\n        i = 10\n    if not ext.startswith('.'):\n        ext = '.' + ext\n    return _mt('a' + ext)",
+            "def mime_type_ext(ext):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    if not ext.startswith('.'):\n        ext = '.' + ext\n    return _mt('a' + ext)",
+            "def mime_type_ext(ext):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    if not ext.startswith('.'):\n        ext = '.' + ext\n    return _mt('a' + ext)",
+            "def mime_type_ext(ext):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    if not ext.startswith('.'):\n        ext = '.' + ext\n    return _mt('a' + ext)",
+            "def mime_type_ext(ext):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    if not ext.startswith('.'):\n        ext = '.' + ext\n    return _mt('a' + ext)"
+        ]
+    },
+    {
+        "func_name": "mime_type_path",
+        "original": "def mime_type_path(path):\n    return _mt(path)",
+        "mutated": [
+            "def mime_type_path(path):\n    if False:\n        i = 10\n    return _mt(path)",
+            "def mime_type_path(path):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return _mt(path)",
+            "def mime_type_path(path):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return _mt(path)",
+            "def mime_type_path(path):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return _mt(path)",
+            "def mime_type_path(path):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return _mt(path)"
+        ]
+    }
+]

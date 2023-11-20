@@ -1,0 +1,68 @@
+[
+    {
+        "func_name": "tracked_index",
+        "original": "def tracked_index():\n    d = {}\n    d[CustomEnum.TRACKED_FIELD] = _test_source()\n    return d[CustomEnum.TRACKED_FIELD]",
+        "mutated": [
+            "def tracked_index():\n    if False:\n        i = 10\n    d = {}\n    d[CustomEnum.TRACKED_FIELD] = _test_source()\n    return d[CustomEnum.TRACKED_FIELD]",
+            "def tracked_index():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    d = {}\n    d[CustomEnum.TRACKED_FIELD] = _test_source()\n    return d[CustomEnum.TRACKED_FIELD]",
+            "def tracked_index():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    d = {}\n    d[CustomEnum.TRACKED_FIELD] = _test_source()\n    return d[CustomEnum.TRACKED_FIELD]",
+            "def tracked_index():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    d = {}\n    d[CustomEnum.TRACKED_FIELD] = _test_source()\n    return d[CustomEnum.TRACKED_FIELD]",
+            "def tracked_index():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    d = {}\n    d[CustomEnum.TRACKED_FIELD] = _test_source()\n    return d[CustomEnum.TRACKED_FIELD]"
+        ]
+    },
+    {
+        "func_name": "untracked_index_a",
+        "original": "def untracked_index_a():\n    d = {}\n    d[CustomEnum.untracked_field] = _test_source()\n    return d[CustomEnum.untracked_field]",
+        "mutated": [
+            "def untracked_index_a():\n    if False:\n        i = 10\n    d = {}\n    d[CustomEnum.untracked_field] = _test_source()\n    return d[CustomEnum.untracked_field]",
+            "def untracked_index_a():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    d = {}\n    d[CustomEnum.untracked_field] = _test_source()\n    return d[CustomEnum.untracked_field]",
+            "def untracked_index_a():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    d = {}\n    d[CustomEnum.untracked_field] = _test_source()\n    return d[CustomEnum.untracked_field]",
+            "def untracked_index_a():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    d = {}\n    d[CustomEnum.untracked_field] = _test_source()\n    return d[CustomEnum.untracked_field]",
+            "def untracked_index_a():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    d = {}\n    d[CustomEnum.untracked_field] = _test_source()\n    return d[CustomEnum.untracked_field]"
+        ]
+    },
+    {
+        "func_name": "untracked_index_b",
+        "original": "def untracked_index_b():\n    d = {}\n    d[CustomEnum.UNTRACKED_field] = _test_source()\n    return d[CustomEnum.UNTRACKED_field]",
+        "mutated": [
+            "def untracked_index_b():\n    if False:\n        i = 10\n    d = {}\n    d[CustomEnum.UNTRACKED_field] = _test_source()\n    return d[CustomEnum.UNTRACKED_field]",
+            "def untracked_index_b():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    d = {}\n    d[CustomEnum.UNTRACKED_field] = _test_source()\n    return d[CustomEnum.UNTRACKED_field]",
+            "def untracked_index_b():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    d = {}\n    d[CustomEnum.UNTRACKED_field] = _test_source()\n    return d[CustomEnum.UNTRACKED_field]",
+            "def untracked_index_b():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    d = {}\n    d[CustomEnum.UNTRACKED_field] = _test_source()\n    return d[CustomEnum.UNTRACKED_field]",
+            "def untracked_index_b():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    d = {}\n    d[CustomEnum.UNTRACKED_field] = _test_source()\n    return d[CustomEnum.UNTRACKED_field]"
+        ]
+    },
+    {
+        "func_name": "tracked_constant_A",
+        "original": "def tracked_constant_A():\n    d = {}\n    d[CONSTANT_A] = _test_source()\n    return d[CONSTANT_A]",
+        "mutated": [
+            "def tracked_constant_A():\n    if False:\n        i = 10\n    d = {}\n    d[CONSTANT_A] = _test_source()\n    return d[CONSTANT_A]",
+            "def tracked_constant_A():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    d = {}\n    d[CONSTANT_A] = _test_source()\n    return d[CONSTANT_A]",
+            "def tracked_constant_A():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    d = {}\n    d[CONSTANT_A] = _test_source()\n    return d[CONSTANT_A]",
+            "def tracked_constant_A():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    d = {}\n    d[CONSTANT_A] = _test_source()\n    return d[CONSTANT_A]",
+            "def tracked_constant_A():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    d = {}\n    d[CONSTANT_A] = _test_source()\n    return d[CONSTANT_A]"
+        ]
+    },
+    {
+        "func_name": "tracked_constant_B",
+        "original": "def tracked_constant_B():\n    d = {}\n    d[CONSTANT_B] = _test_source()\n    return d[CONSTANT_B]",
+        "mutated": [
+            "def tracked_constant_B():\n    if False:\n        i = 10\n    d = {}\n    d[CONSTANT_B] = _test_source()\n    return d[CONSTANT_B]",
+            "def tracked_constant_B():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    d = {}\n    d[CONSTANT_B] = _test_source()\n    return d[CONSTANT_B]",
+            "def tracked_constant_B():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    d = {}\n    d[CONSTANT_B] = _test_source()\n    return d[CONSTANT_B]",
+            "def tracked_constant_B():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    d = {}\n    d[CONSTANT_B] = _test_source()\n    return d[CONSTANT_B]",
+            "def tracked_constant_B():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    d = {}\n    d[CONSTANT_B] = _test_source()\n    return d[CONSTANT_B]"
+        ]
+    },
+    {
+        "func_name": "test_untracked_constant",
+        "original": "def test_untracked_constant():\n    d = {}\n    d[untracked_constant] = _test_source()\n    return d[untracked_constant]",
+        "mutated": [
+            "def test_untracked_constant():\n    if False:\n        i = 10\n    d = {}\n    d[untracked_constant] = _test_source()\n    return d[untracked_constant]",
+            "def test_untracked_constant():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    d = {}\n    d[untracked_constant] = _test_source()\n    return d[untracked_constant]",
+            "def test_untracked_constant():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    d = {}\n    d[untracked_constant] = _test_source()\n    return d[untracked_constant]",
+            "def test_untracked_constant():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    d = {}\n    d[untracked_constant] = _test_source()\n    return d[untracked_constant]",
+            "def test_untracked_constant():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    d = {}\n    d[untracked_constant] = _test_source()\n    return d[untracked_constant]"
+        ]
+    }
+]

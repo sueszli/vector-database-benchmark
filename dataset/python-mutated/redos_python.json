@@ -1,0 +1,24 @@
+[
+    {
+        "func_name": "test_patterns",
+        "original": "def test_patterns(input_str):\n    vulnerable = re.match('((honk )+)+$', input_str)\n    ok = re.match('((honk )+)++$', input_str)",
+        "mutated": [
+            "def test_patterns(input_str):\n    if False:\n        i = 10\n    vulnerable = re.match('((honk )+)+$', input_str)\n    ok = re.match('((honk )+)++$', input_str)",
+            "def test_patterns(input_str):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    vulnerable = re.match('((honk )+)+$', input_str)\n    ok = re.match('((honk )+)++$', input_str)",
+            "def test_patterns(input_str):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    vulnerable = re.match('((honk )+)+$', input_str)\n    ok = re.match('((honk )+)++$', input_str)",
+            "def test_patterns(input_str):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    vulnerable = re.match('((honk )+)+$', input_str)\n    ok = re.match('((honk )+)++$', input_str)",
+            "def test_patterns(input_str):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    vulnerable = re.match('((honk )+)+$', input_str)\n    ok = re.match('((honk )+)++$', input_str)"
+        ]
+    },
+    {
+        "func_name": "validate_email",
+        "original": "def validate_email(email_str):\n    re.match('^([a-zA-Z0-9])(([\\\\-.]|[_]+)?([a-zA-Z0-9]+))*(@){1}[a-z0-9]+[.]{1}(([a-z]{2,3})|([a-z]{2,3}[.]{1}[a-z]{2,3}))$', email_str)",
+        "mutated": [
+            "def validate_email(email_str):\n    if False:\n        i = 10\n    re.match('^([a-zA-Z0-9])(([\\\\-.]|[_]+)?([a-zA-Z0-9]+))*(@){1}[a-z0-9]+[.]{1}(([a-z]{2,3})|([a-z]{2,3}[.]{1}[a-z]{2,3}))$', email_str)",
+            "def validate_email(email_str):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    re.match('^([a-zA-Z0-9])(([\\\\-.]|[_]+)?([a-zA-Z0-9]+))*(@){1}[a-z0-9]+[.]{1}(([a-z]{2,3})|([a-z]{2,3}[.]{1}[a-z]{2,3}))$', email_str)",
+            "def validate_email(email_str):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    re.match('^([a-zA-Z0-9])(([\\\\-.]|[_]+)?([a-zA-Z0-9]+))*(@){1}[a-z0-9]+[.]{1}(([a-z]{2,3})|([a-z]{2,3}[.]{1}[a-z]{2,3}))$', email_str)",
+            "def validate_email(email_str):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    re.match('^([a-zA-Z0-9])(([\\\\-.]|[_]+)?([a-zA-Z0-9]+))*(@){1}[a-z0-9]+[.]{1}(([a-z]{2,3})|([a-z]{2,3}[.]{1}[a-z]{2,3}))$', email_str)",
+            "def validate_email(email_str):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    re.match('^([a-zA-Z0-9])(([\\\\-.]|[_]+)?([a-zA-Z0-9]+))*(@){1}[a-z0-9]+[.]{1}(([a-z]{2,3})|([a-z]{2,3}[.]{1}[a-z]{2,3}))$', email_str)"
+        ]
+    }
+]

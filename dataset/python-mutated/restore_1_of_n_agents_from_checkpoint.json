@@ -1,0 +1,24 @@
+[
+    {
+        "func_name": "policy_mapping_fn",
+        "original": "def policy_mapping_fn(agent_id, episode, worker, **kwargs):\n    pol_id = random.choice(policy_ids)\n    return pol_id",
+        "mutated": [
+            "def policy_mapping_fn(agent_id, episode, worker, **kwargs):\n    if False:\n        i = 10\n    pol_id = random.choice(policy_ids)\n    return pol_id",
+            "def policy_mapping_fn(agent_id, episode, worker, **kwargs):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    pol_id = random.choice(policy_ids)\n    return pol_id",
+            "def policy_mapping_fn(agent_id, episode, worker, **kwargs):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    pol_id = random.choice(policy_ids)\n    return pol_id",
+            "def policy_mapping_fn(agent_id, episode, worker, **kwargs):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    pol_id = random.choice(policy_ids)\n    return pol_id",
+            "def policy_mapping_fn(agent_id, episode, worker, **kwargs):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    pol_id = random.choice(policy_ids)\n    return pol_id"
+        ]
+    },
+    {
+        "func_name": "on_algorithm_init",
+        "original": "def on_algorithm_init(self, *, algorithm: 'Algorithm', **kwargs) -> None:\n    algorithm.set_weights({'policy_0': restored_policy_0_weights})",
+        "mutated": [
+            "def on_algorithm_init(self, *, algorithm: 'Algorithm', **kwargs) -> None:\n    if False:\n        i = 10\n    algorithm.set_weights({'policy_0': restored_policy_0_weights})",
+            "def on_algorithm_init(self, *, algorithm: 'Algorithm', **kwargs) -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    algorithm.set_weights({'policy_0': restored_policy_0_weights})",
+            "def on_algorithm_init(self, *, algorithm: 'Algorithm', **kwargs) -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    algorithm.set_weights({'policy_0': restored_policy_0_weights})",
+            "def on_algorithm_init(self, *, algorithm: 'Algorithm', **kwargs) -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    algorithm.set_weights({'policy_0': restored_policy_0_weights})",
+            "def on_algorithm_init(self, *, algorithm: 'Algorithm', **kwargs) -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    algorithm.set_weights({'policy_0': restored_policy_0_weights})"
+        ]
+    }
+]

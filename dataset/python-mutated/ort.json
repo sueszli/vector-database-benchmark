@@ -1,0 +1,145 @@
+[
+    {
+        "func_name": "source_field",
+        "original": "def source_field():\n    result = {}\n    result.a = _test_source()\n    return result",
+        "mutated": [
+            "def source_field():\n    if False:\n        i = 10\n    result = {}\n    result.a = _test_source()\n    return result",
+            "def source_field():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    result = {}\n    result.a = _test_source()\n    return result",
+            "def source_field():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    result = {}\n    result.a = _test_source()\n    return result",
+            "def source_field():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    result = {}\n    result.a = _test_source()\n    return result",
+            "def source_field():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    result = {}\n    result.a = _test_source()\n    return result"
+        ]
+    },
+    {
+        "func_name": "sink_field",
+        "original": "def sink_field(arg):\n    _test_sink(arg.a)",
+        "mutated": [
+            "def sink_field(arg):\n    if False:\n        i = 10\n    _test_sink(arg.a)",
+            "def sink_field(arg):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    _test_sink(arg.a)",
+            "def sink_field(arg):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    _test_sink(arg.a)",
+            "def sink_field(arg):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    _test_sink(arg.a)",
+            "def sink_field(arg):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    _test_sink(arg.a)"
+        ]
+    },
+    {
+        "func_name": "match_flows",
+        "original": "def match_flows():\n    x = source_field()\n    sink_field(x)",
+        "mutated": [
+            "def match_flows():\n    if False:\n        i = 10\n    x = source_field()\n    sink_field(x)",
+            "def match_flows():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    x = source_field()\n    sink_field(x)",
+            "def match_flows():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    x = source_field()\n    sink_field(x)",
+            "def match_flows():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    x = source_field()\n    sink_field(x)",
+            "def match_flows():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    x = source_field()\n    sink_field(x)"
+        ]
+    },
+    {
+        "func_name": "star_arg",
+        "original": "def star_arg(x, *data, **kwargs):\n    sink_field(data[1])",
+        "mutated": [
+            "def star_arg(x, *data, **kwargs):\n    if False:\n        i = 10\n    sink_field(data[1])",
+            "def star_arg(x, *data, **kwargs):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    sink_field(data[1])",
+            "def star_arg(x, *data, **kwargs):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    sink_field(data[1])",
+            "def star_arg(x, *data, **kwargs):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    sink_field(data[1])",
+            "def star_arg(x, *data, **kwargs):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    sink_field(data[1])"
+        ]
+    },
+    {
+        "func_name": "star_arg_wrapper",
+        "original": "def star_arg_wrapper(x, *data, **kwargs):\n    star_arg(x, *data, **kwargs)",
+        "mutated": [
+            "def star_arg_wrapper(x, *data, **kwargs):\n    if False:\n        i = 10\n    star_arg(x, *data, **kwargs)",
+            "def star_arg_wrapper(x, *data, **kwargs):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    star_arg(x, *data, **kwargs)",
+            "def star_arg_wrapper(x, *data, **kwargs):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    star_arg(x, *data, **kwargs)",
+            "def star_arg_wrapper(x, *data, **kwargs):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    star_arg(x, *data, **kwargs)",
+            "def star_arg_wrapper(x, *data, **kwargs):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    star_arg(x, *data, **kwargs)"
+        ]
+    },
+    {
+        "func_name": "match_star_arg_with_star",
+        "original": "def match_star_arg_with_star():\n    data = [0, source_field(), 2]\n    star_arg_wrapper('a', *data)",
+        "mutated": [
+            "def match_star_arg_with_star():\n    if False:\n        i = 10\n    data = [0, source_field(), 2]\n    star_arg_wrapper('a', *data)",
+            "def match_star_arg_with_star():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    data = [0, source_field(), 2]\n    star_arg_wrapper('a', *data)",
+            "def match_star_arg_with_star():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    data = [0, source_field(), 2]\n    star_arg_wrapper('a', *data)",
+            "def match_star_arg_with_star():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    data = [0, source_field(), 2]\n    star_arg_wrapper('a', *data)",
+            "def match_star_arg_with_star():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    data = [0, source_field(), 2]\n    star_arg_wrapper('a', *data)"
+        ]
+    },
+    {
+        "func_name": "match_star_arg_directly",
+        "original": "def match_star_arg_directly():\n    star_arg_wrapper('a', 'b', source_field(), 'd')",
+        "mutated": [
+            "def match_star_arg_directly():\n    if False:\n        i = 10\n    star_arg_wrapper('a', 'b', source_field(), 'd')",
+            "def match_star_arg_directly():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    star_arg_wrapper('a', 'b', source_field(), 'd')",
+            "def match_star_arg_directly():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    star_arg_wrapper('a', 'b', source_field(), 'd')",
+            "def match_star_arg_directly():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    star_arg_wrapper('a', 'b', source_field(), 'd')",
+            "def match_star_arg_directly():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    star_arg_wrapper('a', 'b', source_field(), 'd')"
+        ]
+    },
+    {
+        "func_name": "star_star_arg",
+        "original": "def star_star_arg(x, **kwargs):\n    sink_field(kwargs['arg'])",
+        "mutated": [
+            "def star_star_arg(x, **kwargs):\n    if False:\n        i = 10\n    sink_field(kwargs['arg'])",
+            "def star_star_arg(x, **kwargs):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    sink_field(kwargs['arg'])",
+            "def star_star_arg(x, **kwargs):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    sink_field(kwargs['arg'])",
+            "def star_star_arg(x, **kwargs):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    sink_field(kwargs['arg'])",
+            "def star_star_arg(x, **kwargs):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    sink_field(kwargs['arg'])"
+        ]
+    },
+    {
+        "func_name": "star_star_arg_wrapper",
+        "original": "def star_star_arg_wrapper(x, **kwargs):\n    star_star_arg(x, **kwargs)",
+        "mutated": [
+            "def star_star_arg_wrapper(x, **kwargs):\n    if False:\n        i = 10\n    star_star_arg(x, **kwargs)",
+            "def star_star_arg_wrapper(x, **kwargs):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    star_star_arg(x, **kwargs)",
+            "def star_star_arg_wrapper(x, **kwargs):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    star_star_arg(x, **kwargs)",
+            "def star_star_arg_wrapper(x, **kwargs):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    star_star_arg(x, **kwargs)",
+            "def star_star_arg_wrapper(x, **kwargs):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    star_star_arg(x, **kwargs)"
+        ]
+    },
+    {
+        "func_name": "match_star_star_arg_with_star",
+        "original": "def match_star_star_arg_with_star():\n    data = {'a': 0, 'arg': source_field()}\n    star_star_arg_wrapper('a', **data)",
+        "mutated": [
+            "def match_star_star_arg_with_star():\n    if False:\n        i = 10\n    data = {'a': 0, 'arg': source_field()}\n    star_star_arg_wrapper('a', **data)",
+            "def match_star_star_arg_with_star():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    data = {'a': 0, 'arg': source_field()}\n    star_star_arg_wrapper('a', **data)",
+            "def match_star_star_arg_with_star():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    data = {'a': 0, 'arg': source_field()}\n    star_star_arg_wrapper('a', **data)",
+            "def match_star_star_arg_with_star():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    data = {'a': 0, 'arg': source_field()}\n    star_star_arg_wrapper('a', **data)",
+            "def match_star_star_arg_with_star():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    data = {'a': 0, 'arg': source_field()}\n    star_star_arg_wrapper('a', **data)"
+        ]
+    },
+    {
+        "func_name": "match_star_star_arg_directly",
+        "original": "def match_star_star_arg_directly():\n    star_star_arg_wrapper('a', 'b', arg=source_field())",
+        "mutated": [
+            "def match_star_star_arg_directly():\n    if False:\n        i = 10\n    star_star_arg_wrapper('a', 'b', arg=source_field())",
+            "def match_star_star_arg_directly():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    star_star_arg_wrapper('a', 'b', arg=source_field())",
+            "def match_star_star_arg_directly():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    star_star_arg_wrapper('a', 'b', arg=source_field())",
+            "def match_star_star_arg_directly():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    star_star_arg_wrapper('a', 'b', arg=source_field())",
+            "def match_star_star_arg_directly():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    star_star_arg_wrapper('a', 'b', arg=source_field())"
+        ]
+    },
+    {
+        "func_name": "some_source",
+        "original": "@property\ndef some_source():\n    return _test_source()",
+        "mutated": [
+            "@property\ndef some_source():\n    if False:\n        i = 10\n    return _test_source()",
+            "@property\ndef some_source():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return _test_source()",
+            "@property\ndef some_source():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return _test_source()",
+            "@property\ndef some_source():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return _test_source()",
+            "@property\ndef some_source():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return _test_source()"
+        ]
+    },
+    {
+        "func_name": "refer_to_method_as_field",
+        "original": "def refer_to_method_as_field(foo: Foo):\n    taint = foo.some_source\n    _test_sink(taint)",
+        "mutated": [
+            "def refer_to_method_as_field(foo: Foo):\n    if False:\n        i = 10\n    taint = foo.some_source\n    _test_sink(taint)",
+            "def refer_to_method_as_field(foo: Foo):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    taint = foo.some_source\n    _test_sink(taint)",
+            "def refer_to_method_as_field(foo: Foo):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    taint = foo.some_source\n    _test_sink(taint)",
+            "def refer_to_method_as_field(foo: Foo):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    taint = foo.some_source\n    _test_sink(taint)",
+            "def refer_to_method_as_field(foo: Foo):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    taint = foo.some_source\n    _test_sink(taint)"
+        ]
+    }
+]

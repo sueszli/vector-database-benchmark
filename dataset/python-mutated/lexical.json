@@ -1,0 +1,112 @@
+[
+    {
+        "func_name": "make_immutable",
+        "original": "def make_immutable(self, value):\n    return bytes(value)",
+        "mutated": [
+            "def make_immutable(self, value):\n    if False:\n        i = 10\n    return bytes(value)",
+            "def make_immutable(self, value):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return bytes(value)",
+            "def make_immutable(self, value):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return bytes(value)",
+            "def make_immutable(self, value):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return bytes(value)",
+            "def make_immutable(self, value):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return bytes(value)"
+        ]
+    },
+    {
+        "func_name": "size",
+        "original": "@property\ndef size(self):\n    return len(self.current)",
+        "mutated": [
+            "@property\ndef size(self):\n    if False:\n        i = 10\n    return len(self.current)",
+            "@property\ndef size(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return len(self.current)",
+            "@property\ndef size(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return len(self.current)",
+            "@property\ndef size(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return len(self.current)",
+            "@property\ndef size(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return len(self.current)"
+        ]
+    },
+    {
+        "func_name": "check_invariants",
+        "original": "def check_invariants(self, value):\n    assert len(value) == self.size",
+        "mutated": [
+            "def check_invariants(self, value):\n    if False:\n        i = 10\n    assert len(value) == self.size",
+            "def check_invariants(self, value):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    assert len(value) == self.size",
+            "def check_invariants(self, value):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    assert len(value) == self.size",
+            "def check_invariants(self, value):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    assert len(value) == self.size",
+            "def check_invariants(self, value):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    assert len(value) == self.size"
+        ]
+    },
+    {
+        "func_name": "left_is_better",
+        "original": "def left_is_better(self, left, right):\n    return left < right",
+        "mutated": [
+            "def left_is_better(self, left, right):\n    if False:\n        i = 10\n    return left < right",
+            "def left_is_better(self, left, right):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return left < right",
+            "def left_is_better(self, left, right):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return left < right",
+            "def left_is_better(self, left, right):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return left < right",
+            "def left_is_better(self, left, right):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return left < right"
+        ]
+    },
+    {
+        "func_name": "incorporate_int",
+        "original": "def incorporate_int(self, i):\n    return self.incorporate(int_to_bytes(i, self.size))",
+        "mutated": [
+            "def incorporate_int(self, i):\n    if False:\n        i = 10\n    return self.incorporate(int_to_bytes(i, self.size))",
+            "def incorporate_int(self, i):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return self.incorporate(int_to_bytes(i, self.size))",
+            "def incorporate_int(self, i):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return self.incorporate(int_to_bytes(i, self.size))",
+            "def incorporate_int(self, i):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return self.incorporate(int_to_bytes(i, self.size))",
+            "def incorporate_int(self, i):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return self.incorporate(int_to_bytes(i, self.size))"
+        ]
+    },
+    {
+        "func_name": "current_int",
+        "original": "@property\ndef current_int(self):\n    return int_from_bytes(self.current)",
+        "mutated": [
+            "@property\ndef current_int(self):\n    if False:\n        i = 10\n    return int_from_bytes(self.current)",
+            "@property\ndef current_int(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return int_from_bytes(self.current)",
+            "@property\ndef current_int(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return int_from_bytes(self.current)",
+            "@property\ndef current_int(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return int_from_bytes(self.current)",
+            "@property\ndef current_int(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return int_from_bytes(self.current)"
+        ]
+    },
+    {
+        "func_name": "minimize_as_integer",
+        "original": "def minimize_as_integer(self):\n    Integer.shrink(self.current_int, lambda c: c == self.current_int or self.incorporate_int(c), random=self.random)",
+        "mutated": [
+            "def minimize_as_integer(self):\n    if False:\n        i = 10\n    Integer.shrink(self.current_int, lambda c: c == self.current_int or self.incorporate_int(c), random=self.random)",
+            "def minimize_as_integer(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    Integer.shrink(self.current_int, lambda c: c == self.current_int or self.incorporate_int(c), random=self.random)",
+            "def minimize_as_integer(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    Integer.shrink(self.current_int, lambda c: c == self.current_int or self.incorporate_int(c), random=self.random)",
+            "def minimize_as_integer(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    Integer.shrink(self.current_int, lambda c: c == self.current_int or self.incorporate_int(c), random=self.random)",
+            "def minimize_as_integer(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    Integer.shrink(self.current_int, lambda c: c == self.current_int or self.incorporate_int(c), random=self.random)"
+        ]
+    },
+    {
+        "func_name": "partial_sort",
+        "original": "def partial_sort(self):\n    Ordering.shrink(self.current, self.consider, random=self.random)",
+        "mutated": [
+            "def partial_sort(self):\n    if False:\n        i = 10\n    Ordering.shrink(self.current, self.consider, random=self.random)",
+            "def partial_sort(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    Ordering.shrink(self.current, self.consider, random=self.random)",
+            "def partial_sort(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    Ordering.shrink(self.current, self.consider, random=self.random)",
+            "def partial_sort(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    Ordering.shrink(self.current, self.consider, random=self.random)",
+            "def partial_sort(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    Ordering.shrink(self.current, self.consider, random=self.random)"
+        ]
+    },
+    {
+        "func_name": "short_circuit",
+        "original": "def short_circuit(self):\n    \"\"\"This is just an assemblage of other shrinkers, so we rely on their\n        short circuiting.\"\"\"\n    return False",
+        "mutated": [
+            "def short_circuit(self):\n    if False:\n        i = 10\n    'This is just an assemblage of other shrinkers, so we rely on their\\n        short circuiting.'\n    return False",
+            "def short_circuit(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    'This is just an assemblage of other shrinkers, so we rely on their\\n        short circuiting.'\n    return False",
+            "def short_circuit(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    'This is just an assemblage of other shrinkers, so we rely on their\\n        short circuiting.'\n    return False",
+            "def short_circuit(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    'This is just an assemblage of other shrinkers, so we rely on their\\n        short circuiting.'\n    return False",
+            "def short_circuit(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    'This is just an assemblage of other shrinkers, so we rely on their\\n        short circuiting.'\n    return False"
+        ]
+    },
+    {
+        "func_name": "run_step",
+        "original": "def run_step(self):\n    self.minimize_as_integer()\n    self.partial_sort()",
+        "mutated": [
+            "def run_step(self):\n    if False:\n        i = 10\n    self.minimize_as_integer()\n    self.partial_sort()",
+            "def run_step(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    self.minimize_as_integer()\n    self.partial_sort()",
+            "def run_step(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    self.minimize_as_integer()\n    self.partial_sort()",
+            "def run_step(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    self.minimize_as_integer()\n    self.partial_sort()",
+            "def run_step(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    self.minimize_as_integer()\n    self.partial_sort()"
+        ]
+    }
+]

@@ -1,0 +1,24 @@
+[
+    {
+        "func_name": "wait_pin_low",
+        "original": "@rp2.asm_pio()\ndef wait_pin_low():\n    wrap_target()\n    wait(0, pin, 0)\n    irq(block, rel(0))\n    wait(1, pin, 0)\n    wrap()",
+        "mutated": [
+            "@rp2.asm_pio()\ndef wait_pin_low():\n    if False:\n        i = 10\n    wrap_target()\n    wait(0, pin, 0)\n    irq(block, rel(0))\n    wait(1, pin, 0)\n    wrap()",
+            "@rp2.asm_pio()\ndef wait_pin_low():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    wrap_target()\n    wait(0, pin, 0)\n    irq(block, rel(0))\n    wait(1, pin, 0)\n    wrap()",
+            "@rp2.asm_pio()\ndef wait_pin_low():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    wrap_target()\n    wait(0, pin, 0)\n    irq(block, rel(0))\n    wait(1, pin, 0)\n    wrap()",
+            "@rp2.asm_pio()\ndef wait_pin_low():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    wrap_target()\n    wait(0, pin, 0)\n    irq(block, rel(0))\n    wait(1, pin, 0)\n    wrap()",
+            "@rp2.asm_pio()\ndef wait_pin_low():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    wrap_target()\n    wait(0, pin, 0)\n    irq(block, rel(0))\n    wait(1, pin, 0)\n    wrap()"
+        ]
+    },
+    {
+        "func_name": "handler",
+        "original": "def handler(sm):\n    print(time.ticks_ms(), sm)",
+        "mutated": [
+            "def handler(sm):\n    if False:\n        i = 10\n    print(time.ticks_ms(), sm)",
+            "def handler(sm):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    print(time.ticks_ms(), sm)",
+            "def handler(sm):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    print(time.ticks_ms(), sm)",
+            "def handler(sm):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    print(time.ticks_ms(), sm)",
+            "def handler(sm):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    print(time.ticks_ms(), sm)"
+        ]
+    }
+]

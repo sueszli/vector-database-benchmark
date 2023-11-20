@@ -1,0 +1,200 @@
+[
+    {
+        "func_name": "mult",
+        "original": "@cc.export('multf', (float32, float32))\n@cc.export('multi', 'i4(i4, i4)')\ndef mult(a, b):\n    return a * b",
+        "mutated": [
+            "@cc.export('multf', (float32, float32))\n@cc.export('multi', 'i4(i4, i4)')\ndef mult(a, b):\n    if False:\n        i = 10\n    return a * b",
+            "@cc.export('multf', (float32, float32))\n@cc.export('multi', 'i4(i4, i4)')\ndef mult(a, b):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return a * b",
+            "@cc.export('multf', (float32, float32))\n@cc.export('multi', 'i4(i4, i4)')\ndef mult(a, b):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return a * b",
+            "@cc.export('multf', (float32, float32))\n@cc.export('multi', 'i4(i4, i4)')\ndef mult(a, b):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return a * b",
+            "@cc.export('multf', (float32, float32))\n@cc.export('multi', 'i4(i4, i4)')\ndef mult(a, b):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return a * b"
+        ]
+    },
+    {
+        "func_name": "get_none",
+        "original": "@cc.export('get_none', 'none()')\ndef get_none():\n    return None",
+        "mutated": [
+            "@cc.export('get_none', 'none()')\ndef get_none():\n    if False:\n        i = 10\n    return None",
+            "@cc.export('get_none', 'none()')\ndef get_none():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return None",
+            "@cc.export('get_none', 'none()')\ndef get_none():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return None",
+            "@cc.export('get_none', 'none()')\ndef get_none():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return None",
+            "@cc.export('get_none', 'none()')\ndef get_none():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return None"
+        ]
+    },
+    {
+        "func_name": "div",
+        "original": "@cc.export('div', 'f8(f8, f8)')\ndef div(x, y):\n    return x / y",
+        "mutated": [
+            "@cc.export('div', 'f8(f8, f8)')\ndef div(x, y):\n    if False:\n        i = 10\n    return x / y",
+            "@cc.export('div', 'f8(f8, f8)')\ndef div(x, y):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return x / y",
+            "@cc.export('div', 'f8(f8, f8)')\ndef div(x, y):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return x / y",
+            "@cc.export('div', 'f8(f8, f8)')\ndef div(x, y):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return x / y",
+            "@cc.export('div', 'f8(f8, f8)')\ndef div(x, y):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return x / y"
+        ]
+    },
+    {
+        "func_name": "square",
+        "original": "@cc.export('square', 'i8(i8)')\ndef square(u):\n    return u ** _two",
+        "mutated": [
+            "@cc.export('square', 'i8(i8)')\ndef square(u):\n    if False:\n        i = 10\n    return u ** _two",
+            "@cc.export('square', 'i8(i8)')\ndef square(u):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return u ** _two",
+            "@cc.export('square', 'i8(i8)')\ndef square(u):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return u ** _two",
+            "@cc.export('square', 'i8(i8)')\ndef square(u):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return u ** _two",
+            "@cc.export('square', 'i8(i8)')\ndef square(u):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return u ** _two"
+        ]
+    },
+    {
+        "func_name": "power",
+        "original": "@cc_helperlib.export('power', 'i8(i8, i8)')\ndef power(u, v):\n    return u ** v",
+        "mutated": [
+            "@cc_helperlib.export('power', 'i8(i8, i8)')\ndef power(u, v):\n    if False:\n        i = 10\n    return u ** v",
+            "@cc_helperlib.export('power', 'i8(i8, i8)')\ndef power(u, v):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return u ** v",
+            "@cc_helperlib.export('power', 'i8(i8, i8)')\ndef power(u, v):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return u ** v",
+            "@cc_helperlib.export('power', 'i8(i8, i8)')\ndef power(u, v):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return u ** v",
+            "@cc_helperlib.export('power', 'i8(i8, i8)')\ndef power(u, v):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return u ** v"
+        ]
+    },
+    {
+        "func_name": "sqrt",
+        "original": "@cc_helperlib.export('sqrt', 'c16(c16)')\ndef sqrt(u):\n    return cmath.sqrt(u)",
+        "mutated": [
+            "@cc_helperlib.export('sqrt', 'c16(c16)')\ndef sqrt(u):\n    if False:\n        i = 10\n    return cmath.sqrt(u)",
+            "@cc_helperlib.export('sqrt', 'c16(c16)')\ndef sqrt(u):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return cmath.sqrt(u)",
+            "@cc_helperlib.export('sqrt', 'c16(c16)')\ndef sqrt(u):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return cmath.sqrt(u)",
+            "@cc_helperlib.export('sqrt', 'c16(c16)')\ndef sqrt(u):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return cmath.sqrt(u)",
+            "@cc_helperlib.export('sqrt', 'c16(c16)')\ndef sqrt(u):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return cmath.sqrt(u)"
+        ]
+    },
+    {
+        "func_name": "size",
+        "original": "@cc_helperlib.export('size', 'i8(f8[:])')\ndef size(arr):\n    return arr.size",
+        "mutated": [
+            "@cc_helperlib.export('size', 'i8(f8[:])')\ndef size(arr):\n    if False:\n        i = 10\n    return arr.size",
+            "@cc_helperlib.export('size', 'i8(f8[:])')\ndef size(arr):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return arr.size",
+            "@cc_helperlib.export('size', 'i8(f8[:])')\ndef size(arr):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return arr.size",
+            "@cc_helperlib.export('size', 'i8(f8[:])')\ndef size(arr):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return arr.size",
+            "@cc_helperlib.export('size', 'i8(f8[:])')\ndef size(arr):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return arr.size"
+        ]
+    },
+    {
+        "func_name": "np_sqrt",
+        "original": "@cc_helperlib.export('np_sqrt', 'f8(f8)')\ndef np_sqrt(u):\n    return np.sqrt(u)",
+        "mutated": [
+            "@cc_helperlib.export('np_sqrt', 'f8(f8)')\ndef np_sqrt(u):\n    if False:\n        i = 10\n    return np.sqrt(u)",
+            "@cc_helperlib.export('np_sqrt', 'f8(f8)')\ndef np_sqrt(u):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return np.sqrt(u)",
+            "@cc_helperlib.export('np_sqrt', 'f8(f8)')\ndef np_sqrt(u):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return np.sqrt(u)",
+            "@cc_helperlib.export('np_sqrt', 'f8(f8)')\ndef np_sqrt(u):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return np.sqrt(u)",
+            "@cc_helperlib.export('np_sqrt', 'f8(f8)')\ndef np_sqrt(u):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return np.sqrt(u)"
+        ]
+    },
+    {
+        "func_name": "np_spacing",
+        "original": "@cc_helperlib.export('spacing', 'f8(f8)')\ndef np_spacing(u):\n    return np.spacing(u)",
+        "mutated": [
+            "@cc_helperlib.export('spacing', 'f8(f8)')\ndef np_spacing(u):\n    if False:\n        i = 10\n    return np.spacing(u)",
+            "@cc_helperlib.export('spacing', 'f8(f8)')\ndef np_spacing(u):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return np.spacing(u)",
+            "@cc_helperlib.export('spacing', 'f8(f8)')\ndef np_spacing(u):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return np.spacing(u)",
+            "@cc_helperlib.export('spacing', 'f8(f8)')\ndef np_spacing(u):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return np.spacing(u)",
+            "@cc_helperlib.export('spacing', 'f8(f8)')\ndef np_spacing(u):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return np.spacing(u)"
+        ]
+    },
+    {
+        "func_name": "random_impl",
+        "original": "@cc_helperlib.export('random', 'f8(i4)')\ndef random_impl(seed):\n    if seed != -1:\n        np.random.seed(seed)\n    return np.random.random()",
+        "mutated": [
+            "@cc_helperlib.export('random', 'f8(i4)')\ndef random_impl(seed):\n    if False:\n        i = 10\n    if seed != -1:\n        np.random.seed(seed)\n    return np.random.random()",
+            "@cc_helperlib.export('random', 'f8(i4)')\ndef random_impl(seed):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    if seed != -1:\n        np.random.seed(seed)\n    return np.random.random()",
+            "@cc_helperlib.export('random', 'f8(i4)')\ndef random_impl(seed):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    if seed != -1:\n        np.random.seed(seed)\n    return np.random.random()",
+            "@cc_helperlib.export('random', 'f8(i4)')\ndef random_impl(seed):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    if seed != -1:\n        np.random.seed(seed)\n    return np.random.random()",
+            "@cc_helperlib.export('random', 'f8(i4)')\ndef random_impl(seed):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    if seed != -1:\n        np.random.seed(seed)\n    return np.random.random()"
+        ]
+    },
+    {
+        "func_name": "zero_scalar",
+        "original": "@cc_nrt.export('zero_scalar', 'f8(i4)')\ndef zero_scalar(n):\n    arr = np.zeros(n)\n    return arr[-1]",
+        "mutated": [
+            "@cc_nrt.export('zero_scalar', 'f8(i4)')\ndef zero_scalar(n):\n    if False:\n        i = 10\n    arr = np.zeros(n)\n    return arr[-1]",
+            "@cc_nrt.export('zero_scalar', 'f8(i4)')\ndef zero_scalar(n):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    arr = np.zeros(n)\n    return arr[-1]",
+            "@cc_nrt.export('zero_scalar', 'f8(i4)')\ndef zero_scalar(n):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    arr = np.zeros(n)\n    return arr[-1]",
+            "@cc_nrt.export('zero_scalar', 'f8(i4)')\ndef zero_scalar(n):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    arr = np.zeros(n)\n    return arr[-1]",
+            "@cc_nrt.export('zero_scalar', 'f8(i4)')\ndef zero_scalar(n):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    arr = np.zeros(n)\n    return arr[-1]"
+        ]
+    },
+    {
+        "func_name": "vector_dot",
+        "original": "@cc_nrt.export('vector_dot', 'f8(i4)')\ndef vector_dot(n):\n    a = np.linspace(1, n, n)\n    return np.dot(a, a)",
+        "mutated": [
+            "@cc_nrt.export('vector_dot', 'f8(i4)')\ndef vector_dot(n):\n    if False:\n        i = 10\n    a = np.linspace(1, n, n)\n    return np.dot(a, a)",
+            "@cc_nrt.export('vector_dot', 'f8(i4)')\ndef vector_dot(n):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    a = np.linspace(1, n, n)\n    return np.dot(a, a)",
+            "@cc_nrt.export('vector_dot', 'f8(i4)')\ndef vector_dot(n):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    a = np.linspace(1, n, n)\n    return np.dot(a, a)",
+            "@cc_nrt.export('vector_dot', 'f8(i4)')\ndef vector_dot(n):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    a = np.linspace(1, n, n)\n    return np.dot(a, a)",
+            "@cc_nrt.export('vector_dot', 'f8(i4)')\ndef vector_dot(n):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    a = np.linspace(1, n, n)\n    return np.dot(a, a)"
+        ]
+    },
+    {
+        "func_name": "zeros",
+        "original": "@cc_nrt.export('zeros', 'f8[:](i4)')\ndef zeros(n):\n    return np.zeros(n)",
+        "mutated": [
+            "@cc_nrt.export('zeros', 'f8[:](i4)')\ndef zeros(n):\n    if False:\n        i = 10\n    return np.zeros(n)",
+            "@cc_nrt.export('zeros', 'f8[:](i4)')\ndef zeros(n):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return np.zeros(n)",
+            "@cc_nrt.export('zeros', 'f8[:](i4)')\ndef zeros(n):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return np.zeros(n)",
+            "@cc_nrt.export('zeros', 'f8[:](i4)')\ndef zeros(n):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return np.zeros(n)",
+            "@cc_nrt.export('zeros', 'f8[:](i4)')\ndef zeros(n):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return np.zeros(n)"
+        ]
+    },
+    {
+        "func_name": "np_argsort",
+        "original": "@cc_nrt.export('np_argsort', 'intp[:](float64[:])')\ndef np_argsort(arr):\n    return np.argsort(arr)",
+        "mutated": [
+            "@cc_nrt.export('np_argsort', 'intp[:](float64[:])')\ndef np_argsort(arr):\n    if False:\n        i = 10\n    return np.argsort(arr)",
+            "@cc_nrt.export('np_argsort', 'intp[:](float64[:])')\ndef np_argsort(arr):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return np.argsort(arr)",
+            "@cc_nrt.export('np_argsort', 'intp[:](float64[:])')\ndef np_argsort(arr):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return np.argsort(arr)",
+            "@cc_nrt.export('np_argsort', 'intp[:](float64[:])')\ndef np_argsort(arr):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return np.argsort(arr)",
+            "@cc_nrt.export('np_argsort', 'intp[:](float64[:])')\ndef np_argsort(arr):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return np.argsort(arr)"
+        ]
+    },
+    {
+        "func_name": "dict_usecase",
+        "original": "@cc_nrt.export('dict_usecase', 'intp[:](intp[:])')\ndef dict_usecase(arr):\n    d = typed.Dict()\n    for i in range(arr.size):\n        d[i] = arr[i]\n    out = np.zeros_like(arr)\n    for (k, v) in d.items():\n        out[k] = k * v\n    return out",
+        "mutated": [
+            "@cc_nrt.export('dict_usecase', 'intp[:](intp[:])')\ndef dict_usecase(arr):\n    if False:\n        i = 10\n    d = typed.Dict()\n    for i in range(arr.size):\n        d[i] = arr[i]\n    out = np.zeros_like(arr)\n    for (k, v) in d.items():\n        out[k] = k * v\n    return out",
+            "@cc_nrt.export('dict_usecase', 'intp[:](intp[:])')\ndef dict_usecase(arr):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    d = typed.Dict()\n    for i in range(arr.size):\n        d[i] = arr[i]\n    out = np.zeros_like(arr)\n    for (k, v) in d.items():\n        out[k] = k * v\n    return out",
+            "@cc_nrt.export('dict_usecase', 'intp[:](intp[:])')\ndef dict_usecase(arr):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    d = typed.Dict()\n    for i in range(arr.size):\n        d[i] = arr[i]\n    out = np.zeros_like(arr)\n    for (k, v) in d.items():\n        out[k] = k * v\n    return out",
+            "@cc_nrt.export('dict_usecase', 'intp[:](intp[:])')\ndef dict_usecase(arr):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    d = typed.Dict()\n    for i in range(arr.size):\n        d[i] = arr[i]\n    out = np.zeros_like(arr)\n    for (k, v) in d.items():\n        out[k] = k * v\n    return out",
+            "@cc_nrt.export('dict_usecase', 'intp[:](intp[:])')\ndef dict_usecase(arr):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    d = typed.Dict()\n    for i in range(arr.size):\n        d[i] = arr[i]\n    out = np.zeros_like(arr)\n    for (k, v) in d.items():\n        out[k] = k * v\n    return out"
+        ]
+    },
+    {
+        "func_name": "internal_str_dict",
+        "original": "@cc_nrt.export('internal_str_dict', i8(unicode_type))\ndef internal_str_dict(x):\n    d = typed.Dict.empty(unicode_type, i8)\n    if x not in d:\n        d[x] = len(d)\n    return len(d)",
+        "mutated": [
+            "@cc_nrt.export('internal_str_dict', i8(unicode_type))\ndef internal_str_dict(x):\n    if False:\n        i = 10\n    d = typed.Dict.empty(unicode_type, i8)\n    if x not in d:\n        d[x] = len(d)\n    return len(d)",
+            "@cc_nrt.export('internal_str_dict', i8(unicode_type))\ndef internal_str_dict(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    d = typed.Dict.empty(unicode_type, i8)\n    if x not in d:\n        d[x] = len(d)\n    return len(d)",
+            "@cc_nrt.export('internal_str_dict', i8(unicode_type))\ndef internal_str_dict(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    d = typed.Dict.empty(unicode_type, i8)\n    if x not in d:\n        d[x] = len(d)\n    return len(d)",
+            "@cc_nrt.export('internal_str_dict', i8(unicode_type))\ndef internal_str_dict(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    d = typed.Dict.empty(unicode_type, i8)\n    if x not in d:\n        d[x] = len(d)\n    return len(d)",
+            "@cc_nrt.export('internal_str_dict', i8(unicode_type))\ndef internal_str_dict(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    d = typed.Dict.empty(unicode_type, i8)\n    if x not in d:\n        d[x] = len(d)\n    return len(d)"
+        ]
+    },
+    {
+        "func_name": "internal_str_dict",
+        "original": "@cc_nrt.export('hash_str', i8(unicode_type))\ndef internal_str_dict(x):\n    return hash(x)",
+        "mutated": [
+            "@cc_nrt.export('hash_str', i8(unicode_type))\ndef internal_str_dict(x):\n    if False:\n        i = 10\n    return hash(x)",
+            "@cc_nrt.export('hash_str', i8(unicode_type))\ndef internal_str_dict(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return hash(x)",
+            "@cc_nrt.export('hash_str', i8(unicode_type))\ndef internal_str_dict(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return hash(x)",
+            "@cc_nrt.export('hash_str', i8(unicode_type))\ndef internal_str_dict(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return hash(x)",
+            "@cc_nrt.export('hash_str', i8(unicode_type))\ndef internal_str_dict(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return hash(x)"
+        ]
+    },
+    {
+        "func_name": "internal_str_dict",
+        "original": "@cc_nrt.export('hash_literal_str_A', i8())\ndef internal_str_dict():\n    return hash('A')",
+        "mutated": [
+            "@cc_nrt.export('hash_literal_str_A', i8())\ndef internal_str_dict():\n    if False:\n        i = 10\n    return hash('A')",
+            "@cc_nrt.export('hash_literal_str_A', i8())\ndef internal_str_dict():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return hash('A')",
+            "@cc_nrt.export('hash_literal_str_A', i8())\ndef internal_str_dict():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return hash('A')",
+            "@cc_nrt.export('hash_literal_str_A', i8())\ndef internal_str_dict():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return hash('A')",
+            "@cc_nrt.export('hash_literal_str_A', i8())\ndef internal_str_dict():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return hash('A')"
+        ]
+    }
+]

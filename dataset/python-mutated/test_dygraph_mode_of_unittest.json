@@ -1,0 +1,13 @@
+[
+    {
+        "func_name": "test_dygraph_mode",
+        "original": "def test_dygraph_mode(self):\n    self.assertTrue(paddle.in_dynamic_mode(), 'Default Mode of Unittest should be dygraph mode, but get static graph mode.')",
+        "mutated": [
+            "def test_dygraph_mode(self):\n    if False:\n        i = 10\n    self.assertTrue(paddle.in_dynamic_mode(), 'Default Mode of Unittest should be dygraph mode, but get static graph mode.')",
+            "def test_dygraph_mode(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    self.assertTrue(paddle.in_dynamic_mode(), 'Default Mode of Unittest should be dygraph mode, but get static graph mode.')",
+            "def test_dygraph_mode(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    self.assertTrue(paddle.in_dynamic_mode(), 'Default Mode of Unittest should be dygraph mode, but get static graph mode.')",
+            "def test_dygraph_mode(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    self.assertTrue(paddle.in_dynamic_mode(), 'Default Mode of Unittest should be dygraph mode, but get static graph mode.')",
+            "def test_dygraph_mode(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    self.assertTrue(paddle.in_dynamic_mode(), 'Default Mode of Unittest should be dygraph mode, but get static graph mode.')"
+        ]
+    }
+]

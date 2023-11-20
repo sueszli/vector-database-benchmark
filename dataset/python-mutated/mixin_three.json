@@ -1,0 +1,46 @@
+[
+    {
+        "func_name": "some_other_decorator",
+        "original": "def some_other_decorator(fn: Callable[..., None]) -> Callable[..., None]:\n    return fn",
+        "mutated": [
+            "def some_other_decorator(fn: Callable[..., None]) -> Callable[..., None]:\n    if False:\n        i = 10\n    return fn",
+            "def some_other_decorator(fn: Callable[..., None]) -> Callable[..., None]:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return fn",
+            "def some_other_decorator(fn: Callable[..., None]) -> Callable[..., None]:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return fn",
+            "def some_other_decorator(fn: Callable[..., None]) -> Callable[..., None]:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return fn",
+            "def some_other_decorator(fn: Callable[..., None]) -> Callable[..., None]:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return fn"
+        ]
+    },
+    {
+        "func_name": "data",
+        "original": "@declared_attr\ndef data(cls) -> Column[String]:\n    return Column(String)",
+        "mutated": [
+            "@declared_attr\ndef data(cls) -> Column[String]:\n    if False:\n        i = 10\n    return Column(String)",
+            "@declared_attr\ndef data(cls) -> Column[String]:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return Column(String)",
+            "@declared_attr\ndef data(cls) -> Column[String]:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return Column(String)",
+            "@declared_attr\ndef data(cls) -> Column[String]:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return Column(String)",
+            "@declared_attr\ndef data(cls) -> Column[String]:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return Column(String)"
+        ]
+    },
+    {
+        "func_name": "data2",
+        "original": "@declared_attr\ndef data2(cls) -> MapperProperty[str]:\n    return deferred(Column(String))",
+        "mutated": [
+            "@declared_attr\ndef data2(cls) -> MapperProperty[str]:\n    if False:\n        i = 10\n    return deferred(Column(String))",
+            "@declared_attr\ndef data2(cls) -> MapperProperty[str]:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return deferred(Column(String))",
+            "@declared_attr\ndef data2(cls) -> MapperProperty[str]:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return deferred(Column(String))",
+            "@declared_attr\ndef data2(cls) -> MapperProperty[str]:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return deferred(Column(String))",
+            "@declared_attr\ndef data2(cls) -> MapperProperty[str]:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return deferred(Column(String))"
+        ]
+    },
+    {
+        "func_name": "q",
+        "original": "@some_other_decorator\ndef q(cls) -> None:\n    return None",
+        "mutated": [
+            "@some_other_decorator\ndef q(cls) -> None:\n    if False:\n        i = 10\n    return None",
+            "@some_other_decorator\ndef q(cls) -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return None",
+            "@some_other_decorator\ndef q(cls) -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return None",
+            "@some_other_decorator\ndef q(cls) -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return None",
+            "@some_other_decorator\ndef q(cls) -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return None"
+        ]
+    }
+]

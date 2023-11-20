@@ -1,0 +1,68 @@
+[
+    {
+        "func_name": "order",
+        "original": "@pytest.fixture(scope='class')\ndef order():\n    return []",
+        "mutated": [
+            "@pytest.fixture(scope='class')\ndef order():\n    if False:\n        i = 10\n    return []",
+            "@pytest.fixture(scope='class')\ndef order():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return []",
+            "@pytest.fixture(scope='class')\ndef order():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return []",
+            "@pytest.fixture(scope='class')\ndef order():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return []",
+            "@pytest.fixture(scope='class')\ndef order():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return []"
+        ]
+    },
+    {
+        "func_name": "c1",
+        "original": "@pytest.fixture(scope='class', autouse=True)\ndef c1(order):\n    order.append('c1')",
+        "mutated": [
+            "@pytest.fixture(scope='class', autouse=True)\ndef c1(order):\n    if False:\n        i = 10\n    order.append('c1')",
+            "@pytest.fixture(scope='class', autouse=True)\ndef c1(order):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    order.append('c1')",
+            "@pytest.fixture(scope='class', autouse=True)\ndef c1(order):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    order.append('c1')",
+            "@pytest.fixture(scope='class', autouse=True)\ndef c1(order):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    order.append('c1')",
+            "@pytest.fixture(scope='class', autouse=True)\ndef c1(order):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    order.append('c1')"
+        ]
+    },
+    {
+        "func_name": "c2",
+        "original": "@pytest.fixture(scope='class')\ndef c2(order):\n    order.append('c2')",
+        "mutated": [
+            "@pytest.fixture(scope='class')\ndef c2(order):\n    if False:\n        i = 10\n    order.append('c2')",
+            "@pytest.fixture(scope='class')\ndef c2(order):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    order.append('c2')",
+            "@pytest.fixture(scope='class')\ndef c2(order):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    order.append('c2')",
+            "@pytest.fixture(scope='class')\ndef c2(order):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    order.append('c2')",
+            "@pytest.fixture(scope='class')\ndef c2(order):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    order.append('c2')"
+        ]
+    },
+    {
+        "func_name": "c3",
+        "original": "@pytest.fixture(scope='class')\ndef c3(order, c1):\n    order.append('c3')",
+        "mutated": [
+            "@pytest.fixture(scope='class')\ndef c3(order, c1):\n    if False:\n        i = 10\n    order.append('c3')",
+            "@pytest.fixture(scope='class')\ndef c3(order, c1):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    order.append('c3')",
+            "@pytest.fixture(scope='class')\ndef c3(order, c1):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    order.append('c3')",
+            "@pytest.fixture(scope='class')\ndef c3(order, c1):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    order.append('c3')",
+            "@pytest.fixture(scope='class')\ndef c3(order, c1):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    order.append('c3')"
+        ]
+    },
+    {
+        "func_name": "test_order",
+        "original": "def test_order(self, order, c1, c3):\n    assert order == ['c1', 'c3']",
+        "mutated": [
+            "def test_order(self, order, c1, c3):\n    if False:\n        i = 10\n    assert order == ['c1', 'c3']",
+            "def test_order(self, order, c1, c3):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    assert order == ['c1', 'c3']",
+            "def test_order(self, order, c1, c3):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    assert order == ['c1', 'c3']",
+            "def test_order(self, order, c1, c3):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    assert order == ['c1', 'c3']",
+            "def test_order(self, order, c1, c3):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    assert order == ['c1', 'c3']"
+        ]
+    },
+    {
+        "func_name": "test_order",
+        "original": "def test_order(self, order, c2):\n    assert order == ['c1', 'c2']",
+        "mutated": [
+            "def test_order(self, order, c2):\n    if False:\n        i = 10\n    assert order == ['c1', 'c2']",
+            "def test_order(self, order, c2):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    assert order == ['c1', 'c2']",
+            "def test_order(self, order, c2):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    assert order == ['c1', 'c2']",
+            "def test_order(self, order, c2):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    assert order == ['c1', 'c2']",
+            "def test_order(self, order, c2):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    assert order == ['c1', 'c2']"
+        ]
+    }
+]

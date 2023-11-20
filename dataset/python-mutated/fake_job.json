@@ -1,0 +1,123 @@
+[
+    {
+        "func_name": "__init__",
+        "original": "def __init__(self, backend, job_id, fn):\n    super().__init__(backend, job_id)\n    self._backend = backend\n    self._job_id = job_id\n    self._future = None\n    self._future_callback = fn",
+        "mutated": [
+            "def __init__(self, backend, job_id, fn):\n    if False:\n        i = 10\n    super().__init__(backend, job_id)\n    self._backend = backend\n    self._job_id = job_id\n    self._future = None\n    self._future_callback = fn",
+            "def __init__(self, backend, job_id, fn):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    super().__init__(backend, job_id)\n    self._backend = backend\n    self._job_id = job_id\n    self._future = None\n    self._future_callback = fn",
+            "def __init__(self, backend, job_id, fn):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    super().__init__(backend, job_id)\n    self._backend = backend\n    self._job_id = job_id\n    self._future = None\n    self._future_callback = fn",
+            "def __init__(self, backend, job_id, fn):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    super().__init__(backend, job_id)\n    self._backend = backend\n    self._job_id = job_id\n    self._future = None\n    self._future_callback = fn",
+            "def __init__(self, backend, job_id, fn):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    super().__init__(backend, job_id)\n    self._backend = backend\n    self._job_id = job_id\n    self._future = None\n    self._future_callback = fn"
+        ]
+    },
+    {
+        "func_name": "submit",
+        "original": "def submit(self):\n    self._future = self._executor.submit(self._future_callback)",
+        "mutated": [
+            "def submit(self):\n    if False:\n        i = 10\n    self._future = self._executor.submit(self._future_callback)",
+            "def submit(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    self._future = self._executor.submit(self._future_callback)",
+            "def submit(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    self._future = self._executor.submit(self._future_callback)",
+            "def submit(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    self._future = self._executor.submit(self._future_callback)",
+            "def submit(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    self._future = self._executor.submit(self._future_callback)"
+        ]
+    },
+    {
+        "func_name": "result",
+        "original": "def result(self, timeout=None):\n    return self._future.result(timeout=timeout)",
+        "mutated": [
+            "def result(self, timeout=None):\n    if False:\n        i = 10\n    return self._future.result(timeout=timeout)",
+            "def result(self, timeout=None):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return self._future.result(timeout=timeout)",
+            "def result(self, timeout=None):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return self._future.result(timeout=timeout)",
+            "def result(self, timeout=None):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return self._future.result(timeout=timeout)",
+            "def result(self, timeout=None):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return self._future.result(timeout=timeout)"
+        ]
+    },
+    {
+        "func_name": "cancel",
+        "original": "def cancel(self):\n    return self._future.cancel()",
+        "mutated": [
+            "def cancel(self):\n    if False:\n        i = 10\n    return self._future.cancel()",
+            "def cancel(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return self._future.cancel()",
+            "def cancel(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return self._future.cancel()",
+            "def cancel(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return self._future.cancel()",
+            "def cancel(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return self._future.cancel()"
+        ]
+    },
+    {
+        "func_name": "status",
+        "original": "def status(self):\n    if self._running:\n        _status = JobStatus.RUNNING\n    elif not self._done:\n        _status = JobStatus.QUEUED\n    elif self._cancelled:\n        _status = JobStatus.CANCELLED\n    elif self._done:\n        _status = JobStatus.DONE\n    elif self._error:\n        _status = JobStatus.ERROR\n    else:\n        raise Exception(f'Unexpected state of {self.__class__.__name__}')\n    _status_msg = None\n    return {'status': _status, 'status_msg': _status_msg}",
+        "mutated": [
+            "def status(self):\n    if False:\n        i = 10\n    if self._running:\n        _status = JobStatus.RUNNING\n    elif not self._done:\n        _status = JobStatus.QUEUED\n    elif self._cancelled:\n        _status = JobStatus.CANCELLED\n    elif self._done:\n        _status = JobStatus.DONE\n    elif self._error:\n        _status = JobStatus.ERROR\n    else:\n        raise Exception(f'Unexpected state of {self.__class__.__name__}')\n    _status_msg = None\n    return {'status': _status, 'status_msg': _status_msg}",
+            "def status(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    if self._running:\n        _status = JobStatus.RUNNING\n    elif not self._done:\n        _status = JobStatus.QUEUED\n    elif self._cancelled:\n        _status = JobStatus.CANCELLED\n    elif self._done:\n        _status = JobStatus.DONE\n    elif self._error:\n        _status = JobStatus.ERROR\n    else:\n        raise Exception(f'Unexpected state of {self.__class__.__name__}')\n    _status_msg = None\n    return {'status': _status, 'status_msg': _status_msg}",
+            "def status(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    if self._running:\n        _status = JobStatus.RUNNING\n    elif not self._done:\n        _status = JobStatus.QUEUED\n    elif self._cancelled:\n        _status = JobStatus.CANCELLED\n    elif self._done:\n        _status = JobStatus.DONE\n    elif self._error:\n        _status = JobStatus.ERROR\n    else:\n        raise Exception(f'Unexpected state of {self.__class__.__name__}')\n    _status_msg = None\n    return {'status': _status, 'status_msg': _status_msg}",
+            "def status(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    if self._running:\n        _status = JobStatus.RUNNING\n    elif not self._done:\n        _status = JobStatus.QUEUED\n    elif self._cancelled:\n        _status = JobStatus.CANCELLED\n    elif self._done:\n        _status = JobStatus.DONE\n    elif self._error:\n        _status = JobStatus.ERROR\n    else:\n        raise Exception(f'Unexpected state of {self.__class__.__name__}')\n    _status_msg = None\n    return {'status': _status, 'status_msg': _status_msg}",
+            "def status(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    if self._running:\n        _status = JobStatus.RUNNING\n    elif not self._done:\n        _status = JobStatus.QUEUED\n    elif self._cancelled:\n        _status = JobStatus.CANCELLED\n    elif self._done:\n        _status = JobStatus.DONE\n    elif self._error:\n        _status = JobStatus.ERROR\n    else:\n        raise Exception(f'Unexpected state of {self.__class__.__name__}')\n    _status_msg = None\n    return {'status': _status, 'status_msg': _status_msg}"
+        ]
+    },
+    {
+        "func_name": "job_id",
+        "original": "def job_id(self):\n    return self._job_id",
+        "mutated": [
+            "def job_id(self):\n    if False:\n        i = 10\n    return self._job_id",
+            "def job_id(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return self._job_id",
+            "def job_id(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return self._job_id",
+            "def job_id(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return self._job_id",
+            "def job_id(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return self._job_id"
+        ]
+    },
+    {
+        "func_name": "backend",
+        "original": "def backend(self):\n    return self._backend",
+        "mutated": [
+            "def backend(self):\n    if False:\n        i = 10\n    return self._backend",
+            "def backend(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return self._backend",
+            "def backend(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return self._backend",
+            "def backend(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return self._backend",
+            "def backend(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return self._backend"
+        ]
+    },
+    {
+        "func_name": "_cancelled",
+        "original": "@property\ndef _cancelled(self):\n    return self._future.cancelled()",
+        "mutated": [
+            "@property\ndef _cancelled(self):\n    if False:\n        i = 10\n    return self._future.cancelled()",
+            "@property\ndef _cancelled(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return self._future.cancelled()",
+            "@property\ndef _cancelled(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return self._future.cancelled()",
+            "@property\ndef _cancelled(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return self._future.cancelled()",
+            "@property\ndef _cancelled(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return self._future.cancelled()"
+        ]
+    },
+    {
+        "func_name": "_done",
+        "original": "@property\ndef _done(self):\n    return self._future.done()",
+        "mutated": [
+            "@property\ndef _done(self):\n    if False:\n        i = 10\n    return self._future.done()",
+            "@property\ndef _done(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return self._future.done()",
+            "@property\ndef _done(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return self._future.done()",
+            "@property\ndef _done(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return self._future.done()",
+            "@property\ndef _done(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return self._future.done()"
+        ]
+    },
+    {
+        "func_name": "_running",
+        "original": "@property\ndef _running(self):\n    return self._future.running()",
+        "mutated": [
+            "@property\ndef _running(self):\n    if False:\n        i = 10\n    return self._future.running()",
+            "@property\ndef _running(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return self._future.running()",
+            "@property\ndef _running(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return self._future.running()",
+            "@property\ndef _running(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return self._future.running()",
+            "@property\ndef _running(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return self._future.running()"
+        ]
+    },
+    {
+        "func_name": "_error",
+        "original": "@property\ndef _error(self):\n    return self._future.exception(timeout=0)",
+        "mutated": [
+            "@property\ndef _error(self):\n    if False:\n        i = 10\n    return self._future.exception(timeout=0)",
+            "@property\ndef _error(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return self._future.exception(timeout=0)",
+            "@property\ndef _error(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return self._future.exception(timeout=0)",
+            "@property\ndef _error(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return self._future.exception(timeout=0)",
+            "@property\ndef _error(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return self._future.exception(timeout=0)"
+        ]
+    }
+]

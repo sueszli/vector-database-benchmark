@@ -1,0 +1,46 @@
+[
+    {
+        "func_name": "_init",
+        "original": "def _init(self, cfg, *args, **kwargs) -> None:\n    self._core = GfootballReward(cfg)\n    self._cum_reward = 0.0",
+        "mutated": [
+            "def _init(self, cfg, *args, **kwargs) -> None:\n    if False:\n        i = 10\n    self._core = GfootballReward(cfg)\n    self._cum_reward = 0.0",
+            "def _init(self, cfg, *args, **kwargs) -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    self._core = GfootballReward(cfg)\n    self._cum_reward = 0.0",
+            "def _init(self, cfg, *args, **kwargs) -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    self._core = GfootballReward(cfg)\n    self._cum_reward = 0.0",
+            "def _init(self, cfg, *args, **kwargs) -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    self._core = GfootballReward(cfg)\n    self._cum_reward = 0.0",
+            "def _init(self, cfg, *args, **kwargs) -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    self._core = GfootballReward(cfg)\n    self._cum_reward = 0.0"
+        ]
+    },
+    {
+        "func_name": "get",
+        "original": "def get(self, engine: BaseEnv) -> torch.tensor:\n    ret = copy.deepcopy(engine._reward_of_action)\n    self._cum_reward += ret\n    return self._core._to_agent_processor(ret)",
+        "mutated": [
+            "def get(self, engine: BaseEnv) -> torch.tensor:\n    if False:\n        i = 10\n    ret = copy.deepcopy(engine._reward_of_action)\n    self._cum_reward += ret\n    return self._core._to_agent_processor(ret)",
+            "def get(self, engine: BaseEnv) -> torch.tensor:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    ret = copy.deepcopy(engine._reward_of_action)\n    self._cum_reward += ret\n    return self._core._to_agent_processor(ret)",
+            "def get(self, engine: BaseEnv) -> torch.tensor:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    ret = copy.deepcopy(engine._reward_of_action)\n    self._cum_reward += ret\n    return self._core._to_agent_processor(ret)",
+            "def get(self, engine: BaseEnv) -> torch.tensor:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    ret = copy.deepcopy(engine._reward_of_action)\n    self._cum_reward += ret\n    return self._core._to_agent_processor(ret)",
+            "def get(self, engine: BaseEnv) -> torch.tensor:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    ret = copy.deepcopy(engine._reward_of_action)\n    self._cum_reward += ret\n    return self._core._to_agent_processor(ret)"
+        ]
+    },
+    {
+        "func_name": "reset",
+        "original": "def reset(self) -> None:\n    self._cum_reward = 0.0",
+        "mutated": [
+            "def reset(self) -> None:\n    if False:\n        i = 10\n    self._cum_reward = 0.0",
+            "def reset(self) -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    self._cum_reward = 0.0",
+            "def reset(self) -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    self._cum_reward = 0.0",
+            "def reset(self) -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    self._cum_reward = 0.0",
+            "def reset(self) -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    self._cum_reward = 0.0"
+        ]
+    },
+    {
+        "func_name": "cum_reward",
+        "original": "@property\ndef cum_reward(self) -> torch.tensor:\n    return torch.FloatTensor([self._cum_reward])",
+        "mutated": [
+            "@property\ndef cum_reward(self) -> torch.tensor:\n    if False:\n        i = 10\n    return torch.FloatTensor([self._cum_reward])",
+            "@property\ndef cum_reward(self) -> torch.tensor:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return torch.FloatTensor([self._cum_reward])",
+            "@property\ndef cum_reward(self) -> torch.tensor:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return torch.FloatTensor([self._cum_reward])",
+            "@property\ndef cum_reward(self) -> torch.tensor:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return torch.FloatTensor([self._cum_reward])",
+            "@property\ndef cum_reward(self) -> torch.tensor:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return torch.FloatTensor([self._cum_reward])"
+        ]
+    }
+]

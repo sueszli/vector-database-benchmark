@@ -1,0 +1,57 @@
+[
+    {
+        "func_name": "__init__",
+        "original": "def __init__(self, capacity) -> None:\n    self.capacity = capacity\n    self.flow = cp.Variable()",
+        "mutated": [
+            "def __init__(self, capacity) -> None:\n    if False:\n        i = 10\n    self.capacity = capacity\n    self.flow = cp.Variable()",
+            "def __init__(self, capacity) -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    self.capacity = capacity\n    self.flow = cp.Variable()",
+            "def __init__(self, capacity) -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    self.capacity = capacity\n    self.flow = cp.Variable()",
+            "def __init__(self, capacity) -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    self.capacity = capacity\n    self.flow = cp.Variable()",
+            "def __init__(self, capacity) -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    self.capacity = capacity\n    self.flow = cp.Variable()"
+        ]
+    },
+    {
+        "func_name": "connect",
+        "original": "def connect(self, in_node, out_node):\n    in_node.edge_flows.append(-self.flow)\n    out_node.edge_flows.append(self.flow)",
+        "mutated": [
+            "def connect(self, in_node, out_node):\n    if False:\n        i = 10\n    in_node.edge_flows.append(-self.flow)\n    out_node.edge_flows.append(self.flow)",
+            "def connect(self, in_node, out_node):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    in_node.edge_flows.append(-self.flow)\n    out_node.edge_flows.append(self.flow)",
+            "def connect(self, in_node, out_node):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    in_node.edge_flows.append(-self.flow)\n    out_node.edge_flows.append(self.flow)",
+            "def connect(self, in_node, out_node):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    in_node.edge_flows.append(-self.flow)\n    out_node.edge_flows.append(self.flow)",
+            "def connect(self, in_node, out_node):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    in_node.edge_flows.append(-self.flow)\n    out_node.edge_flows.append(self.flow)"
+        ]
+    },
+    {
+        "func_name": "constraints",
+        "original": "def constraints(self):\n    return [cp.abs(self.flow) <= self.capacity]",
+        "mutated": [
+            "def constraints(self):\n    if False:\n        i = 10\n    return [cp.abs(self.flow) <= self.capacity]",
+            "def constraints(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return [cp.abs(self.flow) <= self.capacity]",
+            "def constraints(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return [cp.abs(self.flow) <= self.capacity]",
+            "def constraints(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return [cp.abs(self.flow) <= self.capacity]",
+            "def constraints(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return [cp.abs(self.flow) <= self.capacity]"
+        ]
+    },
+    {
+        "func_name": "__init__",
+        "original": "def __init__(self, accumulation: float=0.0) -> None:\n    self.accumulation = accumulation\n    self.edge_flows = []",
+        "mutated": [
+            "def __init__(self, accumulation: float=0.0) -> None:\n    if False:\n        i = 10\n    self.accumulation = accumulation\n    self.edge_flows = []",
+            "def __init__(self, accumulation: float=0.0) -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    self.accumulation = accumulation\n    self.edge_flows = []",
+            "def __init__(self, accumulation: float=0.0) -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    self.accumulation = accumulation\n    self.edge_flows = []",
+            "def __init__(self, accumulation: float=0.0) -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    self.accumulation = accumulation\n    self.edge_flows = []",
+            "def __init__(self, accumulation: float=0.0) -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    self.accumulation = accumulation\n    self.edge_flows = []"
+        ]
+    },
+    {
+        "func_name": "constraints",
+        "original": "def constraints(self):\n    return [cp.sum([f for f in self.edge_flows]) == self.accumulation]",
+        "mutated": [
+            "def constraints(self):\n    if False:\n        i = 10\n    return [cp.sum([f for f in self.edge_flows]) == self.accumulation]",
+            "def constraints(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return [cp.sum([f for f in self.edge_flows]) == self.accumulation]",
+            "def constraints(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return [cp.sum([f for f in self.edge_flows]) == self.accumulation]",
+            "def constraints(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return [cp.sum([f for f in self.edge_flows]) == self.accumulation]",
+            "def constraints(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return [cp.sum([f for f in self.edge_flows]) == self.accumulation]"
+        ]
+    }
+]

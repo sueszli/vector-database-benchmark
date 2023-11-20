@@ -1,0 +1,24 @@
+[
+    {
+        "func_name": "uart_tx",
+        "original": "@asm_pio(sideset_init=PIO.OUT_HIGH, out_init=PIO.OUT_HIGH, out_shiftdir=PIO.SHIFT_RIGHT)\ndef uart_tx():\n    pull()\n    set(x, 7).side(0)[7]\n    label('bitloop')\n    out(pins, 1)[6]\n    jmp(x_dec, 'bitloop')\n    nop().side(1)[6]",
+        "mutated": [
+            "@asm_pio(sideset_init=PIO.OUT_HIGH, out_init=PIO.OUT_HIGH, out_shiftdir=PIO.SHIFT_RIGHT)\ndef uart_tx():\n    if False:\n        i = 10\n    pull()\n    set(x, 7).side(0)[7]\n    label('bitloop')\n    out(pins, 1)[6]\n    jmp(x_dec, 'bitloop')\n    nop().side(1)[6]",
+            "@asm_pio(sideset_init=PIO.OUT_HIGH, out_init=PIO.OUT_HIGH, out_shiftdir=PIO.SHIFT_RIGHT)\ndef uart_tx():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    pull()\n    set(x, 7).side(0)[7]\n    label('bitloop')\n    out(pins, 1)[6]\n    jmp(x_dec, 'bitloop')\n    nop().side(1)[6]",
+            "@asm_pio(sideset_init=PIO.OUT_HIGH, out_init=PIO.OUT_HIGH, out_shiftdir=PIO.SHIFT_RIGHT)\ndef uart_tx():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    pull()\n    set(x, 7).side(0)[7]\n    label('bitloop')\n    out(pins, 1)[6]\n    jmp(x_dec, 'bitloop')\n    nop().side(1)[6]",
+            "@asm_pio(sideset_init=PIO.OUT_HIGH, out_init=PIO.OUT_HIGH, out_shiftdir=PIO.SHIFT_RIGHT)\ndef uart_tx():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    pull()\n    set(x, 7).side(0)[7]\n    label('bitloop')\n    out(pins, 1)[6]\n    jmp(x_dec, 'bitloop')\n    nop().side(1)[6]",
+            "@asm_pio(sideset_init=PIO.OUT_HIGH, out_init=PIO.OUT_HIGH, out_shiftdir=PIO.SHIFT_RIGHT)\ndef uart_tx():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    pull()\n    set(x, 7).side(0)[7]\n    label('bitloop')\n    out(pins, 1)[6]\n    jmp(x_dec, 'bitloop')\n    nop().side(1)[6]"
+        ]
+    },
+    {
+        "func_name": "pio_uart_print",
+        "original": "def pio_uart_print(sm, s):\n    for c in s:\n        sm.put(ord(c))",
+        "mutated": [
+            "def pio_uart_print(sm, s):\n    if False:\n        i = 10\n    for c in s:\n        sm.put(ord(c))",
+            "def pio_uart_print(sm, s):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    for c in s:\n        sm.put(ord(c))",
+            "def pio_uart_print(sm, s):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    for c in s:\n        sm.put(ord(c))",
+            "def pio_uart_print(sm, s):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    for c in s:\n        sm.put(ord(c))",
+            "def pio_uart_print(sm, s):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    for c in s:\n        sm.put(ord(c))"
+        ]
+    }
+]

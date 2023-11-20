@@ -1,0 +1,24 @@
+[
+    {
+        "func_name": "create_test_resource",
+        "original": "def create_test_resource(self) -> HealthResource:\n    return HealthResource()",
+        "mutated": [
+            "def create_test_resource(self) -> HealthResource:\n    if False:\n        i = 10\n    return HealthResource()",
+            "def create_test_resource(self) -> HealthResource:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return HealthResource()",
+            "def create_test_resource(self) -> HealthResource:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return HealthResource()",
+            "def create_test_resource(self) -> HealthResource:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return HealthResource()",
+            "def create_test_resource(self) -> HealthResource:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return HealthResource()"
+        ]
+    },
+    {
+        "func_name": "test_health",
+        "original": "def test_health(self) -> None:\n    channel = self.make_request('GET', '/health', shorthand=False)\n    self.assertEqual(channel.code, 200)\n    self.assertEqual(channel.result['body'], b'OK')",
+        "mutated": [
+            "def test_health(self) -> None:\n    if False:\n        i = 10\n    channel = self.make_request('GET', '/health', shorthand=False)\n    self.assertEqual(channel.code, 200)\n    self.assertEqual(channel.result['body'], b'OK')",
+            "def test_health(self) -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    channel = self.make_request('GET', '/health', shorthand=False)\n    self.assertEqual(channel.code, 200)\n    self.assertEqual(channel.result['body'], b'OK')",
+            "def test_health(self) -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    channel = self.make_request('GET', '/health', shorthand=False)\n    self.assertEqual(channel.code, 200)\n    self.assertEqual(channel.result['body'], b'OK')",
+            "def test_health(self) -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    channel = self.make_request('GET', '/health', shorthand=False)\n    self.assertEqual(channel.code, 200)\n    self.assertEqual(channel.result['body'], b'OK')",
+            "def test_health(self) -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    channel = self.make_request('GET', '/health', shorthand=False)\n    self.assertEqual(channel.code, 200)\n    self.assertEqual(channel.result['body'], b'OK')"
+        ]
+    }
+]

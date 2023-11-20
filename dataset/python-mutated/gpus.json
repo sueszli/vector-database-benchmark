@@ -1,0 +1,79 @@
+[
+    {
+        "func_name": "ping",
+        "original": "def ping(self):\n    print('ray.get_gpu_ids(): {}'.format(ray.get_gpu_ids()))\n    print('CUDA_VISIBLE_DEVICES: {}'.format(os.environ['CUDA_VISIBLE_DEVICES']))",
+        "mutated": [
+            "def ping(self):\n    if False:\n        i = 10\n    print('ray.get_gpu_ids(): {}'.format(ray.get_gpu_ids()))\n    print('CUDA_VISIBLE_DEVICES: {}'.format(os.environ['CUDA_VISIBLE_DEVICES']))",
+            "def ping(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    print('ray.get_gpu_ids(): {}'.format(ray.get_gpu_ids()))\n    print('CUDA_VISIBLE_DEVICES: {}'.format(os.environ['CUDA_VISIBLE_DEVICES']))",
+            "def ping(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    print('ray.get_gpu_ids(): {}'.format(ray.get_gpu_ids()))\n    print('CUDA_VISIBLE_DEVICES: {}'.format(os.environ['CUDA_VISIBLE_DEVICES']))",
+            "def ping(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    print('ray.get_gpu_ids(): {}'.format(ray.get_gpu_ids()))\n    print('CUDA_VISIBLE_DEVICES: {}'.format(os.environ['CUDA_VISIBLE_DEVICES']))",
+            "def ping(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    print('ray.get_gpu_ids(): {}'.format(ray.get_gpu_ids()))\n    print('CUDA_VISIBLE_DEVICES: {}'.format(os.environ['CUDA_VISIBLE_DEVICES']))"
+        ]
+    },
+    {
+        "func_name": "use_gpu",
+        "original": "@ray.remote(num_gpus=1)\ndef use_gpu():\n    print('ray.get_gpu_ids(): {}'.format(ray.get_gpu_ids()))\n    print('CUDA_VISIBLE_DEVICES: {}'.format(os.environ['CUDA_VISIBLE_DEVICES']))",
+        "mutated": [
+            "@ray.remote(num_gpus=1)\ndef use_gpu():\n    if False:\n        i = 10\n    print('ray.get_gpu_ids(): {}'.format(ray.get_gpu_ids()))\n    print('CUDA_VISIBLE_DEVICES: {}'.format(os.environ['CUDA_VISIBLE_DEVICES']))",
+            "@ray.remote(num_gpus=1)\ndef use_gpu():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    print('ray.get_gpu_ids(): {}'.format(ray.get_gpu_ids()))\n    print('CUDA_VISIBLE_DEVICES: {}'.format(os.environ['CUDA_VISIBLE_DEVICES']))",
+            "@ray.remote(num_gpus=1)\ndef use_gpu():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    print('ray.get_gpu_ids(): {}'.format(ray.get_gpu_ids()))\n    print('CUDA_VISIBLE_DEVICES: {}'.format(os.environ['CUDA_VISIBLE_DEVICES']))",
+            "@ray.remote(num_gpus=1)\ndef use_gpu():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    print('ray.get_gpu_ids(): {}'.format(ray.get_gpu_ids()))\n    print('CUDA_VISIBLE_DEVICES: {}'.format(os.environ['CUDA_VISIBLE_DEVICES']))",
+            "@ray.remote(num_gpus=1)\ndef use_gpu():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    print('ray.get_gpu_ids(): {}'.format(ray.get_gpu_ids()))\n    print('CUDA_VISIBLE_DEVICES: {}'.format(os.environ['CUDA_VISIBLE_DEVICES']))"
+        ]
+    },
+    {
+        "func_name": "use_gpu",
+        "original": "@ray.remote(num_gpus=1)\ndef use_gpu():\n    import tensorflow as tf\n    tf.Session()",
+        "mutated": [
+            "@ray.remote(num_gpus=1)\ndef use_gpu():\n    if False:\n        i = 10\n    import tensorflow as tf\n    tf.Session()",
+            "@ray.remote(num_gpus=1)\ndef use_gpu():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    import tensorflow as tf\n    tf.Session()",
+            "@ray.remote(num_gpus=1)\ndef use_gpu():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    import tensorflow as tf\n    tf.Session()",
+            "@ray.remote(num_gpus=1)\ndef use_gpu():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    import tensorflow as tf\n    tf.Session()",
+            "@ray.remote(num_gpus=1)\ndef use_gpu():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    import tensorflow as tf\n    tf.Session()"
+        ]
+    },
+    {
+        "func_name": "f",
+        "original": "@ray.remote(num_gpus=0.25)\ndef f():\n    import time\n    time.sleep(1)",
+        "mutated": [
+            "@ray.remote(num_gpus=0.25)\ndef f():\n    if False:\n        i = 10\n    import time\n    time.sleep(1)",
+            "@ray.remote(num_gpus=0.25)\ndef f():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    import time\n    time.sleep(1)",
+            "@ray.remote(num_gpus=0.25)\ndef f():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    import time\n    time.sleep(1)",
+            "@ray.remote(num_gpus=0.25)\ndef f():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    import time\n    time.sleep(1)",
+            "@ray.remote(num_gpus=0.25)\ndef f():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    import time\n    time.sleep(1)"
+        ]
+    },
+    {
+        "func_name": "ping",
+        "original": "def ping(self):\n    print('ray.get_gpu_ids(): {}'.format(ray.get_gpu_ids()))",
+        "mutated": [
+            "def ping(self):\n    if False:\n        i = 10\n    print('ray.get_gpu_ids(): {}'.format(ray.get_gpu_ids()))",
+            "def ping(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    print('ray.get_gpu_ids(): {}'.format(ray.get_gpu_ids()))",
+            "def ping(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    print('ray.get_gpu_ids(): {}'.format(ray.get_gpu_ids()))",
+            "def ping(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    print('ray.get_gpu_ids(): {}'.format(ray.get_gpu_ids()))",
+            "def ping(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    print('ray.get_gpu_ids(): {}'.format(ray.get_gpu_ids()))"
+        ]
+    },
+    {
+        "func_name": "leak_gpus",
+        "original": "@ray.remote(num_gpus=1)\ndef leak_gpus():\n    import tensorflow as tf\n    tf.Session()",
+        "mutated": [
+            "@ray.remote(num_gpus=1)\ndef leak_gpus():\n    if False:\n        i = 10\n    import tensorflow as tf\n    tf.Session()",
+            "@ray.remote(num_gpus=1)\ndef leak_gpus():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    import tensorflow as tf\n    tf.Session()",
+            "@ray.remote(num_gpus=1)\ndef leak_gpus():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    import tensorflow as tf\n    tf.Session()",
+            "@ray.remote(num_gpus=1)\ndef leak_gpus():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    import tensorflow as tf\n    tf.Session()",
+            "@ray.remote(num_gpus=1)\ndef leak_gpus():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    import tensorflow as tf\n    tf.Session()"
+        ]
+    },
+    {
+        "func_name": "train",
+        "original": "@ray.remote(num_gpus=1, accelerator_type=NVIDIA_TESLA_V100)\ndef train(data):\n    return 'This function was run on a node with a Tesla V100 GPU'",
+        "mutated": [
+            "@ray.remote(num_gpus=1, accelerator_type=NVIDIA_TESLA_V100)\ndef train(data):\n    if False:\n        i = 10\n    return 'This function was run on a node with a Tesla V100 GPU'",
+            "@ray.remote(num_gpus=1, accelerator_type=NVIDIA_TESLA_V100)\ndef train(data):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return 'This function was run on a node with a Tesla V100 GPU'",
+            "@ray.remote(num_gpus=1, accelerator_type=NVIDIA_TESLA_V100)\ndef train(data):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return 'This function was run on a node with a Tesla V100 GPU'",
+            "@ray.remote(num_gpus=1, accelerator_type=NVIDIA_TESLA_V100)\ndef train(data):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return 'This function was run on a node with a Tesla V100 GPU'",
+            "@ray.remote(num_gpus=1, accelerator_type=NVIDIA_TESLA_V100)\ndef train(data):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return 'This function was run on a node with a Tesla V100 GPU'"
+        ]
+    }
+]

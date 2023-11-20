@@ -1,0 +1,112 @@
+[
+    {
+        "func_name": "ok_no_scope",
+        "original": "@pytest.fixture()\ndef ok_no_scope():\n    ...",
+        "mutated": [
+            "@pytest.fixture()\ndef ok_no_scope():\n    if False:\n        i = 10\n    ...",
+            "@pytest.fixture()\ndef ok_no_scope():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    ...",
+            "@pytest.fixture()\ndef ok_no_scope():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    ...",
+            "@pytest.fixture()\ndef ok_no_scope():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    ...",
+            "@pytest.fixture()\ndef ok_no_scope():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    ..."
+        ]
+    },
+    {
+        "func_name": "ok_other_scope",
+        "original": "@pytest.fixture(scope='module')\ndef ok_other_scope():\n    ...",
+        "mutated": [
+            "@pytest.fixture(scope='module')\ndef ok_other_scope():\n    if False:\n        i = 10\n    ...",
+            "@pytest.fixture(scope='module')\ndef ok_other_scope():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    ...",
+            "@pytest.fixture(scope='module')\ndef ok_other_scope():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    ...",
+            "@pytest.fixture(scope='module')\ndef ok_other_scope():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    ...",
+            "@pytest.fixture(scope='module')\ndef ok_other_scope():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    ..."
+        ]
+    },
+    {
+        "func_name": "error",
+        "original": "@pytest.fixture(scope='function')\ndef error():\n    ...",
+        "mutated": [
+            "@pytest.fixture(scope='function')\ndef error():\n    if False:\n        i = 10\n    ...",
+            "@pytest.fixture(scope='function')\ndef error():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    ...",
+            "@pytest.fixture(scope='function')\ndef error():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    ...",
+            "@pytest.fixture(scope='function')\ndef error():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    ...",
+            "@pytest.fixture(scope='function')\ndef error():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    ..."
+        ]
+    },
+    {
+        "func_name": "error_multiple_args",
+        "original": "@pytest.fixture(scope='function', name='my_fixture')\ndef error_multiple_args():\n    ...",
+        "mutated": [
+            "@pytest.fixture(scope='function', name='my_fixture')\ndef error_multiple_args():\n    if False:\n        i = 10\n    ...",
+            "@pytest.fixture(scope='function', name='my_fixture')\ndef error_multiple_args():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    ...",
+            "@pytest.fixture(scope='function', name='my_fixture')\ndef error_multiple_args():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    ...",
+            "@pytest.fixture(scope='function', name='my_fixture')\ndef error_multiple_args():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    ...",
+            "@pytest.fixture(scope='function', name='my_fixture')\ndef error_multiple_args():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    ..."
+        ]
+    },
+    {
+        "func_name": "error_multiple_args",
+        "original": "@pytest.fixture(name='my_fixture', scope='function')\ndef error_multiple_args():\n    ...",
+        "mutated": [
+            "@pytest.fixture(name='my_fixture', scope='function')\ndef error_multiple_args():\n    if False:\n        i = 10\n    ...",
+            "@pytest.fixture(name='my_fixture', scope='function')\ndef error_multiple_args():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    ...",
+            "@pytest.fixture(name='my_fixture', scope='function')\ndef error_multiple_args():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    ...",
+            "@pytest.fixture(name='my_fixture', scope='function')\ndef error_multiple_args():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    ...",
+            "@pytest.fixture(name='my_fixture', scope='function')\ndef error_multiple_args():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    ..."
+        ]
+    },
+    {
+        "func_name": "error_second_arg",
+        "original": "@pytest.fixture(name='my_fixture', scope='function', **kwargs)\ndef error_second_arg():\n    ...",
+        "mutated": [
+            "@pytest.fixture(name='my_fixture', scope='function', **kwargs)\ndef error_second_arg():\n    if False:\n        i = 10\n    ...",
+            "@pytest.fixture(name='my_fixture', scope='function', **kwargs)\ndef error_second_arg():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    ...",
+            "@pytest.fixture(name='my_fixture', scope='function', **kwargs)\ndef error_second_arg():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    ...",
+            "@pytest.fixture(name='my_fixture', scope='function', **kwargs)\ndef error_second_arg():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    ...",
+            "@pytest.fixture(name='my_fixture', scope='function', **kwargs)\ndef error_second_arg():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    ..."
+        ]
+    },
+    {
+        "func_name": "error_arg",
+        "original": "@pytest.fixture('my_fixture', scope='function')\ndef error_arg():\n    ...",
+        "mutated": [
+            "@pytest.fixture('my_fixture', scope='function')\ndef error_arg():\n    if False:\n        i = 10\n    ...",
+            "@pytest.fixture('my_fixture', scope='function')\ndef error_arg():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    ...",
+            "@pytest.fixture('my_fixture', scope='function')\ndef error_arg():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    ...",
+            "@pytest.fixture('my_fixture', scope='function')\ndef error_arg():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    ...",
+            "@pytest.fixture('my_fixture', scope='function')\ndef error_arg():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    ..."
+        ]
+    },
+    {
+        "func_name": "error_multiple_args",
+        "original": "@pytest.fixture(scope='function', name='my_fixture')\ndef error_multiple_args():\n    ...",
+        "mutated": [
+            "@pytest.fixture(scope='function', name='my_fixture')\ndef error_multiple_args():\n    if False:\n        i = 10\n    ...",
+            "@pytest.fixture(scope='function', name='my_fixture')\ndef error_multiple_args():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    ...",
+            "@pytest.fixture(scope='function', name='my_fixture')\ndef error_multiple_args():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    ...",
+            "@pytest.fixture(scope='function', name='my_fixture')\ndef error_multiple_args():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    ...",
+            "@pytest.fixture(scope='function', name='my_fixture')\ndef error_multiple_args():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    ..."
+        ]
+    },
+    {
+        "func_name": "error_multiple_args",
+        "original": "@pytest.fixture(name='my_fixture', scope='function')\ndef error_multiple_args():\n    ...",
+        "mutated": [
+            "@pytest.fixture(name='my_fixture', scope='function')\ndef error_multiple_args():\n    if False:\n        i = 10\n    ...",
+            "@pytest.fixture(name='my_fixture', scope='function')\ndef error_multiple_args():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    ...",
+            "@pytest.fixture(name='my_fixture', scope='function')\ndef error_multiple_args():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    ...",
+            "@pytest.fixture(name='my_fixture', scope='function')\ndef error_multiple_args():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    ...",
+            "@pytest.fixture(name='my_fixture', scope='function')\ndef error_multiple_args():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    ..."
+        ]
+    },
+    {
+        "func_name": "error_multiple_args",
+        "original": "@pytest.fixture('hello', name, *args, scope='function', name2=name, name3='my_fixture', **kwargs)\ndef error_multiple_args():\n    ...",
+        "mutated": [
+            "@pytest.fixture('hello', name, *args, scope='function', name2=name, name3='my_fixture', **kwargs)\ndef error_multiple_args():\n    if False:\n        i = 10\n    ...",
+            "@pytest.fixture('hello', name, *args, scope='function', name2=name, name3='my_fixture', **kwargs)\ndef error_multiple_args():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    ...",
+            "@pytest.fixture('hello', name, *args, scope='function', name2=name, name3='my_fixture', **kwargs)\ndef error_multiple_args():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    ...",
+            "@pytest.fixture('hello', name, *args, scope='function', name2=name, name3='my_fixture', **kwargs)\ndef error_multiple_args():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    ...",
+            "@pytest.fixture('hello', name, *args, scope='function', name2=name, name3='my_fixture', **kwargs)\ndef error_multiple_args():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    ..."
+        ]
+    }
+]

@@ -1,0 +1,365 @@
+[
+    {
+        "func_name": "__init__",
+        "original": "def __init__(self, h):\n    (self.u, self.d, self.v) = torch.svd(h, some=False)\n    self.ut = self.u.t()\n    self.vt = self.v.t()\n    self.d[self.d < 0.001] = 0",
+        "mutated": [
+            "def __init__(self, h):\n    if False:\n        i = 10\n    (self.u, self.d, self.v) = torch.svd(h, some=False)\n    self.ut = self.u.t()\n    self.vt = self.v.t()\n    self.d[self.d < 0.001] = 0",
+            "def __init__(self, h):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    (self.u, self.d, self.v) = torch.svd(h, some=False)\n    self.ut = self.u.t()\n    self.vt = self.v.t()\n    self.d[self.d < 0.001] = 0",
+            "def __init__(self, h):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    (self.u, self.d, self.v) = torch.svd(h, some=False)\n    self.ut = self.u.t()\n    self.vt = self.v.t()\n    self.d[self.d < 0.001] = 0",
+            "def __init__(self, h):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    (self.u, self.d, self.v) = torch.svd(h, some=False)\n    self.ut = self.u.t()\n    self.vt = self.v.t()\n    self.d[self.d < 0.001] = 0",
+            "def __init__(self, h):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    (self.u, self.d, self.v) = torch.svd(h, some=False)\n    self.ut = self.u.t()\n    self.vt = self.v.t()\n    self.d[self.d < 0.001] = 0"
+        ]
+    },
+    {
+        "func_name": "U",
+        "original": "def U(self, x):\n    return torch.matmul(self.u, x)",
+        "mutated": [
+            "def U(self, x):\n    if False:\n        i = 10\n    return torch.matmul(self.u, x)",
+            "def U(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return torch.matmul(self.u, x)",
+            "def U(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return torch.matmul(self.u, x)",
+            "def U(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return torch.matmul(self.u, x)",
+            "def U(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return torch.matmul(self.u, x)"
+        ]
+    },
+    {
+        "func_name": "Ut",
+        "original": "def Ut(self, x):\n    return torch.matmul(self.ut, x)",
+        "mutated": [
+            "def Ut(self, x):\n    if False:\n        i = 10\n    return torch.matmul(self.ut, x)",
+            "def Ut(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return torch.matmul(self.ut, x)",
+            "def Ut(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return torch.matmul(self.ut, x)",
+            "def Ut(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return torch.matmul(self.ut, x)",
+            "def Ut(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return torch.matmul(self.ut, x)"
+        ]
+    },
+    {
+        "func_name": "V",
+        "original": "def V(self, x):\n    return torch.matmul(self.v, x)",
+        "mutated": [
+            "def V(self, x):\n    if False:\n        i = 10\n    return torch.matmul(self.v, x)",
+            "def V(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return torch.matmul(self.v, x)",
+            "def V(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return torch.matmul(self.v, x)",
+            "def V(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return torch.matmul(self.v, x)",
+            "def V(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return torch.matmul(self.v, x)"
+        ]
+    },
+    {
+        "func_name": "Vt",
+        "original": "def Vt(self, x):\n    return torch.matmul(self.vt, x)",
+        "mutated": [
+            "def Vt(self, x):\n    if False:\n        i = 10\n    return torch.matmul(self.vt, x)",
+            "def Vt(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return torch.matmul(self.vt, x)",
+            "def Vt(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return torch.matmul(self.vt, x)",
+            "def Vt(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return torch.matmul(self.vt, x)",
+            "def Vt(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return torch.matmul(self.vt, x)"
+        ]
+    },
+    {
+        "func_name": "D",
+        "original": "@property\ndef D(self):\n    return self.d",
+        "mutated": [
+            "@property\ndef D(self):\n    if False:\n        i = 10\n    return self.d",
+            "@property\ndef D(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return self.d",
+            "@property\ndef D(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return self.d",
+            "@property\ndef D(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return self.d",
+            "@property\ndef D(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return self.d"
+        ]
+    },
+    {
+        "func_name": "H",
+        "original": "def H(self, x):\n    return self.U(self.D * self.Vt(x)[:, :self.D.size(0)])",
+        "mutated": [
+            "def H(self, x):\n    if False:\n        i = 10\n    return self.U(self.D * self.Vt(x)[:, :self.D.size(0)])",
+            "def H(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return self.U(self.D * self.Vt(x)[:, :self.D.size(0)])",
+            "def H(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return self.U(self.D * self.Vt(x)[:, :self.D.size(0)])",
+            "def H(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return self.U(self.D * self.Vt(x)[:, :self.D.size(0)])",
+            "def H(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return self.U(self.D * self.Vt(x)[:, :self.D.size(0)])"
+        ]
+    },
+    {
+        "func_name": "Ht",
+        "original": "def Ht(self, x):\n    return self.V(self._pad(self.D * self.Ut(x)[:, :self.D.size(0)]))",
+        "mutated": [
+            "def Ht(self, x):\n    if False:\n        i = 10\n    return self.V(self._pad(self.D * self.Ut(x)[:, :self.D.size(0)]))",
+            "def Ht(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return self.V(self._pad(self.D * self.Ut(x)[:, :self.D.size(0)]))",
+            "def Ht(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return self.V(self._pad(self.D * self.Ut(x)[:, :self.D.size(0)]))",
+            "def Ht(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return self.V(self._pad(self.D * self.Ut(x)[:, :self.D.size(0)]))",
+            "def Ht(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return self.V(self._pad(self.D * self.Ut(x)[:, :self.D.size(0)]))"
+        ]
+    },
+    {
+        "func_name": "Hinv",
+        "original": "def Hinv(self, x):\n    \"\"\"Multiplies x by the pseudo inverse of H.\n        \"\"\"\n    x = self.Ut(x)\n    x[:, :self.D.size(0)] = x[:, :self.D.size(0)] / self.D\n    return self.V(self._pad(x))",
+        "mutated": [
+            "def Hinv(self, x):\n    if False:\n        i = 10\n    'Multiplies x by the pseudo inverse of H.\\n        '\n    x = self.Ut(x)\n    x[:, :self.D.size(0)] = x[:, :self.D.size(0)] / self.D\n    return self.V(self._pad(x))",
+            "def Hinv(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    'Multiplies x by the pseudo inverse of H.\\n        '\n    x = self.Ut(x)\n    x[:, :self.D.size(0)] = x[:, :self.D.size(0)] / self.D\n    return self.V(self._pad(x))",
+            "def Hinv(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    'Multiplies x by the pseudo inverse of H.\\n        '\n    x = self.Ut(x)\n    x[:, :self.D.size(0)] = x[:, :self.D.size(0)] / self.D\n    return self.V(self._pad(x))",
+            "def Hinv(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    'Multiplies x by the pseudo inverse of H.\\n        '\n    x = self.Ut(x)\n    x[:, :self.D.size(0)] = x[:, :self.D.size(0)] / self.D\n    return self.V(self._pad(x))",
+            "def Hinv(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    'Multiplies x by the pseudo inverse of H.\\n        '\n    x = self.Ut(x)\n    x[:, :self.D.size(0)] = x[:, :self.D.size(0)] / self.D\n    return self.V(self._pad(x))"
+        ]
+    },
+    {
+        "func_name": "_pad",
+        "original": "def _pad(self, x):\n    o = x.new_zeros(x.size(0), self.v.size(0))\n    o[:, :self.u.size(0)] = x.view(x.size(0), -1)\n    return o",
+        "mutated": [
+            "def _pad(self, x):\n    if False:\n        i = 10\n    o = x.new_zeros(x.size(0), self.v.size(0))\n    o[:, :self.u.size(0)] = x.view(x.size(0), -1)\n    return o",
+            "def _pad(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    o = x.new_zeros(x.size(0), self.v.size(0))\n    o[:, :self.u.size(0)] = x.view(x.size(0), -1)\n    return o",
+            "def _pad(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    o = x.new_zeros(x.size(0), self.v.size(0))\n    o[:, :self.u.size(0)] = x.view(x.size(0), -1)\n    return o",
+            "def _pad(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    o = x.new_zeros(x.size(0), self.v.size(0))\n    o[:, :self.u.size(0)] = x.view(x.size(0), -1)\n    return o",
+            "def _pad(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    o = x.new_zeros(x.size(0), self.v.size(0))\n    o[:, :self.u.size(0)] = x.view(x.size(0), -1)\n    return o"
+        ]
+    },
+    {
+        "func_name": "to",
+        "original": "def to(self, *args, **kwargs):\n    \"\"\"Update the data type and device of UDV matrices.\n        \"\"\"\n    for (k, v) in self.__dict__.items():\n        if isinstance(v, torch.Tensor):\n            setattr(self, k, v.to(*args, **kwargs))\n    return self",
+        "mutated": [
+            "def to(self, *args, **kwargs):\n    if False:\n        i = 10\n    'Update the data type and device of UDV matrices.\\n        '\n    for (k, v) in self.__dict__.items():\n        if isinstance(v, torch.Tensor):\n            setattr(self, k, v.to(*args, **kwargs))\n    return self",
+            "def to(self, *args, **kwargs):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    'Update the data type and device of UDV matrices.\\n        '\n    for (k, v) in self.__dict__.items():\n        if isinstance(v, torch.Tensor):\n            setattr(self, k, v.to(*args, **kwargs))\n    return self",
+            "def to(self, *args, **kwargs):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    'Update the data type and device of UDV matrices.\\n        '\n    for (k, v) in self.__dict__.items():\n        if isinstance(v, torch.Tensor):\n            setattr(self, k, v.to(*args, **kwargs))\n    return self",
+            "def to(self, *args, **kwargs):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    'Update the data type and device of UDV matrices.\\n        '\n    for (k, v) in self.__dict__.items():\n        if isinstance(v, torch.Tensor):\n            setattr(self, k, v.to(*args, **kwargs))\n    return self",
+            "def to(self, *args, **kwargs):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    'Update the data type and device of UDV matrices.\\n        '\n    for (k, v) in self.__dict__.items():\n        if isinstance(v, torch.Tensor):\n            setattr(self, k, v.to(*args, **kwargs))\n    return self"
+        ]
+    },
+    {
+        "func_name": "__init__",
+        "original": "def __init__(self, c, h, w):\n    self.d = torch.ones(c * h * w)",
+        "mutated": [
+            "def __init__(self, c, h, w):\n    if False:\n        i = 10\n    self.d = torch.ones(c * h * w)",
+            "def __init__(self, c, h, w):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    self.d = torch.ones(c * h * w)",
+            "def __init__(self, c, h, w):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    self.d = torch.ones(c * h * w)",
+            "def __init__(self, c, h, w):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    self.d = torch.ones(c * h * w)",
+            "def __init__(self, c, h, w):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    self.d = torch.ones(c * h * w)"
+        ]
+    },
+    {
+        "func_name": "U",
+        "original": "def U(self, x):\n    return x.clone()",
+        "mutated": [
+            "def U(self, x):\n    if False:\n        i = 10\n    return x.clone()",
+            "def U(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return x.clone()",
+            "def U(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return x.clone()",
+            "def U(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return x.clone()",
+            "def U(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return x.clone()"
+        ]
+    },
+    {
+        "func_name": "Ut",
+        "original": "def Ut(self, x):\n    return x.clone()",
+        "mutated": [
+            "def Ut(self, x):\n    if False:\n        i = 10\n    return x.clone()",
+            "def Ut(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return x.clone()",
+            "def Ut(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return x.clone()",
+            "def Ut(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return x.clone()",
+            "def Ut(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return x.clone()"
+        ]
+    },
+    {
+        "func_name": "V",
+        "original": "def V(self, x):\n    return x.clone()",
+        "mutated": [
+            "def V(self, x):\n    if False:\n        i = 10\n    return x.clone()",
+            "def V(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return x.clone()",
+            "def V(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return x.clone()",
+            "def V(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return x.clone()",
+            "def V(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return x.clone()"
+        ]
+    },
+    {
+        "func_name": "Vt",
+        "original": "def Vt(self, x):\n    return x.clone()",
+        "mutated": [
+            "def Vt(self, x):\n    if False:\n        i = 10\n    return x.clone()",
+            "def Vt(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return x.clone()",
+            "def Vt(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return x.clone()",
+            "def Vt(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return x.clone()",
+            "def Vt(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return x.clone()"
+        ]
+    },
+    {
+        "func_name": "H",
+        "original": "def H(self, x):\n    return x.clone()",
+        "mutated": [
+            "def H(self, x):\n    if False:\n        i = 10\n    return x.clone()",
+            "def H(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return x.clone()",
+            "def H(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return x.clone()",
+            "def H(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return x.clone()",
+            "def H(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return x.clone()"
+        ]
+    },
+    {
+        "func_name": "Ht",
+        "original": "def Ht(self, x):\n    return x.clone()",
+        "mutated": [
+            "def Ht(self, x):\n    if False:\n        i = 10\n    return x.clone()",
+            "def Ht(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return x.clone()",
+            "def Ht(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return x.clone()",
+            "def Ht(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return x.clone()",
+            "def Ht(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return x.clone()"
+        ]
+    },
+    {
+        "func_name": "Hinv",
+        "original": "def Hinv(self, x):\n    return x.clone()",
+        "mutated": [
+            "def Hinv(self, x):\n    if False:\n        i = 10\n    return x.clone()",
+            "def Hinv(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return x.clone()",
+            "def Hinv(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return x.clone()",
+            "def Hinv(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return x.clone()",
+            "def Hinv(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return x.clone()"
+        ]
+    },
+    {
+        "func_name": "_pad",
+        "original": "def _pad(self, x):\n    return x.clone()",
+        "mutated": [
+            "def _pad(self, x):\n    if False:\n        i = 10\n    return x.clone()",
+            "def _pad(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return x.clone()",
+            "def _pad(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return x.clone()",
+            "def _pad(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return x.clone()",
+            "def _pad(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return x.clone()"
+        ]
+    },
+    {
+        "func_name": "__init__",
+        "original": "def __init__(self, c, h, w):\n    self.num_entries = c * h * w\n    self.d = torch.ones(self.num_entries)",
+        "mutated": [
+            "def __init__(self, c, h, w):\n    if False:\n        i = 10\n    self.num_entries = c * h * w\n    self.d = torch.ones(self.num_entries)",
+            "def __init__(self, c, h, w):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    self.num_entries = c * h * w\n    self.d = torch.ones(self.num_entries)",
+            "def __init__(self, c, h, w):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    self.num_entries = c * h * w\n    self.d = torch.ones(self.num_entries)",
+            "def __init__(self, c, h, w):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    self.num_entries = c * h * w\n    self.d = torch.ones(self.num_entries)",
+            "def __init__(self, c, h, w):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    self.num_entries = c * h * w\n    self.d = torch.ones(self.num_entries)"
+        ]
+    },
+    {
+        "func_name": "U",
+        "original": "def U(self, x):\n    return x.clone()",
+        "mutated": [
+            "def U(self, x):\n    if False:\n        i = 10\n    return x.clone()",
+            "def U(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return x.clone()",
+            "def U(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return x.clone()",
+            "def U(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return x.clone()",
+            "def U(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return x.clone()"
+        ]
+    },
+    {
+        "func_name": "Ut",
+        "original": "def Ut(self, x):\n    return x.clone()",
+        "mutated": [
+            "def Ut(self, x):\n    if False:\n        i = 10\n    return x.clone()",
+            "def Ut(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return x.clone()",
+            "def Ut(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return x.clone()",
+            "def Ut(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return x.clone()",
+            "def Ut(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return x.clone()"
+        ]
+    },
+    {
+        "func_name": "V",
+        "original": "def V(self, x):\n    return x.clone()",
+        "mutated": [
+            "def V(self, x):\n    if False:\n        i = 10\n    return x.clone()",
+            "def V(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return x.clone()",
+            "def V(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return x.clone()",
+            "def V(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return x.clone()",
+            "def V(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return x.clone()"
+        ]
+    },
+    {
+        "func_name": "Vt",
+        "original": "def Vt(self, x):\n    return x.clone()",
+        "mutated": [
+            "def Vt(self, x):\n    if False:\n        i = 10\n    return x.clone()",
+            "def Vt(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return x.clone()",
+            "def Vt(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return x.clone()",
+            "def Vt(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return x.clone()",
+            "def Vt(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return x.clone()"
+        ]
+    },
+    {
+        "func_name": "_pad",
+        "original": "def _pad(self, x):\n    return x.clone()",
+        "mutated": [
+            "def _pad(self, x):\n    if False:\n        i = 10\n    return x.clone()",
+            "def _pad(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return x.clone()",
+            "def _pad(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return x.clone()",
+            "def _pad(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return x.clone()",
+            "def _pad(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return x.clone()"
+        ]
+    },
+    {
+        "func_name": "__init__",
+        "original": "def __init__(self, c, h, w):\n    self.color_dim = c\n    self.num_pixels = h * w\n    (self.u, self.d, self.v) = torch.svd(torch.ones(1, c) / c, some=False)\n    self.vt = self.v.t()",
+        "mutated": [
+            "def __init__(self, c, h, w):\n    if False:\n        i = 10\n    self.color_dim = c\n    self.num_pixels = h * w\n    (self.u, self.d, self.v) = torch.svd(torch.ones(1, c) / c, some=False)\n    self.vt = self.v.t()",
+            "def __init__(self, c, h, w):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    self.color_dim = c\n    self.num_pixels = h * w\n    (self.u, self.d, self.v) = torch.svd(torch.ones(1, c) / c, some=False)\n    self.vt = self.v.t()",
+            "def __init__(self, c, h, w):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    self.color_dim = c\n    self.num_pixels = h * w\n    (self.u, self.d, self.v) = torch.svd(torch.ones(1, c) / c, some=False)\n    self.vt = self.v.t()",
+            "def __init__(self, c, h, w):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    self.color_dim = c\n    self.num_pixels = h * w\n    (self.u, self.d, self.v) = torch.svd(torch.ones(1, c) / c, some=False)\n    self.vt = self.v.t()",
+            "def __init__(self, c, h, w):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    self.color_dim = c\n    self.num_pixels = h * w\n    (self.u, self.d, self.v) = torch.svd(torch.ones(1, c) / c, some=False)\n    self.vt = self.v.t()"
+        ]
+    },
+    {
+        "func_name": "U",
+        "original": "def U(self, x):\n    return self.u[0, 0] * x",
+        "mutated": [
+            "def U(self, x):\n    if False:\n        i = 10\n    return self.u[0, 0] * x",
+            "def U(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return self.u[0, 0] * x",
+            "def U(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return self.u[0, 0] * x",
+            "def U(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return self.u[0, 0] * x",
+            "def U(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return self.u[0, 0] * x"
+        ]
+    },
+    {
+        "func_name": "Ut",
+        "original": "def Ut(self, x):\n    return self.u[0, 0] * x",
+        "mutated": [
+            "def Ut(self, x):\n    if False:\n        i = 10\n    return self.u[0, 0] * x",
+            "def Ut(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return self.u[0, 0] * x",
+            "def Ut(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return self.u[0, 0] * x",
+            "def Ut(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return self.u[0, 0] * x",
+            "def Ut(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return self.u[0, 0] * x"
+        ]
+    },
+    {
+        "func_name": "V",
+        "original": "def V(self, x):\n    return torch.einsum('ij,bjn->bin', self.v, x.view(x.size(0), self.color_dim, self.num_pixels)).flatten(1)",
+        "mutated": [
+            "def V(self, x):\n    if False:\n        i = 10\n    return torch.einsum('ij,bjn->bin', self.v, x.view(x.size(0), self.color_dim, self.num_pixels)).flatten(1)",
+            "def V(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return torch.einsum('ij,bjn->bin', self.v, x.view(x.size(0), self.color_dim, self.num_pixels)).flatten(1)",
+            "def V(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return torch.einsum('ij,bjn->bin', self.v, x.view(x.size(0), self.color_dim, self.num_pixels)).flatten(1)",
+            "def V(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return torch.einsum('ij,bjn->bin', self.v, x.view(x.size(0), self.color_dim, self.num_pixels)).flatten(1)",
+            "def V(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return torch.einsum('ij,bjn->bin', self.v, x.view(x.size(0), self.color_dim, self.num_pixels)).flatten(1)"
+        ]
+    },
+    {
+        "func_name": "Vt",
+        "original": "def Vt(self, x):\n    return torch.einsum('ij,bjn->bin', self.vt, x.view(x.size(0), self.color_dim, self.num_pixels)).flatten(1)",
+        "mutated": [
+            "def Vt(self, x):\n    if False:\n        i = 10\n    return torch.einsum('ij,bjn->bin', self.vt, x.view(x.size(0), self.color_dim, self.num_pixels)).flatten(1)",
+            "def Vt(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return torch.einsum('ij,bjn->bin', self.vt, x.view(x.size(0), self.color_dim, self.num_pixels)).flatten(1)",
+            "def Vt(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return torch.einsum('ij,bjn->bin', self.vt, x.view(x.size(0), self.color_dim, self.num_pixels)).flatten(1)",
+            "def Vt(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return torch.einsum('ij,bjn->bin', self.vt, x.view(x.size(0), self.color_dim, self.num_pixels)).flatten(1)",
+            "def Vt(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return torch.einsum('ij,bjn->bin', self.vt, x.view(x.size(0), self.color_dim, self.num_pixels)).flatten(1)"
+        ]
+    },
+    {
+        "func_name": "D",
+        "original": "@property\ndef D(self):\n    return self.d.repeat(self.num_pixels)",
+        "mutated": [
+            "@property\ndef D(self):\n    if False:\n        i = 10\n    return self.d.repeat(self.num_pixels)",
+            "@property\ndef D(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return self.d.repeat(self.num_pixels)",
+            "@property\ndef D(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return self.d.repeat(self.num_pixels)",
+            "@property\ndef D(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return self.d.repeat(self.num_pixels)",
+            "@property\ndef D(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return self.d.repeat(self.num_pixels)"
+        ]
+    },
+    {
+        "func_name": "_pad",
+        "original": "def _pad(self, x):\n    o = x.new_zeros(x.size(0), self.color_dim * self.num_pixels)\n    o[:, :self.num_pixels] = x\n    return o",
+        "mutated": [
+            "def _pad(self, x):\n    if False:\n        i = 10\n    o = x.new_zeros(x.size(0), self.color_dim * self.num_pixels)\n    o[:, :self.num_pixels] = x\n    return o",
+            "def _pad(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    o = x.new_zeros(x.size(0), self.color_dim * self.num_pixels)\n    o[:, :self.num_pixels] = x\n    return o",
+            "def _pad(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    o = x.new_zeros(x.size(0), self.color_dim * self.num_pixels)\n    o[:, :self.num_pixels] = x\n    return o",
+            "def _pad(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    o = x.new_zeros(x.size(0), self.color_dim * self.num_pixels)\n    o[:, :self.num_pixels] = x\n    return o",
+            "def _pad(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    o = x.new_zeros(x.size(0), self.color_dim * self.num_pixels)\n    o[:, :self.num_pixels] = x\n    return o"
+        ]
+    }
+]

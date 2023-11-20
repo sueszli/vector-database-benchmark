@@ -1,0 +1,145 @@
+[
+    {
+        "func_name": "invoker",
+        "original": "def invoker(f, *args, **kwargs):\n    f(*args, **kwargs)",
+        "mutated": [
+            "def invoker(f, *args, **kwargs):\n    if False:\n        i = 10\n    f(*args, **kwargs)",
+            "def invoker(f, *args, **kwargs):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    f(*args, **kwargs)",
+            "def invoker(f, *args, **kwargs):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    f(*args, **kwargs)",
+            "def invoker(f, *args, **kwargs):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    f(*args, **kwargs)",
+            "def invoker(f, *args, **kwargs):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    f(*args, **kwargs)"
+        ]
+    },
+    {
+        "func_name": "cached_eval",
+        "original": "@lru_cache\ndef cached_eval(s: str) -> None:\n    eval(s)",
+        "mutated": [
+            "@lru_cache\ndef cached_eval(s: str) -> None:\n    if False:\n        i = 10\n    eval(s)",
+            "@lru_cache\ndef cached_eval(s: str) -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    eval(s)",
+            "@lru_cache\ndef cached_eval(s: str) -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    eval(s)",
+            "@lru_cache\ndef cached_eval(s: str) -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    eval(s)",
+            "@lru_cache\ndef cached_eval(s: str) -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    eval(s)"
+        ]
+    },
+    {
+        "func_name": "test_cached_eval",
+        "original": "def test_cached_eval(request: HttpRequest):\n    cached_eval(request.GET['bad'])",
+        "mutated": [
+            "def test_cached_eval(request: HttpRequest):\n    if False:\n        i = 10\n    cached_eval(request.GET['bad'])",
+            "def test_cached_eval(request: HttpRequest):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    cached_eval(request.GET['bad'])",
+            "def test_cached_eval(request: HttpRequest):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    cached_eval(request.GET['bad'])",
+            "def test_cached_eval(request: HttpRequest):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    cached_eval(request.GET['bad'])",
+            "def test_cached_eval(request: HttpRequest):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    cached_eval(request.GET['bad'])"
+        ]
+    },
+    {
+        "func_name": "inner",
+        "original": "@lru_cache\ndef inner(s: str) -> None:\n    eval(s)",
+        "mutated": [
+            "@lru_cache\ndef inner(s: str) -> None:\n    if False:\n        i = 10\n    eval(s)",
+            "@lru_cache\ndef inner(s: str) -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    eval(s)",
+            "@lru_cache\ndef inner(s: str) -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    eval(s)",
+            "@lru_cache\ndef inner(s: str) -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    eval(s)",
+            "@lru_cache\ndef inner(s: str) -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    eval(s)"
+        ]
+    },
+    {
+        "func_name": "test_cached_eval_inner",
+        "original": "def test_cached_eval_inner(request: HttpRequest):\n\n    @lru_cache\n    def inner(s: str) -> None:\n        eval(s)\n    inner(request.GET['bad'])",
+        "mutated": [
+            "def test_cached_eval_inner(request: HttpRequest):\n    if False:\n        i = 10\n\n    @lru_cache\n    def inner(s: str) -> None:\n        eval(s)\n    inner(request.GET['bad'])",
+            "def test_cached_eval_inner(request: HttpRequest):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n\n    @lru_cache\n    def inner(s: str) -> None:\n        eval(s)\n    inner(request.GET['bad'])",
+            "def test_cached_eval_inner(request: HttpRequest):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n    @lru_cache\n    def inner(s: str) -> None:\n        eval(s)\n    inner(request.GET['bad'])",
+            "def test_cached_eval_inner(request: HttpRequest):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n\n    @lru_cache\n    def inner(s: str) -> None:\n        eval(s)\n    inner(request.GET['bad'])",
+            "def test_cached_eval_inner(request: HttpRequest):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n\n    @lru_cache\n    def inner(s: str) -> None:\n        eval(s)\n    inner(request.GET['bad'])"
+        ]
+    },
+    {
+        "func_name": "inner",
+        "original": "@lru_cache\ndef inner(s: str) -> None:\n    eval(s)",
+        "mutated": [
+            "@lru_cache\ndef inner(s: str) -> None:\n    if False:\n        i = 10\n    eval(s)",
+            "@lru_cache\ndef inner(s: str) -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    eval(s)",
+            "@lru_cache\ndef inner(s: str) -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    eval(s)",
+            "@lru_cache\ndef inner(s: str) -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    eval(s)",
+            "@lru_cache\ndef inner(s: str) -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    eval(s)"
+        ]
+    },
+    {
+        "func_name": "test_cached_eval_higher_order_function",
+        "original": "def test_cached_eval_higher_order_function(request: HttpRequest):\n\n    @lru_cache\n    def inner(s: str) -> None:\n        eval(s)\n    invoker(inner, request.GET['bad'])",
+        "mutated": [
+            "def test_cached_eval_higher_order_function(request: HttpRequest):\n    if False:\n        i = 10\n\n    @lru_cache\n    def inner(s: str) -> None:\n        eval(s)\n    invoker(inner, request.GET['bad'])",
+            "def test_cached_eval_higher_order_function(request: HttpRequest):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n\n    @lru_cache\n    def inner(s: str) -> None:\n        eval(s)\n    invoker(inner, request.GET['bad'])",
+            "def test_cached_eval_higher_order_function(request: HttpRequest):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n    @lru_cache\n    def inner(s: str) -> None:\n        eval(s)\n    invoker(inner, request.GET['bad'])",
+            "def test_cached_eval_higher_order_function(request: HttpRequest):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n\n    @lru_cache\n    def inner(s: str) -> None:\n        eval(s)\n    invoker(inner, request.GET['bad'])",
+            "def test_cached_eval_higher_order_function(request: HttpRequest):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n\n    @lru_cache\n    def inner(s: str) -> None:\n        eval(s)\n    invoker(inner, request.GET['bad'])"
+        ]
+    },
+    {
+        "func_name": "cached_eval_with_maxsize",
+        "original": "@lru_cache(maxsize=10)\ndef cached_eval_with_maxsize(s: str) -> None:\n    eval(s)",
+        "mutated": [
+            "@lru_cache(maxsize=10)\ndef cached_eval_with_maxsize(s: str) -> None:\n    if False:\n        i = 10\n    eval(s)",
+            "@lru_cache(maxsize=10)\ndef cached_eval_with_maxsize(s: str) -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    eval(s)",
+            "@lru_cache(maxsize=10)\ndef cached_eval_with_maxsize(s: str) -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    eval(s)",
+            "@lru_cache(maxsize=10)\ndef cached_eval_with_maxsize(s: str) -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    eval(s)",
+            "@lru_cache(maxsize=10)\ndef cached_eval_with_maxsize(s: str) -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    eval(s)"
+        ]
+    },
+    {
+        "func_name": "test_cached_eval_with_maxsize",
+        "original": "def test_cached_eval_with_maxsize(request: HttpRequest):\n    cached_eval_with_maxsize(request.GET['bad'])",
+        "mutated": [
+            "def test_cached_eval_with_maxsize(request: HttpRequest):\n    if False:\n        i = 10\n    cached_eval_with_maxsize(request.GET['bad'])",
+            "def test_cached_eval_with_maxsize(request: HttpRequest):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    cached_eval_with_maxsize(request.GET['bad'])",
+            "def test_cached_eval_with_maxsize(request: HttpRequest):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    cached_eval_with_maxsize(request.GET['bad'])",
+            "def test_cached_eval_with_maxsize(request: HttpRequest):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    cached_eval_with_maxsize(request.GET['bad'])",
+            "def test_cached_eval_with_maxsize(request: HttpRequest):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    cached_eval_with_maxsize(request.GET['bad'])"
+        ]
+    },
+    {
+        "func_name": "cached_sanitizer",
+        "original": "@lru_cache\ndef cached_sanitizer(x):\n    return x",
+        "mutated": [
+            "@lru_cache\ndef cached_sanitizer(x):\n    if False:\n        i = 10\n    return x",
+            "@lru_cache\ndef cached_sanitizer(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return x",
+            "@lru_cache\ndef cached_sanitizer(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return x",
+            "@lru_cache\ndef cached_sanitizer(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return x",
+            "@lru_cache\ndef cached_sanitizer(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return x"
+        ]
+    },
+    {
+        "func_name": "test_cached_sanitizer",
+        "original": "def test_cached_sanitizer(request: HttpRequest) -> None:\n    sanitized = cached_sanitizer(request.GET['bad'])\n    eval(sanitized)",
+        "mutated": [
+            "def test_cached_sanitizer(request: HttpRequest) -> None:\n    if False:\n        i = 10\n    sanitized = cached_sanitizer(request.GET['bad'])\n    eval(sanitized)",
+            "def test_cached_sanitizer(request: HttpRequest) -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    sanitized = cached_sanitizer(request.GET['bad'])\n    eval(sanitized)",
+            "def test_cached_sanitizer(request: HttpRequest) -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    sanitized = cached_sanitizer(request.GET['bad'])\n    eval(sanitized)",
+            "def test_cached_sanitizer(request: HttpRequest) -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    sanitized = cached_sanitizer(request.GET['bad'])\n    eval(sanitized)",
+            "def test_cached_sanitizer(request: HttpRequest) -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    sanitized = cached_sanitizer(request.GET['bad'])\n    eval(sanitized)"
+        ]
+    },
+    {
+        "func_name": "wrapper",
+        "original": "@wraps(f)\ndef wrapper():\n    return f(request.GET['bad'])",
+        "mutated": [
+            "@wraps(f)\ndef wrapper():\n    if False:\n        i = 10\n    return f(request.GET['bad'])",
+            "@wraps(f)\ndef wrapper():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return f(request.GET['bad'])",
+            "@wraps(f)\ndef wrapper():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return f(request.GET['bad'])",
+            "@wraps(f)\ndef wrapper():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return f(request.GET['bad'])",
+            "@wraps(f)\ndef wrapper():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return f(request.GET['bad'])"
+        ]
+    },
+    {
+        "func_name": "test_wraps",
+        "original": "def test_wraps(f, request: HttpRequest):\n\n    @wraps(f)\n    def wrapper():\n        return f(request.GET['bad'])\n    eval(wrapper())",
+        "mutated": [
+            "def test_wraps(f, request: HttpRequest):\n    if False:\n        i = 10\n\n    @wraps(f)\n    def wrapper():\n        return f(request.GET['bad'])\n    eval(wrapper())",
+            "def test_wraps(f, request: HttpRequest):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n\n    @wraps(f)\n    def wrapper():\n        return f(request.GET['bad'])\n    eval(wrapper())",
+            "def test_wraps(f, request: HttpRequest):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n    @wraps(f)\n    def wrapper():\n        return f(request.GET['bad'])\n    eval(wrapper())",
+            "def test_wraps(f, request: HttpRequest):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n\n    @wraps(f)\n    def wrapper():\n        return f(request.GET['bad'])\n    eval(wrapper())",
+            "def test_wraps(f, request: HttpRequest):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n\n    @wraps(f)\n    def wrapper():\n        return f(request.GET['bad'])\n    eval(wrapper())"
+        ]
+    }
+]

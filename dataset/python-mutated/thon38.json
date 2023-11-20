@@ -1,0 +1,68 @@
+[
+    {
+        "func_name": "starred_return",
+        "original": "def starred_return():\n    my_list = ['value2', 'value3']\n    return ('value1', *my_list)",
+        "mutated": [
+            "def starred_return():\n    if False:\n        i = 10\n    my_list = ['value2', 'value3']\n    return ('value1', *my_list)",
+            "def starred_return():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    my_list = ['value2', 'value3']\n    return ('value1', *my_list)",
+            "def starred_return():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    my_list = ['value2', 'value3']\n    return ('value1', *my_list)",
+            "def starred_return():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    my_list = ['value2', 'value3']\n    return ('value1', *my_list)",
+            "def starred_return():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    my_list = ['value2', 'value3']\n    return ('value1', *my_list)"
+        ]
+    },
+    {
+        "func_name": "starred_yield",
+        "original": "def starred_yield():\n    my_list = ['value2', 'value3']\n    yield ('value1', *my_list)",
+        "mutated": [
+            "def starred_yield():\n    if False:\n        i = 10\n    my_list = ['value2', 'value3']\n    yield ('value1', *my_list)",
+            "def starred_yield():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    my_list = ['value2', 'value3']\n    yield ('value1', *my_list)",
+            "def starred_yield():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    my_list = ['value2', 'value3']\n    yield ('value1', *my_list)",
+            "def starred_yield():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    my_list = ['value2', 'value3']\n    yield ('value1', *my_list)",
+            "def starred_yield():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    my_list = ['value2', 'value3']\n    yield ('value1', *my_list)"
+        ]
+    },
+    {
+        "func_name": "t",
+        "original": "def t():\n    a: str = (yield 'a')",
+        "mutated": [
+            "def t():\n    if False:\n        i = 10\n    a: str = (yield 'a')",
+            "def t():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    a: str = (yield 'a')",
+            "def t():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    a: str = (yield 'a')",
+            "def t():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    a: str = (yield 'a')",
+            "def t():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    a: str = (yield 'a')"
+        ]
+    },
+    {
+        "func_name": "starred_return",
+        "original": "def starred_return():\n    my_list = ['value2', 'value3']\n    return ('value1', *my_list)",
+        "mutated": [
+            "def starred_return():\n    if False:\n        i = 10\n    my_list = ['value2', 'value3']\n    return ('value1', *my_list)",
+            "def starred_return():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    my_list = ['value2', 'value3']\n    return ('value1', *my_list)",
+            "def starred_return():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    my_list = ['value2', 'value3']\n    return ('value1', *my_list)",
+            "def starred_return():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    my_list = ['value2', 'value3']\n    return ('value1', *my_list)",
+            "def starred_return():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    my_list = ['value2', 'value3']\n    return ('value1', *my_list)"
+        ]
+    },
+    {
+        "func_name": "starred_yield",
+        "original": "def starred_yield():\n    my_list = ['value2', 'value3']\n    yield ('value1', *my_list)",
+        "mutated": [
+            "def starred_yield():\n    if False:\n        i = 10\n    my_list = ['value2', 'value3']\n    yield ('value1', *my_list)",
+            "def starred_yield():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    my_list = ['value2', 'value3']\n    yield ('value1', *my_list)",
+            "def starred_yield():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    my_list = ['value2', 'value3']\n    yield ('value1', *my_list)",
+            "def starred_yield():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    my_list = ['value2', 'value3']\n    yield ('value1', *my_list)",
+            "def starred_yield():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    my_list = ['value2', 'value3']\n    yield ('value1', *my_list)"
+        ]
+    },
+    {
+        "func_name": "t",
+        "original": "def t():\n    a: str = (yield 'a')",
+        "mutated": [
+            "def t():\n    if False:\n        i = 10\n    a: str = (yield 'a')",
+            "def t():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    a: str = (yield 'a')",
+            "def t():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    a: str = (yield 'a')",
+            "def t():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    a: str = (yield 'a')",
+            "def t():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    a: str = (yield 'a')"
+        ]
+    }
+]

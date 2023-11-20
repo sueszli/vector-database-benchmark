@@ -1,0 +1,68 @@
+[
+    {
+        "func_name": "write_and_flush",
+        "original": "def write_and_flush(*args):\n    for arg in args:\n        sys.stdout.write(arg)\n    sys.stdout.flush()",
+        "mutated": [
+            "def write_and_flush(*args):\n    if False:\n        i = 10\n    for arg in args:\n        sys.stdout.write(arg)\n    sys.stdout.flush()",
+            "def write_and_flush(*args):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    for arg in args:\n        sys.stdout.write(arg)\n    sys.stdout.flush()",
+            "def write_and_flush(*args):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    for arg in args:\n        sys.stdout.write(arg)\n    sys.stdout.flush()",
+            "def write_and_flush(*args):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    for arg in args:\n        sys.stdout.write(arg)\n    sys.stdout.flush()",
+            "def write_and_flush(*args):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    for arg in args:\n        sys.stdout.write(arg)\n    sys.stdout.flush()"
+        ]
+    },
+    {
+        "func_name": "__init__",
+        "original": "def __init__(self, count):\n    (self.count, self.progress) = (count, 0)",
+        "mutated": [
+            "def __init__(self, count):\n    if False:\n        i = 10\n    (self.count, self.progress) = (count, 0)",
+            "def __init__(self, count):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    (self.count, self.progress) = (count, 0)",
+            "def __init__(self, count):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    (self.count, self.progress) = (count, 0)",
+            "def __init__(self, count):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    (self.count, self.progress) = (count, 0)",
+            "def __init__(self, count):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    (self.count, self.progress) = (count, 0)"
+        ]
+    },
+    {
+        "func_name": "show",
+        "original": "def show(self, n=1):\n    self.progress += n\n    text = 'Completed {}/{} tasks'.format(self.progress, self.count)\n    write_and_flush('\\x08' * 80, '\\r', text)",
+        "mutated": [
+            "def show(self, n=1):\n    if False:\n        i = 10\n    self.progress += n\n    text = 'Completed {}/{} tasks'.format(self.progress, self.count)\n    write_and_flush('\\x08' * 80, '\\r', text)",
+            "def show(self, n=1):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    self.progress += n\n    text = 'Completed {}/{} tasks'.format(self.progress, self.count)\n    write_and_flush('\\x08' * 80, '\\r', text)",
+            "def show(self, n=1):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    self.progress += n\n    text = 'Completed {}/{} tasks'.format(self.progress, self.count)\n    write_and_flush('\\x08' * 80, '\\r', text)",
+            "def show(self, n=1):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    self.progress += n\n    text = 'Completed {}/{} tasks'.format(self.progress, self.count)\n    write_and_flush('\\x08' * 80, '\\r', text)",
+            "def show(self, n=1):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    self.progress += n\n    text = 'Completed {}/{} tasks'.format(self.progress, self.count)\n    write_and_flush('\\x08' * 80, '\\r', text)"
+        ]
+    },
+    {
+        "func_name": "done",
+        "original": "def done(self):\n    write_and_flush('\\n')",
+        "mutated": [
+            "def done(self):\n    if False:\n        i = 10\n    write_and_flush('\\n')",
+            "def done(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    write_and_flush('\\n')",
+            "def done(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    write_and_flush('\\n')",
+            "def done(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    write_and_flush('\\n')",
+            "def done(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    write_and_flush('\\n')"
+        ]
+    },
+    {
+        "func_name": "progress",
+        "original": "def progress(items):\n    p = ProgressMonitor(len(items))\n    for item in items:\n        yield item\n        p.show()\n    p.done()",
+        "mutated": [
+            "def progress(items):\n    if False:\n        i = 10\n    p = ProgressMonitor(len(items))\n    for item in items:\n        yield item\n        p.show()\n    p.done()",
+            "def progress(items):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    p = ProgressMonitor(len(items))\n    for item in items:\n        yield item\n        p.show()\n    p.done()",
+            "def progress(items):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    p = ProgressMonitor(len(items))\n    for item in items:\n        yield item\n        p.show()\n    p.done()",
+            "def progress(items):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    p = ProgressMonitor(len(items))\n    for item in items:\n        yield item\n        p.show()\n    p.done()",
+            "def progress(items):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    p = ProgressMonitor(len(items))\n    for item in items:\n        yield item\n        p.show()\n    p.done()"
+        ]
+    },
+    {
+        "func_name": "main",
+        "original": "@ex.main\ndef main():\n    for item in progress(range(100)):\n        time.sleep(0.05)",
+        "mutated": [
+            "@ex.main\ndef main():\n    if False:\n        i = 10\n    for item in progress(range(100)):\n        time.sleep(0.05)",
+            "@ex.main\ndef main():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    for item in progress(range(100)):\n        time.sleep(0.05)",
+            "@ex.main\ndef main():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    for item in progress(range(100)):\n        time.sleep(0.05)",
+            "@ex.main\ndef main():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    for item in progress(range(100)):\n        time.sleep(0.05)",
+            "@ex.main\ndef main():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    for item in progress(range(100)):\n        time.sleep(0.05)"
+        ]
+    }
+]

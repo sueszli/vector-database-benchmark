@@ -1,0 +1,57 @@
+[
+    {
+        "func_name": "__init__",
+        "original": "def __init__(self, start: int, end: int):\n    self.start = start\n    self.end = end",
+        "mutated": [
+            "def __init__(self, start: int, end: int):\n    if False:\n        i = 10\n    self.start = start\n    self.end = end",
+            "def __init__(self, start: int, end: int):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    self.start = start\n    self.end = end",
+            "def __init__(self, start: int, end: int):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    self.start = start\n    self.end = end",
+            "def __init__(self, start: int, end: int):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    self.start = start\n    self.end = end",
+            "def __init__(self, start: int, end: int):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    self.start = start\n    self.end = end"
+        ]
+    },
+    {
+        "func_name": "length",
+        "original": "@hybrid_property\ndef length(self) -> int:\n    return self.end - self.start",
+        "mutated": [
+            "@hybrid_property\ndef length(self) -> int:\n    if False:\n        i = 10\n    return self.end - self.start",
+            "@hybrid_property\ndef length(self) -> int:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return self.end - self.start",
+            "@hybrid_property\ndef length(self) -> int:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return self.end - self.start",
+            "@hybrid_property\ndef length(self) -> int:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return self.end - self.start",
+            "@hybrid_property\ndef length(self) -> int:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return self.end - self.start"
+        ]
+    },
+    {
+        "func_name": "contains",
+        "original": "@hybrid_method\ndef contains(self, point: int) -> int:\n    return (self.start <= point) & (point <= self.end)",
+        "mutated": [
+            "@hybrid_method\ndef contains(self, point: int) -> int:\n    if False:\n        i = 10\n    return (self.start <= point) & (point <= self.end)",
+            "@hybrid_method\ndef contains(self, point: int) -> int:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return (self.start <= point) & (point <= self.end)",
+            "@hybrid_method\ndef contains(self, point: int) -> int:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return (self.start <= point) & (point <= self.end)",
+            "@hybrid_method\ndef contains(self, point: int) -> int:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return (self.start <= point) & (point <= self.end)",
+            "@hybrid_method\ndef contains(self, point: int) -> int:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return (self.start <= point) & (point <= self.end)"
+        ]
+    },
+    {
+        "func_name": "intersects",
+        "original": "@hybrid_method\ndef intersects(self, other: Interval) -> int:\n    return self.contains(other.start) | self.contains(other.end)",
+        "mutated": [
+            "@hybrid_method\ndef intersects(self, other: Interval) -> int:\n    if False:\n        i = 10\n    return self.contains(other.start) | self.contains(other.end)",
+            "@hybrid_method\ndef intersects(self, other: Interval) -> int:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return self.contains(other.start) | self.contains(other.end)",
+            "@hybrid_method\ndef intersects(self, other: Interval) -> int:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return self.contains(other.start) | self.contains(other.end)",
+            "@hybrid_method\ndef intersects(self, other: Interval) -> int:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return self.contains(other.start) | self.contains(other.end)",
+            "@hybrid_method\ndef intersects(self, other: Interval) -> int:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return self.contains(other.start) | self.contains(other.end)"
+        ]
+    },
+    {
+        "func_name": "fancy_thing",
+        "original": "@hybrid_method\ndef fancy_thing(self, point: int, x: int, y: int) -> bool:\n    return (self.start <= point) & (point <= self.end)",
+        "mutated": [
+            "@hybrid_method\ndef fancy_thing(self, point: int, x: int, y: int) -> bool:\n    if False:\n        i = 10\n    return (self.start <= point) & (point <= self.end)",
+            "@hybrid_method\ndef fancy_thing(self, point: int, x: int, y: int) -> bool:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return (self.start <= point) & (point <= self.end)",
+            "@hybrid_method\ndef fancy_thing(self, point: int, x: int, y: int) -> bool:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return (self.start <= point) & (point <= self.end)",
+            "@hybrid_method\ndef fancy_thing(self, point: int, x: int, y: int) -> bool:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return (self.start <= point) & (point <= self.end)",
+            "@hybrid_method\ndef fancy_thing(self, point: int, x: int, y: int) -> bool:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return (self.start <= point) & (point <= self.end)"
+        ]
+    }
+]

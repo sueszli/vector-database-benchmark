@@ -1,0 +1,35 @@
+[
+    {
+        "func_name": "__init__",
+        "original": "def __init__(self, spider):\n    Process.__init__(self)\n    self.runner = CrawlerRunner(get_project_settings())\n    self.spider = spider",
+        "mutated": [
+            "def __init__(self, spider):\n    if False:\n        i = 10\n    Process.__init__(self)\n    self.runner = CrawlerRunner(get_project_settings())\n    self.spider = spider",
+            "def __init__(self, spider):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    Process.__init__(self)\n    self.runner = CrawlerRunner(get_project_settings())\n    self.spider = spider",
+            "def __init__(self, spider):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    Process.__init__(self)\n    self.runner = CrawlerRunner(get_project_settings())\n    self.spider = spider",
+            "def __init__(self, spider):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    Process.__init__(self)\n    self.runner = CrawlerRunner(get_project_settings())\n    self.spider = spider",
+            "def __init__(self, spider):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    Process.__init__(self)\n    self.runner = CrawlerRunner(get_project_settings())\n    self.spider = spider"
+        ]
+    },
+    {
+        "func_name": "run",
+        "original": "def run(self):\n    deferred = self.runner.crawl(self.spider)\n    deferred.addBoth(lambda _: reactor.stop())\n    reactor.run(installSignalHandlers=False)",
+        "mutated": [
+            "def run(self):\n    if False:\n        i = 10\n    deferred = self.runner.crawl(self.spider)\n    deferred.addBoth(lambda _: reactor.stop())\n    reactor.run(installSignalHandlers=False)",
+            "def run(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    deferred = self.runner.crawl(self.spider)\n    deferred.addBoth(lambda _: reactor.stop())\n    reactor.run(installSignalHandlers=False)",
+            "def run(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    deferred = self.runner.crawl(self.spider)\n    deferred.addBoth(lambda _: reactor.stop())\n    reactor.run(installSignalHandlers=False)",
+            "def run(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    deferred = self.runner.crawl(self.spider)\n    deferred.addBoth(lambda _: reactor.stop())\n    reactor.run(installSignalHandlers=False)",
+            "def run(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    deferred = self.runner.crawl(self.spider)\n    deferred.addBoth(lambda _: reactor.stop())\n    reactor.run(installSignalHandlers=False)"
+        ]
+    },
+    {
+        "func_name": "run_spider",
+        "original": "def run_spider(spider):\n    crawler = CrawlerRunnerProcess(spider)\n    crawler.start()\n    crawler.join()",
+        "mutated": [
+            "def run_spider(spider):\n    if False:\n        i = 10\n    crawler = CrawlerRunnerProcess(spider)\n    crawler.start()\n    crawler.join()",
+            "def run_spider(spider):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    crawler = CrawlerRunnerProcess(spider)\n    crawler.start()\n    crawler.join()",
+            "def run_spider(spider):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    crawler = CrawlerRunnerProcess(spider)\n    crawler.start()\n    crawler.join()",
+            "def run_spider(spider):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    crawler = CrawlerRunnerProcess(spider)\n    crawler.start()\n    crawler.join()",
+            "def run_spider(spider):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    crawler = CrawlerRunnerProcess(spider)\n    crawler.start()\n    crawler.join()"
+        ]
+    }
+]

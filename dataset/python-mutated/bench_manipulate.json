@@ -1,0 +1,211 @@
+[
+    {
+        "func_name": "setup",
+        "original": "def setup(self, shape, ndtype):\n    self.xarg = np.random.ranf(shape[0] * shape[1]).reshape(shape)\n    self.xarg = self.xarg.astype(ndtype)\n    if ndtype.startswith('complex'):\n        self.xarg += np.random.ranf(1) * 1j",
+        "mutated": [
+            "def setup(self, shape, ndtype):\n    if False:\n        i = 10\n    self.xarg = np.random.ranf(shape[0] * shape[1]).reshape(shape)\n    self.xarg = self.xarg.astype(ndtype)\n    if ndtype.startswith('complex'):\n        self.xarg += np.random.ranf(1) * 1j",
+            "def setup(self, shape, ndtype):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    self.xarg = np.random.ranf(shape[0] * shape[1]).reshape(shape)\n    self.xarg = self.xarg.astype(ndtype)\n    if ndtype.startswith('complex'):\n        self.xarg += np.random.ranf(1) * 1j",
+            "def setup(self, shape, ndtype):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    self.xarg = np.random.ranf(shape[0] * shape[1]).reshape(shape)\n    self.xarg = self.xarg.astype(ndtype)\n    if ndtype.startswith('complex'):\n        self.xarg += np.random.ranf(1) * 1j",
+            "def setup(self, shape, ndtype):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    self.xarg = np.random.ranf(shape[0] * shape[1]).reshape(shape)\n    self.xarg = self.xarg.astype(ndtype)\n    if ndtype.startswith('complex'):\n        self.xarg += np.random.ranf(1) * 1j",
+            "def setup(self, shape, ndtype):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    self.xarg = np.random.ranf(shape[0] * shape[1]).reshape(shape)\n    self.xarg = self.xarg.astype(ndtype)\n    if ndtype.startswith('complex'):\n        self.xarg += np.random.ranf(1) * 1j"
+        ]
+    },
+    {
+        "func_name": "time_broadcast_arrays",
+        "original": "def time_broadcast_arrays(self, shape, ndtype):\n    np.broadcast_arrays(self.xarg, np.ones(1))",
+        "mutated": [
+            "def time_broadcast_arrays(self, shape, ndtype):\n    if False:\n        i = 10\n    np.broadcast_arrays(self.xarg, np.ones(1))",
+            "def time_broadcast_arrays(self, shape, ndtype):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    np.broadcast_arrays(self.xarg, np.ones(1))",
+            "def time_broadcast_arrays(self, shape, ndtype):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    np.broadcast_arrays(self.xarg, np.ones(1))",
+            "def time_broadcast_arrays(self, shape, ndtype):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    np.broadcast_arrays(self.xarg, np.ones(1))",
+            "def time_broadcast_arrays(self, shape, ndtype):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    np.broadcast_arrays(self.xarg, np.ones(1))"
+        ]
+    },
+    {
+        "func_name": "setup",
+        "original": "def setup(self, size, ndtype):\n    self.rng = np.random.default_rng()\n    self.xarg = self.rng.random(size)\n    self.xarg = self.xarg.astype(ndtype)\n    if ndtype.startswith('complex'):\n        self.xarg += self.rng.random(1) * 1j",
+        "mutated": [
+            "def setup(self, size, ndtype):\n    if False:\n        i = 10\n    self.rng = np.random.default_rng()\n    self.xarg = self.rng.random(size)\n    self.xarg = self.xarg.astype(ndtype)\n    if ndtype.startswith('complex'):\n        self.xarg += self.rng.random(1) * 1j",
+            "def setup(self, size, ndtype):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    self.rng = np.random.default_rng()\n    self.xarg = self.rng.random(size)\n    self.xarg = self.xarg.astype(ndtype)\n    if ndtype.startswith('complex'):\n        self.xarg += self.rng.random(1) * 1j",
+            "def setup(self, size, ndtype):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    self.rng = np.random.default_rng()\n    self.xarg = self.rng.random(size)\n    self.xarg = self.xarg.astype(ndtype)\n    if ndtype.startswith('complex'):\n        self.xarg += self.rng.random(1) * 1j",
+            "def setup(self, size, ndtype):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    self.rng = np.random.default_rng()\n    self.xarg = self.rng.random(size)\n    self.xarg = self.xarg.astype(ndtype)\n    if ndtype.startswith('complex'):\n        self.xarg += self.rng.random(1) * 1j",
+            "def setup(self, size, ndtype):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    self.rng = np.random.default_rng()\n    self.xarg = self.rng.random(size)\n    self.xarg = self.xarg.astype(ndtype)\n    if ndtype.startswith('complex'):\n        self.xarg += self.rng.random(1) * 1j"
+        ]
+    },
+    {
+        "func_name": "time_broadcast_to",
+        "original": "def time_broadcast_to(self, size, ndtype):\n    np.broadcast_to(self.xarg, (size, size))",
+        "mutated": [
+            "def time_broadcast_to(self, size, ndtype):\n    if False:\n        i = 10\n    np.broadcast_to(self.xarg, (size, size))",
+            "def time_broadcast_to(self, size, ndtype):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    np.broadcast_to(self.xarg, (size, size))",
+            "def time_broadcast_to(self, size, ndtype):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    np.broadcast_to(self.xarg, (size, size))",
+            "def time_broadcast_to(self, size, ndtype):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    np.broadcast_to(self.xarg, (size, size))",
+            "def time_broadcast_to(self, size, ndtype):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    np.broadcast_to(self.xarg, (size, size))"
+        ]
+    },
+    {
+        "func_name": "setup",
+        "original": "def setup(self, shape, narrays, ndtype):\n    self.xarg = [np.random.ranf(shape[0] * shape[1]).reshape(shape) for x in range(narrays)]\n    self.xarg = [x.astype(ndtype) for x in self.xarg]\n    if ndtype.startswith('complex'):\n        [x + np.random.ranf(1) * 1j for x in self.xarg]",
+        "mutated": [
+            "def setup(self, shape, narrays, ndtype):\n    if False:\n        i = 10\n    self.xarg = [np.random.ranf(shape[0] * shape[1]).reshape(shape) for x in range(narrays)]\n    self.xarg = [x.astype(ndtype) for x in self.xarg]\n    if ndtype.startswith('complex'):\n        [x + np.random.ranf(1) * 1j for x in self.xarg]",
+            "def setup(self, shape, narrays, ndtype):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    self.xarg = [np.random.ranf(shape[0] * shape[1]).reshape(shape) for x in range(narrays)]\n    self.xarg = [x.astype(ndtype) for x in self.xarg]\n    if ndtype.startswith('complex'):\n        [x + np.random.ranf(1) * 1j for x in self.xarg]",
+            "def setup(self, shape, narrays, ndtype):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    self.xarg = [np.random.ranf(shape[0] * shape[1]).reshape(shape) for x in range(narrays)]\n    self.xarg = [x.astype(ndtype) for x in self.xarg]\n    if ndtype.startswith('complex'):\n        [x + np.random.ranf(1) * 1j for x in self.xarg]",
+            "def setup(self, shape, narrays, ndtype):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    self.xarg = [np.random.ranf(shape[0] * shape[1]).reshape(shape) for x in range(narrays)]\n    self.xarg = [x.astype(ndtype) for x in self.xarg]\n    if ndtype.startswith('complex'):\n        [x + np.random.ranf(1) * 1j for x in self.xarg]",
+            "def setup(self, shape, narrays, ndtype):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    self.xarg = [np.random.ranf(shape[0] * shape[1]).reshape(shape) for x in range(narrays)]\n    self.xarg = [x.astype(ndtype) for x in self.xarg]\n    if ndtype.startswith('complex'):\n        [x + np.random.ranf(1) * 1j for x in self.xarg]"
+        ]
+    },
+    {
+        "func_name": "time_concatenate_ax0",
+        "original": "def time_concatenate_ax0(self, size, narrays, ndtype):\n    np.concatenate(self.xarg, axis=0)",
+        "mutated": [
+            "def time_concatenate_ax0(self, size, narrays, ndtype):\n    if False:\n        i = 10\n    np.concatenate(self.xarg, axis=0)",
+            "def time_concatenate_ax0(self, size, narrays, ndtype):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    np.concatenate(self.xarg, axis=0)",
+            "def time_concatenate_ax0(self, size, narrays, ndtype):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    np.concatenate(self.xarg, axis=0)",
+            "def time_concatenate_ax0(self, size, narrays, ndtype):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    np.concatenate(self.xarg, axis=0)",
+            "def time_concatenate_ax0(self, size, narrays, ndtype):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    np.concatenate(self.xarg, axis=0)"
+        ]
+    },
+    {
+        "func_name": "time_concatenate_ax1",
+        "original": "def time_concatenate_ax1(self, size, narrays, ndtype):\n    np.concatenate(self.xarg, axis=1)",
+        "mutated": [
+            "def time_concatenate_ax1(self, size, narrays, ndtype):\n    if False:\n        i = 10\n    np.concatenate(self.xarg, axis=1)",
+            "def time_concatenate_ax1(self, size, narrays, ndtype):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    np.concatenate(self.xarg, axis=1)",
+            "def time_concatenate_ax1(self, size, narrays, ndtype):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    np.concatenate(self.xarg, axis=1)",
+            "def time_concatenate_ax1(self, size, narrays, ndtype):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    np.concatenate(self.xarg, axis=1)",
+            "def time_concatenate_ax1(self, size, narrays, ndtype):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    np.concatenate(self.xarg, axis=1)"
+        ]
+    },
+    {
+        "func_name": "time_stack_ax0",
+        "original": "def time_stack_ax0(self, size, narrays, ndtype):\n    np.stack(self.xarg, axis=0)",
+        "mutated": [
+            "def time_stack_ax0(self, size, narrays, ndtype):\n    if False:\n        i = 10\n    np.stack(self.xarg, axis=0)",
+            "def time_stack_ax0(self, size, narrays, ndtype):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    np.stack(self.xarg, axis=0)",
+            "def time_stack_ax0(self, size, narrays, ndtype):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    np.stack(self.xarg, axis=0)",
+            "def time_stack_ax0(self, size, narrays, ndtype):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    np.stack(self.xarg, axis=0)",
+            "def time_stack_ax0(self, size, narrays, ndtype):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    np.stack(self.xarg, axis=0)"
+        ]
+    },
+    {
+        "func_name": "time_stack_ax1",
+        "original": "def time_stack_ax1(self, size, narrays, ndtype):\n    np.stack(self.xarg, axis=1)",
+        "mutated": [
+            "def time_stack_ax1(self, size, narrays, ndtype):\n    if False:\n        i = 10\n    np.stack(self.xarg, axis=1)",
+            "def time_stack_ax1(self, size, narrays, ndtype):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    np.stack(self.xarg, axis=1)",
+            "def time_stack_ax1(self, size, narrays, ndtype):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    np.stack(self.xarg, axis=1)",
+            "def time_stack_ax1(self, size, narrays, ndtype):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    np.stack(self.xarg, axis=1)",
+            "def time_stack_ax1(self, size, narrays, ndtype):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    np.stack(self.xarg, axis=1)"
+        ]
+    },
+    {
+        "func_name": "setup",
+        "original": "def setup(self, shape):\n    self.xarg = np.ones(shape=shape)\n    self.reshaped = deque(shape)\n    self.reshaped.rotate(1)\n    self.reshaped = tuple(self.reshaped)",
+        "mutated": [
+            "def setup(self, shape):\n    if False:\n        i = 10\n    self.xarg = np.ones(shape=shape)\n    self.reshaped = deque(shape)\n    self.reshaped.rotate(1)\n    self.reshaped = tuple(self.reshaped)",
+            "def setup(self, shape):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    self.xarg = np.ones(shape=shape)\n    self.reshaped = deque(shape)\n    self.reshaped.rotate(1)\n    self.reshaped = tuple(self.reshaped)",
+            "def setup(self, shape):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    self.xarg = np.ones(shape=shape)\n    self.reshaped = deque(shape)\n    self.reshaped.rotate(1)\n    self.reshaped = tuple(self.reshaped)",
+            "def setup(self, shape):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    self.xarg = np.ones(shape=shape)\n    self.reshaped = deque(shape)\n    self.reshaped.rotate(1)\n    self.reshaped = tuple(self.reshaped)",
+            "def setup(self, shape):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    self.xarg = np.ones(shape=shape)\n    self.reshaped = deque(shape)\n    self.reshaped.rotate(1)\n    self.reshaped = tuple(self.reshaped)"
+        ]
+    },
+    {
+        "func_name": "time_expand_dims",
+        "original": "def time_expand_dims(self, shape):\n    np.expand_dims(self.xarg, axis=1)",
+        "mutated": [
+            "def time_expand_dims(self, shape):\n    if False:\n        i = 10\n    np.expand_dims(self.xarg, axis=1)",
+            "def time_expand_dims(self, shape):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    np.expand_dims(self.xarg, axis=1)",
+            "def time_expand_dims(self, shape):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    np.expand_dims(self.xarg, axis=1)",
+            "def time_expand_dims(self, shape):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    np.expand_dims(self.xarg, axis=1)",
+            "def time_expand_dims(self, shape):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    np.expand_dims(self.xarg, axis=1)"
+        ]
+    },
+    {
+        "func_name": "time_expand_dims_neg",
+        "original": "def time_expand_dims_neg(self, shape):\n    np.expand_dims(self.xarg, axis=-1)",
+        "mutated": [
+            "def time_expand_dims_neg(self, shape):\n    if False:\n        i = 10\n    np.expand_dims(self.xarg, axis=-1)",
+            "def time_expand_dims_neg(self, shape):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    np.expand_dims(self.xarg, axis=-1)",
+            "def time_expand_dims_neg(self, shape):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    np.expand_dims(self.xarg, axis=-1)",
+            "def time_expand_dims_neg(self, shape):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    np.expand_dims(self.xarg, axis=-1)",
+            "def time_expand_dims_neg(self, shape):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    np.expand_dims(self.xarg, axis=-1)"
+        ]
+    },
+    {
+        "func_name": "time_squeeze_dims",
+        "original": "def time_squeeze_dims(self, shape):\n    np.squeeze(self.xarg)",
+        "mutated": [
+            "def time_squeeze_dims(self, shape):\n    if False:\n        i = 10\n    np.squeeze(self.xarg)",
+            "def time_squeeze_dims(self, shape):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    np.squeeze(self.xarg)",
+            "def time_squeeze_dims(self, shape):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    np.squeeze(self.xarg)",
+            "def time_squeeze_dims(self, shape):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    np.squeeze(self.xarg)",
+            "def time_squeeze_dims(self, shape):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    np.squeeze(self.xarg)"
+        ]
+    },
+    {
+        "func_name": "time_flip_all",
+        "original": "def time_flip_all(self, shape):\n    np.flip(self.xarg, axis=None)",
+        "mutated": [
+            "def time_flip_all(self, shape):\n    if False:\n        i = 10\n    np.flip(self.xarg, axis=None)",
+            "def time_flip_all(self, shape):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    np.flip(self.xarg, axis=None)",
+            "def time_flip_all(self, shape):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    np.flip(self.xarg, axis=None)",
+            "def time_flip_all(self, shape):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    np.flip(self.xarg, axis=None)",
+            "def time_flip_all(self, shape):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    np.flip(self.xarg, axis=None)"
+        ]
+    },
+    {
+        "func_name": "time_flip_one",
+        "original": "def time_flip_one(self, shape):\n    np.flip(self.xarg, axis=1)",
+        "mutated": [
+            "def time_flip_one(self, shape):\n    if False:\n        i = 10\n    np.flip(self.xarg, axis=1)",
+            "def time_flip_one(self, shape):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    np.flip(self.xarg, axis=1)",
+            "def time_flip_one(self, shape):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    np.flip(self.xarg, axis=1)",
+            "def time_flip_one(self, shape):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    np.flip(self.xarg, axis=1)",
+            "def time_flip_one(self, shape):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    np.flip(self.xarg, axis=1)"
+        ]
+    },
+    {
+        "func_name": "time_flip_neg",
+        "original": "def time_flip_neg(self, shape):\n    np.flip(self.xarg, axis=-1)",
+        "mutated": [
+            "def time_flip_neg(self, shape):\n    if False:\n        i = 10\n    np.flip(self.xarg, axis=-1)",
+            "def time_flip_neg(self, shape):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    np.flip(self.xarg, axis=-1)",
+            "def time_flip_neg(self, shape):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    np.flip(self.xarg, axis=-1)",
+            "def time_flip_neg(self, shape):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    np.flip(self.xarg, axis=-1)",
+            "def time_flip_neg(self, shape):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    np.flip(self.xarg, axis=-1)"
+        ]
+    },
+    {
+        "func_name": "time_moveaxis",
+        "original": "def time_moveaxis(self, shape):\n    np.moveaxis(self.xarg, [0, 1], [-1, -2])",
+        "mutated": [
+            "def time_moveaxis(self, shape):\n    if False:\n        i = 10\n    np.moveaxis(self.xarg, [0, 1], [-1, -2])",
+            "def time_moveaxis(self, shape):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    np.moveaxis(self.xarg, [0, 1], [-1, -2])",
+            "def time_moveaxis(self, shape):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    np.moveaxis(self.xarg, [0, 1], [-1, -2])",
+            "def time_moveaxis(self, shape):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    np.moveaxis(self.xarg, [0, 1], [-1, -2])",
+            "def time_moveaxis(self, shape):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    np.moveaxis(self.xarg, [0, 1], [-1, -2])"
+        ]
+    },
+    {
+        "func_name": "time_roll",
+        "original": "def time_roll(self, shape):\n    np.roll(self.xarg, 3)",
+        "mutated": [
+            "def time_roll(self, shape):\n    if False:\n        i = 10\n    np.roll(self.xarg, 3)",
+            "def time_roll(self, shape):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    np.roll(self.xarg, 3)",
+            "def time_roll(self, shape):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    np.roll(self.xarg, 3)",
+            "def time_roll(self, shape):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    np.roll(self.xarg, 3)",
+            "def time_roll(self, shape):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    np.roll(self.xarg, 3)"
+        ]
+    },
+    {
+        "func_name": "time_reshape",
+        "original": "def time_reshape(self, shape):\n    np.reshape(self.xarg, self.reshaped)",
+        "mutated": [
+            "def time_reshape(self, shape):\n    if False:\n        i = 10\n    np.reshape(self.xarg, self.reshaped)",
+            "def time_reshape(self, shape):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    np.reshape(self.xarg, self.reshaped)",
+            "def time_reshape(self, shape):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    np.reshape(self.xarg, self.reshaped)",
+            "def time_reshape(self, shape):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    np.reshape(self.xarg, self.reshaped)",
+            "def time_reshape(self, shape):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    np.reshape(self.xarg, self.reshaped)"
+        ]
+    }
+]

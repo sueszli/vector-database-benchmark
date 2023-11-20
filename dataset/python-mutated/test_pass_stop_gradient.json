@@ -1,0 +1,68 @@
+[
+    {
+        "func_name": "setUp",
+        "original": "def setUp(self):\n    paddle.enable_static()",
+        "mutated": [
+            "def setUp(self):\n    if False:\n        i = 10\n    paddle.enable_static()",
+            "def setUp(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    paddle.enable_static()",
+            "def setUp(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    paddle.enable_static()",
+            "def setUp(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    paddle.enable_static()",
+            "def setUp(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    paddle.enable_static()"
+        ]
+    },
+    {
+        "func_name": "tearDown",
+        "original": "def tearDown(self):\n    paddle.disable_static()",
+        "mutated": [
+            "def tearDown(self):\n    if False:\n        i = 10\n    paddle.disable_static()",
+            "def tearDown(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    paddle.disable_static()",
+            "def tearDown(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    paddle.disable_static()",
+            "def tearDown(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    paddle.disable_static()",
+            "def tearDown(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    paddle.disable_static()"
+        ]
+    },
+    {
+        "func_name": "create_var",
+        "original": "def create_var(self, stop_gradient):\n    x = paddle.randn([2, 4])\n    x.stop_gradient = stop_gradient\n    return x",
+        "mutated": [
+            "def create_var(self, stop_gradient):\n    if False:\n        i = 10\n    x = paddle.randn([2, 4])\n    x.stop_gradient = stop_gradient\n    return x",
+            "def create_var(self, stop_gradient):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    x = paddle.randn([2, 4])\n    x.stop_gradient = stop_gradient\n    return x",
+            "def create_var(self, stop_gradient):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    x = paddle.randn([2, 4])\n    x.stop_gradient = stop_gradient\n    return x",
+            "def create_var(self, stop_gradient):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    x = paddle.randn([2, 4])\n    x.stop_gradient = stop_gradient\n    return x",
+            "def create_var(self, stop_gradient):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    x = paddle.randn([2, 4])\n    x.stop_gradient = stop_gradient\n    return x"
+        ]
+    },
+    {
+        "func_name": "test_unary",
+        "original": "def test_unary(self):\n    x = self.create_var(True)\n    out = x.reshape([4, -1])\n    self.assertTrue(out.stop_gradient)",
+        "mutated": [
+            "def test_unary(self):\n    if False:\n        i = 10\n    x = self.create_var(True)\n    out = x.reshape([4, -1])\n    self.assertTrue(out.stop_gradient)",
+            "def test_unary(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    x = self.create_var(True)\n    out = x.reshape([4, -1])\n    self.assertTrue(out.stop_gradient)",
+            "def test_unary(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    x = self.create_var(True)\n    out = x.reshape([4, -1])\n    self.assertTrue(out.stop_gradient)",
+            "def test_unary(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    x = self.create_var(True)\n    out = x.reshape([4, -1])\n    self.assertTrue(out.stop_gradient)",
+            "def test_unary(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    x = self.create_var(True)\n    out = x.reshape([4, -1])\n    self.assertTrue(out.stop_gradient)"
+        ]
+    },
+    {
+        "func_name": "test_binary",
+        "original": "def test_binary(self):\n    x = self.create_var(True)\n    y = self.create_var(True)\n    out = x + y\n    self.assertTrue(out.stop_gradient)",
+        "mutated": [
+            "def test_binary(self):\n    if False:\n        i = 10\n    x = self.create_var(True)\n    y = self.create_var(True)\n    out = x + y\n    self.assertTrue(out.stop_gradient)",
+            "def test_binary(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    x = self.create_var(True)\n    y = self.create_var(True)\n    out = x + y\n    self.assertTrue(out.stop_gradient)",
+            "def test_binary(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    x = self.create_var(True)\n    y = self.create_var(True)\n    out = x + y\n    self.assertTrue(out.stop_gradient)",
+            "def test_binary(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    x = self.create_var(True)\n    y = self.create_var(True)\n    out = x + y\n    self.assertTrue(out.stop_gradient)",
+            "def test_binary(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    x = self.create_var(True)\n    y = self.create_var(True)\n    out = x + y\n    self.assertTrue(out.stop_gradient)"
+        ]
+    },
+    {
+        "func_name": "test_binary2",
+        "original": "def test_binary2(self):\n    x = self.create_var(True)\n    y = self.create_var(False)\n    out = x + y\n    self.assertFalse(out.stop_gradient)",
+        "mutated": [
+            "def test_binary2(self):\n    if False:\n        i = 10\n    x = self.create_var(True)\n    y = self.create_var(False)\n    out = x + y\n    self.assertFalse(out.stop_gradient)",
+            "def test_binary2(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    x = self.create_var(True)\n    y = self.create_var(False)\n    out = x + y\n    self.assertFalse(out.stop_gradient)",
+            "def test_binary2(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    x = self.create_var(True)\n    y = self.create_var(False)\n    out = x + y\n    self.assertFalse(out.stop_gradient)",
+            "def test_binary2(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    x = self.create_var(True)\n    y = self.create_var(False)\n    out = x + y\n    self.assertFalse(out.stop_gradient)",
+            "def test_binary2(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    x = self.create_var(True)\n    y = self.create_var(False)\n    out = x + y\n    self.assertFalse(out.stop_gradient)"
+        ]
+    }
+]

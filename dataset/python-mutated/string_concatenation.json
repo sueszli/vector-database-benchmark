@@ -1,0 +1,46 @@
+[
+    {
+        "func_name": "concatenate_lhs",
+        "original": "def concatenate_lhs():\n    return source() + 'A'",
+        "mutated": [
+            "def concatenate_lhs():\n    if False:\n        i = 10\n    return source() + 'A'",
+            "def concatenate_lhs():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return source() + 'A'",
+            "def concatenate_lhs():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return source() + 'A'",
+            "def concatenate_lhs():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return source() + 'A'",
+            "def concatenate_lhs():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return source() + 'A'"
+        ]
+    },
+    {
+        "func_name": "concatenate_rhs",
+        "original": "def concatenate_rhs():\n    return 'A' + source()",
+        "mutated": [
+            "def concatenate_rhs():\n    if False:\n        i = 10\n    return 'A' + source()",
+            "def concatenate_rhs():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return 'A' + source()",
+            "def concatenate_rhs():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return 'A' + source()",
+            "def concatenate_rhs():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return 'A' + source()",
+            "def concatenate_rhs():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return 'A' + source()"
+        ]
+    },
+    {
+        "func_name": "bad_1",
+        "original": "def bad_1():\n    a = concatenate_lhs()\n    sink(a)",
+        "mutated": [
+            "def bad_1():\n    if False:\n        i = 10\n    a = concatenate_lhs()\n    sink(a)",
+            "def bad_1():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    a = concatenate_lhs()\n    sink(a)",
+            "def bad_1():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    a = concatenate_lhs()\n    sink(a)",
+            "def bad_1():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    a = concatenate_lhs()\n    sink(a)",
+            "def bad_1():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    a = concatenate_lhs()\n    sink(a)"
+        ]
+    },
+    {
+        "func_name": "bad_2",
+        "original": "def bad_2():\n    a = concatenate_rhs()\n    sink(a)",
+        "mutated": [
+            "def bad_2():\n    if False:\n        i = 10\n    a = concatenate_rhs()\n    sink(a)",
+            "def bad_2():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    a = concatenate_rhs()\n    sink(a)",
+            "def bad_2():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    a = concatenate_rhs()\n    sink(a)",
+            "def bad_2():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    a = concatenate_rhs()\n    sink(a)",
+            "def bad_2():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    a = concatenate_rhs()\n    sink(a)"
+        ]
+    }
+]

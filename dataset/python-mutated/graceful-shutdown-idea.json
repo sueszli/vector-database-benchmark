@@ -1,0 +1,46 @@
+[
+    {
+        "func_name": "__init__",
+        "original": "def __init__(self):\n    self._shutting_down = False\n    self._cancel_scopes = set()",
+        "mutated": [
+            "def __init__(self):\n    if False:\n        i = 10\n    self._shutting_down = False\n    self._cancel_scopes = set()",
+            "def __init__(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    self._shutting_down = False\n    self._cancel_scopes = set()",
+            "def __init__(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    self._shutting_down = False\n    self._cancel_scopes = set()",
+            "def __init__(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    self._shutting_down = False\n    self._cancel_scopes = set()",
+            "def __init__(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    self._shutting_down = False\n    self._cancel_scopes = set()"
+        ]
+    },
+    {
+        "func_name": "start_shutdown",
+        "original": "def start_shutdown(self):\n    self._shutting_down = True\n    for cancel_scope in self._cancel_scopes:\n        cancel_scope.cancel()",
+        "mutated": [
+            "def start_shutdown(self):\n    if False:\n        i = 10\n    self._shutting_down = True\n    for cancel_scope in self._cancel_scopes:\n        cancel_scope.cancel()",
+            "def start_shutdown(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    self._shutting_down = True\n    for cancel_scope in self._cancel_scopes:\n        cancel_scope.cancel()",
+            "def start_shutdown(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    self._shutting_down = True\n    for cancel_scope in self._cancel_scopes:\n        cancel_scope.cancel()",
+            "def start_shutdown(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    self._shutting_down = True\n    for cancel_scope in self._cancel_scopes:\n        cancel_scope.cancel()",
+            "def start_shutdown(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    self._shutting_down = True\n    for cancel_scope in self._cancel_scopes:\n        cancel_scope.cancel()"
+        ]
+    },
+    {
+        "func_name": "cancel_on_graceful_shutdown",
+        "original": "def cancel_on_graceful_shutdown(self):\n    cancel_scope = trio.CancelScope()\n    self._cancel_scopes.add(cancel_scope)\n    if self._shutting_down:\n        cancel_scope.cancel()\n    return cancel_scope",
+        "mutated": [
+            "def cancel_on_graceful_shutdown(self):\n    if False:\n        i = 10\n    cancel_scope = trio.CancelScope()\n    self._cancel_scopes.add(cancel_scope)\n    if self._shutting_down:\n        cancel_scope.cancel()\n    return cancel_scope",
+            "def cancel_on_graceful_shutdown(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    cancel_scope = trio.CancelScope()\n    self._cancel_scopes.add(cancel_scope)\n    if self._shutting_down:\n        cancel_scope.cancel()\n    return cancel_scope",
+            "def cancel_on_graceful_shutdown(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    cancel_scope = trio.CancelScope()\n    self._cancel_scopes.add(cancel_scope)\n    if self._shutting_down:\n        cancel_scope.cancel()\n    return cancel_scope",
+            "def cancel_on_graceful_shutdown(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    cancel_scope = trio.CancelScope()\n    self._cancel_scopes.add(cancel_scope)\n    if self._shutting_down:\n        cancel_scope.cancel()\n    return cancel_scope",
+            "def cancel_on_graceful_shutdown(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    cancel_scope = trio.CancelScope()\n    self._cancel_scopes.add(cancel_scope)\n    if self._shutting_down:\n        cancel_scope.cancel()\n    return cancel_scope"
+        ]
+    },
+    {
+        "func_name": "shutting_down",
+        "original": "@property\ndef shutting_down(self):\n    return self._shutting_down",
+        "mutated": [
+            "@property\ndef shutting_down(self):\n    if False:\n        i = 10\n    return self._shutting_down",
+            "@property\ndef shutting_down(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return self._shutting_down",
+            "@property\ndef shutting_down(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return self._shutting_down",
+            "@property\ndef shutting_down(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return self._shutting_down",
+            "@property\ndef shutting_down(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return self._shutting_down"
+        ]
+    }
+]

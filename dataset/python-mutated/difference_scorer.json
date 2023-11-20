@@ -1,0 +1,35 @@
+[
+    {
+        "func_name": "__init__",
+        "original": "def __init__(self) -> None:\n    super().__init__(univariate_scorer=False, window=1)",
+        "mutated": [
+            "def __init__(self) -> None:\n    if False:\n        i = 10\n    super().__init__(univariate_scorer=False, window=1)",
+            "def __init__(self) -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    super().__init__(univariate_scorer=False, window=1)",
+            "def __init__(self) -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    super().__init__(univariate_scorer=False, window=1)",
+            "def __init__(self) -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    super().__init__(univariate_scorer=False, window=1)",
+            "def __init__(self) -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    super().__init__(univariate_scorer=False, window=1)"
+        ]
+    },
+    {
+        "func_name": "__str__",
+        "original": "def __str__(self):\n    return 'Difference'",
+        "mutated": [
+            "def __str__(self):\n    if False:\n        i = 10\n    return 'Difference'",
+            "def __str__(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return 'Difference'",
+            "def __str__(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return 'Difference'",
+            "def __str__(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return 'Difference'",
+            "def __str__(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return 'Difference'"
+        ]
+    },
+    {
+        "func_name": "_score_core_from_prediction",
+        "original": "def _score_core_from_prediction(self, actual_series: TimeSeries, pred_series: TimeSeries) -> TimeSeries:\n    self._assert_deterministic(actual_series, 'actual_series')\n    self._assert_deterministic(pred_series, 'pred_series')\n    return actual_series - pred_series",
+        "mutated": [
+            "def _score_core_from_prediction(self, actual_series: TimeSeries, pred_series: TimeSeries) -> TimeSeries:\n    if False:\n        i = 10\n    self._assert_deterministic(actual_series, 'actual_series')\n    self._assert_deterministic(pred_series, 'pred_series')\n    return actual_series - pred_series",
+            "def _score_core_from_prediction(self, actual_series: TimeSeries, pred_series: TimeSeries) -> TimeSeries:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    self._assert_deterministic(actual_series, 'actual_series')\n    self._assert_deterministic(pred_series, 'pred_series')\n    return actual_series - pred_series",
+            "def _score_core_from_prediction(self, actual_series: TimeSeries, pred_series: TimeSeries) -> TimeSeries:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    self._assert_deterministic(actual_series, 'actual_series')\n    self._assert_deterministic(pred_series, 'pred_series')\n    return actual_series - pred_series",
+            "def _score_core_from_prediction(self, actual_series: TimeSeries, pred_series: TimeSeries) -> TimeSeries:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    self._assert_deterministic(actual_series, 'actual_series')\n    self._assert_deterministic(pred_series, 'pred_series')\n    return actual_series - pred_series",
+            "def _score_core_from_prediction(self, actual_series: TimeSeries, pred_series: TimeSeries) -> TimeSeries:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    self._assert_deterministic(actual_series, 'actual_series')\n    self._assert_deterministic(pred_series, 'pred_series')\n    return actual_series - pred_series"
+        ]
+    }
+]

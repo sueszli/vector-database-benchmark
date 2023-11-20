@@ -1,0 +1,13 @@
+[
+    {
+        "func_name": "log_likelihood",
+        "original": "def log_likelihood(data, mean, sigma):\n    s = (data - mean) ** 2 / (2 * sigma ** 2)\n    pdfs = numpy.exp(-s)\n    pdfs /= numpy.sqrt(2 * numpy.pi) * sigma\n    return numpy.log(pdfs).sum()",
+        "mutated": [
+            "def log_likelihood(data, mean, sigma):\n    if False:\n        i = 10\n    s = (data - mean) ** 2 / (2 * sigma ** 2)\n    pdfs = numpy.exp(-s)\n    pdfs /= numpy.sqrt(2 * numpy.pi) * sigma\n    return numpy.log(pdfs).sum()",
+            "def log_likelihood(data, mean, sigma):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    s = (data - mean) ** 2 / (2 * sigma ** 2)\n    pdfs = numpy.exp(-s)\n    pdfs /= numpy.sqrt(2 * numpy.pi) * sigma\n    return numpy.log(pdfs).sum()",
+            "def log_likelihood(data, mean, sigma):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    s = (data - mean) ** 2 / (2 * sigma ** 2)\n    pdfs = numpy.exp(-s)\n    pdfs /= numpy.sqrt(2 * numpy.pi) * sigma\n    return numpy.log(pdfs).sum()",
+            "def log_likelihood(data, mean, sigma):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    s = (data - mean) ** 2 / (2 * sigma ** 2)\n    pdfs = numpy.exp(-s)\n    pdfs /= numpy.sqrt(2 * numpy.pi) * sigma\n    return numpy.log(pdfs).sum()",
+            "def log_likelihood(data, mean, sigma):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    s = (data - mean) ** 2 / (2 * sigma ** 2)\n    pdfs = numpy.exp(-s)\n    pdfs /= numpy.sqrt(2 * numpy.pi) * sigma\n    return numpy.log(pdfs).sum()"
+        ]
+    }
+]

@@ -1,0 +1,24 @@
+[
+    {
+        "func_name": "__init__",
+        "original": "def __init__(self, payload_tmpl: PayloadTmpl):\n    self.payload_tmpl: PayloadTmpl = payload_tmpl",
+        "mutated": [
+            "def __init__(self, payload_tmpl: PayloadTmpl):\n    if False:\n        i = 10\n    self.payload_tmpl: PayloadTmpl = payload_tmpl",
+            "def __init__(self, payload_tmpl: PayloadTmpl):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    self.payload_tmpl: PayloadTmpl = payload_tmpl",
+            "def __init__(self, payload_tmpl: PayloadTmpl):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    self.payload_tmpl: PayloadTmpl = payload_tmpl",
+            "def __init__(self, payload_tmpl: PayloadTmpl):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    self.payload_tmpl: PayloadTmpl = payload_tmpl",
+            "def __init__(self, payload_tmpl: PayloadTmpl):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    self.payload_tmpl: PayloadTmpl = payload_tmpl"
+        ]
+    },
+    {
+        "func_name": "_eval_body",
+        "original": "def _eval_body(self, env: Environment) -> None:\n    inp_cache = copy.deepcopy(env.inp)\n    env.inp = env.stack.pop()\n    self.payload_tmpl.eval(env=env)\n    env.inp = inp_cache",
+        "mutated": [
+            "def _eval_body(self, env: Environment) -> None:\n    if False:\n        i = 10\n    inp_cache = copy.deepcopy(env.inp)\n    env.inp = env.stack.pop()\n    self.payload_tmpl.eval(env=env)\n    env.inp = inp_cache",
+            "def _eval_body(self, env: Environment) -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    inp_cache = copy.deepcopy(env.inp)\n    env.inp = env.stack.pop()\n    self.payload_tmpl.eval(env=env)\n    env.inp = inp_cache",
+            "def _eval_body(self, env: Environment) -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    inp_cache = copy.deepcopy(env.inp)\n    env.inp = env.stack.pop()\n    self.payload_tmpl.eval(env=env)\n    env.inp = inp_cache",
+            "def _eval_body(self, env: Environment) -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    inp_cache = copy.deepcopy(env.inp)\n    env.inp = env.stack.pop()\n    self.payload_tmpl.eval(env=env)\n    env.inp = inp_cache",
+            "def _eval_body(self, env: Environment) -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    inp_cache = copy.deepcopy(env.inp)\n    env.inp = env.stack.pop()\n    self.payload_tmpl.eval(env=env)\n    env.inp = inp_cache"
+        ]
+    }
+]

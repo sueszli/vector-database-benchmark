@@ -1,0 +1,24 @@
+[
+    {
+        "func_name": "app",
+        "original": "@pytest.fixture\ndef app(client_config, io_loop):\n    client_config.setdefault('rest_tornado', {})['websockets'] = True\n    return rest_tornado.get_application(client_config)",
+        "mutated": [
+            "@pytest.fixture\ndef app(client_config, io_loop):\n    if False:\n        i = 10\n    client_config.setdefault('rest_tornado', {})['websockets'] = True\n    return rest_tornado.get_application(client_config)",
+            "@pytest.fixture\ndef app(client_config, io_loop):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    client_config.setdefault('rest_tornado', {})['websockets'] = True\n    return rest_tornado.get_application(client_config)",
+            "@pytest.fixture\ndef app(client_config, io_loop):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    client_config.setdefault('rest_tornado', {})['websockets'] = True\n    return rest_tornado.get_application(client_config)",
+            "@pytest.fixture\ndef app(client_config, io_loop):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    client_config.setdefault('rest_tornado', {})['websockets'] = True\n    return rest_tornado.get_application(client_config)",
+            "@pytest.fixture\ndef app(client_config, io_loop):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    client_config.setdefault('rest_tornado', {})['websockets'] = True\n    return rest_tornado.get_application(client_config)"
+        ]
+    },
+    {
+        "func_name": "http_server_port",
+        "original": "@pytest.fixture\ndef http_server_port(http_server):\n    return http_server.port",
+        "mutated": [
+            "@pytest.fixture\ndef http_server_port(http_server):\n    if False:\n        i = 10\n    return http_server.port",
+            "@pytest.fixture\ndef http_server_port(http_server):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return http_server.port",
+            "@pytest.fixture\ndef http_server_port(http_server):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return http_server.port",
+            "@pytest.fixture\ndef http_server_port(http_server):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return http_server.port",
+            "@pytest.fixture\ndef http_server_port(http_server):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return http_server.port"
+        ]
+    }
+]

@@ -1,0 +1,68 @@
+[
+    {
+        "func_name": "one_argument",
+        "original": "def one_argument(arg, /):\n    return arg.upper()",
+        "mutated": [
+            "def one_argument(arg, /):\n    if False:\n        i = 10\n    return arg.upper()",
+            "def one_argument(arg, /):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return arg.upper()",
+            "def one_argument(arg, /):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return arg.upper()",
+            "def one_argument(arg, /):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return arg.upper()",
+            "def one_argument(arg, /):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return arg.upper()"
+        ]
+    },
+    {
+        "func_name": "three_arguments",
+        "original": "def three_arguments(a, b, c, /):\n    return '-'.join([a, b, c])",
+        "mutated": [
+            "def three_arguments(a, b, c, /):\n    if False:\n        i = 10\n    return '-'.join([a, b, c])",
+            "def three_arguments(a, b, c, /):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return '-'.join([a, b, c])",
+            "def three_arguments(a, b, c, /):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return '-'.join([a, b, c])",
+            "def three_arguments(a, b, c, /):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return '-'.join([a, b, c])",
+            "def three_arguments(a, b, c, /):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return '-'.join([a, b, c])"
+        ]
+    },
+    {
+        "func_name": "with_normal",
+        "original": "def with_normal(posonly, /, normal):\n    return posonly + '-' + normal",
+        "mutated": [
+            "def with_normal(posonly, /, normal):\n    if False:\n        i = 10\n    return posonly + '-' + normal",
+            "def with_normal(posonly, /, normal):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return posonly + '-' + normal",
+            "def with_normal(posonly, /, normal):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return posonly + '-' + normal",
+            "def with_normal(posonly, /, normal):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return posonly + '-' + normal",
+            "def with_normal(posonly, /, normal):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return posonly + '-' + normal"
+        ]
+    },
+    {
+        "func_name": "defaults",
+        "original": "def defaults(required, optional='default', /):\n    return required + '-' + optional",
+        "mutated": [
+            "def defaults(required, optional='default', /):\n    if False:\n        i = 10\n    return required + '-' + optional",
+            "def defaults(required, optional='default', /):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return required + '-' + optional",
+            "def defaults(required, optional='default', /):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return required + '-' + optional",
+            "def defaults(required, optional='default', /):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return required + '-' + optional",
+            "def defaults(required, optional='default', /):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return required + '-' + optional"
+        ]
+    },
+    {
+        "func_name": "types",
+        "original": "def types(first: int, second: float, /):\n    return first + second",
+        "mutated": [
+            "def types(first: int, second: float, /):\n    if False:\n        i = 10\n    return first + second",
+            "def types(first: int, second: float, /):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return first + second",
+            "def types(first: int, second: float, /):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return first + second",
+            "def types(first: int, second: float, /):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return first + second",
+            "def types(first: int, second: float, /):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return first + second"
+        ]
+    },
+    {
+        "func_name": "kwargs",
+        "original": "def kwargs(x, /, **y):\n    return '%s, %s' % (x, ', '.join(('%s: %s' % item for item in y.items())))",
+        "mutated": [
+            "def kwargs(x, /, **y):\n    if False:\n        i = 10\n    return '%s, %s' % (x, ', '.join(('%s: %s' % item for item in y.items())))",
+            "def kwargs(x, /, **y):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return '%s, %s' % (x, ', '.join(('%s: %s' % item for item in y.items())))",
+            "def kwargs(x, /, **y):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return '%s, %s' % (x, ', '.join(('%s: %s' % item for item in y.items())))",
+            "def kwargs(x, /, **y):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return '%s, %s' % (x, ', '.join(('%s: %s' % item for item in y.items())))",
+            "def kwargs(x, /, **y):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return '%s, %s' % (x, ', '.join(('%s: %s' % item for item in y.items())))"
+        ]
+    }
+]

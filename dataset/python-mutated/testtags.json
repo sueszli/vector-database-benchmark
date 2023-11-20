@@ -1,0 +1,46 @@
+[
+    {
+        "func_name": "__init__",
+        "original": "def __init__(self, contents):\n    self.contents = contents",
+        "mutated": [
+            "def __init__(self, contents):\n    if False:\n        i = 10\n    self.contents = contents",
+            "def __init__(self, contents):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    self.contents = contents",
+            "def __init__(self, contents):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    self.contents = contents",
+            "def __init__(self, contents):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    self.contents = contents",
+            "def __init__(self, contents):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    self.contents = contents"
+        ]
+    },
+    {
+        "func_name": "render",
+        "original": "def render(self, context):\n    return ' '.join(self.contents)",
+        "mutated": [
+            "def render(self, context):\n    if False:\n        i = 10\n    return ' '.join(self.contents)",
+            "def render(self, context):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return ' '.join(self.contents)",
+            "def render(self, context):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return ' '.join(self.contents)",
+            "def render(self, context):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return ' '.join(self.contents)",
+            "def render(self, context):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return ' '.join(self.contents)"
+        ]
+    },
+    {
+        "func_name": "echo",
+        "original": "@register.tag\ndef echo(parser, token):\n    return EchoNode(token.contents.split()[1:])",
+        "mutated": [
+            "@register.tag\ndef echo(parser, token):\n    if False:\n        i = 10\n    return EchoNode(token.contents.split()[1:])",
+            "@register.tag\ndef echo(parser, token):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return EchoNode(token.contents.split()[1:])",
+            "@register.tag\ndef echo(parser, token):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return EchoNode(token.contents.split()[1:])",
+            "@register.tag\ndef echo(parser, token):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return EchoNode(token.contents.split()[1:])",
+            "@register.tag\ndef echo(parser, token):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return EchoNode(token.contents.split()[1:])"
+        ]
+    },
+    {
+        "func_name": "upper",
+        "original": "@register.filter\ndef upper(value):\n    return value.upper()",
+        "mutated": [
+            "@register.filter\ndef upper(value):\n    if False:\n        i = 10\n    return value.upper()",
+            "@register.filter\ndef upper(value):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return value.upper()",
+            "@register.filter\ndef upper(value):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return value.upper()",
+            "@register.filter\ndef upper(value):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return value.upper()",
+            "@register.filter\ndef upper(value):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return value.upper()"
+        ]
+    }
+]

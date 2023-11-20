@@ -1,0 +1,24 @@
+[
+    {
+        "func_name": "target",
+        "original": "def target():\n    multiprocessing.freeze_support()\n    time.sleep(1000)",
+        "mutated": [
+            "def target():\n    if False:\n        i = 10\n    multiprocessing.freeze_support()\n    time.sleep(1000)",
+            "def target():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    multiprocessing.freeze_support()\n    time.sleep(1000)",
+            "def target():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    multiprocessing.freeze_support()\n    time.sleep(1000)",
+            "def target():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    multiprocessing.freeze_support()\n    time.sleep(1000)",
+            "def target():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    multiprocessing.freeze_support()\n    time.sleep(1000)"
+        ]
+    },
+    {
+        "func_name": "main",
+        "original": "def main():\n    child1 = multiprocessing.Process(target=target)\n    child1.start()\n    child2 = multiprocessing.Process(target=target)\n    child2.start()\n    time.sleep(10000)\n    child1.join()\n    child2.join()",
+        "mutated": [
+            "def main():\n    if False:\n        i = 10\n    child1 = multiprocessing.Process(target=target)\n    child1.start()\n    child2 = multiprocessing.Process(target=target)\n    child2.start()\n    time.sleep(10000)\n    child1.join()\n    child2.join()",
+            "def main():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    child1 = multiprocessing.Process(target=target)\n    child1.start()\n    child2 = multiprocessing.Process(target=target)\n    child2.start()\n    time.sleep(10000)\n    child1.join()\n    child2.join()",
+            "def main():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    child1 = multiprocessing.Process(target=target)\n    child1.start()\n    child2 = multiprocessing.Process(target=target)\n    child2.start()\n    time.sleep(10000)\n    child1.join()\n    child2.join()",
+            "def main():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    child1 = multiprocessing.Process(target=target)\n    child1.start()\n    child2 = multiprocessing.Process(target=target)\n    child2.start()\n    time.sleep(10000)\n    child1.join()\n    child2.join()",
+            "def main():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    child1 = multiprocessing.Process(target=target)\n    child1.start()\n    child2 = multiprocessing.Process(target=target)\n    child2.start()\n    time.sleep(10000)\n    child1.join()\n    child2.join()"
+        ]
+    }
+]

@@ -1,0 +1,57 @@
+[
+    {
+        "func_name": "a",
+        "original": "def a(b, c):\n    x = XYZ()\n    x.val = 9\n    (a, b, x.val) = (12, 15 / c, 17)",
+        "mutated": [
+            "def a(b, c):\n    if False:\n        i = 10\n    x = XYZ()\n    x.val = 9\n    (a, b, x.val) = (12, 15 / c, 17)",
+            "def a(b, c):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    x = XYZ()\n    x.val = 9\n    (a, b, x.val) = (12, 15 / c, 17)",
+            "def a(b, c):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    x = XYZ()\n    x.val = 9\n    (a, b, x.val) = (12, 15 / c, 17)",
+            "def a(b, c):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    x = XYZ()\n    x.val = 9\n    (a, b, x.val) = (12, 15 / c, 17)",
+            "def a(b, c):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    x = XYZ()\n    x.val = 9\n    (a, b, x.val) = (12, 15 / c, 17)"
+        ]
+    },
+    {
+        "func_name": "b",
+        "original": "def b():\n    (foo, bar, baz) = ({}, XYZ, 0)\n    foo['baz'] = bar() + a(5, baz)",
+        "mutated": [
+            "def b():\n    if False:\n        i = 10\n    (foo, bar, baz) = ({}, XYZ, 0)\n    foo['baz'] = bar() + a(5, baz)",
+            "def b():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    (foo, bar, baz) = ({}, XYZ, 0)\n    foo['baz'] = bar() + a(5, baz)",
+            "def b():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    (foo, bar, baz) = ({}, XYZ, 0)\n    foo['baz'] = bar() + a(5, baz)",
+            "def b():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    (foo, bar, baz) = ({}, XYZ, 0)\n    foo['baz'] = bar() + a(5, baz)",
+            "def b():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    (foo, bar, baz) = ({}, XYZ, 0)\n    foo['baz'] = bar() + a(5, baz)"
+        ]
+    },
+    {
+        "func_name": "c",
+        "original": "def c():\n    x = XYZ()\n    x.val = 123\n    x.val += 456 and b()",
+        "mutated": [
+            "def c():\n    if False:\n        i = 10\n    x = XYZ()\n    x.val = 123\n    x.val += 456 and b()",
+            "def c():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    x = XYZ()\n    x.val = 123\n    x.val += 456 and b()",
+            "def c():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    x = XYZ()\n    x.val = 123\n    x.val += 456 and b()",
+            "def c():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    x = XYZ()\n    x.val = 123\n    x.val += 456 and b()",
+            "def c():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    x = XYZ()\n    x.val = 123\n    x.val += 456 and b()"
+        ]
+    },
+    {
+        "func_name": "d",
+        "original": "def d(j):\n    (x, y, z) = (2, 5, 3)\n    xyz = XYZ()\n    xyz.val = 123\n    i = 12\n    z = x * y\n    y = j or xyz.val * c() + 3",
+        "mutated": [
+            "def d(j):\n    if False:\n        i = 10\n    (x, y, z) = (2, 5, 3)\n    xyz = XYZ()\n    xyz.val = 123\n    i = 12\n    z = x * y\n    y = j or xyz.val * c() + 3",
+            "def d(j):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    (x, y, z) = (2, 5, 3)\n    xyz = XYZ()\n    xyz.val = 123\n    i = 12\n    z = x * y\n    y = j or xyz.val * c() + 3",
+            "def d(j):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    (x, y, z) = (2, 5, 3)\n    xyz = XYZ()\n    xyz.val = 123\n    i = 12\n    z = x * y\n    y = j or xyz.val * c() + 3",
+            "def d(j):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    (x, y, z) = (2, 5, 3)\n    xyz = XYZ()\n    xyz.val = 123\n    i = 12\n    z = x * y\n    y = j or xyz.val * c() + 3",
+            "def d(j):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    (x, y, z) = (2, 5, 3)\n    xyz = XYZ()\n    xyz.val = 123\n    i = 12\n    z = x * y\n    y = j or xyz.val * c() + 3"
+        ]
+    },
+    {
+        "func_name": "e",
+        "original": "def e():\n    a = 1\n    5 + d(()) + a",
+        "mutated": [
+            "def e():\n    if False:\n        i = 10\n    a = 1\n    5 + d(()) + a",
+            "def e():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    a = 1\n    5 + d(()) + a",
+            "def e():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    a = 1\n    5 + d(()) + a",
+            "def e():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    a = 1\n    5 + d(()) + a",
+            "def e():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    a = 1\n    5 + d(()) + a"
+        ]
+    }
+]

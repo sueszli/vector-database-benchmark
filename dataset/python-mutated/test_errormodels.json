@@ -1,0 +1,46 @@
+[
+    {
+        "func_name": "model_python",
+        "original": "@jit\ndef model_python(val):\n    return 1 / val",
+        "mutated": [
+            "@jit\ndef model_python(val):\n    if False:\n        i = 10\n    return 1 / val",
+            "@jit\ndef model_python(val):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return 1 / val",
+            "@jit\ndef model_python(val):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return 1 / val",
+            "@jit\ndef model_python(val):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return 1 / val",
+            "@jit\ndef model_python(val):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return 1 / val"
+        ]
+    },
+    {
+        "func_name": "test_div_by_zero_python",
+        "original": "def test_div_by_zero_python(self):\n\n    @jit\n    def model_python(val):\n        return 1 / val\n    with self.assertRaises(ZeroDivisionError):\n        model_python(0)",
+        "mutated": [
+            "def test_div_by_zero_python(self):\n    if False:\n        i = 10\n\n    @jit\n    def model_python(val):\n        return 1 / val\n    with self.assertRaises(ZeroDivisionError):\n        model_python(0)",
+            "def test_div_by_zero_python(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n\n    @jit\n    def model_python(val):\n        return 1 / val\n    with self.assertRaises(ZeroDivisionError):\n        model_python(0)",
+            "def test_div_by_zero_python(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n    @jit\n    def model_python(val):\n        return 1 / val\n    with self.assertRaises(ZeroDivisionError):\n        model_python(0)",
+            "def test_div_by_zero_python(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n\n    @jit\n    def model_python(val):\n        return 1 / val\n    with self.assertRaises(ZeroDivisionError):\n        model_python(0)",
+            "def test_div_by_zero_python(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n\n    @jit\n    def model_python(val):\n        return 1 / val\n    with self.assertRaises(ZeroDivisionError):\n        model_python(0)"
+        ]
+    },
+    {
+        "func_name": "model_numpy",
+        "original": "@jit(error_model='numpy')\ndef model_numpy(val):\n    return 1 / val",
+        "mutated": [
+            "@jit(error_model='numpy')\ndef model_numpy(val):\n    if False:\n        i = 10\n    return 1 / val",
+            "@jit(error_model='numpy')\ndef model_numpy(val):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return 1 / val",
+            "@jit(error_model='numpy')\ndef model_numpy(val):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return 1 / val",
+            "@jit(error_model='numpy')\ndef model_numpy(val):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return 1 / val",
+            "@jit(error_model='numpy')\ndef model_numpy(val):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return 1 / val"
+        ]
+    },
+    {
+        "func_name": "test_div_by_zero_numpy",
+        "original": "def test_div_by_zero_numpy(self):\n\n    @jit(error_model='numpy')\n    def model_numpy(val):\n        return 1 / val\n    self.assertEqual(model_numpy(0), float('inf'))",
+        "mutated": [
+            "def test_div_by_zero_numpy(self):\n    if False:\n        i = 10\n\n    @jit(error_model='numpy')\n    def model_numpy(val):\n        return 1 / val\n    self.assertEqual(model_numpy(0), float('inf'))",
+            "def test_div_by_zero_numpy(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n\n    @jit(error_model='numpy')\n    def model_numpy(val):\n        return 1 / val\n    self.assertEqual(model_numpy(0), float('inf'))",
+            "def test_div_by_zero_numpy(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n    @jit(error_model='numpy')\n    def model_numpy(val):\n        return 1 / val\n    self.assertEqual(model_numpy(0), float('inf'))",
+            "def test_div_by_zero_numpy(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n\n    @jit(error_model='numpy')\n    def model_numpy(val):\n        return 1 / val\n    self.assertEqual(model_numpy(0), float('inf'))",
+            "def test_div_by_zero_numpy(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n\n    @jit(error_model='numpy')\n    def model_numpy(val):\n        return 1 / val\n    self.assertEqual(model_numpy(0), float('inf'))"
+        ]
+    }
+]

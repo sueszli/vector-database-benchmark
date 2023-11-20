@@ -1,0 +1,35 @@
+[
+    {
+        "func_name": "__call__",
+        "original": "def __call__(arg, dest):\n    try:\n        assert arg == 'spam', 'dest: %s' % dest\n    except:\n        raise",
+        "mutated": [
+            "def __call__(arg, dest):\n    if False:\n        i = 10\n    try:\n        assert arg == 'spam', 'dest: %s' % dest\n    except:\n        raise",
+            "def __call__(arg, dest):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    try:\n        assert arg == 'spam', 'dest: %s' % dest\n    except:\n        raise",
+            "def __call__(arg, dest):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    try:\n        assert arg == 'spam', 'dest: %s' % dest\n    except:\n        raise",
+            "def __call__(arg, dest):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    try:\n        assert arg == 'spam', 'dest: %s' % dest\n    except:\n        raise",
+            "def __call__(arg, dest):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    try:\n        assert arg == 'spam', 'dest: %s' % dest\n    except:\n        raise"
+        ]
+    },
+    {
+        "func_name": "refactor_doctest",
+        "original": "def refactor_doctest(clipped, new):\n    assert clipped, clipped\n    if not new:\n        new += u'\\n'\n    return",
+        "mutated": [
+            "def refactor_doctest(clipped, new):\n    if False:\n        i = 10\n    assert clipped, clipped\n    if not new:\n        new += u'\\n'\n    return",
+            "def refactor_doctest(clipped, new):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    assert clipped, clipped\n    if not new:\n        new += u'\\n'\n    return",
+            "def refactor_doctest(clipped, new):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    assert clipped, clipped\n    if not new:\n        new += u'\\n'\n    return",
+            "def refactor_doctest(clipped, new):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    assert clipped, clipped\n    if not new:\n        new += u'\\n'\n    return",
+            "def refactor_doctest(clipped, new):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    assert clipped, clipped\n    if not new:\n        new += u'\\n'\n    return"
+        ]
+    },
+    {
+        "func_name": "test_threaded_hashing",
+        "original": "def test_threaded_hashing():\n    for threadnum in xrange(1):\n        result = 1\n        assert result > 0\n        result = 2\n    return result",
+        "mutated": [
+            "def test_threaded_hashing():\n    if False:\n        i = 10\n    for threadnum in xrange(1):\n        result = 1\n        assert result > 0\n        result = 2\n    return result",
+            "def test_threaded_hashing():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    for threadnum in xrange(1):\n        result = 1\n        assert result > 0\n        result = 2\n    return result",
+            "def test_threaded_hashing():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    for threadnum in xrange(1):\n        result = 1\n        assert result > 0\n        result = 2\n    return result",
+            "def test_threaded_hashing():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    for threadnum in xrange(1):\n        result = 1\n        assert result > 0\n        result = 2\n    return result",
+            "def test_threaded_hashing():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    for threadnum in xrange(1):\n        result = 1\n        assert result > 0\n        result = 2\n    return result"
+        ]
+    }
+]

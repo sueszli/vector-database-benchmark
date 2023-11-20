@@ -1,0 +1,35 @@
+[
+    {
+        "func_name": "mock_gigachannel_community",
+        "original": "@pytest.fixture\ndef mock_gigachannel_community():\n    return Mock()",
+        "mutated": [
+            "@pytest.fixture\ndef mock_gigachannel_community():\n    if False:\n        i = 10\n    return Mock()",
+            "@pytest.fixture\ndef mock_gigachannel_community():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return Mock()",
+            "@pytest.fixture\ndef mock_gigachannel_community():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return Mock()",
+            "@pytest.fixture\ndef mock_gigachannel_community():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return Mock()",
+            "@pytest.fixture\ndef mock_gigachannel_community():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return Mock()"
+        ]
+    },
+    {
+        "func_name": "endpoint",
+        "original": "@pytest.fixture\ndef endpoint(metadata_store, mock_gigachannel_community):\n    return RemoteQueryEndpoint(mock_gigachannel_community, metadata_store)",
+        "mutated": [
+            "@pytest.fixture\ndef endpoint(metadata_store, mock_gigachannel_community):\n    if False:\n        i = 10\n    return RemoteQueryEndpoint(mock_gigachannel_community, metadata_store)",
+            "@pytest.fixture\ndef endpoint(metadata_store, mock_gigachannel_community):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return RemoteQueryEndpoint(mock_gigachannel_community, metadata_store)",
+            "@pytest.fixture\ndef endpoint(metadata_store, mock_gigachannel_community):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return RemoteQueryEndpoint(mock_gigachannel_community, metadata_store)",
+            "@pytest.fixture\ndef endpoint(metadata_store, mock_gigachannel_community):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return RemoteQueryEndpoint(mock_gigachannel_community, metadata_store)",
+            "@pytest.fixture\ndef endpoint(metadata_store, mock_gigachannel_community):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return RemoteQueryEndpoint(mock_gigachannel_community, metadata_store)"
+        ]
+    },
+    {
+        "func_name": "mock_send",
+        "original": "def mock_send(**kwargs):\n    sent.update(kwargs)\n    return (request_uuid, peers)",
+        "mutated": [
+            "def mock_send(**kwargs):\n    if False:\n        i = 10\n    sent.update(kwargs)\n    return (request_uuid, peers)",
+            "def mock_send(**kwargs):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    sent.update(kwargs)\n    return (request_uuid, peers)",
+            "def mock_send(**kwargs):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    sent.update(kwargs)\n    return (request_uuid, peers)",
+            "def mock_send(**kwargs):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    sent.update(kwargs)\n    return (request_uuid, peers)",
+            "def mock_send(**kwargs):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    sent.update(kwargs)\n    return (request_uuid, peers)"
+        ]
+    }
+]

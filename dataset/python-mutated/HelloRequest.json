@@ -1,0 +1,112 @@
+[
+    {
+        "func_name": "GetRootAs",
+        "original": "@classmethod\ndef GetRootAs(cls, buf, offset=0):\n    n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)\n    x = HelloRequest()\n    x.Init(buf, n + offset)\n    return x",
+        "mutated": [
+            "@classmethod\ndef GetRootAs(cls, buf, offset=0):\n    if False:\n        i = 10\n    n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)\n    x = HelloRequest()\n    x.Init(buf, n + offset)\n    return x",
+            "@classmethod\ndef GetRootAs(cls, buf, offset=0):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)\n    x = HelloRequest()\n    x.Init(buf, n + offset)\n    return x",
+            "@classmethod\ndef GetRootAs(cls, buf, offset=0):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)\n    x = HelloRequest()\n    x.Init(buf, n + offset)\n    return x",
+            "@classmethod\ndef GetRootAs(cls, buf, offset=0):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)\n    x = HelloRequest()\n    x.Init(buf, n + offset)\n    return x",
+            "@classmethod\ndef GetRootAs(cls, buf, offset=0):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)\n    x = HelloRequest()\n    x.Init(buf, n + offset)\n    return x"
+        ]
+    },
+    {
+        "func_name": "GetRootAsHelloRequest",
+        "original": "@classmethod\ndef GetRootAsHelloRequest(cls, buf, offset=0):\n    \"\"\"This method is deprecated. Please switch to GetRootAs.\"\"\"\n    return cls.GetRootAs(buf, offset)",
+        "mutated": [
+            "@classmethod\ndef GetRootAsHelloRequest(cls, buf, offset=0):\n    if False:\n        i = 10\n    'This method is deprecated. Please switch to GetRootAs.'\n    return cls.GetRootAs(buf, offset)",
+            "@classmethod\ndef GetRootAsHelloRequest(cls, buf, offset=0):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    'This method is deprecated. Please switch to GetRootAs.'\n    return cls.GetRootAs(buf, offset)",
+            "@classmethod\ndef GetRootAsHelloRequest(cls, buf, offset=0):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    'This method is deprecated. Please switch to GetRootAs.'\n    return cls.GetRootAs(buf, offset)",
+            "@classmethod\ndef GetRootAsHelloRequest(cls, buf, offset=0):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    'This method is deprecated. Please switch to GetRootAs.'\n    return cls.GetRootAs(buf, offset)",
+            "@classmethod\ndef GetRootAsHelloRequest(cls, buf, offset=0):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    'This method is deprecated. Please switch to GetRootAs.'\n    return cls.GetRootAs(buf, offset)"
+        ]
+    },
+    {
+        "func_name": "Init",
+        "original": "def Init(self, buf, pos):\n    self._tab = flatbuffers.table.Table(buf, pos)",
+        "mutated": [
+            "def Init(self, buf, pos):\n    if False:\n        i = 10\n    self._tab = flatbuffers.table.Table(buf, pos)",
+            "def Init(self, buf, pos):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    self._tab = flatbuffers.table.Table(buf, pos)",
+            "def Init(self, buf, pos):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    self._tab = flatbuffers.table.Table(buf, pos)",
+            "def Init(self, buf, pos):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    self._tab = flatbuffers.table.Table(buf, pos)",
+            "def Init(self, buf, pos):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    self._tab = flatbuffers.table.Table(buf, pos)"
+        ]
+    },
+    {
+        "func_name": "Name",
+        "original": "def Name(self):\n    o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))\n    if o != 0:\n        return self._tab.String(o + self._tab.Pos)\n    return None",
+        "mutated": [
+            "def Name(self):\n    if False:\n        i = 10\n    o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))\n    if o != 0:\n        return self._tab.String(o + self._tab.Pos)\n    return None",
+            "def Name(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))\n    if o != 0:\n        return self._tab.String(o + self._tab.Pos)\n    return None",
+            "def Name(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))\n    if o != 0:\n        return self._tab.String(o + self._tab.Pos)\n    return None",
+            "def Name(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))\n    if o != 0:\n        return self._tab.String(o + self._tab.Pos)\n    return None",
+            "def Name(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))\n    if o != 0:\n        return self._tab.String(o + self._tab.Pos)\n    return None"
+        ]
+    },
+    {
+        "func_name": "HelloRequestStart",
+        "original": "def HelloRequestStart(builder):\n    builder.StartObject(1)",
+        "mutated": [
+            "def HelloRequestStart(builder):\n    if False:\n        i = 10\n    builder.StartObject(1)",
+            "def HelloRequestStart(builder):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    builder.StartObject(1)",
+            "def HelloRequestStart(builder):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    builder.StartObject(1)",
+            "def HelloRequestStart(builder):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    builder.StartObject(1)",
+            "def HelloRequestStart(builder):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    builder.StartObject(1)"
+        ]
+    },
+    {
+        "func_name": "Start",
+        "original": "def Start(builder):\n    HelloRequestStart(builder)",
+        "mutated": [
+            "def Start(builder):\n    if False:\n        i = 10\n    HelloRequestStart(builder)",
+            "def Start(builder):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    HelloRequestStart(builder)",
+            "def Start(builder):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    HelloRequestStart(builder)",
+            "def Start(builder):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    HelloRequestStart(builder)",
+            "def Start(builder):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    HelloRequestStart(builder)"
+        ]
+    },
+    {
+        "func_name": "HelloRequestAddName",
+        "original": "def HelloRequestAddName(builder, name):\n    builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(name), 0)",
+        "mutated": [
+            "def HelloRequestAddName(builder, name):\n    if False:\n        i = 10\n    builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(name), 0)",
+            "def HelloRequestAddName(builder, name):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(name), 0)",
+            "def HelloRequestAddName(builder, name):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(name), 0)",
+            "def HelloRequestAddName(builder, name):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(name), 0)",
+            "def HelloRequestAddName(builder, name):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(name), 0)"
+        ]
+    },
+    {
+        "func_name": "AddName",
+        "original": "def AddName(builder, name):\n    HelloRequestAddName(builder, name)",
+        "mutated": [
+            "def AddName(builder, name):\n    if False:\n        i = 10\n    HelloRequestAddName(builder, name)",
+            "def AddName(builder, name):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    HelloRequestAddName(builder, name)",
+            "def AddName(builder, name):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    HelloRequestAddName(builder, name)",
+            "def AddName(builder, name):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    HelloRequestAddName(builder, name)",
+            "def AddName(builder, name):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    HelloRequestAddName(builder, name)"
+        ]
+    },
+    {
+        "func_name": "HelloRequestEnd",
+        "original": "def HelloRequestEnd(builder):\n    return builder.EndObject()",
+        "mutated": [
+            "def HelloRequestEnd(builder):\n    if False:\n        i = 10\n    return builder.EndObject()",
+            "def HelloRequestEnd(builder):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return builder.EndObject()",
+            "def HelloRequestEnd(builder):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return builder.EndObject()",
+            "def HelloRequestEnd(builder):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return builder.EndObject()",
+            "def HelloRequestEnd(builder):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return builder.EndObject()"
+        ]
+    },
+    {
+        "func_name": "End",
+        "original": "def End(builder):\n    return HelloRequestEnd(builder)",
+        "mutated": [
+            "def End(builder):\n    if False:\n        i = 10\n    return HelloRequestEnd(builder)",
+            "def End(builder):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return HelloRequestEnd(builder)",
+            "def End(builder):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return HelloRequestEnd(builder)",
+            "def End(builder):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return HelloRequestEnd(builder)",
+            "def End(builder):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return HelloRequestEnd(builder)"
+        ]
+    }
+]

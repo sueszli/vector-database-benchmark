@@ -1,0 +1,112 @@
+[
+    {
+        "func_name": "int_source",
+        "original": "def int_source() -> int:\n    return _test_source()",
+        "mutated": [
+            "def int_source() -> int:\n    if False:\n        i = 10\n    return _test_source()",
+            "def int_source() -> int:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return _test_source()",
+            "def int_source() -> int:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return _test_source()",
+            "def int_source() -> int:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return _test_source()",
+            "def int_source() -> int:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return _test_source()"
+        ]
+    },
+    {
+        "func_name": "float_source",
+        "original": "def float_source() -> float:\n    return _test_source()",
+        "mutated": [
+            "def float_source() -> float:\n    if False:\n        i = 10\n    return _test_source()",
+            "def float_source() -> float:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return _test_source()",
+            "def float_source() -> float:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return _test_source()",
+            "def float_source() -> float:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return _test_source()",
+            "def float_source() -> float:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return _test_source()"
+        ]
+    },
+    {
+        "func_name": "bool_source",
+        "original": "def bool_source() -> bool:\n    return _test_source()",
+        "mutated": [
+            "def bool_source() -> bool:\n    if False:\n        i = 10\n    return _test_source()",
+            "def bool_source() -> bool:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return _test_source()",
+            "def bool_source() -> bool:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return _test_source()",
+            "def bool_source() -> bool:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return _test_source()",
+            "def bool_source() -> bool:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return _test_source()"
+        ]
+    },
+    {
+        "func_name": "int_parameter",
+        "original": "def int_parameter(x, y: int):\n    _test_sink(y)",
+        "mutated": [
+            "def int_parameter(x, y: int):\n    if False:\n        i = 10\n    _test_sink(y)",
+            "def int_parameter(x, y: int):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    _test_sink(y)",
+            "def int_parameter(x, y: int):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    _test_sink(y)",
+            "def int_parameter(x, y: int):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    _test_sink(y)",
+            "def int_parameter(x, y: int):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    _test_sink(y)"
+        ]
+    },
+    {
+        "func_name": "float_parameter",
+        "original": "def float_parameter(x, y: float):\n    _test_sink(y)",
+        "mutated": [
+            "def float_parameter(x, y: float):\n    if False:\n        i = 10\n    _test_sink(y)",
+            "def float_parameter(x, y: float):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    _test_sink(y)",
+            "def float_parameter(x, y: float):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    _test_sink(y)",
+            "def float_parameter(x, y: float):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    _test_sink(y)",
+            "def float_parameter(x, y: float):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    _test_sink(y)"
+        ]
+    },
+    {
+        "func_name": "bool_parameter",
+        "original": "def bool_parameter(x, y: bool):\n    _test_sink(y)",
+        "mutated": [
+            "def bool_parameter(x, y: bool):\n    if False:\n        i = 10\n    _test_sink(y)",
+            "def bool_parameter(x, y: bool):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    _test_sink(y)",
+            "def bool_parameter(x, y: bool):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    _test_sink(y)",
+            "def bool_parameter(x, y: bool):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    _test_sink(y)",
+            "def bool_parameter(x, y: bool):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    _test_sink(y)"
+        ]
+    },
+    {
+        "func_name": "__init__",
+        "original": "def __init__(self, id_float: float, ids_list: typing.List[int]) -> None:\n    self.id_float = id_float\n    self.ids_list = ids_list",
+        "mutated": [
+            "def __init__(self, id_float: float, ids_list: typing.List[int]) -> None:\n    if False:\n        i = 10\n    self.id_float = id_float\n    self.ids_list = ids_list",
+            "def __init__(self, id_float: float, ids_list: typing.List[int]) -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    self.id_float = id_float\n    self.ids_list = ids_list",
+            "def __init__(self, id_float: float, ids_list: typing.List[int]) -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    self.id_float = id_float\n    self.ids_list = ids_list",
+            "def __init__(self, id_float: float, ids_list: typing.List[int]) -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    self.id_float = id_float\n    self.ids_list = ids_list",
+            "def __init__(self, id_float: float, ids_list: typing.List[int]) -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    self.id_float = id_float\n    self.ids_list = ids_list"
+        ]
+    },
+    {
+        "func_name": "tpm_request",
+        "original": "def tpm_request() -> TpmRequest:\n    ...",
+        "mutated": [
+            "def tpm_request() -> TpmRequest:\n    if False:\n        i = 10\n    ...",
+            "def tpm_request() -> TpmRequest:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    ...",
+            "def tpm_request() -> TpmRequest:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    ...",
+            "def tpm_request() -> TpmRequest:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    ...",
+            "def tpm_request() -> TpmRequest:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    ..."
+        ]
+    },
+    {
+        "func_name": "scalar_attribute_backward",
+        "original": "def scalar_attribute_backward(request: TpmRequest):\n    if 1 > 1:\n        _test_sink(request.id_float)\n    elif 1 > 1:\n        _test_sink(request.ids_list)\n    elif 1 > 1:\n        _test_sink(' '.join((str(i) for i in request.ids_list)))\n    else:\n        id = request.id_float\n        return id",
+        "mutated": [
+            "def scalar_attribute_backward(request: TpmRequest):\n    if False:\n        i = 10\n    if 1 > 1:\n        _test_sink(request.id_float)\n    elif 1 > 1:\n        _test_sink(request.ids_list)\n    elif 1 > 1:\n        _test_sink(' '.join((str(i) for i in request.ids_list)))\n    else:\n        id = request.id_float\n        return id",
+            "def scalar_attribute_backward(request: TpmRequest):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    if 1 > 1:\n        _test_sink(request.id_float)\n    elif 1 > 1:\n        _test_sink(request.ids_list)\n    elif 1 > 1:\n        _test_sink(' '.join((str(i) for i in request.ids_list)))\n    else:\n        id = request.id_float\n        return id",
+            "def scalar_attribute_backward(request: TpmRequest):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    if 1 > 1:\n        _test_sink(request.id_float)\n    elif 1 > 1:\n        _test_sink(request.ids_list)\n    elif 1 > 1:\n        _test_sink(' '.join((str(i) for i in request.ids_list)))\n    else:\n        id = request.id_float\n        return id",
+            "def scalar_attribute_backward(request: TpmRequest):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    if 1 > 1:\n        _test_sink(request.id_float)\n    elif 1 > 1:\n        _test_sink(request.ids_list)\n    elif 1 > 1:\n        _test_sink(' '.join((str(i) for i in request.ids_list)))\n    else:\n        id = request.id_float\n        return id",
+            "def scalar_attribute_backward(request: TpmRequest):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    if 1 > 1:\n        _test_sink(request.id_float)\n    elif 1 > 1:\n        _test_sink(request.ids_list)\n    elif 1 > 1:\n        _test_sink(' '.join((str(i) for i in request.ids_list)))\n    else:\n        id = request.id_float\n        return id"
+        ]
+    },
+    {
+        "func_name": "scalar_attribute_forward",
+        "original": "def scalar_attribute_forward():\n    request = tpm_request()\n    if 1 > 1:\n        return request.id_float\n    elif 1 > 1:\n        return request.ids_list\n    elif 1 > 1:\n        return ' '.join((str(i) for i in request.ids_list))\n    else:\n        id = request.id_float\n        return id",
+        "mutated": [
+            "def scalar_attribute_forward():\n    if False:\n        i = 10\n    request = tpm_request()\n    if 1 > 1:\n        return request.id_float\n    elif 1 > 1:\n        return request.ids_list\n    elif 1 > 1:\n        return ' '.join((str(i) for i in request.ids_list))\n    else:\n        id = request.id_float\n        return id",
+            "def scalar_attribute_forward():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    request = tpm_request()\n    if 1 > 1:\n        return request.id_float\n    elif 1 > 1:\n        return request.ids_list\n    elif 1 > 1:\n        return ' '.join((str(i) for i in request.ids_list))\n    else:\n        id = request.id_float\n        return id",
+            "def scalar_attribute_forward():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    request = tpm_request()\n    if 1 > 1:\n        return request.id_float\n    elif 1 > 1:\n        return request.ids_list\n    elif 1 > 1:\n        return ' '.join((str(i) for i in request.ids_list))\n    else:\n        id = request.id_float\n        return id",
+            "def scalar_attribute_forward():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    request = tpm_request()\n    if 1 > 1:\n        return request.id_float\n    elif 1 > 1:\n        return request.ids_list\n    elif 1 > 1:\n        return ' '.join((str(i) for i in request.ids_list))\n    else:\n        id = request.id_float\n        return id",
+            "def scalar_attribute_forward():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    request = tpm_request()\n    if 1 > 1:\n        return request.id_float\n    elif 1 > 1:\n        return request.ids_list\n    elif 1 > 1:\n        return ' '.join((str(i) for i in request.ids_list))\n    else:\n        id = request.id_float\n        return id"
+        ]
+    }
+]

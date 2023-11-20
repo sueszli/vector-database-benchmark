@@ -1,9 +1,0 @@
-from pyramid.view import notfound_view_config
-
-@notfound_view_config(renderer='myproject:templates/404.jinja2')
-def notfound_view(request):
-    if False:
-        while True:
-            i = 10
-    request.response.status = 404
-    return {}

@@ -1,0 +1,35 @@
+[
+    {
+        "func_name": "setUpClass",
+        "original": "@classmethod\ndef setUpClass(cls):\n    setup_database(db)",
+        "mutated": [
+            "@classmethod\ndef setUpClass(cls):\n    if False:\n        i = 10\n    setup_database(db)",
+            "@classmethod\ndef setUpClass(cls):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    setup_database(db)",
+            "@classmethod\ndef setUpClass(cls):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    setup_database(db)",
+            "@classmethod\ndef setUpClass(cls):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    setup_database(db)",
+            "@classmethod\ndef setUpClass(cls):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    setup_database(db)"
+        ]
+    },
+    {
+        "func_name": "tearDownClass",
+        "original": "@classmethod\ndef tearDownClass(cls):\n    teardown_database(db)",
+        "mutated": [
+            "@classmethod\ndef tearDownClass(cls):\n    if False:\n        i = 10\n    teardown_database(db)",
+            "@classmethod\ndef tearDownClass(cls):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    teardown_database(db)",
+            "@classmethod\ndef tearDownClass(cls):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    teardown_database(db)",
+            "@classmethod\ndef tearDownClass(cls):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    teardown_database(db)",
+            "@classmethod\ndef tearDownClass(cls):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    teardown_database(db)"
+        ]
+    },
+    {
+        "func_name": "test_1",
+        "original": "def test_1(self):\n    with orm.db_session:\n        a = Person(name='John')\n        a.delete()\n        Person.exists(name='Mike')",
+        "mutated": [
+            "def test_1(self):\n    if False:\n        i = 10\n    with orm.db_session:\n        a = Person(name='John')\n        a.delete()\n        Person.exists(name='Mike')",
+            "def test_1(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    with orm.db_session:\n        a = Person(name='John')\n        a.delete()\n        Person.exists(name='Mike')",
+            "def test_1(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    with orm.db_session:\n        a = Person(name='John')\n        a.delete()\n        Person.exists(name='Mike')",
+            "def test_1(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    with orm.db_session:\n        a = Person(name='John')\n        a.delete()\n        Person.exists(name='Mike')",
+            "def test_1(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    with orm.db_session:\n        a = Person(name='John')\n        a.delete()\n        Person.exists(name='Mike')"
+        ]
+    }
+]

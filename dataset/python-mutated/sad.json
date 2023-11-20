@@ -1,0 +1,35 @@
+[
+    {
+        "func_name": "__init__",
+        "original": "def __init__(self, sub_stat: stats.base.Univariate=None):\n    self.variance = stats.Var()\n    self.sub_stat = sub_stat or stats.Mean()",
+        "mutated": [
+            "def __init__(self, sub_stat: stats.base.Univariate=None):\n    if False:\n        i = 10\n    self.variance = stats.Var()\n    self.sub_stat = sub_stat or stats.Mean()",
+            "def __init__(self, sub_stat: stats.base.Univariate=None):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    self.variance = stats.Var()\n    self.sub_stat = sub_stat or stats.Mean()",
+            "def __init__(self, sub_stat: stats.base.Univariate=None):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    self.variance = stats.Var()\n    self.sub_stat = sub_stat or stats.Mean()",
+            "def __init__(self, sub_stat: stats.base.Univariate=None):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    self.variance = stats.Var()\n    self.sub_stat = sub_stat or stats.Mean()",
+            "def __init__(self, sub_stat: stats.base.Univariate=None):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    self.variance = stats.Var()\n    self.sub_stat = sub_stat or stats.Mean()"
+        ]
+    },
+    {
+        "func_name": "learn_one",
+        "original": "def learn_one(self, x, y):\n    self.variance.update(y)\n    self.sub_stat.update(y)\n    return self",
+        "mutated": [
+            "def learn_one(self, x, y):\n    if False:\n        i = 10\n    self.variance.update(y)\n    self.sub_stat.update(y)\n    return self",
+            "def learn_one(self, x, y):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    self.variance.update(y)\n    self.sub_stat.update(y)\n    return self",
+            "def learn_one(self, x, y):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    self.variance.update(y)\n    self.sub_stat.update(y)\n    return self",
+            "def learn_one(self, x, y):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    self.variance.update(y)\n    self.sub_stat.update(y)\n    return self",
+            "def learn_one(self, x, y):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    self.variance.update(y)\n    self.sub_stat.update(y)\n    return self"
+        ]
+    },
+    {
+        "func_name": "score_one",
+        "original": "def score_one(self, x, y):\n    score = (y - self.sub_stat.get()) / (self.variance.get() ** 0.5 + 1e-10)\n    return abs(score)",
+        "mutated": [
+            "def score_one(self, x, y):\n    if False:\n        i = 10\n    score = (y - self.sub_stat.get()) / (self.variance.get() ** 0.5 + 1e-10)\n    return abs(score)",
+            "def score_one(self, x, y):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    score = (y - self.sub_stat.get()) / (self.variance.get() ** 0.5 + 1e-10)\n    return abs(score)",
+            "def score_one(self, x, y):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    score = (y - self.sub_stat.get()) / (self.variance.get() ** 0.5 + 1e-10)\n    return abs(score)",
+            "def score_one(self, x, y):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    score = (y - self.sub_stat.get()) / (self.variance.get() ** 0.5 + 1e-10)\n    return abs(score)",
+            "def score_one(self, x, y):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    score = (y - self.sub_stat.get()) / (self.variance.get() ** 0.5 + 1e-10)\n    return abs(score)"
+        ]
+    }
+]

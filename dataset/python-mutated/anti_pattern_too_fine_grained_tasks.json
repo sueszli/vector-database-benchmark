@@ -1,0 +1,35 @@
+[
+    {
+        "func_name": "double",
+        "original": "def double(number):\n    time.sleep(1e-05)\n    return number * 2",
+        "mutated": [
+            "def double(number):\n    if False:\n        i = 10\n    time.sleep(1e-05)\n    return number * 2",
+            "def double(number):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    time.sleep(1e-05)\n    return number * 2",
+            "def double(number):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    time.sleep(1e-05)\n    return number * 2",
+            "def double(number):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    time.sleep(1e-05)\n    return number * 2",
+            "def double(number):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    time.sleep(1e-05)\n    return number * 2"
+        ]
+    },
+    {
+        "func_name": "remote_double",
+        "original": "@ray.remote\ndef remote_double(number):\n    return double(number)",
+        "mutated": [
+            "@ray.remote\ndef remote_double(number):\n    if False:\n        i = 10\n    return double(number)",
+            "@ray.remote\ndef remote_double(number):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return double(number)",
+            "@ray.remote\ndef remote_double(number):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return double(number)",
+            "@ray.remote\ndef remote_double(number):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return double(number)",
+            "@ray.remote\ndef remote_double(number):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return double(number)"
+        ]
+    },
+    {
+        "func_name": "remote_double_batch",
+        "original": "@ray.remote\ndef remote_double_batch(numbers):\n    return [double(number) for number in numbers]",
+        "mutated": [
+            "@ray.remote\ndef remote_double_batch(numbers):\n    if False:\n        i = 10\n    return [double(number) for number in numbers]",
+            "@ray.remote\ndef remote_double_batch(numbers):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return [double(number) for number in numbers]",
+            "@ray.remote\ndef remote_double_batch(numbers):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return [double(number) for number in numbers]",
+            "@ray.remote\ndef remote_double_batch(numbers):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return [double(number) for number in numbers]",
+            "@ray.remote\ndef remote_double_batch(numbers):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return [double(number) for number in numbers]"
+        ]
+    }
+]

@@ -1,0 +1,35 @@
+[
+    {
+        "func_name": "read_all",
+        "original": "def read_all():\n    fails = 0\n    for line in sys.stdin:\n        if 'FAIL' in line:\n            fails += 1\n    print(\"%d lines with 'FAIL' found!\" % fails)",
+        "mutated": [
+            "def read_all():\n    if False:\n        i = 10\n    fails = 0\n    for line in sys.stdin:\n        if 'FAIL' in line:\n            fails += 1\n    print(\"%d lines with 'FAIL' found!\" % fails)",
+            "def read_all():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    fails = 0\n    for line in sys.stdin:\n        if 'FAIL' in line:\n            fails += 1\n    print(\"%d lines with 'FAIL' found!\" % fails)",
+            "def read_all():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    fails = 0\n    for line in sys.stdin:\n        if 'FAIL' in line:\n            fails += 1\n    print(\"%d lines with 'FAIL' found!\" % fails)",
+            "def read_all():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    fails = 0\n    for line in sys.stdin:\n        if 'FAIL' in line:\n            fails += 1\n    print(\"%d lines with 'FAIL' found!\" % fails)",
+            "def read_all():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    fails = 0\n    for line in sys.stdin:\n        if 'FAIL' in line:\n            fails += 1\n    print(\"%d lines with 'FAIL' found!\" % fails)"
+        ]
+    },
+    {
+        "func_name": "read_some",
+        "original": "def read_some():\n    for line in sys.stdin:\n        if 'FAIL' in line:\n            print(\"Line with 'FAIL' found!\")\n            sys.stdin.close()\n            break",
+        "mutated": [
+            "def read_some():\n    if False:\n        i = 10\n    for line in sys.stdin:\n        if 'FAIL' in line:\n            print(\"Line with 'FAIL' found!\")\n            sys.stdin.close()\n            break",
+            "def read_some():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    for line in sys.stdin:\n        if 'FAIL' in line:\n            print(\"Line with 'FAIL' found!\")\n            sys.stdin.close()\n            break",
+            "def read_some():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    for line in sys.stdin:\n        if 'FAIL' in line:\n            print(\"Line with 'FAIL' found!\")\n            sys.stdin.close()\n            break",
+            "def read_some():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    for line in sys.stdin:\n        if 'FAIL' in line:\n            print(\"Line with 'FAIL' found!\")\n            sys.stdin.close()\n            break",
+            "def read_some():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    for line in sys.stdin:\n        if 'FAIL' in line:\n            print(\"Line with 'FAIL' found!\")\n            sys.stdin.close()\n            break"
+        ]
+    },
+    {
+        "func_name": "read_none",
+        "original": "def read_none():\n    sys.stdin.close()",
+        "mutated": [
+            "def read_none():\n    if False:\n        i = 10\n    sys.stdin.close()",
+            "def read_none():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    sys.stdin.close()",
+            "def read_none():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    sys.stdin.close()",
+            "def read_none():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    sys.stdin.close()",
+            "def read_none():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    sys.stdin.close()"
+        ]
+    }
+]

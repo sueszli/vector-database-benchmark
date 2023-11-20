@@ -1,0 +1,134 @@
+[
+    {
+        "func_name": "simple",
+        "original": "def simple(a):\n    return a",
+        "mutated": [
+            "def simple(a):\n    if False:\n        i = 10\n    return a",
+            "def simple(a):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return a",
+            "def simple(a):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return a",
+            "def simple(a):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return a",
+            "def simple(a):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return a"
+        ]
+    },
+    {
+        "func_name": "nested",
+        "original": "def nested(*args):\n    return simple(*args)",
+        "mutated": [
+            "def nested(*args):\n    if False:\n        i = 10\n    return simple(*args)",
+            "def nested(*args):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return simple(*args)",
+            "def nested(*args):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return simple(*args)",
+            "def nested(*args):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return simple(*args)",
+            "def nested(*args):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return simple(*args)"
+        ]
+    },
+    {
+        "func_name": "nested_no_call_to_function",
+        "original": "def nested_no_call_to_function(*args):\n    return simple(1, *args)",
+        "mutated": [
+            "def nested_no_call_to_function(*args):\n    if False:\n        i = 10\n    return simple(1, *args)",
+            "def nested_no_call_to_function(*args):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return simple(1, *args)",
+            "def nested_no_call_to_function(*args):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return simple(1, *args)",
+            "def nested_no_call_to_function(*args):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return simple(1, *args)",
+            "def nested_no_call_to_function(*args):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return simple(1, *args)"
+        ]
+    },
+    {
+        "func_name": "simple2",
+        "original": "def simple2(a, b, c):\n    return b",
+        "mutated": [
+            "def simple2(a, b, c):\n    if False:\n        i = 10\n    return b",
+            "def simple2(a, b, c):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return b",
+            "def simple2(a, b, c):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return b",
+            "def simple2(a, b, c):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return b",
+            "def simple2(a, b, c):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return b"
+        ]
+    },
+    {
+        "func_name": "nested",
+        "original": "def nested(*args):\n    return simple2(1, *args)",
+        "mutated": [
+            "def nested(*args):\n    if False:\n        i = 10\n    return simple2(1, *args)",
+            "def nested(*args):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return simple2(1, *args)",
+            "def nested(*args):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return simple2(1, *args)",
+            "def nested(*args):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return simple2(1, *args)",
+            "def nested(*args):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return simple2(1, *args)"
+        ]
+    },
+    {
+        "func_name": "nested_twice",
+        "original": "def nested_twice(*args1):\n    return nested(*args1)",
+        "mutated": [
+            "def nested_twice(*args1):\n    if False:\n        i = 10\n    return nested(*args1)",
+            "def nested_twice(*args1):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return nested(*args1)",
+            "def nested_twice(*args1):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return nested(*args1)",
+            "def nested_twice(*args1):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return nested(*args1)",
+            "def nested_twice(*args1):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return nested(*args1)"
+        ]
+    },
+    {
+        "func_name": "star_args_with_named",
+        "original": "def star_args_with_named(*args):\n    return simple2(*args, c='')",
+        "mutated": [
+            "def star_args_with_named(*args):\n    if False:\n        i = 10\n    return simple2(*args, c='')",
+            "def star_args_with_named(*args):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return simple2(*args, c='')",
+            "def star_args_with_named(*args):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return simple2(*args, c='')",
+            "def star_args_with_named(*args):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return simple2(*args, c='')",
+            "def star_args_with_named(*args):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return simple2(*args, c='')"
+        ]
+    },
+    {
+        "func_name": "kwargs_test",
+        "original": "def kwargs_test(**kwargs):\n    return simple2(1, **kwargs)",
+        "mutated": [
+            "def kwargs_test(**kwargs):\n    if False:\n        i = 10\n    return simple2(1, **kwargs)",
+            "def kwargs_test(**kwargs):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return simple2(1, **kwargs)",
+            "def kwargs_test(**kwargs):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return simple2(1, **kwargs)",
+            "def kwargs_test(**kwargs):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return simple2(1, **kwargs)",
+            "def kwargs_test(**kwargs):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return simple2(1, **kwargs)"
+        ]
+    },
+    {
+        "func_name": "kwargs_nested",
+        "original": "def kwargs_nested(**kwargs):\n    return kwargs_test(b=2, **kwargs)",
+        "mutated": [
+            "def kwargs_nested(**kwargs):\n    if False:\n        i = 10\n    return kwargs_test(b=2, **kwargs)",
+            "def kwargs_nested(**kwargs):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return kwargs_test(b=2, **kwargs)",
+            "def kwargs_nested(**kwargs):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return kwargs_test(b=2, **kwargs)",
+            "def kwargs_nested(**kwargs):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return kwargs_test(b=2, **kwargs)",
+            "def kwargs_nested(**kwargs):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return kwargs_test(b=2, **kwargs)"
+        ]
+    },
+    {
+        "func_name": "simple_mixed",
+        "original": "def simple_mixed(a, b, c):\n    return b",
+        "mutated": [
+            "def simple_mixed(a, b, c):\n    if False:\n        i = 10\n    return b",
+            "def simple_mixed(a, b, c):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return b",
+            "def simple_mixed(a, b, c):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return b",
+            "def simple_mixed(a, b, c):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return b",
+            "def simple_mixed(a, b, c):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return b"
+        ]
+    },
+    {
+        "func_name": "mixed",
+        "original": "def mixed(*args, **kwargs):\n    return simple_mixed(1, *args, **kwargs)",
+        "mutated": [
+            "def mixed(*args, **kwargs):\n    if False:\n        i = 10\n    return simple_mixed(1, *args, **kwargs)",
+            "def mixed(*args, **kwargs):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return simple_mixed(1, *args, **kwargs)",
+            "def mixed(*args, **kwargs):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return simple_mixed(1, *args, **kwargs)",
+            "def mixed(*args, **kwargs):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return simple_mixed(1, *args, **kwargs)",
+            "def mixed(*args, **kwargs):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return simple_mixed(1, *args, **kwargs)"
+        ]
+    },
+    {
+        "func_name": "mixed2",
+        "original": "def mixed2(*args, **kwargs):\n    return simple_mixed(1, *args, **kwargs)",
+        "mutated": [
+            "def mixed2(*args, **kwargs):\n    if False:\n        i = 10\n    return simple_mixed(1, *args, **kwargs)",
+            "def mixed2(*args, **kwargs):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return simple_mixed(1, *args, **kwargs)",
+            "def mixed2(*args, **kwargs):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return simple_mixed(1, *args, **kwargs)",
+            "def mixed2(*args, **kwargs):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return simple_mixed(1, *args, **kwargs)",
+            "def mixed2(*args, **kwargs):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return simple_mixed(1, *args, **kwargs)"
+        ]
+    }
+]

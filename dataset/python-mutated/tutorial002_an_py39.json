@@ -1,0 +1,24 @@
+[
+    {
+        "func_name": "write_log",
+        "original": "def write_log(message: str):\n    with open('log.txt', mode='a') as log:\n        log.write(message)",
+        "mutated": [
+            "def write_log(message: str):\n    if False:\n        i = 10\n    with open('log.txt', mode='a') as log:\n        log.write(message)",
+            "def write_log(message: str):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    with open('log.txt', mode='a') as log:\n        log.write(message)",
+            "def write_log(message: str):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    with open('log.txt', mode='a') as log:\n        log.write(message)",
+            "def write_log(message: str):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    with open('log.txt', mode='a') as log:\n        log.write(message)",
+            "def write_log(message: str):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    with open('log.txt', mode='a') as log:\n        log.write(message)"
+        ]
+    },
+    {
+        "func_name": "get_query",
+        "original": "def get_query(background_tasks: BackgroundTasks, q: Union[str, None]=None):\n    if q:\n        message = f'found query: {q}\\n'\n        background_tasks.add_task(write_log, message)\n    return q",
+        "mutated": [
+            "def get_query(background_tasks: BackgroundTasks, q: Union[str, None]=None):\n    if False:\n        i = 10\n    if q:\n        message = f'found query: {q}\\n'\n        background_tasks.add_task(write_log, message)\n    return q",
+            "def get_query(background_tasks: BackgroundTasks, q: Union[str, None]=None):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    if q:\n        message = f'found query: {q}\\n'\n        background_tasks.add_task(write_log, message)\n    return q",
+            "def get_query(background_tasks: BackgroundTasks, q: Union[str, None]=None):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    if q:\n        message = f'found query: {q}\\n'\n        background_tasks.add_task(write_log, message)\n    return q",
+            "def get_query(background_tasks: BackgroundTasks, q: Union[str, None]=None):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    if q:\n        message = f'found query: {q}\\n'\n        background_tasks.add_task(write_log, message)\n    return q",
+            "def get_query(background_tasks: BackgroundTasks, q: Union[str, None]=None):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    if q:\n        message = f'found query: {q}\\n'\n        background_tasks.add_task(write_log, message)\n    return q"
+        ]
+    }
+]

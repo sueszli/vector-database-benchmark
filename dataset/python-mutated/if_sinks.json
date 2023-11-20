@@ -1,0 +1,24 @@
+[
+    {
+        "func_name": "no_if",
+        "original": "def no_if(x):\n    _test_sink(x)",
+        "mutated": [
+            "def no_if(x):\n    if False:\n        i = 10\n    _test_sink(x)",
+            "def no_if(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    _test_sink(x)",
+            "def no_if(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    _test_sink(x)",
+            "def no_if(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    _test_sink(x)",
+            "def no_if(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    _test_sink(x)"
+        ]
+    },
+    {
+        "func_name": "with_if",
+        "original": "def with_if(x):\n    if _test_sink(x):\n        pass\n    pass",
+        "mutated": [
+            "def with_if(x):\n    if False:\n        i = 10\n    if _test_sink(x):\n        pass\n    pass",
+            "def with_if(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    if _test_sink(x):\n        pass\n    pass",
+            "def with_if(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    if _test_sink(x):\n        pass\n    pass",
+            "def with_if(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    if _test_sink(x):\n        pass\n    pass",
+            "def with_if(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    if _test_sink(x):\n        pass\n    pass"
+        ]
+    }
+]

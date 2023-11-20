@@ -1,0 +1,24 @@
+[
+    {
+        "func_name": "pool_worker",
+        "original": "def pool_worker(item):\n    return {'a': 1}",
+        "mutated": [
+            "def pool_worker(item):\n    if False:\n        i = 10\n    return {'a': 1}",
+            "def pool_worker(item):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return {'a': 1}",
+            "def pool_worker(item):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return {'a': 1}",
+            "def pool_worker(item):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return {'a': 1}",
+            "def pool_worker(item):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return {'a': 1}"
+        ]
+    },
+    {
+        "func_name": "pool_indexer",
+        "original": "def pool_indexer(path):\n    item_count = 0\n    with Pool(processes=4) as pool:\n        for _ in pool.imap(pool_worker, range(1, 200), chunksize=10):\n            item_count = item_count + 1",
+        "mutated": [
+            "def pool_indexer(path):\n    if False:\n        i = 10\n    item_count = 0\n    with Pool(processes=4) as pool:\n        for _ in pool.imap(pool_worker, range(1, 200), chunksize=10):\n            item_count = item_count + 1",
+            "def pool_indexer(path):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    item_count = 0\n    with Pool(processes=4) as pool:\n        for _ in pool.imap(pool_worker, range(1, 200), chunksize=10):\n            item_count = item_count + 1",
+            "def pool_indexer(path):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    item_count = 0\n    with Pool(processes=4) as pool:\n        for _ in pool.imap(pool_worker, range(1, 200), chunksize=10):\n            item_count = item_count + 1",
+            "def pool_indexer(path):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    item_count = 0\n    with Pool(processes=4) as pool:\n        for _ in pool.imap(pool_worker, range(1, 200), chunksize=10):\n            item_count = item_count + 1",
+            "def pool_indexer(path):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    item_count = 0\n    with Pool(processes=4) as pool:\n        for _ in pool.imap(pool_worker, range(1, 200), chunksize=10):\n            item_count = item_count + 1"
+        ]
+    }
+]

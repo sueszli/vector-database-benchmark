@@ -1,0 +1,90 @@
+[
+    {
+        "func_name": "kw_only_arg",
+        "original": "def kw_only_arg(*, kwo):\n    return kwo",
+        "mutated": [
+            "def kw_only_arg(*, kwo):\n    if False:\n        i = 10\n    return kwo",
+            "def kw_only_arg(*, kwo):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return kwo",
+            "def kw_only_arg(*, kwo):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return kwo",
+            "def kw_only_arg(*, kwo):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return kwo",
+            "def kw_only_arg(*, kwo):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return kwo"
+        ]
+    },
+    {
+        "func_name": "many_kw_only_args",
+        "original": "def many_kw_only_args(*, first, second, third):\n    return first + second + third",
+        "mutated": [
+            "def many_kw_only_args(*, first, second, third):\n    if False:\n        i = 10\n    return first + second + third",
+            "def many_kw_only_args(*, first, second, third):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return first + second + third",
+            "def many_kw_only_args(*, first, second, third):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return first + second + third",
+            "def many_kw_only_args(*, first, second, third):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return first + second + third",
+            "def many_kw_only_args(*, first, second, third):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return first + second + third"
+        ]
+    },
+    {
+        "func_name": "kw_only_arg_with_default",
+        "original": "def kw_only_arg_with_default(*, kwo='default', another='another'):\n    return '{}-{}'.format(kwo, another)",
+        "mutated": [
+            "def kw_only_arg_with_default(*, kwo='default', another='another'):\n    if False:\n        i = 10\n    return '{}-{}'.format(kwo, another)",
+            "def kw_only_arg_with_default(*, kwo='default', another='another'):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return '{}-{}'.format(kwo, another)",
+            "def kw_only_arg_with_default(*, kwo='default', another='another'):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return '{}-{}'.format(kwo, another)",
+            "def kw_only_arg_with_default(*, kwo='default', another='another'):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return '{}-{}'.format(kwo, another)",
+            "def kw_only_arg_with_default(*, kwo='default', another='another'):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return '{}-{}'.format(kwo, another)"
+        ]
+    },
+    {
+        "func_name": "mandatory_after_defaults",
+        "original": "def mandatory_after_defaults(*, default1='xxx', mandatory, default2='zzz'):\n    return '{}-{}-{}'.format(default1, mandatory, default2)",
+        "mutated": [
+            "def mandatory_after_defaults(*, default1='xxx', mandatory, default2='zzz'):\n    if False:\n        i = 10\n    return '{}-{}-{}'.format(default1, mandatory, default2)",
+            "def mandatory_after_defaults(*, default1='xxx', mandatory, default2='zzz'):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return '{}-{}-{}'.format(default1, mandatory, default2)",
+            "def mandatory_after_defaults(*, default1='xxx', mandatory, default2='zzz'):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return '{}-{}-{}'.format(default1, mandatory, default2)",
+            "def mandatory_after_defaults(*, default1='xxx', mandatory, default2='zzz'):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return '{}-{}-{}'.format(default1, mandatory, default2)",
+            "def mandatory_after_defaults(*, default1='xxx', mandatory, default2='zzz'):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return '{}-{}-{}'.format(default1, mandatory, default2)"
+        ]
+    },
+    {
+        "func_name": "kw_only_arg_with_annotation",
+        "original": "def kw_only_arg_with_annotation(*, kwo: str):\n    return kwo",
+        "mutated": [
+            "def kw_only_arg_with_annotation(*, kwo: str):\n    if False:\n        i = 10\n    return kwo",
+            "def kw_only_arg_with_annotation(*, kwo: str):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return kwo",
+            "def kw_only_arg_with_annotation(*, kwo: str):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return kwo",
+            "def kw_only_arg_with_annotation(*, kwo: str):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return kwo",
+            "def kw_only_arg_with_annotation(*, kwo: str):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return kwo"
+        ]
+    },
+    {
+        "func_name": "kw_only_arg_with_annotation_and_default",
+        "original": "def kw_only_arg_with_annotation_and_default(*, kwo: str='default'):\n    return kwo",
+        "mutated": [
+            "def kw_only_arg_with_annotation_and_default(*, kwo: str='default'):\n    if False:\n        i = 10\n    return kwo",
+            "def kw_only_arg_with_annotation_and_default(*, kwo: str='default'):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return kwo",
+            "def kw_only_arg_with_annotation_and_default(*, kwo: str='default'):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return kwo",
+            "def kw_only_arg_with_annotation_and_default(*, kwo: str='default'):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return kwo",
+            "def kw_only_arg_with_annotation_and_default(*, kwo: str='default'):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return kwo"
+        ]
+    },
+    {
+        "func_name": "kw_only_arg_with_varargs",
+        "original": "def kw_only_arg_with_varargs(*varargs, kwo):\n    return '-'.join(varargs + (kwo,))",
+        "mutated": [
+            "def kw_only_arg_with_varargs(*varargs, kwo):\n    if False:\n        i = 10\n    return '-'.join(varargs + (kwo,))",
+            "def kw_only_arg_with_varargs(*varargs, kwo):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return '-'.join(varargs + (kwo,))",
+            "def kw_only_arg_with_varargs(*varargs, kwo):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return '-'.join(varargs + (kwo,))",
+            "def kw_only_arg_with_varargs(*varargs, kwo):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return '-'.join(varargs + (kwo,))",
+            "def kw_only_arg_with_varargs(*varargs, kwo):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return '-'.join(varargs + (kwo,))"
+        ]
+    },
+    {
+        "func_name": "all_arg_types",
+        "original": "def all_arg_types(pos_req, pos_def='pd', *varargs, kwo_req, kwo_def='kd', **kwargs):\n    varargs = list(varargs)\n    kwargs = ['%s=%s' % item for item in sorted(kwargs.items())]\n    return '-'.join([pos_req, pos_def] + varargs + [kwo_req, kwo_def] + kwargs)",
+        "mutated": [
+            "def all_arg_types(pos_req, pos_def='pd', *varargs, kwo_req, kwo_def='kd', **kwargs):\n    if False:\n        i = 10\n    varargs = list(varargs)\n    kwargs = ['%s=%s' % item for item in sorted(kwargs.items())]\n    return '-'.join([pos_req, pos_def] + varargs + [kwo_req, kwo_def] + kwargs)",
+            "def all_arg_types(pos_req, pos_def='pd', *varargs, kwo_req, kwo_def='kd', **kwargs):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    varargs = list(varargs)\n    kwargs = ['%s=%s' % item for item in sorted(kwargs.items())]\n    return '-'.join([pos_req, pos_def] + varargs + [kwo_req, kwo_def] + kwargs)",
+            "def all_arg_types(pos_req, pos_def='pd', *varargs, kwo_req, kwo_def='kd', **kwargs):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    varargs = list(varargs)\n    kwargs = ['%s=%s' % item for item in sorted(kwargs.items())]\n    return '-'.join([pos_req, pos_def] + varargs + [kwo_req, kwo_def] + kwargs)",
+            "def all_arg_types(pos_req, pos_def='pd', *varargs, kwo_req, kwo_def='kd', **kwargs):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    varargs = list(varargs)\n    kwargs = ['%s=%s' % item for item in sorted(kwargs.items())]\n    return '-'.join([pos_req, pos_def] + varargs + [kwo_req, kwo_def] + kwargs)",
+            "def all_arg_types(pos_req, pos_def='pd', *varargs, kwo_req, kwo_def='kd', **kwargs):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    varargs = list(varargs)\n    kwargs = ['%s=%s' % item for item in sorted(kwargs.items())]\n    return '-'.join([pos_req, pos_def] + varargs + [kwo_req, kwo_def] + kwargs)"
+        ]
+    }
+]

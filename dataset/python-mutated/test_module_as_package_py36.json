@@ -1,0 +1,24 @@
+[
+    {
+        "func_name": "container",
+        "original": "@fixture\ndef container():\n    container = Container()\n    yield container\n    container.unwire()",
+        "mutated": [
+            "@fixture\ndef container():\n    if False:\n        i = 10\n    container = Container()\n    yield container\n    container.unwire()",
+            "@fixture\ndef container():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    container = Container()\n    yield container\n    container.unwire()",
+            "@fixture\ndef container():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    container = Container()\n    yield container\n    container.unwire()",
+            "@fixture\ndef container():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    container = Container()\n    yield container\n    container.unwire()",
+            "@fixture\ndef container():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    container = Container()\n    yield container\n    container.unwire()"
+        ]
+    },
+    {
+        "func_name": "test_module_as_package_wiring",
+        "original": "def test_module_as_package_wiring(container: Container):\n    container.wire(packages=[module])\n    assert isinstance(module.service, Service)",
+        "mutated": [
+            "def test_module_as_package_wiring(container: Container):\n    if False:\n        i = 10\n    container.wire(packages=[module])\n    assert isinstance(module.service, Service)",
+            "def test_module_as_package_wiring(container: Container):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    container.wire(packages=[module])\n    assert isinstance(module.service, Service)",
+            "def test_module_as_package_wiring(container: Container):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    container.wire(packages=[module])\n    assert isinstance(module.service, Service)",
+            "def test_module_as_package_wiring(container: Container):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    container.wire(packages=[module])\n    assert isinstance(module.service, Service)",
+            "def test_module_as_package_wiring(container: Container):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    container.wire(packages=[module])\n    assert isinstance(module.service, Service)"
+        ]
+    }
+]

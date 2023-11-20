@@ -1,0 +1,35 @@
+[
+    {
+        "func_name": "torch_sumall",
+        "original": "@torch.jit.script\ndef torch_sumall(a, iterations):\n    result = 0.0\n    for _ in range(iterations):\n        result += float(torch.sum(a))\n        a[0][0] += 0.01\n    return result",
+        "mutated": [
+            "@torch.jit.script\ndef torch_sumall(a, iterations):\n    if False:\n        i = 10\n    result = 0.0\n    for _ in range(iterations):\n        result += float(torch.sum(a))\n        a[0][0] += 0.01\n    return result",
+            "@torch.jit.script\ndef torch_sumall(a, iterations):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    result = 0.0\n    for _ in range(iterations):\n        result += float(torch.sum(a))\n        a[0][0] += 0.01\n    return result",
+            "@torch.jit.script\ndef torch_sumall(a, iterations):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    result = 0.0\n    for _ in range(iterations):\n        result += float(torch.sum(a))\n        a[0][0] += 0.01\n    return result",
+            "@torch.jit.script\ndef torch_sumall(a, iterations):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    result = 0.0\n    for _ in range(iterations):\n        result += float(torch.sum(a))\n        a[0][0] += 0.01\n    return result",
+            "@torch.jit.script\ndef torch_sumall(a, iterations):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    result = 0.0\n    for _ in range(iterations):\n        result += float(torch.sum(a))\n        a[0][0] += 0.01\n    return result"
+        ]
+    },
+    {
+        "func_name": "init",
+        "original": "def init(self, M, N):\n    self.input_one = torch.rand(M, N)\n    self.set_module_name('sum')",
+        "mutated": [
+            "def init(self, M, N):\n    if False:\n        i = 10\n    self.input_one = torch.rand(M, N)\n    self.set_module_name('sum')",
+            "def init(self, M, N):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    self.input_one = torch.rand(M, N)\n    self.set_module_name('sum')",
+            "def init(self, M, N):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    self.input_one = torch.rand(M, N)\n    self.set_module_name('sum')",
+            "def init(self, M, N):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    self.input_one = torch.rand(M, N)\n    self.set_module_name('sum')",
+            "def init(self, M, N):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    self.input_one = torch.rand(M, N)\n    self.set_module_name('sum')"
+        ]
+    },
+    {
+        "func_name": "jit_forward",
+        "original": "def jit_forward(self, iters):\n    return torch_sumall(self.input_one, iters)",
+        "mutated": [
+            "def jit_forward(self, iters):\n    if False:\n        i = 10\n    return torch_sumall(self.input_one, iters)",
+            "def jit_forward(self, iters):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return torch_sumall(self.input_one, iters)",
+            "def jit_forward(self, iters):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return torch_sumall(self.input_one, iters)",
+            "def jit_forward(self, iters):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return torch_sumall(self.input_one, iters)",
+            "def jit_forward(self, iters):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return torch_sumall(self.input_one, iters)"
+        ]
+    }
+]

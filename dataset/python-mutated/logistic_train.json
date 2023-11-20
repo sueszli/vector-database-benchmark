@@ -1,0 +1,46 @@
+[
+    {
+        "func_name": "sigmoid",
+        "original": "def sigmoid(a):\n    return 1 / (1 + np.exp(-a))",
+        "mutated": [
+            "def sigmoid(a):\n    if False:\n        i = 10\n    return 1 / (1 + np.exp(-a))",
+            "def sigmoid(a):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return 1 / (1 + np.exp(-a))",
+            "def sigmoid(a):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return 1 / (1 + np.exp(-a))",
+            "def sigmoid(a):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return 1 / (1 + np.exp(-a))",
+            "def sigmoid(a):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return 1 / (1 + np.exp(-a))"
+        ]
+    },
+    {
+        "func_name": "forward",
+        "original": "def forward(X, W, b):\n    return sigmoid(X.dot(W) + b)",
+        "mutated": [
+            "def forward(X, W, b):\n    if False:\n        i = 10\n    return sigmoid(X.dot(W) + b)",
+            "def forward(X, W, b):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return sigmoid(X.dot(W) + b)",
+            "def forward(X, W, b):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return sigmoid(X.dot(W) + b)",
+            "def forward(X, W, b):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return sigmoid(X.dot(W) + b)",
+            "def forward(X, W, b):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return sigmoid(X.dot(W) + b)"
+        ]
+    },
+    {
+        "func_name": "classification_rate",
+        "original": "def classification_rate(Y, P):\n    return np.mean(Y == P)",
+        "mutated": [
+            "def classification_rate(Y, P):\n    if False:\n        i = 10\n    return np.mean(Y == P)",
+            "def classification_rate(Y, P):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return np.mean(Y == P)",
+            "def classification_rate(Y, P):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return np.mean(Y == P)",
+            "def classification_rate(Y, P):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return np.mean(Y == P)",
+            "def classification_rate(Y, P):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return np.mean(Y == P)"
+        ]
+    },
+    {
+        "func_name": "cross_entropy",
+        "original": "def cross_entropy(T, pY):\n    return -np.mean(T * np.log(pY) + (1 - T) * np.log(1 - pY))",
+        "mutated": [
+            "def cross_entropy(T, pY):\n    if False:\n        i = 10\n    return -np.mean(T * np.log(pY) + (1 - T) * np.log(1 - pY))",
+            "def cross_entropy(T, pY):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return -np.mean(T * np.log(pY) + (1 - T) * np.log(1 - pY))",
+            "def cross_entropy(T, pY):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return -np.mean(T * np.log(pY) + (1 - T) * np.log(1 - pY))",
+            "def cross_entropy(T, pY):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return -np.mean(T * np.log(pY) + (1 - T) * np.log(1 - pY))",
+            "def cross_entropy(T, pY):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return -np.mean(T * np.log(pY) + (1 - T) * np.log(1 - pY))"
+        ]
+    }
+]

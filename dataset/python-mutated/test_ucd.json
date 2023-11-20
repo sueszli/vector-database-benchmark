@@ -1,0 +1,57 @@
+[
+    {
+        "func_name": "test_none",
+        "original": "def test_none():\n    assert ucd.check_ucd(None)",
+        "mutated": [
+            "def test_none():\n    if False:\n        i = 10\n    assert ucd.check_ucd(None)",
+            "def test_none():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    assert ucd.check_ucd(None)",
+            "def test_none():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    assert ucd.check_ucd(None)",
+            "def test_none():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    assert ucd.check_ucd(None)",
+            "def test_none():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    assert ucd.check_ucd(None)"
+        ]
+    },
+    {
+        "func_name": "test_check",
+        "original": "def test_check():\n    for (s, p) in examples.items():\n        assert ucd.parse_ucd(s, True, True) == p\n        assert ucd.check_ucd(s, True, True)",
+        "mutated": [
+            "def test_check():\n    if False:\n        i = 10\n    for (s, p) in examples.items():\n        assert ucd.parse_ucd(s, True, True) == p\n        assert ucd.check_ucd(s, True, True)",
+            "def test_check():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    for (s, p) in examples.items():\n        assert ucd.parse_ucd(s, True, True) == p\n        assert ucd.check_ucd(s, True, True)",
+            "def test_check():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    for (s, p) in examples.items():\n        assert ucd.parse_ucd(s, True, True) == p\n        assert ucd.check_ucd(s, True, True)",
+            "def test_check():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    for (s, p) in examples.items():\n        assert ucd.parse_ucd(s, True, True) == p\n        assert ucd.check_ucd(s, True, True)",
+            "def test_check():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    for (s, p) in examples.items():\n        assert ucd.parse_ucd(s, True, True) == p\n        assert ucd.check_ucd(s, True, True)"
+        ]
+    },
+    {
+        "func_name": "test_too_many_colons",
+        "original": "def test_too_many_colons():\n    with pytest.raises(ValueError):\n        ucd.parse_ucd('ivoa:stsci:phot', True, True)",
+        "mutated": [
+            "def test_too_many_colons():\n    if False:\n        i = 10\n    with pytest.raises(ValueError):\n        ucd.parse_ucd('ivoa:stsci:phot', True, True)",
+            "def test_too_many_colons():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    with pytest.raises(ValueError):\n        ucd.parse_ucd('ivoa:stsci:phot', True, True)",
+            "def test_too_many_colons():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    with pytest.raises(ValueError):\n        ucd.parse_ucd('ivoa:stsci:phot', True, True)",
+            "def test_too_many_colons():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    with pytest.raises(ValueError):\n        ucd.parse_ucd('ivoa:stsci:phot', True, True)",
+            "def test_too_many_colons():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    with pytest.raises(ValueError):\n        ucd.parse_ucd('ivoa:stsci:phot', True, True)"
+        ]
+    },
+    {
+        "func_name": "test_invalid_namespace",
+        "original": "def test_invalid_namespace():\n    with pytest.raises(ValueError):\n        ucd.parse_ucd('_ivoa:phot.mag', True, True)",
+        "mutated": [
+            "def test_invalid_namespace():\n    if False:\n        i = 10\n    with pytest.raises(ValueError):\n        ucd.parse_ucd('_ivoa:phot.mag', True, True)",
+            "def test_invalid_namespace():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    with pytest.raises(ValueError):\n        ucd.parse_ucd('_ivoa:phot.mag', True, True)",
+            "def test_invalid_namespace():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    with pytest.raises(ValueError):\n        ucd.parse_ucd('_ivoa:phot.mag', True, True)",
+            "def test_invalid_namespace():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    with pytest.raises(ValueError):\n        ucd.parse_ucd('_ivoa:phot.mag', True, True)",
+            "def test_invalid_namespace():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    with pytest.raises(ValueError):\n        ucd.parse_ucd('_ivoa:phot.mag', True, True)"
+        ]
+    },
+    {
+        "func_name": "test_invalid_word",
+        "original": "def test_invalid_word():\n    with pytest.raises(ValueError):\n        ucd.parse_ucd('-pho')",
+        "mutated": [
+            "def test_invalid_word():\n    if False:\n        i = 10\n    with pytest.raises(ValueError):\n        ucd.parse_ucd('-pho')",
+            "def test_invalid_word():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    with pytest.raises(ValueError):\n        ucd.parse_ucd('-pho')",
+            "def test_invalid_word():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    with pytest.raises(ValueError):\n        ucd.parse_ucd('-pho')",
+            "def test_invalid_word():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    with pytest.raises(ValueError):\n        ucd.parse_ucd('-pho')",
+            "def test_invalid_word():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    with pytest.raises(ValueError):\n        ucd.parse_ucd('-pho')"
+        ]
+    }
+]

@@ -1,0 +1,24 @@
+[
+    {
+        "func_name": "compose",
+        "original": "def compose(self) -> ComposeResult:\n    yield Footer()",
+        "mutated": [
+            "def compose(self) -> ComposeResult:\n    if False:\n        i = 10\n    yield Footer()",
+            "def compose(self) -> ComposeResult:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    yield Footer()",
+            "def compose(self) -> ComposeResult:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    yield Footer()",
+            "def compose(self) -> ComposeResult:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    yield Footer()",
+            "def compose(self) -> ComposeResult:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    yield Footer()"
+        ]
+    },
+    {
+        "func_name": "get_key_display",
+        "original": "def get_key_display(self, key: str) -> str:\n    key_display_replacements = {'escape': 'Escape!', 'ctrl+q': '^q'}\n    display = key_display_replacements.get(key)\n    if display:\n        return display\n    return super().get_key_display(key)",
+        "mutated": [
+            "def get_key_display(self, key: str) -> str:\n    if False:\n        i = 10\n    key_display_replacements = {'escape': 'Escape!', 'ctrl+q': '^q'}\n    display = key_display_replacements.get(key)\n    if display:\n        return display\n    return super().get_key_display(key)",
+            "def get_key_display(self, key: str) -> str:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    key_display_replacements = {'escape': 'Escape!', 'ctrl+q': '^q'}\n    display = key_display_replacements.get(key)\n    if display:\n        return display\n    return super().get_key_display(key)",
+            "def get_key_display(self, key: str) -> str:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    key_display_replacements = {'escape': 'Escape!', 'ctrl+q': '^q'}\n    display = key_display_replacements.get(key)\n    if display:\n        return display\n    return super().get_key_display(key)",
+            "def get_key_display(self, key: str) -> str:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    key_display_replacements = {'escape': 'Escape!', 'ctrl+q': '^q'}\n    display = key_display_replacements.get(key)\n    if display:\n        return display\n    return super().get_key_display(key)",
+            "def get_key_display(self, key: str) -> str:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    key_display_replacements = {'escape': 'Escape!', 'ctrl+q': '^q'}\n    display = key_display_replacements.get(key)\n    if display:\n        return display\n    return super().get_key_display(key)"
+        ]
+    }
+]

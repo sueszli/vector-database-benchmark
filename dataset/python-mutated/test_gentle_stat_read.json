@@ -1,0 +1,68 @@
+[
+    {
+        "func_name": "setUp",
+        "original": "def setUp(self):\n    self.tmp_dir = MyPath.make_temp_dir()",
+        "mutated": [
+            "def setUp(self):\n    if False:\n        i = 10\n    self.tmp_dir = MyPath.make_temp_dir()",
+            "def setUp(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    self.tmp_dir = MyPath.make_temp_dir()",
+            "def setUp(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    self.tmp_dir = MyPath.make_temp_dir()",
+            "def setUp(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    self.tmp_dir = MyPath.make_temp_dir()",
+            "def setUp(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    self.tmp_dir = MyPath.make_temp_dir()"
+        ]
+    },
+    {
+        "func_name": "test_file_non_found",
+        "original": "def test_file_non_found(self):\n    result = gentle_stat_read(self.tmp_dir / 'not-existent')\n    six.assertRegex(self, result, \"\\\\[Errno 2\\\\] No such file or directory: '/.*/not-existent'\")",
+        "mutated": [
+            "def test_file_non_found(self):\n    if False:\n        i = 10\n    result = gentle_stat_read(self.tmp_dir / 'not-existent')\n    six.assertRegex(self, result, \"\\\\[Errno 2\\\\] No such file or directory: '/.*/not-existent'\")",
+            "def test_file_non_found(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    result = gentle_stat_read(self.tmp_dir / 'not-existent')\n    six.assertRegex(self, result, \"\\\\[Errno 2\\\\] No such file or directory: '/.*/not-existent'\")",
+            "def test_file_non_found(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    result = gentle_stat_read(self.tmp_dir / 'not-existent')\n    six.assertRegex(self, result, \"\\\\[Errno 2\\\\] No such file or directory: '/.*/not-existent'\")",
+            "def test_file_non_found(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    result = gentle_stat_read(self.tmp_dir / 'not-existent')\n    six.assertRegex(self, result, \"\\\\[Errno 2\\\\] No such file or directory: '/.*/not-existent'\")",
+            "def test_file_non_found(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    result = gentle_stat_read(self.tmp_dir / 'not-existent')\n    six.assertRegex(self, result, \"\\\\[Errno 2\\\\] No such file or directory: '/.*/not-existent'\")"
+        ]
+    },
+    {
+        "func_name": "test_file",
+        "original": "def test_file(self):\n    make_file(self.tmp_dir / 'pippo.txt')\n    os.chmod(self.tmp_dir / 'pippo.txt', 345)\n    result = gentle_stat_read(self.tmp_dir / 'pippo.txt')\n    assert result == '531 %s %s' % (self.current_user(), self.current_group())",
+        "mutated": [
+            "def test_file(self):\n    if False:\n        i = 10\n    make_file(self.tmp_dir / 'pippo.txt')\n    os.chmod(self.tmp_dir / 'pippo.txt', 345)\n    result = gentle_stat_read(self.tmp_dir / 'pippo.txt')\n    assert result == '531 %s %s' % (self.current_user(), self.current_group())",
+            "def test_file(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    make_file(self.tmp_dir / 'pippo.txt')\n    os.chmod(self.tmp_dir / 'pippo.txt', 345)\n    result = gentle_stat_read(self.tmp_dir / 'pippo.txt')\n    assert result == '531 %s %s' % (self.current_user(), self.current_group())",
+            "def test_file(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    make_file(self.tmp_dir / 'pippo.txt')\n    os.chmod(self.tmp_dir / 'pippo.txt', 345)\n    result = gentle_stat_read(self.tmp_dir / 'pippo.txt')\n    assert result == '531 %s %s' % (self.current_user(), self.current_group())",
+            "def test_file(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    make_file(self.tmp_dir / 'pippo.txt')\n    os.chmod(self.tmp_dir / 'pippo.txt', 345)\n    result = gentle_stat_read(self.tmp_dir / 'pippo.txt')\n    assert result == '531 %s %s' % (self.current_user(), self.current_group())",
+            "def test_file(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    make_file(self.tmp_dir / 'pippo.txt')\n    os.chmod(self.tmp_dir / 'pippo.txt', 345)\n    result = gentle_stat_read(self.tmp_dir / 'pippo.txt')\n    assert result == '531 %s %s' % (self.current_user(), self.current_group())"
+        ]
+    },
+    {
+        "func_name": "tearDown",
+        "original": "def tearDown(self):\n    self.tmp_dir.clean_up()",
+        "mutated": [
+            "def tearDown(self):\n    if False:\n        i = 10\n    self.tmp_dir.clean_up()",
+            "def tearDown(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    self.tmp_dir.clean_up()",
+            "def tearDown(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    self.tmp_dir.clean_up()",
+            "def tearDown(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    self.tmp_dir.clean_up()",
+            "def tearDown(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    self.tmp_dir.clean_up()"
+        ]
+    },
+    {
+        "func_name": "current_user",
+        "original": "@staticmethod\ndef current_user():\n    return pwd.getpwuid(os.getuid()).pw_name",
+        "mutated": [
+            "@staticmethod\ndef current_user():\n    if False:\n        i = 10\n    return pwd.getpwuid(os.getuid()).pw_name",
+            "@staticmethod\ndef current_user():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return pwd.getpwuid(os.getuid()).pw_name",
+            "@staticmethod\ndef current_user():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return pwd.getpwuid(os.getuid()).pw_name",
+            "@staticmethod\ndef current_user():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return pwd.getpwuid(os.getuid()).pw_name",
+            "@staticmethod\ndef current_user():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return pwd.getpwuid(os.getuid()).pw_name"
+        ]
+    },
+    {
+        "func_name": "current_group",
+        "original": "@staticmethod\ndef current_group():\n    return grp.getgrgid(os.getgid()).gr_name",
+        "mutated": [
+            "@staticmethod\ndef current_group():\n    if False:\n        i = 10\n    return grp.getgrgid(os.getgid()).gr_name",
+            "@staticmethod\ndef current_group():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return grp.getgrgid(os.getgid()).gr_name",
+            "@staticmethod\ndef current_group():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return grp.getgrgid(os.getgid()).gr_name",
+            "@staticmethod\ndef current_group():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return grp.getgrgid(os.getgid()).gr_name",
+            "@staticmethod\ndef current_group():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return grp.getgrgid(os.getgid()).gr_name"
+        ]
+    }
+]

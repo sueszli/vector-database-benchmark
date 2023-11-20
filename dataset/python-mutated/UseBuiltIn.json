@@ -1,0 +1,57 @@
+[
+    {
+        "func_name": "log_debug_message",
+        "original": "def log_debug_message():\n    b = BuiltIn()\n    b.set_log_level('DEBUG')\n    b.log('Hello, debug world!', 'DEBUG')",
+        "mutated": [
+            "def log_debug_message():\n    if False:\n        i = 10\n    b = BuiltIn()\n    b.set_log_level('DEBUG')\n    b.log('Hello, debug world!', 'DEBUG')",
+            "def log_debug_message():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    b = BuiltIn()\n    b.set_log_level('DEBUG')\n    b.log('Hello, debug world!', 'DEBUG')",
+            "def log_debug_message():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    b = BuiltIn()\n    b.set_log_level('DEBUG')\n    b.log('Hello, debug world!', 'DEBUG')",
+            "def log_debug_message():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    b = BuiltIn()\n    b.set_log_level('DEBUG')\n    b.log('Hello, debug world!', 'DEBUG')",
+            "def log_debug_message():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    b = BuiltIn()\n    b.set_log_level('DEBUG')\n    b.log('Hello, debug world!', 'DEBUG')"
+        ]
+    },
+    {
+        "func_name": "get_test_name",
+        "original": "def get_test_name():\n    return BuiltIn().get_variables()['${TEST NAME}']",
+        "mutated": [
+            "def get_test_name():\n    if False:\n        i = 10\n    return BuiltIn().get_variables()['${TEST NAME}']",
+            "def get_test_name():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return BuiltIn().get_variables()['${TEST NAME}']",
+            "def get_test_name():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return BuiltIn().get_variables()['${TEST NAME}']",
+            "def get_test_name():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return BuiltIn().get_variables()['${TEST NAME}']",
+            "def get_test_name():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return BuiltIn().get_variables()['${TEST NAME}']"
+        ]
+    },
+    {
+        "func_name": "set_secret_variable",
+        "original": "def set_secret_variable():\n    BuiltIn().set_test_variable('${SECRET}', '*****')",
+        "mutated": [
+            "def set_secret_variable():\n    if False:\n        i = 10\n    BuiltIn().set_test_variable('${SECRET}', '*****')",
+            "def set_secret_variable():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    BuiltIn().set_test_variable('${SECRET}', '*****')",
+            "def set_secret_variable():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    BuiltIn().set_test_variable('${SECRET}', '*****')",
+            "def set_secret_variable():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    BuiltIn().set_test_variable('${SECRET}', '*****')",
+            "def set_secret_variable():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    BuiltIn().set_test_variable('${SECRET}', '*****')"
+        ]
+    },
+    {
+        "func_name": "use_run_keyword_with_non_unicode_values",
+        "original": "def use_run_keyword_with_non_unicode_values():\n    BuiltIn().run_keyword('Log', 42)\n    BuiltIn().run_keyword('Log', b'\\xff')",
+        "mutated": [
+            "def use_run_keyword_with_non_unicode_values():\n    if False:\n        i = 10\n    BuiltIn().run_keyword('Log', 42)\n    BuiltIn().run_keyword('Log', b'\\xff')",
+            "def use_run_keyword_with_non_unicode_values():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    BuiltIn().run_keyword('Log', 42)\n    BuiltIn().run_keyword('Log', b'\\xff')",
+            "def use_run_keyword_with_non_unicode_values():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    BuiltIn().run_keyword('Log', 42)\n    BuiltIn().run_keyword('Log', b'\\xff')",
+            "def use_run_keyword_with_non_unicode_values():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    BuiltIn().run_keyword('Log', 42)\n    BuiltIn().run_keyword('Log', b'\\xff')",
+            "def use_run_keyword_with_non_unicode_values():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    BuiltIn().run_keyword('Log', 42)\n    BuiltIn().run_keyword('Log', b'\\xff')"
+        ]
+    },
+    {
+        "func_name": "user_keyword_via_run_keyword",
+        "original": "def user_keyword_via_run_keyword():\n    BuiltIn().run_keyword('UseBuiltInResource.Keyword', 'This is x', 911)",
+        "mutated": [
+            "def user_keyword_via_run_keyword():\n    if False:\n        i = 10\n    BuiltIn().run_keyword('UseBuiltInResource.Keyword', 'This is x', 911)",
+            "def user_keyword_via_run_keyword():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    BuiltIn().run_keyword('UseBuiltInResource.Keyword', 'This is x', 911)",
+            "def user_keyword_via_run_keyword():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    BuiltIn().run_keyword('UseBuiltInResource.Keyword', 'This is x', 911)",
+            "def user_keyword_via_run_keyword():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    BuiltIn().run_keyword('UseBuiltInResource.Keyword', 'This is x', 911)",
+            "def user_keyword_via_run_keyword():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    BuiltIn().run_keyword('UseBuiltInResource.Keyword', 'This is x', 911)"
+        ]
+    }
+]

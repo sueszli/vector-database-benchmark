@@ -1,0 +1,101 @@
+[
+    {
+        "func_name": "_patch_something",
+        "original": "@pytest.fixture()\ndef _patch_something(mocker):\n    mocker.patch('some.thing')",
+        "mutated": [
+            "@pytest.fixture()\ndef _patch_something(mocker):\n    if False:\n        i = 10\n    mocker.patch('some.thing')",
+            "@pytest.fixture()\ndef _patch_something(mocker):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    mocker.patch('some.thing')",
+            "@pytest.fixture()\ndef _patch_something(mocker):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    mocker.patch('some.thing')",
+            "@pytest.fixture()\ndef _patch_something(mocker):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    mocker.patch('some.thing')",
+            "@pytest.fixture()\ndef _patch_something(mocker):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    mocker.patch('some.thing')"
+        ]
+    },
+    {
+        "func_name": "_patch_something",
+        "original": "@pytest.fixture()\ndef _patch_something(mocker):\n    if something:\n        return\n    mocker.patch('some.thing')",
+        "mutated": [
+            "@pytest.fixture()\ndef _patch_something(mocker):\n    if False:\n        i = 10\n    if something:\n        return\n    mocker.patch('some.thing')",
+            "@pytest.fixture()\ndef _patch_something(mocker):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    if something:\n        return\n    mocker.patch('some.thing')",
+            "@pytest.fixture()\ndef _patch_something(mocker):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    if something:\n        return\n    mocker.patch('some.thing')",
+            "@pytest.fixture()\ndef _patch_something(mocker):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    if something:\n        return\n    mocker.patch('some.thing')",
+            "@pytest.fixture()\ndef _patch_something(mocker):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    if something:\n        return\n    mocker.patch('some.thing')"
+        ]
+    },
+    {
+        "func_name": "_activate_context",
+        "original": "@pytest.fixture()\ndef _activate_context():\n    with context:\n        yield",
+        "mutated": [
+            "@pytest.fixture()\ndef _activate_context():\n    if False:\n        i = 10\n    with context:\n        yield",
+            "@pytest.fixture()\ndef _activate_context():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    with context:\n        yield",
+            "@pytest.fixture()\ndef _activate_context():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    with context:\n        yield",
+            "@pytest.fixture()\ndef _activate_context():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    with context:\n        yield",
+            "@pytest.fixture()\ndef _activate_context():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    with context:\n        yield"
+        ]
+    },
+    {
+        "func_name": "my_fixture",
+        "original": "@pytest.fixture()\n@abc.abstractmethod\ndef my_fixture():\n    raise NotImplementedError",
+        "mutated": [
+            "@pytest.fixture()\n@abc.abstractmethod\ndef my_fixture():\n    if False:\n        i = 10\n    raise NotImplementedError",
+            "@pytest.fixture()\n@abc.abstractmethod\ndef my_fixture():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    raise NotImplementedError",
+            "@pytest.fixture()\n@abc.abstractmethod\ndef my_fixture():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    raise NotImplementedError",
+            "@pytest.fixture()\n@abc.abstractmethod\ndef my_fixture():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    raise NotImplementedError",
+            "@pytest.fixture()\n@abc.abstractmethod\ndef my_fixture():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    raise NotImplementedError"
+        ]
+    },
+    {
+        "func_name": "my_fixture",
+        "original": "@pytest.fixture()\n@abstractmethod\ndef my_fixture():\n    raise NotImplementedError",
+        "mutated": [
+            "@pytest.fixture()\n@abstractmethod\ndef my_fixture():\n    if False:\n        i = 10\n    raise NotImplementedError",
+            "@pytest.fixture()\n@abstractmethod\ndef my_fixture():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    raise NotImplementedError",
+            "@pytest.fixture()\n@abstractmethod\ndef my_fixture():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    raise NotImplementedError",
+            "@pytest.fixture()\n@abstractmethod\ndef my_fixture():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    raise NotImplementedError",
+            "@pytest.fixture()\n@abstractmethod\ndef my_fixture():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    raise NotImplementedError"
+        ]
+    },
+    {
+        "func_name": "my_fixture",
+        "original": "@pytest.fixture()\ndef my_fixture():\n    yield from some_generator()",
+        "mutated": [
+            "@pytest.fixture()\ndef my_fixture():\n    if False:\n        i = 10\n    yield from some_generator()",
+            "@pytest.fixture()\ndef my_fixture():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    yield from some_generator()",
+            "@pytest.fixture()\ndef my_fixture():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    yield from some_generator()",
+            "@pytest.fixture()\ndef my_fixture():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    yield from some_generator()",
+            "@pytest.fixture()\ndef my_fixture():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    yield from some_generator()"
+        ]
+    },
+    {
+        "func_name": "my_fixture",
+        "original": "@pytest.fixture()\ndef my_fixture():\n    yield 1",
+        "mutated": [
+            "@pytest.fixture()\ndef my_fixture():\n    if False:\n        i = 10\n    yield 1",
+            "@pytest.fixture()\ndef my_fixture():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    yield 1",
+            "@pytest.fixture()\ndef my_fixture():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    yield 1",
+            "@pytest.fixture()\ndef my_fixture():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    yield 1",
+            "@pytest.fixture()\ndef my_fixture():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    yield 1"
+        ]
+    },
+    {
+        "func_name": "patch_something",
+        "original": "@pytest.fixture()\ndef patch_something(mocker):\n    mocker.patch('some.thing')",
+        "mutated": [
+            "@pytest.fixture()\ndef patch_something(mocker):\n    if False:\n        i = 10\n    mocker.patch('some.thing')",
+            "@pytest.fixture()\ndef patch_something(mocker):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    mocker.patch('some.thing')",
+            "@pytest.fixture()\ndef patch_something(mocker):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    mocker.patch('some.thing')",
+            "@pytest.fixture()\ndef patch_something(mocker):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    mocker.patch('some.thing')",
+            "@pytest.fixture()\ndef patch_something(mocker):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    mocker.patch('some.thing')"
+        ]
+    },
+    {
+        "func_name": "activate_context",
+        "original": "@pytest.fixture()\ndef activate_context():\n    with context:\n        yield",
+        "mutated": [
+            "@pytest.fixture()\ndef activate_context():\n    if False:\n        i = 10\n    with context:\n        yield",
+            "@pytest.fixture()\ndef activate_context():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    with context:\n        yield",
+            "@pytest.fixture()\ndef activate_context():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    with context:\n        yield",
+            "@pytest.fixture()\ndef activate_context():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    with context:\n        yield",
+            "@pytest.fixture()\ndef activate_context():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    with context:\n        yield"
+        ]
+    }
+]

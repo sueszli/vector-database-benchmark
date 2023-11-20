@@ -1,0 +1,46 @@
+[
+    {
+        "func_name": "__init__",
+        "original": "def __init__(self, batch_size: int, flush_handler: Callable[[List[Any]], None]):\n    self.batch_size = batch_size\n    self.buffer = []\n    self.flush_handler = flush_handler",
+        "mutated": [
+            "def __init__(self, batch_size: int, flush_handler: Callable[[List[Any]], None]):\n    if False:\n        i = 10\n    self.batch_size = batch_size\n    self.buffer = []\n    self.flush_handler = flush_handler",
+            "def __init__(self, batch_size: int, flush_handler: Callable[[List[Any]], None]):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    self.batch_size = batch_size\n    self.buffer = []\n    self.flush_handler = flush_handler",
+            "def __init__(self, batch_size: int, flush_handler: Callable[[List[Any]], None]):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    self.batch_size = batch_size\n    self.buffer = []\n    self.flush_handler = flush_handler",
+            "def __init__(self, batch_size: int, flush_handler: Callable[[List[Any]], None]):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    self.batch_size = batch_size\n    self.buffer = []\n    self.flush_handler = flush_handler",
+            "def __init__(self, batch_size: int, flush_handler: Callable[[List[Any]], None]):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    self.batch_size = batch_size\n    self.buffer = []\n    self.flush_handler = flush_handler"
+        ]
+    },
+    {
+        "func_name": "add",
+        "original": "def add(self, item: Any):\n    self.buffer.append(item)\n    self._flush_if_necessary()",
+        "mutated": [
+            "def add(self, item: Any):\n    if False:\n        i = 10\n    self.buffer.append(item)\n    self._flush_if_necessary()",
+            "def add(self, item: Any):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    self.buffer.append(item)\n    self._flush_if_necessary()",
+            "def add(self, item: Any):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    self.buffer.append(item)\n    self._flush_if_necessary()",
+            "def add(self, item: Any):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    self.buffer.append(item)\n    self._flush_if_necessary()",
+            "def add(self, item: Any):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    self.buffer.append(item)\n    self._flush_if_necessary()"
+        ]
+    },
+    {
+        "func_name": "flush",
+        "original": "def flush(self):\n    if len(self.buffer) == 0:\n        return\n    self.flush_handler(list(self.buffer))\n    self.buffer.clear()",
+        "mutated": [
+            "def flush(self):\n    if False:\n        i = 10\n    if len(self.buffer) == 0:\n        return\n    self.flush_handler(list(self.buffer))\n    self.buffer.clear()",
+            "def flush(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    if len(self.buffer) == 0:\n        return\n    self.flush_handler(list(self.buffer))\n    self.buffer.clear()",
+            "def flush(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    if len(self.buffer) == 0:\n        return\n    self.flush_handler(list(self.buffer))\n    self.buffer.clear()",
+            "def flush(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    if len(self.buffer) == 0:\n        return\n    self.flush_handler(list(self.buffer))\n    self.buffer.clear()",
+            "def flush(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    if len(self.buffer) == 0:\n        return\n    self.flush_handler(list(self.buffer))\n    self.buffer.clear()"
+        ]
+    },
+    {
+        "func_name": "_flush_if_necessary",
+        "original": "def _flush_if_necessary(self):\n    if len(self.buffer) >= self.batch_size:\n        self.flush()",
+        "mutated": [
+            "def _flush_if_necessary(self):\n    if False:\n        i = 10\n    if len(self.buffer) >= self.batch_size:\n        self.flush()",
+            "def _flush_if_necessary(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    if len(self.buffer) >= self.batch_size:\n        self.flush()",
+            "def _flush_if_necessary(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    if len(self.buffer) >= self.batch_size:\n        self.flush()",
+            "def _flush_if_necessary(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    if len(self.buffer) >= self.batch_size:\n        self.flush()",
+            "def _flush_if_necessary(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    if len(self.buffer) >= self.batch_size:\n        self.flush()"
+        ]
+    }
+]

@@ -1,0 +1,90 @@
+[
+    {
+        "func_name": "check_unary_inf",
+        "original": "@testing.for_dtypes('efFdD')\n@testing.numpy_cupy_array_equal()\ndef check_unary_inf(self, name, xp, dtype):\n    a = xp.array([-3, numpy.inf, -1, -numpy.inf, 0, 1, 2], dtype=dtype)\n    return getattr(xp, name)(a)",
+        "mutated": [
+            "@testing.for_dtypes('efFdD')\n@testing.numpy_cupy_array_equal()\ndef check_unary_inf(self, name, xp, dtype):\n    if False:\n        i = 10\n    a = xp.array([-3, numpy.inf, -1, -numpy.inf, 0, 1, 2], dtype=dtype)\n    return getattr(xp, name)(a)",
+            "@testing.for_dtypes('efFdD')\n@testing.numpy_cupy_array_equal()\ndef check_unary_inf(self, name, xp, dtype):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    a = xp.array([-3, numpy.inf, -1, -numpy.inf, 0, 1, 2], dtype=dtype)\n    return getattr(xp, name)(a)",
+            "@testing.for_dtypes('efFdD')\n@testing.numpy_cupy_array_equal()\ndef check_unary_inf(self, name, xp, dtype):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    a = xp.array([-3, numpy.inf, -1, -numpy.inf, 0, 1, 2], dtype=dtype)\n    return getattr(xp, name)(a)",
+            "@testing.for_dtypes('efFdD')\n@testing.numpy_cupy_array_equal()\ndef check_unary_inf(self, name, xp, dtype):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    a = xp.array([-3, numpy.inf, -1, -numpy.inf, 0, 1, 2], dtype=dtype)\n    return getattr(xp, name)(a)",
+            "@testing.for_dtypes('efFdD')\n@testing.numpy_cupy_array_equal()\ndef check_unary_inf(self, name, xp, dtype):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    a = xp.array([-3, numpy.inf, -1, -numpy.inf, 0, 1, 2], dtype=dtype)\n    return getattr(xp, name)(a)"
+        ]
+    },
+    {
+        "func_name": "check_unary_nan",
+        "original": "@testing.for_dtypes('efFdD')\n@testing.numpy_cupy_array_equal()\ndef check_unary_nan(self, name, xp, dtype):\n    a = xp.array([-3, numpy.NAN, -1, numpy.NAN, 0, numpy.NAN, numpy.inf], dtype=dtype)\n    return getattr(xp, name)(a)",
+        "mutated": [
+            "@testing.for_dtypes('efFdD')\n@testing.numpy_cupy_array_equal()\ndef check_unary_nan(self, name, xp, dtype):\n    if False:\n        i = 10\n    a = xp.array([-3, numpy.NAN, -1, numpy.NAN, 0, numpy.NAN, numpy.inf], dtype=dtype)\n    return getattr(xp, name)(a)",
+            "@testing.for_dtypes('efFdD')\n@testing.numpy_cupy_array_equal()\ndef check_unary_nan(self, name, xp, dtype):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    a = xp.array([-3, numpy.NAN, -1, numpy.NAN, 0, numpy.NAN, numpy.inf], dtype=dtype)\n    return getattr(xp, name)(a)",
+            "@testing.for_dtypes('efFdD')\n@testing.numpy_cupy_array_equal()\ndef check_unary_nan(self, name, xp, dtype):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    a = xp.array([-3, numpy.NAN, -1, numpy.NAN, 0, numpy.NAN, numpy.inf], dtype=dtype)\n    return getattr(xp, name)(a)",
+            "@testing.for_dtypes('efFdD')\n@testing.numpy_cupy_array_equal()\ndef check_unary_nan(self, name, xp, dtype):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    a = xp.array([-3, numpy.NAN, -1, numpy.NAN, 0, numpy.NAN, numpy.inf], dtype=dtype)\n    return getattr(xp, name)(a)",
+            "@testing.for_dtypes('efFdD')\n@testing.numpy_cupy_array_equal()\ndef check_unary_nan(self, name, xp, dtype):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    a = xp.array([-3, numpy.NAN, -1, numpy.NAN, 0, numpy.NAN, numpy.inf], dtype=dtype)\n    return getattr(xp, name)(a)"
+        ]
+    },
+    {
+        "func_name": "test_isfinite",
+        "original": "def test_isfinite(self):\n    self.check_unary_inf('isfinite')",
+        "mutated": [
+            "def test_isfinite(self):\n    if False:\n        i = 10\n    self.check_unary_inf('isfinite')",
+            "def test_isfinite(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    self.check_unary_inf('isfinite')",
+            "def test_isfinite(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    self.check_unary_inf('isfinite')",
+            "def test_isfinite(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    self.check_unary_inf('isfinite')",
+            "def test_isfinite(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    self.check_unary_inf('isfinite')"
+        ]
+    },
+    {
+        "func_name": "test_isinf",
+        "original": "def test_isinf(self):\n    self.check_unary_inf('isinf')",
+        "mutated": [
+            "def test_isinf(self):\n    if False:\n        i = 10\n    self.check_unary_inf('isinf')",
+            "def test_isinf(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    self.check_unary_inf('isinf')",
+            "def test_isinf(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    self.check_unary_inf('isinf')",
+            "def test_isinf(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    self.check_unary_inf('isinf')",
+            "def test_isinf(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    self.check_unary_inf('isinf')"
+        ]
+    },
+    {
+        "func_name": "test_isnan",
+        "original": "def test_isnan(self):\n    self.check_unary_nan('isnan')",
+        "mutated": [
+            "def test_isnan(self):\n    if False:\n        i = 10\n    self.check_unary_nan('isnan')",
+            "def test_isnan(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    self.check_unary_nan('isnan')",
+            "def test_isnan(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    self.check_unary_nan('isnan')",
+            "def test_isnan(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    self.check_unary_nan('isnan')",
+            "def test_isnan(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    self.check_unary_nan('isnan')"
+        ]
+    },
+    {
+        "func_name": "check_unary",
+        "original": "@testing.numpy_cupy_array_equal()\ndef check_unary(self, name, xp):\n    a = xp.array([-3, xp.inf, -1, -xp.inf, 0, 1, 2, xp.nan])\n    return getattr(xp, name)(a)",
+        "mutated": [
+            "@testing.numpy_cupy_array_equal()\ndef check_unary(self, name, xp):\n    if False:\n        i = 10\n    a = xp.array([-3, xp.inf, -1, -xp.inf, 0, 1, 2, xp.nan])\n    return getattr(xp, name)(a)",
+            "@testing.numpy_cupy_array_equal()\ndef check_unary(self, name, xp):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    a = xp.array([-3, xp.inf, -1, -xp.inf, 0, 1, 2, xp.nan])\n    return getattr(xp, name)(a)",
+            "@testing.numpy_cupy_array_equal()\ndef check_unary(self, name, xp):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    a = xp.array([-3, xp.inf, -1, -xp.inf, 0, 1, 2, xp.nan])\n    return getattr(xp, name)(a)",
+            "@testing.numpy_cupy_array_equal()\ndef check_unary(self, name, xp):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    a = xp.array([-3, xp.inf, -1, -xp.inf, 0, 1, 2, xp.nan])\n    return getattr(xp, name)(a)",
+            "@testing.numpy_cupy_array_equal()\ndef check_unary(self, name, xp):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    a = xp.array([-3, xp.inf, -1, -xp.inf, 0, 1, 2, xp.nan])\n    return getattr(xp, name)(a)"
+        ]
+    },
+    {
+        "func_name": "test_isneginf",
+        "original": "def test_isneginf(self):\n    self.check_unary('isneginf')",
+        "mutated": [
+            "def test_isneginf(self):\n    if False:\n        i = 10\n    self.check_unary('isneginf')",
+            "def test_isneginf(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    self.check_unary('isneginf')",
+            "def test_isneginf(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    self.check_unary('isneginf')",
+            "def test_isneginf(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    self.check_unary('isneginf')",
+            "def test_isneginf(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    self.check_unary('isneginf')"
+        ]
+    },
+    {
+        "func_name": "test_isposinf",
+        "original": "def test_isposinf(self):\n    self.check_unary('isposinf')",
+        "mutated": [
+            "def test_isposinf(self):\n    if False:\n        i = 10\n    self.check_unary('isposinf')",
+            "def test_isposinf(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    self.check_unary('isposinf')",
+            "def test_isposinf(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    self.check_unary('isposinf')",
+            "def test_isposinf(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    self.check_unary('isposinf')",
+            "def test_isposinf(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    self.check_unary('isposinf')"
+        ]
+    }
+]

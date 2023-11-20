@@ -1,0 +1,79 @@
+[
+    {
+        "func_name": "__init__",
+        "original": "def __init__(self):\n    self._tags = self._from_config()",
+        "mutated": [
+            "def __init__(self):\n    if False:\n        i = 10\n    self._tags = self._from_config()",
+            "def __init__(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    self._tags = self._from_config()",
+            "def __init__(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    self._tags = self._from_config()",
+            "def __init__(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    self._tags = self._from_config()",
+            "def __init__(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    self._tags = self._from_config()"
+        ]
+    },
+    {
+        "func_name": "_to_config",
+        "original": "def _to_config(self):\n    config = get_config()\n    config.setting[self.opt_name] = sorted(self._tags)",
+        "mutated": [
+            "def _to_config(self):\n    if False:\n        i = 10\n    config = get_config()\n    config.setting[self.opt_name] = sorted(self._tags)",
+            "def _to_config(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    config = get_config()\n    config.setting[self.opt_name] = sorted(self._tags)",
+            "def _to_config(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    config = get_config()\n    config.setting[self.opt_name] = sorted(self._tags)",
+            "def _to_config(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    config = get_config()\n    config.setting[self.opt_name] = sorted(self._tags)",
+            "def _to_config(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    config = get_config()\n    config.setting[self.opt_name] = sorted(self._tags)"
+        ]
+    },
+    {
+        "func_name": "_from_config",
+        "original": "def _from_config(self):\n    config = get_config()\n    tags = config.setting[self.opt_name]\n    return set(filter(bool, map(self._normalize_tag, tags)))",
+        "mutated": [
+            "def _from_config(self):\n    if False:\n        i = 10\n    config = get_config()\n    tags = config.setting[self.opt_name]\n    return set(filter(bool, map(self._normalize_tag, tags)))",
+            "def _from_config(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    config = get_config()\n    tags = config.setting[self.opt_name]\n    return set(filter(bool, map(self._normalize_tag, tags)))",
+            "def _from_config(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    config = get_config()\n    tags = config.setting[self.opt_name]\n    return set(filter(bool, map(self._normalize_tag, tags)))",
+            "def _from_config(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    config = get_config()\n    tags = config.setting[self.opt_name]\n    return set(filter(bool, map(self._normalize_tag, tags)))",
+            "def _from_config(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    config = get_config()\n    tags = config.setting[self.opt_name]\n    return set(filter(bool, map(self._normalize_tag, tags)))"
+        ]
+    },
+    {
+        "func_name": "_normalize_tag",
+        "original": "@staticmethod\ndef _normalize_tag(tag):\n    return tag.strip().lower()",
+        "mutated": [
+            "@staticmethod\ndef _normalize_tag(tag):\n    if False:\n        i = 10\n    return tag.strip().lower()",
+            "@staticmethod\ndef _normalize_tag(tag):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return tag.strip().lower()",
+            "@staticmethod\ndef _normalize_tag(tag):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return tag.strip().lower()",
+            "@staticmethod\ndef _normalize_tag(tag):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return tag.strip().lower()",
+            "@staticmethod\ndef _normalize_tag(tag):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return tag.strip().lower()"
+        ]
+    },
+    {
+        "func_name": "add",
+        "original": "def add(self, name):\n    self._tags.add(self._normalize_tag(name))\n    self._to_config()",
+        "mutated": [
+            "def add(self, name):\n    if False:\n        i = 10\n    self._tags.add(self._normalize_tag(name))\n    self._to_config()",
+            "def add(self, name):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    self._tags.add(self._normalize_tag(name))\n    self._to_config()",
+            "def add(self, name):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    self._tags.add(self._normalize_tag(name))\n    self._to_config()",
+            "def add(self, name):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    self._tags.add(self._normalize_tag(name))\n    self._to_config()",
+            "def add(self, name):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    self._tags.add(self._normalize_tag(name))\n    self._to_config()"
+        ]
+    },
+    {
+        "func_name": "discard",
+        "original": "def discard(self, name):\n    self._tags.discard(self._normalize_tag(name))\n    self._to_config()",
+        "mutated": [
+            "def discard(self, name):\n    if False:\n        i = 10\n    self._tags.discard(self._normalize_tag(name))\n    self._to_config()",
+            "def discard(self, name):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    self._tags.discard(self._normalize_tag(name))\n    self._to_config()",
+            "def discard(self, name):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    self._tags.discard(self._normalize_tag(name))\n    self._to_config()",
+            "def discard(self, name):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    self._tags.discard(self._normalize_tag(name))\n    self._to_config()",
+            "def discard(self, name):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    self._tags.discard(self._normalize_tag(name))\n    self._to_config()"
+        ]
+    },
+    {
+        "func_name": "__contains__",
+        "original": "def __contains__(self, key):\n    return self._normalize_tag(key) in self._tags",
+        "mutated": [
+            "def __contains__(self, key):\n    if False:\n        i = 10\n    return self._normalize_tag(key) in self._tags",
+            "def __contains__(self, key):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return self._normalize_tag(key) in self._tags",
+            "def __contains__(self, key):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return self._normalize_tag(key) in self._tags",
+            "def __contains__(self, key):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return self._normalize_tag(key) in self._tags",
+            "def __contains__(self, key):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return self._normalize_tag(key) in self._tags"
+        ]
+    }
+]

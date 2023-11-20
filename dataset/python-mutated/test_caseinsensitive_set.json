@@ -1,0 +1,35 @@
+[
+    {
+        "func_name": "setUp",
+        "original": "def setUp(self):\n    self.set = octoprint.util.CaseInsensitiveSet('A', 'FoO', True, 23)",
+        "mutated": [
+            "def setUp(self):\n    if False:\n        i = 10\n    self.set = octoprint.util.CaseInsensitiveSet('A', 'FoO', True, 23)",
+            "def setUp(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    self.set = octoprint.util.CaseInsensitiveSet('A', 'FoO', True, 23)",
+            "def setUp(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    self.set = octoprint.util.CaseInsensitiveSet('A', 'FoO', True, 23)",
+            "def setUp(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    self.set = octoprint.util.CaseInsensitiveSet('A', 'FoO', True, 23)",
+            "def setUp(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    self.set = octoprint.util.CaseInsensitiveSet('A', 'FoO', True, 23)"
+        ]
+    },
+    {
+        "func_name": "test_contained",
+        "original": "@ddt.data('A', 'a', 'foo', True, 23)\ndef test_contained(self, value):\n    self.assertIn(value, self.set)",
+        "mutated": [
+            "@ddt.data('A', 'a', 'foo', True, 23)\ndef test_contained(self, value):\n    if False:\n        i = 10\n    self.assertIn(value, self.set)",
+            "@ddt.data('A', 'a', 'foo', True, 23)\ndef test_contained(self, value):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    self.assertIn(value, self.set)",
+            "@ddt.data('A', 'a', 'foo', True, 23)\ndef test_contained(self, value):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    self.assertIn(value, self.set)",
+            "@ddt.data('A', 'a', 'foo', True, 23)\ndef test_contained(self, value):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    self.assertIn(value, self.set)",
+            "@ddt.data('A', 'a', 'foo', True, 23)\ndef test_contained(self, value):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    self.assertIn(value, self.set)"
+        ]
+    },
+    {
+        "func_name": "test_not_contained",
+        "original": "@ddt.data('b', 'fnord', False, 42)\ndef test_not_contained(self, value):\n    self.assertNotIn(value, self.set)",
+        "mutated": [
+            "@ddt.data('b', 'fnord', False, 42)\ndef test_not_contained(self, value):\n    if False:\n        i = 10\n    self.assertNotIn(value, self.set)",
+            "@ddt.data('b', 'fnord', False, 42)\ndef test_not_contained(self, value):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    self.assertNotIn(value, self.set)",
+            "@ddt.data('b', 'fnord', False, 42)\ndef test_not_contained(self, value):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    self.assertNotIn(value, self.set)",
+            "@ddt.data('b', 'fnord', False, 42)\ndef test_not_contained(self, value):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    self.assertNotIn(value, self.set)",
+            "@ddt.data('b', 'fnord', False, 42)\ndef test_not_contained(self, value):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    self.assertNotIn(value, self.set)"
+        ]
+    }
+]

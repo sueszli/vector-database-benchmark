@@ -1,0 +1,24 @@
+[
+    {
+        "func_name": "render",
+        "original": "def render():\n    tmpl.generate(**context)",
+        "mutated": [
+            "def render():\n    if False:\n        i = 10\n    tmpl.generate(**context)",
+            "def render():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    tmpl.generate(**context)",
+            "def render():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    tmpl.generate(**context)",
+            "def render():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    tmpl.generate(**context)",
+            "def render():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    tmpl.generate(**context)"
+        ]
+    },
+    {
+        "func_name": "main",
+        "original": "def main():\n    parse_command_line()\n    if options.dump:\n        print(tmpl.code)\n        sys.exit(0)\n    t = Timer(render)\n    results = t.timeit(options.num) / options.num\n    print('%0.3f ms per iteration' % (results * 1000))",
+        "mutated": [
+            "def main():\n    if False:\n        i = 10\n    parse_command_line()\n    if options.dump:\n        print(tmpl.code)\n        sys.exit(0)\n    t = Timer(render)\n    results = t.timeit(options.num) / options.num\n    print('%0.3f ms per iteration' % (results * 1000))",
+            "def main():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    parse_command_line()\n    if options.dump:\n        print(tmpl.code)\n        sys.exit(0)\n    t = Timer(render)\n    results = t.timeit(options.num) / options.num\n    print('%0.3f ms per iteration' % (results * 1000))",
+            "def main():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    parse_command_line()\n    if options.dump:\n        print(tmpl.code)\n        sys.exit(0)\n    t = Timer(render)\n    results = t.timeit(options.num) / options.num\n    print('%0.3f ms per iteration' % (results * 1000))",
+            "def main():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    parse_command_line()\n    if options.dump:\n        print(tmpl.code)\n        sys.exit(0)\n    t = Timer(render)\n    results = t.timeit(options.num) / options.num\n    print('%0.3f ms per iteration' % (results * 1000))",
+            "def main():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    parse_command_line()\n    if options.dump:\n        print(tmpl.code)\n        sys.exit(0)\n    t = Timer(render)\n    results = t.timeit(options.num) / options.num\n    print('%0.3f ms per iteration' % (results * 1000))"
+        ]
+    }
+]

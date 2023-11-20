@@ -1,0 +1,68 @@
+[
+    {
+        "func_name": "__init__",
+        "original": "def __init__(self, name, password):\n    self.name = name\n    self.password = password\n    self.proxy = Proxy(b'http://advogato.org/XMLRPC')",
+        "mutated": [
+            "def __init__(self, name, password):\n    if False:\n        i = 10\n    self.name = name\n    self.password = password\n    self.proxy = Proxy(b'http://advogato.org/XMLRPC')",
+            "def __init__(self, name, password):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    self.name = name\n    self.password = password\n    self.proxy = Proxy(b'http://advogato.org/XMLRPC')",
+            "def __init__(self, name, password):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    self.name = name\n    self.password = password\n    self.proxy = Proxy(b'http://advogato.org/XMLRPC')",
+            "def __init__(self, name, password):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    self.name = name\n    self.password = password\n    self.proxy = Proxy(b'http://advogato.org/XMLRPC')",
+            "def __init__(self, name, password):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    self.name = name\n    self.password = password\n    self.proxy = Proxy(b'http://advogato.org/XMLRPC')"
+        ]
+    },
+    {
+        "func_name": "__call__",
+        "original": "def __call__(self, filename):\n    with open(filename) as f:\n        self.data = f.read()\n    d = self.proxy.callRemote('authenticate', self.name, self.password)\n    d.addCallbacks(self.login, self.noLogin)",
+        "mutated": [
+            "def __call__(self, filename):\n    if False:\n        i = 10\n    with open(filename) as f:\n        self.data = f.read()\n    d = self.proxy.callRemote('authenticate', self.name, self.password)\n    d.addCallbacks(self.login, self.noLogin)",
+            "def __call__(self, filename):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    with open(filename) as f:\n        self.data = f.read()\n    d = self.proxy.callRemote('authenticate', self.name, self.password)\n    d.addCallbacks(self.login, self.noLogin)",
+            "def __call__(self, filename):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    with open(filename) as f:\n        self.data = f.read()\n    d = self.proxy.callRemote('authenticate', self.name, self.password)\n    d.addCallbacks(self.login, self.noLogin)",
+            "def __call__(self, filename):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    with open(filename) as f:\n        self.data = f.read()\n    d = self.proxy.callRemote('authenticate', self.name, self.password)\n    d.addCallbacks(self.login, self.noLogin)",
+            "def __call__(self, filename):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    with open(filename) as f:\n        self.data = f.read()\n    d = self.proxy.callRemote('authenticate', self.name, self.password)\n    d.addCallbacks(self.login, self.noLogin)"
+        ]
+    },
+    {
+        "func_name": "noLogin",
+        "original": "def noLogin(self, reason):\n    print('could not login')\n    reactor.stop()",
+        "mutated": [
+            "def noLogin(self, reason):\n    if False:\n        i = 10\n    print('could not login')\n    reactor.stop()",
+            "def noLogin(self, reason):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    print('could not login')\n    reactor.stop()",
+            "def noLogin(self, reason):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    print('could not login')\n    reactor.stop()",
+            "def noLogin(self, reason):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    print('could not login')\n    reactor.stop()",
+            "def noLogin(self, reason):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    print('could not login')\n    reactor.stop()"
+        ]
+    },
+    {
+        "func_name": "login",
+        "original": "def login(self, cookie):\n    d = self.proxy.callRemote('diary.set', cookie, -1, self.data)\n    d.addCallbacks(self.setDiary, self.errorSetDiary)",
+        "mutated": [
+            "def login(self, cookie):\n    if False:\n        i = 10\n    d = self.proxy.callRemote('diary.set', cookie, -1, self.data)\n    d.addCallbacks(self.setDiary, self.errorSetDiary)",
+            "def login(self, cookie):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    d = self.proxy.callRemote('diary.set', cookie, -1, self.data)\n    d.addCallbacks(self.setDiary, self.errorSetDiary)",
+            "def login(self, cookie):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    d = self.proxy.callRemote('diary.set', cookie, -1, self.data)\n    d.addCallbacks(self.setDiary, self.errorSetDiary)",
+            "def login(self, cookie):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    d = self.proxy.callRemote('diary.set', cookie, -1, self.data)\n    d.addCallbacks(self.setDiary, self.errorSetDiary)",
+            "def login(self, cookie):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    d = self.proxy.callRemote('diary.set', cookie, -1, self.data)\n    d.addCallbacks(self.setDiary, self.errorSetDiary)"
+        ]
+    },
+    {
+        "func_name": "setDiary",
+        "original": "def setDiary(self, response):\n    reactor.stop()",
+        "mutated": [
+            "def setDiary(self, response):\n    if False:\n        i = 10\n    reactor.stop()",
+            "def setDiary(self, response):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    reactor.stop()",
+            "def setDiary(self, response):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    reactor.stop()",
+            "def setDiary(self, response):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    reactor.stop()",
+            "def setDiary(self, response):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    reactor.stop()"
+        ]
+    },
+    {
+        "func_name": "errorSetDiary",
+        "original": "def errorSetDiary(self, error):\n    print('could not set diary', error)\n    reactor.stop()",
+        "mutated": [
+            "def errorSetDiary(self, error):\n    if False:\n        i = 10\n    print('could not set diary', error)\n    reactor.stop()",
+            "def errorSetDiary(self, error):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    print('could not set diary', error)\n    reactor.stop()",
+            "def errorSetDiary(self, error):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    print('could not set diary', error)\n    reactor.stop()",
+            "def errorSetDiary(self, error):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    print('could not set diary', error)\n    reactor.stop()",
+            "def errorSetDiary(self, error):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    print('could not set diary', error)\n    reactor.stop()"
+        ]
+    }
+]

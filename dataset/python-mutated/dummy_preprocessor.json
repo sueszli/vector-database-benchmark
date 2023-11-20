@@ -1,0 +1,57 @@
+[
+    {
+        "func_name": "__init__",
+        "original": "def __init__(self, transform=lambda b: b):\n    self.id = uuid.uuid4()\n    self.transform = transform",
+        "mutated": [
+            "def __init__(self, transform=lambda b: b):\n    if False:\n        i = 10\n    self.id = uuid.uuid4()\n    self.transform = transform",
+            "def __init__(self, transform=lambda b: b):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    self.id = uuid.uuid4()\n    self.transform = transform",
+            "def __init__(self, transform=lambda b: b):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    self.id = uuid.uuid4()\n    self.transform = transform",
+            "def __init__(self, transform=lambda b: b):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    self.id = uuid.uuid4()\n    self.transform = transform",
+            "def __init__(self, transform=lambda b: b):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    self.id = uuid.uuid4()\n    self.transform = transform"
+        ]
+    },
+    {
+        "func_name": "transform_batch",
+        "original": "def transform_batch(self, batch):\n    self._batch_transformed = True\n    return self.transform(batch)",
+        "mutated": [
+            "def transform_batch(self, batch):\n    if False:\n        i = 10\n    self._batch_transformed = True\n    return self.transform(batch)",
+            "def transform_batch(self, batch):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    self._batch_transformed = True\n    return self.transform(batch)",
+            "def transform_batch(self, batch):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    self._batch_transformed = True\n    return self.transform(batch)",
+            "def transform_batch(self, batch):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    self._batch_transformed = True\n    return self.transform(batch)",
+            "def transform_batch(self, batch):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    self._batch_transformed = True\n    return self.transform(batch)"
+        ]
+    },
+    {
+        "func_name": "_transform_pandas",
+        "original": "def _transform_pandas(self, df):\n    return df",
+        "mutated": [
+            "def _transform_pandas(self, df):\n    if False:\n        i = 10\n    return df",
+            "def _transform_pandas(self, df):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return df",
+            "def _transform_pandas(self, df):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return df",
+            "def _transform_pandas(self, df):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return df",
+            "def _transform_pandas(self, df):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return df"
+        ]
+    },
+    {
+        "func_name": "has_preprocessed",
+        "original": "@property\ndef has_preprocessed(self):\n    return hasattr(self, '_batch_transformed')",
+        "mutated": [
+            "@property\ndef has_preprocessed(self):\n    if False:\n        i = 10\n    return hasattr(self, '_batch_transformed')",
+            "@property\ndef has_preprocessed(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return hasattr(self, '_batch_transformed')",
+            "@property\ndef has_preprocessed(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return hasattr(self, '_batch_transformed')",
+            "@property\ndef has_preprocessed(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return hasattr(self, '_batch_transformed')",
+            "@property\ndef has_preprocessed(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return hasattr(self, '_batch_transformed')"
+        ]
+    },
+    {
+        "func_name": "__eq__",
+        "original": "def __eq__(self, other_preprocessor):\n    return self.id == other_preprocessor.id",
+        "mutated": [
+            "def __eq__(self, other_preprocessor):\n    if False:\n        i = 10\n    return self.id == other_preprocessor.id",
+            "def __eq__(self, other_preprocessor):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return self.id == other_preprocessor.id",
+            "def __eq__(self, other_preprocessor):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return self.id == other_preprocessor.id",
+            "def __eq__(self, other_preprocessor):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return self.id == other_preprocessor.id",
+            "def __eq__(self, other_preprocessor):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return self.id == other_preprocessor.id"
+        ]
+    }
+]

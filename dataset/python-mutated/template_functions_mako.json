@@ -1,0 +1,35 @@
+[
+    {
+        "func_name": "my_template_function",
+        "original": "def my_template_function(ctx: Dict[str, Any]) -> str:\n    return ctx.get('my_context_key', 'nope')",
+        "mutated": [
+            "def my_template_function(ctx: Dict[str, Any]) -> str:\n    if False:\n        i = 10\n    return ctx.get('my_context_key', 'nope')",
+            "def my_template_function(ctx: Dict[str, Any]) -> str:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return ctx.get('my_context_key', 'nope')",
+            "def my_template_function(ctx: Dict[str, Any]) -> str:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return ctx.get('my_context_key', 'nope')",
+            "def my_template_function(ctx: Dict[str, Any]) -> str:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return ctx.get('my_context_key', 'nope')",
+            "def my_template_function(ctx: Dict[str, Any]) -> str:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return ctx.get('my_context_key', 'nope')"
+        ]
+    },
+    {
+        "func_name": "register_template_callables",
+        "original": "def register_template_callables(engine: MakoTemplateEngine) -> None:\n    engine.register_template_callable(key='check_context_key', template_callable=my_template_function)",
+        "mutated": [
+            "def register_template_callables(engine: MakoTemplateEngine) -> None:\n    if False:\n        i = 10\n    engine.register_template_callable(key='check_context_key', template_callable=my_template_function)",
+            "def register_template_callables(engine: MakoTemplateEngine) -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    engine.register_template_callable(key='check_context_key', template_callable=my_template_function)",
+            "def register_template_callables(engine: MakoTemplateEngine) -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    engine.register_template_callable(key='check_context_key', template_callable=my_template_function)",
+            "def register_template_callables(engine: MakoTemplateEngine) -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    engine.register_template_callable(key='check_context_key', template_callable=my_template_function)",
+            "def register_template_callables(engine: MakoTemplateEngine) -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    engine.register_template_callable(key='check_context_key', template_callable=my_template_function)"
+        ]
+    },
+    {
+        "func_name": "index",
+        "original": "@get('/', sync_to_thread=False)\ndef index() -> Template:\n    return Template(template_name='index.html.mako')",
+        "mutated": [
+            "@get('/', sync_to_thread=False)\ndef index() -> Template:\n    if False:\n        i = 10\n    return Template(template_name='index.html.mako')",
+            "@get('/', sync_to_thread=False)\ndef index() -> Template:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return Template(template_name='index.html.mako')",
+            "@get('/', sync_to_thread=False)\ndef index() -> Template:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return Template(template_name='index.html.mako')",
+            "@get('/', sync_to_thread=False)\ndef index() -> Template:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return Template(template_name='index.html.mako')",
+            "@get('/', sync_to_thread=False)\ndef index() -> Template:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return Template(template_name='index.html.mako')"
+        ]
+    }
+]

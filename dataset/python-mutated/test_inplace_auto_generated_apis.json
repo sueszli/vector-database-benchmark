@@ -1,0 +1,618 @@
+[
+    {
+        "func_name": "setUp",
+        "original": "def setUp(self):\n    paddle.enable_static()\n    self.init_data()\n    self.set_np_compare_func()",
+        "mutated": [
+            "def setUp(self):\n    if False:\n        i = 10\n    paddle.enable_static()\n    self.init_data()\n    self.set_np_compare_func()",
+            "def setUp(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    paddle.enable_static()\n    self.init_data()\n    self.set_np_compare_func()",
+            "def setUp(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    paddle.enable_static()\n    self.init_data()\n    self.set_np_compare_func()",
+            "def setUp(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    paddle.enable_static()\n    self.init_data()\n    self.set_np_compare_func()",
+            "def setUp(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    paddle.enable_static()\n    self.init_data()\n    self.set_np_compare_func()"
+        ]
+    },
+    {
+        "func_name": "init_data",
+        "original": "def init_data(self):\n    self.dtype = 'float32'\n    self.shape = [10, 20]\n    self.np_x = np.random.uniform(-5, 5, self.shape).astype(self.dtype)",
+        "mutated": [
+            "def init_data(self):\n    if False:\n        i = 10\n    self.dtype = 'float32'\n    self.shape = [10, 20]\n    self.np_x = np.random.uniform(-5, 5, self.shape).astype(self.dtype)",
+            "def init_data(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    self.dtype = 'float32'\n    self.shape = [10, 20]\n    self.np_x = np.random.uniform(-5, 5, self.shape).astype(self.dtype)",
+            "def init_data(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    self.dtype = 'float32'\n    self.shape = [10, 20]\n    self.np_x = np.random.uniform(-5, 5, self.shape).astype(self.dtype)",
+            "def init_data(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    self.dtype = 'float32'\n    self.shape = [10, 20]\n    self.np_x = np.random.uniform(-5, 5, self.shape).astype(self.dtype)",
+            "def init_data(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    self.dtype = 'float32'\n    self.shape = [10, 20]\n    self.np_x = np.random.uniform(-5, 5, self.shape).astype(self.dtype)"
+        ]
+    },
+    {
+        "func_name": "set_np_compare_func",
+        "original": "def set_np_compare_func(self):\n    self.np_compare = np.array_equal",
+        "mutated": [
+            "def set_np_compare_func(self):\n    if False:\n        i = 10\n    self.np_compare = np.array_equal",
+            "def set_np_compare_func(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    self.np_compare = np.array_equal",
+            "def set_np_compare_func(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    self.np_compare = np.array_equal",
+            "def set_np_compare_func(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    self.np_compare = np.array_equal",
+            "def set_np_compare_func(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    self.np_compare = np.array_equal"
+        ]
+    },
+    {
+        "func_name": "executed_paddle_api",
+        "original": "def executed_paddle_api(self, x):\n    return x.ceil()",
+        "mutated": [
+            "def executed_paddle_api(self, x):\n    if False:\n        i = 10\n    return x.ceil()",
+            "def executed_paddle_api(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return x.ceil()",
+            "def executed_paddle_api(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return x.ceil()",
+            "def executed_paddle_api(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return x.ceil()",
+            "def executed_paddle_api(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return x.ceil()"
+        ]
+    },
+    {
+        "func_name": "executed_numpy_api",
+        "original": "def executed_numpy_api(self, x):\n    return np.ceil(x)",
+        "mutated": [
+            "def executed_numpy_api(self, x):\n    if False:\n        i = 10\n    return np.ceil(x)",
+            "def executed_numpy_api(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return np.ceil(x)",
+            "def executed_numpy_api(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return np.ceil(x)",
+            "def executed_numpy_api(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return np.ceil(x)",
+            "def executed_numpy_api(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return np.ceil(x)"
+        ]
+    },
+    {
+        "func_name": "test_api",
+        "original": "def test_api(self):\n    main_prog = Program()\n    with program_guard(main_prog, Program()):\n        x = paddle.static.data(name='x', shape=self.shape, dtype=self.dtype)\n        out = self.executed_paddle_api(x)\n    exe = paddle.static.Executor(place=paddle.CPUPlace())\n    (fetch_x, fetch_out) = exe.run(main_prog, feed={'x': self.np_x}, fetch_list=[x, out])\n    np.testing.assert_array_equal(fetch_x, self.np_x)\n    self.assertTrue(self.np_compare(fetch_out, self.executed_numpy_api(self.np_x)))",
+        "mutated": [
+            "def test_api(self):\n    if False:\n        i = 10\n    main_prog = Program()\n    with program_guard(main_prog, Program()):\n        x = paddle.static.data(name='x', shape=self.shape, dtype=self.dtype)\n        out = self.executed_paddle_api(x)\n    exe = paddle.static.Executor(place=paddle.CPUPlace())\n    (fetch_x, fetch_out) = exe.run(main_prog, feed={'x': self.np_x}, fetch_list=[x, out])\n    np.testing.assert_array_equal(fetch_x, self.np_x)\n    self.assertTrue(self.np_compare(fetch_out, self.executed_numpy_api(self.np_x)))",
+            "def test_api(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    main_prog = Program()\n    with program_guard(main_prog, Program()):\n        x = paddle.static.data(name='x', shape=self.shape, dtype=self.dtype)\n        out = self.executed_paddle_api(x)\n    exe = paddle.static.Executor(place=paddle.CPUPlace())\n    (fetch_x, fetch_out) = exe.run(main_prog, feed={'x': self.np_x}, fetch_list=[x, out])\n    np.testing.assert_array_equal(fetch_x, self.np_x)\n    self.assertTrue(self.np_compare(fetch_out, self.executed_numpy_api(self.np_x)))",
+            "def test_api(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    main_prog = Program()\n    with program_guard(main_prog, Program()):\n        x = paddle.static.data(name='x', shape=self.shape, dtype=self.dtype)\n        out = self.executed_paddle_api(x)\n    exe = paddle.static.Executor(place=paddle.CPUPlace())\n    (fetch_x, fetch_out) = exe.run(main_prog, feed={'x': self.np_x}, fetch_list=[x, out])\n    np.testing.assert_array_equal(fetch_x, self.np_x)\n    self.assertTrue(self.np_compare(fetch_out, self.executed_numpy_api(self.np_x)))",
+            "def test_api(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    main_prog = Program()\n    with program_guard(main_prog, Program()):\n        x = paddle.static.data(name='x', shape=self.shape, dtype=self.dtype)\n        out = self.executed_paddle_api(x)\n    exe = paddle.static.Executor(place=paddle.CPUPlace())\n    (fetch_x, fetch_out) = exe.run(main_prog, feed={'x': self.np_x}, fetch_list=[x, out])\n    np.testing.assert_array_equal(fetch_x, self.np_x)\n    self.assertTrue(self.np_compare(fetch_out, self.executed_numpy_api(self.np_x)))",
+            "def test_api(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    main_prog = Program()\n    with program_guard(main_prog, Program()):\n        x = paddle.static.data(name='x', shape=self.shape, dtype=self.dtype)\n        out = self.executed_paddle_api(x)\n    exe = paddle.static.Executor(place=paddle.CPUPlace())\n    (fetch_x, fetch_out) = exe.run(main_prog, feed={'x': self.np_x}, fetch_list=[x, out])\n    np.testing.assert_array_equal(fetch_x, self.np_x)\n    self.assertTrue(self.np_compare(fetch_out, self.executed_numpy_api(self.np_x)))"
+        ]
+    },
+    {
+        "func_name": "executed_paddle_api",
+        "original": "def executed_paddle_api(self, x):\n    return x.ceil_()",
+        "mutated": [
+            "def executed_paddle_api(self, x):\n    if False:\n        i = 10\n    return x.ceil_()",
+            "def executed_paddle_api(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return x.ceil_()",
+            "def executed_paddle_api(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return x.ceil_()",
+            "def executed_paddle_api(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return x.ceil_()",
+            "def executed_paddle_api(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return x.ceil_()"
+        ]
+    },
+    {
+        "func_name": "executed_paddle_api",
+        "original": "def executed_paddle_api(self, x):\n    return x.floor()",
+        "mutated": [
+            "def executed_paddle_api(self, x):\n    if False:\n        i = 10\n    return x.floor()",
+            "def executed_paddle_api(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return x.floor()",
+            "def executed_paddle_api(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return x.floor()",
+            "def executed_paddle_api(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return x.floor()",
+            "def executed_paddle_api(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return x.floor()"
+        ]
+    },
+    {
+        "func_name": "executed_numpy_api",
+        "original": "def executed_numpy_api(self, x):\n    return np.floor(x)",
+        "mutated": [
+            "def executed_numpy_api(self, x):\n    if False:\n        i = 10\n    return np.floor(x)",
+            "def executed_numpy_api(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return np.floor(x)",
+            "def executed_numpy_api(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return np.floor(x)",
+            "def executed_numpy_api(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return np.floor(x)",
+            "def executed_numpy_api(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return np.floor(x)"
+        ]
+    },
+    {
+        "func_name": "executed_paddle_api",
+        "original": "def executed_paddle_api(self, x):\n    return x.floor_()",
+        "mutated": [
+            "def executed_paddle_api(self, x):\n    if False:\n        i = 10\n    return x.floor_()",
+            "def executed_paddle_api(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return x.floor_()",
+            "def executed_paddle_api(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return x.floor_()",
+            "def executed_paddle_api(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return x.floor_()",
+            "def executed_paddle_api(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return x.floor_()"
+        ]
+    },
+    {
+        "func_name": "set_np_compare_func",
+        "original": "def set_np_compare_func(self):\n    self.np_compare = np.allclose",
+        "mutated": [
+            "def set_np_compare_func(self):\n    if False:\n        i = 10\n    self.np_compare = np.allclose",
+            "def set_np_compare_func(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    self.np_compare = np.allclose",
+            "def set_np_compare_func(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    self.np_compare = np.allclose",
+            "def set_np_compare_func(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    self.np_compare = np.allclose",
+            "def set_np_compare_func(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    self.np_compare = np.allclose"
+        ]
+    },
+    {
+        "func_name": "executed_paddle_api",
+        "original": "def executed_paddle_api(self, x):\n    return x.exp()",
+        "mutated": [
+            "def executed_paddle_api(self, x):\n    if False:\n        i = 10\n    return x.exp()",
+            "def executed_paddle_api(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return x.exp()",
+            "def executed_paddle_api(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return x.exp()",
+            "def executed_paddle_api(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return x.exp()",
+            "def executed_paddle_api(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return x.exp()"
+        ]
+    },
+    {
+        "func_name": "executed_numpy_api",
+        "original": "def executed_numpy_api(self, x):\n    return np.exp(x)",
+        "mutated": [
+            "def executed_numpy_api(self, x):\n    if False:\n        i = 10\n    return np.exp(x)",
+            "def executed_numpy_api(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return np.exp(x)",
+            "def executed_numpy_api(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return np.exp(x)",
+            "def executed_numpy_api(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return np.exp(x)",
+            "def executed_numpy_api(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return np.exp(x)"
+        ]
+    },
+    {
+        "func_name": "executed_paddle_api",
+        "original": "def executed_paddle_api(self, x):\n    return x.exp_()",
+        "mutated": [
+            "def executed_paddle_api(self, x):\n    if False:\n        i = 10\n    return x.exp_()",
+            "def executed_paddle_api(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return x.exp_()",
+            "def executed_paddle_api(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return x.exp_()",
+            "def executed_paddle_api(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return x.exp_()",
+            "def executed_paddle_api(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return x.exp_()"
+        ]
+    },
+    {
+        "func_name": "executed_paddle_api",
+        "original": "def executed_paddle_api(self, x):\n    return x.reciprocal()",
+        "mutated": [
+            "def executed_paddle_api(self, x):\n    if False:\n        i = 10\n    return x.reciprocal()",
+            "def executed_paddle_api(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return x.reciprocal()",
+            "def executed_paddle_api(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return x.reciprocal()",
+            "def executed_paddle_api(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return x.reciprocal()",
+            "def executed_paddle_api(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return x.reciprocal()"
+        ]
+    },
+    {
+        "func_name": "executed_numpy_api",
+        "original": "def executed_numpy_api(self, x):\n    return np.reciprocal(x)",
+        "mutated": [
+            "def executed_numpy_api(self, x):\n    if False:\n        i = 10\n    return np.reciprocal(x)",
+            "def executed_numpy_api(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return np.reciprocal(x)",
+            "def executed_numpy_api(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return np.reciprocal(x)",
+            "def executed_numpy_api(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return np.reciprocal(x)",
+            "def executed_numpy_api(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return np.reciprocal(x)"
+        ]
+    },
+    {
+        "func_name": "executed_paddle_api",
+        "original": "def executed_paddle_api(self, x):\n    return x.reciprocal_()",
+        "mutated": [
+            "def executed_paddle_api(self, x):\n    if False:\n        i = 10\n    return x.reciprocal_()",
+            "def executed_paddle_api(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return x.reciprocal_()",
+            "def executed_paddle_api(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return x.reciprocal_()",
+            "def executed_paddle_api(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return x.reciprocal_()",
+            "def executed_paddle_api(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return x.reciprocal_()"
+        ]
+    },
+    {
+        "func_name": "executed_paddle_api",
+        "original": "def executed_paddle_api(self, x):\n    return x.round()",
+        "mutated": [
+            "def executed_paddle_api(self, x):\n    if False:\n        i = 10\n    return x.round()",
+            "def executed_paddle_api(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return x.round()",
+            "def executed_paddle_api(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return x.round()",
+            "def executed_paddle_api(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return x.round()",
+            "def executed_paddle_api(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return x.round()"
+        ]
+    },
+    {
+        "func_name": "executed_numpy_api",
+        "original": "def executed_numpy_api(self, x):\n    return np.round(x)",
+        "mutated": [
+            "def executed_numpy_api(self, x):\n    if False:\n        i = 10\n    return np.round(x)",
+            "def executed_numpy_api(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return np.round(x)",
+            "def executed_numpy_api(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return np.round(x)",
+            "def executed_numpy_api(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return np.round(x)",
+            "def executed_numpy_api(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return np.round(x)"
+        ]
+    },
+    {
+        "func_name": "executed_paddle_api",
+        "original": "def executed_paddle_api(self, x):\n    return x.round_()",
+        "mutated": [
+            "def executed_paddle_api(self, x):\n    if False:\n        i = 10\n    return x.round_()",
+            "def executed_paddle_api(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return x.round_()",
+            "def executed_paddle_api(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return x.round_()",
+            "def executed_paddle_api(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return x.round_()",
+            "def executed_paddle_api(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return x.round_()"
+        ]
+    },
+    {
+        "func_name": "init_data",
+        "original": "def init_data(self):\n    self.dtype = 'float32'\n    self.shape = [10, 20]\n    self.np_x = np.random.uniform(0, 5, self.shape).astype(self.dtype)",
+        "mutated": [
+            "def init_data(self):\n    if False:\n        i = 10\n    self.dtype = 'float32'\n    self.shape = [10, 20]\n    self.np_x = np.random.uniform(0, 5, self.shape).astype(self.dtype)",
+            "def init_data(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    self.dtype = 'float32'\n    self.shape = [10, 20]\n    self.np_x = np.random.uniform(0, 5, self.shape).astype(self.dtype)",
+            "def init_data(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    self.dtype = 'float32'\n    self.shape = [10, 20]\n    self.np_x = np.random.uniform(0, 5, self.shape).astype(self.dtype)",
+            "def init_data(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    self.dtype = 'float32'\n    self.shape = [10, 20]\n    self.np_x = np.random.uniform(0, 5, self.shape).astype(self.dtype)",
+            "def init_data(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    self.dtype = 'float32'\n    self.shape = [10, 20]\n    self.np_x = np.random.uniform(0, 5, self.shape).astype(self.dtype)"
+        ]
+    },
+    {
+        "func_name": "set_np_compare_func",
+        "original": "def set_np_compare_func(self):\n    self.np_compare = np.allclose",
+        "mutated": [
+            "def set_np_compare_func(self):\n    if False:\n        i = 10\n    self.np_compare = np.allclose",
+            "def set_np_compare_func(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    self.np_compare = np.allclose",
+            "def set_np_compare_func(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    self.np_compare = np.allclose",
+            "def set_np_compare_func(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    self.np_compare = np.allclose",
+            "def set_np_compare_func(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    self.np_compare = np.allclose"
+        ]
+    },
+    {
+        "func_name": "executed_paddle_api",
+        "original": "def executed_paddle_api(self, x):\n    return x.sqrt()",
+        "mutated": [
+            "def executed_paddle_api(self, x):\n    if False:\n        i = 10\n    return x.sqrt()",
+            "def executed_paddle_api(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return x.sqrt()",
+            "def executed_paddle_api(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return x.sqrt()",
+            "def executed_paddle_api(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return x.sqrt()",
+            "def executed_paddle_api(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return x.sqrt()"
+        ]
+    },
+    {
+        "func_name": "executed_numpy_api",
+        "original": "def executed_numpy_api(self, x):\n    return np.sqrt(x)",
+        "mutated": [
+            "def executed_numpy_api(self, x):\n    if False:\n        i = 10\n    return np.sqrt(x)",
+            "def executed_numpy_api(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return np.sqrt(x)",
+            "def executed_numpy_api(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return np.sqrt(x)",
+            "def executed_numpy_api(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return np.sqrt(x)",
+            "def executed_numpy_api(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return np.sqrt(x)"
+        ]
+    },
+    {
+        "func_name": "executed_paddle_api",
+        "original": "def executed_paddle_api(self, x):\n    return x.sqrt_()",
+        "mutated": [
+            "def executed_paddle_api(self, x):\n    if False:\n        i = 10\n    return x.sqrt_()",
+            "def executed_paddle_api(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return x.sqrt_()",
+            "def executed_paddle_api(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return x.sqrt_()",
+            "def executed_paddle_api(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return x.sqrt_()",
+            "def executed_paddle_api(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return x.sqrt_()"
+        ]
+    },
+    {
+        "func_name": "executed_paddle_api",
+        "original": "def executed_paddle_api(self, x):\n    return x.rsqrt()",
+        "mutated": [
+            "def executed_paddle_api(self, x):\n    if False:\n        i = 10\n    return x.rsqrt()",
+            "def executed_paddle_api(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return x.rsqrt()",
+            "def executed_paddle_api(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return x.rsqrt()",
+            "def executed_paddle_api(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return x.rsqrt()",
+            "def executed_paddle_api(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return x.rsqrt()"
+        ]
+    },
+    {
+        "func_name": "executed_numpy_api",
+        "original": "def executed_numpy_api(self, x):\n    return 1 / np.sqrt(x)",
+        "mutated": [
+            "def executed_numpy_api(self, x):\n    if False:\n        i = 10\n    return 1 / np.sqrt(x)",
+            "def executed_numpy_api(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return 1 / np.sqrt(x)",
+            "def executed_numpy_api(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return 1 / np.sqrt(x)",
+            "def executed_numpy_api(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return 1 / np.sqrt(x)",
+            "def executed_numpy_api(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return 1 / np.sqrt(x)"
+        ]
+    },
+    {
+        "func_name": "executed_paddle_api",
+        "original": "def executed_paddle_api(self, x):\n    return x.rsqrt_()",
+        "mutated": [
+            "def executed_paddle_api(self, x):\n    if False:\n        i = 10\n    return x.rsqrt_()",
+            "def executed_paddle_api(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return x.rsqrt_()",
+            "def executed_paddle_api(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return x.rsqrt_()",
+            "def executed_paddle_api(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return x.rsqrt_()",
+            "def executed_paddle_api(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return x.rsqrt_()"
+        ]
+    },
+    {
+        "func_name": "setUp",
+        "original": "def setUp(self):\n    paddle.disable_static()\n    self.init_data()\n    self.set_np_compare_func()",
+        "mutated": [
+            "def setUp(self):\n    if False:\n        i = 10\n    paddle.disable_static()\n    self.init_data()\n    self.set_np_compare_func()",
+            "def setUp(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    paddle.disable_static()\n    self.init_data()\n    self.set_np_compare_func()",
+            "def setUp(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    paddle.disable_static()\n    self.init_data()\n    self.set_np_compare_func()",
+            "def setUp(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    paddle.disable_static()\n    self.init_data()\n    self.set_np_compare_func()",
+            "def setUp(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    paddle.disable_static()\n    self.init_data()\n    self.set_np_compare_func()"
+        ]
+    },
+    {
+        "func_name": "init_data",
+        "original": "def init_data(self):\n    self.dtype = 'float32'\n    self.shape = [10, 20]\n    self.np_x = np.random.uniform(-5, 5, self.shape).astype(self.dtype)",
+        "mutated": [
+            "def init_data(self):\n    if False:\n        i = 10\n    self.dtype = 'float32'\n    self.shape = [10, 20]\n    self.np_x = np.random.uniform(-5, 5, self.shape).astype(self.dtype)",
+            "def init_data(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    self.dtype = 'float32'\n    self.shape = [10, 20]\n    self.np_x = np.random.uniform(-5, 5, self.shape).astype(self.dtype)",
+            "def init_data(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    self.dtype = 'float32'\n    self.shape = [10, 20]\n    self.np_x = np.random.uniform(-5, 5, self.shape).astype(self.dtype)",
+            "def init_data(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    self.dtype = 'float32'\n    self.shape = [10, 20]\n    self.np_x = np.random.uniform(-5, 5, self.shape).astype(self.dtype)",
+            "def init_data(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    self.dtype = 'float32'\n    self.shape = [10, 20]\n    self.np_x = np.random.uniform(-5, 5, self.shape).astype(self.dtype)"
+        ]
+    },
+    {
+        "func_name": "set_np_compare_func",
+        "original": "def set_np_compare_func(self):\n    self.np_compare = np.array_equal",
+        "mutated": [
+            "def set_np_compare_func(self):\n    if False:\n        i = 10\n    self.np_compare = np.array_equal",
+            "def set_np_compare_func(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    self.np_compare = np.array_equal",
+            "def set_np_compare_func(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    self.np_compare = np.array_equal",
+            "def set_np_compare_func(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    self.np_compare = np.array_equal",
+            "def set_np_compare_func(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    self.np_compare = np.array_equal"
+        ]
+    },
+    {
+        "func_name": "executed_paddle_api",
+        "original": "def executed_paddle_api(self, x):\n    return x.ceil()",
+        "mutated": [
+            "def executed_paddle_api(self, x):\n    if False:\n        i = 10\n    return x.ceil()",
+            "def executed_paddle_api(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return x.ceil()",
+            "def executed_paddle_api(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return x.ceil()",
+            "def executed_paddle_api(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return x.ceil()",
+            "def executed_paddle_api(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return x.ceil()"
+        ]
+    },
+    {
+        "func_name": "executed_numpy_api",
+        "original": "def executed_numpy_api(self, x):\n    return np.ceil(x)",
+        "mutated": [
+            "def executed_numpy_api(self, x):\n    if False:\n        i = 10\n    return np.ceil(x)",
+            "def executed_numpy_api(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return np.ceil(x)",
+            "def executed_numpy_api(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return np.ceil(x)",
+            "def executed_numpy_api(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return np.ceil(x)",
+            "def executed_numpy_api(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return np.ceil(x)"
+        ]
+    },
+    {
+        "func_name": "test_api",
+        "original": "def test_api(self):\n    x = paddle.to_tensor(self.np_x, dtype=self.dtype)\n    out = self.executed_paddle_api(x)\n    self.assertTrue(self.np_compare(out.numpy(), self.executed_numpy_api(self.np_x)))",
+        "mutated": [
+            "def test_api(self):\n    if False:\n        i = 10\n    x = paddle.to_tensor(self.np_x, dtype=self.dtype)\n    out = self.executed_paddle_api(x)\n    self.assertTrue(self.np_compare(out.numpy(), self.executed_numpy_api(self.np_x)))",
+            "def test_api(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    x = paddle.to_tensor(self.np_x, dtype=self.dtype)\n    out = self.executed_paddle_api(x)\n    self.assertTrue(self.np_compare(out.numpy(), self.executed_numpy_api(self.np_x)))",
+            "def test_api(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    x = paddle.to_tensor(self.np_x, dtype=self.dtype)\n    out = self.executed_paddle_api(x)\n    self.assertTrue(self.np_compare(out.numpy(), self.executed_numpy_api(self.np_x)))",
+            "def test_api(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    x = paddle.to_tensor(self.np_x, dtype=self.dtype)\n    out = self.executed_paddle_api(x)\n    self.assertTrue(self.np_compare(out.numpy(), self.executed_numpy_api(self.np_x)))",
+            "def test_api(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    x = paddle.to_tensor(self.np_x, dtype=self.dtype)\n    out = self.executed_paddle_api(x)\n    self.assertTrue(self.np_compare(out.numpy(), self.executed_numpy_api(self.np_x)))"
+        ]
+    },
+    {
+        "func_name": "executed_paddle_api",
+        "original": "def executed_paddle_api(self, x):\n    return x.ceil_()",
+        "mutated": [
+            "def executed_paddle_api(self, x):\n    if False:\n        i = 10\n    return x.ceil_()",
+            "def executed_paddle_api(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return x.ceil_()",
+            "def executed_paddle_api(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return x.ceil_()",
+            "def executed_paddle_api(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return x.ceil_()",
+            "def executed_paddle_api(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return x.ceil_()"
+        ]
+    },
+    {
+        "func_name": "executed_paddle_api",
+        "original": "def executed_paddle_api(self, x):\n    return x.floor()",
+        "mutated": [
+            "def executed_paddle_api(self, x):\n    if False:\n        i = 10\n    return x.floor()",
+            "def executed_paddle_api(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return x.floor()",
+            "def executed_paddle_api(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return x.floor()",
+            "def executed_paddle_api(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return x.floor()",
+            "def executed_paddle_api(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return x.floor()"
+        ]
+    },
+    {
+        "func_name": "executed_numpy_api",
+        "original": "def executed_numpy_api(self, x):\n    return np.floor(x)",
+        "mutated": [
+            "def executed_numpy_api(self, x):\n    if False:\n        i = 10\n    return np.floor(x)",
+            "def executed_numpy_api(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return np.floor(x)",
+            "def executed_numpy_api(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return np.floor(x)",
+            "def executed_numpy_api(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return np.floor(x)",
+            "def executed_numpy_api(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return np.floor(x)"
+        ]
+    },
+    {
+        "func_name": "executed_paddle_api",
+        "original": "def executed_paddle_api(self, x):\n    return x.floor_()",
+        "mutated": [
+            "def executed_paddle_api(self, x):\n    if False:\n        i = 10\n    return x.floor_()",
+            "def executed_paddle_api(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return x.floor_()",
+            "def executed_paddle_api(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return x.floor_()",
+            "def executed_paddle_api(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return x.floor_()",
+            "def executed_paddle_api(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return x.floor_()"
+        ]
+    },
+    {
+        "func_name": "executed_paddle_api",
+        "original": "def executed_paddle_api(self, x):\n    return x.exp()",
+        "mutated": [
+            "def executed_paddle_api(self, x):\n    if False:\n        i = 10\n    return x.exp()",
+            "def executed_paddle_api(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return x.exp()",
+            "def executed_paddle_api(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return x.exp()",
+            "def executed_paddle_api(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return x.exp()",
+            "def executed_paddle_api(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return x.exp()"
+        ]
+    },
+    {
+        "func_name": "executed_numpy_api",
+        "original": "def executed_numpy_api(self, x):\n    return np.exp(x)",
+        "mutated": [
+            "def executed_numpy_api(self, x):\n    if False:\n        i = 10\n    return np.exp(x)",
+            "def executed_numpy_api(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return np.exp(x)",
+            "def executed_numpy_api(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return np.exp(x)",
+            "def executed_numpy_api(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return np.exp(x)",
+            "def executed_numpy_api(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return np.exp(x)"
+        ]
+    },
+    {
+        "func_name": "set_np_compare_func",
+        "original": "def set_np_compare_func(self):\n    self.np_compare = np.allclose",
+        "mutated": [
+            "def set_np_compare_func(self):\n    if False:\n        i = 10\n    self.np_compare = np.allclose",
+            "def set_np_compare_func(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    self.np_compare = np.allclose",
+            "def set_np_compare_func(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    self.np_compare = np.allclose",
+            "def set_np_compare_func(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    self.np_compare = np.allclose",
+            "def set_np_compare_func(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    self.np_compare = np.allclose"
+        ]
+    },
+    {
+        "func_name": "executed_paddle_api",
+        "original": "def executed_paddle_api(self, x):\n    return x.exp_()",
+        "mutated": [
+            "def executed_paddle_api(self, x):\n    if False:\n        i = 10\n    return x.exp_()",
+            "def executed_paddle_api(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return x.exp_()",
+            "def executed_paddle_api(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return x.exp_()",
+            "def executed_paddle_api(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return x.exp_()",
+            "def executed_paddle_api(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return x.exp_()"
+        ]
+    },
+    {
+        "func_name": "executed_paddle_api",
+        "original": "def executed_paddle_api(self, x):\n    return x.reciprocal()",
+        "mutated": [
+            "def executed_paddle_api(self, x):\n    if False:\n        i = 10\n    return x.reciprocal()",
+            "def executed_paddle_api(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return x.reciprocal()",
+            "def executed_paddle_api(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return x.reciprocal()",
+            "def executed_paddle_api(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return x.reciprocal()",
+            "def executed_paddle_api(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return x.reciprocal()"
+        ]
+    },
+    {
+        "func_name": "executed_numpy_api",
+        "original": "def executed_numpy_api(self, x):\n    return np.reciprocal(x)",
+        "mutated": [
+            "def executed_numpy_api(self, x):\n    if False:\n        i = 10\n    return np.reciprocal(x)",
+            "def executed_numpy_api(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return np.reciprocal(x)",
+            "def executed_numpy_api(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return np.reciprocal(x)",
+            "def executed_numpy_api(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return np.reciprocal(x)",
+            "def executed_numpy_api(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return np.reciprocal(x)"
+        ]
+    },
+    {
+        "func_name": "executed_paddle_api",
+        "original": "def executed_paddle_api(self, x):\n    return x.reciprocal_()",
+        "mutated": [
+            "def executed_paddle_api(self, x):\n    if False:\n        i = 10\n    return x.reciprocal_()",
+            "def executed_paddle_api(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return x.reciprocal_()",
+            "def executed_paddle_api(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return x.reciprocal_()",
+            "def executed_paddle_api(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return x.reciprocal_()",
+            "def executed_paddle_api(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return x.reciprocal_()"
+        ]
+    },
+    {
+        "func_name": "executed_paddle_api",
+        "original": "def executed_paddle_api(self, x):\n    return x.round()",
+        "mutated": [
+            "def executed_paddle_api(self, x):\n    if False:\n        i = 10\n    return x.round()",
+            "def executed_paddle_api(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return x.round()",
+            "def executed_paddle_api(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return x.round()",
+            "def executed_paddle_api(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return x.round()",
+            "def executed_paddle_api(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return x.round()"
+        ]
+    },
+    {
+        "func_name": "executed_numpy_api",
+        "original": "def executed_numpy_api(self, x):\n    return np.round(x)",
+        "mutated": [
+            "def executed_numpy_api(self, x):\n    if False:\n        i = 10\n    return np.round(x)",
+            "def executed_numpy_api(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return np.round(x)",
+            "def executed_numpy_api(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return np.round(x)",
+            "def executed_numpy_api(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return np.round(x)",
+            "def executed_numpy_api(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return np.round(x)"
+        ]
+    },
+    {
+        "func_name": "executed_paddle_api",
+        "original": "def executed_paddle_api(self, x):\n    return x.round_()",
+        "mutated": [
+            "def executed_paddle_api(self, x):\n    if False:\n        i = 10\n    return x.round_()",
+            "def executed_paddle_api(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return x.round_()",
+            "def executed_paddle_api(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return x.round_()",
+            "def executed_paddle_api(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return x.round_()",
+            "def executed_paddle_api(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return x.round_()"
+        ]
+    },
+    {
+        "func_name": "init_data",
+        "original": "def init_data(self):\n    self.dtype = 'float32'\n    self.shape = [10, 20]\n    self.np_x = np.random.uniform(0, 100, self.shape).astype(self.dtype)",
+        "mutated": [
+            "def init_data(self):\n    if False:\n        i = 10\n    self.dtype = 'float32'\n    self.shape = [10, 20]\n    self.np_x = np.random.uniform(0, 100, self.shape).astype(self.dtype)",
+            "def init_data(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    self.dtype = 'float32'\n    self.shape = [10, 20]\n    self.np_x = np.random.uniform(0, 100, self.shape).astype(self.dtype)",
+            "def init_data(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    self.dtype = 'float32'\n    self.shape = [10, 20]\n    self.np_x = np.random.uniform(0, 100, self.shape).astype(self.dtype)",
+            "def init_data(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    self.dtype = 'float32'\n    self.shape = [10, 20]\n    self.np_x = np.random.uniform(0, 100, self.shape).astype(self.dtype)",
+            "def init_data(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    self.dtype = 'float32'\n    self.shape = [10, 20]\n    self.np_x = np.random.uniform(0, 100, self.shape).astype(self.dtype)"
+        ]
+    },
+    {
+        "func_name": "set_np_compare_func",
+        "original": "def set_np_compare_func(self):\n    self.np_compare = np.allclose",
+        "mutated": [
+            "def set_np_compare_func(self):\n    if False:\n        i = 10\n    self.np_compare = np.allclose",
+            "def set_np_compare_func(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    self.np_compare = np.allclose",
+            "def set_np_compare_func(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    self.np_compare = np.allclose",
+            "def set_np_compare_func(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    self.np_compare = np.allclose",
+            "def set_np_compare_func(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    self.np_compare = np.allclose"
+        ]
+    },
+    {
+        "func_name": "executed_paddle_api",
+        "original": "def executed_paddle_api(self, x):\n    return x.sqrt()",
+        "mutated": [
+            "def executed_paddle_api(self, x):\n    if False:\n        i = 10\n    return x.sqrt()",
+            "def executed_paddle_api(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return x.sqrt()",
+            "def executed_paddle_api(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return x.sqrt()",
+            "def executed_paddle_api(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return x.sqrt()",
+            "def executed_paddle_api(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return x.sqrt()"
+        ]
+    },
+    {
+        "func_name": "executed_numpy_api",
+        "original": "def executed_numpy_api(self, x):\n    return np.sqrt(x)",
+        "mutated": [
+            "def executed_numpy_api(self, x):\n    if False:\n        i = 10\n    return np.sqrt(x)",
+            "def executed_numpy_api(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return np.sqrt(x)",
+            "def executed_numpy_api(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return np.sqrt(x)",
+            "def executed_numpy_api(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return np.sqrt(x)",
+            "def executed_numpy_api(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return np.sqrt(x)"
+        ]
+    },
+    {
+        "func_name": "executed_paddle_api",
+        "original": "def executed_paddle_api(self, x):\n    return x.sqrt_()",
+        "mutated": [
+            "def executed_paddle_api(self, x):\n    if False:\n        i = 10\n    return x.sqrt_()",
+            "def executed_paddle_api(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return x.sqrt_()",
+            "def executed_paddle_api(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return x.sqrt_()",
+            "def executed_paddle_api(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return x.sqrt_()",
+            "def executed_paddle_api(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return x.sqrt_()"
+        ]
+    },
+    {
+        "func_name": "executed_paddle_api",
+        "original": "def executed_paddle_api(self, x):\n    return x.rsqrt()",
+        "mutated": [
+            "def executed_paddle_api(self, x):\n    if False:\n        i = 10\n    return x.rsqrt()",
+            "def executed_paddle_api(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return x.rsqrt()",
+            "def executed_paddle_api(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return x.rsqrt()",
+            "def executed_paddle_api(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return x.rsqrt()",
+            "def executed_paddle_api(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return x.rsqrt()"
+        ]
+    },
+    {
+        "func_name": "executed_numpy_api",
+        "original": "def executed_numpy_api(self, x):\n    return 1.0 / np.sqrt(x)",
+        "mutated": [
+            "def executed_numpy_api(self, x):\n    if False:\n        i = 10\n    return 1.0 / np.sqrt(x)",
+            "def executed_numpy_api(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return 1.0 / np.sqrt(x)",
+            "def executed_numpy_api(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return 1.0 / np.sqrt(x)",
+            "def executed_numpy_api(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return 1.0 / np.sqrt(x)",
+            "def executed_numpy_api(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return 1.0 / np.sqrt(x)"
+        ]
+    },
+    {
+        "func_name": "executed_paddle_api",
+        "original": "def executed_paddle_api(self, x):\n    return x.rsqrt_()",
+        "mutated": [
+            "def executed_paddle_api(self, x):\n    if False:\n        i = 10\n    return x.rsqrt_()",
+            "def executed_paddle_api(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return x.rsqrt_()",
+            "def executed_paddle_api(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return x.rsqrt_()",
+            "def executed_paddle_api(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return x.rsqrt_()",
+            "def executed_paddle_api(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return x.rsqrt_()"
+        ]
+    }
+]

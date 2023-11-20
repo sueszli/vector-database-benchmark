@@ -1,0 +1,35 @@
+[
+    {
+        "func_name": "my_cool_function",
+        "original": "def my_cool_function():\n    import tensorflow.foo.bar",
+        "mutated": [
+            "def my_cool_function():\n    if False:\n        i = 10\n    import tensorflow.foo.bar",
+            "def my_cool_function():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    import tensorflow.foo.bar",
+            "def my_cool_function():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    import tensorflow.foo.bar",
+            "def my_cool_function():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    import tensorflow.foo.bar",
+            "def my_cool_function():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    import tensorflow.foo.bar"
+        ]
+    },
+    {
+        "func_name": "another_cool_function",
+        "original": "def another_cool_function():\n    from torch.foo import bar",
+        "mutated": [
+            "def another_cool_function():\n    if False:\n        i = 10\n    from torch.foo import bar",
+            "def another_cool_function():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    from torch.foo import bar",
+            "def another_cool_function():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    from torch.foo import bar",
+            "def another_cool_function():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    from torch.foo import bar",
+            "def another_cool_function():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    from torch.foo import bar"
+        ]
+    },
+    {
+        "func_name": "import_alias",
+        "original": "def import_alias():\n    from torch.foo import bar",
+        "mutated": [
+            "def import_alias():\n    if False:\n        i = 10\n    from torch.foo import bar",
+            "def import_alias():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    from torch.foo import bar",
+            "def import_alias():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    from torch.foo import bar",
+            "def import_alias():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    from torch.foo import bar",
+            "def import_alias():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    from torch.foo import bar"
+        ]
+    }
+]

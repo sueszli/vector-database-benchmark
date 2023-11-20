@@ -1,0 +1,57 @@
+[
+    {
+        "func_name": "native_test",
+        "original": "@micropython.native\ndef native_test(x):\n    print(1, [], x)",
+        "mutated": [
+            "@micropython.native\ndef native_test(x):\n    if False:\n        i = 10\n    print(1, [], x)",
+            "@micropython.native\ndef native_test(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    print(1, [], x)",
+            "@micropython.native\ndef native_test(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    print(1, [], x)",
+            "@micropython.native\ndef native_test(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    print(1, [], x)",
+            "@micropython.native\ndef native_test(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    print(1, [], x)"
+        ]
+    },
+    {
+        "func_name": "f",
+        "original": "@micropython.native\ndef f(a, b):\n    print(a + b)",
+        "mutated": [
+            "@micropython.native\ndef f(a, b):\n    if False:\n        i = 10\n    print(a + b)",
+            "@micropython.native\ndef f(a, b):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    print(a + b)",
+            "@micropython.native\ndef f(a, b):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    print(a + b)",
+            "@micropython.native\ndef f(a, b):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    print(a + b)",
+            "@micropython.native\ndef f(a, b):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    print(a + b)"
+        ]
+    },
+    {
+        "func_name": "f",
+        "original": "@micropython.native\ndef f(a, b, c):\n    print(a + b + c)",
+        "mutated": [
+            "@micropython.native\ndef f(a, b, c):\n    if False:\n        i = 10\n    print(a + b + c)",
+            "@micropython.native\ndef f(a, b, c):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    print(a + b + c)",
+            "@micropython.native\ndef f(a, b, c):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    print(a + b + c)",
+            "@micropython.native\ndef f(a, b, c):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    print(a + b + c)",
+            "@micropython.native\ndef f(a, b, c):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    print(a + b + c)"
+        ]
+    },
+    {
+        "func_name": "f",
+        "original": "@micropython.native\ndef f(a):\n    print(not a)",
+        "mutated": [
+            "@micropython.native\ndef f(a):\n    if False:\n        i = 10\n    print(not a)",
+            "@micropython.native\ndef f(a):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    print(not a)",
+            "@micropython.native\ndef f(a):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    print(not a)",
+            "@micropython.native\ndef f(a):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    print(not a)",
+            "@micropython.native\ndef f(a):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    print(not a)"
+        ]
+    },
+    {
+        "func_name": "f",
+        "original": "@micropython.native\ndef f(a):\n    print(1, 2, 3, 4 if a else 5)",
+        "mutated": [
+            "@micropython.native\ndef f(a):\n    if False:\n        i = 10\n    print(1, 2, 3, 4 if a else 5)",
+            "@micropython.native\ndef f(a):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    print(1, 2, 3, 4 if a else 5)",
+            "@micropython.native\ndef f(a):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    print(1, 2, 3, 4 if a else 5)",
+            "@micropython.native\ndef f(a):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    print(1, 2, 3, 4 if a else 5)",
+            "@micropython.native\ndef f(a):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    print(1, 2, 3, 4 if a else 5)"
+        ]
+    }
+]

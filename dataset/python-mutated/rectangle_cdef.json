@@ -1,0 +1,46 @@
+[
+    {
+        "func_name": "__init__",
+        "original": "def __init__(self, x0: cython.int, y0: cython.int, x1: cython.int, y1: cython.int):\n    self.x0 = x0\n    self.y0 = y0\n    self.x1 = x1\n    self.y1 = y1",
+        "mutated": [
+            "def __init__(self, x0: cython.int, y0: cython.int, x1: cython.int, y1: cython.int):\n    if False:\n        i = 10\n    self.x0 = x0\n    self.y0 = y0\n    self.x1 = x1\n    self.y1 = y1",
+            "def __init__(self, x0: cython.int, y0: cython.int, x1: cython.int, y1: cython.int):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    self.x0 = x0\n    self.y0 = y0\n    self.x1 = x1\n    self.y1 = y1",
+            "def __init__(self, x0: cython.int, y0: cython.int, x1: cython.int, y1: cython.int):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    self.x0 = x0\n    self.y0 = y0\n    self.x1 = x1\n    self.y1 = y1",
+            "def __init__(self, x0: cython.int, y0: cython.int, x1: cython.int, y1: cython.int):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    self.x0 = x0\n    self.y0 = y0\n    self.x1 = x1\n    self.y1 = y1",
+            "def __init__(self, x0: cython.int, y0: cython.int, x1: cython.int, y1: cython.int):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    self.x0 = x0\n    self.y0 = y0\n    self.x1 = x1\n    self.y1 = y1"
+        ]
+    },
+    {
+        "func_name": "_area",
+        "original": "@cython.cfunc\ndef _area(self) -> cython.int:\n    area: cython.int = (self.x1 - self.x0) * (self.y1 - self.y0)\n    if area < 0:\n        area = -area\n    return area",
+        "mutated": [
+            "@cython.cfunc\ndef _area(self) -> cython.int:\n    if False:\n        i = 10\n    area: cython.int = (self.x1 - self.x0) * (self.y1 - self.y0)\n    if area < 0:\n        area = -area\n    return area",
+            "@cython.cfunc\ndef _area(self) -> cython.int:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    area: cython.int = (self.x1 - self.x0) * (self.y1 - self.y0)\n    if area < 0:\n        area = -area\n    return area",
+            "@cython.cfunc\ndef _area(self) -> cython.int:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    area: cython.int = (self.x1 - self.x0) * (self.y1 - self.y0)\n    if area < 0:\n        area = -area\n    return area",
+            "@cython.cfunc\ndef _area(self) -> cython.int:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    area: cython.int = (self.x1 - self.x0) * (self.y1 - self.y0)\n    if area < 0:\n        area = -area\n    return area",
+            "@cython.cfunc\ndef _area(self) -> cython.int:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    area: cython.int = (self.x1 - self.x0) * (self.y1 - self.y0)\n    if area < 0:\n        area = -area\n    return area"
+        ]
+    },
+    {
+        "func_name": "area",
+        "original": "def area(self):\n    return self._area()",
+        "mutated": [
+            "def area(self):\n    if False:\n        i = 10\n    return self._area()",
+            "def area(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return self._area()",
+            "def area(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return self._area()",
+            "def area(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return self._area()",
+            "def area(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return self._area()"
+        ]
+    },
+    {
+        "func_name": "rectArea",
+        "original": "def rectArea(x0, y0, x1, y1):\n    rect: Rectangle = Rectangle(x0, y0, x1, y1)\n    return rect._area()",
+        "mutated": [
+            "def rectArea(x0, y0, x1, y1):\n    if False:\n        i = 10\n    rect: Rectangle = Rectangle(x0, y0, x1, y1)\n    return rect._area()",
+            "def rectArea(x0, y0, x1, y1):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    rect: Rectangle = Rectangle(x0, y0, x1, y1)\n    return rect._area()",
+            "def rectArea(x0, y0, x1, y1):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    rect: Rectangle = Rectangle(x0, y0, x1, y1)\n    return rect._area()",
+            "def rectArea(x0, y0, x1, y1):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    rect: Rectangle = Rectangle(x0, y0, x1, y1)\n    return rect._area()",
+            "def rectArea(x0, y0, x1, y1):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    rect: Rectangle = Rectangle(x0, y0, x1, y1)\n    return rect._area()"
+        ]
+    }
+]

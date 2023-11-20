@@ -1,0 +1,90 @@
+[
+    {
+        "func_name": "get_next_task",
+        "original": "def get_next_task(self):\n    return 'task'",
+        "mutated": [
+            "def get_next_task(self):\n    if False:\n        i = 10\n    return 'task'",
+            "def get_next_task(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return 'task'",
+            "def get_next_task(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return 'task'",
+            "def get_next_task(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return 'task'",
+            "def get_next_task(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return 'task'"
+        ]
+    },
+    {
+        "func_name": "__init__",
+        "original": "def __init__(self, task_store):\n    self.task_store = task_store\n    self.num_executed_tasks = 0",
+        "mutated": [
+            "def __init__(self, task_store):\n    if False:\n        i = 10\n    self.task_store = task_store\n    self.num_executed_tasks = 0",
+            "def __init__(self, task_store):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    self.task_store = task_store\n    self.num_executed_tasks = 0",
+            "def __init__(self, task_store):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    self.task_store = task_store\n    self.num_executed_tasks = 0",
+            "def __init__(self, task_store):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    self.task_store = task_store\n    self.num_executed_tasks = 0",
+            "def __init__(self, task_store):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    self.task_store = task_store\n    self.num_executed_tasks = 0"
+        ]
+    },
+    {
+        "func_name": "run",
+        "original": "def run(self):\n    while True:\n        task = ray.get(task_store.get_next_task.remote())\n        self._execute_task(task)",
+        "mutated": [
+            "def run(self):\n    if False:\n        i = 10\n    while True:\n        task = ray.get(task_store.get_next_task.remote())\n        self._execute_task(task)",
+            "def run(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    while True:\n        task = ray.get(task_store.get_next_task.remote())\n        self._execute_task(task)",
+            "def run(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    while True:\n        task = ray.get(task_store.get_next_task.remote())\n        self._execute_task(task)",
+            "def run(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    while True:\n        task = ray.get(task_store.get_next_task.remote())\n        self._execute_task(task)",
+            "def run(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    while True:\n        task = ray.get(task_store.get_next_task.remote())\n        self._execute_task(task)"
+        ]
+    },
+    {
+        "func_name": "_execute_task",
+        "original": "def _execute_task(self, task):\n    self.num_executed_tasks = self.num_executed_tasks + 1",
+        "mutated": [
+            "def _execute_task(self, task):\n    if False:\n        i = 10\n    self.num_executed_tasks = self.num_executed_tasks + 1",
+            "def _execute_task(self, task):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    self.num_executed_tasks = self.num_executed_tasks + 1",
+            "def _execute_task(self, task):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    self.num_executed_tasks = self.num_executed_tasks + 1",
+            "def _execute_task(self, task):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    self.num_executed_tasks = self.num_executed_tasks + 1",
+            "def _execute_task(self, task):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    self.num_executed_tasks = self.num_executed_tasks + 1"
+        ]
+    },
+    {
+        "func_name": "get_num_executed_tasks",
+        "original": "def get_num_executed_tasks(self):\n    return self.num_executed_tasks",
+        "mutated": [
+            "def get_num_executed_tasks(self):\n    if False:\n        i = 10\n    return self.num_executed_tasks",
+            "def get_num_executed_tasks(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return self.num_executed_tasks",
+            "def get_num_executed_tasks(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return self.num_executed_tasks",
+            "def get_num_executed_tasks(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return self.num_executed_tasks",
+            "def get_num_executed_tasks(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return self.num_executed_tasks"
+        ]
+    },
+    {
+        "func_name": "__init__",
+        "original": "def __init__(self, task_store):\n    self.task_store = task_store\n    self.num_executed_tasks = 0",
+        "mutated": [
+            "def __init__(self, task_store):\n    if False:\n        i = 10\n    self.task_store = task_store\n    self.num_executed_tasks = 0",
+            "def __init__(self, task_store):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    self.task_store = task_store\n    self.num_executed_tasks = 0",
+            "def __init__(self, task_store):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    self.task_store = task_store\n    self.num_executed_tasks = 0",
+            "def __init__(self, task_store):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    self.task_store = task_store\n    self.num_executed_tasks = 0",
+            "def __init__(self, task_store):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    self.task_store = task_store\n    self.num_executed_tasks = 0"
+        ]
+    },
+    {
+        "func_name": "_execute_task",
+        "original": "def _execute_task(self, task):\n    self.num_executed_tasks = self.num_executed_tasks + 1",
+        "mutated": [
+            "def _execute_task(self, task):\n    if False:\n        i = 10\n    self.num_executed_tasks = self.num_executed_tasks + 1",
+            "def _execute_task(self, task):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    self.num_executed_tasks = self.num_executed_tasks + 1",
+            "def _execute_task(self, task):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    self.num_executed_tasks = self.num_executed_tasks + 1",
+            "def _execute_task(self, task):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    self.num_executed_tasks = self.num_executed_tasks + 1",
+            "def _execute_task(self, task):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    self.num_executed_tasks = self.num_executed_tasks + 1"
+        ]
+    },
+    {
+        "func_name": "get_num_executed_tasks",
+        "original": "def get_num_executed_tasks(self):\n    return self.num_executed_tasks",
+        "mutated": [
+            "def get_num_executed_tasks(self):\n    if False:\n        i = 10\n    return self.num_executed_tasks",
+            "def get_num_executed_tasks(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return self.num_executed_tasks",
+            "def get_num_executed_tasks(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return self.num_executed_tasks",
+            "def get_num_executed_tasks(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return self.num_executed_tasks",
+            "def get_num_executed_tasks(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return self.num_executed_tasks"
+        ]
+    }
+]

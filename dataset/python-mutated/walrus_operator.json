@@ -1,0 +1,24 @@
+[
+    {
+        "func_name": "walrus_operator_forward",
+        "original": "def walrus_operator_forward():\n    (x := _test_source())\n    (x := 1)\n    (y := _test_source())\n    return (x, y)",
+        "mutated": [
+            "def walrus_operator_forward():\n    if False:\n        i = 10\n    (x := _test_source())\n    (x := 1)\n    (y := _test_source())\n    return (x, y)",
+            "def walrus_operator_forward():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    (x := _test_source())\n    (x := 1)\n    (y := _test_source())\n    return (x, y)",
+            "def walrus_operator_forward():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    (x := _test_source())\n    (x := 1)\n    (y := _test_source())\n    return (x, y)",
+            "def walrus_operator_forward():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    (x := _test_source())\n    (x := 1)\n    (y := _test_source())\n    return (x, y)",
+            "def walrus_operator_forward():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    (x := _test_source())\n    (x := 1)\n    (y := _test_source())\n    return (x, y)"
+        ]
+    },
+    {
+        "func_name": "walrus_operator_backward",
+        "original": "def walrus_operator_backward(x):\n    (y := (y := x))\n    (x := 1)\n    return (x, y)",
+        "mutated": [
+            "def walrus_operator_backward(x):\n    if False:\n        i = 10\n    (y := (y := x))\n    (x := 1)\n    return (x, y)",
+            "def walrus_operator_backward(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    (y := (y := x))\n    (x := 1)\n    return (x, y)",
+            "def walrus_operator_backward(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    (y := (y := x))\n    (x := 1)\n    return (x, y)",
+            "def walrus_operator_backward(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    (y := (y := x))\n    (x := 1)\n    return (x, y)",
+            "def walrus_operator_backward(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    (y := (y := x))\n    (x := 1)\n    return (x, y)"
+        ]
+    }
+]

@@ -1,0 +1,46 @@
+[
+    {
+        "func_name": "on_mount",
+        "original": "def on_mount(self) -> None:\n    self.notify('test', timeout=60)",
+        "mutated": [
+            "def on_mount(self) -> None:\n    if False:\n        i = 10\n    self.notify('test', timeout=60)",
+            "def on_mount(self) -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    self.notify('test', timeout=60)",
+            "def on_mount(self) -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    self.notify('test', timeout=60)",
+            "def on_mount(self) -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    self.notify('test', timeout=60)",
+            "def on_mount(self) -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    self.notify('test', timeout=60)"
+        ]
+    },
+    {
+        "func_name": "on_mount",
+        "original": "def on_mount(self) -> None:\n    self.notify('test', timeout=60)",
+        "mutated": [
+            "def on_mount(self) -> None:\n    if False:\n        i = 10\n    self.notify('test', timeout=60)",
+            "def on_mount(self) -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    self.notify('test', timeout=60)",
+            "def on_mount(self) -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    self.notify('test', timeout=60)",
+            "def on_mount(self) -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    self.notify('test', timeout=60)",
+            "def on_mount(self) -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    self.notify('test', timeout=60)"
+        ]
+    },
+    {
+        "func_name": "compose",
+        "original": "def compose(self) -> ComposeResult:\n    yield NotifyWidget()",
+        "mutated": [
+            "def compose(self) -> ComposeResult:\n    if False:\n        i = 10\n    yield NotifyWidget()",
+            "def compose(self) -> ComposeResult:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    yield NotifyWidget()",
+            "def compose(self) -> ComposeResult:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    yield NotifyWidget()",
+            "def compose(self) -> ComposeResult:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    yield NotifyWidget()",
+            "def compose(self) -> ComposeResult:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    yield NotifyWidget()"
+        ]
+    },
+    {
+        "func_name": "on_mount",
+        "original": "def on_mount(self) -> None:\n    self.notify('test', timeout=60)\n    self.push_screen(NotifyScreen())",
+        "mutated": [
+            "def on_mount(self) -> None:\n    if False:\n        i = 10\n    self.notify('test', timeout=60)\n    self.push_screen(NotifyScreen())",
+            "def on_mount(self) -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    self.notify('test', timeout=60)\n    self.push_screen(NotifyScreen())",
+            "def on_mount(self) -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    self.notify('test', timeout=60)\n    self.push_screen(NotifyScreen())",
+            "def on_mount(self) -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    self.notify('test', timeout=60)\n    self.push_screen(NotifyScreen())",
+            "def on_mount(self) -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    self.notify('test', timeout=60)\n    self.push_screen(NotifyScreen())"
+        ]
+    }
+]

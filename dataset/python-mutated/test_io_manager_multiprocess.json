@@ -1,0 +1,46 @@
+[
+    {
+        "func_name": "op_a",
+        "original": "@op\ndef op_a(_context):\n    return [1, 2, 3]",
+        "mutated": [
+            "@op\ndef op_a(_context):\n    if False:\n        i = 10\n    return [1, 2, 3]",
+            "@op\ndef op_a(_context):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return [1, 2, 3]",
+            "@op\ndef op_a(_context):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return [1, 2, 3]",
+            "@op\ndef op_a(_context):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return [1, 2, 3]",
+            "@op\ndef op_a(_context):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return [1, 2, 3]"
+        ]
+    },
+    {
+        "func_name": "op_b",
+        "original": "@op\ndef op_b(_context, _df):\n    return 1",
+        "mutated": [
+            "@op\ndef op_b(_context, _df):\n    if False:\n        i = 10\n    return 1",
+            "@op\ndef op_b(_context, _df):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return 1",
+            "@op\ndef op_b(_context, _df):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return 1",
+            "@op\ndef op_b(_context, _df):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return 1",
+            "@op\ndef op_b(_context, _df):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return 1"
+        ]
+    },
+    {
+        "func_name": "my_job",
+        "original": "@job(executor_def=multiprocess_executor)\ndef my_job():\n    op_b(op_a())",
+        "mutated": [
+            "@job(executor_def=multiprocess_executor)\ndef my_job():\n    if False:\n        i = 10\n    op_b(op_a())",
+            "@job(executor_def=multiprocess_executor)\ndef my_job():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    op_b(op_a())",
+            "@job(executor_def=multiprocess_executor)\ndef my_job():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    op_b(op_a())",
+            "@job(executor_def=multiprocess_executor)\ndef my_job():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    op_b(op_a())",
+            "@job(executor_def=multiprocess_executor)\ndef my_job():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    op_b(op_a())"
+        ]
+    },
+    {
+        "func_name": "test_io_manager_with_multi_process_executor",
+        "original": "def test_io_manager_with_multi_process_executor():\n    with instance_for_test() as instance:\n        with execute_job(reconstructable(my_job), instance=instance) as result:\n            assert result.success\n            assert result.output_for_node('op_b') == 1\n            assert result.output_for_node('op_a') == [1, 2, 3]",
+        "mutated": [
+            "def test_io_manager_with_multi_process_executor():\n    if False:\n        i = 10\n    with instance_for_test() as instance:\n        with execute_job(reconstructable(my_job), instance=instance) as result:\n            assert result.success\n            assert result.output_for_node('op_b') == 1\n            assert result.output_for_node('op_a') == [1, 2, 3]",
+            "def test_io_manager_with_multi_process_executor():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    with instance_for_test() as instance:\n        with execute_job(reconstructable(my_job), instance=instance) as result:\n            assert result.success\n            assert result.output_for_node('op_b') == 1\n            assert result.output_for_node('op_a') == [1, 2, 3]",
+            "def test_io_manager_with_multi_process_executor():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    with instance_for_test() as instance:\n        with execute_job(reconstructable(my_job), instance=instance) as result:\n            assert result.success\n            assert result.output_for_node('op_b') == 1\n            assert result.output_for_node('op_a') == [1, 2, 3]",
+            "def test_io_manager_with_multi_process_executor():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    with instance_for_test() as instance:\n        with execute_job(reconstructable(my_job), instance=instance) as result:\n            assert result.success\n            assert result.output_for_node('op_b') == 1\n            assert result.output_for_node('op_a') == [1, 2, 3]",
+            "def test_io_manager_with_multi_process_executor():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    with instance_for_test() as instance:\n        with execute_job(reconstructable(my_job), instance=instance) as result:\n            assert result.success\n            assert result.output_for_node('op_b') == 1\n            assert result.output_for_node('op_a') == [1, 2, 3]"
+        ]
+    }
+]

@@ -1,0 +1,24 @@
+[
+    {
+        "func_name": "unify_aarch64",
+        "original": "def unify_aarch64(platform: str) -> str:\n    return {'aarch64': 'aarch64', 'arm64': 'aarch64', 'x86_64': 'x86_64'}[platform]",
+        "mutated": [
+            "def unify_aarch64(platform: str) -> str:\n    if False:\n        i = 10\n    return {'aarch64': 'aarch64', 'arm64': 'aarch64', 'x86_64': 'x86_64'}[platform]",
+            "def unify_aarch64(platform: str) -> str:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return {'aarch64': 'aarch64', 'arm64': 'aarch64', 'x86_64': 'x86_64'}[platform]",
+            "def unify_aarch64(platform: str) -> str:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return {'aarch64': 'aarch64', 'arm64': 'aarch64', 'x86_64': 'x86_64'}[platform]",
+            "def unify_aarch64(platform: str) -> str:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return {'aarch64': 'aarch64', 'arm64': 'aarch64', 'x86_64': 'x86_64'}[platform]",
+            "def unify_aarch64(platform: str) -> str:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return {'aarch64': 'aarch64', 'arm64': 'aarch64', 'x86_64': 'x86_64'}[platform]"
+        ]
+    },
+    {
+        "func_name": "get_platform",
+        "original": "def get_platform() -> str:\n    machine = platform.machine()\n    return unify_aarch64(machine)",
+        "mutated": [
+            "def get_platform() -> str:\n    if False:\n        i = 10\n    machine = platform.machine()\n    return unify_aarch64(machine)",
+            "def get_platform() -> str:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    machine = platform.machine()\n    return unify_aarch64(machine)",
+            "def get_platform() -> str:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    machine = platform.machine()\n    return unify_aarch64(machine)",
+            "def get_platform() -> str:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    machine = platform.machine()\n    return unify_aarch64(machine)",
+            "def get_platform() -> str:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    machine = platform.machine()\n    return unify_aarch64(machine)"
+        ]
+    }
+]

@@ -1,0 +1,35 @@
+[
+    {
+        "func_name": "cleanup_datamanager",
+        "original": "@pytest.fixture(autouse=True)\ndef cleanup_datamanager():\n    data_manager.basic_config = None",
+        "mutated": [
+            "@pytest.fixture(autouse=True)\ndef cleanup_datamanager():\n    if False:\n        i = 10\n    data_manager.basic_config = None",
+            "@pytest.fixture(autouse=True)\ndef cleanup_datamanager():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    data_manager.basic_config = None",
+            "@pytest.fixture(autouse=True)\ndef cleanup_datamanager():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    data_manager.basic_config = None",
+            "@pytest.fixture(autouse=True)\ndef cleanup_datamanager():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    data_manager.basic_config = None",
+            "@pytest.fixture(autouse=True)\ndef cleanup_datamanager():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    data_manager.basic_config = None"
+        ]
+    },
+    {
+        "func_name": "data_mgr_config",
+        "original": "@pytest.fixture()\ndef data_mgr_config(tmpdir):\n    default = data_manager.basic_config_default.copy()\n    default['BASE_DIR'] = str(tmpdir)\n    return default",
+        "mutated": [
+            "@pytest.fixture()\ndef data_mgr_config(tmpdir):\n    if False:\n        i = 10\n    default = data_manager.basic_config_default.copy()\n    default['BASE_DIR'] = str(tmpdir)\n    return default",
+            "@pytest.fixture()\ndef data_mgr_config(tmpdir):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    default = data_manager.basic_config_default.copy()\n    default['BASE_DIR'] = str(tmpdir)\n    return default",
+            "@pytest.fixture()\ndef data_mgr_config(tmpdir):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    default = data_manager.basic_config_default.copy()\n    default['BASE_DIR'] = str(tmpdir)\n    return default",
+            "@pytest.fixture()\ndef data_mgr_config(tmpdir):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    default = data_manager.basic_config_default.copy()\n    default['BASE_DIR'] = str(tmpdir)\n    return default",
+            "@pytest.fixture()\ndef data_mgr_config(tmpdir):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    default = data_manager.basic_config_default.copy()\n    default['BASE_DIR'] = str(tmpdir)\n    return default"
+        ]
+    },
+    {
+        "func_name": "cog_instance",
+        "original": "@pytest.fixture()\ndef cog_instance():\n    thing = type('CogTest', (object,), {})\n    return thing()",
+        "mutated": [
+            "@pytest.fixture()\ndef cog_instance():\n    if False:\n        i = 10\n    thing = type('CogTest', (object,), {})\n    return thing()",
+            "@pytest.fixture()\ndef cog_instance():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    thing = type('CogTest', (object,), {})\n    return thing()",
+            "@pytest.fixture()\ndef cog_instance():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    thing = type('CogTest', (object,), {})\n    return thing()",
+            "@pytest.fixture()\ndef cog_instance():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    thing = type('CogTest', (object,), {})\n    return thing()",
+            "@pytest.fixture()\ndef cog_instance():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    thing = type('CogTest', (object,), {})\n    return thing()"
+        ]
+    }
+]

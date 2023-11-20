@@ -1,0 +1,35 @@
+[
+    {
+        "func_name": "start",
+        "original": "@ray.remote\ndef start():\n    titles = ['Stranger Things', 'House of Cards', 'Narcos']\n    children = [a.bind(t) for t in titles]\n    return workflow.continuation(end.bind(children))",
+        "mutated": [
+            "@ray.remote\ndef start():\n    if False:\n        i = 10\n    titles = ['Stranger Things', 'House of Cards', 'Narcos']\n    children = [a.bind(t) for t in titles]\n    return workflow.continuation(end.bind(children))",
+            "@ray.remote\ndef start():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    titles = ['Stranger Things', 'House of Cards', 'Narcos']\n    children = [a.bind(t) for t in titles]\n    return workflow.continuation(end.bind(children))",
+            "@ray.remote\ndef start():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    titles = ['Stranger Things', 'House of Cards', 'Narcos']\n    children = [a.bind(t) for t in titles]\n    return workflow.continuation(end.bind(children))",
+            "@ray.remote\ndef start():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    titles = ['Stranger Things', 'House of Cards', 'Narcos']\n    children = [a.bind(t) for t in titles]\n    return workflow.continuation(end.bind(children))",
+            "@ray.remote\ndef start():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    titles = ['Stranger Things', 'House of Cards', 'Narcos']\n    children = [a.bind(t) for t in titles]\n    return workflow.continuation(end.bind(children))"
+        ]
+    },
+    {
+        "func_name": "a",
+        "original": "@ray.remote\ndef a(title: str) -> str:\n    return f'{title} processed'",
+        "mutated": [
+            "@ray.remote\ndef a(title: str) -> str:\n    if False:\n        i = 10\n    return f'{title} processed'",
+            "@ray.remote\ndef a(title: str) -> str:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return f'{title} processed'",
+            "@ray.remote\ndef a(title: str) -> str:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return f'{title} processed'",
+            "@ray.remote\ndef a(title: str) -> str:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return f'{title} processed'",
+            "@ray.remote\ndef a(title: str) -> str:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return f'{title} processed'"
+        ]
+    },
+    {
+        "func_name": "end",
+        "original": "@ray.remote\ndef end(results: 'List[ray.ObjectRef[str]]') -> str:\n    return '\\n'.join(ray.get(results))",
+        "mutated": [
+            "@ray.remote\ndef end(results: 'List[ray.ObjectRef[str]]') -> str:\n    if False:\n        i = 10\n    return '\\n'.join(ray.get(results))",
+            "@ray.remote\ndef end(results: 'List[ray.ObjectRef[str]]') -> str:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return '\\n'.join(ray.get(results))",
+            "@ray.remote\ndef end(results: 'List[ray.ObjectRef[str]]') -> str:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return '\\n'.join(ray.get(results))",
+            "@ray.remote\ndef end(results: 'List[ray.ObjectRef[str]]') -> str:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return '\\n'.join(ray.get(results))",
+            "@ray.remote\ndef end(results: 'List[ray.ObjectRef[str]]') -> str:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return '\\n'.join(ray.get(results))"
+        ]
+    }
+]

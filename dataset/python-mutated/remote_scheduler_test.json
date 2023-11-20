@@ -1,0 +1,57 @@
+[
+    {
+        "func_name": "run",
+        "original": "def run(self):\n    f = self.output().open('w')\n    f.close()",
+        "mutated": [
+            "def run(self):\n    if False:\n        i = 10\n    f = self.output().open('w')\n    f.close()",
+            "def run(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    f = self.output().open('w')\n    f.close()",
+            "def run(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    f = self.output().open('w')\n    f.close()",
+            "def run(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    f = self.output().open('w')\n    f.close()",
+            "def run(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    f = self.output().open('w')\n    f.close()"
+        ]
+    },
+    {
+        "func_name": "output",
+        "original": "def output(self):\n    return luigi.LocalTarget(os.path.join(tempdir, str(self.id)))",
+        "mutated": [
+            "def output(self):\n    if False:\n        i = 10\n    return luigi.LocalTarget(os.path.join(tempdir, str(self.id)))",
+            "def output(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return luigi.LocalTarget(os.path.join(tempdir, str(self.id)))",
+            "def output(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return luigi.LocalTarget(os.path.join(tempdir, str(self.id)))",
+            "def output(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return luigi.LocalTarget(os.path.join(tempdir, str(self.id)))",
+            "def output(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return luigi.LocalTarget(os.path.join(tempdir, str(self.id)))"
+        ]
+    },
+    {
+        "func_name": "_test_run",
+        "original": "def _test_run(self, workers):\n    tasks = [DummyTask(id) for id in range(20)]\n    luigi.build(tasks, workers=workers, scheduler_port=self.get_http_port())\n    for t in tasks:\n        self.assertEqual(t.complete(), True)\n        self.assertTrue(os.path.exists(t.output().path))",
+        "mutated": [
+            "def _test_run(self, workers):\n    if False:\n        i = 10\n    tasks = [DummyTask(id) for id in range(20)]\n    luigi.build(tasks, workers=workers, scheduler_port=self.get_http_port())\n    for t in tasks:\n        self.assertEqual(t.complete(), True)\n        self.assertTrue(os.path.exists(t.output().path))",
+            "def _test_run(self, workers):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    tasks = [DummyTask(id) for id in range(20)]\n    luigi.build(tasks, workers=workers, scheduler_port=self.get_http_port())\n    for t in tasks:\n        self.assertEqual(t.complete(), True)\n        self.assertTrue(os.path.exists(t.output().path))",
+            "def _test_run(self, workers):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    tasks = [DummyTask(id) for id in range(20)]\n    luigi.build(tasks, workers=workers, scheduler_port=self.get_http_port())\n    for t in tasks:\n        self.assertEqual(t.complete(), True)\n        self.assertTrue(os.path.exists(t.output().path))",
+            "def _test_run(self, workers):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    tasks = [DummyTask(id) for id in range(20)]\n    luigi.build(tasks, workers=workers, scheduler_port=self.get_http_port())\n    for t in tasks:\n        self.assertEqual(t.complete(), True)\n        self.assertTrue(os.path.exists(t.output().path))",
+            "def _test_run(self, workers):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    tasks = [DummyTask(id) for id in range(20)]\n    luigi.build(tasks, workers=workers, scheduler_port=self.get_http_port())\n    for t in tasks:\n        self.assertEqual(t.complete(), True)\n        self.assertTrue(os.path.exists(t.output().path))"
+        ]
+    },
+    {
+        "func_name": "test_single_worker",
+        "original": "def test_single_worker(self):\n    self._test_run(workers=1)",
+        "mutated": [
+            "def test_single_worker(self):\n    if False:\n        i = 10\n    self._test_run(workers=1)",
+            "def test_single_worker(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    self._test_run(workers=1)",
+            "def test_single_worker(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    self._test_run(workers=1)",
+            "def test_single_worker(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    self._test_run(workers=1)",
+            "def test_single_worker(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    self._test_run(workers=1)"
+        ]
+    },
+    {
+        "func_name": "test_multiple_workers",
+        "original": "def test_multiple_workers(self):\n    self._test_run(workers=10)",
+        "mutated": [
+            "def test_multiple_workers(self):\n    if False:\n        i = 10\n    self._test_run(workers=10)",
+            "def test_multiple_workers(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    self._test_run(workers=10)",
+            "def test_multiple_workers(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    self._test_run(workers=10)",
+            "def test_multiple_workers(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    self._test_run(workers=10)",
+            "def test_multiple_workers(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    self._test_run(workers=10)"
+        ]
+    }
+]

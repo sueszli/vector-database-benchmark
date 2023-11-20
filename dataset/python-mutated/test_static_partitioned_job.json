@@ -1,0 +1,13 @@
+[
+    {
+        "func_name": "test_continent_job",
+        "original": "def test_continent_job():\n    assert continent_job.execute_in_process(partition_key='Asia').success",
+        "mutated": [
+            "def test_continent_job():\n    if False:\n        i = 10\n    assert continent_job.execute_in_process(partition_key='Asia').success",
+            "def test_continent_job():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    assert continent_job.execute_in_process(partition_key='Asia').success",
+            "def test_continent_job():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    assert continent_job.execute_in_process(partition_key='Asia').success",
+            "def test_continent_job():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    assert continent_job.execute_in_process(partition_key='Asia').success",
+            "def test_continent_job():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    assert continent_job.execute_in_process(partition_key='Asia').success"
+        ]
+    }
+]

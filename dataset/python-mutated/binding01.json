@@ -1,0 +1,24 @@
+[
+    {
+        "func_name": "compose",
+        "original": "def compose(self) -> ComposeResult:\n    yield Footer()",
+        "mutated": [
+            "def compose(self) -> ComposeResult:\n    if False:\n        i = 10\n    yield Footer()",
+            "def compose(self) -> ComposeResult:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    yield Footer()",
+            "def compose(self) -> ComposeResult:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    yield Footer()",
+            "def compose(self) -> ComposeResult:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    yield Footer()",
+            "def compose(self) -> ComposeResult:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    yield Footer()"
+        ]
+    },
+    {
+        "func_name": "action_add_bar",
+        "original": "def action_add_bar(self, color: str) -> None:\n    bar = Bar(color)\n    bar.styles.background = Color.parse(color).with_alpha(0.5)\n    self.mount(bar)\n    self.call_after_refresh(self.screen.scroll_end, animate=False)",
+        "mutated": [
+            "def action_add_bar(self, color: str) -> None:\n    if False:\n        i = 10\n    bar = Bar(color)\n    bar.styles.background = Color.parse(color).with_alpha(0.5)\n    self.mount(bar)\n    self.call_after_refresh(self.screen.scroll_end, animate=False)",
+            "def action_add_bar(self, color: str) -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    bar = Bar(color)\n    bar.styles.background = Color.parse(color).with_alpha(0.5)\n    self.mount(bar)\n    self.call_after_refresh(self.screen.scroll_end, animate=False)",
+            "def action_add_bar(self, color: str) -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    bar = Bar(color)\n    bar.styles.background = Color.parse(color).with_alpha(0.5)\n    self.mount(bar)\n    self.call_after_refresh(self.screen.scroll_end, animate=False)",
+            "def action_add_bar(self, color: str) -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    bar = Bar(color)\n    bar.styles.background = Color.parse(color).with_alpha(0.5)\n    self.mount(bar)\n    self.call_after_refresh(self.screen.scroll_end, animate=False)",
+            "def action_add_bar(self, color: str) -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    bar = Bar(color)\n    bar.styles.background = Color.parse(color).with_alpha(0.5)\n    self.mount(bar)\n    self.call_after_refresh(self.screen.scroll_end, animate=False)"
+        ]
+    }
+]

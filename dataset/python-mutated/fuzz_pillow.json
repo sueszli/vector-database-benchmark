@@ -1,0 +1,24 @@
+[
+    {
+        "func_name": "TestOneInput",
+        "original": "def TestOneInput(data):\n    try:\n        fuzzers.fuzz_image(data)\n    except Exception:\n        pass",
+        "mutated": [
+            "def TestOneInput(data):\n    if False:\n        i = 10\n    try:\n        fuzzers.fuzz_image(data)\n    except Exception:\n        pass",
+            "def TestOneInput(data):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    try:\n        fuzzers.fuzz_image(data)\n    except Exception:\n        pass",
+            "def TestOneInput(data):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    try:\n        fuzzers.fuzz_image(data)\n    except Exception:\n        pass",
+            "def TestOneInput(data):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    try:\n        fuzzers.fuzz_image(data)\n    except Exception:\n        pass",
+            "def TestOneInput(data):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    try:\n        fuzzers.fuzz_image(data)\n    except Exception:\n        pass"
+        ]
+    },
+    {
+        "func_name": "main",
+        "original": "def main():\n    fuzzers.enable_decompressionbomb_error()\n    atheris.Setup(sys.argv, TestOneInput)\n    atheris.Fuzz()\n    fuzzers.disable_decompressionbomb_error()",
+        "mutated": [
+            "def main():\n    if False:\n        i = 10\n    fuzzers.enable_decompressionbomb_error()\n    atheris.Setup(sys.argv, TestOneInput)\n    atheris.Fuzz()\n    fuzzers.disable_decompressionbomb_error()",
+            "def main():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    fuzzers.enable_decompressionbomb_error()\n    atheris.Setup(sys.argv, TestOneInput)\n    atheris.Fuzz()\n    fuzzers.disable_decompressionbomb_error()",
+            "def main():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    fuzzers.enable_decompressionbomb_error()\n    atheris.Setup(sys.argv, TestOneInput)\n    atheris.Fuzz()\n    fuzzers.disable_decompressionbomb_error()",
+            "def main():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    fuzzers.enable_decompressionbomb_error()\n    atheris.Setup(sys.argv, TestOneInput)\n    atheris.Fuzz()\n    fuzzers.disable_decompressionbomb_error()",
+            "def main():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    fuzzers.enable_decompressionbomb_error()\n    atheris.Setup(sys.argv, TestOneInput)\n    atheris.Fuzz()\n    fuzzers.disable_decompressionbomb_error()"
+        ]
+    }
+]

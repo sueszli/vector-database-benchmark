@@ -1,0 +1,79 @@
+[
+    {
+        "func_name": "setup_class",
+        "original": "@classmethod\ndef setup_class(cls):\n    plugins.load('example_ivalidators')",
+        "mutated": [
+            "@classmethod\ndef setup_class(cls):\n    if False:\n        i = 10\n    plugins.load('example_ivalidators')",
+            "@classmethod\ndef setup_class(cls):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    plugins.load('example_ivalidators')",
+            "@classmethod\ndef setup_class(cls):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    plugins.load('example_ivalidators')",
+            "@classmethod\ndef setup_class(cls):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    plugins.load('example_ivalidators')",
+            "@classmethod\ndef setup_class(cls):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    plugins.load('example_ivalidators')"
+        ]
+    },
+    {
+        "func_name": "teardown_class",
+        "original": "@classmethod\ndef teardown_class(cls):\n    plugins.unload('example_ivalidators')",
+        "mutated": [
+            "@classmethod\ndef teardown_class(cls):\n    if False:\n        i = 10\n    plugins.unload('example_ivalidators')",
+            "@classmethod\ndef teardown_class(cls):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    plugins.unload('example_ivalidators')",
+            "@classmethod\ndef teardown_class(cls):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    plugins.unload('example_ivalidators')",
+            "@classmethod\ndef teardown_class(cls):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    plugins.unload('example_ivalidators')",
+            "@classmethod\ndef teardown_class(cls):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    plugins.unload('example_ivalidators')"
+        ]
+    },
+    {
+        "func_name": "test_custom_validator_validates",
+        "original": "def test_custom_validator_validates(self):\n    v = get_validator('equals_fortytwo')\n    with pytest.raises(Invalid):\n        v(41)",
+        "mutated": [
+            "def test_custom_validator_validates(self):\n    if False:\n        i = 10\n    v = get_validator('equals_fortytwo')\n    with pytest.raises(Invalid):\n        v(41)",
+            "def test_custom_validator_validates(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    v = get_validator('equals_fortytwo')\n    with pytest.raises(Invalid):\n        v(41)",
+            "def test_custom_validator_validates(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    v = get_validator('equals_fortytwo')\n    with pytest.raises(Invalid):\n        v(41)",
+            "def test_custom_validator_validates(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    v = get_validator('equals_fortytwo')\n    with pytest.raises(Invalid):\n        v(41)",
+            "def test_custom_validator_validates(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    v = get_validator('equals_fortytwo')\n    with pytest.raises(Invalid):\n        v(41)"
+        ]
+    },
+    {
+        "func_name": "test_custom_validator_passes",
+        "original": "def test_custom_validator_passes(self):\n    v = get_validator('equals_fortytwo')\n    assert v(42) == 42",
+        "mutated": [
+            "def test_custom_validator_passes(self):\n    if False:\n        i = 10\n    v = get_validator('equals_fortytwo')\n    assert v(42) == 42",
+            "def test_custom_validator_passes(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    v = get_validator('equals_fortytwo')\n    assert v(42) == 42",
+            "def test_custom_validator_passes(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    v = get_validator('equals_fortytwo')\n    assert v(42) == 42",
+            "def test_custom_validator_passes(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    v = get_validator('equals_fortytwo')\n    assert v(42) == 42",
+            "def test_custom_validator_passes(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    v = get_validator('equals_fortytwo')\n    assert v(42) == 42"
+        ]
+    },
+    {
+        "func_name": "test_custom_converter_converts",
+        "original": "def test_custom_converter_converts(self):\n    c = get_validator('negate')\n    assert c(19) == -19",
+        "mutated": [
+            "def test_custom_converter_converts(self):\n    if False:\n        i = 10\n    c = get_validator('negate')\n    assert c(19) == -19",
+            "def test_custom_converter_converts(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    c = get_validator('negate')\n    assert c(19) == -19",
+            "def test_custom_converter_converts(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    c = get_validator('negate')\n    assert c(19) == -19",
+            "def test_custom_converter_converts(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    c = get_validator('negate')\n    assert c(19) == -19",
+            "def test_custom_converter_converts(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    c = get_validator('negate')\n    assert c(19) == -19"
+        ]
+    },
+    {
+        "func_name": "test_overridden_validator",
+        "original": "def test_overridden_validator(self):\n    v = get_validator('unicode_only')\n    assert u'Hola c\u00f3mo est\u00e1s' == v('Hola c\u00f3mo est\u00e1s')",
+        "mutated": [
+            "def test_overridden_validator(self):\n    if False:\n        i = 10\n    v = get_validator('unicode_only')\n    assert u'Hola c\u00f3mo est\u00e1s' == v('Hola c\u00f3mo est\u00e1s')",
+            "def test_overridden_validator(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    v = get_validator('unicode_only')\n    assert u'Hola c\u00f3mo est\u00e1s' == v('Hola c\u00f3mo est\u00e1s')",
+            "def test_overridden_validator(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    v = get_validator('unicode_only')\n    assert u'Hola c\u00f3mo est\u00e1s' == v('Hola c\u00f3mo est\u00e1s')",
+            "def test_overridden_validator(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    v = get_validator('unicode_only')\n    assert u'Hola c\u00f3mo est\u00e1s' == v('Hola c\u00f3mo est\u00e1s')",
+            "def test_overridden_validator(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    v = get_validator('unicode_only')\n    assert u'Hola c\u00f3mo est\u00e1s' == v('Hola c\u00f3mo est\u00e1s')"
+        ]
+    },
+    {
+        "func_name": "test_no_overridden_validator",
+        "original": "def test_no_overridden_validator(self):\n    v = get_validator('unicode_only')\n    with pytest.raises(Invalid):\n        v(b'Hola c\\xf3mo est\\xe1s')",
+        "mutated": [
+            "def test_no_overridden_validator(self):\n    if False:\n        i = 10\n    v = get_validator('unicode_only')\n    with pytest.raises(Invalid):\n        v(b'Hola c\\xf3mo est\\xe1s')",
+            "def test_no_overridden_validator(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    v = get_validator('unicode_only')\n    with pytest.raises(Invalid):\n        v(b'Hola c\\xf3mo est\\xe1s')",
+            "def test_no_overridden_validator(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    v = get_validator('unicode_only')\n    with pytest.raises(Invalid):\n        v(b'Hola c\\xf3mo est\\xe1s')",
+            "def test_no_overridden_validator(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    v = get_validator('unicode_only')\n    with pytest.raises(Invalid):\n        v(b'Hola c\\xf3mo est\\xe1s')",
+            "def test_no_overridden_validator(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    v = get_validator('unicode_only')\n    with pytest.raises(Invalid):\n        v(b'Hola c\\xf3mo est\\xe1s')"
+        ]
+    }
+]

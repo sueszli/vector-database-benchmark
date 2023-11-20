@@ -1,0 +1,46 @@
+[
+    {
+        "func_name": "test_getFactory",
+        "original": "def test_getFactory(self):\n    factory = registry.getFactory('shell')\n    self.assertEqual(factory, shell.WorkerShellCommand)",
+        "mutated": [
+            "def test_getFactory(self):\n    if False:\n        i = 10\n    factory = registry.getFactory('shell')\n    self.assertEqual(factory, shell.WorkerShellCommand)",
+            "def test_getFactory(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    factory = registry.getFactory('shell')\n    self.assertEqual(factory, shell.WorkerShellCommand)",
+            "def test_getFactory(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    factory = registry.getFactory('shell')\n    self.assertEqual(factory, shell.WorkerShellCommand)",
+            "def test_getFactory(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    factory = registry.getFactory('shell')\n    self.assertEqual(factory, shell.WorkerShellCommand)",
+            "def test_getFactory(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    factory = registry.getFactory('shell')\n    self.assertEqual(factory, shell.WorkerShellCommand)"
+        ]
+    },
+    {
+        "func_name": "test_getFactory_KeyError",
+        "original": "def test_getFactory_KeyError(self):\n    with self.assertRaises(KeyError):\n        registry.getFactory('nosuchcommand')",
+        "mutated": [
+            "def test_getFactory_KeyError(self):\n    if False:\n        i = 10\n    with self.assertRaises(KeyError):\n        registry.getFactory('nosuchcommand')",
+            "def test_getFactory_KeyError(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    with self.assertRaises(KeyError):\n        registry.getFactory('nosuchcommand')",
+            "def test_getFactory_KeyError(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    with self.assertRaises(KeyError):\n        registry.getFactory('nosuchcommand')",
+            "def test_getFactory_KeyError(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    with self.assertRaises(KeyError):\n        registry.getFactory('nosuchcommand')",
+            "def test_getFactory_KeyError(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    with self.assertRaises(KeyError):\n        registry.getFactory('nosuchcommand')"
+        ]
+    },
+    {
+        "func_name": "test_getAllCommandNames",
+        "original": "def test_getAllCommandNames(self):\n    self.assertTrue('shell' in registry.getAllCommandNames())",
+        "mutated": [
+            "def test_getAllCommandNames(self):\n    if False:\n        i = 10\n    self.assertTrue('shell' in registry.getAllCommandNames())",
+            "def test_getAllCommandNames(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    self.assertTrue('shell' in registry.getAllCommandNames())",
+            "def test_getAllCommandNames(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    self.assertTrue('shell' in registry.getAllCommandNames())",
+            "def test_getAllCommandNames(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    self.assertTrue('shell' in registry.getAllCommandNames())",
+            "def test_getAllCommandNames(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    self.assertTrue('shell' in registry.getAllCommandNames())"
+        ]
+    },
+    {
+        "func_name": "test_all_commands_exist",
+        "original": "def test_all_commands_exist(self):\n    for n in registry.getAllCommandNames():\n        registry.getFactory(n)",
+        "mutated": [
+            "def test_all_commands_exist(self):\n    if False:\n        i = 10\n    for n in registry.getAllCommandNames():\n        registry.getFactory(n)",
+            "def test_all_commands_exist(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    for n in registry.getAllCommandNames():\n        registry.getFactory(n)",
+            "def test_all_commands_exist(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    for n in registry.getAllCommandNames():\n        registry.getFactory(n)",
+            "def test_all_commands_exist(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    for n in registry.getAllCommandNames():\n        registry.getFactory(n)",
+            "def test_all_commands_exist(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    for n in registry.getAllCommandNames():\n        registry.getFactory(n)"
+        ]
+    }
+]

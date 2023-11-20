@@ -1,0 +1,156 @@
+[
+    {
+        "func_name": "bar",
+        "original": "@property\n@pulumi.getter()\ndef bar(self) -> pulumi.Input[str]:\n    ...",
+        "mutated": [
+            "@property\n@pulumi.getter()\ndef bar(self) -> pulumi.Input[str]:\n    if False:\n        i = 10\n    ...",
+            "@property\n@pulumi.getter()\ndef bar(self) -> pulumi.Input[str]:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    ...",
+            "@property\n@pulumi.getter()\ndef bar(self) -> pulumi.Input[str]:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    ...",
+            "@property\n@pulumi.getter()\ndef bar(self) -> pulumi.Input[str]:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    ...",
+            "@property\n@pulumi.getter()\ndef bar(self) -> pulumi.Input[str]:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    ..."
+        ]
+    },
+    {
+        "func_name": "a",
+        "original": "@property\n@pulumi.getter()\ndef a(self) -> str:\n    ...",
+        "mutated": [
+            "@property\n@pulumi.getter()\ndef a(self) -> str:\n    if False:\n        i = 10\n    ...",
+            "@property\n@pulumi.getter()\ndef a(self) -> str:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    ...",
+            "@property\n@pulumi.getter()\ndef a(self) -> str:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    ...",
+            "@property\n@pulumi.getter()\ndef a(self) -> str:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    ...",
+            "@property\n@pulumi.getter()\ndef a(self) -> str:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    ..."
+        ]
+    },
+    {
+        "func_name": "b",
+        "original": "@property\n@pulumi.getter()\ndef b(self) -> Optional[str]:\n    ...",
+        "mutated": [
+            "@property\n@pulumi.getter()\ndef b(self) -> Optional[str]:\n    if False:\n        i = 10\n    ...",
+            "@property\n@pulumi.getter()\ndef b(self) -> Optional[str]:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    ...",
+            "@property\n@pulumi.getter()\ndef b(self) -> Optional[str]:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    ...",
+            "@property\n@pulumi.getter()\ndef b(self) -> Optional[str]:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    ...",
+            "@property\n@pulumi.getter()\ndef b(self) -> Optional[str]:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    ..."
+        ]
+    },
+    {
+        "func_name": "c",
+        "original": "@property\n@pulumi.getter()\ndef c(self) -> pulumi.Input[str]:\n    ...",
+        "mutated": [
+            "@property\n@pulumi.getter()\ndef c(self) -> pulumi.Input[str]:\n    if False:\n        i = 10\n    ...",
+            "@property\n@pulumi.getter()\ndef c(self) -> pulumi.Input[str]:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    ...",
+            "@property\n@pulumi.getter()\ndef c(self) -> pulumi.Input[str]:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    ...",
+            "@property\n@pulumi.getter()\ndef c(self) -> pulumi.Input[str]:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    ...",
+            "@property\n@pulumi.getter()\ndef c(self) -> pulumi.Input[str]:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    ..."
+        ]
+    },
+    {
+        "func_name": "d",
+        "original": "@property\n@pulumi.getter()\ndef d(self) -> Optional[pulumi.Input[str]]:\n    ...",
+        "mutated": [
+            "@property\n@pulumi.getter()\ndef d(self) -> Optional[pulumi.Input[str]]:\n    if False:\n        i = 10\n    ...",
+            "@property\n@pulumi.getter()\ndef d(self) -> Optional[pulumi.Input[str]]:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    ...",
+            "@property\n@pulumi.getter()\ndef d(self) -> Optional[pulumi.Input[str]]:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    ...",
+            "@property\n@pulumi.getter()\ndef d(self) -> Optional[pulumi.Input[str]]:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    ...",
+            "@property\n@pulumi.getter()\ndef d(self) -> Optional[pulumi.Input[str]]:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    ..."
+        ]
+    },
+    {
+        "func_name": "e",
+        "original": "@property\n@pulumi.getter()\ndef e(self) -> Foo:\n    ...",
+        "mutated": [
+            "@property\n@pulumi.getter()\ndef e(self) -> Foo:\n    if False:\n        i = 10\n    ...",
+            "@property\n@pulumi.getter()\ndef e(self) -> Foo:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    ...",
+            "@property\n@pulumi.getter()\ndef e(self) -> Foo:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    ...",
+            "@property\n@pulumi.getter()\ndef e(self) -> Foo:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    ...",
+            "@property\n@pulumi.getter()\ndef e(self) -> Foo:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    ..."
+        ]
+    },
+    {
+        "func_name": "f",
+        "original": "@property\n@pulumi.getter()\ndef f(self) -> Optional[Foo]:\n    ...",
+        "mutated": [
+            "@property\n@pulumi.getter()\ndef f(self) -> Optional[Foo]:\n    if False:\n        i = 10\n    ...",
+            "@property\n@pulumi.getter()\ndef f(self) -> Optional[Foo]:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    ...",
+            "@property\n@pulumi.getter()\ndef f(self) -> Optional[Foo]:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    ...",
+            "@property\n@pulumi.getter()\ndef f(self) -> Optional[Foo]:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    ...",
+            "@property\n@pulumi.getter()\ndef f(self) -> Optional[Foo]:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    ..."
+        ]
+    },
+    {
+        "func_name": "g",
+        "original": "@property\n@pulumi.getter()\ndef g(self) -> pulumi.Input[Foo]:\n    ...",
+        "mutated": [
+            "@property\n@pulumi.getter()\ndef g(self) -> pulumi.Input[Foo]:\n    if False:\n        i = 10\n    ...",
+            "@property\n@pulumi.getter()\ndef g(self) -> pulumi.Input[Foo]:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    ...",
+            "@property\n@pulumi.getter()\ndef g(self) -> pulumi.Input[Foo]:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    ...",
+            "@property\n@pulumi.getter()\ndef g(self) -> pulumi.Input[Foo]:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    ...",
+            "@property\n@pulumi.getter()\ndef g(self) -> pulumi.Input[Foo]:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    ..."
+        ]
+    },
+    {
+        "func_name": "h",
+        "original": "@property\n@pulumi.getter()\ndef h(self) -> Optional[pulumi.Input[Foo]]:\n    ...",
+        "mutated": [
+            "@property\n@pulumi.getter()\ndef h(self) -> Optional[pulumi.Input[Foo]]:\n    if False:\n        i = 10\n    ...",
+            "@property\n@pulumi.getter()\ndef h(self) -> Optional[pulumi.Input[Foo]]:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    ...",
+            "@property\n@pulumi.getter()\ndef h(self) -> Optional[pulumi.Input[Foo]]:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    ...",
+            "@property\n@pulumi.getter()\ndef h(self) -> Optional[pulumi.Input[Foo]]:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    ...",
+            "@property\n@pulumi.getter()\ndef h(self) -> Optional[pulumi.Input[Foo]]:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    ..."
+        ]
+    },
+    {
+        "func_name": "i",
+        "original": "@property\n@pulumi.getter()\ndef i(self) -> pulumi.InputType[Foo]:\n    ...",
+        "mutated": [
+            "@property\n@pulumi.getter()\ndef i(self) -> pulumi.InputType[Foo]:\n    if False:\n        i = 10\n    ...",
+            "@property\n@pulumi.getter()\ndef i(self) -> pulumi.InputType[Foo]:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    ...",
+            "@property\n@pulumi.getter()\ndef i(self) -> pulumi.InputType[Foo]:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    ...",
+            "@property\n@pulumi.getter()\ndef i(self) -> pulumi.InputType[Foo]:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    ...",
+            "@property\n@pulumi.getter()\ndef i(self) -> pulumi.InputType[Foo]:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    ..."
+        ]
+    },
+    {
+        "func_name": "j",
+        "original": "@property\n@pulumi.getter()\ndef j(self) -> Optional[pulumi.InputType[Foo]]:\n    ...",
+        "mutated": [
+            "@property\n@pulumi.getter()\ndef j(self) -> Optional[pulumi.InputType[Foo]]:\n    if False:\n        i = 10\n    ...",
+            "@property\n@pulumi.getter()\ndef j(self) -> Optional[pulumi.InputType[Foo]]:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    ...",
+            "@property\n@pulumi.getter()\ndef j(self) -> Optional[pulumi.InputType[Foo]]:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    ...",
+            "@property\n@pulumi.getter()\ndef j(self) -> Optional[pulumi.InputType[Foo]]:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    ...",
+            "@property\n@pulumi.getter()\ndef j(self) -> Optional[pulumi.InputType[Foo]]:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    ..."
+        ]
+    },
+    {
+        "func_name": "k",
+        "original": "@property\n@pulumi.getter()\ndef k(self) -> pulumi.Input[pulumi.InputType[Foo]]:\n    ...",
+        "mutated": [
+            "@property\n@pulumi.getter()\ndef k(self) -> pulumi.Input[pulumi.InputType[Foo]]:\n    if False:\n        i = 10\n    ...",
+            "@property\n@pulumi.getter()\ndef k(self) -> pulumi.Input[pulumi.InputType[Foo]]:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    ...",
+            "@property\n@pulumi.getter()\ndef k(self) -> pulumi.Input[pulumi.InputType[Foo]]:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    ...",
+            "@property\n@pulumi.getter()\ndef k(self) -> pulumi.Input[pulumi.InputType[Foo]]:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    ...",
+            "@property\n@pulumi.getter()\ndef k(self) -> pulumi.Input[pulumi.InputType[Foo]]:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    ..."
+        ]
+    },
+    {
+        "func_name": "l",
+        "original": "@property\n@pulumi.getter()\ndef l(self) -> Optional[pulumi.Input[pulumi.InputType[Foo]]]:\n    ...",
+        "mutated": [
+            "@property\n@pulumi.getter()\ndef l(self) -> Optional[pulumi.Input[pulumi.InputType[Foo]]]:\n    if False:\n        i = 10\n    ...",
+            "@property\n@pulumi.getter()\ndef l(self) -> Optional[pulumi.Input[pulumi.InputType[Foo]]]:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    ...",
+            "@property\n@pulumi.getter()\ndef l(self) -> Optional[pulumi.Input[pulumi.InputType[Foo]]]:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    ...",
+            "@property\n@pulumi.getter()\ndef l(self) -> Optional[pulumi.Input[pulumi.InputType[Foo]]]:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    ...",
+            "@property\n@pulumi.getter()\ndef l(self) -> Optional[pulumi.Input[pulumi.InputType[Foo]]]:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    ..."
+        ]
+    },
+    {
+        "func_name": "test_input_type_types",
+        "original": "def test_input_type_types(self):\n    expected = {'a': str, 'b': str, 'c': str, 'd': str, 'e': Foo, 'f': Foo, 'g': Foo, 'h': Foo, 'i': Foo, 'j': Foo, 'k': Foo, 'l': Foo}\n    self.assertEqual(expected, input_type_types(MySimpleInputType))\n    self.assertEqual(expected, input_type_types(MyPropertiesInputType))",
+        "mutated": [
+            "def test_input_type_types(self):\n    if False:\n        i = 10\n    expected = {'a': str, 'b': str, 'c': str, 'd': str, 'e': Foo, 'f': Foo, 'g': Foo, 'h': Foo, 'i': Foo, 'j': Foo, 'k': Foo, 'l': Foo}\n    self.assertEqual(expected, input_type_types(MySimpleInputType))\n    self.assertEqual(expected, input_type_types(MyPropertiesInputType))",
+            "def test_input_type_types(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    expected = {'a': str, 'b': str, 'c': str, 'd': str, 'e': Foo, 'f': Foo, 'g': Foo, 'h': Foo, 'i': Foo, 'j': Foo, 'k': Foo, 'l': Foo}\n    self.assertEqual(expected, input_type_types(MySimpleInputType))\n    self.assertEqual(expected, input_type_types(MyPropertiesInputType))",
+            "def test_input_type_types(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    expected = {'a': str, 'b': str, 'c': str, 'd': str, 'e': Foo, 'f': Foo, 'g': Foo, 'h': Foo, 'i': Foo, 'j': Foo, 'k': Foo, 'l': Foo}\n    self.assertEqual(expected, input_type_types(MySimpleInputType))\n    self.assertEqual(expected, input_type_types(MyPropertiesInputType))",
+            "def test_input_type_types(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    expected = {'a': str, 'b': str, 'c': str, 'd': str, 'e': Foo, 'f': Foo, 'g': Foo, 'h': Foo, 'i': Foo, 'j': Foo, 'k': Foo, 'l': Foo}\n    self.assertEqual(expected, input_type_types(MySimpleInputType))\n    self.assertEqual(expected, input_type_types(MyPropertiesInputType))",
+            "def test_input_type_types(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    expected = {'a': str, 'b': str, 'c': str, 'd': str, 'e': Foo, 'f': Foo, 'g': Foo, 'h': Foo, 'i': Foo, 'j': Foo, 'k': Foo, 'l': Foo}\n    self.assertEqual(expected, input_type_types(MySimpleInputType))\n    self.assertEqual(expected, input_type_types(MyPropertiesInputType))"
+        ]
+    }
+]

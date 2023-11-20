@@ -1,0 +1,486 @@
+[
+    {
+        "func_name": "__init__",
+        "original": "def __init__(self, unit_num: int=1, unary_candidates: list[str] | None=None, binary_candidates: list[str] | None=None, *, label: str | None=None):\n    super().__init__()\n    self._scope = label_scope(label)\n    unary_candidates = unary_candidates or list(self.available_unary_choices())\n    binary_candidates = binary_candidates or list(self.available_binary_choices())\n    with self._scope:\n        self.first_unary = LayerChoice({name: getattr(sys.modules[__name__], name)() for name in unary_candidates}, label='unary_0')\n        self.unaries = nn.ModuleList([LayerChoice({name: getattr(sys.modules[__name__], name)() for name in unary_candidates}, label=f'unary_{i}') for i in range(1, unit_num + 1)])\n        self.binaries = nn.ModuleList([LayerChoice({name: getattr(sys.modules[__name__], name)() for name in binary_candidates}, label=f'binary_{i}') for i in range(unit_num)])",
+        "mutated": [
+            "def __init__(self, unit_num: int=1, unary_candidates: list[str] | None=None, binary_candidates: list[str] | None=None, *, label: str | None=None):\n    if False:\n        i = 10\n    super().__init__()\n    self._scope = label_scope(label)\n    unary_candidates = unary_candidates or list(self.available_unary_choices())\n    binary_candidates = binary_candidates or list(self.available_binary_choices())\n    with self._scope:\n        self.first_unary = LayerChoice({name: getattr(sys.modules[__name__], name)() for name in unary_candidates}, label='unary_0')\n        self.unaries = nn.ModuleList([LayerChoice({name: getattr(sys.modules[__name__], name)() for name in unary_candidates}, label=f'unary_{i}') for i in range(1, unit_num + 1)])\n        self.binaries = nn.ModuleList([LayerChoice({name: getattr(sys.modules[__name__], name)() for name in binary_candidates}, label=f'binary_{i}') for i in range(unit_num)])",
+            "def __init__(self, unit_num: int=1, unary_candidates: list[str] | None=None, binary_candidates: list[str] | None=None, *, label: str | None=None):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    super().__init__()\n    self._scope = label_scope(label)\n    unary_candidates = unary_candidates or list(self.available_unary_choices())\n    binary_candidates = binary_candidates or list(self.available_binary_choices())\n    with self._scope:\n        self.first_unary = LayerChoice({name: getattr(sys.modules[__name__], name)() for name in unary_candidates}, label='unary_0')\n        self.unaries = nn.ModuleList([LayerChoice({name: getattr(sys.modules[__name__], name)() for name in unary_candidates}, label=f'unary_{i}') for i in range(1, unit_num + 1)])\n        self.binaries = nn.ModuleList([LayerChoice({name: getattr(sys.modules[__name__], name)() for name in binary_candidates}, label=f'binary_{i}') for i in range(unit_num)])",
+            "def __init__(self, unit_num: int=1, unary_candidates: list[str] | None=None, binary_candidates: list[str] | None=None, *, label: str | None=None):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    super().__init__()\n    self._scope = label_scope(label)\n    unary_candidates = unary_candidates or list(self.available_unary_choices())\n    binary_candidates = binary_candidates or list(self.available_binary_choices())\n    with self._scope:\n        self.first_unary = LayerChoice({name: getattr(sys.modules[__name__], name)() for name in unary_candidates}, label='unary_0')\n        self.unaries = nn.ModuleList([LayerChoice({name: getattr(sys.modules[__name__], name)() for name in unary_candidates}, label=f'unary_{i}') for i in range(1, unit_num + 1)])\n        self.binaries = nn.ModuleList([LayerChoice({name: getattr(sys.modules[__name__], name)() for name in binary_candidates}, label=f'binary_{i}') for i in range(unit_num)])",
+            "def __init__(self, unit_num: int=1, unary_candidates: list[str] | None=None, binary_candidates: list[str] | None=None, *, label: str | None=None):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    super().__init__()\n    self._scope = label_scope(label)\n    unary_candidates = unary_candidates or list(self.available_unary_choices())\n    binary_candidates = binary_candidates or list(self.available_binary_choices())\n    with self._scope:\n        self.first_unary = LayerChoice({name: getattr(sys.modules[__name__], name)() for name in unary_candidates}, label='unary_0')\n        self.unaries = nn.ModuleList([LayerChoice({name: getattr(sys.modules[__name__], name)() for name in unary_candidates}, label=f'unary_{i}') for i in range(1, unit_num + 1)])\n        self.binaries = nn.ModuleList([LayerChoice({name: getattr(sys.modules[__name__], name)() for name in binary_candidates}, label=f'binary_{i}') for i in range(unit_num)])",
+            "def __init__(self, unit_num: int=1, unary_candidates: list[str] | None=None, binary_candidates: list[str] | None=None, *, label: str | None=None):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    super().__init__()\n    self._scope = label_scope(label)\n    unary_candidates = unary_candidates or list(self.available_unary_choices())\n    binary_candidates = binary_candidates or list(self.available_binary_choices())\n    with self._scope:\n        self.first_unary = LayerChoice({name: getattr(sys.modules[__name__], name)() for name in unary_candidates}, label='unary_0')\n        self.unaries = nn.ModuleList([LayerChoice({name: getattr(sys.modules[__name__], name)() for name in unary_candidates}, label=f'unary_{i}') for i in range(1, unit_num + 1)])\n        self.binaries = nn.ModuleList([LayerChoice({name: getattr(sys.modules[__name__], name)() for name in binary_candidates}, label=f'binary_{i}') for i in range(unit_num)])"
+        ]
+    },
+    {
+        "func_name": "label",
+        "original": "@torch.jit.unused\n@property\ndef label(self):\n    return self._scope.name",
+        "mutated": [
+            "@torch.jit.unused\n@property\ndef label(self):\n    if False:\n        i = 10\n    return self._scope.name",
+            "@torch.jit.unused\n@property\ndef label(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return self._scope.name",
+            "@torch.jit.unused\n@property\ndef label(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return self._scope.name",
+            "@torch.jit.unused\n@property\ndef label(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return self._scope.name",
+            "@torch.jit.unused\n@property\ndef label(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return self._scope.name"
+        ]
+    },
+    {
+        "func_name": "available_unary_choices",
+        "original": "@staticmethod\ndef available_unary_choices() -> Iterable[str]:\n    \"\"\"Returns the list of available unary choices.\"\"\"\n    for (name, _) in inspect.getmembers(sys.modules[__name__], inspect.isclass):\n        if name.startswith('Unary'):\n            yield name",
+        "mutated": [
+            "@staticmethod\ndef available_unary_choices() -> Iterable[str]:\n    if False:\n        i = 10\n    'Returns the list of available unary choices.'\n    for (name, _) in inspect.getmembers(sys.modules[__name__], inspect.isclass):\n        if name.startswith('Unary'):\n            yield name",
+            "@staticmethod\ndef available_unary_choices() -> Iterable[str]:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    'Returns the list of available unary choices.'\n    for (name, _) in inspect.getmembers(sys.modules[__name__], inspect.isclass):\n        if name.startswith('Unary'):\n            yield name",
+            "@staticmethod\ndef available_unary_choices() -> Iterable[str]:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    'Returns the list of available unary choices.'\n    for (name, _) in inspect.getmembers(sys.modules[__name__], inspect.isclass):\n        if name.startswith('Unary'):\n            yield name",
+            "@staticmethod\ndef available_unary_choices() -> Iterable[str]:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    'Returns the list of available unary choices.'\n    for (name, _) in inspect.getmembers(sys.modules[__name__], inspect.isclass):\n        if name.startswith('Unary'):\n            yield name",
+            "@staticmethod\ndef available_unary_choices() -> Iterable[str]:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    'Returns the list of available unary choices.'\n    for (name, _) in inspect.getmembers(sys.modules[__name__], inspect.isclass):\n        if name.startswith('Unary'):\n            yield name"
+        ]
+    },
+    {
+        "func_name": "available_binary_choices",
+        "original": "@staticmethod\ndef available_binary_choices() -> Iterable[str]:\n    \"\"\"Returns the list of available binary choices.\"\"\"\n    for (name, _) in inspect.getmembers(sys.modules[__name__], inspect.isclass):\n        if name.startswith('Binary'):\n            yield name",
+        "mutated": [
+            "@staticmethod\ndef available_binary_choices() -> Iterable[str]:\n    if False:\n        i = 10\n    'Returns the list of available binary choices.'\n    for (name, _) in inspect.getmembers(sys.modules[__name__], inspect.isclass):\n        if name.startswith('Binary'):\n            yield name",
+            "@staticmethod\ndef available_binary_choices() -> Iterable[str]:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    'Returns the list of available binary choices.'\n    for (name, _) in inspect.getmembers(sys.modules[__name__], inspect.isclass):\n        if name.startswith('Binary'):\n            yield name",
+            "@staticmethod\ndef available_binary_choices() -> Iterable[str]:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    'Returns the list of available binary choices.'\n    for (name, _) in inspect.getmembers(sys.modules[__name__], inspect.isclass):\n        if name.startswith('Binary'):\n            yield name",
+            "@staticmethod\ndef available_binary_choices() -> Iterable[str]:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    'Returns the list of available binary choices.'\n    for (name, _) in inspect.getmembers(sys.modules[__name__], inspect.isclass):\n        if name.startswith('Binary'):\n            yield name",
+            "@staticmethod\ndef available_binary_choices() -> Iterable[str]:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    'Returns the list of available binary choices.'\n    for (name, _) in inspect.getmembers(sys.modules[__name__], inspect.isclass):\n        if name.startswith('Binary'):\n            yield name"
+        ]
+    },
+    {
+        "func_name": "forward",
+        "original": "def forward(self, x):\n    out = self.first_unary(x)\n    for (unary, binary) in zip(self.unaries, self.binaries):\n        out = binary(torch.stack([out, unary(x)]))\n    return out",
+        "mutated": [
+            "def forward(self, x):\n    if False:\n        i = 10\n    out = self.first_unary(x)\n    for (unary, binary) in zip(self.unaries, self.binaries):\n        out = binary(torch.stack([out, unary(x)]))\n    return out",
+            "def forward(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    out = self.first_unary(x)\n    for (unary, binary) in zip(self.unaries, self.binaries):\n        out = binary(torch.stack([out, unary(x)]))\n    return out",
+            "def forward(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    out = self.first_unary(x)\n    for (unary, binary) in zip(self.unaries, self.binaries):\n        out = binary(torch.stack([out, unary(x)]))\n    return out",
+            "def forward(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    out = self.first_unary(x)\n    for (unary, binary) in zip(self.unaries, self.binaries):\n        out = binary(torch.stack([out, unary(x)]))\n    return out",
+            "def forward(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    out = self.first_unary(x)\n    for (unary, binary) in zip(self.unaries, self.binaries):\n        out = binary(torch.stack([out, unary(x)]))\n    return out"
+        ]
+    },
+    {
+        "func_name": "forward",
+        "original": "def forward(self, x):\n    return x",
+        "mutated": [
+            "def forward(self, x):\n    if False:\n        i = 10\n    return x",
+            "def forward(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return x",
+            "def forward(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return x",
+            "def forward(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return x",
+            "def forward(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return x"
+        ]
+    },
+    {
+        "func_name": "forward",
+        "original": "def forward(self, x):\n    return -x",
+        "mutated": [
+            "def forward(self, x):\n    if False:\n        i = 10\n    return -x",
+            "def forward(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return -x",
+            "def forward(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return -x",
+            "def forward(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return -x",
+            "def forward(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return -x"
+        ]
+    },
+    {
+        "func_name": "forward",
+        "original": "def forward(self, x):\n    return torch.abs(x)",
+        "mutated": [
+            "def forward(self, x):\n    if False:\n        i = 10\n    return torch.abs(x)",
+            "def forward(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return torch.abs(x)",
+            "def forward(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return torch.abs(x)",
+            "def forward(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return torch.abs(x)",
+            "def forward(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return torch.abs(x)"
+        ]
+    },
+    {
+        "func_name": "forward",
+        "original": "def forward(self, x):\n    return torch.square(x)",
+        "mutated": [
+            "def forward(self, x):\n    if False:\n        i = 10\n    return torch.square(x)",
+            "def forward(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return torch.square(x)",
+            "def forward(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return torch.square(x)",
+            "def forward(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return torch.square(x)",
+            "def forward(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return torch.square(x)"
+        ]
+    },
+    {
+        "func_name": "forward",
+        "original": "def forward(self, x):\n    return torch.pow(x, 3)",
+        "mutated": [
+            "def forward(self, x):\n    if False:\n        i = 10\n    return torch.pow(x, 3)",
+            "def forward(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return torch.pow(x, 3)",
+            "def forward(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return torch.pow(x, 3)",
+            "def forward(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return torch.pow(x, 3)",
+            "def forward(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return torch.pow(x, 3)"
+        ]
+    },
+    {
+        "func_name": "forward",
+        "original": "def forward(self, x):\n    return torch.sqrt(x)",
+        "mutated": [
+            "def forward(self, x):\n    if False:\n        i = 10\n    return torch.sqrt(x)",
+            "def forward(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return torch.sqrt(x)",
+            "def forward(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return torch.sqrt(x)",
+            "def forward(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return torch.sqrt(x)",
+            "def forward(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return torch.sqrt(x)"
+        ]
+    },
+    {
+        "func_name": "__init__",
+        "original": "def __init__(self):\n    super().__init__()\n    self.beta = torch.nn.Parameter(torch.tensor(1, dtype=torch.float32))",
+        "mutated": [
+            "def __init__(self):\n    if False:\n        i = 10\n    super().__init__()\n    self.beta = torch.nn.Parameter(torch.tensor(1, dtype=torch.float32))",
+            "def __init__(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    super().__init__()\n    self.beta = torch.nn.Parameter(torch.tensor(1, dtype=torch.float32))",
+            "def __init__(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    super().__init__()\n    self.beta = torch.nn.Parameter(torch.tensor(1, dtype=torch.float32))",
+            "def __init__(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    super().__init__()\n    self.beta = torch.nn.Parameter(torch.tensor(1, dtype=torch.float32))",
+            "def __init__(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    super().__init__()\n    self.beta = torch.nn.Parameter(torch.tensor(1, dtype=torch.float32))"
+        ]
+    },
+    {
+        "func_name": "forward",
+        "original": "def forward(self, x):\n    return x * self.beta",
+        "mutated": [
+            "def forward(self, x):\n    if False:\n        i = 10\n    return x * self.beta",
+            "def forward(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return x * self.beta",
+            "def forward(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return x * self.beta",
+            "def forward(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return x * self.beta",
+            "def forward(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return x * self.beta"
+        ]
+    },
+    {
+        "func_name": "__init__",
+        "original": "def __init__(self):\n    super().__init__()\n    self.beta = torch.nn.Parameter(torch.tensor(1, dtype=torch.float32))",
+        "mutated": [
+            "def __init__(self):\n    if False:\n        i = 10\n    super().__init__()\n    self.beta = torch.nn.Parameter(torch.tensor(1, dtype=torch.float32))",
+            "def __init__(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    super().__init__()\n    self.beta = torch.nn.Parameter(torch.tensor(1, dtype=torch.float32))",
+            "def __init__(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    super().__init__()\n    self.beta = torch.nn.Parameter(torch.tensor(1, dtype=torch.float32))",
+            "def __init__(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    super().__init__()\n    self.beta = torch.nn.Parameter(torch.tensor(1, dtype=torch.float32))",
+            "def __init__(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    super().__init__()\n    self.beta = torch.nn.Parameter(torch.tensor(1, dtype=torch.float32))"
+        ]
+    },
+    {
+        "func_name": "forward",
+        "original": "def forward(self, x):\n    return x + self.beta",
+        "mutated": [
+            "def forward(self, x):\n    if False:\n        i = 10\n    return x + self.beta",
+            "def forward(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return x + self.beta",
+            "def forward(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return x + self.beta",
+            "def forward(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return x + self.beta",
+            "def forward(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return x + self.beta"
+        ]
+    },
+    {
+        "func_name": "forward",
+        "original": "def forward(self, x):\n    return torch.log(torch.abs(x) + 1e-07)",
+        "mutated": [
+            "def forward(self, x):\n    if False:\n        i = 10\n    return torch.log(torch.abs(x) + 1e-07)",
+            "def forward(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return torch.log(torch.abs(x) + 1e-07)",
+            "def forward(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return torch.log(torch.abs(x) + 1e-07)",
+            "def forward(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return torch.log(torch.abs(x) + 1e-07)",
+            "def forward(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return torch.log(torch.abs(x) + 1e-07)"
+        ]
+    },
+    {
+        "func_name": "forward",
+        "original": "def forward(self, x):\n    return torch.exp(x)",
+        "mutated": [
+            "def forward(self, x):\n    if False:\n        i = 10\n    return torch.exp(x)",
+            "def forward(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return torch.exp(x)",
+            "def forward(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return torch.exp(x)",
+            "def forward(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return torch.exp(x)",
+            "def forward(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return torch.exp(x)"
+        ]
+    },
+    {
+        "func_name": "forward",
+        "original": "def forward(self, x):\n    return torch.sin(x)",
+        "mutated": [
+            "def forward(self, x):\n    if False:\n        i = 10\n    return torch.sin(x)",
+            "def forward(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return torch.sin(x)",
+            "def forward(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return torch.sin(x)",
+            "def forward(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return torch.sin(x)",
+            "def forward(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return torch.sin(x)"
+        ]
+    },
+    {
+        "func_name": "forward",
+        "original": "def forward(self, x):\n    return torch.cos(x)",
+        "mutated": [
+            "def forward(self, x):\n    if False:\n        i = 10\n    return torch.cos(x)",
+            "def forward(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return torch.cos(x)",
+            "def forward(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return torch.cos(x)",
+            "def forward(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return torch.cos(x)",
+            "def forward(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return torch.cos(x)"
+        ]
+    },
+    {
+        "func_name": "forward",
+        "original": "def forward(self, x):\n    return torch.sinh(x)",
+        "mutated": [
+            "def forward(self, x):\n    if False:\n        i = 10\n    return torch.sinh(x)",
+            "def forward(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return torch.sinh(x)",
+            "def forward(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return torch.sinh(x)",
+            "def forward(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return torch.sinh(x)",
+            "def forward(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return torch.sinh(x)"
+        ]
+    },
+    {
+        "func_name": "forward",
+        "original": "def forward(self, x):\n    return torch.cosh(x)",
+        "mutated": [
+            "def forward(self, x):\n    if False:\n        i = 10\n    return torch.cosh(x)",
+            "def forward(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return torch.cosh(x)",
+            "def forward(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return torch.cosh(x)",
+            "def forward(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return torch.cosh(x)",
+            "def forward(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return torch.cosh(x)"
+        ]
+    },
+    {
+        "func_name": "forward",
+        "original": "def forward(self, x):\n    return torch.tanh(x)",
+        "mutated": [
+            "def forward(self, x):\n    if False:\n        i = 10\n    return torch.tanh(x)",
+            "def forward(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return torch.tanh(x)",
+            "def forward(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return torch.tanh(x)",
+            "def forward(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return torch.tanh(x)",
+            "def forward(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return torch.tanh(x)"
+        ]
+    },
+    {
+        "func_name": "forward",
+        "original": "def forward(self, x):\n    return torch.atan(x)",
+        "mutated": [
+            "def forward(self, x):\n    if False:\n        i = 10\n    return torch.atan(x)",
+            "def forward(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return torch.atan(x)",
+            "def forward(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return torch.atan(x)",
+            "def forward(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return torch.atan(x)",
+            "def forward(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return torch.atan(x)"
+        ]
+    },
+    {
+        "func_name": "forward",
+        "original": "def forward(self, x):\n    return torch.max(x, torch.zeros_like(x))",
+        "mutated": [
+            "def forward(self, x):\n    if False:\n        i = 10\n    return torch.max(x, torch.zeros_like(x))",
+            "def forward(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return torch.max(x, torch.zeros_like(x))",
+            "def forward(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return torch.max(x, torch.zeros_like(x))",
+            "def forward(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return torch.max(x, torch.zeros_like(x))",
+            "def forward(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return torch.max(x, torch.zeros_like(x))"
+        ]
+    },
+    {
+        "func_name": "forward",
+        "original": "def forward(self, x):\n    return torch.min(x, torch.zeros_like(x))",
+        "mutated": [
+            "def forward(self, x):\n    if False:\n        i = 10\n    return torch.min(x, torch.zeros_like(x))",
+            "def forward(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return torch.min(x, torch.zeros_like(x))",
+            "def forward(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return torch.min(x, torch.zeros_like(x))",
+            "def forward(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return torch.min(x, torch.zeros_like(x))",
+            "def forward(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return torch.min(x, torch.zeros_like(x))"
+        ]
+    },
+    {
+        "func_name": "forward",
+        "original": "def forward(self, x):\n    return torch.sigmoid(x)",
+        "mutated": [
+            "def forward(self, x):\n    if False:\n        i = 10\n    return torch.sigmoid(x)",
+            "def forward(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return torch.sigmoid(x)",
+            "def forward(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return torch.sigmoid(x)",
+            "def forward(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return torch.sigmoid(x)",
+            "def forward(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return torch.sigmoid(x)"
+        ]
+    },
+    {
+        "func_name": "forward",
+        "original": "def forward(self, x):\n    return torch.log(1 + torch.exp(x))",
+        "mutated": [
+            "def forward(self, x):\n    if False:\n        i = 10\n    return torch.log(1 + torch.exp(x))",
+            "def forward(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return torch.log(1 + torch.exp(x))",
+            "def forward(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return torch.log(1 + torch.exp(x))",
+            "def forward(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return torch.log(1 + torch.exp(x))",
+            "def forward(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return torch.log(1 + torch.exp(x))"
+        ]
+    },
+    {
+        "func_name": "forward",
+        "original": "def forward(self, x):\n    return torch.exp(-torch.square(x))",
+        "mutated": [
+            "def forward(self, x):\n    if False:\n        i = 10\n    return torch.exp(-torch.square(x))",
+            "def forward(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return torch.exp(-torch.square(x))",
+            "def forward(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return torch.exp(-torch.square(x))",
+            "def forward(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return torch.exp(-torch.square(x))",
+            "def forward(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return torch.exp(-torch.square(x))"
+        ]
+    },
+    {
+        "func_name": "forward",
+        "original": "def forward(self, x):\n    return torch.erf(x)",
+        "mutated": [
+            "def forward(self, x):\n    if False:\n        i = 10\n    return torch.erf(x)",
+            "def forward(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return torch.erf(x)",
+            "def forward(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return torch.erf(x)",
+            "def forward(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return torch.erf(x)",
+            "def forward(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return torch.erf(x)"
+        ]
+    },
+    {
+        "func_name": "forward",
+        "original": "def forward(self, x):\n    return torch.sinc(x)",
+        "mutated": [
+            "def forward(self, x):\n    if False:\n        i = 10\n    return torch.sinc(x)",
+            "def forward(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return torch.sinc(x)",
+            "def forward(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return torch.sinc(x)",
+            "def forward(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return torch.sinc(x)",
+            "def forward(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return torch.sinc(x)"
+        ]
+    },
+    {
+        "func_name": "forward",
+        "original": "def forward(self, x):\n    return torch.asinh(x)",
+        "mutated": [
+            "def forward(self, x):\n    if False:\n        i = 10\n    return torch.asinh(x)",
+            "def forward(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return torch.asinh(x)",
+            "def forward(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return torch.asinh(x)",
+            "def forward(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return torch.asinh(x)",
+            "def forward(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return torch.asinh(x)"
+        ]
+    },
+    {
+        "func_name": "forward",
+        "original": "def forward(self, x):\n    return x[0] + x[1]",
+        "mutated": [
+            "def forward(self, x):\n    if False:\n        i = 10\n    return x[0] + x[1]",
+            "def forward(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return x[0] + x[1]",
+            "def forward(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return x[0] + x[1]",
+            "def forward(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return x[0] + x[1]",
+            "def forward(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return x[0] + x[1]"
+        ]
+    },
+    {
+        "func_name": "forward",
+        "original": "def forward(self, x):\n    return x[0] * x[1]",
+        "mutated": [
+            "def forward(self, x):\n    if False:\n        i = 10\n    return x[0] * x[1]",
+            "def forward(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return x[0] * x[1]",
+            "def forward(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return x[0] * x[1]",
+            "def forward(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return x[0] * x[1]",
+            "def forward(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return x[0] * x[1]"
+        ]
+    },
+    {
+        "func_name": "forward",
+        "original": "def forward(self, x):\n    return x[0] - x[1]",
+        "mutated": [
+            "def forward(self, x):\n    if False:\n        i = 10\n    return x[0] - x[1]",
+            "def forward(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return x[0] - x[1]",
+            "def forward(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return x[0] - x[1]",
+            "def forward(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return x[0] - x[1]",
+            "def forward(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return x[0] - x[1]"
+        ]
+    },
+    {
+        "func_name": "forward",
+        "original": "def forward(self, x):\n    return x[0] / (x[1] + 1e-07)",
+        "mutated": [
+            "def forward(self, x):\n    if False:\n        i = 10\n    return x[0] / (x[1] + 1e-07)",
+            "def forward(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return x[0] / (x[1] + 1e-07)",
+            "def forward(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return x[0] / (x[1] + 1e-07)",
+            "def forward(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return x[0] / (x[1] + 1e-07)",
+            "def forward(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return x[0] / (x[1] + 1e-07)"
+        ]
+    },
+    {
+        "func_name": "forward",
+        "original": "def forward(self, x):\n    return torch.max(x[0], x[1])",
+        "mutated": [
+            "def forward(self, x):\n    if False:\n        i = 10\n    return torch.max(x[0], x[1])",
+            "def forward(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return torch.max(x[0], x[1])",
+            "def forward(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return torch.max(x[0], x[1])",
+            "def forward(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return torch.max(x[0], x[1])",
+            "def forward(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return torch.max(x[0], x[1])"
+        ]
+    },
+    {
+        "func_name": "forward",
+        "original": "def forward(self, x):\n    return torch.min(x[0], x[1])",
+        "mutated": [
+            "def forward(self, x):\n    if False:\n        i = 10\n    return torch.min(x[0], x[1])",
+            "def forward(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return torch.min(x[0], x[1])",
+            "def forward(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return torch.min(x[0], x[1])",
+            "def forward(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return torch.min(x[0], x[1])",
+            "def forward(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return torch.min(x[0], x[1])"
+        ]
+    },
+    {
+        "func_name": "forward",
+        "original": "def forward(self, x):\n    return torch.sigmoid(x[0]) * x[1]",
+        "mutated": [
+            "def forward(self, x):\n    if False:\n        i = 10\n    return torch.sigmoid(x[0]) * x[1]",
+            "def forward(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return torch.sigmoid(x[0]) * x[1]",
+            "def forward(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return torch.sigmoid(x[0]) * x[1]",
+            "def forward(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return torch.sigmoid(x[0]) * x[1]",
+            "def forward(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return torch.sigmoid(x[0]) * x[1]"
+        ]
+    },
+    {
+        "func_name": "__init__",
+        "original": "def __init__(self):\n    super().__init__()\n    self.beta = torch.nn.Parameter(torch.tensor(1, dtype=torch.float32))",
+        "mutated": [
+            "def __init__(self):\n    if False:\n        i = 10\n    super().__init__()\n    self.beta = torch.nn.Parameter(torch.tensor(1, dtype=torch.float32))",
+            "def __init__(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    super().__init__()\n    self.beta = torch.nn.Parameter(torch.tensor(1, dtype=torch.float32))",
+            "def __init__(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    super().__init__()\n    self.beta = torch.nn.Parameter(torch.tensor(1, dtype=torch.float32))",
+            "def __init__(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    super().__init__()\n    self.beta = torch.nn.Parameter(torch.tensor(1, dtype=torch.float32))",
+            "def __init__(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    super().__init__()\n    self.beta = torch.nn.Parameter(torch.tensor(1, dtype=torch.float32))"
+        ]
+    },
+    {
+        "func_name": "forward",
+        "original": "def forward(self, x):\n    return torch.exp(-self.beta * torch.square(x[0] - x[1]))",
+        "mutated": [
+            "def forward(self, x):\n    if False:\n        i = 10\n    return torch.exp(-self.beta * torch.square(x[0] - x[1]))",
+            "def forward(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return torch.exp(-self.beta * torch.square(x[0] - x[1]))",
+            "def forward(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return torch.exp(-self.beta * torch.square(x[0] - x[1]))",
+            "def forward(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return torch.exp(-self.beta * torch.square(x[0] - x[1]))",
+            "def forward(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return torch.exp(-self.beta * torch.square(x[0] - x[1]))"
+        ]
+    },
+    {
+        "func_name": "__init__",
+        "original": "def __init__(self):\n    super().__init__()\n    self.beta = torch.nn.Parameter(torch.tensor(1, dtype=torch.float32))",
+        "mutated": [
+            "def __init__(self):\n    if False:\n        i = 10\n    super().__init__()\n    self.beta = torch.nn.Parameter(torch.tensor(1, dtype=torch.float32))",
+            "def __init__(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    super().__init__()\n    self.beta = torch.nn.Parameter(torch.tensor(1, dtype=torch.float32))",
+            "def __init__(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    super().__init__()\n    self.beta = torch.nn.Parameter(torch.tensor(1, dtype=torch.float32))",
+            "def __init__(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    super().__init__()\n    self.beta = torch.nn.Parameter(torch.tensor(1, dtype=torch.float32))",
+            "def __init__(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    super().__init__()\n    self.beta = torch.nn.Parameter(torch.tensor(1, dtype=torch.float32))"
+        ]
+    },
+    {
+        "func_name": "forward",
+        "original": "def forward(self, x):\n    return torch.exp(-self.beta * torch.abs(x[0] - x[1]))",
+        "mutated": [
+            "def forward(self, x):\n    if False:\n        i = 10\n    return torch.exp(-self.beta * torch.abs(x[0] - x[1]))",
+            "def forward(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return torch.exp(-self.beta * torch.abs(x[0] - x[1]))",
+            "def forward(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return torch.exp(-self.beta * torch.abs(x[0] - x[1]))",
+            "def forward(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return torch.exp(-self.beta * torch.abs(x[0] - x[1]))",
+            "def forward(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return torch.exp(-self.beta * torch.abs(x[0] - x[1]))"
+        ]
+    },
+    {
+        "func_name": "__init__",
+        "original": "def __init__(self):\n    super().__init__()\n    self.beta = torch.nn.Parameter(torch.tensor(1, dtype=torch.float32))",
+        "mutated": [
+            "def __init__(self):\n    if False:\n        i = 10\n    super().__init__()\n    self.beta = torch.nn.Parameter(torch.tensor(1, dtype=torch.float32))",
+            "def __init__(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    super().__init__()\n    self.beta = torch.nn.Parameter(torch.tensor(1, dtype=torch.float32))",
+            "def __init__(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    super().__init__()\n    self.beta = torch.nn.Parameter(torch.tensor(1, dtype=torch.float32))",
+            "def __init__(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    super().__init__()\n    self.beta = torch.nn.Parameter(torch.tensor(1, dtype=torch.float32))",
+            "def __init__(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    super().__init__()\n    self.beta = torch.nn.Parameter(torch.tensor(1, dtype=torch.float32))"
+        ]
+    },
+    {
+        "func_name": "forward",
+        "original": "def forward(self, x):\n    return self.beta * x[0] + (1 - self.beta) * x[1]",
+        "mutated": [
+            "def forward(self, x):\n    if False:\n        i = 10\n    return self.beta * x[0] + (1 - self.beta) * x[1]",
+            "def forward(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return self.beta * x[0] + (1 - self.beta) * x[1]",
+            "def forward(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return self.beta * x[0] + (1 - self.beta) * x[1]",
+            "def forward(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return self.beta * x[0] + (1 - self.beta) * x[1]",
+            "def forward(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return self.beta * x[0] + (1 - self.beta) * x[1]"
+        ]
+    }
+]

@@ -1,0 +1,101 @@
+[
+    {
+        "func_name": "__init__",
+        "original": "def __init__(self, vals):\n    vals.append(1)",
+        "mutated": [
+            "def __init__(self, vals):\n    if False:\n        i = 10\n    vals.append(1)",
+            "def __init__(self, vals):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    vals.append(1)",
+            "def __init__(self, vals):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    vals.append(1)",
+            "def __init__(self, vals):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    vals.append(1)",
+            "def __init__(self, vals):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    vals.append(1)"
+        ]
+    },
+    {
+        "func_name": "foo",
+        "original": "def foo(x, y):\n    out = nn.Softmax()(paddle.to_tensor([x, y], dtype='float32'))\n    return out",
+        "mutated": [
+            "def foo(x, y):\n    if False:\n        i = 10\n    out = nn.Softmax()(paddle.to_tensor([x, y], dtype='float32'))\n    return out",
+            "def foo(x, y):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    out = nn.Softmax()(paddle.to_tensor([x, y], dtype='float32'))\n    return out",
+            "def foo(x, y):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    out = nn.Softmax()(paddle.to_tensor([x, y], dtype='float32'))\n    return out",
+            "def foo(x, y):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    out = nn.Softmax()(paddle.to_tensor([x, y], dtype='float32'))\n    return out",
+            "def foo(x, y):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    out = nn.Softmax()(paddle.to_tensor([x, y], dtype='float32'))\n    return out"
+        ]
+    },
+    {
+        "func_name": "foo2",
+        "original": "def foo2(x, y):\n    t = nn.Softmax()\n    out1 = t(paddle.to_tensor([x, y], dtype='float32'))\n    out2 = t(paddle.to_tensor([x, y], dtype='float32'))\n    return out1 + out2",
+        "mutated": [
+            "def foo2(x, y):\n    if False:\n        i = 10\n    t = nn.Softmax()\n    out1 = t(paddle.to_tensor([x, y], dtype='float32'))\n    out2 = t(paddle.to_tensor([x, y], dtype='float32'))\n    return out1 + out2",
+            "def foo2(x, y):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    t = nn.Softmax()\n    out1 = t(paddle.to_tensor([x, y], dtype='float32'))\n    out2 = t(paddle.to_tensor([x, y], dtype='float32'))\n    return out1 + out2",
+            "def foo2(x, y):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    t = nn.Softmax()\n    out1 = t(paddle.to_tensor([x, y], dtype='float32'))\n    out2 = t(paddle.to_tensor([x, y], dtype='float32'))\n    return out1 + out2",
+            "def foo2(x, y):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    t = nn.Softmax()\n    out1 = t(paddle.to_tensor([x, y], dtype='float32'))\n    out2 = t(paddle.to_tensor([x, y], dtype='float32'))\n    return out1 + out2",
+            "def foo2(x, y):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    t = nn.Softmax()\n    out1 = t(paddle.to_tensor([x, y], dtype='float32'))\n    out2 = t(paddle.to_tensor([x, y], dtype='float32'))\n    return out1 + out2"
+        ]
+    },
+    {
+        "func_name": "error_foo",
+        "original": "def error_foo(x):\n    t = nn.Linear(10, 10)\n    return t(x)",
+        "mutated": [
+            "def error_foo(x):\n    if False:\n        i = 10\n    t = nn.Linear(10, 10)\n    return t(x)",
+            "def error_foo(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    t = nn.Linear(10, 10)\n    return t(x)",
+            "def error_foo(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    t = nn.Linear(10, 10)\n    return t(x)",
+            "def error_foo(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    t = nn.Linear(10, 10)\n    return t(x)",
+            "def error_foo(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    t = nn.Linear(10, 10)\n    return t(x)"
+        ]
+    },
+    {
+        "func_name": "bar",
+        "original": "def bar(x):\n    a = A(x)\n    t = paddle.to_tensor(x)\n    return t.mean()",
+        "mutated": [
+            "def bar(x):\n    if False:\n        i = 10\n    a = A(x)\n    t = paddle.to_tensor(x)\n    return t.mean()",
+            "def bar(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    a = A(x)\n    t = paddle.to_tensor(x)\n    return t.mean()",
+            "def bar(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    a = A(x)\n    t = paddle.to_tensor(x)\n    return t.mean()",
+            "def bar(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    a = A(x)\n    t = paddle.to_tensor(x)\n    return t.mean()",
+            "def bar(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    a = A(x)\n    t = paddle.to_tensor(x)\n    return t.mean()"
+        ]
+    },
+    {
+        "func_name": "test_init_paddle_layer",
+        "original": "def test_init_paddle_layer(self):\n    self.assert_results(foo, 1, 2)\n    self.assert_results(foo2, 1, 2)",
+        "mutated": [
+            "def test_init_paddle_layer(self):\n    if False:\n        i = 10\n    self.assert_results(foo, 1, 2)\n    self.assert_results(foo2, 1, 2)",
+            "def test_init_paddle_layer(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    self.assert_results(foo, 1, 2)\n    self.assert_results(foo2, 1, 2)",
+            "def test_init_paddle_layer(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    self.assert_results(foo, 1, 2)\n    self.assert_results(foo2, 1, 2)",
+            "def test_init_paddle_layer(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    self.assert_results(foo, 1, 2)\n    self.assert_results(foo2, 1, 2)",
+            "def test_init_paddle_layer(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    self.assert_results(foo, 1, 2)\n    self.assert_results(foo2, 1, 2)"
+        ]
+    },
+    {
+        "func_name": "test_init_python_object",
+        "original": "def test_init_python_object(self):\n    sot_output = symbolic_translate(bar)([1.0, 2.0])\n    dyn_output = bar([1.0, 2.0])\n    self.assert_nest_match(sot_output, dyn_output)",
+        "mutated": [
+            "def test_init_python_object(self):\n    if False:\n        i = 10\n    sot_output = symbolic_translate(bar)([1.0, 2.0])\n    dyn_output = bar([1.0, 2.0])\n    self.assert_nest_match(sot_output, dyn_output)",
+            "def test_init_python_object(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    sot_output = symbolic_translate(bar)([1.0, 2.0])\n    dyn_output = bar([1.0, 2.0])\n    self.assert_nest_match(sot_output, dyn_output)",
+            "def test_init_python_object(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    sot_output = symbolic_translate(bar)([1.0, 2.0])\n    dyn_output = bar([1.0, 2.0])\n    self.assert_nest_match(sot_output, dyn_output)",
+            "def test_init_python_object(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    sot_output = symbolic_translate(bar)([1.0, 2.0])\n    dyn_output = bar([1.0, 2.0])\n    self.assert_nest_match(sot_output, dyn_output)",
+            "def test_init_python_object(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    sot_output = symbolic_translate(bar)([1.0, 2.0])\n    dyn_output = bar([1.0, 2.0])\n    self.assert_nest_match(sot_output, dyn_output)"
+        ]
+    },
+    {
+        "func_name": "run",
+        "original": "def run():\n    inputs = paddle.randn((10, 10))\n    symbolic_translate(error_foo)(inputs)",
+        "mutated": [
+            "def run():\n    if False:\n        i = 10\n    inputs = paddle.randn((10, 10))\n    symbolic_translate(error_foo)(inputs)",
+            "def run():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    inputs = paddle.randn((10, 10))\n    symbolic_translate(error_foo)(inputs)",
+            "def run():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    inputs = paddle.randn((10, 10))\n    symbolic_translate(error_foo)(inputs)",
+            "def run():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    inputs = paddle.randn((10, 10))\n    symbolic_translate(error_foo)(inputs)",
+            "def run():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    inputs = paddle.randn((10, 10))\n    symbolic_translate(error_foo)(inputs)"
+        ]
+    },
+    {
+        "func_name": "test_error",
+        "original": "def test_error(self):\n\n    def run():\n        inputs = paddle.randn((10, 10))\n        symbolic_translate(error_foo)(inputs)\n    self.assertRaises(paddle.jit.sot.utils.exceptions.InnerError, run)",
+        "mutated": [
+            "def test_error(self):\n    if False:\n        i = 10\n\n    def run():\n        inputs = paddle.randn((10, 10))\n        symbolic_translate(error_foo)(inputs)\n    self.assertRaises(paddle.jit.sot.utils.exceptions.InnerError, run)",
+            "def test_error(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n\n    def run():\n        inputs = paddle.randn((10, 10))\n        symbolic_translate(error_foo)(inputs)\n    self.assertRaises(paddle.jit.sot.utils.exceptions.InnerError, run)",
+            "def test_error(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n    def run():\n        inputs = paddle.randn((10, 10))\n        symbolic_translate(error_foo)(inputs)\n    self.assertRaises(paddle.jit.sot.utils.exceptions.InnerError, run)",
+            "def test_error(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n\n    def run():\n        inputs = paddle.randn((10, 10))\n        symbolic_translate(error_foo)(inputs)\n    self.assertRaises(paddle.jit.sot.utils.exceptions.InnerError, run)",
+            "def test_error(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n\n    def run():\n        inputs = paddle.randn((10, 10))\n        symbolic_translate(error_foo)(inputs)\n    self.assertRaises(paddle.jit.sot.utils.exceptions.InnerError, run)"
+        ]
+    }
+]

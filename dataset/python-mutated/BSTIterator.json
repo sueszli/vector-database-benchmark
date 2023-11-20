@@ -1,0 +1,35 @@
+[
+    {
+        "func_name": "__init__",
+        "original": "def __init__(self, root):\n    self.stack = []\n    while root:\n        self.stack.append(root)\n        root = root.left",
+        "mutated": [
+            "def __init__(self, root):\n    if False:\n        i = 10\n    self.stack = []\n    while root:\n        self.stack.append(root)\n        root = root.left",
+            "def __init__(self, root):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    self.stack = []\n    while root:\n        self.stack.append(root)\n        root = root.left",
+            "def __init__(self, root):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    self.stack = []\n    while root:\n        self.stack.append(root)\n        root = root.left",
+            "def __init__(self, root):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    self.stack = []\n    while root:\n        self.stack.append(root)\n        root = root.left",
+            "def __init__(self, root):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    self.stack = []\n    while root:\n        self.stack.append(root)\n        root = root.left"
+        ]
+    },
+    {
+        "func_name": "has_next",
+        "original": "def has_next(self):\n    return bool(self.stack)",
+        "mutated": [
+            "def has_next(self):\n    if False:\n        i = 10\n    return bool(self.stack)",
+            "def has_next(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return bool(self.stack)",
+            "def has_next(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return bool(self.stack)",
+            "def has_next(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return bool(self.stack)",
+            "def has_next(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return bool(self.stack)"
+        ]
+    },
+    {
+        "func_name": "next",
+        "original": "def next(self):\n    node = self.stack.pop()\n    tmp = node\n    if tmp.right:\n        tmp = tmp.right\n        while tmp:\n            self.stack.append(tmp)\n            tmp = tmp.left\n    return node.val",
+        "mutated": [
+            "def next(self):\n    if False:\n        i = 10\n    node = self.stack.pop()\n    tmp = node\n    if tmp.right:\n        tmp = tmp.right\n        while tmp:\n            self.stack.append(tmp)\n            tmp = tmp.left\n    return node.val",
+            "def next(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    node = self.stack.pop()\n    tmp = node\n    if tmp.right:\n        tmp = tmp.right\n        while tmp:\n            self.stack.append(tmp)\n            tmp = tmp.left\n    return node.val",
+            "def next(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    node = self.stack.pop()\n    tmp = node\n    if tmp.right:\n        tmp = tmp.right\n        while tmp:\n            self.stack.append(tmp)\n            tmp = tmp.left\n    return node.val",
+            "def next(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    node = self.stack.pop()\n    tmp = node\n    if tmp.right:\n        tmp = tmp.right\n        while tmp:\n            self.stack.append(tmp)\n            tmp = tmp.left\n    return node.val",
+            "def next(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    node = self.stack.pop()\n    tmp = node\n    if tmp.right:\n        tmp = tmp.right\n        while tmp:\n            self.stack.append(tmp)\n            tmp = tmp.left\n    return node.val"
+        ]
+    }
+]

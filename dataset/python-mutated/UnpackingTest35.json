@@ -1,0 +1,90 @@
+[
+    {
+        "func_name": "tupleUnpacking",
+        "original": "def tupleUnpacking():\n    return (*a, b, *c)",
+        "mutated": [
+            "def tupleUnpacking():\n    if False:\n        i = 10\n    return (*a, b, *c)",
+            "def tupleUnpacking():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return (*a, b, *c)",
+            "def tupleUnpacking():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return (*a, b, *c)",
+            "def tupleUnpacking():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return (*a, b, *c)",
+            "def tupleUnpacking():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return (*a, b, *c)"
+        ]
+    },
+    {
+        "func_name": "listUnpacking",
+        "original": "def listUnpacking():\n    return [*a, b, *c]",
+        "mutated": [
+            "def listUnpacking():\n    if False:\n        i = 10\n    return [*a, b, *c]",
+            "def listUnpacking():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return [*a, b, *c]",
+            "def listUnpacking():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return [*a, b, *c]",
+            "def listUnpacking():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return [*a, b, *c]",
+            "def listUnpacking():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return [*a, b, *c]"
+        ]
+    },
+    {
+        "func_name": "setUnpacking",
+        "original": "def setUnpacking():\n    return {*a, b, *c}",
+        "mutated": [
+            "def setUnpacking():\n    if False:\n        i = 10\n    return {*a, b, *c}",
+            "def setUnpacking():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return {*a, b, *c}",
+            "def setUnpacking():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return {*a, b, *c}",
+            "def setUnpacking():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return {*a, b, *c}",
+            "def setUnpacking():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return {*a, b, *c}"
+        ]
+    },
+    {
+        "func_name": "dictUnpacking",
+        "original": "def dictUnpacking():\n    return {'a': 1, **d}",
+        "mutated": [
+            "def dictUnpacking():\n    if False:\n        i = 10\n    return {'a': 1, **d}",
+            "def dictUnpacking():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return {'a': 1, **d}",
+            "def dictUnpacking():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return {'a': 1, **d}",
+            "def dictUnpacking():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return {'a': 1, **d}",
+            "def dictUnpacking():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return {'a': 1, **d}"
+        ]
+    },
+    {
+        "func_name": "tupleUnpackingError",
+        "original": "def tupleUnpackingError():\n    try:\n        return (*a, *non_iterable, *c)\n    except Exception as e:\n        return e",
+        "mutated": [
+            "def tupleUnpackingError():\n    if False:\n        i = 10\n    try:\n        return (*a, *non_iterable, *c)\n    except Exception as e:\n        return e",
+            "def tupleUnpackingError():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    try:\n        return (*a, *non_iterable, *c)\n    except Exception as e:\n        return e",
+            "def tupleUnpackingError():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    try:\n        return (*a, *non_iterable, *c)\n    except Exception as e:\n        return e",
+            "def tupleUnpackingError():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    try:\n        return (*a, *non_iterable, *c)\n    except Exception as e:\n        return e",
+            "def tupleUnpackingError():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    try:\n        return (*a, *non_iterable, *c)\n    except Exception as e:\n        return e"
+        ]
+    },
+    {
+        "func_name": "listUnpackingError",
+        "original": "def listUnpackingError():\n    try:\n        return [*a, *non_iterable, *c]\n    except Exception as e:\n        return e",
+        "mutated": [
+            "def listUnpackingError():\n    if False:\n        i = 10\n    try:\n        return [*a, *non_iterable, *c]\n    except Exception as e:\n        return e",
+            "def listUnpackingError():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    try:\n        return [*a, *non_iterable, *c]\n    except Exception as e:\n        return e",
+            "def listUnpackingError():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    try:\n        return [*a, *non_iterable, *c]\n    except Exception as e:\n        return e",
+            "def listUnpackingError():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    try:\n        return [*a, *non_iterable, *c]\n    except Exception as e:\n        return e",
+            "def listUnpackingError():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    try:\n        return [*a, *non_iterable, *c]\n    except Exception as e:\n        return e"
+        ]
+    },
+    {
+        "func_name": "setUnpackingError",
+        "original": "def setUnpackingError():\n    try:\n        return {*a, *non_iterable, *c}\n    except Exception as e:\n        return e",
+        "mutated": [
+            "def setUnpackingError():\n    if False:\n        i = 10\n    try:\n        return {*a, *non_iterable, *c}\n    except Exception as e:\n        return e",
+            "def setUnpackingError():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    try:\n        return {*a, *non_iterable, *c}\n    except Exception as e:\n        return e",
+            "def setUnpackingError():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    try:\n        return {*a, *non_iterable, *c}\n    except Exception as e:\n        return e",
+            "def setUnpackingError():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    try:\n        return {*a, *non_iterable, *c}\n    except Exception as e:\n        return e",
+            "def setUnpackingError():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    try:\n        return {*a, *non_iterable, *c}\n    except Exception as e:\n        return e"
+        ]
+    },
+    {
+        "func_name": "dictUnpackingError",
+        "original": "def dictUnpackingError():\n    try:\n        return {'a': 1, **non_iterable}\n    except Exception as e:\n        return e",
+        "mutated": [
+            "def dictUnpackingError():\n    if False:\n        i = 10\n    try:\n        return {'a': 1, **non_iterable}\n    except Exception as e:\n        return e",
+            "def dictUnpackingError():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    try:\n        return {'a': 1, **non_iterable}\n    except Exception as e:\n        return e",
+            "def dictUnpackingError():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    try:\n        return {'a': 1, **non_iterable}\n    except Exception as e:\n        return e",
+            "def dictUnpackingError():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    try:\n        return {'a': 1, **non_iterable}\n    except Exception as e:\n        return e",
+            "def dictUnpackingError():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    try:\n        return {'a': 1, **non_iterable}\n    except Exception as e:\n        return e"
+        ]
+    }
+]

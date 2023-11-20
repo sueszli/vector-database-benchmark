@@ -1,0 +1,57 @@
+[
+    {
+        "func_name": "some_random_result",
+        "original": "def some_random_result():\n    return RESULTS.pop()",
+        "mutated": [
+            "def some_random_result():\n    if False:\n        i = 10\n    return RESULTS.pop()",
+            "def some_random_result():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return RESULTS.pop()",
+            "def some_random_result():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return RESULTS.pop()",
+            "def some_random_result():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return RESULTS.pop()",
+            "def some_random_result():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return RESULTS.pop()"
+        ]
+    },
+    {
+        "func_name": "start",
+        "original": "@op\ndef start():\n    return 1",
+        "mutated": [
+            "@op\ndef start():\n    if False:\n        i = 10\n    return 1",
+            "@op\ndef start():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return 1",
+            "@op\ndef start():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return 1",
+            "@op\ndef start():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return 1",
+            "@op\ndef start():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return 1"
+        ]
+    },
+    {
+        "func_name": "unreliable",
+        "original": "@op\ndef unreliable(num: int) -> int:\n    failure_rate = 0.5\n    if some_random_result() < failure_rate:\n        raise Exception('blah')\n    return num",
+        "mutated": [
+            "@op\ndef unreliable(num: int) -> int:\n    if False:\n        i = 10\n    failure_rate = 0.5\n    if some_random_result() < failure_rate:\n        raise Exception('blah')\n    return num",
+            "@op\ndef unreliable(num: int) -> int:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    failure_rate = 0.5\n    if some_random_result() < failure_rate:\n        raise Exception('blah')\n    return num",
+            "@op\ndef unreliable(num: int) -> int:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    failure_rate = 0.5\n    if some_random_result() < failure_rate:\n        raise Exception('blah')\n    return num",
+            "@op\ndef unreliable(num: int) -> int:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    failure_rate = 0.5\n    if some_random_result() < failure_rate:\n        raise Exception('blah')\n    return num",
+            "@op\ndef unreliable(num: int) -> int:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    failure_rate = 0.5\n    if some_random_result() < failure_rate:\n        raise Exception('blah')\n    return num"
+        ]
+    },
+    {
+        "func_name": "end",
+        "original": "@op\ndef end(_num: int):\n    pass",
+        "mutated": [
+            "@op\ndef end(_num: int):\n    if False:\n        i = 10\n    pass",
+            "@op\ndef end(_num: int):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    pass",
+            "@op\ndef end(_num: int):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    pass",
+            "@op\ndef end(_num: int):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    pass",
+            "@op\ndef end(_num: int):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    pass"
+        ]
+    },
+    {
+        "func_name": "unreliable_job",
+        "original": "@job(executor_def=in_process_executor)\ndef unreliable_job():\n    end(unreliable(start()))",
+        "mutated": [
+            "@job(executor_def=in_process_executor)\ndef unreliable_job():\n    if False:\n        i = 10\n    end(unreliable(start()))",
+            "@job(executor_def=in_process_executor)\ndef unreliable_job():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    end(unreliable(start()))",
+            "@job(executor_def=in_process_executor)\ndef unreliable_job():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    end(unreliable(start()))",
+            "@job(executor_def=in_process_executor)\ndef unreliable_job():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    end(unreliable(start()))",
+            "@job(executor_def=in_process_executor)\ndef unreliable_job():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    end(unreliable(start()))"
+        ]
+    }
+]

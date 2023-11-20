@@ -1,0 +1,35 @@
+[
+    {
+        "func_name": "bigger_is_better",
+        "original": "@property\ndef bigger_is_better(self):\n    return False",
+        "mutated": [
+            "@property\ndef bigger_is_better(self):\n    if False:\n        i = 10\n    return False",
+            "@property\ndef bigger_is_better(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return False",
+            "@property\ndef bigger_is_better(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return False",
+            "@property\ndef bigger_is_better(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return False",
+            "@property\ndef bigger_is_better(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return False"
+        ]
+    },
+    {
+        "func_name": "requires_labels",
+        "original": "@property\ndef requires_labels(self):\n    return False",
+        "mutated": [
+            "@property\ndef requires_labels(self):\n    if False:\n        i = 10\n    return False",
+            "@property\ndef requires_labels(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return False",
+            "@property\ndef requires_labels(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return False",
+            "@property\ndef requires_labels(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return False",
+            "@property\ndef requires_labels(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return False"
+        ]
+    },
+    {
+        "func_name": "_eval",
+        "original": "def _eval(self, y_true, y_pred):\n    p_true = y_pred.get(True, 0.0) if isinstance(y_pred, dict) else y_pred\n    p_true = self._clamp_proba(p_true)\n    if y_true:\n        return -math.log(p_true)\n    return -math.log(1 - p_true)",
+        "mutated": [
+            "def _eval(self, y_true, y_pred):\n    if False:\n        i = 10\n    p_true = y_pred.get(True, 0.0) if isinstance(y_pred, dict) else y_pred\n    p_true = self._clamp_proba(p_true)\n    if y_true:\n        return -math.log(p_true)\n    return -math.log(1 - p_true)",
+            "def _eval(self, y_true, y_pred):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    p_true = y_pred.get(True, 0.0) if isinstance(y_pred, dict) else y_pred\n    p_true = self._clamp_proba(p_true)\n    if y_true:\n        return -math.log(p_true)\n    return -math.log(1 - p_true)",
+            "def _eval(self, y_true, y_pred):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    p_true = y_pred.get(True, 0.0) if isinstance(y_pred, dict) else y_pred\n    p_true = self._clamp_proba(p_true)\n    if y_true:\n        return -math.log(p_true)\n    return -math.log(1 - p_true)",
+            "def _eval(self, y_true, y_pred):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    p_true = y_pred.get(True, 0.0) if isinstance(y_pred, dict) else y_pred\n    p_true = self._clamp_proba(p_true)\n    if y_true:\n        return -math.log(p_true)\n    return -math.log(1 - p_true)",
+            "def _eval(self, y_true, y_pred):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    p_true = y_pred.get(True, 0.0) if isinstance(y_pred, dict) else y_pred\n    p_true = self._clamp_proba(p_true)\n    if y_true:\n        return -math.log(p_true)\n    return -math.log(1 - p_true)"
+        ]
+    }
+]

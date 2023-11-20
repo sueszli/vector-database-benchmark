@@ -1,0 +1,24 @@
+[
+    {
+        "func_name": "print_today",
+        "original": "def print_today():\n    date_time = FakeDatetime.utcnow()\n    print(f'Today is {date_time:%Y-%m-%d}')",
+        "mutated": [
+            "def print_today():\n    if False:\n        i = 10\n    date_time = FakeDatetime.utcnow()\n    print(f'Today is {date_time:%Y-%m-%d}')",
+            "def print_today():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    date_time = FakeDatetime.utcnow()\n    print(f'Today is {date_time:%Y-%m-%d}')",
+            "def print_today():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    date_time = FakeDatetime.utcnow()\n    print(f'Today is {date_time:%Y-%m-%d}')",
+            "def print_today():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    date_time = FakeDatetime.utcnow()\n    print(f'Today is {date_time:%Y-%m-%d}')",
+            "def print_today():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    date_time = FakeDatetime.utcnow()\n    print(f'Today is {date_time:%Y-%m-%d}')"
+        ]
+    },
+    {
+        "func_name": "check_hive_conf",
+        "original": "def check_hive_conf():\n    from airflow.configuration import conf\n    assert conf.get('hive', 'default_hive_mapred_queue') == 'airflow'",
+        "mutated": [
+            "def check_hive_conf():\n    if False:\n        i = 10\n    from airflow.configuration import conf\n    assert conf.get('hive', 'default_hive_mapred_queue') == 'airflow'",
+            "def check_hive_conf():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    from airflow.configuration import conf\n    assert conf.get('hive', 'default_hive_mapred_queue') == 'airflow'",
+            "def check_hive_conf():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    from airflow.configuration import conf\n    assert conf.get('hive', 'default_hive_mapred_queue') == 'airflow'",
+            "def check_hive_conf():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    from airflow.configuration import conf\n    assert conf.get('hive', 'default_hive_mapred_queue') == 'airflow'",
+            "def check_hive_conf():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    from airflow.configuration import conf\n    assert conf.get('hive', 'default_hive_mapred_queue') == 'airflow'"
+        ]
+    }
+]

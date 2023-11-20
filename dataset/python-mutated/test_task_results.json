@@ -1,0 +1,420 @@
+[
+    {
+        "func_name": "foo",
+        "original": "@flow(**options)\ndef foo():\n    return bar(return_state=True)",
+        "mutated": [
+            "@flow(**options)\ndef foo():\n    if False:\n        i = 10\n    return bar(return_state=True)",
+            "@flow(**options)\ndef foo():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return bar(return_state=True)",
+            "@flow(**options)\ndef foo():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return bar(return_state=True)",
+            "@flow(**options)\ndef foo():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return bar(return_state=True)",
+            "@flow(**options)\ndef foo():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return bar(return_state=True)"
+        ]
+    },
+    {
+        "func_name": "bar",
+        "original": "@task\ndef bar():\n    return 1",
+        "mutated": [
+            "@task\ndef bar():\n    if False:\n        i = 10\n    return 1",
+            "@task\ndef bar():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return 1",
+            "@task\ndef bar():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return 1",
+            "@task\ndef bar():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return 1",
+            "@task\ndef bar():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return 1"
+        ]
+    },
+    {
+        "func_name": "foo",
+        "original": "@flow()\ndef foo():\n    return bar(return_state=True)",
+        "mutated": [
+            "@flow()\ndef foo():\n    if False:\n        i = 10\n    return bar(return_state=True)",
+            "@flow()\ndef foo():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return bar(return_state=True)",
+            "@flow()\ndef foo():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return bar(return_state=True)",
+            "@flow()\ndef foo():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return bar(return_state=True)",
+            "@flow()\ndef foo():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return bar(return_state=True)"
+        ]
+    },
+    {
+        "func_name": "bar",
+        "original": "@task(**options)\ndef bar():\n    return 1",
+        "mutated": [
+            "@task(**options)\ndef bar():\n    if False:\n        i = 10\n    return 1",
+            "@task(**options)\ndef bar():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return 1",
+            "@task(**options)\ndef bar():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return 1",
+            "@task(**options)\ndef bar():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return 1",
+            "@task(**options)\ndef bar():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return 1"
+        ]
+    },
+    {
+        "func_name": "foo",
+        "original": "@flow\ndef foo():\n    return bar(return_state=True)",
+        "mutated": [
+            "@flow\ndef foo():\n    if False:\n        i = 10\n    return bar(return_state=True)",
+            "@flow\ndef foo():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return bar(return_state=True)",
+            "@flow\ndef foo():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return bar(return_state=True)",
+            "@flow\ndef foo():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return bar(return_state=True)",
+            "@flow\ndef foo():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return bar(return_state=True)"
+        ]
+    },
+    {
+        "func_name": "bar",
+        "original": "@task(persist_result=True)\ndef bar():\n    return 1",
+        "mutated": [
+            "@task(persist_result=True)\ndef bar():\n    if False:\n        i = 10\n    return 1",
+            "@task(persist_result=True)\ndef bar():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return 1",
+            "@task(persist_result=True)\ndef bar():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return 1",
+            "@task(persist_result=True)\ndef bar():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return 1",
+            "@task(persist_result=True)\ndef bar():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return 1"
+        ]
+    },
+    {
+        "func_name": "foo",
+        "original": "@flow\ndef foo():\n    return bar(return_state=True)",
+        "mutated": [
+            "@flow\ndef foo():\n    if False:\n        i = 10\n    return bar(return_state=True)",
+            "@flow\ndef foo():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return bar(return_state=True)",
+            "@flow\ndef foo():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return bar(return_state=True)",
+            "@flow\ndef foo():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return bar(return_state=True)",
+            "@flow\ndef foo():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return bar(return_state=True)"
+        ]
+    },
+    {
+        "func_name": "bar",
+        "original": "@task(persist_result=False, cache_result_in_memory=False)\ndef bar():\n    return 1",
+        "mutated": [
+            "@task(persist_result=False, cache_result_in_memory=False)\ndef bar():\n    if False:\n        i = 10\n    return 1",
+            "@task(persist_result=False, cache_result_in_memory=False)\ndef bar():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return 1",
+            "@task(persist_result=False, cache_result_in_memory=False)\ndef bar():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return 1",
+            "@task(persist_result=False, cache_result_in_memory=False)\ndef bar():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return 1",
+            "@task(persist_result=False, cache_result_in_memory=False)\ndef bar():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return 1"
+        ]
+    },
+    {
+        "func_name": "foo",
+        "original": "@flow\ndef foo():\n    return bar(return_state=True)",
+        "mutated": [
+            "@flow\ndef foo():\n    if False:\n        i = 10\n    return bar(return_state=True)",
+            "@flow\ndef foo():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return bar(return_state=True)",
+            "@flow\ndef foo():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return bar(return_state=True)",
+            "@flow\ndef foo():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return bar(return_state=True)",
+            "@flow\ndef foo():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return bar(return_state=True)"
+        ]
+    },
+    {
+        "func_name": "bar",
+        "original": "@task(persist_result=False, cache_result_in_memory=False)\ndef bar():\n    return None",
+        "mutated": [
+            "@task(persist_result=False, cache_result_in_memory=False)\ndef bar():\n    if False:\n        i = 10\n    return None",
+            "@task(persist_result=False, cache_result_in_memory=False)\ndef bar():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return None",
+            "@task(persist_result=False, cache_result_in_memory=False)\ndef bar():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return None",
+            "@task(persist_result=False, cache_result_in_memory=False)\ndef bar():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return None",
+            "@task(persist_result=False, cache_result_in_memory=False)\ndef bar():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return None"
+        ]
+    },
+    {
+        "func_name": "foo",
+        "original": "@flow\ndef foo():\n    return bar(return_state=True)",
+        "mutated": [
+            "@flow\ndef foo():\n    if False:\n        i = 10\n    return bar(return_state=True)",
+            "@flow\ndef foo():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return bar(return_state=True)",
+            "@flow\ndef foo():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return bar(return_state=True)",
+            "@flow\ndef foo():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return bar(return_state=True)",
+            "@flow\ndef foo():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return bar(return_state=True)"
+        ]
+    },
+    {
+        "func_name": "bar",
+        "original": "@task(persist_result=True, cache_result_in_memory=False)\ndef bar():\n    return 1",
+        "mutated": [
+            "@task(persist_result=True, cache_result_in_memory=False)\ndef bar():\n    if False:\n        i = 10\n    return 1",
+            "@task(persist_result=True, cache_result_in_memory=False)\ndef bar():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return 1",
+            "@task(persist_result=True, cache_result_in_memory=False)\ndef bar():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return 1",
+            "@task(persist_result=True, cache_result_in_memory=False)\ndef bar():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return 1",
+            "@task(persist_result=True, cache_result_in_memory=False)\ndef bar():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return 1"
+        ]
+    },
+    {
+        "func_name": "foo",
+        "original": "@flow\ndef foo():\n    state = bar(return_state=True)\n    assert not state.data.has_cached_object()\n    assert state.result() == 1\n    assert not state.data.has_cached_object()\n    assert state.result() == 1\n    return state",
+        "mutated": [
+            "@flow\ndef foo():\n    if False:\n        i = 10\n    state = bar(return_state=True)\n    assert not state.data.has_cached_object()\n    assert state.result() == 1\n    assert not state.data.has_cached_object()\n    assert state.result() == 1\n    return state",
+            "@flow\ndef foo():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    state = bar(return_state=True)\n    assert not state.data.has_cached_object()\n    assert state.result() == 1\n    assert not state.data.has_cached_object()\n    assert state.result() == 1\n    return state",
+            "@flow\ndef foo():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    state = bar(return_state=True)\n    assert not state.data.has_cached_object()\n    assert state.result() == 1\n    assert not state.data.has_cached_object()\n    assert state.result() == 1\n    return state",
+            "@flow\ndef foo():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    state = bar(return_state=True)\n    assert not state.data.has_cached_object()\n    assert state.result() == 1\n    assert not state.data.has_cached_object()\n    assert state.result() == 1\n    return state",
+            "@flow\ndef foo():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    state = bar(return_state=True)\n    assert not state.data.has_cached_object()\n    assert state.result() == 1\n    assert not state.data.has_cached_object()\n    assert state.result() == 1\n    return state"
+        ]
+    },
+    {
+        "func_name": "bar",
+        "original": "@task(persist_result=True, cache_result_in_memory=False)\ndef bar():\n    return 1",
+        "mutated": [
+            "@task(persist_result=True, cache_result_in_memory=False)\ndef bar():\n    if False:\n        i = 10\n    return 1",
+            "@task(persist_result=True, cache_result_in_memory=False)\ndef bar():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return 1",
+            "@task(persist_result=True, cache_result_in_memory=False)\ndef bar():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return 1",
+            "@task(persist_result=True, cache_result_in_memory=False)\ndef bar():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return 1",
+            "@task(persist_result=True, cache_result_in_memory=False)\ndef bar():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return 1"
+        ]
+    },
+    {
+        "func_name": "foo",
+        "original": "@flow\ndef foo():\n    return bar(return_state=True)",
+        "mutated": [
+            "@flow\ndef foo():\n    if False:\n        i = 10\n    return bar(return_state=True)",
+            "@flow\ndef foo():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return bar(return_state=True)",
+            "@flow\ndef foo():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return bar(return_state=True)",
+            "@flow\ndef foo():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return bar(return_state=True)",
+            "@flow\ndef foo():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return bar(return_state=True)"
+        ]
+    },
+    {
+        "func_name": "bar",
+        "original": "@task(persist_result=True, cache_result_in_memory=False)\ndef bar():\n    return True",
+        "mutated": [
+            "@task(persist_result=True, cache_result_in_memory=False)\ndef bar():\n    if False:\n        i = 10\n    return True",
+            "@task(persist_result=True, cache_result_in_memory=False)\ndef bar():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return True",
+            "@task(persist_result=True, cache_result_in_memory=False)\ndef bar():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return True",
+            "@task(persist_result=True, cache_result_in_memory=False)\ndef bar():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return True",
+            "@task(persist_result=True, cache_result_in_memory=False)\ndef bar():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return True"
+        ]
+    },
+    {
+        "func_name": "foo",
+        "original": "@flow(result_serializer=serializer if source == 'parent' else None)\ndef foo():\n    return bar(return_state=True)",
+        "mutated": [
+            "@flow(result_serializer=serializer if source == 'parent' else None)\ndef foo():\n    if False:\n        i = 10\n    return bar(return_state=True)",
+            "@flow(result_serializer=serializer if source == 'parent' else None)\ndef foo():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return bar(return_state=True)",
+            "@flow(result_serializer=serializer if source == 'parent' else None)\ndef foo():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return bar(return_state=True)",
+            "@flow(result_serializer=serializer if source == 'parent' else None)\ndef foo():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return bar(return_state=True)",
+            "@flow(result_serializer=serializer if source == 'parent' else None)\ndef foo():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return bar(return_state=True)"
+        ]
+    },
+    {
+        "func_name": "bar",
+        "original": "@task(result_serializer=serializer if source == 'child' else None, persist_result=True)\ndef bar():\n    return 1",
+        "mutated": [
+            "@task(result_serializer=serializer if source == 'child' else None, persist_result=True)\ndef bar():\n    if False:\n        i = 10\n    return 1",
+            "@task(result_serializer=serializer if source == 'child' else None, persist_result=True)\ndef bar():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return 1",
+            "@task(result_serializer=serializer if source == 'child' else None, persist_result=True)\ndef bar():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return 1",
+            "@task(result_serializer=serializer if source == 'child' else None, persist_result=True)\ndef bar():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return 1",
+            "@task(result_serializer=serializer if source == 'child' else None, persist_result=True)\ndef bar():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return 1"
+        ]
+    },
+    {
+        "func_name": "foo",
+        "original": "@flow(result_storage=storage if source == 'parent' else None)\ndef foo():\n    return bar(return_state=True)",
+        "mutated": [
+            "@flow(result_storage=storage if source == 'parent' else None)\ndef foo():\n    if False:\n        i = 10\n    return bar(return_state=True)",
+            "@flow(result_storage=storage if source == 'parent' else None)\ndef foo():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return bar(return_state=True)",
+            "@flow(result_storage=storage if source == 'parent' else None)\ndef foo():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return bar(return_state=True)",
+            "@flow(result_storage=storage if source == 'parent' else None)\ndef foo():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return bar(return_state=True)",
+            "@flow(result_storage=storage if source == 'parent' else None)\ndef foo():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return bar(return_state=True)"
+        ]
+    },
+    {
+        "func_name": "bar",
+        "original": "@task(result_storage=storage if source == 'child' else None, persist_result=True)\ndef bar():\n    return 1",
+        "mutated": [
+            "@task(result_storage=storage if source == 'child' else None, persist_result=True)\ndef bar():\n    if False:\n        i = 10\n    return 1",
+            "@task(result_storage=storage if source == 'child' else None, persist_result=True)\ndef bar():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return 1",
+            "@task(result_storage=storage if source == 'child' else None, persist_result=True)\ndef bar():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return 1",
+            "@task(result_storage=storage if source == 'child' else None, persist_result=True)\ndef bar():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return 1",
+            "@task(result_storage=storage if source == 'child' else None, persist_result=True)\ndef bar():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return 1"
+        ]
+    },
+    {
+        "func_name": "foo",
+        "original": "@flow\ndef foo():\n    return bar(return_state=True)",
+        "mutated": [
+            "@flow\ndef foo():\n    if False:\n        i = 10\n    return bar(return_state=True)",
+            "@flow\ndef foo():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return bar(return_state=True)",
+            "@flow\ndef foo():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return bar(return_state=True)",
+            "@flow\ndef foo():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return bar(return_state=True)",
+            "@flow\ndef foo():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return bar(return_state=True)"
+        ]
+    },
+    {
+        "func_name": "bar",
+        "original": "@task(result_storage=storage, persist_result=True, result_storage_key='test')\ndef bar():\n    return 1",
+        "mutated": [
+            "@task(result_storage=storage, persist_result=True, result_storage_key='test')\ndef bar():\n    if False:\n        i = 10\n    return 1",
+            "@task(result_storage=storage, persist_result=True, result_storage_key='test')\ndef bar():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return 1",
+            "@task(result_storage=storage, persist_result=True, result_storage_key='test')\ndef bar():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return 1",
+            "@task(result_storage=storage, persist_result=True, result_storage_key='test')\ndef bar():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return 1",
+            "@task(result_storage=storage, persist_result=True, result_storage_key='test')\ndef bar():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return 1"
+        ]
+    },
+    {
+        "func_name": "foo",
+        "original": "@flow\ndef foo():\n    return bar(y='foo', return_state=True)",
+        "mutated": [
+            "@flow\ndef foo():\n    if False:\n        i = 10\n    return bar(y='foo', return_state=True)",
+            "@flow\ndef foo():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return bar(y='foo', return_state=True)",
+            "@flow\ndef foo():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return bar(y='foo', return_state=True)",
+            "@flow\ndef foo():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return bar(y='foo', return_state=True)",
+            "@flow\ndef foo():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return bar(y='foo', return_state=True)"
+        ]
+    },
+    {
+        "func_name": "bar",
+        "original": "@task(result_storage=storage, persist_result=True, result_storage_key='{parameters[x]}-{parameters[y]}-bar')\ndef bar(x: int=1, y: str='test'):\n    return 1",
+        "mutated": [
+            "@task(result_storage=storage, persist_result=True, result_storage_key='{parameters[x]}-{parameters[y]}-bar')\ndef bar(x: int=1, y: str='test'):\n    if False:\n        i = 10\n    return 1",
+            "@task(result_storage=storage, persist_result=True, result_storage_key='{parameters[x]}-{parameters[y]}-bar')\ndef bar(x: int=1, y: str='test'):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return 1",
+            "@task(result_storage=storage, persist_result=True, result_storage_key='{parameters[x]}-{parameters[y]}-bar')\ndef bar(x: int=1, y: str='test'):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return 1",
+            "@task(result_storage=storage, persist_result=True, result_storage_key='{parameters[x]}-{parameters[y]}-bar')\ndef bar(x: int=1, y: str='test'):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return 1",
+            "@task(result_storage=storage, persist_result=True, result_storage_key='{parameters[x]}-{parameters[y]}-bar')\ndef bar(x: int=1, y: str='test'):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return 1"
+        ]
+    },
+    {
+        "func_name": "foo",
+        "original": "@flow\ndef foo():\n    return bar(y='foo', return_state=True)",
+        "mutated": [
+            "@flow\ndef foo():\n    if False:\n        i = 10\n    return bar(y='foo', return_state=True)",
+            "@flow\ndef foo():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return bar(y='foo', return_state=True)",
+            "@flow\ndef foo():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return bar(y='foo', return_state=True)",
+            "@flow\ndef foo():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return bar(y='foo', return_state=True)",
+            "@flow\ndef foo():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return bar(y='foo', return_state=True)"
+        ]
+    },
+    {
+        "func_name": "bar",
+        "original": "@task(result_storage=storage, persist_result=True, result_storage_key='{flow_run.flow_name}__bar')\ndef bar(x: int=1, y: str='test'):\n    return 1",
+        "mutated": [
+            "@task(result_storage=storage, persist_result=True, result_storage_key='{flow_run.flow_name}__bar')\ndef bar(x: int=1, y: str='test'):\n    if False:\n        i = 10\n    return 1",
+            "@task(result_storage=storage, persist_result=True, result_storage_key='{flow_run.flow_name}__bar')\ndef bar(x: int=1, y: str='test'):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return 1",
+            "@task(result_storage=storage, persist_result=True, result_storage_key='{flow_run.flow_name}__bar')\ndef bar(x: int=1, y: str='test'):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return 1",
+            "@task(result_storage=storage, persist_result=True, result_storage_key='{flow_run.flow_name}__bar')\ndef bar(x: int=1, y: str='test'):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return 1",
+            "@task(result_storage=storage, persist_result=True, result_storage_key='{flow_run.flow_name}__bar')\ndef bar(x: int=1, y: str='test'):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return 1"
+        ]
+    },
+    {
+        "func_name": "foo",
+        "original": "@flow\ndef foo():\n    return bar(return_state=True)",
+        "mutated": [
+            "@flow\ndef foo():\n    if False:\n        i = 10\n    return bar(return_state=True)",
+            "@flow\ndef foo():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return bar(return_state=True)",
+            "@flow\ndef foo():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return bar(return_state=True)",
+            "@flow\ndef foo():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return bar(return_state=True)",
+            "@flow\ndef foo():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return bar(return_state=True)"
+        ]
+    },
+    {
+        "func_name": "bar",
+        "original": "@task\ndef bar():\n    return None",
+        "mutated": [
+            "@task\ndef bar():\n    if False:\n        i = 10\n    return None",
+            "@task\ndef bar():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return None",
+            "@task\ndef bar():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return None",
+            "@task\ndef bar():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return None",
+            "@task\ndef bar():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return None"
+        ]
+    },
+    {
+        "func_name": "foo",
+        "original": "@flow\ndef foo():\n    return bar(return_state=True)",
+        "mutated": [
+            "@flow\ndef foo():\n    if False:\n        i = 10\n    return bar(return_state=True)",
+            "@flow\ndef foo():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return bar(return_state=True)",
+            "@flow\ndef foo():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return bar(return_state=True)",
+            "@flow\ndef foo():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return bar(return_state=True)",
+            "@flow\ndef foo():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return bar(return_state=True)"
+        ]
+    },
+    {
+        "func_name": "bar",
+        "original": "@task(persist_result=True, result_serializer='pickle', result_storage=LocalFileSystem(basepath=PREFECT_HOME.value()))\ndef bar():\n    return value",
+        "mutated": [
+            "@task(persist_result=True, result_serializer='pickle', result_storage=LocalFileSystem(basepath=PREFECT_HOME.value()))\ndef bar():\n    if False:\n        i = 10\n    return value",
+            "@task(persist_result=True, result_serializer='pickle', result_storage=LocalFileSystem(basepath=PREFECT_HOME.value()))\ndef bar():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return value",
+            "@task(persist_result=True, result_serializer='pickle', result_storage=LocalFileSystem(basepath=PREFECT_HOME.value()))\ndef bar():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return value",
+            "@task(persist_result=True, result_serializer='pickle', result_storage=LocalFileSystem(basepath=PREFECT_HOME.value()))\ndef bar():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return value",
+            "@task(persist_result=True, result_serializer='pickle', result_storage=LocalFileSystem(basepath=PREFECT_HOME.value()))\ndef bar():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return value"
+        ]
+    },
+    {
+        "func_name": "foo",
+        "original": "@flow\ndef foo():\n    return quote(bar(return_state=True))",
+        "mutated": [
+            "@flow\ndef foo():\n    if False:\n        i = 10\n    return quote(bar(return_state=True))",
+            "@flow\ndef foo():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return quote(bar(return_state=True))",
+            "@flow\ndef foo():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return quote(bar(return_state=True))",
+            "@flow\ndef foo():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return quote(bar(return_state=True))",
+            "@flow\ndef foo():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return quote(bar(return_state=True))"
+        ]
+    },
+    {
+        "func_name": "bar",
+        "original": "@task(persist_result=True)\ndef bar():\n    raise ValueError('Hello world')",
+        "mutated": [
+            "@task(persist_result=True)\ndef bar():\n    if False:\n        i = 10\n    raise ValueError('Hello world')",
+            "@task(persist_result=True)\ndef bar():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    raise ValueError('Hello world')",
+            "@task(persist_result=True)\ndef bar():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    raise ValueError('Hello world')",
+            "@task(persist_result=True)\ndef bar():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    raise ValueError('Hello world')",
+            "@task(persist_result=True)\ndef bar():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    raise ValueError('Hello world')"
+        ]
+    },
+    {
+        "func_name": "my_task",
+        "original": "@task(persist_result=persist_result)\ndef my_task():\n    return empty_type()",
+        "mutated": [
+            "@task(persist_result=persist_result)\ndef my_task():\n    if False:\n        i = 10\n    return empty_type()",
+            "@task(persist_result=persist_result)\ndef my_task():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return empty_type()",
+            "@task(persist_result=persist_result)\ndef my_task():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return empty_type()",
+            "@task(persist_result=persist_result)\ndef my_task():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return empty_type()",
+            "@task(persist_result=persist_result)\ndef my_task():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return empty_type()"
+        ]
+    },
+    {
+        "func_name": "my_flow",
+        "original": "@flow\ndef my_flow():\n    return quote(my_task())",
+        "mutated": [
+            "@flow\ndef my_flow():\n    if False:\n        i = 10\n    return quote(my_task())",
+            "@flow\ndef my_flow():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return quote(my_task())",
+            "@flow\ndef my_flow():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return quote(my_task())",
+            "@flow\ndef my_flow():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return quote(my_task())",
+            "@flow\ndef my_flow():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return quote(my_task())"
+        ]
+    },
+    {
+        "func_name": "test_task_empty_result_is_retained",
+        "original": "@pytest.mark.parametrize('empty_type', [dict, list])\n@pytest.mark.parametrize('persist_result', [True, False])\ndef test_task_empty_result_is_retained(persist_result, empty_type):\n\n    @task(persist_result=persist_result)\n    def my_task():\n        return empty_type()\n\n    @flow\n    def my_flow():\n        return quote(my_task())\n    result = my_flow().unquote()\n    assert result == empty_type()",
+        "mutated": [
+            "@pytest.mark.parametrize('empty_type', [dict, list])\n@pytest.mark.parametrize('persist_result', [True, False])\ndef test_task_empty_result_is_retained(persist_result, empty_type):\n    if False:\n        i = 10\n\n    @task(persist_result=persist_result)\n    def my_task():\n        return empty_type()\n\n    @flow\n    def my_flow():\n        return quote(my_task())\n    result = my_flow().unquote()\n    assert result == empty_type()",
+            "@pytest.mark.parametrize('empty_type', [dict, list])\n@pytest.mark.parametrize('persist_result', [True, False])\ndef test_task_empty_result_is_retained(persist_result, empty_type):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n\n    @task(persist_result=persist_result)\n    def my_task():\n        return empty_type()\n\n    @flow\n    def my_flow():\n        return quote(my_task())\n    result = my_flow().unquote()\n    assert result == empty_type()",
+            "@pytest.mark.parametrize('empty_type', [dict, list])\n@pytest.mark.parametrize('persist_result', [True, False])\ndef test_task_empty_result_is_retained(persist_result, empty_type):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n    @task(persist_result=persist_result)\n    def my_task():\n        return empty_type()\n\n    @flow\n    def my_flow():\n        return quote(my_task())\n    result = my_flow().unquote()\n    assert result == empty_type()",
+            "@pytest.mark.parametrize('empty_type', [dict, list])\n@pytest.mark.parametrize('persist_result', [True, False])\ndef test_task_empty_result_is_retained(persist_result, empty_type):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n\n    @task(persist_result=persist_result)\n    def my_task():\n        return empty_type()\n\n    @flow\n    def my_flow():\n        return quote(my_task())\n    result = my_flow().unquote()\n    assert result == empty_type()",
+            "@pytest.mark.parametrize('empty_type', [dict, list])\n@pytest.mark.parametrize('persist_result', [True, False])\ndef test_task_empty_result_is_retained(persist_result, empty_type):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n\n    @task(persist_result=persist_result)\n    def my_task():\n        return empty_type()\n\n    @flow\n    def my_flow():\n        return quote(my_task())\n    result = my_flow().unquote()\n    assert result == empty_type()"
+        ]
+    },
+    {
+        "func_name": "my_task",
+        "original": "@task(persist_result=persist_result)\ndef my_task():\n    return resultlike",
+        "mutated": [
+            "@task(persist_result=persist_result)\ndef my_task():\n    if False:\n        i = 10\n    return resultlike",
+            "@task(persist_result=persist_result)\ndef my_task():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return resultlike",
+            "@task(persist_result=persist_result)\ndef my_task():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return resultlike",
+            "@task(persist_result=persist_result)\ndef my_task():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return resultlike",
+            "@task(persist_result=persist_result)\ndef my_task():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return resultlike"
+        ]
+    },
+    {
+        "func_name": "my_flow",
+        "original": "@flow\ndef my_flow():\n    return quote(my_task())",
+        "mutated": [
+            "@flow\ndef my_flow():\n    if False:\n        i = 10\n    return quote(my_task())",
+            "@flow\ndef my_flow():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return quote(my_task())",
+            "@flow\ndef my_flow():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return quote(my_task())",
+            "@flow\ndef my_flow():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return quote(my_task())",
+            "@flow\ndef my_flow():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return quote(my_task())"
+        ]
+    },
+    {
+        "func_name": "test_task_resultlike_result_is_retained",
+        "original": "@pytest.mark.parametrize('resultlike', [{'type': 'foo'}, {'type': 'literal', 'user-stuff': 'bar'}, {'type': 'persisted'}])\n@pytest.mark.parametrize('persist_result', [True, False])\ndef test_task_resultlike_result_is_retained(persist_result, resultlike):\n    \"\"\"\n    Since Pydantic will coerce dictionaries into `BaseResult` types, we need to be sure\n    that user dicts that look like a bit like results do not cause problems\n    \"\"\"\n\n    @task(persist_result=persist_result)\n    def my_task():\n        return resultlike\n\n    @flow\n    def my_flow():\n        return quote(my_task())\n    result = my_flow().unquote()\n    assert result == resultlike",
+        "mutated": [
+            "@pytest.mark.parametrize('resultlike', [{'type': 'foo'}, {'type': 'literal', 'user-stuff': 'bar'}, {'type': 'persisted'}])\n@pytest.mark.parametrize('persist_result', [True, False])\ndef test_task_resultlike_result_is_retained(persist_result, resultlike):\n    if False:\n        i = 10\n    '\\n    Since Pydantic will coerce dictionaries into `BaseResult` types, we need to be sure\\n    that user dicts that look like a bit like results do not cause problems\\n    '\n\n    @task(persist_result=persist_result)\n    def my_task():\n        return resultlike\n\n    @flow\n    def my_flow():\n        return quote(my_task())\n    result = my_flow().unquote()\n    assert result == resultlike",
+            "@pytest.mark.parametrize('resultlike', [{'type': 'foo'}, {'type': 'literal', 'user-stuff': 'bar'}, {'type': 'persisted'}])\n@pytest.mark.parametrize('persist_result', [True, False])\ndef test_task_resultlike_result_is_retained(persist_result, resultlike):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    '\\n    Since Pydantic will coerce dictionaries into `BaseResult` types, we need to be sure\\n    that user dicts that look like a bit like results do not cause problems\\n    '\n\n    @task(persist_result=persist_result)\n    def my_task():\n        return resultlike\n\n    @flow\n    def my_flow():\n        return quote(my_task())\n    result = my_flow().unquote()\n    assert result == resultlike",
+            "@pytest.mark.parametrize('resultlike', [{'type': 'foo'}, {'type': 'literal', 'user-stuff': 'bar'}, {'type': 'persisted'}])\n@pytest.mark.parametrize('persist_result', [True, False])\ndef test_task_resultlike_result_is_retained(persist_result, resultlike):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    '\\n    Since Pydantic will coerce dictionaries into `BaseResult` types, we need to be sure\\n    that user dicts that look like a bit like results do not cause problems\\n    '\n\n    @task(persist_result=persist_result)\n    def my_task():\n        return resultlike\n\n    @flow\n    def my_flow():\n        return quote(my_task())\n    result = my_flow().unquote()\n    assert result == resultlike",
+            "@pytest.mark.parametrize('resultlike', [{'type': 'foo'}, {'type': 'literal', 'user-stuff': 'bar'}, {'type': 'persisted'}])\n@pytest.mark.parametrize('persist_result', [True, False])\ndef test_task_resultlike_result_is_retained(persist_result, resultlike):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    '\\n    Since Pydantic will coerce dictionaries into `BaseResult` types, we need to be sure\\n    that user dicts that look like a bit like results do not cause problems\\n    '\n\n    @task(persist_result=persist_result)\n    def my_task():\n        return resultlike\n\n    @flow\n    def my_flow():\n        return quote(my_task())\n    result = my_flow().unquote()\n    assert result == resultlike",
+            "@pytest.mark.parametrize('resultlike', [{'type': 'foo'}, {'type': 'literal', 'user-stuff': 'bar'}, {'type': 'persisted'}])\n@pytest.mark.parametrize('persist_result', [True, False])\ndef test_task_resultlike_result_is_retained(persist_result, resultlike):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    '\\n    Since Pydantic will coerce dictionaries into `BaseResult` types, we need to be sure\\n    that user dicts that look like a bit like results do not cause problems\\n    '\n\n    @task(persist_result=persist_result)\n    def my_task():\n        return resultlike\n\n    @flow\n    def my_flow():\n        return quote(my_task())\n    result = my_flow().unquote()\n    assert result == resultlike"
+        ]
+    }
+]

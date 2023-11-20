@@ -1,0 +1,35 @@
+[
+    {
+        "func_name": "f",
+        "original": "@micropython.bytecode\ndef f(x):\n    x and f(x - 1)",
+        "mutated": [
+            "@micropython.bytecode\ndef f(x):\n    if False:\n        i = 10\n    x and f(x - 1)",
+            "@micropython.bytecode\ndef f(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    x and f(x - 1)",
+            "@micropython.bytecode\ndef f(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    x and f(x - 1)",
+            "@micropython.bytecode\ndef f(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    x and f(x - 1)",
+            "@micropython.bytecode\ndef f(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    x and f(x - 1)"
+        ]
+    },
+    {
+        "func_name": "__init__",
+        "original": "def __init__(self, blocked):\n    self.blocked = blocked",
+        "mutated": [
+            "def __init__(self, blocked):\n    if False:\n        i = 10\n    self.blocked = blocked",
+            "def __init__(self, blocked):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    self.blocked = blocked",
+            "def __init__(self, blocked):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    self.blocked = blocked",
+            "def __init__(self, blocked):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    self.blocked = blocked",
+            "def __init__(self, blocked):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    self.blocked = blocked"
+        ]
+    },
+    {
+        "func_name": "write",
+        "original": "def write(self, data):\n    print('TestStream.write', data)\n    if self.blocked:\n        return None\n    return len(data)",
+        "mutated": [
+            "def write(self, data):\n    if False:\n        i = 10\n    print('TestStream.write', data)\n    if self.blocked:\n        return None\n    return len(data)",
+            "def write(self, data):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    print('TestStream.write', data)\n    if self.blocked:\n        return None\n    return len(data)",
+            "def write(self, data):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    print('TestStream.write', data)\n    if self.blocked:\n        return None\n    return len(data)",
+            "def write(self, data):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    print('TestStream.write', data)\n    if self.blocked:\n        return None\n    return len(data)",
+            "def write(self, data):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    print('TestStream.write', data)\n    if self.blocked:\n        return None\n    return len(data)"
+        ]
+    }
+]

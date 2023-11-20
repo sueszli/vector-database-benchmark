@@ -1,0 +1,24 @@
+[
+    {
+        "func_name": "load_ipython_extension",
+        "original": "def load_ipython_extension(ip):\n    ip.push(some_vars)",
+        "mutated": [
+            "def load_ipython_extension(ip):\n    if False:\n        i = 10\n    ip.push(some_vars)",
+            "def load_ipython_extension(ip):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    ip.push(some_vars)",
+            "def load_ipython_extension(ip):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    ip.push(some_vars)",
+            "def load_ipython_extension(ip):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    ip.push(some_vars)",
+            "def load_ipython_extension(ip):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    ip.push(some_vars)"
+        ]
+    },
+    {
+        "func_name": "unload_ipython_extension",
+        "original": "def unload_ipython_extension(ip):\n    ip.drop_by_id(some_vars)",
+        "mutated": [
+            "def unload_ipython_extension(ip):\n    if False:\n        i = 10\n    ip.drop_by_id(some_vars)",
+            "def unload_ipython_extension(ip):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    ip.drop_by_id(some_vars)",
+            "def unload_ipython_extension(ip):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    ip.drop_by_id(some_vars)",
+            "def unload_ipython_extension(ip):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    ip.drop_by_id(some_vars)",
+            "def unload_ipython_extension(ip):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    ip.drop_by_id(some_vars)"
+        ]
+    }
+]

@@ -1,0 +1,35 @@
+[
+    {
+        "func_name": "rf_logger",
+        "original": "def rf_logger():\n    _log_a_lot(logger.info)",
+        "mutated": [
+            "def rf_logger():\n    if False:\n        i = 10\n    _log_a_lot(logger.info)",
+            "def rf_logger():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    _log_a_lot(logger.info)",
+            "def rf_logger():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    _log_a_lot(logger.info)",
+            "def rf_logger():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    _log_a_lot(logger.info)",
+            "def rf_logger():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    _log_a_lot(logger.info)"
+        ]
+    },
+    {
+        "func_name": "python_logger",
+        "original": "def python_logger():\n    _log_a_lot(logging.info)",
+        "mutated": [
+            "def python_logger():\n    if False:\n        i = 10\n    _log_a_lot(logging.info)",
+            "def python_logger():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    _log_a_lot(logging.info)",
+            "def python_logger():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    _log_a_lot(logging.info)",
+            "def python_logger():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    _log_a_lot(logging.info)",
+            "def python_logger():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    _log_a_lot(logging.info)"
+        ]
+    },
+    {
+        "func_name": "_log_a_lot",
+        "original": "def _log_a_lot(info):\n    msg = MSG\n    sleep = time.sleep\n    current = time.time\n    end = current() + 1\n    while current() < end:\n        info(msg)\n        sleep(0)\n    raise AssertionError('Execution should have been stopped by timeout.')",
+        "mutated": [
+            "def _log_a_lot(info):\n    if False:\n        i = 10\n    msg = MSG\n    sleep = time.sleep\n    current = time.time\n    end = current() + 1\n    while current() < end:\n        info(msg)\n        sleep(0)\n    raise AssertionError('Execution should have been stopped by timeout.')",
+            "def _log_a_lot(info):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    msg = MSG\n    sleep = time.sleep\n    current = time.time\n    end = current() + 1\n    while current() < end:\n        info(msg)\n        sleep(0)\n    raise AssertionError('Execution should have been stopped by timeout.')",
+            "def _log_a_lot(info):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    msg = MSG\n    sleep = time.sleep\n    current = time.time\n    end = current() + 1\n    while current() < end:\n        info(msg)\n        sleep(0)\n    raise AssertionError('Execution should have been stopped by timeout.')",
+            "def _log_a_lot(info):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    msg = MSG\n    sleep = time.sleep\n    current = time.time\n    end = current() + 1\n    while current() < end:\n        info(msg)\n        sleep(0)\n    raise AssertionError('Execution should have been stopped by timeout.')",
+            "def _log_a_lot(info):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    msg = MSG\n    sleep = time.sleep\n    current = time.time\n    end = current() + 1\n    while current() < end:\n        info(msg)\n        sleep(0)\n    raise AssertionError('Execution should have been stopped by timeout.')"
+        ]
+    }
+]

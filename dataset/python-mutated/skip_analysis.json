@@ -1,0 +1,35 @@
+[
+    {
+        "func_name": "taint_here",
+        "original": "def taint_here(self, x):\n    _test_sink(x)",
+        "mutated": [
+            "def taint_here(self, x):\n    if False:\n        i = 10\n    _test_sink(x)",
+            "def taint_here(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    _test_sink(x)",
+            "def taint_here(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    _test_sink(x)",
+            "def taint_here(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    _test_sink(x)",
+            "def taint_here(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    _test_sink(x)"
+        ]
+    },
+    {
+        "func_name": "tito_here",
+        "original": "def tito_here(self, x):\n    return x",
+        "mutated": [
+            "def tito_here(self, x):\n    if False:\n        i = 10\n    return x",
+            "def tito_here(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return x",
+            "def tito_here(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return x",
+            "def tito_here(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return x",
+            "def tito_here(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return x"
+        ]
+    },
+    {
+        "func_name": "no_issue_due_to_skip",
+        "original": "def no_issue_due_to_skip():\n    x = _test_source()\n    skip = SkipMe()\n    skip.taint_here(x)\n    _test_sink(skip.tito_here(x))",
+        "mutated": [
+            "def no_issue_due_to_skip():\n    if False:\n        i = 10\n    x = _test_source()\n    skip = SkipMe()\n    skip.taint_here(x)\n    _test_sink(skip.tito_here(x))",
+            "def no_issue_due_to_skip():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    x = _test_source()\n    skip = SkipMe()\n    skip.taint_here(x)\n    _test_sink(skip.tito_here(x))",
+            "def no_issue_due_to_skip():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    x = _test_source()\n    skip = SkipMe()\n    skip.taint_here(x)\n    _test_sink(skip.tito_here(x))",
+            "def no_issue_due_to_skip():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    x = _test_source()\n    skip = SkipMe()\n    skip.taint_here(x)\n    _test_sink(skip.tito_here(x))",
+            "def no_issue_due_to_skip():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    x = _test_source()\n    skip = SkipMe()\n    skip.taint_here(x)\n    _test_sink(skip.tito_here(x))"
+        ]
+    }
+]

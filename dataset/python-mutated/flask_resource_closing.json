@@ -1,0 +1,24 @@
+[
+    {
+        "func_name": "init_service",
+        "original": "def init_service() -> Service:\n    print('Init service')\n    yield Service()\n    print('Shutdown service')",
+        "mutated": [
+            "def init_service() -> Service:\n    if False:\n        i = 10\n    print('Init service')\n    yield Service()\n    print('Shutdown service')",
+            "def init_service() -> Service:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    print('Init service')\n    yield Service()\n    print('Shutdown service')",
+            "def init_service() -> Service:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    print('Init service')\n    yield Service()\n    print('Shutdown service')",
+            "def init_service() -> Service:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    print('Init service')\n    yield Service()\n    print('Shutdown service')",
+            "def init_service() -> Service:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    print('Init service')\n    yield Service()\n    print('Shutdown service')"
+        ]
+    },
+    {
+        "func_name": "index_view",
+        "original": "@inject\ndef index_view(service: Service=Closing[Provide[Container.service]]):\n    assert service is current_app.container.service()\n    return 'Hello  World!'",
+        "mutated": [
+            "@inject\ndef index_view(service: Service=Closing[Provide[Container.service]]):\n    if False:\n        i = 10\n    assert service is current_app.container.service()\n    return 'Hello  World!'",
+            "@inject\ndef index_view(service: Service=Closing[Provide[Container.service]]):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    assert service is current_app.container.service()\n    return 'Hello  World!'",
+            "@inject\ndef index_view(service: Service=Closing[Provide[Container.service]]):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    assert service is current_app.container.service()\n    return 'Hello  World!'",
+            "@inject\ndef index_view(service: Service=Closing[Provide[Container.service]]):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    assert service is current_app.container.service()\n    return 'Hello  World!'",
+            "@inject\ndef index_view(service: Service=Closing[Provide[Container.service]]):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    assert service is current_app.container.service()\n    return 'Hello  World!'"
+        ]
+    }
+]

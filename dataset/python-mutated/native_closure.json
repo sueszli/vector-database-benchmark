@@ -1,0 +1,68 @@
+[
+    {
+        "func_name": "g",
+        "original": "@micropython.native\ndef g():\n    nonlocal x\n    return x",
+        "mutated": [
+            "@micropython.native\ndef g():\n    if False:\n        i = 10\n    nonlocal x\n    return x",
+            "@micropython.native\ndef g():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    nonlocal x\n    return x",
+            "@micropython.native\ndef g():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    nonlocal x\n    return x",
+            "@micropython.native\ndef g():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    nonlocal x\n    return x",
+            "@micropython.native\ndef g():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    nonlocal x\n    return x"
+        ]
+    },
+    {
+        "func_name": "f",
+        "original": "@micropython.native\ndef f():\n    x = 1\n\n    @micropython.native\n    def g():\n        nonlocal x\n        return x\n    return g",
+        "mutated": [
+            "@micropython.native\ndef f():\n    if False:\n        i = 10\n    x = 1\n\n    @micropython.native\n    def g():\n        nonlocal x\n        return x\n    return g",
+            "@micropython.native\ndef f():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    x = 1\n\n    @micropython.native\n    def g():\n        nonlocal x\n        return x\n    return g",
+            "@micropython.native\ndef f():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    x = 1\n\n    @micropython.native\n    def g():\n        nonlocal x\n        return x\n    return g",
+            "@micropython.native\ndef f():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    x = 1\n\n    @micropython.native\n    def g():\n        nonlocal x\n        return x\n    return g",
+            "@micropython.native\ndef f():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    x = 1\n\n    @micropython.native\n    def g():\n        nonlocal x\n        return x\n    return g"
+        ]
+    },
+    {
+        "func_name": "g",
+        "original": "@micropython.native\ndef g():\n    nonlocal x\n    return x",
+        "mutated": [
+            "@micropython.native\ndef g():\n    if False:\n        i = 10\n    nonlocal x\n    return x",
+            "@micropython.native\ndef g():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    nonlocal x\n    return x",
+            "@micropython.native\ndef g():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    nonlocal x\n    return x",
+            "@micropython.native\ndef g():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    nonlocal x\n    return x",
+            "@micropython.native\ndef g():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    nonlocal x\n    return x"
+        ]
+    },
+    {
+        "func_name": "f",
+        "original": "@micropython.native\ndef f(x):\n\n    @micropython.native\n    def g():\n        nonlocal x\n        return x\n    return g",
+        "mutated": [
+            "@micropython.native\ndef f(x):\n    if False:\n        i = 10\n\n    @micropython.native\n    def g():\n        nonlocal x\n        return x\n    return g",
+            "@micropython.native\ndef f(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n\n    @micropython.native\n    def g():\n        nonlocal x\n        return x\n    return g",
+            "@micropython.native\ndef f(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n    @micropython.native\n    def g():\n        nonlocal x\n        return x\n    return g",
+            "@micropython.native\ndef f(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n\n    @micropython.native\n    def g():\n        nonlocal x\n        return x\n    return g",
+            "@micropython.native\ndef f(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n\n    @micropython.native\n    def g():\n        nonlocal x\n        return x\n    return g"
+        ]
+    },
+    {
+        "func_name": "g",
+        "original": "@micropython.native\ndef g(z):\n    return x + y + z",
+        "mutated": [
+            "@micropython.native\ndef g(z):\n    if False:\n        i = 10\n    return x + y + z",
+            "@micropython.native\ndef g(z):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return x + y + z",
+            "@micropython.native\ndef g(z):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return x + y + z",
+            "@micropython.native\ndef g(z):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return x + y + z",
+            "@micropython.native\ndef g(z):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return x + y + z"
+        ]
+    },
+    {
+        "func_name": "f",
+        "original": "@micropython.native\ndef f(x):\n    y = 2 * x\n\n    @micropython.native\n    def g(z):\n        return x + y + z\n    return g",
+        "mutated": [
+            "@micropython.native\ndef f(x):\n    if False:\n        i = 10\n    y = 2 * x\n\n    @micropython.native\n    def g(z):\n        return x + y + z\n    return g",
+            "@micropython.native\ndef f(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    y = 2 * x\n\n    @micropython.native\n    def g(z):\n        return x + y + z\n    return g",
+            "@micropython.native\ndef f(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    y = 2 * x\n\n    @micropython.native\n    def g(z):\n        return x + y + z\n    return g",
+            "@micropython.native\ndef f(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    y = 2 * x\n\n    @micropython.native\n    def g(z):\n        return x + y + z\n    return g",
+            "@micropython.native\ndef f(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    y = 2 * x\n\n    @micropython.native\n    def g(z):\n        return x + y + z\n    return g"
+        ]
+    }
+]

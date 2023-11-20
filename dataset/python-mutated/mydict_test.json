@@ -1,0 +1,57 @@
+[
+    {
+        "func_name": "test_init",
+        "original": "def test_init(self):\n    d = Dict(a=1, b='test')\n    self.assertEqual(d.a, 1)\n    self.assertEqual(d.b, 'test')\n    self.assertTrue(isinstance(d, dict))",
+        "mutated": [
+            "def test_init(self):\n    if False:\n        i = 10\n    d = Dict(a=1, b='test')\n    self.assertEqual(d.a, 1)\n    self.assertEqual(d.b, 'test')\n    self.assertTrue(isinstance(d, dict))",
+            "def test_init(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    d = Dict(a=1, b='test')\n    self.assertEqual(d.a, 1)\n    self.assertEqual(d.b, 'test')\n    self.assertTrue(isinstance(d, dict))",
+            "def test_init(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    d = Dict(a=1, b='test')\n    self.assertEqual(d.a, 1)\n    self.assertEqual(d.b, 'test')\n    self.assertTrue(isinstance(d, dict))",
+            "def test_init(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    d = Dict(a=1, b='test')\n    self.assertEqual(d.a, 1)\n    self.assertEqual(d.b, 'test')\n    self.assertTrue(isinstance(d, dict))",
+            "def test_init(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    d = Dict(a=1, b='test')\n    self.assertEqual(d.a, 1)\n    self.assertEqual(d.b, 'test')\n    self.assertTrue(isinstance(d, dict))"
+        ]
+    },
+    {
+        "func_name": "test_key",
+        "original": "def test_key(self):\n    d = Dict()\n    d['key'] = 'value'\n    self.assertEqual(d.key, 'value')",
+        "mutated": [
+            "def test_key(self):\n    if False:\n        i = 10\n    d = Dict()\n    d['key'] = 'value'\n    self.assertEqual(d.key, 'value')",
+            "def test_key(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    d = Dict()\n    d['key'] = 'value'\n    self.assertEqual(d.key, 'value')",
+            "def test_key(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    d = Dict()\n    d['key'] = 'value'\n    self.assertEqual(d.key, 'value')",
+            "def test_key(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    d = Dict()\n    d['key'] = 'value'\n    self.assertEqual(d.key, 'value')",
+            "def test_key(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    d = Dict()\n    d['key'] = 'value'\n    self.assertEqual(d.key, 'value')"
+        ]
+    },
+    {
+        "func_name": "test_attr",
+        "original": "def test_attr(self):\n    d = Dict()\n    d.key = 'value'\n    self.assertTrue('key' in d)\n    self.assertEqual(d['key'], 'value')",
+        "mutated": [
+            "def test_attr(self):\n    if False:\n        i = 10\n    d = Dict()\n    d.key = 'value'\n    self.assertTrue('key' in d)\n    self.assertEqual(d['key'], 'value')",
+            "def test_attr(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    d = Dict()\n    d.key = 'value'\n    self.assertTrue('key' in d)\n    self.assertEqual(d['key'], 'value')",
+            "def test_attr(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    d = Dict()\n    d.key = 'value'\n    self.assertTrue('key' in d)\n    self.assertEqual(d['key'], 'value')",
+            "def test_attr(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    d = Dict()\n    d.key = 'value'\n    self.assertTrue('key' in d)\n    self.assertEqual(d['key'], 'value')",
+            "def test_attr(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    d = Dict()\n    d.key = 'value'\n    self.assertTrue('key' in d)\n    self.assertEqual(d['key'], 'value')"
+        ]
+    },
+    {
+        "func_name": "test_keyerror",
+        "original": "def test_keyerror(self):\n    d = Dict()\n    with self.assertRaises(KeyError):\n        value = d['empty']",
+        "mutated": [
+            "def test_keyerror(self):\n    if False:\n        i = 10\n    d = Dict()\n    with self.assertRaises(KeyError):\n        value = d['empty']",
+            "def test_keyerror(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    d = Dict()\n    with self.assertRaises(KeyError):\n        value = d['empty']",
+            "def test_keyerror(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    d = Dict()\n    with self.assertRaises(KeyError):\n        value = d['empty']",
+            "def test_keyerror(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    d = Dict()\n    with self.assertRaises(KeyError):\n        value = d['empty']",
+            "def test_keyerror(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    d = Dict()\n    with self.assertRaises(KeyError):\n        value = d['empty']"
+        ]
+    },
+    {
+        "func_name": "test_attrerror",
+        "original": "def test_attrerror(self):\n    d = Dict()\n    with self.assertRaises(AttributeError):\n        value = d.empty",
+        "mutated": [
+            "def test_attrerror(self):\n    if False:\n        i = 10\n    d = Dict()\n    with self.assertRaises(AttributeError):\n        value = d.empty",
+            "def test_attrerror(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    d = Dict()\n    with self.assertRaises(AttributeError):\n        value = d.empty",
+            "def test_attrerror(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    d = Dict()\n    with self.assertRaises(AttributeError):\n        value = d.empty",
+            "def test_attrerror(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    d = Dict()\n    with self.assertRaises(AttributeError):\n        value = d.empty",
+            "def test_attrerror(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    d = Dict()\n    with self.assertRaises(AttributeError):\n        value = d.empty"
+        ]
+    }
+]

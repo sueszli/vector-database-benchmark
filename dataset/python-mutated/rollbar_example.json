@@ -1,0 +1,24 @@
+[
+    {
+        "func_name": "default",
+        "original": "def default(self, request, exception):\n    rollbar.report_message(str(exception))\n    return super().default(request, exception)",
+        "mutated": [
+            "def default(self, request, exception):\n    if False:\n        i = 10\n    rollbar.report_message(str(exception))\n    return super().default(request, exception)",
+            "def default(self, request, exception):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    rollbar.report_message(str(exception))\n    return super().default(request, exception)",
+            "def default(self, request, exception):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    rollbar.report_message(str(exception))\n    return super().default(request, exception)",
+            "def default(self, request, exception):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    rollbar.report_message(str(exception))\n    return super().default(request, exception)",
+            "def default(self, request, exception):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    rollbar.report_message(str(exception))\n    return super().default(request, exception)"
+        ]
+    },
+    {
+        "func_name": "create_error",
+        "original": "@app.route('/raise')\ndef create_error(request):\n    raise SanicException(\"I was here and I don't like where I am\")",
+        "mutated": [
+            "@app.route('/raise')\ndef create_error(request):\n    if False:\n        i = 10\n    raise SanicException(\"I was here and I don't like where I am\")",
+            "@app.route('/raise')\ndef create_error(request):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    raise SanicException(\"I was here and I don't like where I am\")",
+            "@app.route('/raise')\ndef create_error(request):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    raise SanicException(\"I was here and I don't like where I am\")",
+            "@app.route('/raise')\ndef create_error(request):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    raise SanicException(\"I was here and I don't like where I am\")",
+            "@app.route('/raise')\ndef create_error(request):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    raise SanicException(\"I was here and I don't like where I am\")"
+        ]
+    }
+]

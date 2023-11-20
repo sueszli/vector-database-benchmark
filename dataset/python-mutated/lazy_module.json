@@ -1,0 +1,46 @@
+[
+    {
+        "func_name": "__init__",
+        "original": "def __init__(self, name):\n    self.__name = name",
+        "mutated": [
+            "def __init__(self, name):\n    if False:\n        i = 10\n    self.__name = name",
+            "def __init__(self, name):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    self.__name = name",
+            "def __init__(self, name):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    self.__name = name",
+            "def __init__(self, name):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    self.__name = name",
+            "def __init__(self, name):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    self.__name = name"
+        ]
+    },
+    {
+        "func_name": "_do_import",
+        "original": "def _do_import(self):\n    import Orange\n    from importlib import import_module\n    mod = import_module('Orange.' + self.__name, package='Orange')\n    setattr(Orange, self.__name, mod)\n    return mod",
+        "mutated": [
+            "def _do_import(self):\n    if False:\n        i = 10\n    import Orange\n    from importlib import import_module\n    mod = import_module('Orange.' + self.__name, package='Orange')\n    setattr(Orange, self.__name, mod)\n    return mod",
+            "def _do_import(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    import Orange\n    from importlib import import_module\n    mod = import_module('Orange.' + self.__name, package='Orange')\n    setattr(Orange, self.__name, mod)\n    return mod",
+            "def _do_import(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    import Orange\n    from importlib import import_module\n    mod = import_module('Orange.' + self.__name, package='Orange')\n    setattr(Orange, self.__name, mod)\n    return mod",
+            "def _do_import(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    import Orange\n    from importlib import import_module\n    mod = import_module('Orange.' + self.__name, package='Orange')\n    setattr(Orange, self.__name, mod)\n    return mod",
+            "def _do_import(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    import Orange\n    from importlib import import_module\n    mod = import_module('Orange.' + self.__name, package='Orange')\n    setattr(Orange, self.__name, mod)\n    return mod"
+        ]
+    },
+    {
+        "func_name": "__getattr__",
+        "original": "def __getattr__(self, key):\n    return getattr(self._do_import(), key)",
+        "mutated": [
+            "def __getattr__(self, key):\n    if False:\n        i = 10\n    return getattr(self._do_import(), key)",
+            "def __getattr__(self, key):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return getattr(self._do_import(), key)",
+            "def __getattr__(self, key):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return getattr(self._do_import(), key)",
+            "def __getattr__(self, key):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return getattr(self._do_import(), key)",
+            "def __getattr__(self, key):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return getattr(self._do_import(), key)"
+        ]
+    },
+    {
+        "func_name": "__dir__",
+        "original": "def __dir__(self):\n    return list(self._do_import().__dict__)",
+        "mutated": [
+            "def __dir__(self):\n    if False:\n        i = 10\n    return list(self._do_import().__dict__)",
+            "def __dir__(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return list(self._do_import().__dict__)",
+            "def __dir__(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return list(self._do_import().__dict__)",
+            "def __dir__(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return list(self._do_import().__dict__)",
+            "def __dir__(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return list(self._do_import().__dict__)"
+        ]
+    }
+]

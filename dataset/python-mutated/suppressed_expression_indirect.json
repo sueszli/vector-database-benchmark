@@ -1,0 +1,46 @@
+[
+    {
+        "func_name": "a",
+        "original": "def a(x, y):\n    x / y",
+        "mutated": [
+            "def a(x, y):\n    if False:\n        i = 10\n    x / y",
+            "def a(x, y):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    x / y",
+            "def a(x, y):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    x / y",
+            "def a(x, y):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    x / y",
+            "def a(x, y):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    x / y"
+        ]
+    },
+    {
+        "func_name": "b",
+        "original": "def b():\n    try:\n        a(1, 0)\n    except ZeroDivisionError as e:\n        raise ValueError('NOK') from e",
+        "mutated": [
+            "def b():\n    if False:\n        i = 10\n    try:\n        a(1, 0)\n    except ZeroDivisionError as e:\n        raise ValueError('NOK') from e",
+            "def b():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    try:\n        a(1, 0)\n    except ZeroDivisionError as e:\n        raise ValueError('NOK') from e",
+            "def b():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    try:\n        a(1, 0)\n    except ZeroDivisionError as e:\n        raise ValueError('NOK') from e",
+            "def b():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    try:\n        a(1, 0)\n    except ZeroDivisionError as e:\n        raise ValueError('NOK') from e",
+            "def b():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    try:\n        a(1, 0)\n    except ZeroDivisionError as e:\n        raise ValueError('NOK') from e"
+        ]
+    },
+    {
+        "func_name": "c_decorated",
+        "original": "@logger.catch\ndef c_decorated():\n    b()",
+        "mutated": [
+            "@logger.catch\ndef c_decorated():\n    if False:\n        i = 10\n    b()",
+            "@logger.catch\ndef c_decorated():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    b()",
+            "@logger.catch\ndef c_decorated():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    b()",
+            "@logger.catch\ndef c_decorated():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    b()",
+            "@logger.catch\ndef c_decorated():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    b()"
+        ]
+    },
+    {
+        "func_name": "c_not_decorated",
+        "original": "def c_not_decorated():\n    b()",
+        "mutated": [
+            "def c_not_decorated():\n    if False:\n        i = 10\n    b()",
+            "def c_not_decorated():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    b()",
+            "def c_not_decorated():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    b()",
+            "def c_not_decorated():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    b()",
+            "def c_not_decorated():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    b()"
+        ]
+    }
+]

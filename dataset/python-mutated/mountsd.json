@@ -1,0 +1,24 @@
+[
+    {
+        "func_name": "mnt",
+        "original": "def mnt():\n    cs = Pin('P22', mode=Pin.OUT)\n    sd = SDCard(SPI(0), cs)\n    os.mount(sd, '/')",
+        "mutated": [
+            "def mnt():\n    if False:\n        i = 10\n    cs = Pin('P22', mode=Pin.OUT)\n    sd = SDCard(SPI(0), cs)\n    os.mount(sd, '/')",
+            "def mnt():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    cs = Pin('P22', mode=Pin.OUT)\n    sd = SDCard(SPI(0), cs)\n    os.mount(sd, '/')",
+            "def mnt():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    cs = Pin('P22', mode=Pin.OUT)\n    sd = SDCard(SPI(0), cs)\n    os.mount(sd, '/')",
+            "def mnt():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    cs = Pin('P22', mode=Pin.OUT)\n    sd = SDCard(SPI(0), cs)\n    os.mount(sd, '/')",
+            "def mnt():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    cs = Pin('P22', mode=Pin.OUT)\n    sd = SDCard(SPI(0), cs)\n    os.mount(sd, '/')"
+        ]
+    },
+    {
+        "func_name": "list",
+        "original": "def list():\n    files = os.listdir()\n    print(files)",
+        "mutated": [
+            "def list():\n    if False:\n        i = 10\n    files = os.listdir()\n    print(files)",
+            "def list():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    files = os.listdir()\n    print(files)",
+            "def list():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    files = os.listdir()\n    print(files)",
+            "def list():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    files = os.listdir()\n    print(files)",
+            "def list():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    files = os.listdir()\n    print(files)"
+        ]
+    }
+]

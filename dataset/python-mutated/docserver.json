@@ -1,0 +1,57 @@
+[
+    {
+        "func_name": "root",
+        "original": "@app.route('/')\ndef root():\n    return redirect(url_for('en/latest/index.html'))",
+        "mutated": [
+            "@app.route('/')\ndef root():\n    if False:\n        i = 10\n    return redirect(url_for('en/latest/index.html'))",
+            "@app.route('/')\ndef root():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return redirect(url_for('en/latest/index.html'))",
+            "@app.route('/')\ndef root():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return redirect(url_for('en/latest/index.html'))",
+            "@app.route('/')\ndef root():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return redirect(url_for('en/latest/index.html'))",
+            "@app.route('/')\ndef root():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return redirect(url_for('en/latest/index.html'))"
+        ]
+    },
+    {
+        "func_name": "switcher",
+        "original": "@app.route('/switcher.json')\ndef switcher():\n    return flask.send_from_directory(SPHINX_TOP, 'switcher.json')",
+        "mutated": [
+            "@app.route('/switcher.json')\ndef switcher():\n    if False:\n        i = 10\n    return flask.send_from_directory(SPHINX_TOP, 'switcher.json')",
+            "@app.route('/switcher.json')\ndef switcher():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return flask.send_from_directory(SPHINX_TOP, 'switcher.json')",
+            "@app.route('/switcher.json')\ndef switcher():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return flask.send_from_directory(SPHINX_TOP, 'switcher.json')",
+            "@app.route('/switcher.json')\ndef switcher():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return flask.send_from_directory(SPHINX_TOP, 'switcher.json')",
+            "@app.route('/switcher.json')\ndef switcher():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return flask.send_from_directory(SPHINX_TOP, 'switcher.json')"
+        ]
+    },
+    {
+        "func_name": "docs",
+        "original": "@app.route('/en/latest/<path:filename>')\ndef docs(filename):\n    return flask.send_from_directory(SPHINX_TOP / 'build' / 'html', filename)",
+        "mutated": [
+            "@app.route('/en/latest/<path:filename>')\ndef docs(filename):\n    if False:\n        i = 10\n    return flask.send_from_directory(SPHINX_TOP / 'build' / 'html', filename)",
+            "@app.route('/en/latest/<path:filename>')\ndef docs(filename):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return flask.send_from_directory(SPHINX_TOP / 'build' / 'html', filename)",
+            "@app.route('/en/latest/<path:filename>')\ndef docs(filename):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return flask.send_from_directory(SPHINX_TOP / 'build' / 'html', filename)",
+            "@app.route('/en/latest/<path:filename>')\ndef docs(filename):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return flask.send_from_directory(SPHINX_TOP / 'build' / 'html', filename)",
+            "@app.route('/en/latest/<path:filename>')\ndef docs(filename):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return flask.send_from_directory(SPHINX_TOP / 'build' / 'html', filename)"
+        ]
+    },
+    {
+        "func_name": "open_browser",
+        "original": "def open_browser():\n    webbrowser.open(VISIT_URL, new=2)",
+        "mutated": [
+            "def open_browser():\n    if False:\n        i = 10\n    webbrowser.open(VISIT_URL, new=2)",
+            "def open_browser():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    webbrowser.open(VISIT_URL, new=2)",
+            "def open_browser():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    webbrowser.open(VISIT_URL, new=2)",
+            "def open_browser():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    webbrowser.open(VISIT_URL, new=2)",
+            "def open_browser():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    webbrowser.open(VISIT_URL, new=2)"
+        ]
+    },
+    {
+        "func_name": "serve_http",
+        "original": "def serve_http():\n    global IOLOOP\n    IOLOOP = IOLoop().current()\n    http_server = HTTPServer(WSGIContainer(app))\n    http_server.listen(PORT)\n    IOLOOP.start()",
+        "mutated": [
+            "def serve_http():\n    if False:\n        i = 10\n    global IOLOOP\n    IOLOOP = IOLoop().current()\n    http_server = HTTPServer(WSGIContainer(app))\n    http_server.listen(PORT)\n    IOLOOP.start()",
+            "def serve_http():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    global IOLOOP\n    IOLOOP = IOLoop().current()\n    http_server = HTTPServer(WSGIContainer(app))\n    http_server.listen(PORT)\n    IOLOOP.start()",
+            "def serve_http():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    global IOLOOP\n    IOLOOP = IOLoop().current()\n    http_server = HTTPServer(WSGIContainer(app))\n    http_server.listen(PORT)\n    IOLOOP.start()",
+            "def serve_http():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    global IOLOOP\n    IOLOOP = IOLoop().current()\n    http_server = HTTPServer(WSGIContainer(app))\n    http_server.listen(PORT)\n    IOLOOP.start()",
+            "def serve_http():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    global IOLOOP\n    IOLOOP = IOLoop().current()\n    http_server = HTTPServer(WSGIContainer(app))\n    http_server.listen(PORT)\n    IOLOOP.start()"
+        ]
+    }
+]

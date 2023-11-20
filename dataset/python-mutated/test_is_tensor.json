@@ -1,0 +1,101 @@
+[
+    {
+        "func_name": "setUp",
+        "original": "def setUp(self):\n    paddle.disable_static()",
+        "mutated": [
+            "def setUp(self):\n    if False:\n        i = 10\n    paddle.disable_static()",
+            "def setUp(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    paddle.disable_static()",
+            "def setUp(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    paddle.disable_static()",
+            "def setUp(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    paddle.disable_static()",
+            "def setUp(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    paddle.disable_static()"
+        ]
+    },
+    {
+        "func_name": "tearDown",
+        "original": "def tearDown(self):\n    paddle.enable_static()",
+        "mutated": [
+            "def tearDown(self):\n    if False:\n        i = 10\n    paddle.enable_static()",
+            "def tearDown(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    paddle.enable_static()",
+            "def tearDown(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    paddle.enable_static()",
+            "def tearDown(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    paddle.enable_static()",
+            "def tearDown(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    paddle.enable_static()"
+        ]
+    },
+    {
+        "func_name": "test_is_tensor_real",
+        "original": "def test_is_tensor_real(self, dtype='float32'):\n    \"\"\"Test is_tensor api with a real tensor\"\"\"\n    x = paddle.rand([3, 2, 4], dtype=dtype)\n    self.assertTrue(paddle.is_tensor(x))",
+        "mutated": [
+            "def test_is_tensor_real(self, dtype='float32'):\n    if False:\n        i = 10\n    'Test is_tensor api with a real tensor'\n    x = paddle.rand([3, 2, 4], dtype=dtype)\n    self.assertTrue(paddle.is_tensor(x))",
+            "def test_is_tensor_real(self, dtype='float32'):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    'Test is_tensor api with a real tensor'\n    x = paddle.rand([3, 2, 4], dtype=dtype)\n    self.assertTrue(paddle.is_tensor(x))",
+            "def test_is_tensor_real(self, dtype='float32'):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    'Test is_tensor api with a real tensor'\n    x = paddle.rand([3, 2, 4], dtype=dtype)\n    self.assertTrue(paddle.is_tensor(x))",
+            "def test_is_tensor_real(self, dtype='float32'):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    'Test is_tensor api with a real tensor'\n    x = paddle.rand([3, 2, 4], dtype=dtype)\n    self.assertTrue(paddle.is_tensor(x))",
+            "def test_is_tensor_real(self, dtype='float32'):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    'Test is_tensor api with a real tensor'\n    x = paddle.rand([3, 2, 4], dtype=dtype)\n    self.assertTrue(paddle.is_tensor(x))"
+        ]
+    },
+    {
+        "func_name": "test_is_tensor_list",
+        "original": "def test_is_tensor_list(self, dtype='float32'):\n    \"\"\"Test is_tensor api with a list\"\"\"\n    x = [1, 2, 3]\n    self.assertFalse(paddle.is_tensor(x))",
+        "mutated": [
+            "def test_is_tensor_list(self, dtype='float32'):\n    if False:\n        i = 10\n    'Test is_tensor api with a list'\n    x = [1, 2, 3]\n    self.assertFalse(paddle.is_tensor(x))",
+            "def test_is_tensor_list(self, dtype='float32'):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    'Test is_tensor api with a list'\n    x = [1, 2, 3]\n    self.assertFalse(paddle.is_tensor(x))",
+            "def test_is_tensor_list(self, dtype='float32'):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    'Test is_tensor api with a list'\n    x = [1, 2, 3]\n    self.assertFalse(paddle.is_tensor(x))",
+            "def test_is_tensor_list(self, dtype='float32'):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    'Test is_tensor api with a list'\n    x = [1, 2, 3]\n    self.assertFalse(paddle.is_tensor(x))",
+            "def test_is_tensor_list(self, dtype='float32'):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    'Test is_tensor api with a list'\n    x = [1, 2, 3]\n    self.assertFalse(paddle.is_tensor(x))"
+        ]
+    },
+    {
+        "func_name": "test_is_tensor_number",
+        "original": "def test_is_tensor_number(self, dtype='float32'):\n    \"\"\"Test is_tensor api with a number\"\"\"\n    x = 5\n    self.assertFalse(paddle.is_tensor(x))",
+        "mutated": [
+            "def test_is_tensor_number(self, dtype='float32'):\n    if False:\n        i = 10\n    'Test is_tensor api with a number'\n    x = 5\n    self.assertFalse(paddle.is_tensor(x))",
+            "def test_is_tensor_number(self, dtype='float32'):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    'Test is_tensor api with a number'\n    x = 5\n    self.assertFalse(paddle.is_tensor(x))",
+            "def test_is_tensor_number(self, dtype='float32'):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    'Test is_tensor api with a number'\n    x = 5\n    self.assertFalse(paddle.is_tensor(x))",
+            "def test_is_tensor_number(self, dtype='float32'):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    'Test is_tensor api with a number'\n    x = 5\n    self.assertFalse(paddle.is_tensor(x))",
+            "def test_is_tensor_number(self, dtype='float32'):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    'Test is_tensor api with a number'\n    x = 5\n    self.assertFalse(paddle.is_tensor(x))"
+        ]
+    },
+    {
+        "func_name": "setUp",
+        "original": "def setUp(self):\n    paddle.enable_static()",
+        "mutated": [
+            "def setUp(self):\n    if False:\n        i = 10\n    paddle.enable_static()",
+            "def setUp(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    paddle.enable_static()",
+            "def setUp(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    paddle.enable_static()",
+            "def setUp(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    paddle.enable_static()",
+            "def setUp(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    paddle.enable_static()"
+        ]
+    },
+    {
+        "func_name": "tearDown",
+        "original": "def tearDown(self):\n    paddle.disable_static()",
+        "mutated": [
+            "def tearDown(self):\n    if False:\n        i = 10\n    paddle.disable_static()",
+            "def tearDown(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    paddle.disable_static()",
+            "def tearDown(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    paddle.disable_static()",
+            "def tearDown(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    paddle.disable_static()",
+            "def tearDown(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    paddle.disable_static()"
+        ]
+    },
+    {
+        "func_name": "test_is_tensor",
+        "original": "def test_is_tensor(self):\n    x = paddle.rand([3, 2, 4], dtype='float32')\n    self.assertTrue(paddle.is_tensor(x))",
+        "mutated": [
+            "def test_is_tensor(self):\n    if False:\n        i = 10\n    x = paddle.rand([3, 2, 4], dtype='float32')\n    self.assertTrue(paddle.is_tensor(x))",
+            "def test_is_tensor(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    x = paddle.rand([3, 2, 4], dtype='float32')\n    self.assertTrue(paddle.is_tensor(x))",
+            "def test_is_tensor(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    x = paddle.rand([3, 2, 4], dtype='float32')\n    self.assertTrue(paddle.is_tensor(x))",
+            "def test_is_tensor(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    x = paddle.rand([3, 2, 4], dtype='float32')\n    self.assertTrue(paddle.is_tensor(x))",
+            "def test_is_tensor(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    x = paddle.rand([3, 2, 4], dtype='float32')\n    self.assertTrue(paddle.is_tensor(x))"
+        ]
+    },
+    {
+        "func_name": "test_is_tensor_array",
+        "original": "def test_is_tensor_array(self):\n    x = paddle.tensor.create_array('float32')\n    self.assertTrue(paddle.is_tensor(x))",
+        "mutated": [
+            "def test_is_tensor_array(self):\n    if False:\n        i = 10\n    x = paddle.tensor.create_array('float32')\n    self.assertTrue(paddle.is_tensor(x))",
+            "def test_is_tensor_array(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    x = paddle.tensor.create_array('float32')\n    self.assertTrue(paddle.is_tensor(x))",
+            "def test_is_tensor_array(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    x = paddle.tensor.create_array('float32')\n    self.assertTrue(paddle.is_tensor(x))",
+            "def test_is_tensor_array(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    x = paddle.tensor.create_array('float32')\n    self.assertTrue(paddle.is_tensor(x))",
+            "def test_is_tensor_array(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    x = paddle.tensor.create_array('float32')\n    self.assertTrue(paddle.is_tensor(x))"
+        ]
+    }
+]

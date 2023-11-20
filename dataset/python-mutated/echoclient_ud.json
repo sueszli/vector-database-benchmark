@@ -1,0 +1,46 @@
+[
+    {
+        "func_name": "startProtocol",
+        "original": "def startProtocol(self):\n    self.transport.connect('127.0.0.1', 8000)\n    self.sendDatagram()",
+        "mutated": [
+            "def startProtocol(self):\n    if False:\n        i = 10\n    self.transport.connect('127.0.0.1', 8000)\n    self.sendDatagram()",
+            "def startProtocol(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    self.transport.connect('127.0.0.1', 8000)\n    self.sendDatagram()",
+            "def startProtocol(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    self.transport.connect('127.0.0.1', 8000)\n    self.sendDatagram()",
+            "def startProtocol(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    self.transport.connect('127.0.0.1', 8000)\n    self.sendDatagram()",
+            "def startProtocol(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    self.transport.connect('127.0.0.1', 8000)\n    self.sendDatagram()"
+        ]
+    },
+    {
+        "func_name": "sendDatagram",
+        "original": "def sendDatagram(self):\n    if len(self.strings):\n        datagram = self.strings.pop(0)\n        self.transport.write(datagram)\n    else:\n        reactor.stop()",
+        "mutated": [
+            "def sendDatagram(self):\n    if False:\n        i = 10\n    if len(self.strings):\n        datagram = self.strings.pop(0)\n        self.transport.write(datagram)\n    else:\n        reactor.stop()",
+            "def sendDatagram(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    if len(self.strings):\n        datagram = self.strings.pop(0)\n        self.transport.write(datagram)\n    else:\n        reactor.stop()",
+            "def sendDatagram(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    if len(self.strings):\n        datagram = self.strings.pop(0)\n        self.transport.write(datagram)\n    else:\n        reactor.stop()",
+            "def sendDatagram(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    if len(self.strings):\n        datagram = self.strings.pop(0)\n        self.transport.write(datagram)\n    else:\n        reactor.stop()",
+            "def sendDatagram(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    if len(self.strings):\n        datagram = self.strings.pop(0)\n        self.transport.write(datagram)\n    else:\n        reactor.stop()"
+        ]
+    },
+    {
+        "func_name": "datagramReceived",
+        "original": "def datagramReceived(self, datagram, host):\n    print('Datagram received: ', repr(datagram))\n    self.sendDatagram()",
+        "mutated": [
+            "def datagramReceived(self, datagram, host):\n    if False:\n        i = 10\n    print('Datagram received: ', repr(datagram))\n    self.sendDatagram()",
+            "def datagramReceived(self, datagram, host):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    print('Datagram received: ', repr(datagram))\n    self.sendDatagram()",
+            "def datagramReceived(self, datagram, host):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    print('Datagram received: ', repr(datagram))\n    self.sendDatagram()",
+            "def datagramReceived(self, datagram, host):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    print('Datagram received: ', repr(datagram))\n    self.sendDatagram()",
+            "def datagramReceived(self, datagram, host):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    print('Datagram received: ', repr(datagram))\n    self.sendDatagram()"
+        ]
+    },
+    {
+        "func_name": "main",
+        "original": "def main():\n    protocol = EchoClientDatagramProtocol()\n    reactor.listenUDP(0, protocol)\n    reactor.run()",
+        "mutated": [
+            "def main():\n    if False:\n        i = 10\n    protocol = EchoClientDatagramProtocol()\n    reactor.listenUDP(0, protocol)\n    reactor.run()",
+            "def main():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    protocol = EchoClientDatagramProtocol()\n    reactor.listenUDP(0, protocol)\n    reactor.run()",
+            "def main():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    protocol = EchoClientDatagramProtocol()\n    reactor.listenUDP(0, protocol)\n    reactor.run()",
+            "def main():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    protocol = EchoClientDatagramProtocol()\n    reactor.listenUDP(0, protocol)\n    reactor.run()",
+            "def main():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    protocol = EchoClientDatagramProtocol()\n    reactor.listenUDP(0, protocol)\n    reactor.run()"
+        ]
+    }
+]

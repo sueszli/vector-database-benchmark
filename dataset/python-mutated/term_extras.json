@@ -1,0 +1,24 @@
+[
+    {
+        "func_name": "ansi",
+        "original": "@VisiData.api\ndef ansi(*args):\n    os.write(1, b'\\x1b' + b''.join([str(x).encode('utf-8') for x in args]))",
+        "mutated": [
+            "@VisiData.api\ndef ansi(*args):\n    if False:\n        i = 10\n    os.write(1, b'\\x1b' + b''.join([str(x).encode('utf-8') for x in args]))",
+            "@VisiData.api\ndef ansi(*args):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    os.write(1, b'\\x1b' + b''.join([str(x).encode('utf-8') for x in args]))",
+            "@VisiData.api\ndef ansi(*args):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    os.write(1, b'\\x1b' + b''.join([str(x).encode('utf-8') for x in args]))",
+            "@VisiData.api\ndef ansi(*args):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    os.write(1, b'\\x1b' + b''.join([str(x).encode('utf-8') for x in args]))",
+            "@VisiData.api\ndef ansi(*args):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    os.write(1, b'\\x1b' + b''.join([str(x).encode('utf-8') for x in args]))"
+        ]
+    },
+    {
+        "func_name": "set_titlebar",
+        "original": "@VisiData.api\ndef set_titlebar(vd, title: str):\n    ansi(']2;', title, '\\x07')",
+        "mutated": [
+            "@VisiData.api\ndef set_titlebar(vd, title: str):\n    if False:\n        i = 10\n    ansi(']2;', title, '\\x07')",
+            "@VisiData.api\ndef set_titlebar(vd, title: str):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    ansi(']2;', title, '\\x07')",
+            "@VisiData.api\ndef set_titlebar(vd, title: str):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    ansi(']2;', title, '\\x07')",
+            "@VisiData.api\ndef set_titlebar(vd, title: str):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    ansi(']2;', title, '\\x07')",
+            "@VisiData.api\ndef set_titlebar(vd, title: str):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    ansi(']2;', title, '\\x07')"
+        ]
+    }
+]

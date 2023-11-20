@@ -1,0 +1,46 @@
+[
+    {
+        "func_name": "get",
+        "original": "def get(self, *args, **kwargs):\n    return self.echo_stuff()",
+        "mutated": [
+            "def get(self, *args, **kwargs):\n    if False:\n        i = 10\n    return self.echo_stuff()",
+            "def get(self, *args, **kwargs):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return self.echo_stuff()",
+            "def get(self, *args, **kwargs):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return self.echo_stuff()",
+            "def get(self, *args, **kwargs):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return self.echo_stuff()",
+            "def get(self, *args, **kwargs):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return self.echo_stuff()"
+        ]
+    },
+    {
+        "func_name": "post",
+        "original": "def post(self):\n    return self.echo_stuff()",
+        "mutated": [
+            "def post(self):\n    if False:\n        i = 10\n    return self.echo_stuff()",
+            "def post(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return self.echo_stuff()",
+            "def post(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return self.echo_stuff()",
+            "def post(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return self.echo_stuff()",
+            "def post(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return self.echo_stuff()"
+        ]
+    },
+    {
+        "func_name": "echo_stuff",
+        "original": "def echo_stuff(self):\n    ret_dict = {'foo': 'bar'}\n    attrs = ('token', 'start', 'connected', 'lowstate')\n    for attr in attrs:\n        ret_dict[attr] = getattr(self, attr)\n    self.write(self.serialize(ret_dict))\n    self.finish()",
+        "mutated": [
+            "def echo_stuff(self):\n    if False:\n        i = 10\n    ret_dict = {'foo': 'bar'}\n    attrs = ('token', 'start', 'connected', 'lowstate')\n    for attr in attrs:\n        ret_dict[attr] = getattr(self, attr)\n    self.write(self.serialize(ret_dict))\n    self.finish()",
+            "def echo_stuff(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    ret_dict = {'foo': 'bar'}\n    attrs = ('token', 'start', 'connected', 'lowstate')\n    for attr in attrs:\n        ret_dict[attr] = getattr(self, attr)\n    self.write(self.serialize(ret_dict))\n    self.finish()",
+            "def echo_stuff(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    ret_dict = {'foo': 'bar'}\n    attrs = ('token', 'start', 'connected', 'lowstate')\n    for attr in attrs:\n        ret_dict[attr] = getattr(self, attr)\n    self.write(self.serialize(ret_dict))\n    self.finish()",
+            "def echo_stuff(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    ret_dict = {'foo': 'bar'}\n    attrs = ('token', 'start', 'connected', 'lowstate')\n    for attr in attrs:\n        ret_dict[attr] = getattr(self, attr)\n    self.write(self.serialize(ret_dict))\n    self.finish()",
+            "def echo_stuff(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    ret_dict = {'foo': 'bar'}\n    attrs = ('token', 'start', 'connected', 'lowstate')\n    for attr in attrs:\n        ret_dict[attr] = getattr(self, attr)\n    self.write(self.serialize(ret_dict))\n    self.finish()"
+        ]
+    },
+    {
+        "func_name": "app_urls",
+        "original": "@pytest.fixture\ndef app_urls():\n    return [('/', StubHandler), ('/(.*)', StubHandler)]",
+        "mutated": [
+            "@pytest.fixture\ndef app_urls():\n    if False:\n        i = 10\n    return [('/', StubHandler), ('/(.*)', StubHandler)]",
+            "@pytest.fixture\ndef app_urls():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return [('/', StubHandler), ('/(.*)', StubHandler)]",
+            "@pytest.fixture\ndef app_urls():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return [('/', StubHandler), ('/(.*)', StubHandler)]",
+            "@pytest.fixture\ndef app_urls():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return [('/', StubHandler), ('/(.*)', StubHandler)]",
+            "@pytest.fixture\ndef app_urls():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return [('/', StubHandler), ('/(.*)', StubHandler)]"
+        ]
+    }
+]

@@ -1,0 +1,46 @@
+[
+    {
+        "func_name": "setUp",
+        "original": "def setUp(self):\n    self.raw_string = TextTag('raw but not cruel')",
+        "mutated": [
+            "def setUp(self):\n    if False:\n        i = 10\n    self.raw_string = TextTag('raw but not cruel')",
+            "def setUp(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    self.raw_string = TextTag('raw but not cruel')",
+            "def setUp(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    self.raw_string = TextTag('raw but not cruel')",
+            "def setUp(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    self.raw_string = TextTag('raw but not cruel')",
+            "def setUp(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    self.raw_string = TextTag('raw but not cruel')"
+        ]
+    },
+    {
+        "func_name": "test_italic",
+        "original": "def test_italic(self):\n    self.assertEqual(ItalicWrapper(self.raw_string).render(), '<i>raw but not cruel</i>')",
+        "mutated": [
+            "def test_italic(self):\n    if False:\n        i = 10\n    self.assertEqual(ItalicWrapper(self.raw_string).render(), '<i>raw but not cruel</i>')",
+            "def test_italic(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    self.assertEqual(ItalicWrapper(self.raw_string).render(), '<i>raw but not cruel</i>')",
+            "def test_italic(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    self.assertEqual(ItalicWrapper(self.raw_string).render(), '<i>raw but not cruel</i>')",
+            "def test_italic(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    self.assertEqual(ItalicWrapper(self.raw_string).render(), '<i>raw but not cruel</i>')",
+            "def test_italic(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    self.assertEqual(ItalicWrapper(self.raw_string).render(), '<i>raw but not cruel</i>')"
+        ]
+    },
+    {
+        "func_name": "test_bold",
+        "original": "def test_bold(self):\n    self.assertEqual(BoldWrapper(self.raw_string).render(), '<b>raw but not cruel</b>')",
+        "mutated": [
+            "def test_bold(self):\n    if False:\n        i = 10\n    self.assertEqual(BoldWrapper(self.raw_string).render(), '<b>raw but not cruel</b>')",
+            "def test_bold(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    self.assertEqual(BoldWrapper(self.raw_string).render(), '<b>raw but not cruel</b>')",
+            "def test_bold(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    self.assertEqual(BoldWrapper(self.raw_string).render(), '<b>raw but not cruel</b>')",
+            "def test_bold(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    self.assertEqual(BoldWrapper(self.raw_string).render(), '<b>raw but not cruel</b>')",
+            "def test_bold(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    self.assertEqual(BoldWrapper(self.raw_string).render(), '<b>raw but not cruel</b>')"
+        ]
+    },
+    {
+        "func_name": "test_mixed_bold_and_italic",
+        "original": "def test_mixed_bold_and_italic(self):\n    self.assertEqual(BoldWrapper(ItalicWrapper(self.raw_string)).render(), '<b><i>raw but not cruel</i></b>')",
+        "mutated": [
+            "def test_mixed_bold_and_italic(self):\n    if False:\n        i = 10\n    self.assertEqual(BoldWrapper(ItalicWrapper(self.raw_string)).render(), '<b><i>raw but not cruel</i></b>')",
+            "def test_mixed_bold_and_italic(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    self.assertEqual(BoldWrapper(ItalicWrapper(self.raw_string)).render(), '<b><i>raw but not cruel</i></b>')",
+            "def test_mixed_bold_and_italic(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    self.assertEqual(BoldWrapper(ItalicWrapper(self.raw_string)).render(), '<b><i>raw but not cruel</i></b>')",
+            "def test_mixed_bold_and_italic(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    self.assertEqual(BoldWrapper(ItalicWrapper(self.raw_string)).render(), '<b><i>raw but not cruel</i></b>')",
+            "def test_mixed_bold_and_italic(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    self.assertEqual(BoldWrapper(ItalicWrapper(self.raw_string)).render(), '<b><i>raw but not cruel</i></b>')"
+        ]
+    }
+]

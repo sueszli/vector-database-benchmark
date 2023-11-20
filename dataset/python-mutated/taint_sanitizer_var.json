@@ -1,0 +1,35 @@
+[
+    {
+        "func_name": "ok",
+        "original": "def ok():\n    x = source\n    sanitize(x)\n    sink(x)",
+        "mutated": [
+            "def ok():\n    if False:\n        i = 10\n    x = source\n    sanitize(x)\n    sink(x)",
+            "def ok():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    x = source\n    sanitize(x)\n    sink(x)",
+            "def ok():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    x = source\n    sanitize(x)\n    sink(x)",
+            "def ok():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    x = source\n    sanitize(x)\n    sink(x)",
+            "def ok():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    x = source\n    sanitize(x)\n    sink(x)"
+        ]
+    },
+    {
+        "func_name": "bad",
+        "original": "def bad():\n    x = source\n    sink(x)",
+        "mutated": [
+            "def bad():\n    if False:\n        i = 10\n    x = source\n    sink(x)",
+            "def bad():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    x = source\n    sink(x)",
+            "def bad():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    x = source\n    sink(x)",
+            "def bad():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    x = source\n    sink(x)",
+            "def bad():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    x = source\n    sink(x)"
+        ]
+    },
+    {
+        "func_name": "also_bad",
+        "original": "def also_bad():\n    x = source\n    sanitize(x)\n    x = source\n    sink(x)",
+        "mutated": [
+            "def also_bad():\n    if False:\n        i = 10\n    x = source\n    sanitize(x)\n    x = source\n    sink(x)",
+            "def also_bad():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    x = source\n    sanitize(x)\n    x = source\n    sink(x)",
+            "def also_bad():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    x = source\n    sanitize(x)\n    x = source\n    sink(x)",
+            "def also_bad():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    x = source\n    sanitize(x)\n    x = source\n    sink(x)",
+            "def also_bad():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    x = source\n    sanitize(x)\n    x = source\n    sink(x)"
+        ]
+    }
+]
