@@ -1,0 +1,35 @@
+[
+    {
+        "func_name": "__init__",
+        "original": "def __init__(self):\n    super().__init__()\n    self.attr_list = [torch.ones(3, 2), torch.ones(3, 2)]",
+        "mutated": [
+            "def __init__(self):\n    if False:\n        i = 10\n    super().__init__()\n    self.attr_list = [torch.ones(3, 2), torch.ones(3, 2)]",
+            "def __init__(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    super().__init__()\n    self.attr_list = [torch.ones(3, 2), torch.ones(3, 2)]",
+            "def __init__(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    super().__init__()\n    self.attr_list = [torch.ones(3, 2), torch.ones(3, 2)]",
+            "def __init__(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    super().__init__()\n    self.attr_list = [torch.ones(3, 2), torch.ones(3, 2)]",
+            "def __init__(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    super().__init__()\n    self.attr_list = [torch.ones(3, 2), torch.ones(3, 2)]"
+        ]
+    },
+    {
+        "func_name": "recreate_list",
+        "original": "def recreate_list(self):\n    return [torch.zeros(3, 2), torch.zeros(3, 2)]",
+        "mutated": [
+            "def recreate_list(self):\n    if False:\n        i = 10\n    return [torch.zeros(3, 2), torch.zeros(3, 2)]",
+            "def recreate_list(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return [torch.zeros(3, 2), torch.zeros(3, 2)]",
+            "def recreate_list(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return [torch.zeros(3, 2), torch.zeros(3, 2)]",
+            "def recreate_list(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return [torch.zeros(3, 2), torch.zeros(3, 2)]",
+            "def recreate_list(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return [torch.zeros(3, 2), torch.zeros(3, 2)]"
+        ]
+    },
+    {
+        "func_name": "forward",
+        "original": "def forward(self, x):\n    self.attr_list = self.recreate_list()\n    return x.sum() + self.attr_list[0].sum()",
+        "mutated": [
+            "def forward(self, x):\n    if False:\n        i = 10\n    self.attr_list = self.recreate_list()\n    return x.sum() + self.attr_list[0].sum()",
+            "def forward(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    self.attr_list = self.recreate_list()\n    return x.sum() + self.attr_list[0].sum()",
+            "def forward(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    self.attr_list = self.recreate_list()\n    return x.sum() + self.attr_list[0].sum()",
+            "def forward(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    self.attr_list = self.recreate_list()\n    return x.sum() + self.attr_list[0].sum()",
+            "def forward(self, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    self.attr_list = self.recreate_list()\n    return x.sum() + self.attr_list[0].sum()"
+        ]
+    }
+]

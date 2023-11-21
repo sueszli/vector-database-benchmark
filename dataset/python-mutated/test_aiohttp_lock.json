@@ -1,0 +1,24 @@
+[
+    {
+        "func_name": "app",
+        "original": "@pytest.fixture\ndef app():\n    app = web.Application()\n    app.router.add_get('/websocket', websocket_handler)\n    return app",
+        "mutated": [
+            "@pytest.fixture\ndef app():\n    if False:\n        i = 10\n    app = web.Application()\n    app.router.add_get('/websocket', websocket_handler)\n    return app",
+            "@pytest.fixture\ndef app():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    app = web.Application()\n    app.router.add_get('/websocket', websocket_handler)\n    return app",
+            "@pytest.fixture\ndef app():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    app = web.Application()\n    app.router.add_get('/websocket', websocket_handler)\n    return app",
+            "@pytest.fixture\ndef app():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    app = web.Application()\n    app.router.add_get('/websocket', websocket_handler)\n    return app",
+            "@pytest.fixture\ndef app():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    app = web.Application()\n    app.router.add_get('/websocket', websocket_handler)\n    return app"
+        ]
+    },
+    {
+        "func_name": "setup_method",
+        "original": "def setup_method(self):\n    \"\"\"Flush manager state before each test method execution.\"\"\"\n    MANAGER._tables = {}\n    MANAGER._views = {}",
+        "mutated": [
+            "def setup_method(self):\n    if False:\n        i = 10\n    'Flush manager state before each test method execution.'\n    MANAGER._tables = {}\n    MANAGER._views = {}",
+            "def setup_method(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    'Flush manager state before each test method execution.'\n    MANAGER._tables = {}\n    MANAGER._views = {}",
+            "def setup_method(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    'Flush manager state before each test method execution.'\n    MANAGER._tables = {}\n    MANAGER._views = {}",
+            "def setup_method(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    'Flush manager state before each test method execution.'\n    MANAGER._tables = {}\n    MANAGER._views = {}",
+            "def setup_method(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    'Flush manager state before each test method execution.'\n    MANAGER._tables = {}\n    MANAGER._views = {}"
+        ]
+    }
+]

@@ -1,0 +1,46 @@
+[
+    {
+        "func_name": "foo",
+        "original": "@property\ndef foo(self) -> str:\n    \"\"\"Docstring for foo.\"\"\"\n    return 'foo'",
+        "mutated": [
+            "@property\ndef foo(self) -> str:\n    if False:\n        i = 10\n    'Docstring for foo.'\n    return 'foo'",
+            "@property\ndef foo(self) -> str:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    'Docstring for foo.'\n    return 'foo'",
+            "@property\ndef foo(self) -> str:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    'Docstring for foo.'\n    return 'foo'",
+            "@property\ndef foo(self) -> str:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    'Docstring for foo.'\n    return 'foo'",
+            "@property\ndef foo(self) -> str:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    'Docstring for foo.'\n    return 'foo'"
+        ]
+    },
+    {
+        "func_name": "foo",
+        "original": "@foo.setter\ndef foo(self, value: str) -> None:\n    pass",
+        "mutated": [
+            "@foo.setter\ndef foo(self, value: str) -> None:\n    if False:\n        i = 10\n    pass",
+            "@foo.setter\ndef foo(self, value: str) -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    pass",
+            "@foo.setter\ndef foo(self, value: str) -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    pass",
+            "@foo.setter\ndef foo(self, value: str) -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    pass",
+            "@foo.setter\ndef foo(self, value: str) -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    pass"
+        ]
+    },
+    {
+        "func_name": "foo",
+        "original": "@foo.deleter\ndef foo(self):\n    pass",
+        "mutated": [
+            "@foo.deleter\ndef foo(self):\n    if False:\n        i = 10\n    pass",
+            "@foo.deleter\ndef foo(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    pass",
+            "@foo.deleter\ndef foo(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    pass",
+            "@foo.deleter\ndef foo(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    pass",
+            "@foo.deleter\ndef foo(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    pass"
+        ]
+    },
+    {
+        "func_name": "foo",
+        "original": "@foo\ndef foo(self, value: str) -> None:\n    pass",
+        "mutated": [
+            "@foo\ndef foo(self, value: str) -> None:\n    if False:\n        i = 10\n    pass",
+            "@foo\ndef foo(self, value: str) -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    pass",
+            "@foo\ndef foo(self, value: str) -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    pass",
+            "@foo\ndef foo(self, value: str) -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    pass",
+            "@foo\ndef foo(self, value: str) -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    pass"
+        ]
+    }
+]

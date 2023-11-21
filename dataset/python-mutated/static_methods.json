@@ -1,0 +1,35 @@
+[
+    {
+        "func_name": "sink",
+        "original": "@staticmethod\ndef sink(oops):\n    _test_sink(oops)",
+        "mutated": [
+            "@staticmethod\ndef sink(oops):\n    if False:\n        i = 10\n    _test_sink(oops)",
+            "@staticmethod\ndef sink(oops):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    _test_sink(oops)",
+            "@staticmethod\ndef sink(oops):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    _test_sink(oops)",
+            "@staticmethod\ndef sink(oops):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    _test_sink(oops)",
+            "@staticmethod\ndef sink(oops):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    _test_sink(oops)"
+        ]
+    },
+    {
+        "func_name": "test",
+        "original": "def test(source):\n    return StaticClass.sink(source)",
+        "mutated": [
+            "def test(source):\n    if False:\n        i = 10\n    return StaticClass.sink(source)",
+            "def test(source):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return StaticClass.sink(source)",
+            "def test(source):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return StaticClass.sink(source)",
+            "def test(source):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return StaticClass.sink(source)",
+            "def test(source):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return StaticClass.sink(source)"
+        ]
+    },
+    {
+        "func_name": "run_test",
+        "original": "def run_test(source):\n    test(_test_source())",
+        "mutated": [
+            "def run_test(source):\n    if False:\n        i = 10\n    test(_test_source())",
+            "def run_test(source):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    test(_test_source())",
+            "def run_test(source):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    test(_test_source())",
+            "def run_test(source):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    test(_test_source())",
+            "def run_test(source):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    test(_test_source())"
+        ]
+    }
+]

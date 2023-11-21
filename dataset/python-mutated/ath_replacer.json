@@ -1,0 +1,57 @@
+[
+    {
+        "func_name": "replace_path",
+        "original": "@abstractmethod\ndef replace_path(self, path: str) -> str:\n    pass",
+        "mutated": [
+            "@abstractmethod\ndef replace_path(self, path: str) -> str:\n    if False:\n        i = 10\n    pass",
+            "@abstractmethod\ndef replace_path(self, path: str) -> str:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    pass",
+            "@abstractmethod\ndef replace_path(self, path: str) -> str:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    pass",
+            "@abstractmethod\ndef replace_path(self, path: str) -> str:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    pass",
+            "@abstractmethod\ndef replace_path(self, path: str) -> str:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    pass"
+        ]
+    },
+    {
+        "func_name": "__init__",
+        "original": "def __init__(self, path: str):\n    self.path = path",
+        "mutated": [
+            "def __init__(self, path: str):\n    if False:\n        i = 10\n    self.path = path",
+            "def __init__(self, path: str):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    self.path = path",
+            "def __init__(self, path: str):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    self.path = path",
+            "def __init__(self, path: str):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    self.path = path",
+            "def __init__(self, path: str):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    self.path = path"
+        ]
+    },
+    {
+        "func_name": "replace_path",
+        "original": "def replace_path(self, path: str) -> str:\n    return self.path",
+        "mutated": [
+            "def replace_path(self, path: str) -> str:\n    if False:\n        i = 10\n    return self.path",
+            "def replace_path(self, path: str) -> str:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return self.path",
+            "def replace_path(self, path: str) -> str:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return self.path",
+            "def replace_path(self, path: str) -> str:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return self.path",
+            "def replace_path(self, path: str) -> str:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return self.path"
+        ]
+    },
+    {
+        "func_name": "__init__",
+        "original": "def __init__(self, patterns: Set[str], fallback_path: str):\n    self.patterns = {re.compile(element, re.IGNORECASE) for element in patterns}\n    self.fallback_path = fallback_path",
+        "mutated": [
+            "def __init__(self, patterns: Set[str], fallback_path: str):\n    if False:\n        i = 10\n    self.patterns = {re.compile(element, re.IGNORECASE) for element in patterns}\n    self.fallback_path = fallback_path",
+            "def __init__(self, patterns: Set[str], fallback_path: str):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    self.patterns = {re.compile(element, re.IGNORECASE) for element in patterns}\n    self.fallback_path = fallback_path",
+            "def __init__(self, patterns: Set[str], fallback_path: str):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    self.patterns = {re.compile(element, re.IGNORECASE) for element in patterns}\n    self.fallback_path = fallback_path",
+            "def __init__(self, patterns: Set[str], fallback_path: str):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    self.patterns = {re.compile(element, re.IGNORECASE) for element in patterns}\n    self.fallback_path = fallback_path",
+            "def __init__(self, patterns: Set[str], fallback_path: str):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    self.patterns = {re.compile(element, re.IGNORECASE) for element in patterns}\n    self.fallback_path = fallback_path"
+        ]
+    },
+    {
+        "func_name": "replace_path",
+        "original": "def replace_path(self, path: str) -> str:\n    for pattern in self.patterns:\n        match = pattern.search(path)\n        if match:\n            return path[match.start():]\n    return self.fallback_path",
+        "mutated": [
+            "def replace_path(self, path: str) -> str:\n    if False:\n        i = 10\n    for pattern in self.patterns:\n        match = pattern.search(path)\n        if match:\n            return path[match.start():]\n    return self.fallback_path",
+            "def replace_path(self, path: str) -> str:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    for pattern in self.patterns:\n        match = pattern.search(path)\n        if match:\n            return path[match.start():]\n    return self.fallback_path",
+            "def replace_path(self, path: str) -> str:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    for pattern in self.patterns:\n        match = pattern.search(path)\n        if match:\n            return path[match.start():]\n    return self.fallback_path",
+            "def replace_path(self, path: str) -> str:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    for pattern in self.patterns:\n        match = pattern.search(path)\n        if match:\n            return path[match.start():]\n    return self.fallback_path",
+            "def replace_path(self, path: str) -> str:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    for pattern in self.patterns:\n        match = pattern.search(path)\n        if match:\n            return path[match.start():]\n    return self.fallback_path"
+        ]
+    }
+]

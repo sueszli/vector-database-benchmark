@@ -1,0 +1,57 @@
+[
+    {
+        "func_name": "__new__",
+        "original": "def __new__(cls, n):\n    n = _sympify(n)\n    cls._check_dim(n)\n    obj = super().__new__(cls, n)\n    return obj",
+        "mutated": [
+            "def __new__(cls, n):\n    if False:\n        i = 10\n    n = _sympify(n)\n    cls._check_dim(n)\n    obj = super().__new__(cls, n)\n    return obj",
+            "def __new__(cls, n):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    n = _sympify(n)\n    cls._check_dim(n)\n    obj = super().__new__(cls, n)\n    return obj",
+            "def __new__(cls, n):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    n = _sympify(n)\n    cls._check_dim(n)\n    obj = super().__new__(cls, n)\n    return obj",
+            "def __new__(cls, n):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    n = _sympify(n)\n    cls._check_dim(n)\n    obj = super().__new__(cls, n)\n    return obj",
+            "def __new__(cls, n):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    n = _sympify(n)\n    cls._check_dim(n)\n    obj = super().__new__(cls, n)\n    return obj"
+        ]
+    },
+    {
+        "func_name": "_entry",
+        "original": "def _entry(self, i, j, **kwargs):\n    w = exp(-2 * S.Pi * I / self.n)\n    return w ** (i * j) / sqrt(self.n)",
+        "mutated": [
+            "def _entry(self, i, j, **kwargs):\n    if False:\n        i = 10\n    w = exp(-2 * S.Pi * I / self.n)\n    return w ** (i * j) / sqrt(self.n)",
+            "def _entry(self, i, j, **kwargs):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    w = exp(-2 * S.Pi * I / self.n)\n    return w ** (i * j) / sqrt(self.n)",
+            "def _entry(self, i, j, **kwargs):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    w = exp(-2 * S.Pi * I / self.n)\n    return w ** (i * j) / sqrt(self.n)",
+            "def _entry(self, i, j, **kwargs):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    w = exp(-2 * S.Pi * I / self.n)\n    return w ** (i * j) / sqrt(self.n)",
+            "def _entry(self, i, j, **kwargs):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    w = exp(-2 * S.Pi * I / self.n)\n    return w ** (i * j) / sqrt(self.n)"
+        ]
+    },
+    {
+        "func_name": "_eval_inverse",
+        "original": "def _eval_inverse(self):\n    return IDFT(self.n)",
+        "mutated": [
+            "def _eval_inverse(self):\n    if False:\n        i = 10\n    return IDFT(self.n)",
+            "def _eval_inverse(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return IDFT(self.n)",
+            "def _eval_inverse(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return IDFT(self.n)",
+            "def _eval_inverse(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return IDFT(self.n)",
+            "def _eval_inverse(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return IDFT(self.n)"
+        ]
+    },
+    {
+        "func_name": "_entry",
+        "original": "def _entry(self, i, j, **kwargs):\n    w = exp(-2 * S.Pi * I / self.n)\n    return w ** (-i * j) / sqrt(self.n)",
+        "mutated": [
+            "def _entry(self, i, j, **kwargs):\n    if False:\n        i = 10\n    w = exp(-2 * S.Pi * I / self.n)\n    return w ** (-i * j) / sqrt(self.n)",
+            "def _entry(self, i, j, **kwargs):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    w = exp(-2 * S.Pi * I / self.n)\n    return w ** (-i * j) / sqrt(self.n)",
+            "def _entry(self, i, j, **kwargs):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    w = exp(-2 * S.Pi * I / self.n)\n    return w ** (-i * j) / sqrt(self.n)",
+            "def _entry(self, i, j, **kwargs):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    w = exp(-2 * S.Pi * I / self.n)\n    return w ** (-i * j) / sqrt(self.n)",
+            "def _entry(self, i, j, **kwargs):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    w = exp(-2 * S.Pi * I / self.n)\n    return w ** (-i * j) / sqrt(self.n)"
+        ]
+    },
+    {
+        "func_name": "_eval_inverse",
+        "original": "def _eval_inverse(self):\n    return DFT(self.n)",
+        "mutated": [
+            "def _eval_inverse(self):\n    if False:\n        i = 10\n    return DFT(self.n)",
+            "def _eval_inverse(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return DFT(self.n)",
+            "def _eval_inverse(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return DFT(self.n)",
+            "def _eval_inverse(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return DFT(self.n)",
+            "def _eval_inverse(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return DFT(self.n)"
+        ]
+    }
+]

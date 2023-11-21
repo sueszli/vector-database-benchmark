@@ -1,0 +1,24 @@
+[
+    {
+        "func_name": "peer",
+        "original": "@pytest.fixture\ndef peer():\n    return Peer(default_eccrypto.generate_key('curve25519'), address=('1.2.3.4', 5))",
+        "mutated": [
+            "@pytest.fixture\ndef peer():\n    if False:\n        i = 10\n    return Peer(default_eccrypto.generate_key('curve25519'), address=('1.2.3.4', 5))",
+            "@pytest.fixture\ndef peer():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return Peer(default_eccrypto.generate_key('curve25519'), address=('1.2.3.4', 5))",
+            "@pytest.fixture\ndef peer():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return Peer(default_eccrypto.generate_key('curve25519'), address=('1.2.3.4', 5))",
+            "@pytest.fixture\ndef peer():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return Peer(default_eccrypto.generate_key('curve25519'), address=('1.2.3.4', 5))",
+            "@pytest.fixture\ndef peer():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return Peer(default_eccrypto.generate_key('curve25519'), address=('1.2.3.4', 5))"
+        ]
+    },
+    {
+        "func_name": "bandwidth_database",
+        "original": "@pytest.fixture\ndef bandwidth_database(tmp_path, peer):\n    return BandwidthDatabase(db_path=tmp_path / 'bandwidth.db', my_pub_key=peer.public_key.key_to_bin())",
+        "mutated": [
+            "@pytest.fixture\ndef bandwidth_database(tmp_path, peer):\n    if False:\n        i = 10\n    return BandwidthDatabase(db_path=tmp_path / 'bandwidth.db', my_pub_key=peer.public_key.key_to_bin())",
+            "@pytest.fixture\ndef bandwidth_database(tmp_path, peer):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return BandwidthDatabase(db_path=tmp_path / 'bandwidth.db', my_pub_key=peer.public_key.key_to_bin())",
+            "@pytest.fixture\ndef bandwidth_database(tmp_path, peer):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return BandwidthDatabase(db_path=tmp_path / 'bandwidth.db', my_pub_key=peer.public_key.key_to_bin())",
+            "@pytest.fixture\ndef bandwidth_database(tmp_path, peer):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return BandwidthDatabase(db_path=tmp_path / 'bandwidth.db', my_pub_key=peer.public_key.key_to_bin())",
+            "@pytest.fixture\ndef bandwidth_database(tmp_path, peer):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return BandwidthDatabase(db_path=tmp_path / 'bandwidth.db', my_pub_key=peer.public_key.key_to_bin())"
+        ]
+    }
+]

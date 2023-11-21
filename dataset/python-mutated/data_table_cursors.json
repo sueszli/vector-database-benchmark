@@ -1,0 +1,35 @@
+[
+    {
+        "func_name": "compose",
+        "original": "def compose(self) -> ComposeResult:\n    yield DataTable()",
+        "mutated": [
+            "def compose(self) -> ComposeResult:\n    if False:\n        i = 10\n    yield DataTable()",
+            "def compose(self) -> ComposeResult:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    yield DataTable()",
+            "def compose(self) -> ComposeResult:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    yield DataTable()",
+            "def compose(self) -> ComposeResult:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    yield DataTable()",
+            "def compose(self) -> ComposeResult:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    yield DataTable()"
+        ]
+    },
+    {
+        "func_name": "on_mount",
+        "original": "def on_mount(self) -> None:\n    table = self.query_one(DataTable)\n    table.cursor_type = next(cursors)\n    table.zebra_stripes = True\n    table.add_columns(*ROWS[0])\n    table.add_rows(ROWS[1:])",
+        "mutated": [
+            "def on_mount(self) -> None:\n    if False:\n        i = 10\n    table = self.query_one(DataTable)\n    table.cursor_type = next(cursors)\n    table.zebra_stripes = True\n    table.add_columns(*ROWS[0])\n    table.add_rows(ROWS[1:])",
+            "def on_mount(self) -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    table = self.query_one(DataTable)\n    table.cursor_type = next(cursors)\n    table.zebra_stripes = True\n    table.add_columns(*ROWS[0])\n    table.add_rows(ROWS[1:])",
+            "def on_mount(self) -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    table = self.query_one(DataTable)\n    table.cursor_type = next(cursors)\n    table.zebra_stripes = True\n    table.add_columns(*ROWS[0])\n    table.add_rows(ROWS[1:])",
+            "def on_mount(self) -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    table = self.query_one(DataTable)\n    table.cursor_type = next(cursors)\n    table.zebra_stripes = True\n    table.add_columns(*ROWS[0])\n    table.add_rows(ROWS[1:])",
+            "def on_mount(self) -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    table = self.query_one(DataTable)\n    table.cursor_type = next(cursors)\n    table.zebra_stripes = True\n    table.add_columns(*ROWS[0])\n    table.add_rows(ROWS[1:])"
+        ]
+    },
+    {
+        "func_name": "key_c",
+        "original": "def key_c(self):\n    table = self.query_one(DataTable)\n    table.cursor_type = next(cursors)",
+        "mutated": [
+            "def key_c(self):\n    if False:\n        i = 10\n    table = self.query_one(DataTable)\n    table.cursor_type = next(cursors)",
+            "def key_c(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    table = self.query_one(DataTable)\n    table.cursor_type = next(cursors)",
+            "def key_c(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    table = self.query_one(DataTable)\n    table.cursor_type = next(cursors)",
+            "def key_c(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    table = self.query_one(DataTable)\n    table.cursor_type = next(cursors)",
+            "def key_c(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    table = self.query_one(DataTable)\n    table.cursor_type = next(cursors)"
+        ]
+    }
+]

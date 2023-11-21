@@ -1,0 +1,68 @@
+[
+    {
+        "func_name": "create_logger_lock",
+        "original": "def create_logger_lock():\n    return threading.Lock()",
+        "mutated": [
+            "def create_logger_lock():\n    if False:\n        i = 10\n    return threading.Lock()",
+            "def create_logger_lock():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return threading.Lock()",
+            "def create_logger_lock():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return threading.Lock()",
+            "def create_logger_lock():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return threading.Lock()",
+            "def create_logger_lock():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return threading.Lock()"
+        ]
+    },
+    {
+        "func_name": "create_handler_lock",
+        "original": "def create_handler_lock():\n    return threading.Lock()",
+        "mutated": [
+            "def create_handler_lock():\n    if False:\n        i = 10\n    return threading.Lock()",
+            "def create_handler_lock():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return threading.Lock()",
+            "def create_handler_lock():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return threading.Lock()",
+            "def create_handler_lock():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return threading.Lock()",
+            "def create_handler_lock():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return threading.Lock()"
+        ]
+    },
+    {
+        "func_name": "acquire_locks",
+        "original": "def acquire_locks():\n    for lock in logger_locks:\n        lock.acquire()\n    for lock in handler_locks:\n        lock.acquire()",
+        "mutated": [
+            "def acquire_locks():\n    if False:\n        i = 10\n    for lock in logger_locks:\n        lock.acquire()\n    for lock in handler_locks:\n        lock.acquire()",
+            "def acquire_locks():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    for lock in logger_locks:\n        lock.acquire()\n    for lock in handler_locks:\n        lock.acquire()",
+            "def acquire_locks():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    for lock in logger_locks:\n        lock.acquire()\n    for lock in handler_locks:\n        lock.acquire()",
+            "def acquire_locks():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    for lock in logger_locks:\n        lock.acquire()\n    for lock in handler_locks:\n        lock.acquire()",
+            "def acquire_locks():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    for lock in logger_locks:\n        lock.acquire()\n    for lock in handler_locks:\n        lock.acquire()"
+        ]
+    },
+    {
+        "func_name": "release_locks",
+        "original": "def release_locks():\n    for lock in logger_locks:\n        lock.release()\n    for lock in handler_locks:\n        lock.release()",
+        "mutated": [
+            "def release_locks():\n    if False:\n        i = 10\n    for lock in logger_locks:\n        lock.release()\n    for lock in handler_locks:\n        lock.release()",
+            "def release_locks():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    for lock in logger_locks:\n        lock.release()\n    for lock in handler_locks:\n        lock.release()",
+            "def release_locks():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    for lock in logger_locks:\n        lock.release()\n    for lock in handler_locks:\n        lock.release()",
+            "def release_locks():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    for lock in logger_locks:\n        lock.release()\n    for lock in handler_locks:\n        lock.release()",
+            "def release_locks():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    for lock in logger_locks:\n        lock.release()\n    for lock in handler_locks:\n        lock.release()"
+        ]
+    },
+    {
+        "func_name": "create_logger_lock",
+        "original": "def create_logger_lock():\n    lock = threading.Lock()\n    logger_locks.add(lock)\n    return lock",
+        "mutated": [
+            "def create_logger_lock():\n    if False:\n        i = 10\n    lock = threading.Lock()\n    logger_locks.add(lock)\n    return lock",
+            "def create_logger_lock():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    lock = threading.Lock()\n    logger_locks.add(lock)\n    return lock",
+            "def create_logger_lock():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    lock = threading.Lock()\n    logger_locks.add(lock)\n    return lock",
+            "def create_logger_lock():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    lock = threading.Lock()\n    logger_locks.add(lock)\n    return lock",
+            "def create_logger_lock():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    lock = threading.Lock()\n    logger_locks.add(lock)\n    return lock"
+        ]
+    },
+    {
+        "func_name": "create_handler_lock",
+        "original": "def create_handler_lock():\n    lock = threading.Lock()\n    handler_locks.add(lock)\n    return lock",
+        "mutated": [
+            "def create_handler_lock():\n    if False:\n        i = 10\n    lock = threading.Lock()\n    handler_locks.add(lock)\n    return lock",
+            "def create_handler_lock():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    lock = threading.Lock()\n    handler_locks.add(lock)\n    return lock",
+            "def create_handler_lock():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    lock = threading.Lock()\n    handler_locks.add(lock)\n    return lock",
+            "def create_handler_lock():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    lock = threading.Lock()\n    handler_locks.add(lock)\n    return lock",
+            "def create_handler_lock():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    lock = threading.Lock()\n    handler_locks.add(lock)\n    return lock"
+        ]
+    }
+]

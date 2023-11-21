@@ -1,0 +1,79 @@
+[
+    {
+        "func_name": "__init__",
+        "original": "def __init__(self):\n    pass",
+        "mutated": [
+            "def __init__(self):\n    if False:\n        i = 10\n    pass",
+            "def __init__(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    pass",
+            "def __init__(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    pass",
+            "def __init__(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    pass",
+            "def __init__(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    pass"
+        ]
+    },
+    {
+        "func_name": "new",
+        "original": "@classmethod\ndef new(self, a):\n    return sympify(a)",
+        "mutated": [
+            "@classmethod\ndef new(self, a):\n    if False:\n        i = 10\n    return sympify(a)",
+            "@classmethod\ndef new(self, a):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return sympify(a)",
+            "@classmethod\ndef new(self, a):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return sympify(a)",
+            "@classmethod\ndef new(self, a):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return sympify(a)",
+            "@classmethod\ndef new(self, a):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return sympify(a)"
+        ]
+    },
+    {
+        "func_name": "to_sympy",
+        "original": "def to_sympy(self, a):\n    \"\"\"Convert ``a`` to a SymPy object. \"\"\"\n    return a",
+        "mutated": [
+            "def to_sympy(self, a):\n    if False:\n        i = 10\n    'Convert ``a`` to a SymPy object. '\n    return a",
+            "def to_sympy(self, a):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    'Convert ``a`` to a SymPy object. '\n    return a",
+            "def to_sympy(self, a):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    'Convert ``a`` to a SymPy object. '\n    return a",
+            "def to_sympy(self, a):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    'Convert ``a`` to a SymPy object. '\n    return a",
+            "def to_sympy(self, a):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    'Convert ``a`` to a SymPy object. '\n    return a"
+        ]
+    },
+    {
+        "func_name": "from_sympy",
+        "original": "def from_sympy(self, a):\n    \"\"\"Convert SymPy's expression to ``dtype``. \"\"\"\n    if not isinstance(a, Expr):\n        raise CoercionFailed(f'Expecting an Expr instance but found: {type(a).__name__}')\n    return a",
+        "mutated": [
+            "def from_sympy(self, a):\n    if False:\n        i = 10\n    \"Convert SymPy's expression to ``dtype``. \"\n    if not isinstance(a, Expr):\n        raise CoercionFailed(f'Expecting an Expr instance but found: {type(a).__name__}')\n    return a",
+            "def from_sympy(self, a):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    \"Convert SymPy's expression to ``dtype``. \"\n    if not isinstance(a, Expr):\n        raise CoercionFailed(f'Expecting an Expr instance but found: {type(a).__name__}')\n    return a",
+            "def from_sympy(self, a):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    \"Convert SymPy's expression to ``dtype``. \"\n    if not isinstance(a, Expr):\n        raise CoercionFailed(f'Expecting an Expr instance but found: {type(a).__name__}')\n    return a",
+            "def from_sympy(self, a):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    \"Convert SymPy's expression to ``dtype``. \"\n    if not isinstance(a, Expr):\n        raise CoercionFailed(f'Expecting an Expr instance but found: {type(a).__name__}')\n    return a",
+            "def from_sympy(self, a):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    \"Convert SymPy's expression to ``dtype``. \"\n    if not isinstance(a, Expr):\n        raise CoercionFailed(f'Expecting an Expr instance but found: {type(a).__name__}')\n    return a"
+        ]
+    },
+    {
+        "func_name": "convert_from",
+        "original": "def convert_from(self, a, K):\n    \"\"\"Convert a domain element from another domain to EXRAW\"\"\"\n    return K.to_sympy(a)",
+        "mutated": [
+            "def convert_from(self, a, K):\n    if False:\n        i = 10\n    'Convert a domain element from another domain to EXRAW'\n    return K.to_sympy(a)",
+            "def convert_from(self, a, K):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    'Convert a domain element from another domain to EXRAW'\n    return K.to_sympy(a)",
+            "def convert_from(self, a, K):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    'Convert a domain element from another domain to EXRAW'\n    return K.to_sympy(a)",
+            "def convert_from(self, a, K):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    'Convert a domain element from another domain to EXRAW'\n    return K.to_sympy(a)",
+            "def convert_from(self, a, K):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    'Convert a domain element from another domain to EXRAW'\n    return K.to_sympy(a)"
+        ]
+    },
+    {
+        "func_name": "get_field",
+        "original": "def get_field(self):\n    \"\"\"Returns a field associated with ``self``. \"\"\"\n    return self",
+        "mutated": [
+            "def get_field(self):\n    if False:\n        i = 10\n    'Returns a field associated with ``self``. '\n    return self",
+            "def get_field(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    'Returns a field associated with ``self``. '\n    return self",
+            "def get_field(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    'Returns a field associated with ``self``. '\n    return self",
+            "def get_field(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    'Returns a field associated with ``self``. '\n    return self",
+            "def get_field(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    'Returns a field associated with ``self``. '\n    return self"
+        ]
+    },
+    {
+        "func_name": "sum",
+        "original": "def sum(self, items):\n    return Add(*items)",
+        "mutated": [
+            "def sum(self, items):\n    if False:\n        i = 10\n    return Add(*items)",
+            "def sum(self, items):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return Add(*items)",
+            "def sum(self, items):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return Add(*items)",
+            "def sum(self, items):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return Add(*items)",
+            "def sum(self, items):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return Add(*items)"
+        ]
+    }
+]

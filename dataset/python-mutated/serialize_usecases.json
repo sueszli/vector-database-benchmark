@@ -1,0 +1,222 @@
+[
+    {
+        "func_name": "add_with_sig",
+        "original": "@jit((types.int32, types.int32))\ndef add_with_sig(a, b):\n    return a + b",
+        "mutated": [
+            "@jit((types.int32, types.int32))\ndef add_with_sig(a, b):\n    if False:\n        i = 10\n    return a + b",
+            "@jit((types.int32, types.int32))\ndef add_with_sig(a, b):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return a + b",
+            "@jit((types.int32, types.int32))\ndef add_with_sig(a, b):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return a + b",
+            "@jit((types.int32, types.int32))\ndef add_with_sig(a, b):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return a + b",
+            "@jit((types.int32, types.int32))\ndef add_with_sig(a, b):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return a + b"
+        ]
+    },
+    {
+        "func_name": "add_without_sig",
+        "original": "@jit\ndef add_without_sig(a, b):\n    return a + b",
+        "mutated": [
+            "@jit\ndef add_without_sig(a, b):\n    if False:\n        i = 10\n    return a + b",
+            "@jit\ndef add_without_sig(a, b):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return a + b",
+            "@jit\ndef add_without_sig(a, b):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return a + b",
+            "@jit\ndef add_without_sig(a, b):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return a + b",
+            "@jit\ndef add_without_sig(a, b):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return a + b"
+        ]
+    },
+    {
+        "func_name": "add_nopython",
+        "original": "@jit(nopython=True)\ndef add_nopython(a, b):\n    return a + b",
+        "mutated": [
+            "@jit(nopython=True)\ndef add_nopython(a, b):\n    if False:\n        i = 10\n    return a + b",
+            "@jit(nopython=True)\ndef add_nopython(a, b):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return a + b",
+            "@jit(nopython=True)\ndef add_nopython(a, b):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return a + b",
+            "@jit(nopython=True)\ndef add_nopython(a, b):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return a + b",
+            "@jit(nopython=True)\ndef add_nopython(a, b):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return a + b"
+        ]
+    },
+    {
+        "func_name": "add_nopython_fail",
+        "original": "@jit(nopython=True)\ndef add_nopython_fail(a, b):\n    object()\n    return a + b",
+        "mutated": [
+            "@jit(nopython=True)\ndef add_nopython_fail(a, b):\n    if False:\n        i = 10\n    object()\n    return a + b",
+            "@jit(nopython=True)\ndef add_nopython_fail(a, b):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    object()\n    return a + b",
+            "@jit(nopython=True)\ndef add_nopython_fail(a, b):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    object()\n    return a + b",
+            "@jit(nopython=True)\ndef add_nopython_fail(a, b):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    object()\n    return a + b",
+            "@jit(nopython=True)\ndef add_nopython_fail(a, b):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    object()\n    return a + b"
+        ]
+    },
+    {
+        "func_name": "inner",
+        "original": "@jit(nopython=True)\ndef inner(b, c):\n    return a + b + c",
+        "mutated": [
+            "@jit(nopython=True)\ndef inner(b, c):\n    if False:\n        i = 10\n    return a + b + c",
+            "@jit(nopython=True)\ndef inner(b, c):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return a + b + c",
+            "@jit(nopython=True)\ndef inner(b, c):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return a + b + c",
+            "@jit(nopython=True)\ndef inner(b, c):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return a + b + c",
+            "@jit(nopython=True)\ndef inner(b, c):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return a + b + c"
+        ]
+    },
+    {
+        "func_name": "closure",
+        "original": "def closure(a):\n\n    @jit(nopython=True)\n    def inner(b, c):\n        return a + b + c\n    return inner",
+        "mutated": [
+            "def closure(a):\n    if False:\n        i = 10\n\n    @jit(nopython=True)\n    def inner(b, c):\n        return a + b + c\n    return inner",
+            "def closure(a):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n\n    @jit(nopython=True)\n    def inner(b, c):\n        return a + b + c\n    return inner",
+            "def closure(a):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n    @jit(nopython=True)\n    def inner(b, c):\n        return a + b + c\n    return inner",
+            "def closure(a):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n\n    @jit(nopython=True)\n    def inner(b, c):\n        return a + b + c\n    return inner",
+            "def closure(a):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n\n    @jit(nopython=True)\n    def inner(b, c):\n        return a + b + c\n    return inner"
+        ]
+    },
+    {
+        "func_name": "inner",
+        "original": "@jit(**jit_args)\ndef inner(y):\n    k = max(K, K + 1)\n    return math.hypot(x, y) + sqrt(k)",
+        "mutated": [
+            "@jit(**jit_args)\ndef inner(y):\n    if False:\n        i = 10\n    k = max(K, K + 1)\n    return math.hypot(x, y) + sqrt(k)",
+            "@jit(**jit_args)\ndef inner(y):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    k = max(K, K + 1)\n    return math.hypot(x, y) + sqrt(k)",
+            "@jit(**jit_args)\ndef inner(y):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    k = max(K, K + 1)\n    return math.hypot(x, y) + sqrt(k)",
+            "@jit(**jit_args)\ndef inner(y):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    k = max(K, K + 1)\n    return math.hypot(x, y) + sqrt(k)",
+            "@jit(**jit_args)\ndef inner(y):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    k = max(K, K + 1)\n    return math.hypot(x, y) + sqrt(k)"
+        ]
+    },
+    {
+        "func_name": "closure_with_globals",
+        "original": "def closure_with_globals(x, **jit_args):\n\n    @jit(**jit_args)\n    def inner(y):\n        k = max(K, K + 1)\n        return math.hypot(x, y) + sqrt(k)\n    return inner",
+        "mutated": [
+            "def closure_with_globals(x, **jit_args):\n    if False:\n        i = 10\n\n    @jit(**jit_args)\n    def inner(y):\n        k = max(K, K + 1)\n        return math.hypot(x, y) + sqrt(k)\n    return inner",
+            "def closure_with_globals(x, **jit_args):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n\n    @jit(**jit_args)\n    def inner(y):\n        k = max(K, K + 1)\n        return math.hypot(x, y) + sqrt(k)\n    return inner",
+            "def closure_with_globals(x, **jit_args):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n    @jit(**jit_args)\n    def inner(y):\n        k = max(K, K + 1)\n        return math.hypot(x, y) + sqrt(k)\n    return inner",
+            "def closure_with_globals(x, **jit_args):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n\n    @jit(**jit_args)\n    def inner(y):\n        k = max(K, K + 1)\n        return math.hypot(x, y) + sqrt(k)\n    return inner",
+            "def closure_with_globals(x, **jit_args):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n\n    @jit(**jit_args)\n    def inner(y):\n        k = max(K, K + 1)\n        return math.hypot(x, y) + sqrt(k)\n    return inner"
+        ]
+    },
+    {
+        "func_name": "other_function",
+        "original": "@jit(nopython=True)\ndef other_function(x, y):\n    return math.hypot(x, y)",
+        "mutated": [
+            "@jit(nopython=True)\ndef other_function(x, y):\n    if False:\n        i = 10\n    return math.hypot(x, y)",
+            "@jit(nopython=True)\ndef other_function(x, y):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return math.hypot(x, y)",
+            "@jit(nopython=True)\ndef other_function(x, y):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return math.hypot(x, y)",
+            "@jit(nopython=True)\ndef other_function(x, y):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return math.hypot(x, y)",
+            "@jit(nopython=True)\ndef other_function(x, y):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return math.hypot(x, y)"
+        ]
+    },
+    {
+        "func_name": "get_global_objmode",
+        "original": "@jit(forceobj=True)\ndef get_global_objmode(x):\n    return K * x",
+        "mutated": [
+            "@jit(forceobj=True)\ndef get_global_objmode(x):\n    if False:\n        i = 10\n    return K * x",
+            "@jit(forceobj=True)\ndef get_global_objmode(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return K * x",
+            "@jit(forceobj=True)\ndef get_global_objmode(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return K * x",
+            "@jit(forceobj=True)\ndef get_global_objmode(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return K * x",
+            "@jit(forceobj=True)\ndef get_global_objmode(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return K * x"
+        ]
+    },
+    {
+        "func_name": "get_renamed_module",
+        "original": "@jit(nopython=True)\ndef get_renamed_module(x):\n    nprand.seed(42)\n    return (np.cos(x), nprand.random())",
+        "mutated": [
+            "@jit(nopython=True)\ndef get_renamed_module(x):\n    if False:\n        i = 10\n    nprand.seed(42)\n    return (np.cos(x), nprand.random())",
+            "@jit(nopython=True)\ndef get_renamed_module(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    nprand.seed(42)\n    return (np.cos(x), nprand.random())",
+            "@jit(nopython=True)\ndef get_renamed_module(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    nprand.seed(42)\n    return (np.cos(x), nprand.random())",
+            "@jit(nopython=True)\ndef get_renamed_module(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    nprand.seed(42)\n    return (np.cos(x), nprand.random())",
+            "@jit(nopython=True)\ndef get_renamed_module(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    nprand.seed(42)\n    return (np.cos(x), nprand.random())"
+        ]
+    },
+    {
+        "func_name": "inner",
+        "original": "@jit(nopython=True)\ndef inner(y, z):\n    return other_function(x, y) + z",
+        "mutated": [
+            "@jit(nopython=True)\ndef inner(y, z):\n    if False:\n        i = 10\n    return other_function(x, y) + z",
+            "@jit(nopython=True)\ndef inner(y, z):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return other_function(x, y) + z",
+            "@jit(nopython=True)\ndef inner(y, z):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return other_function(x, y) + z",
+            "@jit(nopython=True)\ndef inner(y, z):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return other_function(x, y) + z",
+            "@jit(nopython=True)\ndef inner(y, z):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return other_function(x, y) + z"
+        ]
+    },
+    {
+        "func_name": "closure_calling_other_function",
+        "original": "def closure_calling_other_function(x):\n\n    @jit(nopython=True)\n    def inner(y, z):\n        return other_function(x, y) + z\n    return inner",
+        "mutated": [
+            "def closure_calling_other_function(x):\n    if False:\n        i = 10\n\n    @jit(nopython=True)\n    def inner(y, z):\n        return other_function(x, y) + z\n    return inner",
+            "def closure_calling_other_function(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n\n    @jit(nopython=True)\n    def inner(y, z):\n        return other_function(x, y) + z\n    return inner",
+            "def closure_calling_other_function(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n    @jit(nopython=True)\n    def inner(y, z):\n        return other_function(x, y) + z\n    return inner",
+            "def closure_calling_other_function(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n\n    @jit(nopython=True)\n    def inner(y, z):\n        return other_function(x, y) + z\n    return inner",
+            "def closure_calling_other_function(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n\n    @jit(nopython=True)\n    def inner(y, z):\n        return other_function(x, y) + z\n    return inner"
+        ]
+    },
+    {
+        "func_name": "other_inner",
+        "original": "@jit(nopython=True)\ndef other_inner(y):\n    return math.hypot(x, y)",
+        "mutated": [
+            "@jit(nopython=True)\ndef other_inner(y):\n    if False:\n        i = 10\n    return math.hypot(x, y)",
+            "@jit(nopython=True)\ndef other_inner(y):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return math.hypot(x, y)",
+            "@jit(nopython=True)\ndef other_inner(y):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return math.hypot(x, y)",
+            "@jit(nopython=True)\ndef other_inner(y):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return math.hypot(x, y)",
+            "@jit(nopython=True)\ndef other_inner(y):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return math.hypot(x, y)"
+        ]
+    },
+    {
+        "func_name": "inner",
+        "original": "@jit(nopython=True)\ndef inner(y):\n    return other_inner(y) + x",
+        "mutated": [
+            "@jit(nopython=True)\ndef inner(y):\n    if False:\n        i = 10\n    return other_inner(y) + x",
+            "@jit(nopython=True)\ndef inner(y):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return other_inner(y) + x",
+            "@jit(nopython=True)\ndef inner(y):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return other_inner(y) + x",
+            "@jit(nopython=True)\ndef inner(y):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return other_inner(y) + x",
+            "@jit(nopython=True)\ndef inner(y):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return other_inner(y) + x"
+        ]
+    },
+    {
+        "func_name": "closure_calling_other_closure",
+        "original": "def closure_calling_other_closure(x):\n\n    @jit(nopython=True)\n    def other_inner(y):\n        return math.hypot(x, y)\n\n    @jit(nopython=True)\n    def inner(y):\n        return other_inner(y) + x\n    return inner",
+        "mutated": [
+            "def closure_calling_other_closure(x):\n    if False:\n        i = 10\n\n    @jit(nopython=True)\n    def other_inner(y):\n        return math.hypot(x, y)\n\n    @jit(nopython=True)\n    def inner(y):\n        return other_inner(y) + x\n    return inner",
+            "def closure_calling_other_closure(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n\n    @jit(nopython=True)\n    def other_inner(y):\n        return math.hypot(x, y)\n\n    @jit(nopython=True)\n    def inner(y):\n        return other_inner(y) + x\n    return inner",
+            "def closure_calling_other_closure(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n    @jit(nopython=True)\n    def other_inner(y):\n        return math.hypot(x, y)\n\n    @jit(nopython=True)\n    def inner(y):\n        return other_inner(y) + x\n    return inner",
+            "def closure_calling_other_closure(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n\n    @jit(nopython=True)\n    def other_inner(y):\n        return math.hypot(x, y)\n\n    @jit(nopython=True)\n    def inner(y):\n        return other_inner(y) + x\n    return inner",
+            "def closure_calling_other_closure(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n\n    @jit(nopython=True)\n    def other_inner(y):\n        return math.hypot(x, y)\n\n    @jit(nopython=True)\n    def inner(y):\n        return other_inner(y) + x\n    return inner"
+        ]
+    },
+    {
+        "func_name": "impl",
+        "original": "def impl(x, y):\n    return x + y + k1",
+        "mutated": [
+            "def impl(x, y):\n    if False:\n        i = 10\n    return x + y + k1",
+            "def impl(x, y):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return x + y + k1",
+            "def impl(x, y):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return x + y + k1",
+            "def impl(x, y):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return x + y + k1",
+            "def impl(x, y):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return x + y + k1"
+        ]
+    },
+    {
+        "func_name": "impl",
+        "original": "def impl(x, y):\n    return x + y + k2 + k3",
+        "mutated": [
+            "def impl(x, y):\n    if False:\n        i = 10\n    return x + y + k2 + k3",
+            "def impl(x, y):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return x + y + k2 + k3",
+            "def impl(x, y):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return x + y + k2 + k3",
+            "def impl(x, y):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return x + y + k2 + k3",
+            "def impl(x, y):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return x + y + k2 + k3"
+        ]
+    },
+    {
+        "func_name": "generated_add",
+        "original": "@generated_jit(nopython=True)\ndef generated_add(x, y):\n    k3 = 1\n    if isinstance(x, types.Complex):\n\n        def impl(x, y):\n            return x + y + k1\n    else:\n\n        def impl(x, y):\n            return x + y + k2 + k3\n    return impl",
+        "mutated": [
+            "@generated_jit(nopython=True)\ndef generated_add(x, y):\n    if False:\n        i = 10\n    k3 = 1\n    if isinstance(x, types.Complex):\n\n        def impl(x, y):\n            return x + y + k1\n    else:\n\n        def impl(x, y):\n            return x + y + k2 + k3\n    return impl",
+            "@generated_jit(nopython=True)\ndef generated_add(x, y):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    k3 = 1\n    if isinstance(x, types.Complex):\n\n        def impl(x, y):\n            return x + y + k1\n    else:\n\n        def impl(x, y):\n            return x + y + k2 + k3\n    return impl",
+            "@generated_jit(nopython=True)\ndef generated_add(x, y):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    k3 = 1\n    if isinstance(x, types.Complex):\n\n        def impl(x, y):\n            return x + y + k1\n    else:\n\n        def impl(x, y):\n            return x + y + k2 + k3\n    return impl",
+            "@generated_jit(nopython=True)\ndef generated_add(x, y):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    k3 = 1\n    if isinstance(x, types.Complex):\n\n        def impl(x, y):\n            return x + y + k1\n    else:\n\n        def impl(x, y):\n            return x + y + k2 + k3\n    return impl",
+            "@generated_jit(nopython=True)\ndef generated_add(x, y):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    k3 = 1\n    if isinstance(x, types.Complex):\n\n        def impl(x, y):\n            return x + y + k1\n    else:\n\n        def impl(x, y):\n            return x + y + k2 + k3\n    return impl"
+        ]
+    },
+    {
+        "func_name": "_get_dyn_func",
+        "original": "def _get_dyn_func(**jit_args):\n    code = '\\n        def dyn_func(x):\\n            res = 0\\n            for i in range(x):\\n                res += x\\n            return res\\n        '\n    ns = {}\n    exec(code.strip(), ns)\n    return jit(**jit_args)(ns['dyn_func'])",
+        "mutated": [
+            "def _get_dyn_func(**jit_args):\n    if False:\n        i = 10\n    code = '\\n        def dyn_func(x):\\n            res = 0\\n            for i in range(x):\\n                res += x\\n            return res\\n        '\n    ns = {}\n    exec(code.strip(), ns)\n    return jit(**jit_args)(ns['dyn_func'])",
+            "def _get_dyn_func(**jit_args):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    code = '\\n        def dyn_func(x):\\n            res = 0\\n            for i in range(x):\\n                res += x\\n            return res\\n        '\n    ns = {}\n    exec(code.strip(), ns)\n    return jit(**jit_args)(ns['dyn_func'])",
+            "def _get_dyn_func(**jit_args):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    code = '\\n        def dyn_func(x):\\n            res = 0\\n            for i in range(x):\\n                res += x\\n            return res\\n        '\n    ns = {}\n    exec(code.strip(), ns)\n    return jit(**jit_args)(ns['dyn_func'])",
+            "def _get_dyn_func(**jit_args):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    code = '\\n        def dyn_func(x):\\n            res = 0\\n            for i in range(x):\\n                res += x\\n            return res\\n        '\n    ns = {}\n    exec(code.strip(), ns)\n    return jit(**jit_args)(ns['dyn_func'])",
+            "def _get_dyn_func(**jit_args):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    code = '\\n        def dyn_func(x):\\n            res = 0\\n            for i in range(x):\\n                res += x\\n            return res\\n        '\n    ns = {}\n    exec(code.strip(), ns)\n    return jit(**jit_args)(ns['dyn_func'])"
+        ]
+    }
+]

@@ -1,0 +1,46 @@
+[
+    {
+        "func_name": "setUp",
+        "original": "def setUp(self):\n    setattr(UnresolvableBear1, 'BEAR_DEPS', {ResolvableBear1, Bear, UnresolvableBear3})",
+        "mutated": [
+            "def setUp(self):\n    if False:\n        i = 10\n    setattr(UnresolvableBear1, 'BEAR_DEPS', {ResolvableBear1, Bear, UnresolvableBear3})",
+            "def setUp(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    setattr(UnresolvableBear1, 'BEAR_DEPS', {ResolvableBear1, Bear, UnresolvableBear3})",
+            "def setUp(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    setattr(UnresolvableBear1, 'BEAR_DEPS', {ResolvableBear1, Bear, UnresolvableBear3})",
+            "def setUp(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    setattr(UnresolvableBear1, 'BEAR_DEPS', {ResolvableBear1, Bear, UnresolvableBear3})",
+            "def setUp(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    setattr(UnresolvableBear1, 'BEAR_DEPS', {ResolvableBear1, Bear, UnresolvableBear3})"
+        ]
+    },
+    {
+        "func_name": "test_no_deps",
+        "original": "def test_no_deps(self):\n    self.assertEqual(len(Dependencies.resolve([Bear, Bear])), 1)",
+        "mutated": [
+            "def test_no_deps(self):\n    if False:\n        i = 10\n    self.assertEqual(len(Dependencies.resolve([Bear, Bear])), 1)",
+            "def test_no_deps(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    self.assertEqual(len(Dependencies.resolve([Bear, Bear])), 1)",
+            "def test_no_deps(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    self.assertEqual(len(Dependencies.resolve([Bear, Bear])), 1)",
+            "def test_no_deps(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    self.assertEqual(len(Dependencies.resolve([Bear, Bear])), 1)",
+            "def test_no_deps(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    self.assertEqual(len(Dependencies.resolve([Bear, Bear])), 1)"
+        ]
+    },
+    {
+        "func_name": "test_resolvable_deps",
+        "original": "def test_resolvable_deps(self):\n    self.assertEqual(Dependencies.resolve([ResolvableBear1, ResolvableBear2]), [Bear, ResolvableBear1, ResolvableBear2])",
+        "mutated": [
+            "def test_resolvable_deps(self):\n    if False:\n        i = 10\n    self.assertEqual(Dependencies.resolve([ResolvableBear1, ResolvableBear2]), [Bear, ResolvableBear1, ResolvableBear2])",
+            "def test_resolvable_deps(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    self.assertEqual(Dependencies.resolve([ResolvableBear1, ResolvableBear2]), [Bear, ResolvableBear1, ResolvableBear2])",
+            "def test_resolvable_deps(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    self.assertEqual(Dependencies.resolve([ResolvableBear1, ResolvableBear2]), [Bear, ResolvableBear1, ResolvableBear2])",
+            "def test_resolvable_deps(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    self.assertEqual(Dependencies.resolve([ResolvableBear1, ResolvableBear2]), [Bear, ResolvableBear1, ResolvableBear2])",
+            "def test_resolvable_deps(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    self.assertEqual(Dependencies.resolve([ResolvableBear1, ResolvableBear2]), [Bear, ResolvableBear1, ResolvableBear2])"
+        ]
+    },
+    {
+        "func_name": "test_unresolvable_deps",
+        "original": "def test_unresolvable_deps(self):\n    self.assertRaises(CircularDependencyError, Dependencies.resolve, [UnresolvableBear1])",
+        "mutated": [
+            "def test_unresolvable_deps(self):\n    if False:\n        i = 10\n    self.assertRaises(CircularDependencyError, Dependencies.resolve, [UnresolvableBear1])",
+            "def test_unresolvable_deps(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    self.assertRaises(CircularDependencyError, Dependencies.resolve, [UnresolvableBear1])",
+            "def test_unresolvable_deps(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    self.assertRaises(CircularDependencyError, Dependencies.resolve, [UnresolvableBear1])",
+            "def test_unresolvable_deps(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    self.assertRaises(CircularDependencyError, Dependencies.resolve, [UnresolvableBear1])",
+            "def test_unresolvable_deps(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    self.assertRaises(CircularDependencyError, Dependencies.resolve, [UnresolvableBear1])"
+        ]
+    }
+]

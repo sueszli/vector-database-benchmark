@@ -1,0 +1,24 @@
+[
+    {
+        "func_name": "patch_germany_class",
+        "original": "@pytest.fixture\ndef patch_germany_class(mocker):\n    mocker.patch.object(Germany, 'primary_key', None)",
+        "mutated": [
+            "@pytest.fixture\ndef patch_germany_class(mocker):\n    if False:\n        i = 10\n    mocker.patch.object(Germany, 'primary_key', None)",
+            "@pytest.fixture\ndef patch_germany_class(mocker):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    mocker.patch.object(Germany, 'primary_key', None)",
+            "@pytest.fixture\ndef patch_germany_class(mocker):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    mocker.patch.object(Germany, 'primary_key', None)",
+            "@pytest.fixture\ndef patch_germany_class(mocker):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    mocker.patch.object(Germany, 'primary_key', None)",
+            "@pytest.fixture\ndef patch_germany_class(mocker):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    mocker.patch.object(Germany, 'primary_key', None)"
+        ]
+    },
+    {
+        "func_name": "test_path",
+        "original": "def test_path(patch_germany_class):\n    stream = Germany()\n    expected_params = {'path': 'germany/'}\n    assert stream.path() == expected_params.get('path')",
+        "mutated": [
+            "def test_path(patch_germany_class):\n    if False:\n        i = 10\n    stream = Germany()\n    expected_params = {'path': 'germany/'}\n    assert stream.path() == expected_params.get('path')",
+            "def test_path(patch_germany_class):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    stream = Germany()\n    expected_params = {'path': 'germany/'}\n    assert stream.path() == expected_params.get('path')",
+            "def test_path(patch_germany_class):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    stream = Germany()\n    expected_params = {'path': 'germany/'}\n    assert stream.path() == expected_params.get('path')",
+            "def test_path(patch_germany_class):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    stream = Germany()\n    expected_params = {'path': 'germany/'}\n    assert stream.path() == expected_params.get('path')",
+            "def test_path(patch_germany_class):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    stream = Germany()\n    expected_params = {'path': 'germany/'}\n    assert stream.path() == expected_params.get('path')"
+        ]
+    }
+]

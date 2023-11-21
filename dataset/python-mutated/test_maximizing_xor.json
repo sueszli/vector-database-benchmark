@@ -1,0 +1,24 @@
+[
+    {
+        "func_name": "test_maximizing_xor",
+        "original": "def test_maximizing_xor(self):\n    solution = Solution()\n    self.assertEqual(solution.max_xor(10, 15), 7)\n    print('Success: test_maximizing_xor')",
+        "mutated": [
+            "def test_maximizing_xor(self):\n    if False:\n        i = 10\n    solution = Solution()\n    self.assertEqual(solution.max_xor(10, 15), 7)\n    print('Success: test_maximizing_xor')",
+            "def test_maximizing_xor(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    solution = Solution()\n    self.assertEqual(solution.max_xor(10, 15), 7)\n    print('Success: test_maximizing_xor')",
+            "def test_maximizing_xor(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    solution = Solution()\n    self.assertEqual(solution.max_xor(10, 15), 7)\n    print('Success: test_maximizing_xor')",
+            "def test_maximizing_xor(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    solution = Solution()\n    self.assertEqual(solution.max_xor(10, 15), 7)\n    print('Success: test_maximizing_xor')",
+            "def test_maximizing_xor(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    solution = Solution()\n    self.assertEqual(solution.max_xor(10, 15), 7)\n    print('Success: test_maximizing_xor')"
+        ]
+    },
+    {
+        "func_name": "main",
+        "original": "def main():\n    test = TestMaximizingXor()\n    test.test_maximizing_xor()",
+        "mutated": [
+            "def main():\n    if False:\n        i = 10\n    test = TestMaximizingXor()\n    test.test_maximizing_xor()",
+            "def main():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    test = TestMaximizingXor()\n    test.test_maximizing_xor()",
+            "def main():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    test = TestMaximizingXor()\n    test.test_maximizing_xor()",
+            "def main():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    test = TestMaximizingXor()\n    test.test_maximizing_xor()",
+            "def main():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    test = TestMaximizingXor()\n    test.test_maximizing_xor()"
+        ]
+    }
+]

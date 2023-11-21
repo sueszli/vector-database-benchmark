@@ -1,0 +1,79 @@
+[
+    {
+        "func_name": "setUp",
+        "original": "def setUp(self):\n    self._var = variable.Variable(self.is_discrete, self.event_rank, self.constraint)",
+        "mutated": [
+            "def setUp(self):\n    if False:\n        i = 10\n    self._var = variable.Variable(self.is_discrete, self.event_rank, self.constraint)",
+            "def setUp(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    self._var = variable.Variable(self.is_discrete, self.event_rank, self.constraint)",
+            "def setUp(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    self._var = variable.Variable(self.is_discrete, self.event_rank, self.constraint)",
+            "def setUp(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    self._var = variable.Variable(self.is_discrete, self.event_rank, self.constraint)",
+            "def setUp(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    self._var = variable.Variable(self.is_discrete, self.event_rank, self.constraint)"
+        ]
+    },
+    {
+        "func_name": "test_costraint",
+        "original": "@param.param_func([(1,)])\ndef test_costraint(self, value):\n    with self.assertRaises(NotImplementedError):\n        self._var.constraint(value)",
+        "mutated": [
+            "@param.param_func([(1,)])\ndef test_costraint(self, value):\n    if False:\n        i = 10\n    with self.assertRaises(NotImplementedError):\n        self._var.constraint(value)",
+            "@param.param_func([(1,)])\ndef test_costraint(self, value):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    with self.assertRaises(NotImplementedError):\n        self._var.constraint(value)",
+            "@param.param_func([(1,)])\ndef test_costraint(self, value):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    with self.assertRaises(NotImplementedError):\n        self._var.constraint(value)",
+            "@param.param_func([(1,)])\ndef test_costraint(self, value):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    with self.assertRaises(NotImplementedError):\n        self._var.constraint(value)",
+            "@param.param_func([(1,)])\ndef test_costraint(self, value):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    with self.assertRaises(NotImplementedError):\n        self._var.constraint(value)"
+        ]
+    },
+    {
+        "func_name": "setUp",
+        "original": "def setUp(self):\n    self._var = variable.Independent(self.base, self.rank)",
+        "mutated": [
+            "def setUp(self):\n    if False:\n        i = 10\n    self._var = variable.Independent(self.base, self.rank)",
+            "def setUp(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    self._var = variable.Independent(self.base, self.rank)",
+            "def setUp(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    self._var = variable.Independent(self.base, self.rank)",
+            "def setUp(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    self._var = variable.Independent(self.base, self.rank)",
+            "def setUp(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    self._var = variable.Independent(self.base, self.rank)"
+        ]
+    },
+    {
+        "func_name": "test_costraint",
+        "original": "@param.param_func([(paddle.rand([2, 3, 4]), ValueError)])\ndef test_costraint(self, value, expect):\n    with self.assertRaises(expect):\n        self._var.constraint(value)",
+        "mutated": [
+            "@param.param_func([(paddle.rand([2, 3, 4]), ValueError)])\ndef test_costraint(self, value, expect):\n    if False:\n        i = 10\n    with self.assertRaises(expect):\n        self._var.constraint(value)",
+            "@param.param_func([(paddle.rand([2, 3, 4]), ValueError)])\ndef test_costraint(self, value, expect):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    with self.assertRaises(expect):\n        self._var.constraint(value)",
+            "@param.param_func([(paddle.rand([2, 3, 4]), ValueError)])\ndef test_costraint(self, value, expect):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    with self.assertRaises(expect):\n        self._var.constraint(value)",
+            "@param.param_func([(paddle.rand([2, 3, 4]), ValueError)])\ndef test_costraint(self, value, expect):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    with self.assertRaises(expect):\n        self._var.constraint(value)",
+            "@param.param_func([(paddle.rand([2, 3, 4]), ValueError)])\ndef test_costraint(self, value, expect):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    with self.assertRaises(expect):\n        self._var.constraint(value)"
+        ]
+    },
+    {
+        "func_name": "setUp",
+        "original": "def setUp(self):\n    self._var = variable.Stack(self.vars, self.axis)",
+        "mutated": [
+            "def setUp(self):\n    if False:\n        i = 10\n    self._var = variable.Stack(self.vars, self.axis)",
+            "def setUp(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    self._var = variable.Stack(self.vars, self.axis)",
+            "def setUp(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    self._var = variable.Stack(self.vars, self.axis)",
+            "def setUp(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    self._var = variable.Stack(self.vars, self.axis)",
+            "def setUp(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    self._var = variable.Stack(self.vars, self.axis)"
+        ]
+    },
+    {
+        "func_name": "test_is_discrete",
+        "original": "def test_is_discrete(self):\n    self.assertEqual(self._var.is_discrete, False)",
+        "mutated": [
+            "def test_is_discrete(self):\n    if False:\n        i = 10\n    self.assertEqual(self._var.is_discrete, False)",
+            "def test_is_discrete(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    self.assertEqual(self._var.is_discrete, False)",
+            "def test_is_discrete(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    self.assertEqual(self._var.is_discrete, False)",
+            "def test_is_discrete(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    self.assertEqual(self._var.is_discrete, False)",
+            "def test_is_discrete(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    self.assertEqual(self._var.is_discrete, False)"
+        ]
+    },
+    {
+        "func_name": "test_costraint",
+        "original": "@param.param_func([(paddle.rand([2, 3, 4]), ValueError)])\ndef test_costraint(self, value, expect):\n    with self.assertRaises(expect):\n        self._var.constraint(value)",
+        "mutated": [
+            "@param.param_func([(paddle.rand([2, 3, 4]), ValueError)])\ndef test_costraint(self, value, expect):\n    if False:\n        i = 10\n    with self.assertRaises(expect):\n        self._var.constraint(value)",
+            "@param.param_func([(paddle.rand([2, 3, 4]), ValueError)])\ndef test_costraint(self, value, expect):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    with self.assertRaises(expect):\n        self._var.constraint(value)",
+            "@param.param_func([(paddle.rand([2, 3, 4]), ValueError)])\ndef test_costraint(self, value, expect):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    with self.assertRaises(expect):\n        self._var.constraint(value)",
+            "@param.param_func([(paddle.rand([2, 3, 4]), ValueError)])\ndef test_costraint(self, value, expect):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    with self.assertRaises(expect):\n        self._var.constraint(value)",
+            "@param.param_func([(paddle.rand([2, 3, 4]), ValueError)])\ndef test_costraint(self, value, expect):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    with self.assertRaises(expect):\n        self._var.constraint(value)"
+        ]
+    }
+]

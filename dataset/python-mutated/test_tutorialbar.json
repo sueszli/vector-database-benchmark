@@ -1,0 +1,24 @@
+[
+    {
+        "func_name": "__init__",
+        "original": "def __init__(self, data, status):\n    self._data = data\n    self.status = status",
+        "mutated": [
+            "def __init__(self, data, status):\n    if False:\n        i = 10\n    self._data = data\n    self.status = status",
+            "def __init__(self, data, status):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    self._data = data\n    self.status = status",
+            "def __init__(self, data, status):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    self._data = data\n    self.status = status",
+            "def __init__(self, data, status):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    self._data = data\n    self.status = status",
+            "def __init__(self, data, status):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    self._data = data\n    self.status = status"
+        ]
+    },
+    {
+        "func_name": "test_enable_status",
+        "original": "@pytest.mark.parametrize('enabled', [(True,), (False,)], ids=('Test enabled', 'Test disabled'))\ndef test_enable_status(enabled):\n    tbs = TutorialBarScraper(enabled=enabled)\n    assert tbs.is_disabled() is not enabled",
+        "mutated": [
+            "@pytest.mark.parametrize('enabled', [(True,), (False,)], ids=('Test enabled', 'Test disabled'))\ndef test_enable_status(enabled):\n    if False:\n        i = 10\n    tbs = TutorialBarScraper(enabled=enabled)\n    assert tbs.is_disabled() is not enabled",
+            "@pytest.mark.parametrize('enabled', [(True,), (False,)], ids=('Test enabled', 'Test disabled'))\ndef test_enable_status(enabled):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    tbs = TutorialBarScraper(enabled=enabled)\n    assert tbs.is_disabled() is not enabled",
+            "@pytest.mark.parametrize('enabled', [(True,), (False,)], ids=('Test enabled', 'Test disabled'))\ndef test_enable_status(enabled):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    tbs = TutorialBarScraper(enabled=enabled)\n    assert tbs.is_disabled() is not enabled",
+            "@pytest.mark.parametrize('enabled', [(True,), (False,)], ids=('Test enabled', 'Test disabled'))\ndef test_enable_status(enabled):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    tbs = TutorialBarScraper(enabled=enabled)\n    assert tbs.is_disabled() is not enabled",
+            "@pytest.mark.parametrize('enabled', [(True,), (False,)], ids=('Test enabled', 'Test disabled'))\ndef test_enable_status(enabled):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    tbs = TutorialBarScraper(enabled=enabled)\n    assert tbs.is_disabled() is not enabled"
+        ]
+    }
+]

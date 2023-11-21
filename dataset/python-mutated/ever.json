@@ -1,0 +1,57 @@
+[
+    {
+        "func_name": "do_constantly",
+        "original": "@app.task(every('10 seconds'))\ndef do_constantly():\n    ...",
+        "mutated": [
+            "@app.task(every('10 seconds'))\ndef do_constantly():\n    if False:\n        i = 10\n    ...",
+            "@app.task(every('10 seconds'))\ndef do_constantly():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    ...",
+            "@app.task(every('10 seconds'))\ndef do_constantly():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    ...",
+            "@app.task(every('10 seconds'))\ndef do_constantly():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    ...",
+            "@app.task(every('10 seconds'))\ndef do_constantly():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    ..."
+        ]
+    },
+    {
+        "func_name": "do_minutely",
+        "original": "@app.task(every('1 minute'))\ndef do_minutely():\n    ...",
+        "mutated": [
+            "@app.task(every('1 minute'))\ndef do_minutely():\n    if False:\n        i = 10\n    ...",
+            "@app.task(every('1 minute'))\ndef do_minutely():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    ...",
+            "@app.task(every('1 minute'))\ndef do_minutely():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    ...",
+            "@app.task(every('1 minute'))\ndef do_minutely():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    ...",
+            "@app.task(every('1 minute'))\ndef do_minutely():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    ..."
+        ]
+    },
+    {
+        "func_name": "do_hourly",
+        "original": "@app.task(every('1 hour'))\ndef do_hourly():\n    ...",
+        "mutated": [
+            "@app.task(every('1 hour'))\ndef do_hourly():\n    if False:\n        i = 10\n    ...",
+            "@app.task(every('1 hour'))\ndef do_hourly():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    ...",
+            "@app.task(every('1 hour'))\ndef do_hourly():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    ...",
+            "@app.task(every('1 hour'))\ndef do_hourly():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    ...",
+            "@app.task(every('1 hour'))\ndef do_hourly():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    ..."
+        ]
+    },
+    {
+        "func_name": "do_daily",
+        "original": "@app.task(every('1 day'))\ndef do_daily():\n    ...",
+        "mutated": [
+            "@app.task(every('1 day'))\ndef do_daily():\n    if False:\n        i = 10\n    ...",
+            "@app.task(every('1 day'))\ndef do_daily():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    ...",
+            "@app.task(every('1 day'))\ndef do_daily():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    ...",
+            "@app.task(every('1 day'))\ndef do_daily():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    ...",
+            "@app.task(every('1 day'))\ndef do_daily():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    ..."
+        ]
+    },
+    {
+        "func_name": "do_custom",
+        "original": "@app.task(every('2 days 2 hours 20 seconds'))\ndef do_custom():\n    ...",
+        "mutated": [
+            "@app.task(every('2 days 2 hours 20 seconds'))\ndef do_custom():\n    if False:\n        i = 10\n    ...",
+            "@app.task(every('2 days 2 hours 20 seconds'))\ndef do_custom():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    ...",
+            "@app.task(every('2 days 2 hours 20 seconds'))\ndef do_custom():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    ...",
+            "@app.task(every('2 days 2 hours 20 seconds'))\ndef do_custom():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    ...",
+            "@app.task(every('2 days 2 hours 20 seconds'))\ndef do_custom():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    ..."
+        ]
+    }
+]

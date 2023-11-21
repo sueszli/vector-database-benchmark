@@ -1,0 +1,46 @@
+[
+    {
+        "func_name": "not_keyword",
+        "original": "def not_keyword(self):\n    raise RuntimeError('Should not be executed!')",
+        "mutated": [
+            "def not_keyword(self):\n    if False:\n        i = 10\n    raise RuntimeError('Should not be executed!')",
+            "def not_keyword(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    raise RuntimeError('Should not be executed!')",
+            "def not_keyword(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    raise RuntimeError('Should not be executed!')",
+            "def not_keyword(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    raise RuntimeError('Should not be executed!')",
+            "def not_keyword(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    raise RuntimeError('Should not be executed!')"
+        ]
+    },
+    {
+        "func_name": "decorated_method_is_keyword",
+        "original": "@keyword\ndef decorated_method_is_keyword(self):\n    print('Decorated methods are keywords.')",
+        "mutated": [
+            "@keyword\ndef decorated_method_is_keyword(self):\n    if False:\n        i = 10\n    print('Decorated methods are keywords.')",
+            "@keyword\ndef decorated_method_is_keyword(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    print('Decorated methods are keywords.')",
+            "@keyword\ndef decorated_method_is_keyword(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    print('Decorated methods are keywords.')",
+            "@keyword\ndef decorated_method_is_keyword(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    print('Decorated methods are keywords.')",
+            "@keyword\ndef decorated_method_is_keyword(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    print('Decorated methods are keywords.')"
+        ]
+    },
+    {
+        "func_name": "decorated_static_method_is_keyword",
+        "original": "@staticmethod\n@keyword\ndef decorated_static_method_is_keyword():\n    print('Decorated static methods are keywords.')",
+        "mutated": [
+            "@staticmethod\n@keyword\ndef decorated_static_method_is_keyword():\n    if False:\n        i = 10\n    print('Decorated static methods are keywords.')",
+            "@staticmethod\n@keyword\ndef decorated_static_method_is_keyword():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    print('Decorated static methods are keywords.')",
+            "@staticmethod\n@keyword\ndef decorated_static_method_is_keyword():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    print('Decorated static methods are keywords.')",
+            "@staticmethod\n@keyword\ndef decorated_static_method_is_keyword():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    print('Decorated static methods are keywords.')",
+            "@staticmethod\n@keyword\ndef decorated_static_method_is_keyword():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    print('Decorated static methods are keywords.')"
+        ]
+    },
+    {
+        "func_name": "decorated_class_method_is_keyword",
+        "original": "@classmethod\n@keyword\ndef decorated_class_method_is_keyword(cls):\n    print('Decorated class methods are keywords.')",
+        "mutated": [
+            "@classmethod\n@keyword\ndef decorated_class_method_is_keyword(cls):\n    if False:\n        i = 10\n    print('Decorated class methods are keywords.')",
+            "@classmethod\n@keyword\ndef decorated_class_method_is_keyword(cls):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    print('Decorated class methods are keywords.')",
+            "@classmethod\n@keyword\ndef decorated_class_method_is_keyword(cls):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    print('Decorated class methods are keywords.')",
+            "@classmethod\n@keyword\ndef decorated_class_method_is_keyword(cls):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    print('Decorated class methods are keywords.')",
+            "@classmethod\n@keyword\ndef decorated_class_method_is_keyword(cls):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    print('Decorated class methods are keywords.')"
+        ]
+    }
+]

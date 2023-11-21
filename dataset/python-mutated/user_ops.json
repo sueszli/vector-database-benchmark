@@ -1,0 +1,13 @@
+[
+    {
+        "func_name": "my_fact",
+        "original": "@tf_export(v1=['user_ops.my_fact'])\ndef my_fact():\n    \"\"\"Example of overriding the generated code for an Op.\"\"\"\n    return _gen_user_ops.fact()",
+        "mutated": [
+            "@tf_export(v1=['user_ops.my_fact'])\ndef my_fact():\n    if False:\n        i = 10\n    'Example of overriding the generated code for an Op.'\n    return _gen_user_ops.fact()",
+            "@tf_export(v1=['user_ops.my_fact'])\ndef my_fact():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    'Example of overriding the generated code for an Op.'\n    return _gen_user_ops.fact()",
+            "@tf_export(v1=['user_ops.my_fact'])\ndef my_fact():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    'Example of overriding the generated code for an Op.'\n    return _gen_user_ops.fact()",
+            "@tf_export(v1=['user_ops.my_fact'])\ndef my_fact():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    'Example of overriding the generated code for an Op.'\n    return _gen_user_ops.fact()",
+            "@tf_export(v1=['user_ops.my_fact'])\ndef my_fact():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    'Example of overriding the generated code for an Op.'\n    return _gen_user_ops.fact()"
+        ]
+    }
+]

@@ -1,0 +1,57 @@
+[
+    {
+        "func_name": "create_user",
+        "original": "@post()\ndef create_user(self, data: User) -> User:\n    return data",
+        "mutated": [
+            "@post()\ndef create_user(self, data: User) -> User:\n    if False:\n        i = 10\n    return data",
+            "@post()\ndef create_user(self, data: User) -> User:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return data",
+            "@post()\ndef create_user(self, data: User) -> User:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return data",
+            "@post()\ndef create_user(self, data: User) -> User:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return data",
+            "@post()\ndef create_user(self, data: User) -> User:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return data"
+        ]
+    },
+    {
+        "func_name": "get_users",
+        "original": "@get()\ndef get_users(self) -> List[User]:\n    return [User(id=uuid4(), name='Litestar User')]",
+        "mutated": [
+            "@get()\ndef get_users(self) -> List[User]:\n    if False:\n        i = 10\n    return [User(id=uuid4(), name='Litestar User')]",
+            "@get()\ndef get_users(self) -> List[User]:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return [User(id=uuid4(), name='Litestar User')]",
+            "@get()\ndef get_users(self) -> List[User]:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return [User(id=uuid4(), name='Litestar User')]",
+            "@get()\ndef get_users(self) -> List[User]:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return [User(id=uuid4(), name='Litestar User')]",
+            "@get()\ndef get_users(self) -> List[User]:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return [User(id=uuid4(), name='Litestar User')]"
+        ]
+    },
+    {
+        "func_name": "get_user",
+        "original": "@get('/{user_id:uuid}')\ndef get_user(self, user_id: UUID) -> User:\n    return User(id=user_id, name='Litestar User')",
+        "mutated": [
+            "@get('/{user_id:uuid}')\ndef get_user(self, user_id: UUID) -> User:\n    if False:\n        i = 10\n    return User(id=user_id, name='Litestar User')",
+            "@get('/{user_id:uuid}')\ndef get_user(self, user_id: UUID) -> User:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return User(id=user_id, name='Litestar User')",
+            "@get('/{user_id:uuid}')\ndef get_user(self, user_id: UUID) -> User:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return User(id=user_id, name='Litestar User')",
+            "@get('/{user_id:uuid}')\ndef get_user(self, user_id: UUID) -> User:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return User(id=user_id, name='Litestar User')",
+            "@get('/{user_id:uuid}')\ndef get_user(self, user_id: UUID) -> User:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return User(id=user_id, name='Litestar User')"
+        ]
+    },
+    {
+        "func_name": "update_user",
+        "original": "@put('/{user_id:uuid}')\ndef update_user(self, data: User) -> User:\n    return data",
+        "mutated": [
+            "@put('/{user_id:uuid}')\ndef update_user(self, data: User) -> User:\n    if False:\n        i = 10\n    return data",
+            "@put('/{user_id:uuid}')\ndef update_user(self, data: User) -> User:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return data",
+            "@put('/{user_id:uuid}')\ndef update_user(self, data: User) -> User:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return data",
+            "@put('/{user_id:uuid}')\ndef update_user(self, data: User) -> User:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return data",
+            "@put('/{user_id:uuid}')\ndef update_user(self, data: User) -> User:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return data"
+        ]
+    },
+    {
+        "func_name": "delete_user",
+        "original": "@delete('/{user_id:uuid}', return_dto=None)\ndef delete_user(self, user_id: UUID) -> None:\n    return None",
+        "mutated": [
+            "@delete('/{user_id:uuid}', return_dto=None)\ndef delete_user(self, user_id: UUID) -> None:\n    if False:\n        i = 10\n    return None",
+            "@delete('/{user_id:uuid}', return_dto=None)\ndef delete_user(self, user_id: UUID) -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return None",
+            "@delete('/{user_id:uuid}', return_dto=None)\ndef delete_user(self, user_id: UUID) -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return None",
+            "@delete('/{user_id:uuid}', return_dto=None)\ndef delete_user(self, user_id: UUID) -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return None",
+            "@delete('/{user_id:uuid}', return_dto=None)\ndef delete_user(self, user_id: UUID) -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return None"
+        ]
+    }
+]

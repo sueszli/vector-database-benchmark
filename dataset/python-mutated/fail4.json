@@ -1,0 +1,57 @@
+[
+    {
+        "func_name": "foo",
+        "original": "@validate_call\ndef foo(a: int, *, c: str='x') -> str:\n    return c * a",
+        "mutated": [
+            "@validate_call\ndef foo(a: int, *, c: str='x') -> str:\n    if False:\n        i = 10\n    return c * a",
+            "@validate_call\ndef foo(a: int, *, c: str='x') -> str:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return c * a",
+            "@validate_call\ndef foo(a: int, *, c: str='x') -> str:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return c * a",
+            "@validate_call\ndef foo(a: int, *, c: str='x') -> str:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return c * a",
+            "@validate_call\ndef foo(a: int, *, c: str='x') -> str:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return c * a"
+        ]
+    },
+    {
+        "func_name": "bar",
+        "original": "@validate_call\ndef bar() -> str:\n    return 'x'",
+        "mutated": [
+            "@validate_call\ndef bar() -> str:\n    if False:\n        i = 10\n    return 'x'",
+            "@validate_call\ndef bar() -> str:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return 'x'",
+            "@validate_call\ndef bar() -> str:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return 'x'",
+            "@validate_call\ndef bar() -> str:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return 'x'",
+            "@validate_call\ndef bar() -> str:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return 'x'"
+        ]
+    },
+    {
+        "func_name": "validate_1",
+        "original": "@root_validator()\n@classmethod\ndef validate_1(cls, values: Any) -> Any:\n    return values",
+        "mutated": [
+            "@root_validator()\n@classmethod\ndef validate_1(cls, values: Any) -> Any:\n    if False:\n        i = 10\n    return values",
+            "@root_validator()\n@classmethod\ndef validate_1(cls, values: Any) -> Any:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return values",
+            "@root_validator()\n@classmethod\ndef validate_1(cls, values: Any) -> Any:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return values",
+            "@root_validator()\n@classmethod\ndef validate_1(cls, values: Any) -> Any:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return values",
+            "@root_validator()\n@classmethod\ndef validate_1(cls, values: Any) -> Any:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return values"
+        ]
+    },
+    {
+        "func_name": "validate_2",
+        "original": "@root_validator(pre=True, skip_on_failure=True)\n@classmethod\ndef validate_2(cls, values: Any) -> Any:\n    return values",
+        "mutated": [
+            "@root_validator(pre=True, skip_on_failure=True)\n@classmethod\ndef validate_2(cls, values: Any) -> Any:\n    if False:\n        i = 10\n    return values",
+            "@root_validator(pre=True, skip_on_failure=True)\n@classmethod\ndef validate_2(cls, values: Any) -> Any:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return values",
+            "@root_validator(pre=True, skip_on_failure=True)\n@classmethod\ndef validate_2(cls, values: Any) -> Any:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return values",
+            "@root_validator(pre=True, skip_on_failure=True)\n@classmethod\ndef validate_2(cls, values: Any) -> Any:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return values",
+            "@root_validator(pre=True, skip_on_failure=True)\n@classmethod\ndef validate_2(cls, values: Any) -> Any:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return values"
+        ]
+    },
+    {
+        "func_name": "validate_3",
+        "original": "@root_validator(pre=False)\n@classmethod\ndef validate_3(cls, values: Any) -> Any:\n    return values",
+        "mutated": [
+            "@root_validator(pre=False)\n@classmethod\ndef validate_3(cls, values: Any) -> Any:\n    if False:\n        i = 10\n    return values",
+            "@root_validator(pre=False)\n@classmethod\ndef validate_3(cls, values: Any) -> Any:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return values",
+            "@root_validator(pre=False)\n@classmethod\ndef validate_3(cls, values: Any) -> Any:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return values",
+            "@root_validator(pre=False)\n@classmethod\ndef validate_3(cls, values: Any) -> Any:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return values",
+            "@root_validator(pre=False)\n@classmethod\ndef validate_3(cls, values: Any) -> Any:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return values"
+        ]
+    }
+]

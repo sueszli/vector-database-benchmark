@@ -1,0 +1,123 @@
+[
+    {
+        "func_name": "case1",
+        "original": "def case1(x):\n    return n",
+        "mutated": [
+            "def case1(x):\n    if False:\n        i = 10\n    return n",
+            "def case1(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return n",
+            "def case1(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return n",
+            "def case1(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return n",
+            "def case1(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return n"
+        ]
+    },
+    {
+        "func_name": "case2",
+        "original": "def case2(x):\n    x = x + 1\n    return x @ x",
+        "mutated": [
+            "def case2(x):\n    if False:\n        i = 10\n    x = x + 1\n    return x @ x",
+            "def case2(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    x = x + 1\n    return x @ x",
+            "def case2(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    x = x + 1\n    return x @ x",
+            "def case2(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    x = x + 1\n    return x @ x",
+            "def case2(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    x = x + 1\n    return x @ x"
+        ]
+    },
+    {
+        "func_name": "case3",
+        "original": "def case3(x):\n    y = x.undefined_attr\n    return y",
+        "mutated": [
+            "def case3(x):\n    if False:\n        i = 10\n    y = x.undefined_attr\n    return y",
+            "def case3(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    y = x.undefined_attr\n    return y",
+            "def case3(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    y = x.undefined_attr\n    return y",
+            "def case3(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    y = x.undefined_attr\n    return y",
+            "def case3(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    y = x.undefined_attr\n    return y"
+        ]
+    },
+    {
+        "func_name": "case4_inner",
+        "original": "def case4_inner(x):\n    y = x * 2\n    print()\n    y = y + 1\n    return y.undefined_attr",
+        "mutated": [
+            "def case4_inner(x):\n    if False:\n        i = 10\n    y = x * 2\n    print()\n    y = y + 1\n    return y.undefined_attr",
+            "def case4_inner(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    y = x * 2\n    print()\n    y = y + 1\n    return y.undefined_attr",
+            "def case4_inner(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    y = x * 2\n    print()\n    y = y + 1\n    return y.undefined_attr",
+            "def case4_inner(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    y = x * 2\n    print()\n    y = y + 1\n    return y.undefined_attr",
+            "def case4_inner(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    y = x * 2\n    print()\n    y = y + 1\n    return y.undefined_attr"
+        ]
+    },
+    {
+        "func_name": "case4",
+        "original": "def case4(x):\n    return case4_inner(x)",
+        "mutated": [
+            "def case4(x):\n    if False:\n        i = 10\n    return case4_inner(x)",
+            "def case4(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return case4_inner(x)",
+            "def case4(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return case4_inner(x)",
+            "def case4(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return case4_inner(x)",
+            "def case4(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return case4_inner(x)"
+        ]
+    },
+    {
+        "func_name": "case5_inner3",
+        "original": "def case5_inner3(x):\n    x += 1\n    print(x)\n    z = x + 1\n    return z",
+        "mutated": [
+            "def case5_inner3(x):\n    if False:\n        i = 10\n    x += 1\n    print(x)\n    z = x + 1\n    return z",
+            "def case5_inner3(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    x += 1\n    print(x)\n    z = x + 1\n    return z",
+            "def case5_inner3(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    x += 1\n    print(x)\n    z = x + 1\n    return z",
+            "def case5_inner3(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    x += 1\n    print(x)\n    z = x + 1\n    return z",
+            "def case5_inner3(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    x += 1\n    print(x)\n    z = x + 1\n    return z"
+        ]
+    },
+    {
+        "func_name": "case5_inner2",
+        "original": "def case5_inner2(x):\n    x += 1\n    z = case5_inner3(1 / 0)\n    return z + 1",
+        "mutated": [
+            "def case5_inner2(x):\n    if False:\n        i = 10\n    x += 1\n    z = case5_inner3(1 / 0)\n    return z + 1",
+            "def case5_inner2(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    x += 1\n    z = case5_inner3(1 / 0)\n    return z + 1",
+            "def case5_inner2(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    x += 1\n    z = case5_inner3(1 / 0)\n    return z + 1",
+            "def case5_inner2(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    x += 1\n    z = case5_inner3(1 / 0)\n    return z + 1",
+            "def case5_inner2(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    x += 1\n    z = case5_inner3(1 / 0)\n    return z + 1"
+        ]
+    },
+    {
+        "func_name": "case5_inner1",
+        "original": "def case5_inner1(x):\n    return case5_inner2(x)",
+        "mutated": [
+            "def case5_inner1(x):\n    if False:\n        i = 10\n    return case5_inner2(x)",
+            "def case5_inner1(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return case5_inner2(x)",
+            "def case5_inner1(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return case5_inner2(x)",
+            "def case5_inner1(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return case5_inner2(x)",
+            "def case5_inner1(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return case5_inner2(x)"
+        ]
+    },
+    {
+        "func_name": "case5",
+        "original": "def case5(x):\n    y = case5_inner3(x)\n    return case5_inner1(y) + 1",
+        "mutated": [
+            "def case5(x):\n    if False:\n        i = 10\n    y = case5_inner3(x)\n    return case5_inner1(y) + 1",
+            "def case5(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    y = case5_inner3(x)\n    return case5_inner1(y) + 1",
+            "def case5(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    y = case5_inner3(x)\n    return case5_inner1(y) + 1",
+            "def case5(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    y = case5_inner3(x)\n    return case5_inner1(y) + 1",
+            "def case5(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    y = case5_inner3(x)\n    return case5_inner1(y) + 1"
+        ]
+    },
+    {
+        "func_name": "catch_error",
+        "original": "def catch_error(self, func, inputs, error_lines: int | list[int]):\n    if isinstance(error_lines, int):\n        error_lines = [error_lines]\n    try:\n        symbolic_translate(func)(inputs)\n    except Exception as e:\n        match_results = re.compile('File \".*\", line (\\\\d+)').findall(str(e))\n        match_results = list(map(int, match_results))\n        assert match_results == error_lines, f'{match_results} is not equal {error_lines}'",
+        "mutated": [
+            "def catch_error(self, func, inputs, error_lines: int | list[int]):\n    if False:\n        i = 10\n    if isinstance(error_lines, int):\n        error_lines = [error_lines]\n    try:\n        symbolic_translate(func)(inputs)\n    except Exception as e:\n        match_results = re.compile('File \".*\", line (\\\\d+)').findall(str(e))\n        match_results = list(map(int, match_results))\n        assert match_results == error_lines, f'{match_results} is not equal {error_lines}'",
+            "def catch_error(self, func, inputs, error_lines: int | list[int]):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    if isinstance(error_lines, int):\n        error_lines = [error_lines]\n    try:\n        symbolic_translate(func)(inputs)\n    except Exception as e:\n        match_results = re.compile('File \".*\", line (\\\\d+)').findall(str(e))\n        match_results = list(map(int, match_results))\n        assert match_results == error_lines, f'{match_results} is not equal {error_lines}'",
+            "def catch_error(self, func, inputs, error_lines: int | list[int]):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    if isinstance(error_lines, int):\n        error_lines = [error_lines]\n    try:\n        symbolic_translate(func)(inputs)\n    except Exception as e:\n        match_results = re.compile('File \".*\", line (\\\\d+)').findall(str(e))\n        match_results = list(map(int, match_results))\n        assert match_results == error_lines, f'{match_results} is not equal {error_lines}'",
+            "def catch_error(self, func, inputs, error_lines: int | list[int]):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    if isinstance(error_lines, int):\n        error_lines = [error_lines]\n    try:\n        symbolic_translate(func)(inputs)\n    except Exception as e:\n        match_results = re.compile('File \".*\", line (\\\\d+)').findall(str(e))\n        match_results = list(map(int, match_results))\n        assert match_results == error_lines, f'{match_results} is not equal {error_lines}'",
+            "def catch_error(self, func, inputs, error_lines: int | list[int]):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    if isinstance(error_lines, int):\n        error_lines = [error_lines]\n    try:\n        symbolic_translate(func)(inputs)\n    except Exception as e:\n        match_results = re.compile('File \".*\", line (\\\\d+)').findall(str(e))\n        match_results = list(map(int, match_results))\n        assert match_results == error_lines, f'{match_results} is not equal {error_lines}'"
+        ]
+    },
+    {
+        "func_name": "test_all_case",
+        "original": "def test_all_case(self):\n    self.catch_error(case1, paddle.rand([2, 1]), 25)\n    self.catch_error(case3, paddle.rand([2, 1]), 34)\n    self.catch_error(case4, paddle.rand([2, 1]), 42)\n    self.catch_error(case5, paddle.rand([3, 1]), [68, 63, 58])",
+        "mutated": [
+            "def test_all_case(self):\n    if False:\n        i = 10\n    self.catch_error(case1, paddle.rand([2, 1]), 25)\n    self.catch_error(case3, paddle.rand([2, 1]), 34)\n    self.catch_error(case4, paddle.rand([2, 1]), 42)\n    self.catch_error(case5, paddle.rand([3, 1]), [68, 63, 58])",
+            "def test_all_case(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    self.catch_error(case1, paddle.rand([2, 1]), 25)\n    self.catch_error(case3, paddle.rand([2, 1]), 34)\n    self.catch_error(case4, paddle.rand([2, 1]), 42)\n    self.catch_error(case5, paddle.rand([3, 1]), [68, 63, 58])",
+            "def test_all_case(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    self.catch_error(case1, paddle.rand([2, 1]), 25)\n    self.catch_error(case3, paddle.rand([2, 1]), 34)\n    self.catch_error(case4, paddle.rand([2, 1]), 42)\n    self.catch_error(case5, paddle.rand([3, 1]), [68, 63, 58])",
+            "def test_all_case(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    self.catch_error(case1, paddle.rand([2, 1]), 25)\n    self.catch_error(case3, paddle.rand([2, 1]), 34)\n    self.catch_error(case4, paddle.rand([2, 1]), 42)\n    self.catch_error(case5, paddle.rand([3, 1]), [68, 63, 58])",
+            "def test_all_case(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    self.catch_error(case1, paddle.rand([2, 1]), 25)\n    self.catch_error(case3, paddle.rand([2, 1]), 34)\n    self.catch_error(case4, paddle.rand([2, 1]), 42)\n    self.catch_error(case5, paddle.rand([3, 1]), [68, 63, 58])"
+        ]
+    }
+]

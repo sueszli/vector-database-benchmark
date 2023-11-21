@@ -1,0 +1,57 @@
+[
+    {
+        "func_name": "test_when_datetime",
+        "original": "def test_when_datetime(self):\n    x = Retry('foo', KeyError(), when=datetime.utcnow())\n    assert x.humanize()",
+        "mutated": [
+            "def test_when_datetime(self):\n    if False:\n        i = 10\n    x = Retry('foo', KeyError(), when=datetime.utcnow())\n    assert x.humanize()",
+            "def test_when_datetime(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    x = Retry('foo', KeyError(), when=datetime.utcnow())\n    assert x.humanize()",
+            "def test_when_datetime(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    x = Retry('foo', KeyError(), when=datetime.utcnow())\n    assert x.humanize()",
+            "def test_when_datetime(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    x = Retry('foo', KeyError(), when=datetime.utcnow())\n    assert x.humanize()",
+            "def test_when_datetime(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    x = Retry('foo', KeyError(), when=datetime.utcnow())\n    assert x.humanize()"
+        ]
+    },
+    {
+        "func_name": "test_pickleable",
+        "original": "def test_pickleable(self):\n    x = Retry('foo', KeyError(), when=datetime.utcnow())\n    y = pickle.loads(pickle.dumps(x))\n    assert x.message == y.message\n    assert repr(x.exc) == repr(y.exc)\n    assert x.when == y.when",
+        "mutated": [
+            "def test_pickleable(self):\n    if False:\n        i = 10\n    x = Retry('foo', KeyError(), when=datetime.utcnow())\n    y = pickle.loads(pickle.dumps(x))\n    assert x.message == y.message\n    assert repr(x.exc) == repr(y.exc)\n    assert x.when == y.when",
+            "def test_pickleable(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    x = Retry('foo', KeyError(), when=datetime.utcnow())\n    y = pickle.loads(pickle.dumps(x))\n    assert x.message == y.message\n    assert repr(x.exc) == repr(y.exc)\n    assert x.when == y.when",
+            "def test_pickleable(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    x = Retry('foo', KeyError(), when=datetime.utcnow())\n    y = pickle.loads(pickle.dumps(x))\n    assert x.message == y.message\n    assert repr(x.exc) == repr(y.exc)\n    assert x.when == y.when",
+            "def test_pickleable(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    x = Retry('foo', KeyError(), when=datetime.utcnow())\n    y = pickle.loads(pickle.dumps(x))\n    assert x.message == y.message\n    assert repr(x.exc) == repr(y.exc)\n    assert x.when == y.when",
+            "def test_pickleable(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    x = Retry('foo', KeyError(), when=datetime.utcnow())\n    y = pickle.loads(pickle.dumps(x))\n    assert x.message == y.message\n    assert repr(x.exc) == repr(y.exc)\n    assert x.when == y.when"
+        ]
+    },
+    {
+        "func_name": "test_attrs",
+        "original": "def test_attrs(self):\n    x = Reject('foo', requeue=True)\n    assert x.reason == 'foo'\n    assert x.requeue",
+        "mutated": [
+            "def test_attrs(self):\n    if False:\n        i = 10\n    x = Reject('foo', requeue=True)\n    assert x.reason == 'foo'\n    assert x.requeue",
+            "def test_attrs(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    x = Reject('foo', requeue=True)\n    assert x.reason == 'foo'\n    assert x.requeue",
+            "def test_attrs(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    x = Reject('foo', requeue=True)\n    assert x.reason == 'foo'\n    assert x.requeue",
+            "def test_attrs(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    x = Reject('foo', requeue=True)\n    assert x.reason == 'foo'\n    assert x.requeue",
+            "def test_attrs(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    x = Reject('foo', requeue=True)\n    assert x.reason == 'foo'\n    assert x.requeue"
+        ]
+    },
+    {
+        "func_name": "test_repr",
+        "original": "def test_repr(self):\n    assert repr(Reject('foo', True))",
+        "mutated": [
+            "def test_repr(self):\n    if False:\n        i = 10\n    assert repr(Reject('foo', True))",
+            "def test_repr(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    assert repr(Reject('foo', True))",
+            "def test_repr(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    assert repr(Reject('foo', True))",
+            "def test_repr(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    assert repr(Reject('foo', True))",
+            "def test_repr(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    assert repr(Reject('foo', True))"
+        ]
+    },
+    {
+        "func_name": "test_pickleable",
+        "original": "def test_pickleable(self):\n    x = Retry('foo', True)\n    assert pickle.loads(pickle.dumps(x))",
+        "mutated": [
+            "def test_pickleable(self):\n    if False:\n        i = 10\n    x = Retry('foo', True)\n    assert pickle.loads(pickle.dumps(x))",
+            "def test_pickleable(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    x = Retry('foo', True)\n    assert pickle.loads(pickle.dumps(x))",
+            "def test_pickleable(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    x = Retry('foo', True)\n    assert pickle.loads(pickle.dumps(x))",
+            "def test_pickleable(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    x = Retry('foo', True)\n    assert pickle.loads(pickle.dumps(x))",
+            "def test_pickleable(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    x = Retry('foo', True)\n    assert pickle.loads(pickle.dumps(x))"
+        ]
+    }
+]

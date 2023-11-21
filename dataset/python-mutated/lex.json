@@ -1,0 +1,145 @@
+[
+    {
+        "func_name": "t_SECTION",
+        "original": "def t_SECTION(t):\n    \"\"\"%%\"\"\"\n    if getattr(t.lexer, 'lastsection', 0):\n        t.value = t.lexer.lexdata[t.lexpos + 2:]\n        t.lexer.lexpos = len(t.lexer.lexdata)\n    else:\n        t.lexer.lastsection = 0\n    return t",
+        "mutated": [
+            "def t_SECTION(t):\n    if False:\n        i = 10\n    '%%'\n    if getattr(t.lexer, 'lastsection', 0):\n        t.value = t.lexer.lexdata[t.lexpos + 2:]\n        t.lexer.lexpos = len(t.lexer.lexdata)\n    else:\n        t.lexer.lastsection = 0\n    return t",
+            "def t_SECTION(t):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    '%%'\n    if getattr(t.lexer, 'lastsection', 0):\n        t.value = t.lexer.lexdata[t.lexpos + 2:]\n        t.lexer.lexpos = len(t.lexer.lexdata)\n    else:\n        t.lexer.lastsection = 0\n    return t",
+            "def t_SECTION(t):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    '%%'\n    if getattr(t.lexer, 'lastsection', 0):\n        t.value = t.lexer.lexdata[t.lexpos + 2:]\n        t.lexer.lexpos = len(t.lexer.lexdata)\n    else:\n        t.lexer.lastsection = 0\n    return t",
+            "def t_SECTION(t):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    '%%'\n    if getattr(t.lexer, 'lastsection', 0):\n        t.value = t.lexer.lexdata[t.lexpos + 2:]\n        t.lexer.lexpos = len(t.lexer.lexdata)\n    else:\n        t.lexer.lastsection = 0\n    return t",
+            "def t_SECTION(t):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    '%%'\n    if getattr(t.lexer, 'lastsection', 0):\n        t.value = t.lexer.lexdata[t.lexpos + 2:]\n        t.lexer.lexpos = len(t.lexer.lexdata)\n    else:\n        t.lexer.lastsection = 0\n    return t"
+        ]
+    },
+    {
+        "func_name": "t_ccomment",
+        "original": "def t_ccomment(t):\n    \"\"\"/\\\\*(.|\\\\n)*?\\\\*/\"\"\"\n    t.lexer.lineno += t.value.count('\\n')",
+        "mutated": [
+            "def t_ccomment(t):\n    if False:\n        i = 10\n    '/\\\\*(.|\\\\n)*?\\\\*/'\n    t.lexer.lineno += t.value.count('\\n')",
+            "def t_ccomment(t):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    '/\\\\*(.|\\\\n)*?\\\\*/'\n    t.lexer.lineno += t.value.count('\\n')",
+            "def t_ccomment(t):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    '/\\\\*(.|\\\\n)*?\\\\*/'\n    t.lexer.lineno += t.value.count('\\n')",
+            "def t_ccomment(t):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    '/\\\\*(.|\\\\n)*?\\\\*/'\n    t.lexer.lineno += t.value.count('\\n')",
+            "def t_ccomment(t):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    '/\\\\*(.|\\\\n)*?\\\\*/'\n    t.lexer.lineno += t.value.count('\\n')"
+        ]
+    },
+    {
+        "func_name": "t_LITERAL",
+        "original": "def t_LITERAL(t):\n    \"\"\"%\\\\{(.|\\\\n)*?%\\\\}\"\"\"\n    t.lexer.lineno += t.value.count('\\n')\n    return t",
+        "mutated": [
+            "def t_LITERAL(t):\n    if False:\n        i = 10\n    '%\\\\{(.|\\\\n)*?%\\\\}'\n    t.lexer.lineno += t.value.count('\\n')\n    return t",
+            "def t_LITERAL(t):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    '%\\\\{(.|\\\\n)*?%\\\\}'\n    t.lexer.lineno += t.value.count('\\n')\n    return t",
+            "def t_LITERAL(t):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    '%\\\\{(.|\\\\n)*?%\\\\}'\n    t.lexer.lineno += t.value.count('\\n')\n    return t",
+            "def t_LITERAL(t):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    '%\\\\{(.|\\\\n)*?%\\\\}'\n    t.lexer.lineno += t.value.count('\\n')\n    return t",
+            "def t_LITERAL(t):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    '%\\\\{(.|\\\\n)*?%\\\\}'\n    t.lexer.lineno += t.value.count('\\n')\n    return t"
+        ]
+    },
+    {
+        "func_name": "t_NEWLINE",
+        "original": "def t_NEWLINE(t):\n    \"\"\"\\\\n\"\"\"\n    t.lexer.lineno += 1",
+        "mutated": [
+            "def t_NEWLINE(t):\n    if False:\n        i = 10\n    '\\\\n'\n    t.lexer.lineno += 1",
+            "def t_NEWLINE(t):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    '\\\\n'\n    t.lexer.lineno += 1",
+            "def t_NEWLINE(t):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    '\\\\n'\n    t.lexer.lineno += 1",
+            "def t_NEWLINE(t):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    '\\\\n'\n    t.lexer.lineno += 1",
+            "def t_NEWLINE(t):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    '\\\\n'\n    t.lexer.lineno += 1"
+        ]
+    },
+    {
+        "func_name": "t_code",
+        "original": "def t_code(t):\n    \"\"\"\\\\{\"\"\"\n    t.lexer.codestart = t.lexpos\n    t.lexer.level = 1\n    t.lexer.begin('code')",
+        "mutated": [
+            "def t_code(t):\n    if False:\n        i = 10\n    '\\\\{'\n    t.lexer.codestart = t.lexpos\n    t.lexer.level = 1\n    t.lexer.begin('code')",
+            "def t_code(t):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    '\\\\{'\n    t.lexer.codestart = t.lexpos\n    t.lexer.level = 1\n    t.lexer.begin('code')",
+            "def t_code(t):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    '\\\\{'\n    t.lexer.codestart = t.lexpos\n    t.lexer.level = 1\n    t.lexer.begin('code')",
+            "def t_code(t):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    '\\\\{'\n    t.lexer.codestart = t.lexpos\n    t.lexer.level = 1\n    t.lexer.begin('code')",
+            "def t_code(t):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    '\\\\{'\n    t.lexer.codestart = t.lexpos\n    t.lexer.level = 1\n    t.lexer.begin('code')"
+        ]
+    },
+    {
+        "func_name": "t_code_ignore_string",
+        "original": "def t_code_ignore_string(t):\n    '''\\\\\"([^\\\\\\\\\\\\n]|(\\\\\\\\.))*?\\\\\"'''",
+        "mutated": [
+            "def t_code_ignore_string(t):\n    if False:\n        i = 10\n    '\\\\\"([^\\\\\\\\\\\\n]|(\\\\\\\\.))*?\\\\\"'",
+            "def t_code_ignore_string(t):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    '\\\\\"([^\\\\\\\\\\\\n]|(\\\\\\\\.))*?\\\\\"'",
+            "def t_code_ignore_string(t):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    '\\\\\"([^\\\\\\\\\\\\n]|(\\\\\\\\.))*?\\\\\"'",
+            "def t_code_ignore_string(t):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    '\\\\\"([^\\\\\\\\\\\\n]|(\\\\\\\\.))*?\\\\\"'",
+            "def t_code_ignore_string(t):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    '\\\\\"([^\\\\\\\\\\\\n]|(\\\\\\\\.))*?\\\\\"'"
+        ]
+    },
+    {
+        "func_name": "t_code_ignore_char",
+        "original": "def t_code_ignore_char(t):\n    \"\"\"\\\\'([^\\\\\\\\\\\\n]|(\\\\\\\\.))*?\\\\'\"\"\"",
+        "mutated": [
+            "def t_code_ignore_char(t):\n    if False:\n        i = 10\n    \"\\\\'([^\\\\\\\\\\\\n]|(\\\\\\\\.))*?\\\\'\"",
+            "def t_code_ignore_char(t):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    \"\\\\'([^\\\\\\\\\\\\n]|(\\\\\\\\.))*?\\\\'\"",
+            "def t_code_ignore_char(t):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    \"\\\\'([^\\\\\\\\\\\\n]|(\\\\\\\\.))*?\\\\'\"",
+            "def t_code_ignore_char(t):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    \"\\\\'([^\\\\\\\\\\\\n]|(\\\\\\\\.))*?\\\\'\"",
+            "def t_code_ignore_char(t):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    \"\\\\'([^\\\\\\\\\\\\n]|(\\\\\\\\.))*?\\\\'\""
+        ]
+    },
+    {
+        "func_name": "t_code_ignore_comment",
+        "original": "def t_code_ignore_comment(t):\n    \"\"\"/\\\\*(.|\\\\n)*?\\\\*/\"\"\"",
+        "mutated": [
+            "def t_code_ignore_comment(t):\n    if False:\n        i = 10\n    '/\\\\*(.|\\\\n)*?\\\\*/'",
+            "def t_code_ignore_comment(t):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    '/\\\\*(.|\\\\n)*?\\\\*/'",
+            "def t_code_ignore_comment(t):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    '/\\\\*(.|\\\\n)*?\\\\*/'",
+            "def t_code_ignore_comment(t):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    '/\\\\*(.|\\\\n)*?\\\\*/'",
+            "def t_code_ignore_comment(t):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    '/\\\\*(.|\\\\n)*?\\\\*/'"
+        ]
+    },
+    {
+        "func_name": "t_code_ignore_cppcom",
+        "original": "def t_code_ignore_cppcom(t):\n    \"\"\"//.*\"\"\"",
+        "mutated": [
+            "def t_code_ignore_cppcom(t):\n    if False:\n        i = 10\n    '//.*'",
+            "def t_code_ignore_cppcom(t):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    '//.*'",
+            "def t_code_ignore_cppcom(t):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    '//.*'",
+            "def t_code_ignore_cppcom(t):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    '//.*'",
+            "def t_code_ignore_cppcom(t):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    '//.*'"
+        ]
+    },
+    {
+        "func_name": "t_code_lbrace",
+        "original": "def t_code_lbrace(t):\n    \"\"\"\\\\{\"\"\"\n    t.lexer.level += 1",
+        "mutated": [
+            "def t_code_lbrace(t):\n    if False:\n        i = 10\n    '\\\\{'\n    t.lexer.level += 1",
+            "def t_code_lbrace(t):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    '\\\\{'\n    t.lexer.level += 1",
+            "def t_code_lbrace(t):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    '\\\\{'\n    t.lexer.level += 1",
+            "def t_code_lbrace(t):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    '\\\\{'\n    t.lexer.level += 1",
+            "def t_code_lbrace(t):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    '\\\\{'\n    t.lexer.level += 1"
+        ]
+    },
+    {
+        "func_name": "t_code_rbrace",
+        "original": "def t_code_rbrace(t):\n    \"\"\"\\\\}\"\"\"\n    t.lexer.level -= 1\n    if t.lexer.level == 0:\n        t.type = 'CODE'\n        t.value = t.lexer.lexdata[t.lexer.codestart:t.lexpos + 1]\n        t.lexer.begin('INITIAL')\n        t.lexer.lineno += t.value.count('\\n')\n        return t",
+        "mutated": [
+            "def t_code_rbrace(t):\n    if False:\n        i = 10\n    '\\\\}'\n    t.lexer.level -= 1\n    if t.lexer.level == 0:\n        t.type = 'CODE'\n        t.value = t.lexer.lexdata[t.lexer.codestart:t.lexpos + 1]\n        t.lexer.begin('INITIAL')\n        t.lexer.lineno += t.value.count('\\n')\n        return t",
+            "def t_code_rbrace(t):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    '\\\\}'\n    t.lexer.level -= 1\n    if t.lexer.level == 0:\n        t.type = 'CODE'\n        t.value = t.lexer.lexdata[t.lexer.codestart:t.lexpos + 1]\n        t.lexer.begin('INITIAL')\n        t.lexer.lineno += t.value.count('\\n')\n        return t",
+            "def t_code_rbrace(t):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    '\\\\}'\n    t.lexer.level -= 1\n    if t.lexer.level == 0:\n        t.type = 'CODE'\n        t.value = t.lexer.lexdata[t.lexer.codestart:t.lexpos + 1]\n        t.lexer.begin('INITIAL')\n        t.lexer.lineno += t.value.count('\\n')\n        return t",
+            "def t_code_rbrace(t):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    '\\\\}'\n    t.lexer.level -= 1\n    if t.lexer.level == 0:\n        t.type = 'CODE'\n        t.value = t.lexer.lexdata[t.lexer.codestart:t.lexpos + 1]\n        t.lexer.begin('INITIAL')\n        t.lexer.lineno += t.value.count('\\n')\n        return t",
+            "def t_code_rbrace(t):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    '\\\\}'\n    t.lexer.level -= 1\n    if t.lexer.level == 0:\n        t.type = 'CODE'\n        t.value = t.lexer.lexdata[t.lexer.codestart:t.lexpos + 1]\n        t.lexer.begin('INITIAL')\n        t.lexer.lineno += t.value.count('\\n')\n        return t"
+        ]
+    },
+    {
+        "func_name": "t_code_error",
+        "original": "def t_code_error(t):\n    raise RuntimeError",
+        "mutated": [
+            "def t_code_error(t):\n    if False:\n        i = 10\n    raise RuntimeError",
+            "def t_code_error(t):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    raise RuntimeError",
+            "def t_code_error(t):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    raise RuntimeError",
+            "def t_code_error(t):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    raise RuntimeError",
+            "def t_code_error(t):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    raise RuntimeError"
+        ]
+    },
+    {
+        "func_name": "t_error",
+        "original": "def t_error(t):\n    print(\"%d: Illegal character '%s'\" % (t.lexer.lineno, t.value[0]))\n    print(t.value)\n    t.lexer.skip(1)",
+        "mutated": [
+            "def t_error(t):\n    if False:\n        i = 10\n    print(\"%d: Illegal character '%s'\" % (t.lexer.lineno, t.value[0]))\n    print(t.value)\n    t.lexer.skip(1)",
+            "def t_error(t):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    print(\"%d: Illegal character '%s'\" % (t.lexer.lineno, t.value[0]))\n    print(t.value)\n    t.lexer.skip(1)",
+            "def t_error(t):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    print(\"%d: Illegal character '%s'\" % (t.lexer.lineno, t.value[0]))\n    print(t.value)\n    t.lexer.skip(1)",
+            "def t_error(t):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    print(\"%d: Illegal character '%s'\" % (t.lexer.lineno, t.value[0]))\n    print(t.value)\n    t.lexer.skip(1)",
+            "def t_error(t):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    print(\"%d: Illegal character '%s'\" % (t.lexer.lineno, t.value[0]))\n    print(t.value)\n    t.lexer.skip(1)"
+        ]
+    }
+]

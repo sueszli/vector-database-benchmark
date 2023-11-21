@@ -1,0 +1,13 @@
+[
+    {
+        "func_name": "get_variables",
+        "original": "def get_variables(self, *args):\n    return {'dynamic_python_string': ' '.join(args), 'LIST__dynamic_python_list': args}",
+        "mutated": [
+            "def get_variables(self, *args):\n    if False:\n        i = 10\n    return {'dynamic_python_string': ' '.join(args), 'LIST__dynamic_python_list': args}",
+            "def get_variables(self, *args):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return {'dynamic_python_string': ' '.join(args), 'LIST__dynamic_python_list': args}",
+            "def get_variables(self, *args):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return {'dynamic_python_string': ' '.join(args), 'LIST__dynamic_python_list': args}",
+            "def get_variables(self, *args):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return {'dynamic_python_string': ' '.join(args), 'LIST__dynamic_python_list': args}",
+            "def get_variables(self, *args):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return {'dynamic_python_string': ' '.join(args), 'LIST__dynamic_python_list': args}"
+        ]
+    }
+]

@@ -1,0 +1,57 @@
+[
+    {
+        "func_name": "correct_pre_save_handler",
+        "original": "@receiver(pre_save, sender=MyModel)\n@test_decorator\ndef correct_pre_save_handler():\n    pass",
+        "mutated": [
+            "@receiver(pre_save, sender=MyModel)\n@test_decorator\ndef correct_pre_save_handler():\n    if False:\n        i = 10\n    pass",
+            "@receiver(pre_save, sender=MyModel)\n@test_decorator\ndef correct_pre_save_handler():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    pass",
+            "@receiver(pre_save, sender=MyModel)\n@test_decorator\ndef correct_pre_save_handler():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    pass",
+            "@receiver(pre_save, sender=MyModel)\n@test_decorator\ndef correct_pre_save_handler():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    pass",
+            "@receiver(pre_save, sender=MyModel)\n@test_decorator\ndef correct_pre_save_handler():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    pass"
+        ]
+    },
+    {
+        "func_name": "incorrect_pre_save_handler",
+        "original": "@test_decorator\n@receiver(pre_save, sender=MyModel)\ndef incorrect_pre_save_handler():\n    pass",
+        "mutated": [
+            "@test_decorator\n@receiver(pre_save, sender=MyModel)\ndef incorrect_pre_save_handler():\n    if False:\n        i = 10\n    pass",
+            "@test_decorator\n@receiver(pre_save, sender=MyModel)\ndef incorrect_pre_save_handler():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    pass",
+            "@test_decorator\n@receiver(pre_save, sender=MyModel)\ndef incorrect_pre_save_handler():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    pass",
+            "@test_decorator\n@receiver(pre_save, sender=MyModel)\ndef incorrect_pre_save_handler():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    pass",
+            "@test_decorator\n@receiver(pre_save, sender=MyModel)\ndef incorrect_pre_save_handler():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    pass"
+        ]
+    },
+    {
+        "func_name": "correct_multiple",
+        "original": "@receiver(pre_save, sender=MyModel)\n@receiver(pre_save, sender=MyModel)\n@test_decorator\ndef correct_multiple():\n    pass",
+        "mutated": [
+            "@receiver(pre_save, sender=MyModel)\n@receiver(pre_save, sender=MyModel)\n@test_decorator\ndef correct_multiple():\n    if False:\n        i = 10\n    pass",
+            "@receiver(pre_save, sender=MyModel)\n@receiver(pre_save, sender=MyModel)\n@test_decorator\ndef correct_multiple():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    pass",
+            "@receiver(pre_save, sender=MyModel)\n@receiver(pre_save, sender=MyModel)\n@test_decorator\ndef correct_multiple():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    pass",
+            "@receiver(pre_save, sender=MyModel)\n@receiver(pre_save, sender=MyModel)\n@test_decorator\ndef correct_multiple():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    pass",
+            "@receiver(pre_save, sender=MyModel)\n@receiver(pre_save, sender=MyModel)\n@test_decorator\ndef correct_multiple():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    pass"
+        ]
+    },
+    {
+        "func_name": "correct_multiple",
+        "original": "@receiver(pre_save, sender=MyModel)\n@receiver(pre_save, sender=MyModel)\ndef correct_multiple():\n    pass",
+        "mutated": [
+            "@receiver(pre_save, sender=MyModel)\n@receiver(pre_save, sender=MyModel)\ndef correct_multiple():\n    if False:\n        i = 10\n    pass",
+            "@receiver(pre_save, sender=MyModel)\n@receiver(pre_save, sender=MyModel)\ndef correct_multiple():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    pass",
+            "@receiver(pre_save, sender=MyModel)\n@receiver(pre_save, sender=MyModel)\ndef correct_multiple():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    pass",
+            "@receiver(pre_save, sender=MyModel)\n@receiver(pre_save, sender=MyModel)\ndef correct_multiple():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    pass",
+            "@receiver(pre_save, sender=MyModel)\n@receiver(pre_save, sender=MyModel)\ndef correct_multiple():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    pass"
+        ]
+    },
+    {
+        "func_name": "incorrect_multiple",
+        "original": "@receiver(pre_save, sender=MyModel)\n@test_decorator\n@receiver(pre_save, sender=MyModel)\ndef incorrect_multiple():\n    pass",
+        "mutated": [
+            "@receiver(pre_save, sender=MyModel)\n@test_decorator\n@receiver(pre_save, sender=MyModel)\ndef incorrect_multiple():\n    if False:\n        i = 10\n    pass",
+            "@receiver(pre_save, sender=MyModel)\n@test_decorator\n@receiver(pre_save, sender=MyModel)\ndef incorrect_multiple():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    pass",
+            "@receiver(pre_save, sender=MyModel)\n@test_decorator\n@receiver(pre_save, sender=MyModel)\ndef incorrect_multiple():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    pass",
+            "@receiver(pre_save, sender=MyModel)\n@test_decorator\n@receiver(pre_save, sender=MyModel)\ndef incorrect_multiple():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    pass",
+            "@receiver(pre_save, sender=MyModel)\n@test_decorator\n@receiver(pre_save, sender=MyModel)\ndef incorrect_multiple():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    pass"
+        ]
+    }
+]

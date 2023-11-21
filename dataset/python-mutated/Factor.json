@@ -1,0 +1,57 @@
+[
+    {
+        "func_name": "__init__",
+        "original": "def __init__(self):\n    self._type2ctor = {}",
+        "mutated": [
+            "def __init__(self):\n    if False:\n        i = 10\n    self._type2ctor = {}",
+            "def __init__(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    self._type2ctor = {}",
+            "def __init__(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    self._type2ctor = {}",
+            "def __init__(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    self._type2ctor = {}",
+            "def __init__(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    self._type2ctor = {}"
+        ]
+    },
+    {
+        "func_name": "create",
+        "original": "def create(self, type, *args, **kwArgs):\n    return self._type2ctor[type](*args, **kwArgs)",
+        "mutated": [
+            "def create(self, type, *args, **kwArgs):\n    if False:\n        i = 10\n    return self._type2ctor[type](*args, **kwArgs)",
+            "def create(self, type, *args, **kwArgs):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return self._type2ctor[type](*args, **kwArgs)",
+            "def create(self, type, *args, **kwArgs):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return self._type2ctor[type](*args, **kwArgs)",
+            "def create(self, type, *args, **kwArgs):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return self._type2ctor[type](*args, **kwArgs)",
+            "def create(self, type, *args, **kwArgs):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return self._type2ctor[type](*args, **kwArgs)"
+        ]
+    },
+    {
+        "func_name": "_registerType",
+        "original": "def _registerType(self, type, ctor):\n    if type in self._type2ctor:\n        self.notify.debug('replacing %s ctor %s with %s' % (type, self._type2ctor[type], ctor))\n    self._type2ctor[type] = ctor",
+        "mutated": [
+            "def _registerType(self, type, ctor):\n    if False:\n        i = 10\n    if type in self._type2ctor:\n        self.notify.debug('replacing %s ctor %s with %s' % (type, self._type2ctor[type], ctor))\n    self._type2ctor[type] = ctor",
+            "def _registerType(self, type, ctor):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    if type in self._type2ctor:\n        self.notify.debug('replacing %s ctor %s with %s' % (type, self._type2ctor[type], ctor))\n    self._type2ctor[type] = ctor",
+            "def _registerType(self, type, ctor):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    if type in self._type2ctor:\n        self.notify.debug('replacing %s ctor %s with %s' % (type, self._type2ctor[type], ctor))\n    self._type2ctor[type] = ctor",
+            "def _registerType(self, type, ctor):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    if type in self._type2ctor:\n        self.notify.debug('replacing %s ctor %s with %s' % (type, self._type2ctor[type], ctor))\n    self._type2ctor[type] = ctor",
+            "def _registerType(self, type, ctor):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    if type in self._type2ctor:\n        self.notify.debug('replacing %s ctor %s with %s' % (type, self._type2ctor[type], ctor))\n    self._type2ctor[type] = ctor"
+        ]
+    },
+    {
+        "func_name": "_registerTypes",
+        "original": "def _registerTypes(self, type2ctor):\n    for (type, ctor) in list(type2ctor.items()):\n        self._registerType(type, ctor)",
+        "mutated": [
+            "def _registerTypes(self, type2ctor):\n    if False:\n        i = 10\n    for (type, ctor) in list(type2ctor.items()):\n        self._registerType(type, ctor)",
+            "def _registerTypes(self, type2ctor):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    for (type, ctor) in list(type2ctor.items()):\n        self._registerType(type, ctor)",
+            "def _registerTypes(self, type2ctor):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    for (type, ctor) in list(type2ctor.items()):\n        self._registerType(type, ctor)",
+            "def _registerTypes(self, type2ctor):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    for (type, ctor) in list(type2ctor.items()):\n        self._registerType(type, ctor)",
+            "def _registerTypes(self, type2ctor):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    for (type, ctor) in list(type2ctor.items()):\n        self._registerType(type, ctor)"
+        ]
+    },
+    {
+        "func_name": "nullCtor",
+        "original": "def nullCtor(self, *args, **kwArgs):\n    return None",
+        "mutated": [
+            "def nullCtor(self, *args, **kwArgs):\n    if False:\n        i = 10\n    return None",
+            "def nullCtor(self, *args, **kwArgs):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return None",
+            "def nullCtor(self, *args, **kwArgs):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return None",
+            "def nullCtor(self, *args, **kwArgs):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return None",
+            "def nullCtor(self, *args, **kwArgs):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return None"
+        ]
+    }
+]

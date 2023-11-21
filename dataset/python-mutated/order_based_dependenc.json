@@ -1,0 +1,57 @@
+[
+    {
+        "func_name": "execute",
+        "original": "def execute(self, query: str):\n    pass",
+        "mutated": [
+            "def execute(self, query: str):\n    if False:\n        i = 10\n    pass",
+            "def execute(self, query: str):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    pass",
+            "def execute(self, query: str):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    pass",
+            "def execute(self, query: str):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    pass",
+            "def execute(self, query: str):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    pass"
+        ]
+    },
+    {
+        "func_name": "get_database_connection",
+        "original": "def get_database_connection():\n    return MockDatabase()",
+        "mutated": [
+            "def get_database_connection():\n    if False:\n        i = 10\n    return MockDatabase()",
+            "def get_database_connection():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return MockDatabase()",
+            "def get_database_connection():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return MockDatabase()",
+            "def get_database_connection():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return MockDatabase()",
+            "def get_database_connection():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return MockDatabase()"
+        ]
+    },
+    {
+        "func_name": "create_table_1",
+        "original": "@op\ndef create_table_1():\n    get_database_connection().execute('create table_1 as select * from some_source_table')",
+        "mutated": [
+            "@op\ndef create_table_1():\n    if False:\n        i = 10\n    get_database_connection().execute('create table_1 as select * from some_source_table')",
+            "@op\ndef create_table_1():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    get_database_connection().execute('create table_1 as select * from some_source_table')",
+            "@op\ndef create_table_1():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    get_database_connection().execute('create table_1 as select * from some_source_table')",
+            "@op\ndef create_table_1():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    get_database_connection().execute('create table_1 as select * from some_source_table')",
+            "@op\ndef create_table_1():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    get_database_connection().execute('create table_1 as select * from some_source_table')"
+        ]
+    },
+    {
+        "func_name": "create_table_2",
+        "original": "@op(ins={'start': In(Nothing)})\ndef create_table_2():\n    get_database_connection().execute('create table_2 as select * from table_1')",
+        "mutated": [
+            "@op(ins={'start': In(Nothing)})\ndef create_table_2():\n    if False:\n        i = 10\n    get_database_connection().execute('create table_2 as select * from table_1')",
+            "@op(ins={'start': In(Nothing)})\ndef create_table_2():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    get_database_connection().execute('create table_2 as select * from table_1')",
+            "@op(ins={'start': In(Nothing)})\ndef create_table_2():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    get_database_connection().execute('create table_2 as select * from table_1')",
+            "@op(ins={'start': In(Nothing)})\ndef create_table_2():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    get_database_connection().execute('create table_2 as select * from table_1')",
+            "@op(ins={'start': In(Nothing)})\ndef create_table_2():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    get_database_connection().execute('create table_2 as select * from table_1')"
+        ]
+    },
+    {
+        "func_name": "nothing_dependency",
+        "original": "@graph\ndef nothing_dependency():\n    create_table_2(start=create_table_1())",
+        "mutated": [
+            "@graph\ndef nothing_dependency():\n    if False:\n        i = 10\n    create_table_2(start=create_table_1())",
+            "@graph\ndef nothing_dependency():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    create_table_2(start=create_table_1())",
+            "@graph\ndef nothing_dependency():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    create_table_2(start=create_table_1())",
+            "@graph\ndef nothing_dependency():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    create_table_2(start=create_table_1())",
+            "@graph\ndef nothing_dependency():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    create_table_2(start=create_table_1())"
+        ]
+    }
+]

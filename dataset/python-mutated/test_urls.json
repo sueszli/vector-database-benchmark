@@ -1,0 +1,79 @@
+[
+    {
+        "func_name": "root",
+        "original": "def root(request):\n    return HttpResponse('hello')",
+        "mutated": [
+            "def root(request):\n    if False:\n        i = 10\n    return HttpResponse('hello')",
+            "def root(request):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return HttpResponse('hello')",
+            "def root(request):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return HttpResponse('hello')",
+            "def root(request):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return HttpResponse('hello')",
+            "def root(request):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return HttpResponse('hello')"
+        ]
+    },
+    {
+        "func_name": "auth",
+        "original": "def auth(request):\n    authorize(request, 'resource', action='read', actor='user')\n    return HttpResponse('authorized')",
+        "mutated": [
+            "def auth(request):\n    if False:\n        i = 10\n    authorize(request, 'resource', action='read', actor='user')\n    return HttpResponse('authorized')",
+            "def auth(request):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    authorize(request, 'resource', action='read', actor='user')\n    return HttpResponse('authorized')",
+            "def auth(request):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    authorize(request, 'resource', action='read', actor='user')\n    return HttpResponse('authorized')",
+            "def auth(request):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    authorize(request, 'resource', action='read', actor='user')\n    return HttpResponse('authorized')",
+            "def auth(request):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    authorize(request, 'resource', action='read', actor='user')\n    return HttpResponse('authorized')"
+        ]
+    },
+    {
+        "func_name": "auth_decorated_fail",
+        "original": "@authorize_request(actor='user')\ndef auth_decorated_fail(request):\n    return HttpResponse('authorized')",
+        "mutated": [
+            "@authorize_request(actor='user')\ndef auth_decorated_fail(request):\n    if False:\n        i = 10\n    return HttpResponse('authorized')",
+            "@authorize_request(actor='user')\ndef auth_decorated_fail(request):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return HttpResponse('authorized')",
+            "@authorize_request(actor='user')\ndef auth_decorated_fail(request):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return HttpResponse('authorized')",
+            "@authorize_request(actor='user')\ndef auth_decorated_fail(request):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return HttpResponse('authorized')",
+            "@authorize_request(actor='user')\ndef auth_decorated_fail(request):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return HttpResponse('authorized')"
+        ]
+    },
+    {
+        "func_name": "auth_decorated",
+        "original": "@decorators.authorize(actor='user', action='read', resource='resource')\ndef auth_decorated(request):\n    return HttpResponse('authorized')",
+        "mutated": [
+            "@decorators.authorize(actor='user', action='read', resource='resource')\ndef auth_decorated(request):\n    if False:\n        i = 10\n    return HttpResponse('authorized')",
+            "@decorators.authorize(actor='user', action='read', resource='resource')\ndef auth_decorated(request):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return HttpResponse('authorized')",
+            "@decorators.authorize(actor='user', action='read', resource='resource')\ndef auth_decorated(request):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return HttpResponse('authorized')",
+            "@decorators.authorize(actor='user', action='read', resource='resource')\ndef auth_decorated(request):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return HttpResponse('authorized')",
+            "@decorators.authorize(actor='user', action='read', resource='resource')\ndef auth_decorated(request):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return HttpResponse('authorized')"
+        ]
+    },
+    {
+        "func_name": "a",
+        "original": "def a(request):\n    return HttpResponse('a')",
+        "mutated": [
+            "def a(request):\n    if False:\n        i = 10\n    return HttpResponse('a')",
+            "def a(request):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return HttpResponse('a')",
+            "def a(request):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return HttpResponse('a')",
+            "def a(request):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return HttpResponse('a')",
+            "def a(request):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return HttpResponse('a')"
+        ]
+    },
+    {
+        "func_name": "b",
+        "original": "def b(request):\n    return HttpResponse('b')",
+        "mutated": [
+            "def b(request):\n    if False:\n        i = 10\n    return HttpResponse('b')",
+            "def b(request):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return HttpResponse('b')",
+            "def b(request):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return HttpResponse('b')",
+            "def b(request):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return HttpResponse('b')",
+            "def b(request):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return HttpResponse('b')"
+        ]
+    },
+    {
+        "func_name": "error",
+        "original": "def error(request):\n    return HttpResponseServerError()",
+        "mutated": [
+            "def error(request):\n    if False:\n        i = 10\n    return HttpResponseServerError()",
+            "def error(request):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return HttpResponseServerError()",
+            "def error(request):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return HttpResponseServerError()",
+            "def error(request):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return HttpResponseServerError()",
+            "def error(request):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return HttpResponseServerError()"
+        ]
+    }
+]

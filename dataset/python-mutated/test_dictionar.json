@@ -1,0 +1,24 @@
+[
+    {
+        "func_name": "test_inverse_empty",
+        "original": "def test_inverse_empty(self):\n    self.assertEqual({}, inverse({}))",
+        "mutated": [
+            "def test_inverse_empty(self):\n    if False:\n        i = 10\n    self.assertEqual({}, inverse({}))",
+            "def test_inverse_empty(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    self.assertEqual({}, inverse({}))",
+            "def test_inverse_empty(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    self.assertEqual({}, inverse({}))",
+            "def test_inverse_empty(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    self.assertEqual({}, inverse({}))",
+            "def test_inverse_empty(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    self.assertEqual({}, inverse({}))"
+        ]
+    },
+    {
+        "func_name": "test_inverse",
+        "original": "def test_inverse(self):\n    names_for_ints = {0: {'zero', 'naught'}, 1: {'one'}}\n    ints_for_names = {'zero': {0}, 'naught': {0}, 'one': {1}}\n    self.assertEqual(ints_for_names, inverse(names_for_ints))",
+        "mutated": [
+            "def test_inverse(self):\n    if False:\n        i = 10\n    names_for_ints = {0: {'zero', 'naught'}, 1: {'one'}}\n    ints_for_names = {'zero': {0}, 'naught': {0}, 'one': {1}}\n    self.assertEqual(ints_for_names, inverse(names_for_ints))",
+            "def test_inverse(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    names_for_ints = {0: {'zero', 'naught'}, 1: {'one'}}\n    ints_for_names = {'zero': {0}, 'naught': {0}, 'one': {1}}\n    self.assertEqual(ints_for_names, inverse(names_for_ints))",
+            "def test_inverse(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    names_for_ints = {0: {'zero', 'naught'}, 1: {'one'}}\n    ints_for_names = {'zero': {0}, 'naught': {0}, 'one': {1}}\n    self.assertEqual(ints_for_names, inverse(names_for_ints))",
+            "def test_inverse(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    names_for_ints = {0: {'zero', 'naught'}, 1: {'one'}}\n    ints_for_names = {'zero': {0}, 'naught': {0}, 'one': {1}}\n    self.assertEqual(ints_for_names, inverse(names_for_ints))",
+            "def test_inverse(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    names_for_ints = {0: {'zero', 'naught'}, 1: {'one'}}\n    ints_for_names = {'zero': {0}, 'naught': {0}, 'one': {1}}\n    self.assertEqual(ints_for_names, inverse(names_for_ints))"
+        ]
+    }
+]

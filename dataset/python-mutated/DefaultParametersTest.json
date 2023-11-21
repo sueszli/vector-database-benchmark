@@ -1,0 +1,68 @@
+[
+    {
+        "func_name": "defaultValueTest1",
+        "original": "def defaultValueTest1(no_default, some_default_constant=1):\n    return some_default_constant",
+        "mutated": [
+            "def defaultValueTest1(no_default, some_default_constant=1):\n    if False:\n        i = 10\n    return some_default_constant",
+            "def defaultValueTest1(no_default, some_default_constant=1):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return some_default_constant",
+            "def defaultValueTest1(no_default, some_default_constant=1):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return some_default_constant",
+            "def defaultValueTest1(no_default, some_default_constant=1):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return some_default_constant",
+            "def defaultValueTest1(no_default, some_default_constant=1):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return some_default_constant"
+        ]
+    },
+    {
+        "func_name": "defaultValueTest2",
+        "original": "def defaultValueTest2(no_default, some_default_computed=module_level * 2):\n    local_var = no_default\n    return (local_var, some_default_computed)",
+        "mutated": [
+            "def defaultValueTest2(no_default, some_default_computed=module_level * 2):\n    if False:\n        i = 10\n    local_var = no_default\n    return (local_var, some_default_computed)",
+            "def defaultValueTest2(no_default, some_default_computed=module_level * 2):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    local_var = no_default\n    return (local_var, some_default_computed)",
+            "def defaultValueTest2(no_default, some_default_computed=module_level * 2):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    local_var = no_default\n    return (local_var, some_default_computed)",
+            "def defaultValueTest2(no_default, some_default_computed=module_level * 2):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    local_var = no_default\n    return (local_var, some_default_computed)",
+            "def defaultValueTest2(no_default, some_default_computed=module_level * 2):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    local_var = no_default\n    return (local_var, some_default_computed)"
+        ]
+    },
+    {
+        "func_name": "defaultValueTest3",
+        "original": "def defaultValueTest3(no_default, func_defaulted=defaultValueTest1(module_level)):\n    return [func_defaulted for _i in range(8)]",
+        "mutated": [
+            "def defaultValueTest3(no_default, func_defaulted=defaultValueTest1(module_level)):\n    if False:\n        i = 10\n    return [func_defaulted for _i in range(8)]",
+            "def defaultValueTest3(no_default, func_defaulted=defaultValueTest1(module_level)):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return [func_defaulted for _i in range(8)]",
+            "def defaultValueTest3(no_default, func_defaulted=defaultValueTest1(module_level)):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return [func_defaulted for _i in range(8)]",
+            "def defaultValueTest3(no_default, func_defaulted=defaultValueTest1(module_level)):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return [func_defaulted for _i in range(8)]",
+            "def defaultValueTest3(no_default, func_defaulted=defaultValueTest1(module_level)):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return [func_defaulted for _i in range(8)]"
+        ]
+    },
+    {
+        "func_name": "defaultValueTest4",
+        "original": "def defaultValueTest4(no_default, lambda_defaulted=lambda x: x ** 2):\n    c = 1\n    d = 1\n    return (i + c + d for i in range(8))",
+        "mutated": [
+            "def defaultValueTest4(no_default, lambda_defaulted=lambda x: x ** 2):\n    if False:\n        i = 10\n    c = 1\n    d = 1\n    return (i + c + d for i in range(8))",
+            "def defaultValueTest4(no_default, lambda_defaulted=lambda x: x ** 2):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    c = 1\n    d = 1\n    return (i + c + d for i in range(8))",
+            "def defaultValueTest4(no_default, lambda_defaulted=lambda x: x ** 2):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    c = 1\n    d = 1\n    return (i + c + d for i in range(8))",
+            "def defaultValueTest4(no_default, lambda_defaulted=lambda x: x ** 2):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    c = 1\n    d = 1\n    return (i + c + d for i in range(8))",
+            "def defaultValueTest4(no_default, lambda_defaulted=lambda x: x ** 2):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    c = 1\n    d = 1\n    return (i + c + d for i in range(8))"
+        ]
+    },
+    {
+        "func_name": "defaultValueTest5",
+        "original": "def defaultValueTest5(no_default, tuple_defaulted=(1, 2, 3)):\n    return tuple_defaulted",
+        "mutated": [
+            "def defaultValueTest5(no_default, tuple_defaulted=(1, 2, 3)):\n    if False:\n        i = 10\n    return tuple_defaulted",
+            "def defaultValueTest5(no_default, tuple_defaulted=(1, 2, 3)):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return tuple_defaulted",
+            "def defaultValueTest5(no_default, tuple_defaulted=(1, 2, 3)):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return tuple_defaulted",
+            "def defaultValueTest5(no_default, tuple_defaulted=(1, 2, 3)):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return tuple_defaulted",
+            "def defaultValueTest5(no_default, tuple_defaulted=(1, 2, 3)):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return tuple_defaulted"
+        ]
+    },
+    {
+        "func_name": "defaultValueTest6",
+        "original": "def defaultValueTest6(no_default, list_defaulted=[1, 2, 3]):\n    list_defaulted.append(5)\n    return list_defaulted",
+        "mutated": [
+            "def defaultValueTest6(no_default, list_defaulted=[1, 2, 3]):\n    if False:\n        i = 10\n    list_defaulted.append(5)\n    return list_defaulted",
+            "def defaultValueTest6(no_default, list_defaulted=[1, 2, 3]):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    list_defaulted.append(5)\n    return list_defaulted",
+            "def defaultValueTest6(no_default, list_defaulted=[1, 2, 3]):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    list_defaulted.append(5)\n    return list_defaulted",
+            "def defaultValueTest6(no_default, list_defaulted=[1, 2, 3]):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    list_defaulted.append(5)\n    return list_defaulted",
+            "def defaultValueTest6(no_default, list_defaulted=[1, 2, 3]):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    list_defaulted.append(5)\n    return list_defaulted"
+        ]
+    }
+]

@@ -1,0 +1,57 @@
+[
+    {
+        "func_name": "test",
+        "original": "@app.route('/sync', methods=['GET', 'POST'])\ndef test(request):\n    return json({'test': True})",
+        "mutated": [
+            "@app.route('/sync', methods=['GET', 'POST'])\ndef test(request):\n    if False:\n        i = 10\n    return json({'test': True})",
+            "@app.route('/sync', methods=['GET', 'POST'])\ndef test(request):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return json({'test': True})",
+            "@app.route('/sync', methods=['GET', 'POST'])\ndef test(request):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return json({'test': True})",
+            "@app.route('/sync', methods=['GET', 'POST'])\ndef test(request):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return json({'test': True})",
+            "@app.route('/sync', methods=['GET', 'POST'])\ndef test(request):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return json({'test': True})"
+        ]
+    },
+    {
+        "func_name": "rtext",
+        "original": "@app.route('/text/<name>/<butt:int>')\ndef rtext(request, name, butt):\n    return text('yeehaww {} {}'.format(name, butt))",
+        "mutated": [
+            "@app.route('/text/<name>/<butt:int>')\ndef rtext(request, name, butt):\n    if False:\n        i = 10\n    return text('yeehaww {} {}'.format(name, butt))",
+            "@app.route('/text/<name>/<butt:int>')\ndef rtext(request, name, butt):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return text('yeehaww {} {}'.format(name, butt))",
+            "@app.route('/text/<name>/<butt:int>')\ndef rtext(request, name, butt):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return text('yeehaww {} {}'.format(name, butt))",
+            "@app.route('/text/<name>/<butt:int>')\ndef rtext(request, name, butt):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return text('yeehaww {} {}'.format(name, butt))",
+            "@app.route('/text/<name>/<butt:int>')\ndef rtext(request, name, butt):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return text('yeehaww {} {}'.format(name, butt))"
+        ]
+    },
+    {
+        "func_name": "exception",
+        "original": "@app.route('/exception')\ndef exception(request):\n    raise ServerError('yep')",
+        "mutated": [
+            "@app.route('/exception')\ndef exception(request):\n    if False:\n        i = 10\n    raise ServerError('yep')",
+            "@app.route('/exception')\ndef exception(request):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    raise ServerError('yep')",
+            "@app.route('/exception')\ndef exception(request):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    raise ServerError('yep')",
+            "@app.route('/exception')\ndef exception(request):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    raise ServerError('yep')",
+            "@app.route('/exception')\ndef exception(request):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    raise ServerError('yep')"
+        ]
+    },
+    {
+        "func_name": "post_json",
+        "original": "@app.route('/post_json')\ndef post_json(request):\n    return json({'received': True, 'message': request.json})",
+        "mutated": [
+            "@app.route('/post_json')\ndef post_json(request):\n    if False:\n        i = 10\n    return json({'received': True, 'message': request.json})",
+            "@app.route('/post_json')\ndef post_json(request):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return json({'received': True, 'message': request.json})",
+            "@app.route('/post_json')\ndef post_json(request):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return json({'received': True, 'message': request.json})",
+            "@app.route('/post_json')\ndef post_json(request):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return json({'received': True, 'message': request.json})",
+            "@app.route('/post_json')\ndef post_json(request):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return json({'received': True, 'message': request.json})"
+        ]
+    },
+    {
+        "func_name": "query_string",
+        "original": "@app.route('/query_string')\ndef query_string(request):\n    return json({'parsed': True, 'args': request.args, 'url': request.url, 'query_string': request.query_string})",
+        "mutated": [
+            "@app.route('/query_string')\ndef query_string(request):\n    if False:\n        i = 10\n    return json({'parsed': True, 'args': request.args, 'url': request.url, 'query_string': request.query_string})",
+            "@app.route('/query_string')\ndef query_string(request):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return json({'parsed': True, 'args': request.args, 'url': request.url, 'query_string': request.query_string})",
+            "@app.route('/query_string')\ndef query_string(request):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return json({'parsed': True, 'args': request.args, 'url': request.url, 'query_string': request.query_string})",
+            "@app.route('/query_string')\ndef query_string(request):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return json({'parsed': True, 'args': request.args, 'url': request.url, 'query_string': request.query_string})",
+            "@app.route('/query_string')\ndef query_string(request):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return json({'parsed': True, 'args': request.args, 'url': request.url, 'query_string': request.query_string})"
+        ]
+    }
+]

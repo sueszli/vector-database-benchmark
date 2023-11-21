@@ -1,0 +1,46 @@
+[
+    {
+        "func_name": "depth",
+        "original": "@property\ndef depth(self):\n    return len(self.path.split('.')) - 1",
+        "mutated": [
+            "@property\ndef depth(self):\n    if False:\n        i = 10\n    return len(self.path.split('.')) - 1",
+            "@property\ndef depth(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return len(self.path.split('.')) - 1",
+            "@property\ndef depth(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return len(self.path.split('.')) - 1",
+            "@property\ndef depth(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return len(self.path.split('.')) - 1",
+            "@property\ndef depth(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return len(self.path.split('.')) - 1"
+        ]
+    },
+    {
+        "func_name": "__repr__",
+        "original": "def __repr__(self):\n    return f'Node(id={self.id})'",
+        "mutated": [
+            "def __repr__(self):\n    if False:\n        i = 10\n    return f'Node(id={self.id})'",
+            "def __repr__(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return f'Node(id={self.id})'",
+            "def __repr__(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return f'Node(id={self.id})'",
+            "def __repr__(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return f'Node(id={self.id})'",
+            "def __repr__(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return f'Node(id={self.id})'"
+        ]
+    },
+    {
+        "func_name": "__str__",
+        "original": "def __str__(self):\n    root_depth = self.depth\n    s = [str(self.id)]\n    s.extend(((n.depth - root_depth) * '  ' + str(n.id) for n in self.descendants))\n    return '\\n'.join(s)",
+        "mutated": [
+            "def __str__(self):\n    if False:\n        i = 10\n    root_depth = self.depth\n    s = [str(self.id)]\n    s.extend(((n.depth - root_depth) * '  ' + str(n.id) for n in self.descendants))\n    return '\\n'.join(s)",
+            "def __str__(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    root_depth = self.depth\n    s = [str(self.id)]\n    s.extend(((n.depth - root_depth) * '  ' + str(n.id) for n in self.descendants))\n    return '\\n'.join(s)",
+            "def __str__(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    root_depth = self.depth\n    s = [str(self.id)]\n    s.extend(((n.depth - root_depth) * '  ' + str(n.id) for n in self.descendants))\n    return '\\n'.join(s)",
+            "def __str__(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    root_depth = self.depth\n    s = [str(self.id)]\n    s.extend(((n.depth - root_depth) * '  ' + str(n.id) for n in self.descendants))\n    return '\\n'.join(s)",
+            "def __str__(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    root_depth = self.depth\n    s = [str(self.id)]\n    s.extend(((n.depth - root_depth) * '  ' + str(n.id) for n in self.descendants))\n    return '\\n'.join(s)"
+        ]
+    },
+    {
+        "func_name": "move_to",
+        "original": "def move_to(self, new_parent):\n    new_path = new_parent.path + '.' + str(self.id)\n    for n in self.descendants:\n        n.path = new_path + n.path[len(self.path):]\n    self.path = new_path",
+        "mutated": [
+            "def move_to(self, new_parent):\n    if False:\n        i = 10\n    new_path = new_parent.path + '.' + str(self.id)\n    for n in self.descendants:\n        n.path = new_path + n.path[len(self.path):]\n    self.path = new_path",
+            "def move_to(self, new_parent):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    new_path = new_parent.path + '.' + str(self.id)\n    for n in self.descendants:\n        n.path = new_path + n.path[len(self.path):]\n    self.path = new_path",
+            "def move_to(self, new_parent):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    new_path = new_parent.path + '.' + str(self.id)\n    for n in self.descendants:\n        n.path = new_path + n.path[len(self.path):]\n    self.path = new_path",
+            "def move_to(self, new_parent):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    new_path = new_parent.path + '.' + str(self.id)\n    for n in self.descendants:\n        n.path = new_path + n.path[len(self.path):]\n    self.path = new_path",
+            "def move_to(self, new_parent):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    new_path = new_parent.path + '.' + str(self.id)\n    for n in self.descendants:\n        n.path = new_path + n.path[len(self.path):]\n    self.path = new_path"
+        ]
+    }
+]

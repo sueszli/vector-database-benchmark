@@ -1,0 +1,46 @@
+[
+    {
+        "func_name": "_read_block",
+        "original": "def _read_block(self, stream):\n    sent = stream.readline()\n    sent = IDENTIFIER.sub('', sent)\n    sent = APPENDIX.sub('', sent)\n    return [sent]",
+        "mutated": [
+            "def _read_block(self, stream):\n    if False:\n        i = 10\n    sent = stream.readline()\n    sent = IDENTIFIER.sub('', sent)\n    sent = APPENDIX.sub('', sent)\n    return [sent]",
+            "def _read_block(self, stream):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    sent = stream.readline()\n    sent = IDENTIFIER.sub('', sent)\n    sent = APPENDIX.sub('', sent)\n    return [sent]",
+            "def _read_block(self, stream):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    sent = stream.readline()\n    sent = IDENTIFIER.sub('', sent)\n    sent = APPENDIX.sub('', sent)\n    return [sent]",
+            "def _read_block(self, stream):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    sent = stream.readline()\n    sent = IDENTIFIER.sub('', sent)\n    sent = APPENDIX.sub('', sent)\n    return [sent]",
+            "def _read_block(self, stream):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    sent = stream.readline()\n    sent = IDENTIFIER.sub('', sent)\n    sent = APPENDIX.sub('', sent)\n    return [sent]"
+        ]
+    },
+    {
+        "func_name": "_parse",
+        "original": "def _parse(self, sent):\n    return sinica_parse(sent)",
+        "mutated": [
+            "def _parse(self, sent):\n    if False:\n        i = 10\n    return sinica_parse(sent)",
+            "def _parse(self, sent):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return sinica_parse(sent)",
+            "def _parse(self, sent):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return sinica_parse(sent)",
+            "def _parse(self, sent):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return sinica_parse(sent)",
+            "def _parse(self, sent):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return sinica_parse(sent)"
+        ]
+    },
+    {
+        "func_name": "_tag",
+        "original": "def _tag(self, sent, tagset=None):\n    tagged_sent = [(w, t) for (t, w) in TAGWORD.findall(sent)]\n    if tagset and tagset != self._tagset:\n        tagged_sent = [(w, map_tag(self._tagset, tagset, t)) for (w, t) in tagged_sent]\n    return tagged_sent",
+        "mutated": [
+            "def _tag(self, sent, tagset=None):\n    if False:\n        i = 10\n    tagged_sent = [(w, t) for (t, w) in TAGWORD.findall(sent)]\n    if tagset and tagset != self._tagset:\n        tagged_sent = [(w, map_tag(self._tagset, tagset, t)) for (w, t) in tagged_sent]\n    return tagged_sent",
+            "def _tag(self, sent, tagset=None):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    tagged_sent = [(w, t) for (t, w) in TAGWORD.findall(sent)]\n    if tagset and tagset != self._tagset:\n        tagged_sent = [(w, map_tag(self._tagset, tagset, t)) for (w, t) in tagged_sent]\n    return tagged_sent",
+            "def _tag(self, sent, tagset=None):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    tagged_sent = [(w, t) for (t, w) in TAGWORD.findall(sent)]\n    if tagset and tagset != self._tagset:\n        tagged_sent = [(w, map_tag(self._tagset, tagset, t)) for (w, t) in tagged_sent]\n    return tagged_sent",
+            "def _tag(self, sent, tagset=None):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    tagged_sent = [(w, t) for (t, w) in TAGWORD.findall(sent)]\n    if tagset and tagset != self._tagset:\n        tagged_sent = [(w, map_tag(self._tagset, tagset, t)) for (w, t) in tagged_sent]\n    return tagged_sent",
+            "def _tag(self, sent, tagset=None):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    tagged_sent = [(w, t) for (t, w) in TAGWORD.findall(sent)]\n    if tagset and tagset != self._tagset:\n        tagged_sent = [(w, map_tag(self._tagset, tagset, t)) for (w, t) in tagged_sent]\n    return tagged_sent"
+        ]
+    },
+    {
+        "func_name": "_word",
+        "original": "def _word(self, sent):\n    return WORD.findall(sent)",
+        "mutated": [
+            "def _word(self, sent):\n    if False:\n        i = 10\n    return WORD.findall(sent)",
+            "def _word(self, sent):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return WORD.findall(sent)",
+            "def _word(self, sent):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return WORD.findall(sent)",
+            "def _word(self, sent):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return WORD.findall(sent)",
+            "def _word(self, sent):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return WORD.findall(sent)"
+        ]
+    }
+]

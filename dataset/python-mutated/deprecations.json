@@ -1,0 +1,46 @@
+[
+    {
+        "func_name": "__init__",
+        "original": "def __init__(self, msg: str, alias: object, attr_name: str) -> None:\n    self.msg = msg\n    self.alias = alias\n    self.attr_name = attr_name",
+        "mutated": [
+            "def __init__(self, msg: str, alias: object, attr_name: str) -> None:\n    if False:\n        i = 10\n    self.msg = msg\n    self.alias = alias\n    self.attr_name = attr_name",
+            "def __init__(self, msg: str, alias: object, attr_name: str) -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    self.msg = msg\n    self.alias = alias\n    self.attr_name = attr_name",
+            "def __init__(self, msg: str, alias: object, attr_name: str) -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    self.msg = msg\n    self.alias = alias\n    self.attr_name = attr_name",
+            "def __init__(self, msg: str, alias: object, attr_name: str) -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    self.msg = msg\n    self.alias = alias\n    self.attr_name = attr_name",
+            "def __init__(self, msg: str, alias: object, attr_name: str) -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    self.msg = msg\n    self.alias = alias\n    self.attr_name = attr_name"
+        ]
+    },
+    {
+        "func_name": "warn",
+        "original": "def warn(self) -> None:\n    warnings.warn(self.msg, stacklevel=2)",
+        "mutated": [
+            "def warn(self) -> None:\n    if False:\n        i = 10\n    warnings.warn(self.msg, stacklevel=2)",
+            "def warn(self) -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    warnings.warn(self.msg, stacklevel=2)",
+            "def warn(self) -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    warnings.warn(self.msg, stacklevel=2)",
+            "def warn(self) -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    warnings.warn(self.msg, stacklevel=2)",
+            "def warn(self) -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    warnings.warn(self.msg, stacklevel=2)"
+        ]
+    },
+    {
+        "func_name": "__get__",
+        "original": "def __get__(self, obj: Optional[object], type: Optional[Type]=None) -> Any:\n    self.warn()\n    return self.alias",
+        "mutated": [
+            "def __get__(self, obj: Optional[object], type: Optional[Type]=None) -> Any:\n    if False:\n        i = 10\n    self.warn()\n    return self.alias",
+            "def __get__(self, obj: Optional[object], type: Optional[Type]=None) -> Any:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    self.warn()\n    return self.alias",
+            "def __get__(self, obj: Optional[object], type: Optional[Type]=None) -> Any:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    self.warn()\n    return self.alias",
+            "def __get__(self, obj: Optional[object], type: Optional[Type]=None) -> Any:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    self.warn()\n    return self.alias",
+            "def __get__(self, obj: Optional[object], type: Optional[Type]=None) -> Any:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    self.warn()\n    return self.alias"
+        ]
+    },
+    {
+        "func_name": "inject",
+        "original": "def inject(self, klass: type) -> None:\n    setattr(klass, self.attr_name, self)",
+        "mutated": [
+            "def inject(self, klass: type) -> None:\n    if False:\n        i = 10\n    setattr(klass, self.attr_name, self)",
+            "def inject(self, klass: type) -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    setattr(klass, self.attr_name, self)",
+            "def inject(self, klass: type) -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    setattr(klass, self.attr_name, self)",
+            "def inject(self, klass: type) -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    setattr(klass, self.attr_name, self)",
+            "def inject(self, klass: type) -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    setattr(klass, self.attr_name, self)"
+        ]
+    }
+]

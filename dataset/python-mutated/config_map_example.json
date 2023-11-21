@@ -1,0 +1,24 @@
+[
+    {
+        "func_name": "s3_session",
+        "original": "@resource(config_schema={'region': str, 'use_unsigned_session': bool})\ndef s3_session(_init_context):\n    \"\"\"Connect to S3.\"\"\"",
+        "mutated": [
+            "@resource(config_schema={'region': str, 'use_unsigned_session': bool})\ndef s3_session(_init_context):\n    if False:\n        i = 10\n    'Connect to S3.'",
+            "@resource(config_schema={'region': str, 'use_unsigned_session': bool})\ndef s3_session(_init_context):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    'Connect to S3.'",
+            "@resource(config_schema={'region': str, 'use_unsigned_session': bool})\ndef s3_session(_init_context):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    'Connect to S3.'",
+            "@resource(config_schema={'region': str, 'use_unsigned_session': bool})\ndef s3_session(_init_context):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    'Connect to S3.'",
+            "@resource(config_schema={'region': str, 'use_unsigned_session': bool})\ndef s3_session(_init_context):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    'Connect to S3.'"
+        ]
+    },
+    {
+        "func_name": "unsigned_s3_session",
+        "original": "@configured(s3_session, config_schema={'region': str})\ndef unsigned_s3_session(config):\n    return {'region': config['region'], 'use_unsigned_session': False}",
+        "mutated": [
+            "@configured(s3_session, config_schema={'region': str})\ndef unsigned_s3_session(config):\n    if False:\n        i = 10\n    return {'region': config['region'], 'use_unsigned_session': False}",
+            "@configured(s3_session, config_schema={'region': str})\ndef unsigned_s3_session(config):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return {'region': config['region'], 'use_unsigned_session': False}",
+            "@configured(s3_session, config_schema={'region': str})\ndef unsigned_s3_session(config):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return {'region': config['region'], 'use_unsigned_session': False}",
+            "@configured(s3_session, config_schema={'region': str})\ndef unsigned_s3_session(config):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return {'region': config['region'], 'use_unsigned_session': False}",
+            "@configured(s3_session, config_schema={'region': str})\ndef unsigned_s3_session(config):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return {'region': config['region'], 'use_unsigned_session': False}"
+        ]
+    }
+]

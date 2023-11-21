@@ -1,0 +1,24 @@
+[
+    {
+        "func_name": "get_current_user",
+        "original": "@staticmethod\ndef get_current_user():\n    return models.User(roles=[{'name': 'admin', 'repository': Repository(name='gmail')}])",
+        "mutated": [
+            "@staticmethod\ndef get_current_user():\n    if False:\n        i = 10\n    return models.User(roles=[{'name': 'admin', 'repository': Repository(name='gmail')}])",
+            "@staticmethod\ndef get_current_user():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return models.User(roles=[{'name': 'admin', 'repository': Repository(name='gmail')}])",
+            "@staticmethod\ndef get_current_user():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return models.User(roles=[{'name': 'admin', 'repository': Repository(name='gmail')}])",
+            "@staticmethod\ndef get_current_user():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return models.User(roles=[{'name': 'admin', 'repository': Repository(name='gmail')}])",
+            "@staticmethod\ndef get_current_user():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return models.User(roles=[{'name': 'admin', 'repository': Repository(name='gmail')}])"
+        ]
+    },
+    {
+        "func_name": "repo_list",
+        "original": "@app.route('/repos')\ndef repo_list():\n    repositories = oso.authorized_resources(User.get_current_user(), 'read', Repository)\n    return serialize(repositories)",
+        "mutated": [
+            "@app.route('/repos')\ndef repo_list():\n    if False:\n        i = 10\n    repositories = oso.authorized_resources(User.get_current_user(), 'read', Repository)\n    return serialize(repositories)",
+            "@app.route('/repos')\ndef repo_list():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    repositories = oso.authorized_resources(User.get_current_user(), 'read', Repository)\n    return serialize(repositories)",
+            "@app.route('/repos')\ndef repo_list():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    repositories = oso.authorized_resources(User.get_current_user(), 'read', Repository)\n    return serialize(repositories)",
+            "@app.route('/repos')\ndef repo_list():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    repositories = oso.authorized_resources(User.get_current_user(), 'read', Repository)\n    return serialize(repositories)",
+            "@app.route('/repos')\ndef repo_list():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    repositories = oso.authorized_resources(User.get_current_user(), 'read', Repository)\n    return serialize(repositories)"
+        ]
+    }
+]

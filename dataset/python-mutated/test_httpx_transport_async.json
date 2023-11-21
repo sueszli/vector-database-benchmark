@@ -1,0 +1,24 @@
+[
+    {
+        "func_name": "mock_successful_post",
+        "original": "def mock_successful_post(self, request: Optional[httpx.Request]=None) -> httpx.Response:\n    return httpx.Response(200, content=b'Hello, world!')",
+        "mutated": [
+            "def mock_successful_post(self, request: Optional[httpx.Request]=None) -> httpx.Response:\n    if False:\n        i = 10\n    return httpx.Response(200, content=b'Hello, world!')",
+            "def mock_successful_post(self, request: Optional[httpx.Request]=None) -> httpx.Response:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return httpx.Response(200, content=b'Hello, world!')",
+            "def mock_successful_post(self, request: Optional[httpx.Request]=None) -> httpx.Response:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return httpx.Response(200, content=b'Hello, world!')",
+            "def mock_successful_post(self, request: Optional[httpx.Request]=None) -> httpx.Response:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return httpx.Response(200, content=b'Hello, world!')",
+            "def mock_successful_post(self, request: Optional[httpx.Request]=None) -> httpx.Response:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return httpx.Response(200, content=b'Hello, world!')"
+        ]
+    },
+    {
+        "func_name": "mock_exception",
+        "original": "def mock_exception(self, request: Optional[httpx.Request]=None) -> None:\n    raise httpx.TimeoutException(message='connection timed out')",
+        "mutated": [
+            "def mock_exception(self, request: Optional[httpx.Request]=None) -> None:\n    if False:\n        i = 10\n    raise httpx.TimeoutException(message='connection timed out')",
+            "def mock_exception(self, request: Optional[httpx.Request]=None) -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    raise httpx.TimeoutException(message='connection timed out')",
+            "def mock_exception(self, request: Optional[httpx.Request]=None) -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    raise httpx.TimeoutException(message='connection timed out')",
+            "def mock_exception(self, request: Optional[httpx.Request]=None) -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    raise httpx.TimeoutException(message='connection timed out')",
+            "def mock_exception(self, request: Optional[httpx.Request]=None) -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    raise httpx.TimeoutException(message='connection timed out')"
+        ]
+    }
+]

@@ -1,0 +1,90 @@
+[
+    {
+        "func_name": "doit",
+        "original": "def doit(self, **hints):\n    arg = self.arg\n    if hints.get('deep', True) and isinstance(arg, Basic):\n        return adjoint(arg.doit(**hints))\n    else:\n        return adjoint(self.arg)",
+        "mutated": [
+            "def doit(self, **hints):\n    if False:\n        i = 10\n    arg = self.arg\n    if hints.get('deep', True) and isinstance(arg, Basic):\n        return adjoint(arg.doit(**hints))\n    else:\n        return adjoint(self.arg)",
+            "def doit(self, **hints):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    arg = self.arg\n    if hints.get('deep', True) and isinstance(arg, Basic):\n        return adjoint(arg.doit(**hints))\n    else:\n        return adjoint(self.arg)",
+            "def doit(self, **hints):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    arg = self.arg\n    if hints.get('deep', True) and isinstance(arg, Basic):\n        return adjoint(arg.doit(**hints))\n    else:\n        return adjoint(self.arg)",
+            "def doit(self, **hints):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    arg = self.arg\n    if hints.get('deep', True) and isinstance(arg, Basic):\n        return adjoint(arg.doit(**hints))\n    else:\n        return adjoint(self.arg)",
+            "def doit(self, **hints):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    arg = self.arg\n    if hints.get('deep', True) and isinstance(arg, Basic):\n        return adjoint(arg.doit(**hints))\n    else:\n        return adjoint(self.arg)"
+        ]
+    },
+    {
+        "func_name": "arg",
+        "original": "@property\ndef arg(self):\n    return self.args[0]",
+        "mutated": [
+            "@property\ndef arg(self):\n    if False:\n        i = 10\n    return self.args[0]",
+            "@property\ndef arg(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return self.args[0]",
+            "@property\ndef arg(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return self.args[0]",
+            "@property\ndef arg(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return self.args[0]",
+            "@property\ndef arg(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return self.args[0]"
+        ]
+    },
+    {
+        "func_name": "shape",
+        "original": "@property\ndef shape(self):\n    return self.arg.shape[::-1]",
+        "mutated": [
+            "@property\ndef shape(self):\n    if False:\n        i = 10\n    return self.arg.shape[::-1]",
+            "@property\ndef shape(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return self.arg.shape[::-1]",
+            "@property\ndef shape(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return self.arg.shape[::-1]",
+            "@property\ndef shape(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return self.arg.shape[::-1]",
+            "@property\ndef shape(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return self.arg.shape[::-1]"
+        ]
+    },
+    {
+        "func_name": "_entry",
+        "original": "def _entry(self, i, j, **kwargs):\n    return conjugate(self.arg._entry(j, i, **kwargs))",
+        "mutated": [
+            "def _entry(self, i, j, **kwargs):\n    if False:\n        i = 10\n    return conjugate(self.arg._entry(j, i, **kwargs))",
+            "def _entry(self, i, j, **kwargs):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return conjugate(self.arg._entry(j, i, **kwargs))",
+            "def _entry(self, i, j, **kwargs):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return conjugate(self.arg._entry(j, i, **kwargs))",
+            "def _entry(self, i, j, **kwargs):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return conjugate(self.arg._entry(j, i, **kwargs))",
+            "def _entry(self, i, j, **kwargs):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return conjugate(self.arg._entry(j, i, **kwargs))"
+        ]
+    },
+    {
+        "func_name": "_eval_adjoint",
+        "original": "def _eval_adjoint(self):\n    return self.arg",
+        "mutated": [
+            "def _eval_adjoint(self):\n    if False:\n        i = 10\n    return self.arg",
+            "def _eval_adjoint(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return self.arg",
+            "def _eval_adjoint(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return self.arg",
+            "def _eval_adjoint(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return self.arg",
+            "def _eval_adjoint(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return self.arg"
+        ]
+    },
+    {
+        "func_name": "_eval_transpose",
+        "original": "def _eval_transpose(self):\n    return self.arg.conjugate()",
+        "mutated": [
+            "def _eval_transpose(self):\n    if False:\n        i = 10\n    return self.arg.conjugate()",
+            "def _eval_transpose(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return self.arg.conjugate()",
+            "def _eval_transpose(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return self.arg.conjugate()",
+            "def _eval_transpose(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return self.arg.conjugate()",
+            "def _eval_transpose(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return self.arg.conjugate()"
+        ]
+    },
+    {
+        "func_name": "_eval_conjugate",
+        "original": "def _eval_conjugate(self):\n    return self.arg.transpose()",
+        "mutated": [
+            "def _eval_conjugate(self):\n    if False:\n        i = 10\n    return self.arg.transpose()",
+            "def _eval_conjugate(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return self.arg.transpose()",
+            "def _eval_conjugate(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return self.arg.transpose()",
+            "def _eval_conjugate(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return self.arg.transpose()",
+            "def _eval_conjugate(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return self.arg.transpose()"
+        ]
+    },
+    {
+        "func_name": "_eval_trace",
+        "original": "def _eval_trace(self):\n    from sympy.matrices.expressions.trace import Trace\n    return conjugate(Trace(self.arg))",
+        "mutated": [
+            "def _eval_trace(self):\n    if False:\n        i = 10\n    from sympy.matrices.expressions.trace import Trace\n    return conjugate(Trace(self.arg))",
+            "def _eval_trace(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    from sympy.matrices.expressions.trace import Trace\n    return conjugate(Trace(self.arg))",
+            "def _eval_trace(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    from sympy.matrices.expressions.trace import Trace\n    return conjugate(Trace(self.arg))",
+            "def _eval_trace(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    from sympy.matrices.expressions.trace import Trace\n    return conjugate(Trace(self.arg))",
+            "def _eval_trace(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    from sympy.matrices.expressions.trace import Trace\n    return conjugate(Trace(self.arg))"
+        ]
+    }
+]

@@ -1,0 +1,46 @@
+[
+    {
+        "func_name": "connectionMade",
+        "original": "def connectionMade(self):\n    self.complete = False\n    print('Connection made')",
+        "mutated": [
+            "def connectionMade(self):\n    if False:\n        i = 10\n    self.complete = False\n    print('Connection made')",
+            "def connectionMade(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    self.complete = False\n    print('Connection made')",
+            "def connectionMade(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    self.complete = False\n    print('Connection made')",
+            "def connectionMade(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    self.complete = False\n    print('Connection made')",
+            "def connectionMade(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    self.complete = False\n    print('Connection made')"
+        ]
+    },
+    {
+        "func_name": "dataReceived",
+        "original": "def dataReceived(self, data):\n    print(self.transport.negotiatedProtocol)\n    self.transport.write(data)\n    self.complete = True\n    self.transport.loseConnection()",
+        "mutated": [
+            "def dataReceived(self, data):\n    if False:\n        i = 10\n    print(self.transport.negotiatedProtocol)\n    self.transport.write(data)\n    self.complete = True\n    self.transport.loseConnection()",
+            "def dataReceived(self, data):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    print(self.transport.negotiatedProtocol)\n    self.transport.write(data)\n    self.complete = True\n    self.transport.loseConnection()",
+            "def dataReceived(self, data):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    print(self.transport.negotiatedProtocol)\n    self.transport.write(data)\n    self.complete = True\n    self.transport.loseConnection()",
+            "def dataReceived(self, data):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    print(self.transport.negotiatedProtocol)\n    self.transport.write(data)\n    self.complete = True\n    self.transport.loseConnection()",
+            "def dataReceived(self, data):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    print(self.transport.negotiatedProtocol)\n    self.transport.write(data)\n    self.complete = True\n    self.transport.loseConnection()"
+        ]
+    },
+    {
+        "func_name": "connectionLost",
+        "original": "def connectionLost(self, reason):\n    if self.complete:\n        print('Connection closed cleanly')\n    else:\n        print(f'Connection lost due to error {reason}')",
+        "mutated": [
+            "def connectionLost(self, reason):\n    if False:\n        i = 10\n    if self.complete:\n        print('Connection closed cleanly')\n    else:\n        print(f'Connection lost due to error {reason}')",
+            "def connectionLost(self, reason):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    if self.complete:\n        print('Connection closed cleanly')\n    else:\n        print(f'Connection lost due to error {reason}')",
+            "def connectionLost(self, reason):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    if self.complete:\n        print('Connection closed cleanly')\n    else:\n        print(f'Connection lost due to error {reason}')",
+            "def connectionLost(self, reason):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    if self.complete:\n        print('Connection closed cleanly')\n    else:\n        print(f'Connection lost due to error {reason}')",
+            "def connectionLost(self, reason):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    if self.complete:\n        print('Connection closed cleanly')\n    else:\n        print(f'Connection lost due to error {reason}')"
+        ]
+    },
+    {
+        "func_name": "buildProtocol",
+        "original": "def buildProtocol(self, addr):\n    return NPNPrinterProtocol()",
+        "mutated": [
+            "def buildProtocol(self, addr):\n    if False:\n        i = 10\n    return NPNPrinterProtocol()",
+            "def buildProtocol(self, addr):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return NPNPrinterProtocol()",
+            "def buildProtocol(self, addr):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return NPNPrinterProtocol()",
+            "def buildProtocol(self, addr):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return NPNPrinterProtocol()",
+            "def buildProtocol(self, addr):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return NPNPrinterProtocol()"
+        ]
+    }
+]

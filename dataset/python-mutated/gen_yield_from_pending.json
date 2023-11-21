@@ -1,0 +1,35 @@
+[
+    {
+        "func_name": "noop_task",
+        "original": "def noop_task():\n    print('noop task')\n    yield 1",
+        "mutated": [
+            "def noop_task():\n    if False:\n        i = 10\n    print('noop task')\n    yield 1",
+            "def noop_task():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    print('noop task')\n    yield 1",
+            "def noop_task():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    print('noop task')\n    yield 1",
+            "def noop_task():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    print('noop task')\n    yield 1",
+            "def noop_task():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    print('noop task')\n    yield 1"
+        ]
+    },
+    {
+        "func_name": "raise_task",
+        "original": "def raise_task():\n    print('raise task')\n    yield 2\n    print('raising')\n    raise Exception",
+        "mutated": [
+            "def raise_task():\n    if False:\n        i = 10\n    print('raise task')\n    yield 2\n    print('raising')\n    raise Exception",
+            "def raise_task():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    print('raise task')\n    yield 2\n    print('raising')\n    raise Exception",
+            "def raise_task():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    print('raise task')\n    yield 2\n    print('raising')\n    raise Exception",
+            "def raise_task():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    print('raise task')\n    yield 2\n    print('raising')\n    raise Exception",
+            "def raise_task():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    print('raise task')\n    yield 2\n    print('raising')\n    raise Exception"
+        ]
+    },
+    {
+        "func_name": "main",
+        "original": "def main():\n    try:\n        yield from raise_task()\n    except:\n        print('main exception')\n    yield from noop_task()",
+        "mutated": [
+            "def main():\n    if False:\n        i = 10\n    try:\n        yield from raise_task()\n    except:\n        print('main exception')\n    yield from noop_task()",
+            "def main():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    try:\n        yield from raise_task()\n    except:\n        print('main exception')\n    yield from noop_task()",
+            "def main():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    try:\n        yield from raise_task()\n    except:\n        print('main exception')\n    yield from noop_task()",
+            "def main():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    try:\n        yield from raise_task()\n    except:\n        print('main exception')\n    yield from noop_task()",
+            "def main():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    try:\n        yield from raise_task()\n    except:\n        print('main exception')\n    yield from noop_task()"
+        ]
+    }
+]

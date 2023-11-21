@@ -1,0 +1,24 @@
+[
+    {
+        "func_name": "__init__",
+        "original": "def __init__(self, schema):\n    self.schema = schema",
+        "mutated": [
+            "def __init__(self, schema):\n    if False:\n        i = 10\n    self.schema = schema",
+            "def __init__(self, schema):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    self.schema = schema",
+            "def __init__(self, schema):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    self.schema = schema",
+            "def __init__(self, schema):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    self.schema = schema",
+            "def __init__(self, schema):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    self.schema = schema"
+        ]
+    },
+    {
+        "func_name": "user",
+        "original": "@strawberry.field\ndef user(self) -> User:\n    return User(name='Patrick', age=100)",
+        "mutated": [
+            "@strawberry.field\ndef user(self) -> User:\n    if False:\n        i = 10\n    return User(name='Patrick', age=100)",
+            "@strawberry.field\ndef user(self) -> User:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return User(name='Patrick', age=100)",
+            "@strawberry.field\ndef user(self) -> User:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return User(name='Patrick', age=100)",
+            "@strawberry.field\ndef user(self) -> User:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return User(name='Patrick', age=100)",
+            "@strawberry.field\ndef user(self) -> User:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return User(name='Patrick', age=100)"
+        ]
+    }
+]

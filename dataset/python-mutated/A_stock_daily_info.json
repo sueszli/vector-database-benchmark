@@ -1,0 +1,35 @@
+[
+    {
+        "func_name": "__init__",
+        "original": "def __init__(self):\n    self.pro = get_tushare_pro()\n    self.conn = DBSelector().get_engine('db_stock_daily', 't')",
+        "mutated": [
+            "def __init__(self):\n    if False:\n        i = 10\n    self.pro = get_tushare_pro()\n    self.conn = DBSelector().get_engine('db_stock_daily', 't')",
+            "def __init__(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    self.pro = get_tushare_pro()\n    self.conn = DBSelector().get_engine('db_stock_daily', 't')",
+            "def __init__(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    self.pro = get_tushare_pro()\n    self.conn = DBSelector().get_engine('db_stock_daily', 't')",
+            "def __init__(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    self.pro = get_tushare_pro()\n    self.conn = DBSelector().get_engine('db_stock_daily', 't')",
+            "def __init__(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    self.pro = get_tushare_pro()\n    self.conn = DBSelector().get_engine('db_stock_daily', 't')"
+        ]
+    },
+    {
+        "func_name": "run",
+        "original": "def run(self):\n    date = calendar('2022-01-01', '2022-12-28')\n    for d in date:\n        print(d)\n        df = self.pro.daily(trade_date=d)\n        df.to_sql('tb_{}'.format(d), con=self.conn)\n        time.sleep(1)",
+        "mutated": [
+            "def run(self):\n    if False:\n        i = 10\n    date = calendar('2022-01-01', '2022-12-28')\n    for d in date:\n        print(d)\n        df = self.pro.daily(trade_date=d)\n        df.to_sql('tb_{}'.format(d), con=self.conn)\n        time.sleep(1)",
+            "def run(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    date = calendar('2022-01-01', '2022-12-28')\n    for d in date:\n        print(d)\n        df = self.pro.daily(trade_date=d)\n        df.to_sql('tb_{}'.format(d), con=self.conn)\n        time.sleep(1)",
+            "def run(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    date = calendar('2022-01-01', '2022-12-28')\n    for d in date:\n        print(d)\n        df = self.pro.daily(trade_date=d)\n        df.to_sql('tb_{}'.format(d), con=self.conn)\n        time.sleep(1)",
+            "def run(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    date = calendar('2022-01-01', '2022-12-28')\n    for d in date:\n        print(d)\n        df = self.pro.daily(trade_date=d)\n        df.to_sql('tb_{}'.format(d), con=self.conn)\n        time.sleep(1)",
+            "def run(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    date = calendar('2022-01-01', '2022-12-28')\n    for d in date:\n        print(d)\n        df = self.pro.daily(trade_date=d)\n        df.to_sql('tb_{}'.format(d), con=self.conn)\n        time.sleep(1)"
+        ]
+    },
+    {
+        "func_name": "main",
+        "original": "def main():\n    app = AStockDailyInfo()\n    app.run()",
+        "mutated": [
+            "def main():\n    if False:\n        i = 10\n    app = AStockDailyInfo()\n    app.run()",
+            "def main():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    app = AStockDailyInfo()\n    app.run()",
+            "def main():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    app = AStockDailyInfo()\n    app.run()",
+            "def main():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    app = AStockDailyInfo()\n    app.run()",
+            "def main():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    app = AStockDailyInfo()\n    app.run()"
+        ]
+    }
+]

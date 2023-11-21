@@ -1,0 +1,46 @@
+[
+    {
+        "func_name": "make_file",
+        "original": "def make_file(path: str) -> None:\n    Path(path).touch()",
+        "mutated": [
+            "def make_file(path: str) -> None:\n    if False:\n        i = 10\n    Path(path).touch()",
+            "def make_file(path: str) -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    Path(path).touch()",
+            "def make_file(path: str) -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    Path(path).touch()",
+            "def make_file(path: str) -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    Path(path).touch()",
+            "def make_file(path: str) -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    Path(path).touch()"
+        ]
+    },
+    {
+        "func_name": "make_valid_symlink",
+        "original": "def make_valid_symlink(path: str) -> None:\n    target = path + '1'\n    make_file(target)\n    os.symlink(target, path)",
+        "mutated": [
+            "def make_valid_symlink(path: str) -> None:\n    if False:\n        i = 10\n    target = path + '1'\n    make_file(target)\n    os.symlink(target, path)",
+            "def make_valid_symlink(path: str) -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    target = path + '1'\n    make_file(target)\n    os.symlink(target, path)",
+            "def make_valid_symlink(path: str) -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    target = path + '1'\n    make_file(target)\n    os.symlink(target, path)",
+            "def make_valid_symlink(path: str) -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    target = path + '1'\n    make_file(target)\n    os.symlink(target, path)",
+            "def make_valid_symlink(path: str) -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    target = path + '1'\n    make_file(target)\n    os.symlink(target, path)"
+        ]
+    },
+    {
+        "func_name": "make_broken_symlink",
+        "original": "def make_broken_symlink(path: str) -> None:\n    os.symlink('foo', path)",
+        "mutated": [
+            "def make_broken_symlink(path: str) -> None:\n    if False:\n        i = 10\n    os.symlink('foo', path)",
+            "def make_broken_symlink(path: str) -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    os.symlink('foo', path)",
+            "def make_broken_symlink(path: str) -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    os.symlink('foo', path)",
+            "def make_broken_symlink(path: str) -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    os.symlink('foo', path)",
+            "def make_broken_symlink(path: str) -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    os.symlink('foo', path)"
+        ]
+    },
+    {
+        "func_name": "make_dir",
+        "original": "def make_dir(path: str) -> None:\n    os.mkdir(path)",
+        "mutated": [
+            "def make_dir(path: str) -> None:\n    if False:\n        i = 10\n    os.mkdir(path)",
+            "def make_dir(path: str) -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    os.mkdir(path)",
+            "def make_dir(path: str) -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    os.mkdir(path)",
+            "def make_dir(path: str) -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    os.mkdir(path)",
+            "def make_dir(path: str) -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    os.mkdir(path)"
+        ]
+    }
+]

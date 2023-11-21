@@ -1,0 +1,35 @@
+[
+    {
+        "func_name": "__init__",
+        "original": "def __init__(self, config=None):\n    super().__init__(config)\n    self.a = self.config.get('a', 0.001)",
+        "mutated": [
+            "def __init__(self, config=None):\n    if False:\n        i = 10\n    super().__init__(config)\n    self.a = self.config.get('a', 0.001)",
+            "def __init__(self, config=None):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    super().__init__(config)\n    self.a = self.config.get('a', 0.001)",
+            "def __init__(self, config=None):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    super().__init__(config)\n    self.a = self.config.get('a', 0.001)",
+            "def __init__(self, config=None):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    super().__init__(config)\n    self.a = self.config.get('a', 0.001)",
+            "def __init__(self, config=None):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    super().__init__(config)\n    self.a = self.config.get('a', 0.001)"
+        ]
+    },
+    {
+        "func_name": "computefreq",
+        "original": "def computefreq(self, tokens):\n    return {token: self.wordfreq[token] for token in tokens}",
+        "mutated": [
+            "def computefreq(self, tokens):\n    if False:\n        i = 10\n    return {token: self.wordfreq[token] for token in tokens}",
+            "def computefreq(self, tokens):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return {token: self.wordfreq[token] for token in tokens}",
+            "def computefreq(self, tokens):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return {token: self.wordfreq[token] for token in tokens}",
+            "def computefreq(self, tokens):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return {token: self.wordfreq[token] for token in tokens}",
+            "def computefreq(self, tokens):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return {token: self.wordfreq[token] for token in tokens}"
+        ]
+    },
+    {
+        "func_name": "score",
+        "original": "def score(self, freq, idf, length):\n    if isinstance(freq, np.ndarray) and freq.shape != idf.shape:\n        freq.fill(freq.sum())\n    return self.a / (self.a + freq / self.tokens)",
+        "mutated": [
+            "def score(self, freq, idf, length):\n    if False:\n        i = 10\n    if isinstance(freq, np.ndarray) and freq.shape != idf.shape:\n        freq.fill(freq.sum())\n    return self.a / (self.a + freq / self.tokens)",
+            "def score(self, freq, idf, length):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    if isinstance(freq, np.ndarray) and freq.shape != idf.shape:\n        freq.fill(freq.sum())\n    return self.a / (self.a + freq / self.tokens)",
+            "def score(self, freq, idf, length):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    if isinstance(freq, np.ndarray) and freq.shape != idf.shape:\n        freq.fill(freq.sum())\n    return self.a / (self.a + freq / self.tokens)",
+            "def score(self, freq, idf, length):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    if isinstance(freq, np.ndarray) and freq.shape != idf.shape:\n        freq.fill(freq.sum())\n    return self.a / (self.a + freq / self.tokens)",
+            "def score(self, freq, idf, length):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    if isinstance(freq, np.ndarray) and freq.shape != idf.shape:\n        freq.fill(freq.sum())\n    return self.a / (self.a + freq / self.tokens)"
+        ]
+    }
+]

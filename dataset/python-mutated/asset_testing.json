@@ -1,0 +1,101 @@
+[
+    {
+        "func_name": "my_simple_asset",
+        "original": "@asset\ndef my_simple_asset():\n    return [1, 2, 3]",
+        "mutated": [
+            "@asset\ndef my_simple_asset():\n    if False:\n        i = 10\n    return [1, 2, 3]",
+            "@asset\ndef my_simple_asset():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return [1, 2, 3]",
+            "@asset\ndef my_simple_asset():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return [1, 2, 3]",
+            "@asset\ndef my_simple_asset():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return [1, 2, 3]",
+            "@asset\ndef my_simple_asset():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return [1, 2, 3]"
+        ]
+    },
+    {
+        "func_name": "test_my_simple_asset",
+        "original": "def test_my_simple_asset():\n    result = my_simple_asset()\n    assert result == [1, 2, 3]",
+        "mutated": [
+            "def test_my_simple_asset():\n    if False:\n        i = 10\n    result = my_simple_asset()\n    assert result == [1, 2, 3]",
+            "def test_my_simple_asset():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    result = my_simple_asset()\n    assert result == [1, 2, 3]",
+            "def test_my_simple_asset():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    result = my_simple_asset()\n    assert result == [1, 2, 3]",
+            "def test_my_simple_asset():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    result = my_simple_asset()\n    assert result == [1, 2, 3]",
+            "def test_my_simple_asset():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    result = my_simple_asset()\n    assert result == [1, 2, 3]"
+        ]
+    },
+    {
+        "func_name": "more_complex_asset",
+        "original": "@asset\ndef more_complex_asset(my_simple_asset):\n    return my_simple_asset + [4, 5, 6]",
+        "mutated": [
+            "@asset\ndef more_complex_asset(my_simple_asset):\n    if False:\n        i = 10\n    return my_simple_asset + [4, 5, 6]",
+            "@asset\ndef more_complex_asset(my_simple_asset):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return my_simple_asset + [4, 5, 6]",
+            "@asset\ndef more_complex_asset(my_simple_asset):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return my_simple_asset + [4, 5, 6]",
+            "@asset\ndef more_complex_asset(my_simple_asset):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return my_simple_asset + [4, 5, 6]",
+            "@asset\ndef more_complex_asset(my_simple_asset):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return my_simple_asset + [4, 5, 6]"
+        ]
+    },
+    {
+        "func_name": "test_more_complex_asset",
+        "original": "def test_more_complex_asset():\n    result = more_complex_asset([0])\n    assert result == [0, 4, 5, 6]",
+        "mutated": [
+            "def test_more_complex_asset():\n    if False:\n        i = 10\n    result = more_complex_asset([0])\n    assert result == [0, 4, 5, 6]",
+            "def test_more_complex_asset():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    result = more_complex_asset([0])\n    assert result == [0, 4, 5, 6]",
+            "def test_more_complex_asset():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    result = more_complex_asset([0])\n    assert result == [0, 4, 5, 6]",
+            "def test_more_complex_asset():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    result = more_complex_asset([0])\n    assert result == [0, 4, 5, 6]",
+            "def test_more_complex_asset():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    result = more_complex_asset([0])\n    assert result == [0, 4, 5, 6]"
+        ]
+    },
+    {
+        "func_name": "uses_context",
+        "original": "@asset\ndef uses_context(context: AssetExecutionContext):\n    context.log.info(context.run_id)\n    return 'bar'",
+        "mutated": [
+            "@asset\ndef uses_context(context: AssetExecutionContext):\n    if False:\n        i = 10\n    context.log.info(context.run_id)\n    return 'bar'",
+            "@asset\ndef uses_context(context: AssetExecutionContext):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    context.log.info(context.run_id)\n    return 'bar'",
+            "@asset\ndef uses_context(context: AssetExecutionContext):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    context.log.info(context.run_id)\n    return 'bar'",
+            "@asset\ndef uses_context(context: AssetExecutionContext):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    context.log.info(context.run_id)\n    return 'bar'",
+            "@asset\ndef uses_context(context: AssetExecutionContext):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    context.log.info(context.run_id)\n    return 'bar'"
+        ]
+    },
+    {
+        "func_name": "test_uses_context",
+        "original": "def test_uses_context():\n    context = build_asset_context()\n    result = uses_context(context)\n    assert result == 'bar'",
+        "mutated": [
+            "def test_uses_context():\n    if False:\n        i = 10\n    context = build_asset_context()\n    result = uses_context(context)\n    assert result == 'bar'",
+            "def test_uses_context():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    context = build_asset_context()\n    result = uses_context(context)\n    assert result == 'bar'",
+            "def test_uses_context():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    context = build_asset_context()\n    result = uses_context(context)\n    assert result == 'bar'",
+            "def test_uses_context():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    context = build_asset_context()\n    result = uses_context(context)\n    assert result == 'bar'",
+            "def test_uses_context():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    context = build_asset_context()\n    result = uses_context(context)\n    assert result == 'bar'"
+        ]
+    },
+    {
+        "func_name": "query",
+        "original": "def query(self, url) -> Dict[str, Any]:\n    return requests.get(url).json()",
+        "mutated": [
+            "def query(self, url) -> Dict[str, Any]:\n    if False:\n        i = 10\n    return requests.get(url).json()",
+            "def query(self, url) -> Dict[str, Any]:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return requests.get(url).json()",
+            "def query(self, url) -> Dict[str, Any]:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return requests.get(url).json()",
+            "def query(self, url) -> Dict[str, Any]:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return requests.get(url).json()",
+            "def query(self, url) -> Dict[str, Any]:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return requests.get(url).json()"
+        ]
+    },
+    {
+        "func_name": "uses_config_and_resource",
+        "original": "@asset\ndef uses_config_and_resource(config: MyConfig, my_api: MyAPIResource):\n    return my_api.query(config.api_url)",
+        "mutated": [
+            "@asset\ndef uses_config_and_resource(config: MyConfig, my_api: MyAPIResource):\n    if False:\n        i = 10\n    return my_api.query(config.api_url)",
+            "@asset\ndef uses_config_and_resource(config: MyConfig, my_api: MyAPIResource):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return my_api.query(config.api_url)",
+            "@asset\ndef uses_config_and_resource(config: MyConfig, my_api: MyAPIResource):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return my_api.query(config.api_url)",
+            "@asset\ndef uses_config_and_resource(config: MyConfig, my_api: MyAPIResource):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return my_api.query(config.api_url)",
+            "@asset\ndef uses_config_and_resource(config: MyConfig, my_api: MyAPIResource):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return my_api.query(config.api_url)"
+        ]
+    },
+    {
+        "func_name": "test_uses_resource",
+        "original": "def test_uses_resource() -> None:\n    result = uses_config_and_resource(config=MyConfig(api_url='https://dagster.io'), my_api=MyAPIResource())\n    assert result == {'foo': 'bar'}",
+        "mutated": [
+            "def test_uses_resource() -> None:\n    if False:\n        i = 10\n    result = uses_config_and_resource(config=MyConfig(api_url='https://dagster.io'), my_api=MyAPIResource())\n    assert result == {'foo': 'bar'}",
+            "def test_uses_resource() -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    result = uses_config_and_resource(config=MyConfig(api_url='https://dagster.io'), my_api=MyAPIResource())\n    assert result == {'foo': 'bar'}",
+            "def test_uses_resource() -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    result = uses_config_and_resource(config=MyConfig(api_url='https://dagster.io'), my_api=MyAPIResource())\n    assert result == {'foo': 'bar'}",
+            "def test_uses_resource() -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    result = uses_config_and_resource(config=MyConfig(api_url='https://dagster.io'), my_api=MyAPIResource())\n    assert result == {'foo': 'bar'}",
+            "def test_uses_resource() -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    result = uses_config_and_resource(config=MyConfig(api_url='https://dagster.io'), my_api=MyAPIResource())\n    assert result == {'foo': 'bar'}"
+        ]
+    }
+]

@@ -1,0 +1,24 @@
+[
+    {
+        "func_name": "f",
+        "original": "def f(x, a, b):\n    return a * x + b",
+        "mutated": [
+            "def f(x, a, b):\n    if False:\n        i = 10\n    return a * x + b",
+            "def f(x, a, b):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return a * x + b",
+            "def f(x, a, b):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return a * x + b",
+            "def f(x, a, b):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return a * x + b",
+            "def f(x, a, b):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return a * x + b"
+        ]
+    },
+    {
+        "func_name": "chi2",
+        "original": "def chi2(pars):\n    \"\"\"Cost function.\"\"\"\n    y_model = pars[0] * data['x'] + pars[1]\n    chi = (data['y'] - y_model) / data['y_err']\n    return np.sum(chi ** 2)",
+        "mutated": [
+            "def chi2(pars):\n    if False:\n        i = 10\n    'Cost function.'\n    y_model = pars[0] * data['x'] + pars[1]\n    chi = (data['y'] - y_model) / data['y_err']\n    return np.sum(chi ** 2)",
+            "def chi2(pars):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    'Cost function.'\n    y_model = pars[0] * data['x'] + pars[1]\n    chi = (data['y'] - y_model) / data['y_err']\n    return np.sum(chi ** 2)",
+            "def chi2(pars):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    'Cost function.'\n    y_model = pars[0] * data['x'] + pars[1]\n    chi = (data['y'] - y_model) / data['y_err']\n    return np.sum(chi ** 2)",
+            "def chi2(pars):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    'Cost function.'\n    y_model = pars[0] * data['x'] + pars[1]\n    chi = (data['y'] - y_model) / data['y_err']\n    return np.sum(chi ** 2)",
+            "def chi2(pars):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    'Cost function.'\n    y_model = pars[0] * data['x'] + pars[1]\n    chi = (data['y'] - y_model) / data['y_err']\n    return np.sum(chi ** 2)"
+        ]
+    }
+]

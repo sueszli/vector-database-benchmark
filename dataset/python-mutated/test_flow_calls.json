@@ -1,0 +1,46 @@
+[
+    {
+        "func_name": "identity_flow",
+        "original": "@prefect.flow\ndef identity_flow(x):\n    return x",
+        "mutated": [
+            "@prefect.flow\ndef identity_flow(x):\n    if False:\n        i = 10\n    return x",
+            "@prefect.flow\ndef identity_flow(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return x",
+            "@prefect.flow\ndef identity_flow(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return x",
+            "@prefect.flow\ndef identity_flow(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return x",
+            "@prefect.flow\ndef identity_flow(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return x"
+        ]
+    },
+    {
+        "func_name": "test_async_flow_called_with_asyncio",
+        "original": "def test_async_flow_called_with_asyncio():\n    coro = aidentity_flow(1)\n    assert inspect.isawaitable(coro)\n    assert asyncio.run(coro) == 1",
+        "mutated": [
+            "def test_async_flow_called_with_asyncio():\n    if False:\n        i = 10\n    coro = aidentity_flow(1)\n    assert inspect.isawaitable(coro)\n    assert asyncio.run(coro) == 1",
+            "def test_async_flow_called_with_asyncio():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    coro = aidentity_flow(1)\n    assert inspect.isawaitable(coro)\n    assert asyncio.run(coro) == 1",
+            "def test_async_flow_called_with_asyncio():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    coro = aidentity_flow(1)\n    assert inspect.isawaitable(coro)\n    assert asyncio.run(coro) == 1",
+            "def test_async_flow_called_with_asyncio():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    coro = aidentity_flow(1)\n    assert inspect.isawaitable(coro)\n    assert asyncio.run(coro) == 1",
+            "def test_async_flow_called_with_asyncio():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    coro = aidentity_flow(1)\n    assert inspect.isawaitable(coro)\n    assert asyncio.run(coro) == 1"
+        ]
+    },
+    {
+        "func_name": "test_async_flow_called_with_anyio",
+        "original": "def test_async_flow_called_with_anyio():\n    assert anyio.run(aidentity_flow, 1) == 1",
+        "mutated": [
+            "def test_async_flow_called_with_anyio():\n    if False:\n        i = 10\n    assert anyio.run(aidentity_flow, 1) == 1",
+            "def test_async_flow_called_with_anyio():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    assert anyio.run(aidentity_flow, 1) == 1",
+            "def test_async_flow_called_with_anyio():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    assert anyio.run(aidentity_flow, 1) == 1",
+            "def test_async_flow_called_with_anyio():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    assert anyio.run(aidentity_flow, 1) == 1",
+            "def test_async_flow_called_with_anyio():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    assert anyio.run(aidentity_flow, 1) == 1"
+        ]
+    },
+    {
+        "func_name": "test_sync_flow_called",
+        "original": "def test_sync_flow_called():\n    assert identity_flow(1) == 1",
+        "mutated": [
+            "def test_sync_flow_called():\n    if False:\n        i = 10\n    assert identity_flow(1) == 1",
+            "def test_sync_flow_called():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    assert identity_flow(1) == 1",
+            "def test_sync_flow_called():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    assert identity_flow(1) == 1",
+            "def test_sync_flow_called():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    assert identity_flow(1) == 1",
+            "def test_sync_flow_called():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    assert identity_flow(1) == 1"
+        ]
+    }
+]

@@ -1,0 +1,46 @@
+[
+    {
+        "func_name": "fake_volume_of",
+        "original": "def fake_volume_of(volumes):\n    return VolumeOfImpl(FakeIsMount(volumes), os.path.normpath)",
+        "mutated": [
+            "def fake_volume_of(volumes):\n    if False:\n        i = 10\n    return VolumeOfImpl(FakeIsMount(volumes), os.path.normpath)",
+            "def fake_volume_of(volumes):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return VolumeOfImpl(FakeIsMount(volumes), os.path.normpath)",
+            "def fake_volume_of(volumes):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return VolumeOfImpl(FakeIsMount(volumes), os.path.normpath)",
+            "def fake_volume_of(volumes):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return VolumeOfImpl(FakeIsMount(volumes), os.path.normpath)",
+            "def fake_volume_of(volumes):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return VolumeOfImpl(FakeIsMount(volumes), os.path.normpath)"
+        ]
+    },
+    {
+        "func_name": "volume_of_stub",
+        "original": "def volume_of_stub(func=lambda x: 'volume_of %s' % x):\n    return _FakeVolumeOf(func)",
+        "mutated": [
+            "def volume_of_stub(func=lambda x: 'volume_of %s' % x):\n    if False:\n        i = 10\n    return _FakeVolumeOf(func)",
+            "def volume_of_stub(func=lambda x: 'volume_of %s' % x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return _FakeVolumeOf(func)",
+            "def volume_of_stub(func=lambda x: 'volume_of %s' % x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return _FakeVolumeOf(func)",
+            "def volume_of_stub(func=lambda x: 'volume_of %s' % x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return _FakeVolumeOf(func)",
+            "def volume_of_stub(func=lambda x: 'volume_of %s' % x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return _FakeVolumeOf(func)"
+        ]
+    },
+    {
+        "func_name": "__init__",
+        "original": "def __init__(self, volume_of_impl):\n    self.volume_of_impl = volume_of_impl",
+        "mutated": [
+            "def __init__(self, volume_of_impl):\n    if False:\n        i = 10\n    self.volume_of_impl = volume_of_impl",
+            "def __init__(self, volume_of_impl):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    self.volume_of_impl = volume_of_impl",
+            "def __init__(self, volume_of_impl):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    self.volume_of_impl = volume_of_impl",
+            "def __init__(self, volume_of_impl):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    self.volume_of_impl = volume_of_impl",
+            "def __init__(self, volume_of_impl):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    self.volume_of_impl = volume_of_impl"
+        ]
+    },
+    {
+        "func_name": "volume_of",
+        "original": "def volume_of(self, path):\n    return self.volume_of_impl(path)",
+        "mutated": [
+            "def volume_of(self, path):\n    if False:\n        i = 10\n    return self.volume_of_impl(path)",
+            "def volume_of(self, path):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return self.volume_of_impl(path)",
+            "def volume_of(self, path):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return self.volume_of_impl(path)",
+            "def volume_of(self, path):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return self.volume_of_impl(path)",
+            "def volume_of(self, path):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return self.volume_of_impl(path)"
+        ]
+    }
+]

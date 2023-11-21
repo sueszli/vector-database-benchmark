@@ -1,0 +1,24 @@
+[
+    {
+        "func_name": "app",
+        "original": "@pytest.fixture(scope='module')\ndef app():\n    return flask.Flask(__name__)",
+        "mutated": [
+            "@pytest.fixture(scope='module')\ndef app():\n    if False:\n        i = 10\n    return flask.Flask(__name__)",
+            "@pytest.fixture(scope='module')\ndef app():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return flask.Flask(__name__)",
+            "@pytest.fixture(scope='module')\ndef app():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return flask.Flask(__name__)",
+            "@pytest.fixture(scope='module')\ndef app():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return flask.Flask(__name__)",
+            "@pytest.fixture(scope='module')\ndef app():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return flask.Flask(__name__)"
+        ]
+    },
+    {
+        "func_name": "test_handle_webhook",
+        "original": "def test_handle_webhook(app):\n    with app.test_request_context(json=request):\n        res = handle_webhook(flask.request)\n        assert 'Hello from a GCF Webhook' in str(res)",
+        "mutated": [
+            "def test_handle_webhook(app):\n    if False:\n        i = 10\n    with app.test_request_context(json=request):\n        res = handle_webhook(flask.request)\n        assert 'Hello from a GCF Webhook' in str(res)",
+            "def test_handle_webhook(app):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    with app.test_request_context(json=request):\n        res = handle_webhook(flask.request)\n        assert 'Hello from a GCF Webhook' in str(res)",
+            "def test_handle_webhook(app):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    with app.test_request_context(json=request):\n        res = handle_webhook(flask.request)\n        assert 'Hello from a GCF Webhook' in str(res)",
+            "def test_handle_webhook(app):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    with app.test_request_context(json=request):\n        res = handle_webhook(flask.request)\n        assert 'Hello from a GCF Webhook' in str(res)",
+            "def test_handle_webhook(app):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    with app.test_request_context(json=request):\n        res = handle_webhook(flask.request)\n        assert 'Hello from a GCF Webhook' in str(res)"
+        ]
+    }
+]

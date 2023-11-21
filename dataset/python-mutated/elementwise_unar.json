@@ -1,0 +1,662 @@
+[
+    {
+        "func_name": "__init__",
+        "original": "def __init__(self, **kwargs):\n    super(elementwise_unary, self).__init__(**kwargs)",
+        "mutated": [
+            "def __init__(self, **kwargs):\n    if False:\n        i = 10\n    super(elementwise_unary, self).__init__(**kwargs)",
+            "def __init__(self, **kwargs):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    super(elementwise_unary, self).__init__(**kwargs)",
+            "def __init__(self, **kwargs):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    super(elementwise_unary, self).__init__(**kwargs)",
+            "def __init__(self, **kwargs):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    super(elementwise_unary, self).__init__(**kwargs)",
+            "def __init__(self, **kwargs):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    super(elementwise_unary, self).__init__(**kwargs)"
+        ]
+    },
+    {
+        "func_name": "type_inference",
+        "original": "def type_inference(self):\n    return self.x.sym_type",
+        "mutated": [
+            "def type_inference(self):\n    if False:\n        i = 10\n    return self.x.sym_type",
+            "def type_inference(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return self.x.sym_type",
+            "def type_inference(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return self.x.sym_type",
+            "def type_inference(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return self.x.sym_type",
+            "def type_inference(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return self.x.sym_type"
+        ]
+    },
+    {
+        "func_name": "__init__",
+        "original": "def __init__(self, **kwargs):\n    super(abs, self).__init__(**kwargs)",
+        "mutated": [
+            "def __init__(self, **kwargs):\n    if False:\n        i = 10\n    super(abs, self).__init__(**kwargs)",
+            "def __init__(self, **kwargs):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    super(abs, self).__init__(**kwargs)",
+            "def __init__(self, **kwargs):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    super(abs, self).__init__(**kwargs)",
+            "def __init__(self, **kwargs):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    super(abs, self).__init__(**kwargs)",
+            "def __init__(self, **kwargs):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    super(abs, self).__init__(**kwargs)"
+        ]
+    },
+    {
+        "func_name": "value_inference",
+        "original": "@precondition(allow=VALUE)\ndef value_inference(self):\n    return np.abs(self.x.val)",
+        "mutated": [
+            "@precondition(allow=VALUE)\ndef value_inference(self):\n    if False:\n        i = 10\n    return np.abs(self.x.val)",
+            "@precondition(allow=VALUE)\ndef value_inference(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return np.abs(self.x.val)",
+            "@precondition(allow=VALUE)\ndef value_inference(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return np.abs(self.x.val)",
+            "@precondition(allow=VALUE)\ndef value_inference(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return np.abs(self.x.val)",
+            "@precondition(allow=VALUE)\ndef value_inference(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return np.abs(self.x.val)"
+        ]
+    },
+    {
+        "func_name": "__init__",
+        "original": "def __init__(self, **kwargs):\n    super(acos, self).__init__(**kwargs)",
+        "mutated": [
+            "def __init__(self, **kwargs):\n    if False:\n        i = 10\n    super(acos, self).__init__(**kwargs)",
+            "def __init__(self, **kwargs):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    super(acos, self).__init__(**kwargs)",
+            "def __init__(self, **kwargs):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    super(acos, self).__init__(**kwargs)",
+            "def __init__(self, **kwargs):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    super(acos, self).__init__(**kwargs)",
+            "def __init__(self, **kwargs):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    super(acos, self).__init__(**kwargs)"
+        ]
+    },
+    {
+        "func_name": "value_inference",
+        "original": "@precondition(allow=VALUE)\ndef value_inference(self):\n    return np.arccos(self.x.val)",
+        "mutated": [
+            "@precondition(allow=VALUE)\ndef value_inference(self):\n    if False:\n        i = 10\n    return np.arccos(self.x.val)",
+            "@precondition(allow=VALUE)\ndef value_inference(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return np.arccos(self.x.val)",
+            "@precondition(allow=VALUE)\ndef value_inference(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return np.arccos(self.x.val)",
+            "@precondition(allow=VALUE)\ndef value_inference(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return np.arccos(self.x.val)",
+            "@precondition(allow=VALUE)\ndef value_inference(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return np.arccos(self.x.val)"
+        ]
+    },
+    {
+        "func_name": "__init__",
+        "original": "def __init__(self, **kwargs):\n    super(asin, self).__init__(**kwargs)",
+        "mutated": [
+            "def __init__(self, **kwargs):\n    if False:\n        i = 10\n    super(asin, self).__init__(**kwargs)",
+            "def __init__(self, **kwargs):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    super(asin, self).__init__(**kwargs)",
+            "def __init__(self, **kwargs):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    super(asin, self).__init__(**kwargs)",
+            "def __init__(self, **kwargs):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    super(asin, self).__init__(**kwargs)",
+            "def __init__(self, **kwargs):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    super(asin, self).__init__(**kwargs)"
+        ]
+    },
+    {
+        "func_name": "value_inference",
+        "original": "@precondition(allow=VALUE)\ndef value_inference(self):\n    return np.arcsin(self.x.val)",
+        "mutated": [
+            "@precondition(allow=VALUE)\ndef value_inference(self):\n    if False:\n        i = 10\n    return np.arcsin(self.x.val)",
+            "@precondition(allow=VALUE)\ndef value_inference(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return np.arcsin(self.x.val)",
+            "@precondition(allow=VALUE)\ndef value_inference(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return np.arcsin(self.x.val)",
+            "@precondition(allow=VALUE)\ndef value_inference(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return np.arcsin(self.x.val)",
+            "@precondition(allow=VALUE)\ndef value_inference(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return np.arcsin(self.x.val)"
+        ]
+    },
+    {
+        "func_name": "__init__",
+        "original": "def __init__(self, **kwargs):\n    super(atan, self).__init__(**kwargs)",
+        "mutated": [
+            "def __init__(self, **kwargs):\n    if False:\n        i = 10\n    super(atan, self).__init__(**kwargs)",
+            "def __init__(self, **kwargs):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    super(atan, self).__init__(**kwargs)",
+            "def __init__(self, **kwargs):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    super(atan, self).__init__(**kwargs)",
+            "def __init__(self, **kwargs):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    super(atan, self).__init__(**kwargs)",
+            "def __init__(self, **kwargs):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    super(atan, self).__init__(**kwargs)"
+        ]
+    },
+    {
+        "func_name": "value_inference",
+        "original": "@precondition(allow=VALUE)\ndef value_inference(self):\n    return np.arctan(self.x.val)",
+        "mutated": [
+            "@precondition(allow=VALUE)\ndef value_inference(self):\n    if False:\n        i = 10\n    return np.arctan(self.x.val)",
+            "@precondition(allow=VALUE)\ndef value_inference(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return np.arctan(self.x.val)",
+            "@precondition(allow=VALUE)\ndef value_inference(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return np.arctan(self.x.val)",
+            "@precondition(allow=VALUE)\ndef value_inference(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return np.arctan(self.x.val)",
+            "@precondition(allow=VALUE)\ndef value_inference(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return np.arctan(self.x.val)"
+        ]
+    },
+    {
+        "func_name": "__init__",
+        "original": "def __init__(self, **kwargs):\n    super(atanh, self).__init__(**kwargs)",
+        "mutated": [
+            "def __init__(self, **kwargs):\n    if False:\n        i = 10\n    super(atanh, self).__init__(**kwargs)",
+            "def __init__(self, **kwargs):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    super(atanh, self).__init__(**kwargs)",
+            "def __init__(self, **kwargs):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    super(atanh, self).__init__(**kwargs)",
+            "def __init__(self, **kwargs):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    super(atanh, self).__init__(**kwargs)",
+            "def __init__(self, **kwargs):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    super(atanh, self).__init__(**kwargs)"
+        ]
+    },
+    {
+        "func_name": "value_inference",
+        "original": "@precondition(allow=VALUE)\ndef value_inference(self):\n    return np.arctanh(self.x.val)",
+        "mutated": [
+            "@precondition(allow=VALUE)\ndef value_inference(self):\n    if False:\n        i = 10\n    return np.arctanh(self.x.val)",
+            "@precondition(allow=VALUE)\ndef value_inference(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return np.arctanh(self.x.val)",
+            "@precondition(allow=VALUE)\ndef value_inference(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return np.arctanh(self.x.val)",
+            "@precondition(allow=VALUE)\ndef value_inference(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return np.arctanh(self.x.val)",
+            "@precondition(allow=VALUE)\ndef value_inference(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return np.arctanh(self.x.val)"
+        ]
+    },
+    {
+        "func_name": "__init__",
+        "original": "def __init__(self, **kwargs):\n    super(ceil, self).__init__(**kwargs)",
+        "mutated": [
+            "def __init__(self, **kwargs):\n    if False:\n        i = 10\n    super(ceil, self).__init__(**kwargs)",
+            "def __init__(self, **kwargs):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    super(ceil, self).__init__(**kwargs)",
+            "def __init__(self, **kwargs):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    super(ceil, self).__init__(**kwargs)",
+            "def __init__(self, **kwargs):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    super(ceil, self).__init__(**kwargs)",
+            "def __init__(self, **kwargs):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    super(ceil, self).__init__(**kwargs)"
+        ]
+    },
+    {
+        "func_name": "value_inference",
+        "original": "@precondition(allow=VALUE)\ndef value_inference(self):\n    return np.ceil(self.x.val)",
+        "mutated": [
+            "@precondition(allow=VALUE)\ndef value_inference(self):\n    if False:\n        i = 10\n    return np.ceil(self.x.val)",
+            "@precondition(allow=VALUE)\ndef value_inference(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return np.ceil(self.x.val)",
+            "@precondition(allow=VALUE)\ndef value_inference(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return np.ceil(self.x.val)",
+            "@precondition(allow=VALUE)\ndef value_inference(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return np.ceil(self.x.val)",
+            "@precondition(allow=VALUE)\ndef value_inference(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return np.ceil(self.x.val)"
+        ]
+    },
+    {
+        "func_name": "__init__",
+        "original": "def __init__(self, **kwargs):\n    super(clip, self).__init__(**kwargs)",
+        "mutated": [
+            "def __init__(self, **kwargs):\n    if False:\n        i = 10\n    super(clip, self).__init__(**kwargs)",
+            "def __init__(self, **kwargs):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    super(clip, self).__init__(**kwargs)",
+            "def __init__(self, **kwargs):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    super(clip, self).__init__(**kwargs)",
+            "def __init__(self, **kwargs):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    super(clip, self).__init__(**kwargs)",
+            "def __init__(self, **kwargs):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    super(clip, self).__init__(**kwargs)"
+        ]
+    },
+    {
+        "func_name": "type_inference",
+        "original": "def type_inference(self):\n    return self.x.sym_type",
+        "mutated": [
+            "def type_inference(self):\n    if False:\n        i = 10\n    return self.x.sym_type",
+            "def type_inference(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return self.x.sym_type",
+            "def type_inference(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return self.x.sym_type",
+            "def type_inference(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return self.x.sym_type",
+            "def type_inference(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return self.x.sym_type"
+        ]
+    },
+    {
+        "func_name": "value_inference",
+        "original": "@precondition(allow=VALUE)\ndef value_inference(self):\n    return np.minimum(np.maximum(self.x.val, self.alpha.val), self.beta.val)",
+        "mutated": [
+            "@precondition(allow=VALUE)\ndef value_inference(self):\n    if False:\n        i = 10\n    return np.minimum(np.maximum(self.x.val, self.alpha.val), self.beta.val)",
+            "@precondition(allow=VALUE)\ndef value_inference(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return np.minimum(np.maximum(self.x.val, self.alpha.val), self.beta.val)",
+            "@precondition(allow=VALUE)\ndef value_inference(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return np.minimum(np.maximum(self.x.val, self.alpha.val), self.beta.val)",
+            "@precondition(allow=VALUE)\ndef value_inference(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return np.minimum(np.maximum(self.x.val, self.alpha.val), self.beta.val)",
+            "@precondition(allow=VALUE)\ndef value_inference(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return np.minimum(np.maximum(self.x.val, self.alpha.val), self.beta.val)"
+        ]
+    },
+    {
+        "func_name": "__init__",
+        "original": "def __init__(self, **kwargs):\n    super(cos, self).__init__(**kwargs)",
+        "mutated": [
+            "def __init__(self, **kwargs):\n    if False:\n        i = 10\n    super(cos, self).__init__(**kwargs)",
+            "def __init__(self, **kwargs):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    super(cos, self).__init__(**kwargs)",
+            "def __init__(self, **kwargs):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    super(cos, self).__init__(**kwargs)",
+            "def __init__(self, **kwargs):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    super(cos, self).__init__(**kwargs)",
+            "def __init__(self, **kwargs):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    super(cos, self).__init__(**kwargs)"
+        ]
+    },
+    {
+        "func_name": "value_inference",
+        "original": "@precondition(allow=VALUE)\ndef value_inference(self):\n    return np.cos(self.x.val)",
+        "mutated": [
+            "@precondition(allow=VALUE)\ndef value_inference(self):\n    if False:\n        i = 10\n    return np.cos(self.x.val)",
+            "@precondition(allow=VALUE)\ndef value_inference(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return np.cos(self.x.val)",
+            "@precondition(allow=VALUE)\ndef value_inference(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return np.cos(self.x.val)",
+            "@precondition(allow=VALUE)\ndef value_inference(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return np.cos(self.x.val)",
+            "@precondition(allow=VALUE)\ndef value_inference(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return np.cos(self.x.val)"
+        ]
+    },
+    {
+        "func_name": "__init__",
+        "original": "def __init__(self, **kwargs):\n    super(cosh, self).__init__(**kwargs)",
+        "mutated": [
+            "def __init__(self, **kwargs):\n    if False:\n        i = 10\n    super(cosh, self).__init__(**kwargs)",
+            "def __init__(self, **kwargs):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    super(cosh, self).__init__(**kwargs)",
+            "def __init__(self, **kwargs):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    super(cosh, self).__init__(**kwargs)",
+            "def __init__(self, **kwargs):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    super(cosh, self).__init__(**kwargs)",
+            "def __init__(self, **kwargs):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    super(cosh, self).__init__(**kwargs)"
+        ]
+    },
+    {
+        "func_name": "value_inference",
+        "original": "@precondition(allow=VALUE)\ndef value_inference(self):\n    return np.cosh(self.x.val)",
+        "mutated": [
+            "@precondition(allow=VALUE)\ndef value_inference(self):\n    if False:\n        i = 10\n    return np.cosh(self.x.val)",
+            "@precondition(allow=VALUE)\ndef value_inference(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return np.cosh(self.x.val)",
+            "@precondition(allow=VALUE)\ndef value_inference(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return np.cosh(self.x.val)",
+            "@precondition(allow=VALUE)\ndef value_inference(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return np.cosh(self.x.val)",
+            "@precondition(allow=VALUE)\ndef value_inference(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return np.cosh(self.x.val)"
+        ]
+    },
+    {
+        "func_name": "__init__",
+        "original": "def __init__(self, **kwargs):\n    super(erf, self).__init__(**kwargs)",
+        "mutated": [
+            "def __init__(self, **kwargs):\n    if False:\n        i = 10\n    super(erf, self).__init__(**kwargs)",
+            "def __init__(self, **kwargs):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    super(erf, self).__init__(**kwargs)",
+            "def __init__(self, **kwargs):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    super(erf, self).__init__(**kwargs)",
+            "def __init__(self, **kwargs):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    super(erf, self).__init__(**kwargs)",
+            "def __init__(self, **kwargs):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    super(erf, self).__init__(**kwargs)"
+        ]
+    },
+    {
+        "func_name": "value_inference",
+        "original": "@precondition(allow=VALUE)\ndef value_inference(self):\n    return scipy.special.erf(self.x.val)",
+        "mutated": [
+            "@precondition(allow=VALUE)\ndef value_inference(self):\n    if False:\n        i = 10\n    return scipy.special.erf(self.x.val)",
+            "@precondition(allow=VALUE)\ndef value_inference(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return scipy.special.erf(self.x.val)",
+            "@precondition(allow=VALUE)\ndef value_inference(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return scipy.special.erf(self.x.val)",
+            "@precondition(allow=VALUE)\ndef value_inference(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return scipy.special.erf(self.x.val)",
+            "@precondition(allow=VALUE)\ndef value_inference(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return scipy.special.erf(self.x.val)"
+        ]
+    },
+    {
+        "func_name": "__init__",
+        "original": "def __init__(self, **kwargs):\n    super(exp, self).__init__(**kwargs)",
+        "mutated": [
+            "def __init__(self, **kwargs):\n    if False:\n        i = 10\n    super(exp, self).__init__(**kwargs)",
+            "def __init__(self, **kwargs):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    super(exp, self).__init__(**kwargs)",
+            "def __init__(self, **kwargs):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    super(exp, self).__init__(**kwargs)",
+            "def __init__(self, **kwargs):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    super(exp, self).__init__(**kwargs)",
+            "def __init__(self, **kwargs):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    super(exp, self).__init__(**kwargs)"
+        ]
+    },
+    {
+        "func_name": "value_inference",
+        "original": "@precondition(allow=VALUE)\ndef value_inference(self):\n    return np.exp(self.x.val)",
+        "mutated": [
+            "@precondition(allow=VALUE)\ndef value_inference(self):\n    if False:\n        i = 10\n    return np.exp(self.x.val)",
+            "@precondition(allow=VALUE)\ndef value_inference(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return np.exp(self.x.val)",
+            "@precondition(allow=VALUE)\ndef value_inference(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return np.exp(self.x.val)",
+            "@precondition(allow=VALUE)\ndef value_inference(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return np.exp(self.x.val)",
+            "@precondition(allow=VALUE)\ndef value_inference(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return np.exp(self.x.val)"
+        ]
+    },
+    {
+        "func_name": "__init__",
+        "original": "def __init__(self, **kwargs):\n    super(exp2, self).__init__(**kwargs)",
+        "mutated": [
+            "def __init__(self, **kwargs):\n    if False:\n        i = 10\n    super(exp2, self).__init__(**kwargs)",
+            "def __init__(self, **kwargs):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    super(exp2, self).__init__(**kwargs)",
+            "def __init__(self, **kwargs):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    super(exp2, self).__init__(**kwargs)",
+            "def __init__(self, **kwargs):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    super(exp2, self).__init__(**kwargs)",
+            "def __init__(self, **kwargs):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    super(exp2, self).__init__(**kwargs)"
+        ]
+    },
+    {
+        "func_name": "value_inference",
+        "original": "@precondition(allow=VALUE)\ndef value_inference(self):\n    return np.exp2(self.x.val)",
+        "mutated": [
+            "@precondition(allow=VALUE)\ndef value_inference(self):\n    if False:\n        i = 10\n    return np.exp2(self.x.val)",
+            "@precondition(allow=VALUE)\ndef value_inference(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return np.exp2(self.x.val)",
+            "@precondition(allow=VALUE)\ndef value_inference(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return np.exp2(self.x.val)",
+            "@precondition(allow=VALUE)\ndef value_inference(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return np.exp2(self.x.val)",
+            "@precondition(allow=VALUE)\ndef value_inference(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return np.exp2(self.x.val)"
+        ]
+    },
+    {
+        "func_name": "__init__",
+        "original": "def __init__(self, **kwargs):\n    super(floor, self).__init__(**kwargs)",
+        "mutated": [
+            "def __init__(self, **kwargs):\n    if False:\n        i = 10\n    super(floor, self).__init__(**kwargs)",
+            "def __init__(self, **kwargs):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    super(floor, self).__init__(**kwargs)",
+            "def __init__(self, **kwargs):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    super(floor, self).__init__(**kwargs)",
+            "def __init__(self, **kwargs):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    super(floor, self).__init__(**kwargs)",
+            "def __init__(self, **kwargs):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    super(floor, self).__init__(**kwargs)"
+        ]
+    },
+    {
+        "func_name": "value_inference",
+        "original": "@precondition(allow=VALUE)\ndef value_inference(self):\n    return np.floor(self.x.val)",
+        "mutated": [
+            "@precondition(allow=VALUE)\ndef value_inference(self):\n    if False:\n        i = 10\n    return np.floor(self.x.val)",
+            "@precondition(allow=VALUE)\ndef value_inference(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return np.floor(self.x.val)",
+            "@precondition(allow=VALUE)\ndef value_inference(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return np.floor(self.x.val)",
+            "@precondition(allow=VALUE)\ndef value_inference(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return np.floor(self.x.val)",
+            "@precondition(allow=VALUE)\ndef value_inference(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return np.floor(self.x.val)"
+        ]
+    },
+    {
+        "func_name": "__init__",
+        "original": "def __init__(self, **kwargs):\n    super(inverse, self).__init__(**kwargs)",
+        "mutated": [
+            "def __init__(self, **kwargs):\n    if False:\n        i = 10\n    super(inverse, self).__init__(**kwargs)",
+            "def __init__(self, **kwargs):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    super(inverse, self).__init__(**kwargs)",
+            "def __init__(self, **kwargs):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    super(inverse, self).__init__(**kwargs)",
+            "def __init__(self, **kwargs):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    super(inverse, self).__init__(**kwargs)",
+            "def __init__(self, **kwargs):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    super(inverse, self).__init__(**kwargs)"
+        ]
+    },
+    {
+        "func_name": "value_inference",
+        "original": "@precondition(allow=VALUE)\ndef value_inference(self):\n    return np.reciprocal(self.x.val)",
+        "mutated": [
+            "@precondition(allow=VALUE)\ndef value_inference(self):\n    if False:\n        i = 10\n    return np.reciprocal(self.x.val)",
+            "@precondition(allow=VALUE)\ndef value_inference(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return np.reciprocal(self.x.val)",
+            "@precondition(allow=VALUE)\ndef value_inference(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return np.reciprocal(self.x.val)",
+            "@precondition(allow=VALUE)\ndef value_inference(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return np.reciprocal(self.x.val)",
+            "@precondition(allow=VALUE)\ndef value_inference(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return np.reciprocal(self.x.val)"
+        ]
+    },
+    {
+        "func_name": "__init__",
+        "original": "def __init__(self, **kwargs):\n    super(log, self).__init__(**kwargs)",
+        "mutated": [
+            "def __init__(self, **kwargs):\n    if False:\n        i = 10\n    super(log, self).__init__(**kwargs)",
+            "def __init__(self, **kwargs):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    super(log, self).__init__(**kwargs)",
+            "def __init__(self, **kwargs):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    super(log, self).__init__(**kwargs)",
+            "def __init__(self, **kwargs):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    super(log, self).__init__(**kwargs)",
+            "def __init__(self, **kwargs):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    super(log, self).__init__(**kwargs)"
+        ]
+    },
+    {
+        "func_name": "value_inference",
+        "original": "@precondition(allow=VALUE)\ndef value_inference(self):\n    return np.log(self.x.val)",
+        "mutated": [
+            "@precondition(allow=VALUE)\ndef value_inference(self):\n    if False:\n        i = 10\n    return np.log(self.x.val)",
+            "@precondition(allow=VALUE)\ndef value_inference(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return np.log(self.x.val)",
+            "@precondition(allow=VALUE)\ndef value_inference(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return np.log(self.x.val)",
+            "@precondition(allow=VALUE)\ndef value_inference(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return np.log(self.x.val)",
+            "@precondition(allow=VALUE)\ndef value_inference(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return np.log(self.x.val)"
+        ]
+    },
+    {
+        "func_name": "__init__",
+        "original": "def __init__(self, **kwargs):\n    super(logical_not, self).__init__(**kwargs)",
+        "mutated": [
+            "def __init__(self, **kwargs):\n    if False:\n        i = 10\n    super(logical_not, self).__init__(**kwargs)",
+            "def __init__(self, **kwargs):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    super(logical_not, self).__init__(**kwargs)",
+            "def __init__(self, **kwargs):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    super(logical_not, self).__init__(**kwargs)",
+            "def __init__(self, **kwargs):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    super(logical_not, self).__init__(**kwargs)",
+            "def __init__(self, **kwargs):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    super(logical_not, self).__init__(**kwargs)"
+        ]
+    },
+    {
+        "func_name": "get_operator",
+        "original": "def get_operator(self):\n    return np.logical_not",
+        "mutated": [
+            "def get_operator(self):\n    if False:\n        i = 10\n    return np.logical_not",
+            "def get_operator(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return np.logical_not",
+            "def get_operator(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return np.logical_not",
+            "def get_operator(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return np.logical_not",
+            "def get_operator(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return np.logical_not"
+        ]
+    },
+    {
+        "func_name": "get_dtype",
+        "original": "def get_dtype(self, promoted_dtype):\n    return types.bool",
+        "mutated": [
+            "def get_dtype(self, promoted_dtype):\n    if False:\n        i = 10\n    return types.bool",
+            "def get_dtype(self, promoted_dtype):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return types.bool",
+            "def get_dtype(self, promoted_dtype):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return types.bool",
+            "def get_dtype(self, promoted_dtype):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return types.bool",
+            "def get_dtype(self, promoted_dtype):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return types.bool"
+        ]
+    },
+    {
+        "func_name": "__init__",
+        "original": "def __init__(self, **kwargs):\n    super(round, self).__init__(**kwargs)",
+        "mutated": [
+            "def __init__(self, **kwargs):\n    if False:\n        i = 10\n    super(round, self).__init__(**kwargs)",
+            "def __init__(self, **kwargs):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    super(round, self).__init__(**kwargs)",
+            "def __init__(self, **kwargs):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    super(round, self).__init__(**kwargs)",
+            "def __init__(self, **kwargs):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    super(round, self).__init__(**kwargs)",
+            "def __init__(self, **kwargs):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    super(round, self).__init__(**kwargs)"
+        ]
+    },
+    {
+        "func_name": "value_inference",
+        "original": "@precondition(allow=VALUE)\ndef value_inference(self):\n    return np.round(self.x.val)",
+        "mutated": [
+            "@precondition(allow=VALUE)\ndef value_inference(self):\n    if False:\n        i = 10\n    return np.round(self.x.val)",
+            "@precondition(allow=VALUE)\ndef value_inference(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return np.round(self.x.val)",
+            "@precondition(allow=VALUE)\ndef value_inference(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return np.round(self.x.val)",
+            "@precondition(allow=VALUE)\ndef value_inference(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return np.round(self.x.val)",
+            "@precondition(allow=VALUE)\ndef value_inference(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return np.round(self.x.val)"
+        ]
+    },
+    {
+        "func_name": "__init__",
+        "original": "def __init__(self, **kwargs):\n    super(rsqrt, self).__init__(**kwargs)",
+        "mutated": [
+            "def __init__(self, **kwargs):\n    if False:\n        i = 10\n    super(rsqrt, self).__init__(**kwargs)",
+            "def __init__(self, **kwargs):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    super(rsqrt, self).__init__(**kwargs)",
+            "def __init__(self, **kwargs):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    super(rsqrt, self).__init__(**kwargs)",
+            "def __init__(self, **kwargs):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    super(rsqrt, self).__init__(**kwargs)",
+            "def __init__(self, **kwargs):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    super(rsqrt, self).__init__(**kwargs)"
+        ]
+    },
+    {
+        "func_name": "value_inference",
+        "original": "@precondition(allow=VALUE)\ndef value_inference(self):\n    return 1.0 / np.sqrt(self.x.val)",
+        "mutated": [
+            "@precondition(allow=VALUE)\ndef value_inference(self):\n    if False:\n        i = 10\n    return 1.0 / np.sqrt(self.x.val)",
+            "@precondition(allow=VALUE)\ndef value_inference(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return 1.0 / np.sqrt(self.x.val)",
+            "@precondition(allow=VALUE)\ndef value_inference(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return 1.0 / np.sqrt(self.x.val)",
+            "@precondition(allow=VALUE)\ndef value_inference(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return 1.0 / np.sqrt(self.x.val)",
+            "@precondition(allow=VALUE)\ndef value_inference(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return 1.0 / np.sqrt(self.x.val)"
+        ]
+    },
+    {
+        "func_name": "__init__",
+        "original": "def __init__(self, **kwargs):\n    super(sign, self).__init__(**kwargs)",
+        "mutated": [
+            "def __init__(self, **kwargs):\n    if False:\n        i = 10\n    super(sign, self).__init__(**kwargs)",
+            "def __init__(self, **kwargs):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    super(sign, self).__init__(**kwargs)",
+            "def __init__(self, **kwargs):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    super(sign, self).__init__(**kwargs)",
+            "def __init__(self, **kwargs):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    super(sign, self).__init__(**kwargs)",
+            "def __init__(self, **kwargs):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    super(sign, self).__init__(**kwargs)"
+        ]
+    },
+    {
+        "func_name": "value_inference",
+        "original": "@precondition(allow=VALUE)\ndef value_inference(self):\n    return np.sign(self.x.val)",
+        "mutated": [
+            "@precondition(allow=VALUE)\ndef value_inference(self):\n    if False:\n        i = 10\n    return np.sign(self.x.val)",
+            "@precondition(allow=VALUE)\ndef value_inference(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return np.sign(self.x.val)",
+            "@precondition(allow=VALUE)\ndef value_inference(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return np.sign(self.x.val)",
+            "@precondition(allow=VALUE)\ndef value_inference(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return np.sign(self.x.val)",
+            "@precondition(allow=VALUE)\ndef value_inference(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return np.sign(self.x.val)"
+        ]
+    },
+    {
+        "func_name": "__init__",
+        "original": "def __init__(self, **kwargs):\n    super(sin, self).__init__(**kwargs)",
+        "mutated": [
+            "def __init__(self, **kwargs):\n    if False:\n        i = 10\n    super(sin, self).__init__(**kwargs)",
+            "def __init__(self, **kwargs):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    super(sin, self).__init__(**kwargs)",
+            "def __init__(self, **kwargs):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    super(sin, self).__init__(**kwargs)",
+            "def __init__(self, **kwargs):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    super(sin, self).__init__(**kwargs)",
+            "def __init__(self, **kwargs):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    super(sin, self).__init__(**kwargs)"
+        ]
+    },
+    {
+        "func_name": "value_inference",
+        "original": "@precondition(allow=VALUE)\ndef value_inference(self):\n    return np.sin(self.x.val)",
+        "mutated": [
+            "@precondition(allow=VALUE)\ndef value_inference(self):\n    if False:\n        i = 10\n    return np.sin(self.x.val)",
+            "@precondition(allow=VALUE)\ndef value_inference(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return np.sin(self.x.val)",
+            "@precondition(allow=VALUE)\ndef value_inference(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return np.sin(self.x.val)",
+            "@precondition(allow=VALUE)\ndef value_inference(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return np.sin(self.x.val)",
+            "@precondition(allow=VALUE)\ndef value_inference(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return np.sin(self.x.val)"
+        ]
+    },
+    {
+        "func_name": "__init__",
+        "original": "def __init__(self, **kwargs):\n    super(sinh, self).__init__(**kwargs)",
+        "mutated": [
+            "def __init__(self, **kwargs):\n    if False:\n        i = 10\n    super(sinh, self).__init__(**kwargs)",
+            "def __init__(self, **kwargs):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    super(sinh, self).__init__(**kwargs)",
+            "def __init__(self, **kwargs):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    super(sinh, self).__init__(**kwargs)",
+            "def __init__(self, **kwargs):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    super(sinh, self).__init__(**kwargs)",
+            "def __init__(self, **kwargs):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    super(sinh, self).__init__(**kwargs)"
+        ]
+    },
+    {
+        "func_name": "value_inference",
+        "original": "@precondition(allow=VALUE)\ndef value_inference(self):\n    return np.sinh(self.x.val)",
+        "mutated": [
+            "@precondition(allow=VALUE)\ndef value_inference(self):\n    if False:\n        i = 10\n    return np.sinh(self.x.val)",
+            "@precondition(allow=VALUE)\ndef value_inference(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return np.sinh(self.x.val)",
+            "@precondition(allow=VALUE)\ndef value_inference(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return np.sinh(self.x.val)",
+            "@precondition(allow=VALUE)\ndef value_inference(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return np.sinh(self.x.val)",
+            "@precondition(allow=VALUE)\ndef value_inference(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return np.sinh(self.x.val)"
+        ]
+    },
+    {
+        "func_name": "__init__",
+        "original": "def __init__(self, **kwargs):\n    super(sqrt, self).__init__(**kwargs)",
+        "mutated": [
+            "def __init__(self, **kwargs):\n    if False:\n        i = 10\n    super(sqrt, self).__init__(**kwargs)",
+            "def __init__(self, **kwargs):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    super(sqrt, self).__init__(**kwargs)",
+            "def __init__(self, **kwargs):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    super(sqrt, self).__init__(**kwargs)",
+            "def __init__(self, **kwargs):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    super(sqrt, self).__init__(**kwargs)",
+            "def __init__(self, **kwargs):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    super(sqrt, self).__init__(**kwargs)"
+        ]
+    },
+    {
+        "func_name": "value_inference",
+        "original": "@precondition(allow=VALUE)\ndef value_inference(self):\n    return np.sqrt(self.x.val)",
+        "mutated": [
+            "@precondition(allow=VALUE)\ndef value_inference(self):\n    if False:\n        i = 10\n    return np.sqrt(self.x.val)",
+            "@precondition(allow=VALUE)\ndef value_inference(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return np.sqrt(self.x.val)",
+            "@precondition(allow=VALUE)\ndef value_inference(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return np.sqrt(self.x.val)",
+            "@precondition(allow=VALUE)\ndef value_inference(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return np.sqrt(self.x.val)",
+            "@precondition(allow=VALUE)\ndef value_inference(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return np.sqrt(self.x.val)"
+        ]
+    },
+    {
+        "func_name": "__init__",
+        "original": "def __init__(self, **kwargs):\n    super(square, self).__init__(**kwargs)",
+        "mutated": [
+            "def __init__(self, **kwargs):\n    if False:\n        i = 10\n    super(square, self).__init__(**kwargs)",
+            "def __init__(self, **kwargs):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    super(square, self).__init__(**kwargs)",
+            "def __init__(self, **kwargs):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    super(square, self).__init__(**kwargs)",
+            "def __init__(self, **kwargs):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    super(square, self).__init__(**kwargs)",
+            "def __init__(self, **kwargs):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    super(square, self).__init__(**kwargs)"
+        ]
+    },
+    {
+        "func_name": "value_inference",
+        "original": "@precondition(allow=VALUE)\ndef value_inference(self):\n    return np.square(self.x.val)",
+        "mutated": [
+            "@precondition(allow=VALUE)\ndef value_inference(self):\n    if False:\n        i = 10\n    return np.square(self.x.val)",
+            "@precondition(allow=VALUE)\ndef value_inference(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return np.square(self.x.val)",
+            "@precondition(allow=VALUE)\ndef value_inference(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return np.square(self.x.val)",
+            "@precondition(allow=VALUE)\ndef value_inference(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return np.square(self.x.val)",
+            "@precondition(allow=VALUE)\ndef value_inference(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return np.square(self.x.val)"
+        ]
+    },
+    {
+        "func_name": "__init__",
+        "original": "def __init__(self, **kwargs):\n    super(tan, self).__init__(**kwargs)",
+        "mutated": [
+            "def __init__(self, **kwargs):\n    if False:\n        i = 10\n    super(tan, self).__init__(**kwargs)",
+            "def __init__(self, **kwargs):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    super(tan, self).__init__(**kwargs)",
+            "def __init__(self, **kwargs):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    super(tan, self).__init__(**kwargs)",
+            "def __init__(self, **kwargs):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    super(tan, self).__init__(**kwargs)",
+            "def __init__(self, **kwargs):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    super(tan, self).__init__(**kwargs)"
+        ]
+    },
+    {
+        "func_name": "value_inference",
+        "original": "@precondition(allow=VALUE)\ndef value_inference(self):\n    return np.tan(self.x.val)",
+        "mutated": [
+            "@precondition(allow=VALUE)\ndef value_inference(self):\n    if False:\n        i = 10\n    return np.tan(self.x.val)",
+            "@precondition(allow=VALUE)\ndef value_inference(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return np.tan(self.x.val)",
+            "@precondition(allow=VALUE)\ndef value_inference(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return np.tan(self.x.val)",
+            "@precondition(allow=VALUE)\ndef value_inference(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return np.tan(self.x.val)",
+            "@precondition(allow=VALUE)\ndef value_inference(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return np.tan(self.x.val)"
+        ]
+    },
+    {
+        "func_name": "__init__",
+        "original": "def __init__(self, **kwargs):\n    super(tanh, self).__init__(**kwargs)",
+        "mutated": [
+            "def __init__(self, **kwargs):\n    if False:\n        i = 10\n    super(tanh, self).__init__(**kwargs)",
+            "def __init__(self, **kwargs):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    super(tanh, self).__init__(**kwargs)",
+            "def __init__(self, **kwargs):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    super(tanh, self).__init__(**kwargs)",
+            "def __init__(self, **kwargs):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    super(tanh, self).__init__(**kwargs)",
+            "def __init__(self, **kwargs):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    super(tanh, self).__init__(**kwargs)"
+        ]
+    },
+    {
+        "func_name": "value_inference",
+        "original": "@precondition(allow=VALUE)\ndef value_inference(self):\n    return np.tanh(self.x.val)",
+        "mutated": [
+            "@precondition(allow=VALUE)\ndef value_inference(self):\n    if False:\n        i = 10\n    return np.tanh(self.x.val)",
+            "@precondition(allow=VALUE)\ndef value_inference(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return np.tanh(self.x.val)",
+            "@precondition(allow=VALUE)\ndef value_inference(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return np.tanh(self.x.val)",
+            "@precondition(allow=VALUE)\ndef value_inference(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return np.tanh(self.x.val)",
+            "@precondition(allow=VALUE)\ndef value_inference(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return np.tanh(self.x.val)"
+        ]
+    },
+    {
+        "func_name": "__init__",
+        "original": "def __init__(self, **kwargs):\n    super(threshold, self).__init__(**kwargs)",
+        "mutated": [
+            "def __init__(self, **kwargs):\n    if False:\n        i = 10\n    super(threshold, self).__init__(**kwargs)",
+            "def __init__(self, **kwargs):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    super(threshold, self).__init__(**kwargs)",
+            "def __init__(self, **kwargs):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    super(threshold, self).__init__(**kwargs)",
+            "def __init__(self, **kwargs):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    super(threshold, self).__init__(**kwargs)",
+            "def __init__(self, **kwargs):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    super(threshold, self).__init__(**kwargs)"
+        ]
+    },
+    {
+        "func_name": "type_inference",
+        "original": "def type_inference(self):\n    return self.x.sym_type",
+        "mutated": [
+            "def type_inference(self):\n    if False:\n        i = 10\n    return self.x.sym_type",
+            "def type_inference(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return self.x.sym_type",
+            "def type_inference(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return self.x.sym_type",
+            "def type_inference(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return self.x.sym_type",
+            "def type_inference(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return self.x.sym_type"
+        ]
+    },
+    {
+        "func_name": "value_inference",
+        "original": "@precondition(allow=VALUE)\ndef value_inference(self):\n    return np.maximum(self.x.val, self.alpha.val)",
+        "mutated": [
+            "@precondition(allow=VALUE)\ndef value_inference(self):\n    if False:\n        i = 10\n    return np.maximum(self.x.val, self.alpha.val)",
+            "@precondition(allow=VALUE)\ndef value_inference(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return np.maximum(self.x.val, self.alpha.val)",
+            "@precondition(allow=VALUE)\ndef value_inference(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return np.maximum(self.x.val, self.alpha.val)",
+            "@precondition(allow=VALUE)\ndef value_inference(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return np.maximum(self.x.val, self.alpha.val)",
+            "@precondition(allow=VALUE)\ndef value_inference(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return np.maximum(self.x.val, self.alpha.val)"
+        ]
+    },
+    {
+        "func_name": "__init__",
+        "original": "def __init__(self, **kwargs):\n    super(cast, self).__init__(**kwargs)",
+        "mutated": [
+            "def __init__(self, **kwargs):\n    if False:\n        i = 10\n    super(cast, self).__init__(**kwargs)",
+            "def __init__(self, **kwargs):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    super(cast, self).__init__(**kwargs)",
+            "def __init__(self, **kwargs):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    super(cast, self).__init__(**kwargs)",
+            "def __init__(self, **kwargs):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    super(cast, self).__init__(**kwargs)",
+            "def __init__(self, **kwargs):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    super(cast, self).__init__(**kwargs)"
+        ]
+    },
+    {
+        "func_name": "type_inference",
+        "original": "def type_inference(self):\n    type_map = {'int32': types.int32, 'int64': types.int64, 'fp32': types.fp32, 'fp64': types.fp64}\n    if self.dtype.val not in type_map.keys():\n        raise NotImplementedError('Parameter dtype of the cast operation can be one of the {}. Provided {}'.format(type_map.keys(), self.dtype.val))\n    if not types.is_tensor(self.x.sym_type):\n        return type_map[self.dtype.val]\n    ret_shape = self.x.shape\n    return types.tensor(type_map[self.dtype.val], ret_shape)",
+        "mutated": [
+            "def type_inference(self):\n    if False:\n        i = 10\n    type_map = {'int32': types.int32, 'int64': types.int64, 'fp32': types.fp32, 'fp64': types.fp64}\n    if self.dtype.val not in type_map.keys():\n        raise NotImplementedError('Parameter dtype of the cast operation can be one of the {}. Provided {}'.format(type_map.keys(), self.dtype.val))\n    if not types.is_tensor(self.x.sym_type):\n        return type_map[self.dtype.val]\n    ret_shape = self.x.shape\n    return types.tensor(type_map[self.dtype.val], ret_shape)",
+            "def type_inference(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    type_map = {'int32': types.int32, 'int64': types.int64, 'fp32': types.fp32, 'fp64': types.fp64}\n    if self.dtype.val not in type_map.keys():\n        raise NotImplementedError('Parameter dtype of the cast operation can be one of the {}. Provided {}'.format(type_map.keys(), self.dtype.val))\n    if not types.is_tensor(self.x.sym_type):\n        return type_map[self.dtype.val]\n    ret_shape = self.x.shape\n    return types.tensor(type_map[self.dtype.val], ret_shape)",
+            "def type_inference(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    type_map = {'int32': types.int32, 'int64': types.int64, 'fp32': types.fp32, 'fp64': types.fp64}\n    if self.dtype.val not in type_map.keys():\n        raise NotImplementedError('Parameter dtype of the cast operation can be one of the {}. Provided {}'.format(type_map.keys(), self.dtype.val))\n    if not types.is_tensor(self.x.sym_type):\n        return type_map[self.dtype.val]\n    ret_shape = self.x.shape\n    return types.tensor(type_map[self.dtype.val], ret_shape)",
+            "def type_inference(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    type_map = {'int32': types.int32, 'int64': types.int64, 'fp32': types.fp32, 'fp64': types.fp64}\n    if self.dtype.val not in type_map.keys():\n        raise NotImplementedError('Parameter dtype of the cast operation can be one of the {}. Provided {}'.format(type_map.keys(), self.dtype.val))\n    if not types.is_tensor(self.x.sym_type):\n        return type_map[self.dtype.val]\n    ret_shape = self.x.shape\n    return types.tensor(type_map[self.dtype.val], ret_shape)",
+            "def type_inference(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    type_map = {'int32': types.int32, 'int64': types.int64, 'fp32': types.fp32, 'fp64': types.fp64}\n    if self.dtype.val not in type_map.keys():\n        raise NotImplementedError('Parameter dtype of the cast operation can be one of the {}. Provided {}'.format(type_map.keys(), self.dtype.val))\n    if not types.is_tensor(self.x.sym_type):\n        return type_map[self.dtype.val]\n    ret_shape = self.x.shape\n    return types.tensor(type_map[self.dtype.val], ret_shape)"
+        ]
+    },
+    {
+        "func_name": "value_inference",
+        "original": "@precondition(allow=VALUE)\ndef value_inference(self):\n    type_map = {'int32': np.int32, 'int64': np.int64, 'fp32': np.float32, 'fp64': np.float64}\n    if self.dtype.val not in type_map.keys():\n        raise NotImplementedError('Parameter dtype of the cast operation can be one of the {}. Provided {}'.format(type_map.keys(), self.dtype.val))\n    if not types.is_tensor(self.x.sym_type):\n        return self.x.val.astype(dtype=type_map[self.dtype.val])\n    else:\n        return np.array(self.x.val).astype(dtype=type_map[self.dtype.val])",
+        "mutated": [
+            "@precondition(allow=VALUE)\ndef value_inference(self):\n    if False:\n        i = 10\n    type_map = {'int32': np.int32, 'int64': np.int64, 'fp32': np.float32, 'fp64': np.float64}\n    if self.dtype.val not in type_map.keys():\n        raise NotImplementedError('Parameter dtype of the cast operation can be one of the {}. Provided {}'.format(type_map.keys(), self.dtype.val))\n    if not types.is_tensor(self.x.sym_type):\n        return self.x.val.astype(dtype=type_map[self.dtype.val])\n    else:\n        return np.array(self.x.val).astype(dtype=type_map[self.dtype.val])",
+            "@precondition(allow=VALUE)\ndef value_inference(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    type_map = {'int32': np.int32, 'int64': np.int64, 'fp32': np.float32, 'fp64': np.float64}\n    if self.dtype.val not in type_map.keys():\n        raise NotImplementedError('Parameter dtype of the cast operation can be one of the {}. Provided {}'.format(type_map.keys(), self.dtype.val))\n    if not types.is_tensor(self.x.sym_type):\n        return self.x.val.astype(dtype=type_map[self.dtype.val])\n    else:\n        return np.array(self.x.val).astype(dtype=type_map[self.dtype.val])",
+            "@precondition(allow=VALUE)\ndef value_inference(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    type_map = {'int32': np.int32, 'int64': np.int64, 'fp32': np.float32, 'fp64': np.float64}\n    if self.dtype.val not in type_map.keys():\n        raise NotImplementedError('Parameter dtype of the cast operation can be one of the {}. Provided {}'.format(type_map.keys(), self.dtype.val))\n    if not types.is_tensor(self.x.sym_type):\n        return self.x.val.astype(dtype=type_map[self.dtype.val])\n    else:\n        return np.array(self.x.val).astype(dtype=type_map[self.dtype.val])",
+            "@precondition(allow=VALUE)\ndef value_inference(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    type_map = {'int32': np.int32, 'int64': np.int64, 'fp32': np.float32, 'fp64': np.float64}\n    if self.dtype.val not in type_map.keys():\n        raise NotImplementedError('Parameter dtype of the cast operation can be one of the {}. Provided {}'.format(type_map.keys(), self.dtype.val))\n    if not types.is_tensor(self.x.sym_type):\n        return self.x.val.astype(dtype=type_map[self.dtype.val])\n    else:\n        return np.array(self.x.val).astype(dtype=type_map[self.dtype.val])",
+            "@precondition(allow=VALUE)\ndef value_inference(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    type_map = {'int32': np.int32, 'int64': np.int64, 'fp32': np.float32, 'fp64': np.float64}\n    if self.dtype.val not in type_map.keys():\n        raise NotImplementedError('Parameter dtype of the cast operation can be one of the {}. Provided {}'.format(type_map.keys(), self.dtype.val))\n    if not types.is_tensor(self.x.sym_type):\n        return self.x.val.astype(dtype=type_map[self.dtype.val])\n    else:\n        return np.array(self.x.val).astype(dtype=type_map[self.dtype.val])"
+        ]
+    }
+]

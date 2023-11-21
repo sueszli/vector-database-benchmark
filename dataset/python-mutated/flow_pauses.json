@@ -1,0 +1,35 @@
+[
+    {
+        "func_name": "my_task",
+        "original": "@task\ndef my_task():\n    return 2 * 2",
+        "mutated": [
+            "@task\ndef my_task():\n    if False:\n        i = 10\n    return 2 * 2",
+            "@task\ndef my_task():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return 2 * 2",
+            "@task\ndef my_task():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return 2 * 2",
+            "@task\ndef my_task():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return 2 * 2",
+            "@task\ndef my_task():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return 2 * 2"
+        ]
+    },
+    {
+        "func_name": "pause_test",
+        "original": "@flow\ndef pause_test():\n    my_task()\n    flow_run_id_future.set_result(get_run_context().flow_run.id)\n    pause_flow_run()\n    my_task()",
+        "mutated": [
+            "@flow\ndef pause_test():\n    if False:\n        i = 10\n    my_task()\n    flow_run_id_future.set_result(get_run_context().flow_run.id)\n    pause_flow_run()\n    my_task()",
+            "@flow\ndef pause_test():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    my_task()\n    flow_run_id_future.set_result(get_run_context().flow_run.id)\n    pause_flow_run()\n    my_task()",
+            "@flow\ndef pause_test():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    my_task()\n    flow_run_id_future.set_result(get_run_context().flow_run.id)\n    pause_flow_run()\n    my_task()",
+            "@flow\ndef pause_test():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    my_task()\n    flow_run_id_future.set_result(get_run_context().flow_run.id)\n    pause_flow_run()\n    my_task()",
+            "@flow\ndef pause_test():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    my_task()\n    flow_run_id_future.set_result(get_run_context().flow_run.id)\n    pause_flow_run()\n    my_task()"
+        ]
+    },
+    {
+        "func_name": "resume_after_started",
+        "original": "def resume_after_started():\n    print('Waiting for flow run id to be reported...')\n    flow_run_id = flow_run_id_future.result()\n    time.sleep(5)\n    print('Resuming flow run...')\n    resume_flow_run(flow_run_id)",
+        "mutated": [
+            "def resume_after_started():\n    if False:\n        i = 10\n    print('Waiting for flow run id to be reported...')\n    flow_run_id = flow_run_id_future.result()\n    time.sleep(5)\n    print('Resuming flow run...')\n    resume_flow_run(flow_run_id)",
+            "def resume_after_started():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    print('Waiting for flow run id to be reported...')\n    flow_run_id = flow_run_id_future.result()\n    time.sleep(5)\n    print('Resuming flow run...')\n    resume_flow_run(flow_run_id)",
+            "def resume_after_started():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    print('Waiting for flow run id to be reported...')\n    flow_run_id = flow_run_id_future.result()\n    time.sleep(5)\n    print('Resuming flow run...')\n    resume_flow_run(flow_run_id)",
+            "def resume_after_started():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    print('Waiting for flow run id to be reported...')\n    flow_run_id = flow_run_id_future.result()\n    time.sleep(5)\n    print('Resuming flow run...')\n    resume_flow_run(flow_run_id)",
+            "def resume_after_started():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    print('Waiting for flow run id to be reported...')\n    flow_run_id = flow_run_id_future.result()\n    time.sleep(5)\n    print('Resuming flow run...')\n    resume_flow_run(flow_run_id)"
+        ]
+    }
+]

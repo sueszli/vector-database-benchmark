@@ -1,0 +1,46 @@
+[
+    {
+        "func_name": "__init__",
+        "original": "def __init__(self, context):\n    self._quit = False\n    GLib.io_add_watch(context.fileno(), GLib.PRIORITY_DEFAULT, GLib.IO_IN, self.quit)",
+        "mutated": [
+            "def __init__(self, context):\n    if False:\n        i = 10\n    self._quit = False\n    GLib.io_add_watch(context.fileno(), GLib.PRIORITY_DEFAULT, GLib.IO_IN, self.quit)",
+            "def __init__(self, context):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    self._quit = False\n    GLib.io_add_watch(context.fileno(), GLib.PRIORITY_DEFAULT, GLib.IO_IN, self.quit)",
+            "def __init__(self, context):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    self._quit = False\n    GLib.io_add_watch(context.fileno(), GLib.PRIORITY_DEFAULT, GLib.IO_IN, self.quit)",
+            "def __init__(self, context):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    self._quit = False\n    GLib.io_add_watch(context.fileno(), GLib.PRIORITY_DEFAULT, GLib.IO_IN, self.quit)",
+            "def __init__(self, context):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    self._quit = False\n    GLib.io_add_watch(context.fileno(), GLib.PRIORITY_DEFAULT, GLib.IO_IN, self.quit)"
+        ]
+    },
+    {
+        "func_name": "quit",
+        "original": "def quit(self, *args, **kwargs):\n    self._quit = True\n    return False",
+        "mutated": [
+            "def quit(self, *args, **kwargs):\n    if False:\n        i = 10\n    self._quit = True\n    return False",
+            "def quit(self, *args, **kwargs):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    self._quit = True\n    return False",
+            "def quit(self, *args, **kwargs):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    self._quit = True\n    return False",
+            "def quit(self, *args, **kwargs):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    self._quit = True\n    return False",
+            "def quit(self, *args, **kwargs):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    self._quit = True\n    return False"
+        ]
+    },
+    {
+        "func_name": "run",
+        "original": "def run(self):\n    context = GLib.MainContext.default()\n    while not self._quit:\n        context.iteration(True)",
+        "mutated": [
+            "def run(self):\n    if False:\n        i = 10\n    context = GLib.MainContext.default()\n    while not self._quit:\n        context.iteration(True)",
+            "def run(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    context = GLib.MainContext.default()\n    while not self._quit:\n        context.iteration(True)",
+            "def run(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    context = GLib.MainContext.default()\n    while not self._quit:\n        context.iteration(True)",
+            "def run(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    context = GLib.MainContext.default()\n    while not self._quit:\n        context.iteration(True)",
+            "def run(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    context = GLib.MainContext.default()\n    while not self._quit:\n        context.iteration(True)"
+        ]
+    },
+    {
+        "func_name": "inputhook",
+        "original": "def inputhook(context):\n    hook = _InputHook(context)\n    hook.run()",
+        "mutated": [
+            "def inputhook(context):\n    if False:\n        i = 10\n    hook = _InputHook(context)\n    hook.run()",
+            "def inputhook(context):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    hook = _InputHook(context)\n    hook.run()",
+            "def inputhook(context):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    hook = _InputHook(context)\n    hook.run()",
+            "def inputhook(context):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    hook = _InputHook(context)\n    hook.run()",
+            "def inputhook(context):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    hook = _InputHook(context)\n    hook.run()"
+        ]
+    }
+]

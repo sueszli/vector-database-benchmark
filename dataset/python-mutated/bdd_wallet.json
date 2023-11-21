@@ -1,0 +1,68 @@
+[
+    {
+        "func_name": "test_publish",
+        "original": "@scenario('bdd_wallet.feature', 'Buy fruits')\ndef test_publish():\n    pass",
+        "mutated": [
+            "@scenario('bdd_wallet.feature', 'Buy fruits')\ndef test_publish():\n    if False:\n        i = 10\n    pass",
+            "@scenario('bdd_wallet.feature', 'Buy fruits')\ndef test_publish():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    pass",
+            "@scenario('bdd_wallet.feature', 'Buy fruits')\ndef test_publish():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    pass",
+            "@scenario('bdd_wallet.feature', 'Buy fruits')\ndef test_publish():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    pass",
+            "@scenario('bdd_wallet.feature', 'Buy fruits')\ndef test_publish():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    pass"
+        ]
+    },
+    {
+        "func_name": "wallet",
+        "original": "@pytest.fixture\ndef wallet():\n\n    class Wallet:\n        amount = 0\n    return Wallet()",
+        "mutated": [
+            "@pytest.fixture\ndef wallet():\n    if False:\n        i = 10\n\n    class Wallet:\n        amount = 0\n    return Wallet()",
+            "@pytest.fixture\ndef wallet():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n\n    class Wallet:\n        amount = 0\n    return Wallet()",
+            "@pytest.fixture\ndef wallet():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n    class Wallet:\n        amount = 0\n    return Wallet()",
+            "@pytest.fixture\ndef wallet():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n\n    class Wallet:\n        amount = 0\n    return Wallet()",
+            "@pytest.fixture\ndef wallet():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n\n    class Wallet:\n        amount = 0\n    return Wallet()"
+        ]
+    },
+    {
+        "func_name": "fill_wallet",
+        "original": "@given('A wallet with 50')\ndef fill_wallet(wallet):\n    wallet.amount = 50",
+        "mutated": [
+            "@given('A wallet with 50')\ndef fill_wallet(wallet):\n    if False:\n        i = 10\n    wallet.amount = 50",
+            "@given('A wallet with 50')\ndef fill_wallet(wallet):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    wallet.amount = 50",
+            "@given('A wallet with 50')\ndef fill_wallet(wallet):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    wallet.amount = 50",
+            "@given('A wallet with 50')\ndef fill_wallet(wallet):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    wallet.amount = 50",
+            "@given('A wallet with 50')\ndef fill_wallet(wallet):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    wallet.amount = 50"
+        ]
+    },
+    {
+        "func_name": "buy_apples",
+        "original": "@when('I buy some apples for 1')\ndef buy_apples(wallet):\n    wallet.amount -= 1",
+        "mutated": [
+            "@when('I buy some apples for 1')\ndef buy_apples(wallet):\n    if False:\n        i = 10\n    wallet.amount -= 1",
+            "@when('I buy some apples for 1')\ndef buy_apples(wallet):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    wallet.amount -= 1",
+            "@when('I buy some apples for 1')\ndef buy_apples(wallet):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    wallet.amount -= 1",
+            "@when('I buy some apples for 1')\ndef buy_apples(wallet):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    wallet.amount -= 1",
+            "@when('I buy some apples for 1')\ndef buy_apples(wallet):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    wallet.amount -= 1"
+        ]
+    },
+    {
+        "func_name": "buy_bananas",
+        "original": "@when('I buy some bananas for 2')\ndef buy_bananas(wallet):\n    wallet.amount -= 2",
+        "mutated": [
+            "@when('I buy some bananas for 2')\ndef buy_bananas(wallet):\n    if False:\n        i = 10\n    wallet.amount -= 2",
+            "@when('I buy some bananas for 2')\ndef buy_bananas(wallet):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    wallet.amount -= 2",
+            "@when('I buy some bananas for 2')\ndef buy_bananas(wallet):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    wallet.amount -= 2",
+            "@when('I buy some bananas for 2')\ndef buy_bananas(wallet):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    wallet.amount -= 2",
+            "@when('I buy some bananas for 2')\ndef buy_bananas(wallet):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    wallet.amount -= 2"
+        ]
+    },
+    {
+        "func_name": "check",
+        "original": "@then('I have 47 left')\ndef check(wallet):\n    assert wallet.amount == 47",
+        "mutated": [
+            "@then('I have 47 left')\ndef check(wallet):\n    if False:\n        i = 10\n    assert wallet.amount == 47",
+            "@then('I have 47 left')\ndef check(wallet):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    assert wallet.amount == 47",
+            "@then('I have 47 left')\ndef check(wallet):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    assert wallet.amount == 47",
+            "@then('I have 47 left')\ndef check(wallet):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    assert wallet.amount == 47",
+            "@then('I have 47 left')\ndef check(wallet):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    assert wallet.amount == 47"
+        ]
+    }
+]

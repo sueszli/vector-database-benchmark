@@ -1,0 +1,222 @@
+[
+    {
+        "func_name": "test1_f1",
+        "original": "def test1_f1(a, b, c):\n    pass",
+        "mutated": [
+            "def test1_f1(a, b, c):\n    if False:\n        i = 10\n    pass",
+            "def test1_f1(a, b, c):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    pass",
+            "def test1_f1(a, b, c):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    pass",
+            "def test1_f1(a, b, c):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    pass",
+            "def test1_f1(a, b, c):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    pass"
+        ]
+    },
+    {
+        "func_name": "test1_alarm1",
+        "original": "def test1_alarm1():\n    x: str = _test_source()\n    test1_f1(x, 'b', 0)",
+        "mutated": [
+            "def test1_alarm1():\n    if False:\n        i = 10\n    x: str = _test_source()\n    test1_f1(x, 'b', 0)",
+            "def test1_alarm1():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    x: str = _test_source()\n    test1_f1(x, 'b', 0)",
+            "def test1_alarm1():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    x: str = _test_source()\n    test1_f1(x, 'b', 0)",
+            "def test1_alarm1():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    x: str = _test_source()\n    test1_f1(x, 'b', 0)",
+            "def test1_alarm1():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    x: str = _test_source()\n    test1_f1(x, 'b', 0)"
+        ]
+    },
+    {
+        "func_name": "test1_alarm2",
+        "original": "def test1_alarm2():\n    x: Annotated[str, 'foo'] = _test_source()\n    test1_f1('a', x, 0)",
+        "mutated": [
+            "def test1_alarm2():\n    if False:\n        i = 10\n    x: Annotated[str, 'foo'] = _test_source()\n    test1_f1('a', x, 0)",
+            "def test1_alarm2():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    x: Annotated[str, 'foo'] = _test_source()\n    test1_f1('a', x, 0)",
+            "def test1_alarm2():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    x: Annotated[str, 'foo'] = _test_source()\n    test1_f1('a', x, 0)",
+            "def test1_alarm2():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    x: Annotated[str, 'foo'] = _test_source()\n    test1_f1('a', x, 0)",
+            "def test1_alarm2():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    x: Annotated[str, 'foo'] = _test_source()\n    test1_f1('a', x, 0)"
+        ]
+    },
+    {
+        "func_name": "test1_alarm3",
+        "original": "def test1_alarm3():\n    x: int = _test_source()\n    test1_f1('a', 'b', x)",
+        "mutated": [
+            "def test1_alarm3():\n    if False:\n        i = 10\n    x: int = _test_source()\n    test1_f1('a', 'b', x)",
+            "def test1_alarm3():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    x: int = _test_source()\n    test1_f1('a', 'b', x)",
+            "def test1_alarm3():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    x: int = _test_source()\n    test1_f1('a', 'b', x)",
+            "def test1_alarm3():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    x: int = _test_source()\n    test1_f1('a', 'b', x)",
+            "def test1_alarm3():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    x: int = _test_source()\n    test1_f1('a', 'b', x)"
+        ]
+    },
+    {
+        "func_name": "test1_noalarm1",
+        "original": "def test1_noalarm1():\n    test1_f1('a', 'b', 0)",
+        "mutated": [
+            "def test1_noalarm1():\n    if False:\n        i = 10\n    test1_f1('a', 'b', 0)",
+            "def test1_noalarm1():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    test1_f1('a', 'b', 0)",
+            "def test1_noalarm1():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    test1_f1('a', 'b', 0)",
+            "def test1_noalarm1():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    test1_f1('a', 'b', 0)",
+            "def test1_noalarm1():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    test1_f1('a', 'b', 0)"
+        ]
+    },
+    {
+        "func_name": "f1",
+        "original": "def f1(self, a, b, c):\n    pass",
+        "mutated": [
+            "def f1(self, a, b, c):\n    if False:\n        i = 10\n    pass",
+            "def f1(self, a, b, c):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    pass",
+            "def f1(self, a, b, c):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    pass",
+            "def f1(self, a, b, c):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    pass",
+            "def f1(self, a, b, c):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    pass"
+        ]
+    },
+    {
+        "func_name": "f2",
+        "original": "def f2(self, a, b, c):\n    pass",
+        "mutated": [
+            "def f2(self, a, b, c):\n    if False:\n        i = 10\n    pass",
+            "def f2(self, a, b, c):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    pass",
+            "def f2(self, a, b, c):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    pass",
+            "def f2(self, a, b, c):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    pass",
+            "def f2(self, a, b, c):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    pass"
+        ]
+    },
+    {
+        "func_name": "test2_alarm1",
+        "original": "def test2_alarm1(c: Test2_C):\n    x: str = _test_source()\n    c.f1(x, 'b', 0)",
+        "mutated": [
+            "def test2_alarm1(c: Test2_C):\n    if False:\n        i = 10\n    x: str = _test_source()\n    c.f1(x, 'b', 0)",
+            "def test2_alarm1(c: Test2_C):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    x: str = _test_source()\n    c.f1(x, 'b', 0)",
+            "def test2_alarm1(c: Test2_C):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    x: str = _test_source()\n    c.f1(x, 'b', 0)",
+            "def test2_alarm1(c: Test2_C):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    x: str = _test_source()\n    c.f1(x, 'b', 0)",
+            "def test2_alarm1(c: Test2_C):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    x: str = _test_source()\n    c.f1(x, 'b', 0)"
+        ]
+    },
+    {
+        "func_name": "test2_alarm2",
+        "original": "def test2_alarm2(c: Test2_C):\n    x: Dict[str, int] = _test_source()\n    c.f1('a', x, 0)",
+        "mutated": [
+            "def test2_alarm2(c: Test2_C):\n    if False:\n        i = 10\n    x: Dict[str, int] = _test_source()\n    c.f1('a', x, 0)",
+            "def test2_alarm2(c: Test2_C):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    x: Dict[str, int] = _test_source()\n    c.f1('a', x, 0)",
+            "def test2_alarm2(c: Test2_C):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    x: Dict[str, int] = _test_source()\n    c.f1('a', x, 0)",
+            "def test2_alarm2(c: Test2_C):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    x: Dict[str, int] = _test_source()\n    c.f1('a', x, 0)",
+            "def test2_alarm2(c: Test2_C):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    x: Dict[str, int] = _test_source()\n    c.f1('a', x, 0)"
+        ]
+    },
+    {
+        "func_name": "test2_alarm3",
+        "original": "def test2_alarm3(c: Test2_C):\n    x: Test2_T = _test_source()\n    c.f1('a', 'b', x)",
+        "mutated": [
+            "def test2_alarm3(c: Test2_C):\n    if False:\n        i = 10\n    x: Test2_T = _test_source()\n    c.f1('a', 'b', x)",
+            "def test2_alarm3(c: Test2_C):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    x: Test2_T = _test_source()\n    c.f1('a', 'b', x)",
+            "def test2_alarm3(c: Test2_C):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    x: Test2_T = _test_source()\n    c.f1('a', 'b', x)",
+            "def test2_alarm3(c: Test2_C):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    x: Test2_T = _test_source()\n    c.f1('a', 'b', x)",
+            "def test2_alarm3(c: Test2_C):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    x: Test2_T = _test_source()\n    c.f1('a', 'b', x)"
+        ]
+    },
+    {
+        "func_name": "test2_alarm4",
+        "original": "def test2_alarm4(c: Test2_C):\n    x: int = _test_source()\n    c.f2(x, 'b', 0)",
+        "mutated": [
+            "def test2_alarm4(c: Test2_C):\n    if False:\n        i = 10\n    x: int = _test_source()\n    c.f2(x, 'b', 0)",
+            "def test2_alarm4(c: Test2_C):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    x: int = _test_source()\n    c.f2(x, 'b', 0)",
+            "def test2_alarm4(c: Test2_C):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    x: int = _test_source()\n    c.f2(x, 'b', 0)",
+            "def test2_alarm4(c: Test2_C):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    x: int = _test_source()\n    c.f2(x, 'b', 0)",
+            "def test2_alarm4(c: Test2_C):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    x: int = _test_source()\n    c.f2(x, 'b', 0)"
+        ]
+    },
+    {
+        "func_name": "test2_alarm5",
+        "original": "def test2_alarm5(c: Test2_C):\n    x: List[List[Test2_T]] = _test_source()\n    c.f2('a', x, 0)",
+        "mutated": [
+            "def test2_alarm5(c: Test2_C):\n    if False:\n        i = 10\n    x: List[List[Test2_T]] = _test_source()\n    c.f2('a', x, 0)",
+            "def test2_alarm5(c: Test2_C):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    x: List[List[Test2_T]] = _test_source()\n    c.f2('a', x, 0)",
+            "def test2_alarm5(c: Test2_C):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    x: List[List[Test2_T]] = _test_source()\n    c.f2('a', x, 0)",
+            "def test2_alarm5(c: Test2_C):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    x: List[List[Test2_T]] = _test_source()\n    c.f2('a', x, 0)",
+            "def test2_alarm5(c: Test2_C):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    x: List[List[Test2_T]] = _test_source()\n    c.f2('a', x, 0)"
+        ]
+    },
+    {
+        "func_name": "test2_alarm6",
+        "original": "def test2_alarm6(c: Test2_C):\n    x: float = _test_source()\n    c.f2('a', 'b', x)",
+        "mutated": [
+            "def test2_alarm6(c: Test2_C):\n    if False:\n        i = 10\n    x: float = _test_source()\n    c.f2('a', 'b', x)",
+            "def test2_alarm6(c: Test2_C):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    x: float = _test_source()\n    c.f2('a', 'b', x)",
+            "def test2_alarm6(c: Test2_C):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    x: float = _test_source()\n    c.f2('a', 'b', x)",
+            "def test2_alarm6(c: Test2_C):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    x: float = _test_source()\n    c.f2('a', 'b', x)",
+            "def test2_alarm6(c: Test2_C):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    x: float = _test_source()\n    c.f2('a', 'b', x)"
+        ]
+    },
+    {
+        "func_name": "test2_noalarm1",
+        "original": "def test2_noalarm1(c: Test2_C):\n    c.f1([], {}, 0.0)",
+        "mutated": [
+            "def test2_noalarm1(c: Test2_C):\n    if False:\n        i = 10\n    c.f1([], {}, 0.0)",
+            "def test2_noalarm1(c: Test2_C):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    c.f1([], {}, 0.0)",
+            "def test2_noalarm1(c: Test2_C):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    c.f1([], {}, 0.0)",
+            "def test2_noalarm1(c: Test2_C):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    c.f1([], {}, 0.0)",
+            "def test2_noalarm1(c: Test2_C):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    c.f1([], {}, 0.0)"
+        ]
+    },
+    {
+        "func_name": "test2_noalarm2",
+        "original": "def test2_noalarm2(c: Test2_C):\n    c.f2('a', 0, Test2_T())",
+        "mutated": [
+            "def test2_noalarm2(c: Test2_C):\n    if False:\n        i = 10\n    c.f2('a', 0, Test2_T())",
+            "def test2_noalarm2(c: Test2_C):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    c.f2('a', 0, Test2_T())",
+            "def test2_noalarm2(c: Test2_C):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    c.f2('a', 0, Test2_T())",
+            "def test2_noalarm2(c: Test2_C):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    c.f2('a', 0, Test2_T())",
+            "def test2_noalarm2(c: Test2_C):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    c.f2('a', 0, Test2_T())"
+        ]
+    },
+    {
+        "func_name": "test3_f1",
+        "original": "def test3_f1(a, b, c):\n    pass",
+        "mutated": [
+            "def test3_f1(a, b, c):\n    if False:\n        i = 10\n    pass",
+            "def test3_f1(a, b, c):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    pass",
+            "def test3_f1(a, b, c):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    pass",
+            "def test3_f1(a, b, c):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    pass",
+            "def test3_f1(a, b, c):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    pass"
+        ]
+    },
+    {
+        "func_name": "test3_alarm1",
+        "original": "def test3_alarm1():\n    x: str = _test_source()\n    test3_f1(x, 'b', 0)",
+        "mutated": [
+            "def test3_alarm1():\n    if False:\n        i = 10\n    x: str = _test_source()\n    test3_f1(x, 'b', 0)",
+            "def test3_alarm1():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    x: str = _test_source()\n    test3_f1(x, 'b', 0)",
+            "def test3_alarm1():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    x: str = _test_source()\n    test3_f1(x, 'b', 0)",
+            "def test3_alarm1():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    x: str = _test_source()\n    test3_f1(x, 'b', 0)",
+            "def test3_alarm1():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    x: str = _test_source()\n    test3_f1(x, 'b', 0)"
+        ]
+    },
+    {
+        "func_name": "test3_alarm2",
+        "original": "def test3_alarm2():\n    x: Annotated[str, 'foo'] = _test_source()\n    test3_f1('a', x, 0)",
+        "mutated": [
+            "def test3_alarm2():\n    if False:\n        i = 10\n    x: Annotated[str, 'foo'] = _test_source()\n    test3_f1('a', x, 0)",
+            "def test3_alarm2():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    x: Annotated[str, 'foo'] = _test_source()\n    test3_f1('a', x, 0)",
+            "def test3_alarm2():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    x: Annotated[str, 'foo'] = _test_source()\n    test3_f1('a', x, 0)",
+            "def test3_alarm2():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    x: Annotated[str, 'foo'] = _test_source()\n    test3_f1('a', x, 0)",
+            "def test3_alarm2():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    x: Annotated[str, 'foo'] = _test_source()\n    test3_f1('a', x, 0)"
+        ]
+    },
+    {
+        "func_name": "test3_alarm3",
+        "original": "def test3_alarm3():\n    x: int = _test_source()\n    test3_f1('a', 'b', x)",
+        "mutated": [
+            "def test3_alarm3():\n    if False:\n        i = 10\n    x: int = _test_source()\n    test3_f1('a', 'b', x)",
+            "def test3_alarm3():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    x: int = _test_source()\n    test3_f1('a', 'b', x)",
+            "def test3_alarm3():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    x: int = _test_source()\n    test3_f1('a', 'b', x)",
+            "def test3_alarm3():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    x: int = _test_source()\n    test3_f1('a', 'b', x)",
+            "def test3_alarm3():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    x: int = _test_source()\n    test3_f1('a', 'b', x)"
+        ]
+    },
+    {
+        "func_name": "test3_noalarm1",
+        "original": "def test3_noalarm1():\n    test3_f1('a', 'b', 0)",
+        "mutated": [
+            "def test3_noalarm1():\n    if False:\n        i = 10\n    test3_f1('a', 'b', 0)",
+            "def test3_noalarm1():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    test3_f1('a', 'b', 0)",
+            "def test3_noalarm1():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    test3_f1('a', 'b', 0)",
+            "def test3_noalarm1():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    test3_f1('a', 'b', 0)",
+            "def test3_noalarm1():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    test3_f1('a', 'b', 0)"
+        ]
+    }
+]

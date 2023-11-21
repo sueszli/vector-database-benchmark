@@ -1,0 +1,134 @@
+[
+    {
+        "func_name": "test1_alarm1",
+        "original": "def test1_alarm1(c: Test1_C) -> None:\n    c.a = 1.01\n    c.b = 1.01\n    _test_sink(c.a)",
+        "mutated": [
+            "def test1_alarm1(c: Test1_C) -> None:\n    if False:\n        i = 10\n    c.a = 1.01\n    c.b = 1.01\n    _test_sink(c.a)",
+            "def test1_alarm1(c: Test1_C) -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    c.a = 1.01\n    c.b = 1.01\n    _test_sink(c.a)",
+            "def test1_alarm1(c: Test1_C) -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    c.a = 1.01\n    c.b = 1.01\n    _test_sink(c.a)",
+            "def test1_alarm1(c: Test1_C) -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    c.a = 1.01\n    c.b = 1.01\n    _test_sink(c.a)",
+            "def test1_alarm1(c: Test1_C) -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    c.a = 1.01\n    c.b = 1.01\n    _test_sink(c.a)"
+        ]
+    },
+    {
+        "func_name": "test1_alarm2",
+        "original": "def test1_alarm2(c: Test1_C) -> None:\n    c.a = 1.01\n    c.b = 1.01\n    _test_sink(c.b)",
+        "mutated": [
+            "def test1_alarm2(c: Test1_C) -> None:\n    if False:\n        i = 10\n    c.a = 1.01\n    c.b = 1.01\n    _test_sink(c.b)",
+            "def test1_alarm2(c: Test1_C) -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    c.a = 1.01\n    c.b = 1.01\n    _test_sink(c.b)",
+            "def test1_alarm2(c: Test1_C) -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    c.a = 1.01\n    c.b = 1.01\n    _test_sink(c.b)",
+            "def test1_alarm2(c: Test1_C) -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    c.a = 1.01\n    c.b = 1.01\n    _test_sink(c.b)",
+            "def test1_alarm2(c: Test1_C) -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    c.a = 1.01\n    c.b = 1.01\n    _test_sink(c.b)"
+        ]
+    },
+    {
+        "func_name": "test1_alarm3",
+        "original": "def test1_alarm3(c: Test1_C) -> None:\n    c.x = 1.01\n    _test_sink(c.x)",
+        "mutated": [
+            "def test1_alarm3(c: Test1_C) -> None:\n    if False:\n        i = 10\n    c.x = 1.01\n    _test_sink(c.x)",
+            "def test1_alarm3(c: Test1_C) -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    c.x = 1.01\n    _test_sink(c.x)",
+            "def test1_alarm3(c: Test1_C) -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    c.x = 1.01\n    _test_sink(c.x)",
+            "def test1_alarm3(c: Test1_C) -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    c.x = 1.01\n    _test_sink(c.x)",
+            "def test1_alarm3(c: Test1_C) -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    c.x = 1.01\n    _test_sink(c.x)"
+        ]
+    },
+    {
+        "func_name": "test1_alarm4",
+        "original": "def test1_alarm4(c: Test1_C) -> None:\n    c.y = 1.01\n    _test_sink(c.y)",
+        "mutated": [
+            "def test1_alarm4(c: Test1_C) -> None:\n    if False:\n        i = 10\n    c.y = 1.01\n    _test_sink(c.y)",
+            "def test1_alarm4(c: Test1_C) -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    c.y = 1.01\n    _test_sink(c.y)",
+            "def test1_alarm4(c: Test1_C) -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    c.y = 1.01\n    _test_sink(c.y)",
+            "def test1_alarm4(c: Test1_C) -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    c.y = 1.01\n    _test_sink(c.y)",
+            "def test1_alarm4(c: Test1_C) -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    c.y = 1.01\n    _test_sink(c.y)"
+        ]
+    },
+    {
+        "func_name": "test2_alarm1",
+        "original": "def test2_alarm1(c: Test2_C) -> None:\n    c.a = 1.01\n    _test_sink(c.a)",
+        "mutated": [
+            "def test2_alarm1(c: Test2_C) -> None:\n    if False:\n        i = 10\n    c.a = 1.01\n    _test_sink(c.a)",
+            "def test2_alarm1(c: Test2_C) -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    c.a = 1.01\n    _test_sink(c.a)",
+            "def test2_alarm1(c: Test2_C) -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    c.a = 1.01\n    _test_sink(c.a)",
+            "def test2_alarm1(c: Test2_C) -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    c.a = 1.01\n    _test_sink(c.a)",
+            "def test2_alarm1(c: Test2_C) -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    c.a = 1.01\n    _test_sink(c.a)"
+        ]
+    },
+    {
+        "func_name": "test2_alarm2",
+        "original": "def test2_alarm2(c: Test2_C) -> None:\n    c.x = 1.01\n    _test_sink(c.x)",
+        "mutated": [
+            "def test2_alarm2(c: Test2_C) -> None:\n    if False:\n        i = 10\n    c.x = 1.01\n    _test_sink(c.x)",
+            "def test2_alarm2(c: Test2_C) -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    c.x = 1.01\n    _test_sink(c.x)",
+            "def test2_alarm2(c: Test2_C) -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    c.x = 1.01\n    _test_sink(c.x)",
+            "def test2_alarm2(c: Test2_C) -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    c.x = 1.01\n    _test_sink(c.x)",
+            "def test2_alarm2(c: Test2_C) -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    c.x = 1.01\n    _test_sink(c.x)"
+        ]
+    },
+    {
+        "func_name": "test2_noalarm1",
+        "original": "def test2_noalarm1(c: Test2_C) -> None:\n    c.b = 1.01\n    _test_sink(c.b)",
+        "mutated": [
+            "def test2_noalarm1(c: Test2_C) -> None:\n    if False:\n        i = 10\n    c.b = 1.01\n    _test_sink(c.b)",
+            "def test2_noalarm1(c: Test2_C) -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    c.b = 1.01\n    _test_sink(c.b)",
+            "def test2_noalarm1(c: Test2_C) -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    c.b = 1.01\n    _test_sink(c.b)",
+            "def test2_noalarm1(c: Test2_C) -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    c.b = 1.01\n    _test_sink(c.b)",
+            "def test2_noalarm1(c: Test2_C) -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    c.b = 1.01\n    _test_sink(c.b)"
+        ]
+    },
+    {
+        "func_name": "test3_noalarm1",
+        "original": "def test3_noalarm1(a: str, b: int) -> None:\n    _test_sink(a)",
+        "mutated": [
+            "def test3_noalarm1(a: str, b: int) -> None:\n    if False:\n        i = 10\n    _test_sink(a)",
+            "def test3_noalarm1(a: str, b: int) -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    _test_sink(a)",
+            "def test3_noalarm1(a: str, b: int) -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    _test_sink(a)",
+            "def test3_noalarm1(a: str, b: int) -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    _test_sink(a)",
+            "def test3_noalarm1(a: str, b: int) -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    _test_sink(a)"
+        ]
+    },
+    {
+        "func_name": "test3_noalarm2",
+        "original": "def test3_noalarm2(a: str, b: int) -> None:\n    _test_sink(b)",
+        "mutated": [
+            "def test3_noalarm2(a: str, b: int) -> None:\n    if False:\n        i = 10\n    _test_sink(b)",
+            "def test3_noalarm2(a: str, b: int) -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    _test_sink(b)",
+            "def test3_noalarm2(a: str, b: int) -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    _test_sink(b)",
+            "def test3_noalarm2(a: str, b: int) -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    _test_sink(b)",
+            "def test3_noalarm2(a: str, b: int) -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    _test_sink(b)"
+        ]
+    },
+    {
+        "func_name": "test3_alarm1",
+        "original": "def test3_alarm1(a: Annotated[str, Color.RED], b: str, c: Annotated[str, Color.BLUE, 'foo']) -> None:\n    _test_sink(a)",
+        "mutated": [
+            "def test3_alarm1(a: Annotated[str, Color.RED], b: str, c: Annotated[str, Color.BLUE, 'foo']) -> None:\n    if False:\n        i = 10\n    _test_sink(a)",
+            "def test3_alarm1(a: Annotated[str, Color.RED], b: str, c: Annotated[str, Color.BLUE, 'foo']) -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    _test_sink(a)",
+            "def test3_alarm1(a: Annotated[str, Color.RED], b: str, c: Annotated[str, Color.BLUE, 'foo']) -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    _test_sink(a)",
+            "def test3_alarm1(a: Annotated[str, Color.RED], b: str, c: Annotated[str, Color.BLUE, 'foo']) -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    _test_sink(a)",
+            "def test3_alarm1(a: Annotated[str, Color.RED], b: str, c: Annotated[str, Color.BLUE, 'foo']) -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    _test_sink(a)"
+        ]
+    },
+    {
+        "func_name": "test3_alarm2",
+        "original": "def test3_alarm2(a: Annotated[str, Color.RED], b: str, c: Annotated[str, Color.BLUE, 'foo']) -> None:\n    _test_sink(c)",
+        "mutated": [
+            "def test3_alarm2(a: Annotated[str, Color.RED], b: str, c: Annotated[str, Color.BLUE, 'foo']) -> None:\n    if False:\n        i = 10\n    _test_sink(c)",
+            "def test3_alarm2(a: Annotated[str, Color.RED], b: str, c: Annotated[str, Color.BLUE, 'foo']) -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    _test_sink(c)",
+            "def test3_alarm2(a: Annotated[str, Color.RED], b: str, c: Annotated[str, Color.BLUE, 'foo']) -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    _test_sink(c)",
+            "def test3_alarm2(a: Annotated[str, Color.RED], b: str, c: Annotated[str, Color.BLUE, 'foo']) -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    _test_sink(c)",
+            "def test3_alarm2(a: Annotated[str, Color.RED], b: str, c: Annotated[str, Color.BLUE, 'foo']) -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    _test_sink(c)"
+        ]
+    },
+    {
+        "func_name": "test3_noalarm3",
+        "original": "def test3_noalarm3(a: Annotated[str, Color.RED], b: str, c: Annotated[str, Color.BLUE, 'foo']) -> None:\n    _test_sink(b)",
+        "mutated": [
+            "def test3_noalarm3(a: Annotated[str, Color.RED], b: str, c: Annotated[str, Color.BLUE, 'foo']) -> None:\n    if False:\n        i = 10\n    _test_sink(b)",
+            "def test3_noalarm3(a: Annotated[str, Color.RED], b: str, c: Annotated[str, Color.BLUE, 'foo']) -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    _test_sink(b)",
+            "def test3_noalarm3(a: Annotated[str, Color.RED], b: str, c: Annotated[str, Color.BLUE, 'foo']) -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    _test_sink(b)",
+            "def test3_noalarm3(a: Annotated[str, Color.RED], b: str, c: Annotated[str, Color.BLUE, 'foo']) -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    _test_sink(b)",
+            "def test3_noalarm3(a: Annotated[str, Color.RED], b: str, c: Annotated[str, Color.BLUE, 'foo']) -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    _test_sink(b)"
+        ]
+    }
+]

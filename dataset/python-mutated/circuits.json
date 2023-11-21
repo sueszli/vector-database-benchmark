@@ -1,0 +1,178 @@
+[
+    {
+        "func_name": "__init__",
+        "original": "def __init__(self) -> None:\n    self.voltage = cp.Variable()\n    self.current_flows = []",
+        "mutated": [
+            "def __init__(self) -> None:\n    if False:\n        i = 10\n    self.voltage = cp.Variable()\n    self.current_flows = []",
+            "def __init__(self) -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    self.voltage = cp.Variable()\n    self.current_flows = []",
+            "def __init__(self) -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    self.voltage = cp.Variable()\n    self.current_flows = []",
+            "def __init__(self) -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    self.voltage = cp.Variable()\n    self.current_flows = []",
+            "def __init__(self) -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    self.voltage = cp.Variable()\n    self.current_flows = []"
+        ]
+    },
+    {
+        "func_name": "constraints",
+        "original": "def constraints(self):\n    return [sum((f for f in self.current_flows)) == 0]",
+        "mutated": [
+            "def constraints(self):\n    if False:\n        i = 10\n    return [sum((f for f in self.current_flows)) == 0]",
+            "def constraints(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return [sum((f for f in self.current_flows)) == 0]",
+            "def constraints(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return [sum((f for f in self.current_flows)) == 0]",
+            "def constraints(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return [sum((f for f in self.current_flows)) == 0]",
+            "def constraints(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return [sum((f for f in self.current_flows)) == 0]"
+        ]
+    },
+    {
+        "func_name": "constraints",
+        "original": "def constraints(self):\n    return [self.voltage == 0] + super(Ground, self).constraints()",
+        "mutated": [
+            "def constraints(self):\n    if False:\n        i = 10\n    return [self.voltage == 0] + super(Ground, self).constraints()",
+            "def constraints(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return [self.voltage == 0] + super(Ground, self).constraints()",
+            "def constraints(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return [self.voltage == 0] + super(Ground, self).constraints()",
+            "def constraints(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return [self.voltage == 0] + super(Ground, self).constraints()",
+            "def constraints(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return [self.voltage == 0] + super(Ground, self).constraints()"
+        ]
+    },
+    {
+        "func_name": "__init__",
+        "original": "def __init__(self, pos_node, neg_node) -> None:\n    self.pos_node = pos_node\n    self.pos_node.current_flows.append(-self.current())\n    self.neg_node = neg_node\n    self.neg_node.current_flows.append(self.current())",
+        "mutated": [
+            "def __init__(self, pos_node, neg_node) -> None:\n    if False:\n        i = 10\n    self.pos_node = pos_node\n    self.pos_node.current_flows.append(-self.current())\n    self.neg_node = neg_node\n    self.neg_node.current_flows.append(self.current())",
+            "def __init__(self, pos_node, neg_node) -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    self.pos_node = pos_node\n    self.pos_node.current_flows.append(-self.current())\n    self.neg_node = neg_node\n    self.neg_node.current_flows.append(self.current())",
+            "def __init__(self, pos_node, neg_node) -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    self.pos_node = pos_node\n    self.pos_node.current_flows.append(-self.current())\n    self.neg_node = neg_node\n    self.neg_node.current_flows.append(self.current())",
+            "def __init__(self, pos_node, neg_node) -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    self.pos_node = pos_node\n    self.pos_node.current_flows.append(-self.current())\n    self.neg_node = neg_node\n    self.neg_node.current_flows.append(self.current())",
+            "def __init__(self, pos_node, neg_node) -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    self.pos_node = pos_node\n    self.pos_node.current_flows.append(-self.current())\n    self.neg_node = neg_node\n    self.neg_node.current_flows.append(self.current())"
+        ]
+    },
+    {
+        "func_name": "voltage",
+        "original": "@abc.abstractmethod\ndef voltage(self):\n    raise NotImplementedError()",
+        "mutated": [
+            "@abc.abstractmethod\ndef voltage(self):\n    if False:\n        i = 10\n    raise NotImplementedError()",
+            "@abc.abstractmethod\ndef voltage(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    raise NotImplementedError()",
+            "@abc.abstractmethod\ndef voltage(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    raise NotImplementedError()",
+            "@abc.abstractmethod\ndef voltage(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    raise NotImplementedError()",
+            "@abc.abstractmethod\ndef voltage(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    raise NotImplementedError()"
+        ]
+    },
+    {
+        "func_name": "current",
+        "original": "@abc.abstractmethod\ndef current(self):\n    raise NotImplementedError()",
+        "mutated": [
+            "@abc.abstractmethod\ndef current(self):\n    if False:\n        i = 10\n    raise NotImplementedError()",
+            "@abc.abstractmethod\ndef current(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    raise NotImplementedError()",
+            "@abc.abstractmethod\ndef current(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    raise NotImplementedError()",
+            "@abc.abstractmethod\ndef current(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    raise NotImplementedError()",
+            "@abc.abstractmethod\ndef current(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    raise NotImplementedError()"
+        ]
+    },
+    {
+        "func_name": "constraints",
+        "original": "def constraints(self):\n    return [self.pos_node.voltage - self.voltage() == self.neg_node.voltage]",
+        "mutated": [
+            "def constraints(self):\n    if False:\n        i = 10\n    return [self.pos_node.voltage - self.voltage() == self.neg_node.voltage]",
+            "def constraints(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return [self.pos_node.voltage - self.voltage() == self.neg_node.voltage]",
+            "def constraints(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return [self.pos_node.voltage - self.voltage() == self.neg_node.voltage]",
+            "def constraints(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return [self.pos_node.voltage - self.voltage() == self.neg_node.voltage]",
+            "def constraints(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return [self.pos_node.voltage - self.voltage() == self.neg_node.voltage]"
+        ]
+    },
+    {
+        "func_name": "__init__",
+        "original": "def __init__(self, pos_node, neg_node, resistance) -> None:\n    self._current = cp.Variable()\n    self.resistance = resistance\n    super(Resistor, self).__init__(pos_node, neg_node)",
+        "mutated": [
+            "def __init__(self, pos_node, neg_node, resistance) -> None:\n    if False:\n        i = 10\n    self._current = cp.Variable()\n    self.resistance = resistance\n    super(Resistor, self).__init__(pos_node, neg_node)",
+            "def __init__(self, pos_node, neg_node, resistance) -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    self._current = cp.Variable()\n    self.resistance = resistance\n    super(Resistor, self).__init__(pos_node, neg_node)",
+            "def __init__(self, pos_node, neg_node, resistance) -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    self._current = cp.Variable()\n    self.resistance = resistance\n    super(Resistor, self).__init__(pos_node, neg_node)",
+            "def __init__(self, pos_node, neg_node, resistance) -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    self._current = cp.Variable()\n    self.resistance = resistance\n    super(Resistor, self).__init__(pos_node, neg_node)",
+            "def __init__(self, pos_node, neg_node, resistance) -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    self._current = cp.Variable()\n    self.resistance = resistance\n    super(Resistor, self).__init__(pos_node, neg_node)"
+        ]
+    },
+    {
+        "func_name": "voltage",
+        "original": "def voltage(self):\n    return -self.resistance * self.current()",
+        "mutated": [
+            "def voltage(self):\n    if False:\n        i = 10\n    return -self.resistance * self.current()",
+            "def voltage(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return -self.resistance * self.current()",
+            "def voltage(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return -self.resistance * self.current()",
+            "def voltage(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return -self.resistance * self.current()",
+            "def voltage(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return -self.resistance * self.current()"
+        ]
+    },
+    {
+        "func_name": "current",
+        "original": "def current(self):\n    return self._current",
+        "mutated": [
+            "def current(self):\n    if False:\n        i = 10\n    return self._current",
+            "def current(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return self._current",
+            "def current(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return self._current",
+            "def current(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return self._current",
+            "def current(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return self._current"
+        ]
+    },
+    {
+        "func_name": "__init__",
+        "original": "def __init__(self, pos_node, neg_node, voltage) -> None:\n    self._current = cp.Variable()\n    self._voltage = voltage\n    super(VoltageSource, self).__init__(pos_node, neg_node)",
+        "mutated": [
+            "def __init__(self, pos_node, neg_node, voltage) -> None:\n    if False:\n        i = 10\n    self._current = cp.Variable()\n    self._voltage = voltage\n    super(VoltageSource, self).__init__(pos_node, neg_node)",
+            "def __init__(self, pos_node, neg_node, voltage) -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    self._current = cp.Variable()\n    self._voltage = voltage\n    super(VoltageSource, self).__init__(pos_node, neg_node)",
+            "def __init__(self, pos_node, neg_node, voltage) -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    self._current = cp.Variable()\n    self._voltage = voltage\n    super(VoltageSource, self).__init__(pos_node, neg_node)",
+            "def __init__(self, pos_node, neg_node, voltage) -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    self._current = cp.Variable()\n    self._voltage = voltage\n    super(VoltageSource, self).__init__(pos_node, neg_node)",
+            "def __init__(self, pos_node, neg_node, voltage) -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    self._current = cp.Variable()\n    self._voltage = voltage\n    super(VoltageSource, self).__init__(pos_node, neg_node)"
+        ]
+    },
+    {
+        "func_name": "voltage",
+        "original": "def voltage(self):\n    return self._voltage",
+        "mutated": [
+            "def voltage(self):\n    if False:\n        i = 10\n    return self._voltage",
+            "def voltage(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return self._voltage",
+            "def voltage(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return self._voltage",
+            "def voltage(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return self._voltage",
+            "def voltage(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return self._voltage"
+        ]
+    },
+    {
+        "func_name": "current",
+        "original": "def current(self):\n    return self._current",
+        "mutated": [
+            "def current(self):\n    if False:\n        i = 10\n    return self._current",
+            "def current(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return self._current",
+            "def current(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return self._current",
+            "def current(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return self._current",
+            "def current(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return self._current"
+        ]
+    },
+    {
+        "func_name": "__init__",
+        "original": "def __init__(self, pos_node, neg_node, current) -> None:\n    self._current = current\n    self._voltage = cp.Variable()\n    super(CurrentSource, self).__init__(pos_node, neg_node)",
+        "mutated": [
+            "def __init__(self, pos_node, neg_node, current) -> None:\n    if False:\n        i = 10\n    self._current = current\n    self._voltage = cp.Variable()\n    super(CurrentSource, self).__init__(pos_node, neg_node)",
+            "def __init__(self, pos_node, neg_node, current) -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    self._current = current\n    self._voltage = cp.Variable()\n    super(CurrentSource, self).__init__(pos_node, neg_node)",
+            "def __init__(self, pos_node, neg_node, current) -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    self._current = current\n    self._voltage = cp.Variable()\n    super(CurrentSource, self).__init__(pos_node, neg_node)",
+            "def __init__(self, pos_node, neg_node, current) -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    self._current = current\n    self._voltage = cp.Variable()\n    super(CurrentSource, self).__init__(pos_node, neg_node)",
+            "def __init__(self, pos_node, neg_node, current) -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    self._current = current\n    self._voltage = cp.Variable()\n    super(CurrentSource, self).__init__(pos_node, neg_node)"
+        ]
+    },
+    {
+        "func_name": "voltage",
+        "original": "def voltage(self):\n    return self._voltage",
+        "mutated": [
+            "def voltage(self):\n    if False:\n        i = 10\n    return self._voltage",
+            "def voltage(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return self._voltage",
+            "def voltage(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return self._voltage",
+            "def voltage(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return self._voltage",
+            "def voltage(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return self._voltage"
+        ]
+    },
+    {
+        "func_name": "current",
+        "original": "def current(self):\n    return self._current",
+        "mutated": [
+            "def current(self):\n    if False:\n        i = 10\n    return self._current",
+            "def current(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return self._current",
+            "def current(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return self._current",
+            "def current(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return self._current",
+            "def current(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return self._current"
+        ]
+    }
+]

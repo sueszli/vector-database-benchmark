@@ -1,0 +1,101 @@
+[
+    {
+        "func_name": "__init__",
+        "original": "def __init__(self, flags):\n    self.unoptimized_locals = flags is not None and 'has_exec' in flags\n    self.unqualified_exec = flags is not None and 'has_unqualified_exec' in flags",
+        "mutated": [
+            "def __init__(self, flags):\n    if False:\n        i = 10\n    self.unoptimized_locals = flags is not None and 'has_exec' in flags\n    self.unqualified_exec = flags is not None and 'has_unqualified_exec' in flags",
+            "def __init__(self, flags):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    self.unoptimized_locals = flags is not None and 'has_exec' in flags\n    self.unqualified_exec = flags is not None and 'has_unqualified_exec' in flags",
+            "def __init__(self, flags):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    self.unoptimized_locals = flags is not None and 'has_exec' in flags\n    self.unqualified_exec = flags is not None and 'has_unqualified_exec' in flags",
+            "def __init__(self, flags):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    self.unoptimized_locals = flags is not None and 'has_exec' in flags\n    self.unqualified_exec = flags is not None and 'has_unqualified_exec' in flags",
+            "def __init__(self, flags):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    self.unoptimized_locals = flags is not None and 'has_exec' in flags\n    self.unqualified_exec = flags is not None and 'has_unqualified_exec' in flags"
+        ]
+    },
+    {
+        "func_name": "isUnoptimized",
+        "original": "def isUnoptimized(self):\n    return self.unoptimized_locals",
+        "mutated": [
+            "def isUnoptimized(self):\n    if False:\n        i = 10\n    return self.unoptimized_locals",
+            "def isUnoptimized(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return self.unoptimized_locals",
+            "def isUnoptimized(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return self.unoptimized_locals",
+            "def isUnoptimized(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return self.unoptimized_locals",
+            "def isUnoptimized(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return self.unoptimized_locals"
+        ]
+    },
+    {
+        "func_name": "isUnqualifiedExec",
+        "original": "def isUnqualifiedExec(self):\n    return self.unoptimized_locals and self.unqualified_exec",
+        "mutated": [
+            "def isUnqualifiedExec(self):\n    if False:\n        i = 10\n    return self.unoptimized_locals and self.unqualified_exec",
+            "def isUnqualifiedExec(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return self.unoptimized_locals and self.unqualified_exec",
+            "def isUnqualifiedExec(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return self.unoptimized_locals and self.unqualified_exec",
+            "def isUnqualifiedExec(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return self.unoptimized_locals and self.unqualified_exec",
+            "def isUnqualifiedExec(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return self.unoptimized_locals and self.unqualified_exec"
+        ]
+    },
+    {
+        "func_name": "__init__",
+        "original": "def __init__(self):\n    self.needs_annotations_dict = False",
+        "mutated": [
+            "def __init__(self):\n    if False:\n        i = 10\n    self.needs_annotations_dict = False",
+            "def __init__(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    self.needs_annotations_dict = False",
+            "def __init__(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    self.needs_annotations_dict = False",
+            "def __init__(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    self.needs_annotations_dict = False",
+            "def __init__(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    self.needs_annotations_dict = False"
+        ]
+    },
+    {
+        "func_name": "markAsNeedsAnnotationsDictionary",
+        "original": "def markAsNeedsAnnotationsDictionary(self):\n    \"\"\"For use during building only. Indicate \"__annotations__\" need.\"\"\"\n    self.needs_annotations_dict = True",
+        "mutated": [
+            "def markAsNeedsAnnotationsDictionary(self):\n    if False:\n        i = 10\n    'For use during building only. Indicate \"__annotations__\" need.'\n    self.needs_annotations_dict = True",
+            "def markAsNeedsAnnotationsDictionary(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    'For use during building only. Indicate \"__annotations__\" need.'\n    self.needs_annotations_dict = True",
+            "def markAsNeedsAnnotationsDictionary(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    'For use during building only. Indicate \"__annotations__\" need.'\n    self.needs_annotations_dict = True",
+            "def markAsNeedsAnnotationsDictionary(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    'For use during building only. Indicate \"__annotations__\" need.'\n    self.needs_annotations_dict = True",
+            "def markAsNeedsAnnotationsDictionary(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    'For use during building only. Indicate \"__annotations__\" need.'\n    self.needs_annotations_dict = True"
+        ]
+    },
+    {
+        "func_name": "needsAnnotationsDictionary",
+        "original": "def needsAnnotationsDictionary(self):\n    \"\"\"For use during building only. Indicate \"__annotations__\" need.\"\"\"\n    return self.needs_annotations_dict",
+        "mutated": [
+            "def needsAnnotationsDictionary(self):\n    if False:\n        i = 10\n    'For use during building only. Indicate \"__annotations__\" need.'\n    return self.needs_annotations_dict",
+            "def needsAnnotationsDictionary(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    'For use during building only. Indicate \"__annotations__\" need.'\n    return self.needs_annotations_dict",
+            "def needsAnnotationsDictionary(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    'For use during building only. Indicate \"__annotations__\" need.'\n    return self.needs_annotations_dict",
+            "def needsAnnotationsDictionary(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    'For use during building only. Indicate \"__annotations__\" need.'\n    return self.needs_annotations_dict",
+            "def needsAnnotationsDictionary(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    'For use during building only. Indicate \"__annotations__\" need.'\n    return self.needs_annotations_dict"
+        ]
+    },
+    {
+        "func_name": "__init__",
+        "original": "def __init__(self):\n    self.trace_collection = None",
+        "mutated": [
+            "def __init__(self):\n    if False:\n        i = 10\n    self.trace_collection = None",
+            "def __init__(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    self.trace_collection = None",
+            "def __init__(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    self.trace_collection = None",
+            "def __init__(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    self.trace_collection = None",
+            "def __init__(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    self.trace_collection = None"
+        ]
+    },
+    {
+        "func_name": "setTraceCollection",
+        "original": "def setTraceCollection(self, trace_collection):\n    previous = self.trace_collection\n    self.trace_collection = trace_collection\n    return previous",
+        "mutated": [
+            "def setTraceCollection(self, trace_collection):\n    if False:\n        i = 10\n    previous = self.trace_collection\n    self.trace_collection = trace_collection\n    return previous",
+            "def setTraceCollection(self, trace_collection):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    previous = self.trace_collection\n    self.trace_collection = trace_collection\n    return previous",
+            "def setTraceCollection(self, trace_collection):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    previous = self.trace_collection\n    self.trace_collection = trace_collection\n    return previous",
+            "def setTraceCollection(self, trace_collection):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    previous = self.trace_collection\n    self.trace_collection = trace_collection\n    return previous",
+            "def setTraceCollection(self, trace_collection):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    previous = self.trace_collection\n    self.trace_collection = trace_collection\n    return previous"
+        ]
+    },
+    {
+        "func_name": "getTraceCollection",
+        "original": "def getTraceCollection(self):\n    return self.trace_collection",
+        "mutated": [
+            "def getTraceCollection(self):\n    if False:\n        i = 10\n    return self.trace_collection",
+            "def getTraceCollection(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return self.trace_collection",
+            "def getTraceCollection(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return self.trace_collection",
+            "def getTraceCollection(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return self.trace_collection",
+            "def getTraceCollection(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return self.trace_collection"
+        ]
+    }
+]

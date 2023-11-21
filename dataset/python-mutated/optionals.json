@@ -1,0 +1,35 @@
+[
+    {
+        "func_name": "offer",
+        "original": "def offer(self, message):\n    _test_sink(message)",
+        "mutated": [
+            "def offer(self, message):\n    if False:\n        i = 10\n    _test_sink(message)",
+            "def offer(self, message):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    _test_sink(message)",
+            "def offer(self, message):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    _test_sink(message)",
+            "def offer(self, message):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    _test_sink(message)",
+            "def offer(self, message):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    _test_sink(message)"
+        ]
+    },
+    {
+        "func_name": "get_instance",
+        "original": "def get_instance(self) -> Optional[Client]:\n    return Client()",
+        "mutated": [
+            "def get_instance(self) -> Optional[Client]:\n    if False:\n        i = 10\n    return Client()",
+            "def get_instance(self) -> Optional[Client]:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return Client()",
+            "def get_instance(self) -> Optional[Client]:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return Client()",
+            "def get_instance(self) -> Optional[Client]:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return Client()",
+            "def get_instance(self) -> Optional[Client]:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return Client()"
+        ]
+    },
+    {
+        "func_name": "test",
+        "original": "def test():\n    client.get_instance().offer(_test_source())",
+        "mutated": [
+            "def test():\n    if False:\n        i = 10\n    client.get_instance().offer(_test_source())",
+            "def test():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    client.get_instance().offer(_test_source())",
+            "def test():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    client.get_instance().offer(_test_source())",
+            "def test():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    client.get_instance().offer(_test_source())",
+            "def test():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    client.get_instance().offer(_test_source())"
+        ]
+    }
+]

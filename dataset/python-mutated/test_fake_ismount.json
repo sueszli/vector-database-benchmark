@@ -1,0 +1,112 @@
+[
+    {
+        "func_name": "setUp",
+        "original": "def setUp(self):\n    self.ismount = FakeIsMount([])",
+        "mutated": [
+            "def setUp(self):\n    if False:\n        i = 10\n    self.ismount = FakeIsMount([])",
+            "def setUp(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    self.ismount = FakeIsMount([])",
+            "def setUp(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    self.ismount = FakeIsMount([])",
+            "def setUp(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    self.ismount = FakeIsMount([])",
+            "def setUp(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    self.ismount = FakeIsMount([])"
+        ]
+    },
+    {
+        "func_name": "test_by_default_root_is_mount",
+        "original": "def test_by_default_root_is_mount(self):\n    assert self.ismount.is_mount('/')",
+        "mutated": [
+            "def test_by_default_root_is_mount(self):\n    if False:\n        i = 10\n    assert self.ismount.is_mount('/')",
+            "def test_by_default_root_is_mount(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    assert self.ismount.is_mount('/')",
+            "def test_by_default_root_is_mount(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    assert self.ismount.is_mount('/')",
+            "def test_by_default_root_is_mount(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    assert self.ismount.is_mount('/')",
+            "def test_by_default_root_is_mount(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    assert self.ismount.is_mount('/')"
+        ]
+    },
+    {
+        "func_name": "test_while_by_default_any_other_is_not_a_mount_point",
+        "original": "def test_while_by_default_any_other_is_not_a_mount_point(self):\n    assert not self.ismount.is_mount('/any/other')",
+        "mutated": [
+            "def test_while_by_default_any_other_is_not_a_mount_point(self):\n    if False:\n        i = 10\n    assert not self.ismount.is_mount('/any/other')",
+            "def test_while_by_default_any_other_is_not_a_mount_point(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    assert not self.ismount.is_mount('/any/other')",
+            "def test_while_by_default_any_other_is_not_a_mount_point(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    assert not self.ismount.is_mount('/any/other')",
+            "def test_while_by_default_any_other_is_not_a_mount_point(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    assert not self.ismount.is_mount('/any/other')",
+            "def test_while_by_default_any_other_is_not_a_mount_point(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    assert not self.ismount.is_mount('/any/other')"
+        ]
+    },
+    {
+        "func_name": "setUp",
+        "original": "def setUp(self):\n    self.ismount = FakeIsMount(['/fake-vol'])",
+        "mutated": [
+            "def setUp(self):\n    if False:\n        i = 10\n    self.ismount = FakeIsMount(['/fake-vol'])",
+            "def setUp(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    self.ismount = FakeIsMount(['/fake-vol'])",
+            "def setUp(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    self.ismount = FakeIsMount(['/fake-vol'])",
+            "def setUp(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    self.ismount = FakeIsMount(['/fake-vol'])",
+            "def setUp(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    self.ismount = FakeIsMount(['/fake-vol'])"
+        ]
+    },
+    {
+        "func_name": "test_accept_fake_mount_point",
+        "original": "def test_accept_fake_mount_point(self):\n    assert self.ismount.is_mount('/fake-vol')",
+        "mutated": [
+            "def test_accept_fake_mount_point(self):\n    if False:\n        i = 10\n    assert self.ismount.is_mount('/fake-vol')",
+            "def test_accept_fake_mount_point(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    assert self.ismount.is_mount('/fake-vol')",
+            "def test_accept_fake_mount_point(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    assert self.ismount.is_mount('/fake-vol')",
+            "def test_accept_fake_mount_point(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    assert self.ismount.is_mount('/fake-vol')",
+            "def test_accept_fake_mount_point(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    assert self.ismount.is_mount('/fake-vol')"
+        ]
+    },
+    {
+        "func_name": "test_other_still_are_not_mounts",
+        "original": "def test_other_still_are_not_mounts(self):\n    assert not self.ismount.is_mount('/other')",
+        "mutated": [
+            "def test_other_still_are_not_mounts(self):\n    if False:\n        i = 10\n    assert not self.ismount.is_mount('/other')",
+            "def test_other_still_are_not_mounts(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    assert not self.ismount.is_mount('/other')",
+            "def test_other_still_are_not_mounts(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    assert not self.ismount.is_mount('/other')",
+            "def test_other_still_are_not_mounts(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    assert not self.ismount.is_mount('/other')",
+            "def test_other_still_are_not_mounts(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    assert not self.ismount.is_mount('/other')"
+        ]
+    },
+    {
+        "func_name": "test_dont_get_confused_by_traling_slash",
+        "original": "def test_dont_get_confused_by_traling_slash(self):\n    assert self.ismount.is_mount('/fake-vol/')",
+        "mutated": [
+            "def test_dont_get_confused_by_traling_slash(self):\n    if False:\n        i = 10\n    assert self.ismount.is_mount('/fake-vol/')",
+            "def test_dont_get_confused_by_traling_slash(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    assert self.ismount.is_mount('/fake-vol/')",
+            "def test_dont_get_confused_by_traling_slash(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    assert self.ismount.is_mount('/fake-vol/')",
+            "def test_dont_get_confused_by_traling_slash(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    assert self.ismount.is_mount('/fake-vol/')",
+            "def test_dont_get_confused_by_traling_slash(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    assert self.ismount.is_mount('/fake-vol/')"
+        ]
+    },
+    {
+        "func_name": "setUp",
+        "original": "def setUp(self):\n    self.ismount = FakeIsMount(['/vol1', '/vol2'])",
+        "mutated": [
+            "def setUp(self):\n    if False:\n        i = 10\n    self.ismount = FakeIsMount(['/vol1', '/vol2'])",
+            "def setUp(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    self.ismount = FakeIsMount(['/vol1', '/vol2'])",
+            "def setUp(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    self.ismount = FakeIsMount(['/vol1', '/vol2'])",
+            "def setUp(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    self.ismount = FakeIsMount(['/vol1', '/vol2'])",
+            "def setUp(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    self.ismount = FakeIsMount(['/vol1', '/vol2'])"
+        ]
+    },
+    {
+        "func_name": "test_recognize_both",
+        "original": "def test_recognize_both(self):\n    assert self.ismount.is_mount('/vol1')\n    assert self.ismount.is_mount('/vol2')\n    assert not self.ismount.is_mount('/other')",
+        "mutated": [
+            "def test_recognize_both(self):\n    if False:\n        i = 10\n    assert self.ismount.is_mount('/vol1')\n    assert self.ismount.is_mount('/vol2')\n    assert not self.ismount.is_mount('/other')",
+            "def test_recognize_both(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    assert self.ismount.is_mount('/vol1')\n    assert self.ismount.is_mount('/vol2')\n    assert not self.ismount.is_mount('/other')",
+            "def test_recognize_both(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    assert self.ismount.is_mount('/vol1')\n    assert self.ismount.is_mount('/vol2')\n    assert not self.ismount.is_mount('/other')",
+            "def test_recognize_both(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    assert self.ismount.is_mount('/vol1')\n    assert self.ismount.is_mount('/vol2')\n    assert not self.ismount.is_mount('/other')",
+            "def test_recognize_both(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    assert self.ismount.is_mount('/vol1')\n    assert self.ismount.is_mount('/vol2')\n    assert not self.ismount.is_mount('/other')"
+        ]
+    },
+    {
+        "func_name": "test_should_handle_relative_volumes",
+        "original": "def test_should_handle_relative_volumes():\n    ismount = FakeIsMount(['fake-vol'])\n    assert ismount.is_mount('fake-vol')",
+        "mutated": [
+            "def test_should_handle_relative_volumes():\n    if False:\n        i = 10\n    ismount = FakeIsMount(['fake-vol'])\n    assert ismount.is_mount('fake-vol')",
+            "def test_should_handle_relative_volumes():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    ismount = FakeIsMount(['fake-vol'])\n    assert ismount.is_mount('fake-vol')",
+            "def test_should_handle_relative_volumes():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    ismount = FakeIsMount(['fake-vol'])\n    assert ismount.is_mount('fake-vol')",
+            "def test_should_handle_relative_volumes():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    ismount = FakeIsMount(['fake-vol'])\n    assert ismount.is_mount('fake-vol')",
+            "def test_should_handle_relative_volumes():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    ismount = FakeIsMount(['fake-vol'])\n    assert ismount.is_mount('fake-vol')"
+        ]
+    }
+]

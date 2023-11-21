@@ -1,0 +1,46 @@
+[
+    {
+        "func_name": "radio",
+        "original": "@pytest.fixture\ndef radio():\n    return Radio()",
+        "mutated": [
+            "@pytest.fixture\ndef radio():\n    if False:\n        i = 10\n    return Radio()",
+            "@pytest.fixture\ndef radio():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return Radio()",
+            "@pytest.fixture\ndef radio():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return Radio()",
+            "@pytest.fixture\ndef radio():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return Radio()",
+            "@pytest.fixture\ndef radio():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return Radio()"
+        ]
+    },
+    {
+        "func_name": "test_initial_state",
+        "original": "def test_initial_state(radio):\n    assert radio.state.name == 'AM'",
+        "mutated": [
+            "def test_initial_state(radio):\n    if False:\n        i = 10\n    assert radio.state.name == 'AM'",
+            "def test_initial_state(radio):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    assert radio.state.name == 'AM'",
+            "def test_initial_state(radio):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    assert radio.state.name == 'AM'",
+            "def test_initial_state(radio):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    assert radio.state.name == 'AM'",
+            "def test_initial_state(radio):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    assert radio.state.name == 'AM'"
+        ]
+    },
+    {
+        "func_name": "test_initial_am_station",
+        "original": "def test_initial_am_station(radio):\n    initial_pos = radio.state.pos\n    assert radio.state.stations[initial_pos] == '1250'",
+        "mutated": [
+            "def test_initial_am_station(radio):\n    if False:\n        i = 10\n    initial_pos = radio.state.pos\n    assert radio.state.stations[initial_pos] == '1250'",
+            "def test_initial_am_station(radio):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    initial_pos = radio.state.pos\n    assert radio.state.stations[initial_pos] == '1250'",
+            "def test_initial_am_station(radio):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    initial_pos = radio.state.pos\n    assert radio.state.stations[initial_pos] == '1250'",
+            "def test_initial_am_station(radio):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    initial_pos = radio.state.pos\n    assert radio.state.stations[initial_pos] == '1250'",
+            "def test_initial_am_station(radio):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    initial_pos = radio.state.pos\n    assert radio.state.stations[initial_pos] == '1250'"
+        ]
+    },
+    {
+        "func_name": "test_toggle_amfm",
+        "original": "def test_toggle_amfm(radio):\n    assert radio.state.name == 'AM'\n    radio.toggle_amfm()\n    assert radio.state.name == 'FM'\n    radio.toggle_amfm()\n    assert radio.state.name == 'AM'",
+        "mutated": [
+            "def test_toggle_amfm(radio):\n    if False:\n        i = 10\n    assert radio.state.name == 'AM'\n    radio.toggle_amfm()\n    assert radio.state.name == 'FM'\n    radio.toggle_amfm()\n    assert radio.state.name == 'AM'",
+            "def test_toggle_amfm(radio):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    assert radio.state.name == 'AM'\n    radio.toggle_amfm()\n    assert radio.state.name == 'FM'\n    radio.toggle_amfm()\n    assert radio.state.name == 'AM'",
+            "def test_toggle_amfm(radio):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    assert radio.state.name == 'AM'\n    radio.toggle_amfm()\n    assert radio.state.name == 'FM'\n    radio.toggle_amfm()\n    assert radio.state.name == 'AM'",
+            "def test_toggle_amfm(radio):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    assert radio.state.name == 'AM'\n    radio.toggle_amfm()\n    assert radio.state.name == 'FM'\n    radio.toggle_amfm()\n    assert radio.state.name == 'AM'",
+            "def test_toggle_amfm(radio):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    assert radio.state.name == 'AM'\n    radio.toggle_amfm()\n    assert radio.state.name == 'FM'\n    radio.toggle_amfm()\n    assert radio.state.name == 'AM'"
+        ]
+    }
+]

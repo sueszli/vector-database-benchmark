@@ -1,0 +1,24 @@
+[
+    {
+        "func_name": "skip_at_exit",
+        "original": "@atexit.register\ndef skip_at_exit():\n    print('skip at exit')",
+        "mutated": [
+            "@atexit.register\ndef skip_at_exit():\n    if False:\n        i = 10\n    print('skip at exit')",
+            "@atexit.register\ndef skip_at_exit():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    print('skip at exit')",
+            "@atexit.register\ndef skip_at_exit():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    print('skip at exit')",
+            "@atexit.register\ndef skip_at_exit():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    print('skip at exit')",
+            "@atexit.register\ndef skip_at_exit():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    print('skip at exit')"
+        ]
+    },
+    {
+        "func_name": "do_at_exit",
+        "original": "@atexit.register\ndef do_at_exit(*args, **kwargs):\n    print('done at exit:', args, kwargs)",
+        "mutated": [
+            "@atexit.register\ndef do_at_exit(*args, **kwargs):\n    if False:\n        i = 10\n    print('done at exit:', args, kwargs)",
+            "@atexit.register\ndef do_at_exit(*args, **kwargs):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    print('done at exit:', args, kwargs)",
+            "@atexit.register\ndef do_at_exit(*args, **kwargs):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    print('done at exit:', args, kwargs)",
+            "@atexit.register\ndef do_at_exit(*args, **kwargs):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    print('done at exit:', args, kwargs)",
+            "@atexit.register\ndef do_at_exit(*args, **kwargs):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    print('done at exit:', args, kwargs)"
+        ]
+    }
+]

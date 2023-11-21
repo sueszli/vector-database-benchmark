@@ -1,0 +1,123 @@
+[
+    {
+        "func_name": "deg2rad",
+        "original": "def deg2rad(x):\n    return x * np.pi / 180",
+        "mutated": [
+            "def deg2rad(x):\n    if False:\n        i = 10\n    return x * np.pi / 180",
+            "def deg2rad(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return x * np.pi / 180",
+            "def deg2rad(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return x * np.pi / 180",
+            "def deg2rad(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return x * np.pi / 180",
+            "def deg2rad(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return x * np.pi / 180"
+        ]
+    },
+    {
+        "func_name": "rad2deg",
+        "original": "def rad2deg(x):\n    return x * 180 / np.pi",
+        "mutated": [
+            "def rad2deg(x):\n    if False:\n        i = 10\n    return x * 180 / np.pi",
+            "def rad2deg(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return x * 180 / np.pi",
+            "def rad2deg(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return x * 180 / np.pi",
+            "def rad2deg(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return x * 180 / np.pi",
+            "def rad2deg(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return x * 180 / np.pi"
+        ]
+    },
+    {
+        "func_name": "one_over",
+        "original": "def one_over(x):\n    \"\"\"Vectorized 1/x, treating x==0 manually\"\"\"\n    x = np.array(x, float)\n    near_zero = np.isclose(x, 0)\n    x[near_zero] = np.inf\n    x[~near_zero] = 1 / x[~near_zero]\n    return x",
+        "mutated": [
+            "def one_over(x):\n    if False:\n        i = 10\n    'Vectorized 1/x, treating x==0 manually'\n    x = np.array(x, float)\n    near_zero = np.isclose(x, 0)\n    x[near_zero] = np.inf\n    x[~near_zero] = 1 / x[~near_zero]\n    return x",
+            "def one_over(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    'Vectorized 1/x, treating x==0 manually'\n    x = np.array(x, float)\n    near_zero = np.isclose(x, 0)\n    x[near_zero] = np.inf\n    x[~near_zero] = 1 / x[~near_zero]\n    return x",
+            "def one_over(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    'Vectorized 1/x, treating x==0 manually'\n    x = np.array(x, float)\n    near_zero = np.isclose(x, 0)\n    x[near_zero] = np.inf\n    x[~near_zero] = 1 / x[~near_zero]\n    return x",
+            "def one_over(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    'Vectorized 1/x, treating x==0 manually'\n    x = np.array(x, float)\n    near_zero = np.isclose(x, 0)\n    x[near_zero] = np.inf\n    x[~near_zero] = 1 / x[~near_zero]\n    return x",
+            "def one_over(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    'Vectorized 1/x, treating x==0 manually'\n    x = np.array(x, float)\n    near_zero = np.isclose(x, 0)\n    x[near_zero] = np.inf\n    x[~near_zero] = 1 / x[~near_zero]\n    return x"
+        ]
+    },
+    {
+        "func_name": "forward",
+        "original": "def forward(x):\n    return np.interp(x, xold, xnew)",
+        "mutated": [
+            "def forward(x):\n    if False:\n        i = 10\n    return np.interp(x, xold, xnew)",
+            "def forward(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return np.interp(x, xold, xnew)",
+            "def forward(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return np.interp(x, xold, xnew)",
+            "def forward(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return np.interp(x, xold, xnew)",
+            "def forward(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return np.interp(x, xold, xnew)"
+        ]
+    },
+    {
+        "func_name": "inverse",
+        "original": "def inverse(x):\n    return np.interp(x, xnew, xold)",
+        "mutated": [
+            "def inverse(x):\n    if False:\n        i = 10\n    return np.interp(x, xnew, xold)",
+            "def inverse(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return np.interp(x, xnew, xold)",
+            "def inverse(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return np.interp(x, xnew, xold)",
+            "def inverse(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return np.interp(x, xnew, xold)",
+            "def inverse(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return np.interp(x, xnew, xold)"
+        ]
+    },
+    {
+        "func_name": "date2yday",
+        "original": "def date2yday(x):\n    \"\"\"Convert matplotlib datenum to days since 2018-01-01.\"\"\"\n    y = x - mdates.date2num(datetime.datetime(2018, 1, 1))\n    return y",
+        "mutated": [
+            "def date2yday(x):\n    if False:\n        i = 10\n    'Convert matplotlib datenum to days since 2018-01-01.'\n    y = x - mdates.date2num(datetime.datetime(2018, 1, 1))\n    return y",
+            "def date2yday(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    'Convert matplotlib datenum to days since 2018-01-01.'\n    y = x - mdates.date2num(datetime.datetime(2018, 1, 1))\n    return y",
+            "def date2yday(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    'Convert matplotlib datenum to days since 2018-01-01.'\n    y = x - mdates.date2num(datetime.datetime(2018, 1, 1))\n    return y",
+            "def date2yday(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    'Convert matplotlib datenum to days since 2018-01-01.'\n    y = x - mdates.date2num(datetime.datetime(2018, 1, 1))\n    return y",
+            "def date2yday(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    'Convert matplotlib datenum to days since 2018-01-01.'\n    y = x - mdates.date2num(datetime.datetime(2018, 1, 1))\n    return y"
+        ]
+    },
+    {
+        "func_name": "yday2date",
+        "original": "def yday2date(x):\n    \"\"\"Return a matplotlib datenum for *x* days after 2018-01-01.\"\"\"\n    y = x + mdates.date2num(datetime.datetime(2018, 1, 1))\n    return y",
+        "mutated": [
+            "def yday2date(x):\n    if False:\n        i = 10\n    'Return a matplotlib datenum for *x* days after 2018-01-01.'\n    y = x + mdates.date2num(datetime.datetime(2018, 1, 1))\n    return y",
+            "def yday2date(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    'Return a matplotlib datenum for *x* days after 2018-01-01.'\n    y = x + mdates.date2num(datetime.datetime(2018, 1, 1))\n    return y",
+            "def yday2date(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    'Return a matplotlib datenum for *x* days after 2018-01-01.'\n    y = x + mdates.date2num(datetime.datetime(2018, 1, 1))\n    return y",
+            "def yday2date(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    'Return a matplotlib datenum for *x* days after 2018-01-01.'\n    y = x + mdates.date2num(datetime.datetime(2018, 1, 1))\n    return y",
+            "def yday2date(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    'Return a matplotlib datenum for *x* days after 2018-01-01.'\n    y = x + mdates.date2num(datetime.datetime(2018, 1, 1))\n    return y"
+        ]
+    },
+    {
+        "func_name": "celsius_to_fahrenheit",
+        "original": "def celsius_to_fahrenheit(x):\n    return x * 1.8 + 32",
+        "mutated": [
+            "def celsius_to_fahrenheit(x):\n    if False:\n        i = 10\n    return x * 1.8 + 32",
+            "def celsius_to_fahrenheit(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return x * 1.8 + 32",
+            "def celsius_to_fahrenheit(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return x * 1.8 + 32",
+            "def celsius_to_fahrenheit(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return x * 1.8 + 32",
+            "def celsius_to_fahrenheit(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return x * 1.8 + 32"
+        ]
+    },
+    {
+        "func_name": "fahrenheit_to_celsius",
+        "original": "def fahrenheit_to_celsius(x):\n    return (x - 32) / 1.8",
+        "mutated": [
+            "def fahrenheit_to_celsius(x):\n    if False:\n        i = 10\n    return (x - 32) / 1.8",
+            "def fahrenheit_to_celsius(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return (x - 32) / 1.8",
+            "def fahrenheit_to_celsius(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return (x - 32) / 1.8",
+            "def fahrenheit_to_celsius(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return (x - 32) / 1.8",
+            "def fahrenheit_to_celsius(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return (x - 32) / 1.8"
+        ]
+    },
+    {
+        "func_name": "celsius_to_anomaly",
+        "original": "def celsius_to_anomaly(x):\n    return x - np.mean(temperature)",
+        "mutated": [
+            "def celsius_to_anomaly(x):\n    if False:\n        i = 10\n    return x - np.mean(temperature)",
+            "def celsius_to_anomaly(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return x - np.mean(temperature)",
+            "def celsius_to_anomaly(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return x - np.mean(temperature)",
+            "def celsius_to_anomaly(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return x - np.mean(temperature)",
+            "def celsius_to_anomaly(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return x - np.mean(temperature)"
+        ]
+    },
+    {
+        "func_name": "anomaly_to_celsius",
+        "original": "def anomaly_to_celsius(x):\n    return x + np.mean(temperature)",
+        "mutated": [
+            "def anomaly_to_celsius(x):\n    if False:\n        i = 10\n    return x + np.mean(temperature)",
+            "def anomaly_to_celsius(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return x + np.mean(temperature)",
+            "def anomaly_to_celsius(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return x + np.mean(temperature)",
+            "def anomaly_to_celsius(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return x + np.mean(temperature)",
+            "def anomaly_to_celsius(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return x + np.mean(temperature)"
+        ]
+    }
+]

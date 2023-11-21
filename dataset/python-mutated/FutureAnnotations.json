@@ -1,0 +1,57 @@
+[
+    {
+        "func_name": "concrete_types",
+        "original": "def concrete_types(a: int, b: bool, c: list):\n    assert a == 42, repr(a)\n    assert b is False, repr(b)\n    assert c == [1, 'kaksi'], repr(c)",
+        "mutated": [
+            "def concrete_types(a: int, b: bool, c: list):\n    if False:\n        i = 10\n    assert a == 42, repr(a)\n    assert b is False, repr(b)\n    assert c == [1, 'kaksi'], repr(c)",
+            "def concrete_types(a: int, b: bool, c: list):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    assert a == 42, repr(a)\n    assert b is False, repr(b)\n    assert c == [1, 'kaksi'], repr(c)",
+            "def concrete_types(a: int, b: bool, c: list):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    assert a == 42, repr(a)\n    assert b is False, repr(b)\n    assert c == [1, 'kaksi'], repr(c)",
+            "def concrete_types(a: int, b: bool, c: list):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    assert a == 42, repr(a)\n    assert b is False, repr(b)\n    assert c == [1, 'kaksi'], repr(c)",
+            "def concrete_types(a: int, b: bool, c: list):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    assert a == 42, repr(a)\n    assert b is False, repr(b)\n    assert c == [1, 'kaksi'], repr(c)"
+        ]
+    },
+    {
+        "func_name": "abcs",
+        "original": "def abcs(a: Integral, b: Mapping):\n    assert a == 42, repr(a)\n    assert b == {'key': 'value'}, repr(b)",
+        "mutated": [
+            "def abcs(a: Integral, b: Mapping):\n    if False:\n        i = 10\n    assert a == 42, repr(a)\n    assert b == {'key': 'value'}, repr(b)",
+            "def abcs(a: Integral, b: Mapping):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    assert a == 42, repr(a)\n    assert b == {'key': 'value'}, repr(b)",
+            "def abcs(a: Integral, b: Mapping):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    assert a == 42, repr(a)\n    assert b == {'key': 'value'}, repr(b)",
+            "def abcs(a: Integral, b: Mapping):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    assert a == 42, repr(a)\n    assert b == {'key': 'value'}, repr(b)",
+            "def abcs(a: Integral, b: Mapping):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    assert a == 42, repr(a)\n    assert b == {'key': 'value'}, repr(b)"
+        ]
+    },
+    {
+        "func_name": "typing_",
+        "original": "def typing_(a: List, b: List[int]):\n    assert a == ['foo', 'bar'], repr(a)\n    assert b == [1, 2, 3], repr(b)",
+        "mutated": [
+            "def typing_(a: List, b: List[int]):\n    if False:\n        i = 10\n    assert a == ['foo', 'bar'], repr(a)\n    assert b == [1, 2, 3], repr(b)",
+            "def typing_(a: List, b: List[int]):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    assert a == ['foo', 'bar'], repr(a)\n    assert b == [1, 2, 3], repr(b)",
+            "def typing_(a: List, b: List[int]):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    assert a == ['foo', 'bar'], repr(a)\n    assert b == [1, 2, 3], repr(b)",
+            "def typing_(a: List, b: List[int]):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    assert a == ['foo', 'bar'], repr(a)\n    assert b == [1, 2, 3], repr(b)",
+            "def typing_(a: List, b: List[int]):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    assert a == ['foo', 'bar'], repr(a)\n    assert b == [1, 2, 3], repr(b)"
+        ]
+    },
+    {
+        "func_name": "invalid1",
+        "original": "def invalid1(a: foo):\n    assert a == 'xxx'",
+        "mutated": [
+            "def invalid1(a: foo):\n    if False:\n        i = 10\n    assert a == 'xxx'",
+            "def invalid1(a: foo):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    assert a == 'xxx'",
+            "def invalid1(a: foo):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    assert a == 'xxx'",
+            "def invalid1(a: foo):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    assert a == 'xxx'",
+            "def invalid1(a: foo):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    assert a == 'xxx'"
+        ]
+    },
+    {
+        "func_name": "invalid2",
+        "original": "def invalid2(a: 1 / 0):\n    assert a == 'xxx'",
+        "mutated": [
+            "def invalid2(a: 1 / 0):\n    if False:\n        i = 10\n    assert a == 'xxx'",
+            "def invalid2(a: 1 / 0):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    assert a == 'xxx'",
+            "def invalid2(a: 1 / 0):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    assert a == 'xxx'",
+            "def invalid2(a: 1 / 0):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    assert a == 'xxx'",
+            "def invalid2(a: 1 / 0):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    assert a == 'xxx'"
+        ]
+    }
+]

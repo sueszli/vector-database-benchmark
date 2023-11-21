@@ -1,0 +1,46 @@
+[
+    {
+        "func_name": "get_df",
+        "original": "def get_df():\n    client = DBSelector().mongo('qq')\n    doc = client[db_name][doc_name]\n    df = mongo_convert_df(doc)\n    return df",
+        "mutated": [
+            "def get_df():\n    if False:\n        i = 10\n    client = DBSelector().mongo('qq')\n    doc = client[db_name][doc_name]\n    df = mongo_convert_df(doc)\n    return df",
+            "def get_df():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    client = DBSelector().mongo('qq')\n    doc = client[db_name][doc_name]\n    df = mongo_convert_df(doc)\n    return df",
+            "def get_df():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    client = DBSelector().mongo('qq')\n    doc = client[db_name][doc_name]\n    df = mongo_convert_df(doc)\n    return df",
+            "def get_df():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    client = DBSelector().mongo('qq')\n    doc = client[db_name][doc_name]\n    df = mongo_convert_df(doc)\n    return df",
+            "def get_df():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    client = DBSelector().mongo('qq')\n    doc = client[db_name][doc_name]\n    df = mongo_convert_df(doc)\n    return df"
+        ]
+    },
+    {
+        "func_name": "weight",
+        "original": "def weight(df):\n    df['weight'] = df['weight'].map(lambda x: float(x.replace('%', '')))\n    date_df = df.set_index(['chn_name', 'date']).unstack()['weight'].sort_index()\n    date_df = date_df.fillna(0)\n    date_df.to_excel('nsda1.xlsx', encoding='utf8')",
+        "mutated": [
+            "def weight(df):\n    if False:\n        i = 10\n    df['weight'] = df['weight'].map(lambda x: float(x.replace('%', '')))\n    date_df = df.set_index(['chn_name', 'date']).unstack()['weight'].sort_index()\n    date_df = date_df.fillna(0)\n    date_df.to_excel('nsda1.xlsx', encoding='utf8')",
+            "def weight(df):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    df['weight'] = df['weight'].map(lambda x: float(x.replace('%', '')))\n    date_df = df.set_index(['chn_name', 'date']).unstack()['weight'].sort_index()\n    date_df = date_df.fillna(0)\n    date_df.to_excel('nsda1.xlsx', encoding='utf8')",
+            "def weight(df):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    df['weight'] = df['weight'].map(lambda x: float(x.replace('%', '')))\n    date_df = df.set_index(['chn_name', 'date']).unstack()['weight'].sort_index()\n    date_df = date_df.fillna(0)\n    date_df.to_excel('nsda1.xlsx', encoding='utf8')",
+            "def weight(df):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    df['weight'] = df['weight'].map(lambda x: float(x.replace('%', '')))\n    date_df = df.set_index(['chn_name', 'date']).unstack()['weight'].sort_index()\n    date_df = date_df.fillna(0)\n    date_df.to_excel('nsda1.xlsx', encoding='utf8')",
+            "def weight(df):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    df['weight'] = df['weight'].map(lambda x: float(x.replace('%', '')))\n    date_df = df.set_index(['chn_name', 'date']).unstack()['weight'].sort_index()\n    date_df = date_df.fillna(0)\n    date_df.to_excel('nsda1.xlsx', encoding='utf8')"
+        ]
+    },
+    {
+        "func_name": "scale",
+        "original": "def scale(df):\n    pass",
+        "mutated": [
+            "def scale(df):\n    if False:\n        i = 10\n    pass",
+            "def scale(df):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    pass",
+            "def scale(df):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    pass",
+            "def scale(df):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    pass",
+            "def scale(df):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    pass"
+        ]
+    },
+    {
+        "func_name": "main",
+        "original": "def main():\n    df = get_df()\n    scale(df)",
+        "mutated": [
+            "def main():\n    if False:\n        i = 10\n    df = get_df()\n    scale(df)",
+            "def main():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    df = get_df()\n    scale(df)",
+            "def main():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    df = get_df()\n    scale(df)",
+            "def main():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    df = get_df()\n    scale(df)",
+            "def main():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    df = get_df()\n    scale(df)"
+        ]
+    }
+]

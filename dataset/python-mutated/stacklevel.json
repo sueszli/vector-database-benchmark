@@ -1,0 +1,24 @@
+[
+    {
+        "func_name": "outer",
+        "original": "def outer(message, stacklevel=1):\n    inner(message, stacklevel)",
+        "mutated": [
+            "def outer(message, stacklevel=1):\n    if False:\n        i = 10\n    inner(message, stacklevel)",
+            "def outer(message, stacklevel=1):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    inner(message, stacklevel)",
+            "def outer(message, stacklevel=1):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    inner(message, stacklevel)",
+            "def outer(message, stacklevel=1):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    inner(message, stacklevel)",
+            "def outer(message, stacklevel=1):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    inner(message, stacklevel)"
+        ]
+    },
+    {
+        "func_name": "inner",
+        "original": "def inner(message, stacklevel=1):\n    warnings.warn(message, stacklevel=stacklevel)",
+        "mutated": [
+            "def inner(message, stacklevel=1):\n    if False:\n        i = 10\n    warnings.warn(message, stacklevel=stacklevel)",
+            "def inner(message, stacklevel=1):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    warnings.warn(message, stacklevel=stacklevel)",
+            "def inner(message, stacklevel=1):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    warnings.warn(message, stacklevel=stacklevel)",
+            "def inner(message, stacklevel=1):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    warnings.warn(message, stacklevel=stacklevel)",
+            "def inner(message, stacklevel=1):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    warnings.warn(message, stacklevel=stacklevel)"
+        ]
+    }
+]

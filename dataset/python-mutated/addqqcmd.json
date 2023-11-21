@@ -1,0 +1,24 @@
+[
+    {
+        "func_name": "cmd_mycommand",
+        "original": "def cmd_mycommand(bot, args, http=False):\n    result = str([args, http])\n    err = None\n    return (result, err)",
+        "mutated": [
+            "def cmd_mycommand(bot, args, http=False):\n    if False:\n        i = 10\n    result = str([args, http])\n    err = None\n    return (result, err)",
+            "def cmd_mycommand(bot, args, http=False):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    result = str([args, http])\n    err = None\n    return (result, err)",
+            "def cmd_mycommand(bot, args, http=False):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    result = str([args, http])\n    err = None\n    return (result, err)",
+            "def cmd_mycommand(bot, args, http=False):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    result = str([args, http])\n    err = None\n    return (result, err)",
+            "def cmd_mycommand(bot, args, http=False):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    result = str([args, http])\n    err = None\n    return (result, err)"
+        ]
+    },
+    {
+        "func_name": "onPlug",
+        "original": "def onPlug(bot):\n    from qqbot.termbot import cmdFuncs\n    cmdFuncs['mycommand'] = cmd_mycommand",
+        "mutated": [
+            "def onPlug(bot):\n    if False:\n        i = 10\n    from qqbot.termbot import cmdFuncs\n    cmdFuncs['mycommand'] = cmd_mycommand",
+            "def onPlug(bot):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    from qqbot.termbot import cmdFuncs\n    cmdFuncs['mycommand'] = cmd_mycommand",
+            "def onPlug(bot):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    from qqbot.termbot import cmdFuncs\n    cmdFuncs['mycommand'] = cmd_mycommand",
+            "def onPlug(bot):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    from qqbot.termbot import cmdFuncs\n    cmdFuncs['mycommand'] = cmd_mycommand",
+            "def onPlug(bot):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    from qqbot.termbot import cmdFuncs\n    cmdFuncs['mycommand'] = cmd_mycommand"
+        ]
+    }
+]

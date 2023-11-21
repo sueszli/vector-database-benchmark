@@ -1,0 +1,46 @@
+[
+    {
+        "func_name": "branching_op",
+        "original": "@op(out={'branch_1': Out(is_required=False), 'branch_2': Out(is_required=False)})\ndef branching_op():\n    num = random.randint(0, 1)\n    if num == 0:\n        yield Output(1, 'branch_1')\n    else:\n        yield Output(2, 'branch_2')",
+        "mutated": [
+            "@op(out={'branch_1': Out(is_required=False), 'branch_2': Out(is_required=False)})\ndef branching_op():\n    if False:\n        i = 10\n    num = random.randint(0, 1)\n    if num == 0:\n        yield Output(1, 'branch_1')\n    else:\n        yield Output(2, 'branch_2')",
+            "@op(out={'branch_1': Out(is_required=False), 'branch_2': Out(is_required=False)})\ndef branching_op():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    num = random.randint(0, 1)\n    if num == 0:\n        yield Output(1, 'branch_1')\n    else:\n        yield Output(2, 'branch_2')",
+            "@op(out={'branch_1': Out(is_required=False), 'branch_2': Out(is_required=False)})\ndef branching_op():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    num = random.randint(0, 1)\n    if num == 0:\n        yield Output(1, 'branch_1')\n    else:\n        yield Output(2, 'branch_2')",
+            "@op(out={'branch_1': Out(is_required=False), 'branch_2': Out(is_required=False)})\ndef branching_op():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    num = random.randint(0, 1)\n    if num == 0:\n        yield Output(1, 'branch_1')\n    else:\n        yield Output(2, 'branch_2')",
+            "@op(out={'branch_1': Out(is_required=False), 'branch_2': Out(is_required=False)})\ndef branching_op():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    num = random.randint(0, 1)\n    if num == 0:\n        yield Output(1, 'branch_1')\n    else:\n        yield Output(2, 'branch_2')"
+        ]
+    },
+    {
+        "func_name": "branch_1_op",
+        "original": "@op\ndef branch_1_op(_input):\n    pass",
+        "mutated": [
+            "@op\ndef branch_1_op(_input):\n    if False:\n        i = 10\n    pass",
+            "@op\ndef branch_1_op(_input):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    pass",
+            "@op\ndef branch_1_op(_input):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    pass",
+            "@op\ndef branch_1_op(_input):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    pass",
+            "@op\ndef branch_1_op(_input):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    pass"
+        ]
+    },
+    {
+        "func_name": "branch_2_op",
+        "original": "@op\ndef branch_2_op(_input):\n    pass",
+        "mutated": [
+            "@op\ndef branch_2_op(_input):\n    if False:\n        i = 10\n    pass",
+            "@op\ndef branch_2_op(_input):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    pass",
+            "@op\ndef branch_2_op(_input):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    pass",
+            "@op\ndef branch_2_op(_input):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    pass",
+            "@op\ndef branch_2_op(_input):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    pass"
+        ]
+    },
+    {
+        "func_name": "branching",
+        "original": "@job\ndef branching():\n    (branch_1, branch_2) = branching_op()\n    branch_1_op(branch_1)\n    branch_2_op(branch_2)",
+        "mutated": [
+            "@job\ndef branching():\n    if False:\n        i = 10\n    (branch_1, branch_2) = branching_op()\n    branch_1_op(branch_1)\n    branch_2_op(branch_2)",
+            "@job\ndef branching():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    (branch_1, branch_2) = branching_op()\n    branch_1_op(branch_1)\n    branch_2_op(branch_2)",
+            "@job\ndef branching():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    (branch_1, branch_2) = branching_op()\n    branch_1_op(branch_1)\n    branch_2_op(branch_2)",
+            "@job\ndef branching():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    (branch_1, branch_2) = branching_op()\n    branch_1_op(branch_1)\n    branch_2_op(branch_2)",
+            "@job\ndef branching():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    (branch_1, branch_2) = branching_op()\n    branch_1_op(branch_1)\n    branch_2_op(branch_2)"
+        ]
+    }
+]

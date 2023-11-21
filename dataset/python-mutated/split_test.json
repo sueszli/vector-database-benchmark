@@ -1,0 +1,24 @@
+[
+    {
+        "func_name": "init",
+        "original": "def init(self, M, N, parts, device):\n    self.inputs = {'input': torch.rand(M, N, device=device), 'split_size': int(M * N / parts)}\n    self.set_module_name('split')",
+        "mutated": [
+            "def init(self, M, N, parts, device):\n    if False:\n        i = 10\n    self.inputs = {'input': torch.rand(M, N, device=device), 'split_size': int(M * N / parts)}\n    self.set_module_name('split')",
+            "def init(self, M, N, parts, device):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    self.inputs = {'input': torch.rand(M, N, device=device), 'split_size': int(M * N / parts)}\n    self.set_module_name('split')",
+            "def init(self, M, N, parts, device):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    self.inputs = {'input': torch.rand(M, N, device=device), 'split_size': int(M * N / parts)}\n    self.set_module_name('split')",
+            "def init(self, M, N, parts, device):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    self.inputs = {'input': torch.rand(M, N, device=device), 'split_size': int(M * N / parts)}\n    self.set_module_name('split')",
+            "def init(self, M, N, parts, device):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    self.inputs = {'input': torch.rand(M, N, device=device), 'split_size': int(M * N / parts)}\n    self.set_module_name('split')"
+        ]
+    },
+    {
+        "func_name": "forward",
+        "original": "def forward(self, input, split_size: int):\n    return torch.split(input, split_size)",
+        "mutated": [
+            "def forward(self, input, split_size: int):\n    if False:\n        i = 10\n    return torch.split(input, split_size)",
+            "def forward(self, input, split_size: int):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return torch.split(input, split_size)",
+            "def forward(self, input, split_size: int):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return torch.split(input, split_size)",
+            "def forward(self, input, split_size: int):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return torch.split(input, split_size)",
+            "def forward(self, input, split_size: int):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return torch.split(input, split_size)"
+        ]
+    }
+]

@@ -1,0 +1,24 @@
+[
+    {
+        "func_name": "__init__",
+        "original": "def __init__(self):\n    self.__s = []",
+        "mutated": [
+            "def __init__(self):\n    if False:\n        i = 10\n    self.__s = []",
+            "def __init__(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    self.__s = []",
+            "def __init__(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    self.__s = []",
+            "def __init__(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    self.__s = []",
+            "def __init__(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    self.__s = []"
+        ]
+    },
+    {
+        "func_name": "next",
+        "original": "def next(self, price):\n    \"\"\"\n        :type price: int\n        :rtype: int\n        \"\"\"\n    result = 1\n    while self.__s and self.__s[-1][0] <= price:\n        result += self.__s.pop()[1]\n    self.__s.append([price, result])\n    return result",
+        "mutated": [
+            "def next(self, price):\n    if False:\n        i = 10\n    '\\n        :type price: int\\n        :rtype: int\\n        '\n    result = 1\n    while self.__s and self.__s[-1][0] <= price:\n        result += self.__s.pop()[1]\n    self.__s.append([price, result])\n    return result",
+            "def next(self, price):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    '\\n        :type price: int\\n        :rtype: int\\n        '\n    result = 1\n    while self.__s and self.__s[-1][0] <= price:\n        result += self.__s.pop()[1]\n    self.__s.append([price, result])\n    return result",
+            "def next(self, price):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    '\\n        :type price: int\\n        :rtype: int\\n        '\n    result = 1\n    while self.__s and self.__s[-1][0] <= price:\n        result += self.__s.pop()[1]\n    self.__s.append([price, result])\n    return result",
+            "def next(self, price):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    '\\n        :type price: int\\n        :rtype: int\\n        '\n    result = 1\n    while self.__s and self.__s[-1][0] <= price:\n        result += self.__s.pop()[1]\n    self.__s.append([price, result])\n    return result",
+            "def next(self, price):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    '\\n        :type price: int\\n        :rtype: int\\n        '\n    result = 1\n    while self.__s and self.__s[-1][0] <= price:\n        result += self.__s.pop()[1]\n    self.__s.append([price, result])\n    return result"
+        ]
+    }
+]

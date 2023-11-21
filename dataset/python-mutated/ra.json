@@ -1,0 +1,46 @@
+[
+    {
+        "func_name": "__init__",
+        "original": "def __init__(self, workers):\n    super().__init__(workers)\n    if not ray.is_initialized():\n        ray.init()\n    self.workers = workers\n    self.pool = Pool(processes=workers)",
+        "mutated": [
+            "def __init__(self, workers):\n    if False:\n        i = 10\n    super().__init__(workers)\n    if not ray.is_initialized():\n        ray.init()\n    self.workers = workers\n    self.pool = Pool(processes=workers)",
+            "def __init__(self, workers):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    super().__init__(workers)\n    if not ray.is_initialized():\n        ray.init()\n    self.workers = workers\n    self.pool = Pool(processes=workers)",
+            "def __init__(self, workers):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    super().__init__(workers)\n    if not ray.is_initialized():\n        ray.init()\n    self.workers = workers\n    self.pool = Pool(processes=workers)",
+            "def __init__(self, workers):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    super().__init__(workers)\n    if not ray.is_initialized():\n        ray.init()\n    self.workers = workers\n    self.pool = Pool(processes=workers)",
+            "def __init__(self, workers):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    super().__init__(workers)\n    if not ray.is_initialized():\n        ray.init()\n    self.workers = workers\n    self.pool = Pool(processes=workers)"
+        ]
+    },
+    {
+        "func_name": "map",
+        "original": "def map(self, func, iterable):\n    return self.pool.map(func, iterable)",
+        "mutated": [
+            "def map(self, func, iterable):\n    if False:\n        i = 10\n    return self.pool.map(func, iterable)",
+            "def map(self, func, iterable):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return self.pool.map(func, iterable)",
+            "def map(self, func, iterable):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return self.pool.map(func, iterable)",
+            "def map(self, func, iterable):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return self.pool.map(func, iterable)",
+            "def map(self, func, iterable):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return self.pool.map(func, iterable)"
+        ]
+    },
+    {
+        "func_name": "close",
+        "original": "def close(self):\n    self.pool.close()\n    self.pool.join()",
+        "mutated": [
+            "def close(self):\n    if False:\n        i = 10\n    self.pool.close()\n    self.pool.join()",
+            "def close(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    self.pool.close()\n    self.pool.join()",
+            "def close(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    self.pool.close()\n    self.pool.join()",
+            "def close(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    self.pool.close()\n    self.pool.join()",
+            "def close(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    self.pool.close()\n    self.pool.join()"
+        ]
+    },
+    {
+        "func_name": "create_queue",
+        "original": "def create_queue(self):\n    return Queue()",
+        "mutated": [
+            "def create_queue(self):\n    if False:\n        i = 10\n    return Queue()",
+            "def create_queue(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return Queue()",
+            "def create_queue(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return Queue()",
+            "def create_queue(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return Queue()",
+            "def create_queue(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return Queue()"
+        ]
+    }
+]

@@ -1,0 +1,90 @@
+[
+    {
+        "func_name": "iroot",
+        "original": "def iroot(x, n):\n    if n <= LONG_MAX:\n        return gmpy.iroot(x, n)\n    return python_iroot(x, n)",
+        "mutated": [
+            "def iroot(x, n):\n    if False:\n        i = 10\n    if n <= LONG_MAX:\n        return gmpy.iroot(x, n)\n    return python_iroot(x, n)",
+            "def iroot(x, n):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    if n <= LONG_MAX:\n        return gmpy.iroot(x, n)\n    return python_iroot(x, n)",
+            "def iroot(x, n):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    if n <= LONG_MAX:\n        return gmpy.iroot(x, n)\n    return python_iroot(x, n)",
+            "def iroot(x, n):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    if n <= LONG_MAX:\n        return gmpy.iroot(x, n)\n    return python_iroot(x, n)",
+            "def iroot(x, n):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    if n <= LONG_MAX:\n        return gmpy.iroot(x, n)\n    return python_iroot(x, n)"
+        ]
+    },
+    {
+        "func_name": "sqrt",
+        "original": "def sqrt(x):\n    return flint.fmpz(x).isqrt()",
+        "mutated": [
+            "def sqrt(x):\n    if False:\n        i = 10\n    return flint.fmpz(x).isqrt()",
+            "def sqrt(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return flint.fmpz(x).isqrt()",
+            "def sqrt(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return flint.fmpz(x).isqrt()",
+            "def sqrt(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return flint.fmpz(x).isqrt()",
+            "def sqrt(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return flint.fmpz(x).isqrt()"
+        ]
+    },
+    {
+        "func_name": "is_square",
+        "original": "def is_square(x):\n    if x < 0:\n        return False\n    return flint.fmpz(x).sqrtrem()[1] == 0",
+        "mutated": [
+            "def is_square(x):\n    if False:\n        i = 10\n    if x < 0:\n        return False\n    return flint.fmpz(x).sqrtrem()[1] == 0",
+            "def is_square(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    if x < 0:\n        return False\n    return flint.fmpz(x).sqrtrem()[1] == 0",
+            "def is_square(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    if x < 0:\n        return False\n    return flint.fmpz(x).sqrtrem()[1] == 0",
+            "def is_square(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    if x < 0:\n        return False\n    return flint.fmpz(x).sqrtrem()[1] == 0",
+            "def is_square(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    if x < 0:\n        return False\n    return flint.fmpz(x).sqrtrem()[1] == 0"
+        ]
+    },
+    {
+        "func_name": "sqrtrem",
+        "original": "def sqrtrem(x):\n    return flint.fmpz(x).sqrtrem()",
+        "mutated": [
+            "def sqrtrem(x):\n    if False:\n        i = 10\n    return flint.fmpz(x).sqrtrem()",
+            "def sqrtrem(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return flint.fmpz(x).sqrtrem()",
+            "def sqrtrem(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return flint.fmpz(x).sqrtrem()",
+            "def sqrtrem(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return flint.fmpz(x).sqrtrem()",
+            "def sqrtrem(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return flint.fmpz(x).sqrtrem()"
+        ]
+    },
+    {
+        "func_name": "gcd",
+        "original": "def gcd(*args):\n    return reduce(flint.fmpz.gcd, args, flint.fmpz(0))",
+        "mutated": [
+            "def gcd(*args):\n    if False:\n        i = 10\n    return reduce(flint.fmpz.gcd, args, flint.fmpz(0))",
+            "def gcd(*args):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return reduce(flint.fmpz.gcd, args, flint.fmpz(0))",
+            "def gcd(*args):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return reduce(flint.fmpz.gcd, args, flint.fmpz(0))",
+            "def gcd(*args):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return reduce(flint.fmpz.gcd, args, flint.fmpz(0))",
+            "def gcd(*args):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return reduce(flint.fmpz.gcd, args, flint.fmpz(0))"
+        ]
+    },
+    {
+        "func_name": "lcm",
+        "original": "def lcm(*args):\n    return reduce(flint.fmpz.lcm, args, flint.fmpz(1))",
+        "mutated": [
+            "def lcm(*args):\n    if False:\n        i = 10\n    return reduce(flint.fmpz.lcm, args, flint.fmpz(1))",
+            "def lcm(*args):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return reduce(flint.fmpz.lcm, args, flint.fmpz(1))",
+            "def lcm(*args):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return reduce(flint.fmpz.lcm, args, flint.fmpz(1))",
+            "def lcm(*args):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return reduce(flint.fmpz.lcm, args, flint.fmpz(1))",
+            "def lcm(*args):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return reduce(flint.fmpz.lcm, args, flint.fmpz(1))"
+        ]
+    },
+    {
+        "func_name": "jacobi",
+        "original": "def jacobi(x, y):\n    if y <= 0 or not y % 2:\n        raise ValueError('y should be an odd positive integer')\n    return flint.fmpz(x).jacobi(y)",
+        "mutated": [
+            "def jacobi(x, y):\n    if False:\n        i = 10\n    if y <= 0 or not y % 2:\n        raise ValueError('y should be an odd positive integer')\n    return flint.fmpz(x).jacobi(y)",
+            "def jacobi(x, y):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    if y <= 0 or not y % 2:\n        raise ValueError('y should be an odd positive integer')\n    return flint.fmpz(x).jacobi(y)",
+            "def jacobi(x, y):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    if y <= 0 or not y % 2:\n        raise ValueError('y should be an odd positive integer')\n    return flint.fmpz(x).jacobi(y)",
+            "def jacobi(x, y):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    if y <= 0 or not y % 2:\n        raise ValueError('y should be an odd positive integer')\n    return flint.fmpz(x).jacobi(y)",
+            "def jacobi(x, y):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    if y <= 0 or not y % 2:\n        raise ValueError('y should be an odd positive integer')\n    return flint.fmpz(x).jacobi(y)"
+        ]
+    },
+    {
+        "func_name": "iroot",
+        "original": "def iroot(x, n):\n    if n <= LONG_MAX:\n        y = flint.fmpz(x).root(n)\n        return (y, y ** n == x)\n    return python_iroot(x, n)",
+        "mutated": [
+            "def iroot(x, n):\n    if False:\n        i = 10\n    if n <= LONG_MAX:\n        y = flint.fmpz(x).root(n)\n        return (y, y ** n == x)\n    return python_iroot(x, n)",
+            "def iroot(x, n):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    if n <= LONG_MAX:\n        y = flint.fmpz(x).root(n)\n        return (y, y ** n == x)\n    return python_iroot(x, n)",
+            "def iroot(x, n):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    if n <= LONG_MAX:\n        y = flint.fmpz(x).root(n)\n        return (y, y ** n == x)\n    return python_iroot(x, n)",
+            "def iroot(x, n):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    if n <= LONG_MAX:\n        y = flint.fmpz(x).root(n)\n        return (y, y ** n == x)\n    return python_iroot(x, n)",
+            "def iroot(x, n):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    if n <= LONG_MAX:\n        y = flint.fmpz(x).root(n)\n        return (y, y ** n == x)\n    return python_iroot(x, n)"
+        ]
+    }
+]

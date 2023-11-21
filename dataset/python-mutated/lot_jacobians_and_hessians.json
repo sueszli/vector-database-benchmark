@@ -1,0 +1,35 @@
+[
+    {
+        "func_name": "predict",
+        "original": "def predict(weight, bias, x):\n    return F.linear(x, weight, bias).tanh()",
+        "mutated": [
+            "def predict(weight, bias, x):\n    if False:\n        i = 10\n    return F.linear(x, weight, bias).tanh()",
+            "def predict(weight, bias, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return F.linear(x, weight, bias).tanh()",
+            "def predict(weight, bias, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return F.linear(x, weight, bias).tanh()",
+            "def predict(weight, bias, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return F.linear(x, weight, bias).tanh()",
+            "def predict(weight, bias, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return F.linear(x, weight, bias).tanh()"
+        ]
+    },
+    {
+        "func_name": "compute_jac",
+        "original": "def compute_jac(xp):\n    jacobian_rows = [torch.autograd.grad(predict(weight, bias, xp), xp, vec)[0] for vec in unit_vectors]\n    return torch.stack(jacobian_rows)",
+        "mutated": [
+            "def compute_jac(xp):\n    if False:\n        i = 10\n    jacobian_rows = [torch.autograd.grad(predict(weight, bias, xp), xp, vec)[0] for vec in unit_vectors]\n    return torch.stack(jacobian_rows)",
+            "def compute_jac(xp):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    jacobian_rows = [torch.autograd.grad(predict(weight, bias, xp), xp, vec)[0] for vec in unit_vectors]\n    return torch.stack(jacobian_rows)",
+            "def compute_jac(xp):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    jacobian_rows = [torch.autograd.grad(predict(weight, bias, xp), xp, vec)[0] for vec in unit_vectors]\n    return torch.stack(jacobian_rows)",
+            "def compute_jac(xp):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    jacobian_rows = [torch.autograd.grad(predict(weight, bias, xp), xp, vec)[0] for vec in unit_vectors]\n    return torch.stack(jacobian_rows)",
+            "def compute_jac(xp):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    jacobian_rows = [torch.autograd.grad(predict(weight, bias, xp), xp, vec)[0] for vec in unit_vectors]\n    return torch.stack(jacobian_rows)"
+        ]
+    },
+    {
+        "func_name": "predict_with_output_summed",
+        "original": "def predict_with_output_summed(weight, bias, x):\n    return predict(weight, bias, x).sum(0)",
+        "mutated": [
+            "def predict_with_output_summed(weight, bias, x):\n    if False:\n        i = 10\n    return predict(weight, bias, x).sum(0)",
+            "def predict_with_output_summed(weight, bias, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return predict(weight, bias, x).sum(0)",
+            "def predict_with_output_summed(weight, bias, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return predict(weight, bias, x).sum(0)",
+            "def predict_with_output_summed(weight, bias, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return predict(weight, bias, x).sum(0)",
+            "def predict_with_output_summed(weight, bias, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return predict(weight, bias, x).sum(0)"
+        ]
+    }
+]

@@ -1,0 +1,244 @@
+[
+    {
+        "func_name": "test",
+        "original": "def test(value: pkg.bar.A):\n    return pkg.B()",
+        "mutated": [
+            "def test(value: pkg.bar.A):\n    if False:\n        i = 10\n    return pkg.B()",
+            "def test(value: pkg.bar.A):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return pkg.B()",
+            "def test(value: pkg.bar.A):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return pkg.B()",
+            "def test(value: pkg.bar.A):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return pkg.B()",
+            "def test(value: pkg.bar.A):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return pkg.B()"
+        ]
+    },
+    {
+        "func_name": "f",
+        "original": "def f():\n    import pkg\n    import pkg.bar\n\n    def test(value: pkg.bar.A):\n        return pkg.B()",
+        "mutated": [
+            "def f():\n    if False:\n        i = 10\n    import pkg\n    import pkg.bar\n\n    def test(value: pkg.bar.A):\n        return pkg.B()",
+            "def f():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    import pkg\n    import pkg.bar\n\n    def test(value: pkg.bar.A):\n        return pkg.B()",
+            "def f():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    import pkg\n    import pkg.bar\n\n    def test(value: pkg.bar.A):\n        return pkg.B()",
+            "def f():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    import pkg\n    import pkg.bar\n\n    def test(value: pkg.bar.A):\n        return pkg.B()",
+            "def f():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    import pkg\n    import pkg.bar\n\n    def test(value: pkg.bar.A):\n        return pkg.B()"
+        ]
+    },
+    {
+        "func_name": "test",
+        "original": "def test(value: pkg.A):\n    return pkg.bar.B()",
+        "mutated": [
+            "def test(value: pkg.A):\n    if False:\n        i = 10\n    return pkg.bar.B()",
+            "def test(value: pkg.A):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return pkg.bar.B()",
+            "def test(value: pkg.A):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return pkg.bar.B()",
+            "def test(value: pkg.A):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return pkg.bar.B()",
+            "def test(value: pkg.A):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return pkg.bar.B()"
+        ]
+    },
+    {
+        "func_name": "f",
+        "original": "def f():\n    import pkg\n    import pkg.bar\n\n    def test(value: pkg.A):\n        return pkg.bar.B()",
+        "mutated": [
+            "def f():\n    if False:\n        i = 10\n    import pkg\n    import pkg.bar\n\n    def test(value: pkg.A):\n        return pkg.bar.B()",
+            "def f():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    import pkg\n    import pkg.bar\n\n    def test(value: pkg.A):\n        return pkg.bar.B()",
+            "def f():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    import pkg\n    import pkg.bar\n\n    def test(value: pkg.A):\n        return pkg.bar.B()",
+            "def f():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    import pkg\n    import pkg.bar\n\n    def test(value: pkg.A):\n        return pkg.bar.B()",
+            "def f():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    import pkg\n    import pkg.bar\n\n    def test(value: pkg.A):\n        return pkg.bar.B()"
+        ]
+    },
+    {
+        "func_name": "test",
+        "original": "def test(value: A):\n    return pkg.B()",
+        "mutated": [
+            "def test(value: A):\n    if False:\n        i = 10\n    return pkg.B()",
+            "def test(value: A):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return pkg.B()",
+            "def test(value: A):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return pkg.B()",
+            "def test(value: A):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return pkg.B()",
+            "def test(value: A):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return pkg.B()"
+        ]
+    },
+    {
+        "func_name": "f",
+        "original": "def f():\n    import pkg\n    from pkg import A\n\n    def test(value: A):\n        return pkg.B()",
+        "mutated": [
+            "def f():\n    if False:\n        i = 10\n    import pkg\n    from pkg import A\n\n    def test(value: A):\n        return pkg.B()",
+            "def f():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    import pkg\n    from pkg import A\n\n    def test(value: A):\n        return pkg.B()",
+            "def f():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    import pkg\n    from pkg import A\n\n    def test(value: A):\n        return pkg.B()",
+            "def f():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    import pkg\n    from pkg import A\n\n    def test(value: A):\n        return pkg.B()",
+            "def f():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    import pkg\n    from pkg import A\n\n    def test(value: A):\n        return pkg.B()"
+        ]
+    },
+    {
+        "func_name": "test",
+        "original": "def test(value: A):\n    return B()",
+        "mutated": [
+            "def test(value: A):\n    if False:\n        i = 10\n    return B()",
+            "def test(value: A):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return B()",
+            "def test(value: A):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return B()",
+            "def test(value: A):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return B()",
+            "def test(value: A):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return B()"
+        ]
+    },
+    {
+        "func_name": "f",
+        "original": "def f():\n    from pkg import A, B\n\n    def test(value: A):\n        return B()",
+        "mutated": [
+            "def f():\n    if False:\n        i = 10\n    from pkg import A, B\n\n    def test(value: A):\n        return B()",
+            "def f():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    from pkg import A, B\n\n    def test(value: A):\n        return B()",
+            "def f():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    from pkg import A, B\n\n    def test(value: A):\n        return B()",
+            "def f():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    from pkg import A, B\n\n    def test(value: A):\n        return B()",
+            "def f():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    from pkg import A, B\n\n    def test(value: A):\n        return B()"
+        ]
+    },
+    {
+        "func_name": "test",
+        "original": "def test(value: pkg.bar.A):\n    return pkg.baz.B()",
+        "mutated": [
+            "def test(value: pkg.bar.A):\n    if False:\n        i = 10\n    return pkg.baz.B()",
+            "def test(value: pkg.bar.A):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return pkg.baz.B()",
+            "def test(value: pkg.bar.A):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return pkg.baz.B()",
+            "def test(value: pkg.bar.A):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return pkg.baz.B()",
+            "def test(value: pkg.bar.A):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return pkg.baz.B()"
+        ]
+    },
+    {
+        "func_name": "f",
+        "original": "def f():\n    import pkg.bar\n    import pkg.baz\n\n    def test(value: pkg.bar.A):\n        return pkg.baz.B()",
+        "mutated": [
+            "def f():\n    if False:\n        i = 10\n    import pkg.bar\n    import pkg.baz\n\n    def test(value: pkg.bar.A):\n        return pkg.baz.B()",
+            "def f():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    import pkg.bar\n    import pkg.baz\n\n    def test(value: pkg.bar.A):\n        return pkg.baz.B()",
+            "def f():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    import pkg.bar\n    import pkg.baz\n\n    def test(value: pkg.bar.A):\n        return pkg.baz.B()",
+            "def f():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    import pkg.bar\n    import pkg.baz\n\n    def test(value: pkg.bar.A):\n        return pkg.baz.B()",
+            "def f():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    import pkg.bar\n    import pkg.baz\n\n    def test(value: pkg.bar.A):\n        return pkg.baz.B()"
+        ]
+    },
+    {
+        "func_name": "test",
+        "original": "def test(value: A):\n    return pkg.B()",
+        "mutated": [
+            "def test(value: A):\n    if False:\n        i = 10\n    return pkg.B()",
+            "def test(value: A):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return pkg.B()",
+            "def test(value: A):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return pkg.B()",
+            "def test(value: A):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return pkg.B()",
+            "def test(value: A):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return pkg.B()"
+        ]
+    },
+    {
+        "func_name": "f",
+        "original": "def f():\n    import pkg\n    from pkg.bar import A\n\n    def test(value: A):\n        return pkg.B()",
+        "mutated": [
+            "def f():\n    if False:\n        i = 10\n    import pkg\n    from pkg.bar import A\n\n    def test(value: A):\n        return pkg.B()",
+            "def f():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    import pkg\n    from pkg.bar import A\n\n    def test(value: A):\n        return pkg.B()",
+            "def f():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    import pkg\n    from pkg.bar import A\n\n    def test(value: A):\n        return pkg.B()",
+            "def f():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    import pkg\n    from pkg.bar import A\n\n    def test(value: A):\n        return pkg.B()",
+            "def f():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    import pkg\n    from pkg.bar import A\n\n    def test(value: A):\n        return pkg.B()"
+        ]
+    },
+    {
+        "func_name": "test",
+        "original": "def test(value: pkg.A):\n    return B()",
+        "mutated": [
+            "def test(value: pkg.A):\n    if False:\n        i = 10\n    return B()",
+            "def test(value: pkg.A):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return B()",
+            "def test(value: pkg.A):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return B()",
+            "def test(value: pkg.A):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return B()",
+            "def test(value: pkg.A):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return B()"
+        ]
+    },
+    {
+        "func_name": "f",
+        "original": "def f():\n    import pkg\n    import pkg.bar as B\n\n    def test(value: pkg.A):\n        return B()",
+        "mutated": [
+            "def f():\n    if False:\n        i = 10\n    import pkg\n    import pkg.bar as B\n\n    def test(value: pkg.A):\n        return B()",
+            "def f():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    import pkg\n    import pkg.bar as B\n\n    def test(value: pkg.A):\n        return B()",
+            "def f():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    import pkg\n    import pkg.bar as B\n\n    def test(value: pkg.A):\n        return B()",
+            "def f():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    import pkg\n    import pkg.bar as B\n\n    def test(value: pkg.A):\n        return B()",
+            "def f():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    import pkg\n    import pkg.bar as B\n\n    def test(value: pkg.A):\n        return B()"
+        ]
+    },
+    {
+        "func_name": "test",
+        "original": "def test(value: F.Foo):\n    return B()",
+        "mutated": [
+            "def test(value: F.Foo):\n    if False:\n        i = 10\n    return B()",
+            "def test(value: F.Foo):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return B()",
+            "def test(value: F.Foo):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return B()",
+            "def test(value: F.Foo):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return B()",
+            "def test(value: F.Foo):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return B()"
+        ]
+    },
+    {
+        "func_name": "f",
+        "original": "def f():\n    import pkg.foo as F\n    import pkg.foo.bar as B\n\n    def test(value: F.Foo):\n        return B()",
+        "mutated": [
+            "def f():\n    if False:\n        i = 10\n    import pkg.foo as F\n    import pkg.foo.bar as B\n\n    def test(value: F.Foo):\n        return B()",
+            "def f():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    import pkg.foo as F\n    import pkg.foo.bar as B\n\n    def test(value: F.Foo):\n        return B()",
+            "def f():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    import pkg.foo as F\n    import pkg.foo.bar as B\n\n    def test(value: F.Foo):\n        return B()",
+            "def f():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    import pkg.foo as F\n    import pkg.foo.bar as B\n\n    def test(value: F.Foo):\n        return B()",
+            "def f():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    import pkg.foo as F\n    import pkg.foo.bar as B\n\n    def test(value: F.Foo):\n        return B()"
+        ]
+    },
+    {
+        "func_name": "test",
+        "original": "def test(value: pkg.A):\n    return B()",
+        "mutated": [
+            "def test(value: pkg.A):\n    if False:\n        i = 10\n    return B()",
+            "def test(value: pkg.A):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return B()",
+            "def test(value: pkg.A):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return B()",
+            "def test(value: pkg.A):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return B()",
+            "def test(value: pkg.A):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return B()"
+        ]
+    },
+    {
+        "func_name": "f",
+        "original": "def f():\n    import pkg\n    import pkg.foo.bar as B\n\n    def test(value: pkg.A):\n        return B()",
+        "mutated": [
+            "def f():\n    if False:\n        i = 10\n    import pkg\n    import pkg.foo.bar as B\n\n    def test(value: pkg.A):\n        return B()",
+            "def f():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    import pkg\n    import pkg.foo.bar as B\n\n    def test(value: pkg.A):\n        return B()",
+            "def f():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    import pkg\n    import pkg.foo.bar as B\n\n    def test(value: pkg.A):\n        return B()",
+            "def f():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    import pkg\n    import pkg.foo.bar as B\n\n    def test(value: pkg.A):\n        return B()",
+            "def f():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    import pkg\n    import pkg.foo.bar as B\n\n    def test(value: pkg.A):\n        return B()"
+        ]
+    },
+    {
+        "func_name": "test",
+        "original": "def test(value: pkg.A):\n    return B()",
+        "mutated": [
+            "def test(value: pkg.A):\n    if False:\n        i = 10\n    return B()",
+            "def test(value: pkg.A):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return B()",
+            "def test(value: pkg.A):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return B()",
+            "def test(value: pkg.A):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return B()",
+            "def test(value: pkg.A):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return B()"
+        ]
+    },
+    {
+        "func_name": "f",
+        "original": "def f():\n    import pkg\n    import pkgfoo.bar as B\n\n    def test(value: pkg.A):\n        return B()",
+        "mutated": [
+            "def f():\n    if False:\n        i = 10\n    import pkg\n    import pkgfoo.bar as B\n\n    def test(value: pkg.A):\n        return B()",
+            "def f():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    import pkg\n    import pkgfoo.bar as B\n\n    def test(value: pkg.A):\n        return B()",
+            "def f():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    import pkg\n    import pkgfoo.bar as B\n\n    def test(value: pkg.A):\n        return B()",
+            "def f():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    import pkg\n    import pkgfoo.bar as B\n\n    def test(value: pkg.A):\n        return B()",
+            "def f():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    import pkg\n    import pkgfoo.bar as B\n\n    def test(value: pkg.A):\n        return B()"
+        ]
+    },
+    {
+        "func_name": "test",
+        "original": "def test(value: F.Foo):\n    return B.Bar()",
+        "mutated": [
+            "def test(value: F.Foo):\n    if False:\n        i = 10\n    return B.Bar()",
+            "def test(value: F.Foo):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return B.Bar()",
+            "def test(value: F.Foo):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return B.Bar()",
+            "def test(value: F.Foo):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return B.Bar()",
+            "def test(value: F.Foo):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return B.Bar()"
+        ]
+    },
+    {
+        "func_name": "f",
+        "original": "def f():\n    import pkg.bar as B\n    import pkg.foo as F\n\n    def test(value: F.Foo):\n        return B.Bar()",
+        "mutated": [
+            "def f():\n    if False:\n        i = 10\n    import pkg.bar as B\n    import pkg.foo as F\n\n    def test(value: F.Foo):\n        return B.Bar()",
+            "def f():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    import pkg.bar as B\n    import pkg.foo as F\n\n    def test(value: F.Foo):\n        return B.Bar()",
+            "def f():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    import pkg.bar as B\n    import pkg.foo as F\n\n    def test(value: F.Foo):\n        return B.Bar()",
+            "def f():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    import pkg.bar as B\n    import pkg.foo as F\n\n    def test(value: F.Foo):\n        return B.Bar()",
+            "def f():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    import pkg.bar as B\n    import pkg.foo as F\n\n    def test(value: F.Foo):\n        return B.Bar()"
+        ]
+    }
+]

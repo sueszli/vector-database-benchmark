@@ -1,0 +1,68 @@
+[
+    {
+        "func_name": "basic_ext_slice",
+        "original": "def basic_ext_slice(n):\n    return (n[:, :], n[0, :], n[:, 0])",
+        "mutated": [
+            "def basic_ext_slice(n):\n    if False:\n        i = 10\n    return (n[:, :], n[0, :], n[:, 0])",
+            "def basic_ext_slice(n):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return (n[:, :], n[0, :], n[:, 0])",
+            "def basic_ext_slice(n):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return (n[:, :], n[0, :], n[:, 0])",
+            "def basic_ext_slice(n):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return (n[:, :], n[0, :], n[:, 0])",
+            "def basic_ext_slice(n):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return (n[:, :], n[0, :], n[:, 0])"
+        ]
+    },
+    {
+        "func_name": "basic_expand_dims",
+        "original": "def basic_expand_dims(n):\n    return n[:, tf.newaxis] - n[tf.newaxis, :]",
+        "mutated": [
+            "def basic_expand_dims(n):\n    if False:\n        i = 10\n    return n[:, tf.newaxis] - n[tf.newaxis, :]",
+            "def basic_expand_dims(n):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return n[:, tf.newaxis] - n[tf.newaxis, :]",
+            "def basic_expand_dims(n):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return n[:, tf.newaxis] - n[tf.newaxis, :]",
+            "def basic_expand_dims(n):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return n[:, tf.newaxis] - n[tf.newaxis, :]",
+            "def basic_expand_dims(n):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return n[:, tf.newaxis] - n[tf.newaxis, :]"
+        ]
+    },
+    {
+        "func_name": "slice_of_application",
+        "original": "def slice_of_application(n, x):\n    return n(x)[:, tf.newaxis] - n(x)[tf.newaxis, :]",
+        "mutated": [
+            "def slice_of_application(n, x):\n    if False:\n        i = 10\n    return n(x)[:, tf.newaxis] - n(x)[tf.newaxis, :]",
+            "def slice_of_application(n, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return n(x)[:, tf.newaxis] - n(x)[tf.newaxis, :]",
+            "def slice_of_application(n, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return n(x)[:, tf.newaxis] - n(x)[tf.newaxis, :]",
+            "def slice_of_application(n, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return n(x)[:, tf.newaxis] - n(x)[tf.newaxis, :]",
+            "def slice_of_application(n, x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return n(x)[:, tf.newaxis] - n(x)[tf.newaxis, :]"
+        ]
+    },
+    {
+        "func_name": "test_basic_ext_slice",
+        "original": "def test_basic_ext_slice(self):\n    self.assertFunctionMatchesEager(basic_ext_slice, tf.eye(3))",
+        "mutated": [
+            "def test_basic_ext_slice(self):\n    if False:\n        i = 10\n    self.assertFunctionMatchesEager(basic_ext_slice, tf.eye(3))",
+            "def test_basic_ext_slice(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    self.assertFunctionMatchesEager(basic_ext_slice, tf.eye(3))",
+            "def test_basic_ext_slice(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    self.assertFunctionMatchesEager(basic_ext_slice, tf.eye(3))",
+            "def test_basic_ext_slice(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    self.assertFunctionMatchesEager(basic_ext_slice, tf.eye(3))",
+            "def test_basic_ext_slice(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    self.assertFunctionMatchesEager(basic_ext_slice, tf.eye(3))"
+        ]
+    },
+    {
+        "func_name": "test_basic_expand_dims",
+        "original": "def test_basic_expand_dims(self):\n    self.assertFunctionMatchesEager(basic_expand_dims, tf.eye(3))",
+        "mutated": [
+            "def test_basic_expand_dims(self):\n    if False:\n        i = 10\n    self.assertFunctionMatchesEager(basic_expand_dims, tf.eye(3))",
+            "def test_basic_expand_dims(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    self.assertFunctionMatchesEager(basic_expand_dims, tf.eye(3))",
+            "def test_basic_expand_dims(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    self.assertFunctionMatchesEager(basic_expand_dims, tf.eye(3))",
+            "def test_basic_expand_dims(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    self.assertFunctionMatchesEager(basic_expand_dims, tf.eye(3))",
+            "def test_basic_expand_dims(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    self.assertFunctionMatchesEager(basic_expand_dims, tf.eye(3))"
+        ]
+    },
+    {
+        "func_name": "test_slice_of_application",
+        "original": "def test_slice_of_application(self):\n    self.assertFunctionMatchesEager(slice_of_application, lambda x: x, tf.eye(3))",
+        "mutated": [
+            "def test_slice_of_application(self):\n    if False:\n        i = 10\n    self.assertFunctionMatchesEager(slice_of_application, lambda x: x, tf.eye(3))",
+            "def test_slice_of_application(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    self.assertFunctionMatchesEager(slice_of_application, lambda x: x, tf.eye(3))",
+            "def test_slice_of_application(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    self.assertFunctionMatchesEager(slice_of_application, lambda x: x, tf.eye(3))",
+            "def test_slice_of_application(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    self.assertFunctionMatchesEager(slice_of_application, lambda x: x, tf.eye(3))",
+            "def test_slice_of_application(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    self.assertFunctionMatchesEager(slice_of_application, lambda x: x, tf.eye(3))"
+        ]
+    }
+]

@@ -1,0 +1,35 @@
+[
+    {
+        "func_name": "gin_sparse_array",
+        "original": "@gin.configurable\ndef gin_sparse_array(size, values, indices, fill_value=0):\n    arr = np.zeros(size)\n    arr.fill(fill_value)\n    arr[indices] = values\n    return arr",
+        "mutated": [
+            "@gin.configurable\ndef gin_sparse_array(size, values, indices, fill_value=0):\n    if False:\n        i = 10\n    arr = np.zeros(size)\n    arr.fill(fill_value)\n    arr[indices] = values\n    return arr",
+            "@gin.configurable\ndef gin_sparse_array(size, values, indices, fill_value=0):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    arr = np.zeros(size)\n    arr.fill(fill_value)\n    arr[indices] = values\n    return arr",
+            "@gin.configurable\ndef gin_sparse_array(size, values, indices, fill_value=0):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    arr = np.zeros(size)\n    arr.fill(fill_value)\n    arr[indices] = values\n    return arr",
+            "@gin.configurable\ndef gin_sparse_array(size, values, indices, fill_value=0):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    arr = np.zeros(size)\n    arr.fill(fill_value)\n    arr[indices] = values\n    return arr",
+            "@gin.configurable\ndef gin_sparse_array(size, values, indices, fill_value=0):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    arr = np.zeros(size)\n    arr.fill(fill_value)\n    arr[indices] = values\n    return arr"
+        ]
+    },
+    {
+        "func_name": "gin_sum",
+        "original": "@gin.configurable\ndef gin_sum(values):\n    result = values[0]\n    for value in values[1:]:\n        result += value\n    return result",
+        "mutated": [
+            "@gin.configurable\ndef gin_sum(values):\n    if False:\n        i = 10\n    result = values[0]\n    for value in values[1:]:\n        result += value\n    return result",
+            "@gin.configurable\ndef gin_sum(values):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    result = values[0]\n    for value in values[1:]:\n        result += value\n    return result",
+            "@gin.configurable\ndef gin_sum(values):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    result = values[0]\n    for value in values[1:]:\n        result += value\n    return result",
+            "@gin.configurable\ndef gin_sum(values):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    result = values[0]\n    for value in values[1:]:\n        result += value\n    return result",
+            "@gin.configurable\ndef gin_sum(values):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    result = values[0]\n    for value in values[1:]:\n        result += value\n    return result"
+        ]
+    },
+    {
+        "func_name": "gin_range",
+        "original": "@gin.configurable\ndef gin_range(n):\n    return range(n)",
+        "mutated": [
+            "@gin.configurable\ndef gin_range(n):\n    if False:\n        i = 10\n    return range(n)",
+            "@gin.configurable\ndef gin_range(n):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return range(n)",
+            "@gin.configurable\ndef gin_range(n):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return range(n)",
+            "@gin.configurable\ndef gin_range(n):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return range(n)",
+            "@gin.configurable\ndef gin_range(n):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return range(n)"
+        ]
+    }
+]

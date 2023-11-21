@@ -1,0 +1,46 @@
+[
+    {
+        "func_name": "bar",
+        "original": "@anno1\ndef bar(foo: 'foo'):\n    x = 2",
+        "mutated": [
+            "@anno1\ndef bar(foo: 'foo'):\n    if False:\n        i = 10\n    x = 2",
+            "@anno1\ndef bar(foo: 'foo'):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    x = 2",
+            "@anno1\ndef bar(foo: 'foo'):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    x = 2",
+            "@anno1\ndef bar(foo: 'foo'):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    x = 2",
+            "@anno1\ndef bar(foo: 'foo'):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    x = 2"
+        ]
+    },
+    {
+        "func_name": "foobar",
+        "original": "@anno1\n@anno2\ndef foobar():\n    x = 3",
+        "mutated": [
+            "@anno1\n@anno2\ndef foobar():\n    if False:\n        i = 10\n    x = 3",
+            "@anno1\n@anno2\ndef foobar():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    x = 3",
+            "@anno1\n@anno2\ndef foobar():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    x = 3",
+            "@anno1\n@anno2\ndef foobar():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    x = 3",
+            "@anno1\n@anno2\ndef foobar():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    x = 3"
+        ]
+    },
+    {
+        "func_name": "foo",
+        "original": "@app.route('/foo')\ndef foo():\n    x = 1",
+        "mutated": [
+            "@app.route('/foo')\ndef foo():\n    if False:\n        i = 10\n    x = 1",
+            "@app.route('/foo')\ndef foo():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    x = 1",
+            "@app.route('/foo')\ndef foo():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    x = 1",
+            "@app.route('/foo')\ndef foo():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    x = 1",
+            "@app.route('/foo')\ndef foo():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    x = 1"
+        ]
+    },
+    {
+        "func_name": "no_anno",
+        "original": "def no_anno():\n    x = 2",
+        "mutated": [
+            "def no_anno():\n    if False:\n        i = 10\n    x = 2",
+            "def no_anno():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    x = 2",
+            "def no_anno():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    x = 2",
+            "def no_anno():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    x = 2",
+            "def no_anno():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    x = 2"
+        ]
+    }
+]

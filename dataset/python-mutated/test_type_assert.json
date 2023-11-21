@@ -1,0 +1,24 @@
+[
+    {
+        "func_name": "a",
+        "original": "@type_assert(object, list, (int, str))\ndef a(self, a: List[int], b: Union[int, str]):\n    print(a, b)",
+        "mutated": [
+            "@type_assert(object, list, (int, str))\ndef a(self, a: List[int], b: Union[int, str]):\n    if False:\n        i = 10\n    print(a, b)",
+            "@type_assert(object, list, (int, str))\ndef a(self, a: List[int], b: Union[int, str]):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    print(a, b)",
+            "@type_assert(object, list, (int, str))\ndef a(self, a: List[int], b: Union[int, str]):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    print(a, b)",
+            "@type_assert(object, list, (int, str))\ndef a(self, a: List[int], b: Union[int, str]):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    print(a, b)",
+            "@type_assert(object, list, (int, str))\ndef a(self, a: List[int], b: Union[int, str]):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    print(a, b)"
+        ]
+    },
+    {
+        "func_name": "test_type_assert",
+        "original": "def test_type_assert(self):\n    with self.assertRaises(TypeError):\n        self.a([1], 2)\n        self.a(1, [123])",
+        "mutated": [
+            "def test_type_assert(self):\n    if False:\n        i = 10\n    with self.assertRaises(TypeError):\n        self.a([1], 2)\n        self.a(1, [123])",
+            "def test_type_assert(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    with self.assertRaises(TypeError):\n        self.a([1], 2)\n        self.a(1, [123])",
+            "def test_type_assert(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    with self.assertRaises(TypeError):\n        self.a([1], 2)\n        self.a(1, [123])",
+            "def test_type_assert(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    with self.assertRaises(TypeError):\n        self.a([1], 2)\n        self.a(1, [123])",
+            "def test_type_assert(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    with self.assertRaises(TypeError):\n        self.a([1], 2)\n        self.a(1, [123])"
+        ]
+    }
+]

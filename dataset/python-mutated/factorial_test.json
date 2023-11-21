@@ -1,0 +1,46 @@
+[
+    {
+        "func_name": "requires",
+        "original": "def requires(self):\n    if self.n > 1:\n        return Factorial(self.n - 1)",
+        "mutated": [
+            "def requires(self):\n    if False:\n        i = 10\n    if self.n > 1:\n        return Factorial(self.n - 1)",
+            "def requires(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    if self.n > 1:\n        return Factorial(self.n - 1)",
+            "def requires(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    if self.n > 1:\n        return Factorial(self.n - 1)",
+            "def requires(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    if self.n > 1:\n        return Factorial(self.n - 1)",
+            "def requires(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    if self.n > 1:\n        return Factorial(self.n - 1)"
+        ]
+    },
+    {
+        "func_name": "run",
+        "original": "def run(self):\n    if self.n > 1:\n        self.value = self.n * self.requires().value\n    else:\n        self.value = 1\n    self.complete = lambda : True",
+        "mutated": [
+            "def run(self):\n    if False:\n        i = 10\n    if self.n > 1:\n        self.value = self.n * self.requires().value\n    else:\n        self.value = 1\n    self.complete = lambda : True",
+            "def run(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    if self.n > 1:\n        self.value = self.n * self.requires().value\n    else:\n        self.value = 1\n    self.complete = lambda : True",
+            "def run(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    if self.n > 1:\n        self.value = self.n * self.requires().value\n    else:\n        self.value = 1\n    self.complete = lambda : True",
+            "def run(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    if self.n > 1:\n        self.value = self.n * self.requires().value\n    else:\n        self.value = 1\n    self.complete = lambda : True",
+            "def run(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    if self.n > 1:\n        self.value = self.n * self.requires().value\n    else:\n        self.value = 1\n    self.complete = lambda : True"
+        ]
+    },
+    {
+        "func_name": "complete",
+        "original": "def complete(self):\n    return False",
+        "mutated": [
+            "def complete(self):\n    if False:\n        i = 10\n    return False",
+            "def complete(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return False",
+            "def complete(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return False",
+            "def complete(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return False",
+            "def complete(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return False"
+        ]
+    },
+    {
+        "func_name": "test_invoke",
+        "original": "def test_invoke(self):\n    luigi.build([Factorial(100)], local_scheduler=True)\n    self.assertEqual(Factorial(42).value, 1405006117752879898543142606244511569936384000000000)",
+        "mutated": [
+            "def test_invoke(self):\n    if False:\n        i = 10\n    luigi.build([Factorial(100)], local_scheduler=True)\n    self.assertEqual(Factorial(42).value, 1405006117752879898543142606244511569936384000000000)",
+            "def test_invoke(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    luigi.build([Factorial(100)], local_scheduler=True)\n    self.assertEqual(Factorial(42).value, 1405006117752879898543142606244511569936384000000000)",
+            "def test_invoke(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    luigi.build([Factorial(100)], local_scheduler=True)\n    self.assertEqual(Factorial(42).value, 1405006117752879898543142606244511569936384000000000)",
+            "def test_invoke(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    luigi.build([Factorial(100)], local_scheduler=True)\n    self.assertEqual(Factorial(42).value, 1405006117752879898543142606244511569936384000000000)",
+            "def test_invoke(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    luigi.build([Factorial(100)], local_scheduler=True)\n    self.assertEqual(Factorial(42).value, 1405006117752879898543142606244511569936384000000000)"
+        ]
+    }
+]

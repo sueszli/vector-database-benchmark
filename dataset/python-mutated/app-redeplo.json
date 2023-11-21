@@ -1,0 +1,46 @@
+[
+    {
+        "func_name": "index",
+        "original": "@app.route('/')\ndef index():\n    return {'hello': 'world'}",
+        "mutated": [
+            "@app.route('/')\ndef index():\n    if False:\n        i = 10\n    return {'hello': 'world'}",
+            "@app.route('/')\ndef index():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return {'hello': 'world'}",
+            "@app.route('/')\ndef index():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return {'hello': 'world'}",
+            "@app.route('/')\ndef index():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return {'hello': 'world'}",
+            "@app.route('/')\ndef index():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return {'hello': 'world'}"
+        ]
+    },
+    {
+        "func_name": "nested_route",
+        "original": "@app.route('/a/b/c/d/e/f/g')\ndef nested_route():\n    return {'redeployed': True}",
+        "mutated": [
+            "@app.route('/a/b/c/d/e/f/g')\ndef nested_route():\n    if False:\n        i = 10\n    return {'redeployed': True}",
+            "@app.route('/a/b/c/d/e/f/g')\ndef nested_route():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return {'redeployed': True}",
+            "@app.route('/a/b/c/d/e/f/g')\ndef nested_route():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return {'redeployed': True}",
+            "@app.route('/a/b/c/d/e/f/g')\ndef nested_route():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return {'redeployed': True}",
+            "@app.route('/a/b/c/d/e/f/g')\ndef nested_route():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return {'redeployed': True}"
+        ]
+    },
+    {
+        "func_name": "multiple_methods",
+        "original": "@app.route('/multimethod', methods=['GET', 'PUT'])\ndef multiple_methods():\n    return {'method': app.current_request.method}",
+        "mutated": [
+            "@app.route('/multimethod', methods=['GET', 'PUT'])\ndef multiple_methods():\n    if False:\n        i = 10\n    return {'method': app.current_request.method}",
+            "@app.route('/multimethod', methods=['GET', 'PUT'])\ndef multiple_methods():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return {'method': app.current_request.method}",
+            "@app.route('/multimethod', methods=['GET', 'PUT'])\ndef multiple_methods():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return {'method': app.current_request.method}",
+            "@app.route('/multimethod', methods=['GET', 'PUT'])\ndef multiple_methods():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return {'method': app.current_request.method}",
+            "@app.route('/multimethod', methods=['GET', 'PUT'])\ndef multiple_methods():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return {'method': app.current_request.method}"
+        ]
+    },
+    {
+        "func_name": "redeploy",
+        "original": "@app.route('/redeploy')\ndef redeploy():\n    return {'success': True}",
+        "mutated": [
+            "@app.route('/redeploy')\ndef redeploy():\n    if False:\n        i = 10\n    return {'success': True}",
+            "@app.route('/redeploy')\ndef redeploy():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return {'success': True}",
+            "@app.route('/redeploy')\ndef redeploy():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return {'success': True}",
+            "@app.route('/redeploy')\ndef redeploy():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return {'success': True}",
+            "@app.route('/redeploy')\ndef redeploy():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return {'success': True}"
+        ]
+    }
+]

@@ -1,0 +1,46 @@
+[
+    {
+        "func_name": "getQuote",
+        "original": "def getQuote():\n    return 'Victory to the burgeois, you capitalist swine!'",
+        "mutated": [
+            "def getQuote():\n    if False:\n        i = 10\n    return 'Victory to the burgeois, you capitalist swine!'",
+            "def getQuote():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return 'Victory to the burgeois, you capitalist swine!'",
+            "def getQuote():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return 'Victory to the burgeois, you capitalist swine!'",
+            "def getQuote():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return 'Victory to the burgeois, you capitalist swine!'",
+            "def getQuote():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return 'Victory to the burgeois, you capitalist swine!'"
+        ]
+    },
+    {
+        "func_name": "xmlrpc_quote",
+        "original": "def xmlrpc_quote(self):\n    return getQuote()",
+        "mutated": [
+            "def xmlrpc_quote(self):\n    if False:\n        i = 10\n    return getQuote()",
+            "def xmlrpc_quote(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return getQuote()",
+            "def xmlrpc_quote(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return getQuote()",
+            "def xmlrpc_quote(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return getQuote()",
+            "def xmlrpc_quote(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return getQuote()"
+        ]
+    },
+    {
+        "func_name": "soap_quote",
+        "original": "def soap_quote(self):\n    return getQuote()",
+        "mutated": [
+            "def soap_quote(self):\n    if False:\n        i = 10\n    return getQuote()",
+            "def soap_quote(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return getQuote()",
+            "def soap_quote(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return getQuote()",
+            "def soap_quote(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return getQuote()",
+            "def soap_quote(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return getQuote()"
+        ]
+    },
+    {
+        "func_name": "main",
+        "original": "def main():\n    from twisted.internet import reactor\n    root = resource.Resource()\n    root.putChild('RPC2', XMLRPCQuoter())\n    root.putChild('SOAP', SOAPQuoter())\n    endpoint = endpoints.TCP4ServerEndpoint(reactor, 7080)\n    endpoint.listen(server.Site(root))\n    reactor.run()",
+        "mutated": [
+            "def main():\n    if False:\n        i = 10\n    from twisted.internet import reactor\n    root = resource.Resource()\n    root.putChild('RPC2', XMLRPCQuoter())\n    root.putChild('SOAP', SOAPQuoter())\n    endpoint = endpoints.TCP4ServerEndpoint(reactor, 7080)\n    endpoint.listen(server.Site(root))\n    reactor.run()",
+            "def main():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    from twisted.internet import reactor\n    root = resource.Resource()\n    root.putChild('RPC2', XMLRPCQuoter())\n    root.putChild('SOAP', SOAPQuoter())\n    endpoint = endpoints.TCP4ServerEndpoint(reactor, 7080)\n    endpoint.listen(server.Site(root))\n    reactor.run()",
+            "def main():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    from twisted.internet import reactor\n    root = resource.Resource()\n    root.putChild('RPC2', XMLRPCQuoter())\n    root.putChild('SOAP', SOAPQuoter())\n    endpoint = endpoints.TCP4ServerEndpoint(reactor, 7080)\n    endpoint.listen(server.Site(root))\n    reactor.run()",
+            "def main():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    from twisted.internet import reactor\n    root = resource.Resource()\n    root.putChild('RPC2', XMLRPCQuoter())\n    root.putChild('SOAP', SOAPQuoter())\n    endpoint = endpoints.TCP4ServerEndpoint(reactor, 7080)\n    endpoint.listen(server.Site(root))\n    reactor.run()",
+            "def main():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    from twisted.internet import reactor\n    root = resource.Resource()\n    root.putChild('RPC2', XMLRPCQuoter())\n    root.putChild('SOAP', SOAPQuoter())\n    endpoint = endpoints.TCP4ServerEndpoint(reactor, 7080)\n    endpoint.listen(server.Site(root))\n    reactor.run()"
+        ]
+    }
+]

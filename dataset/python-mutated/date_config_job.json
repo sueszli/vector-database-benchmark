@@ -1,0 +1,24 @@
+[
+    {
+        "func_name": "process_data_for_date",
+        "original": "@op\ndef process_data_for_date(context: OpExecutionContext, config: ProcessDateConfig):\n    date = config.date\n    context.log.info(f'processing data for {date}')",
+        "mutated": [
+            "@op\ndef process_data_for_date(context: OpExecutionContext, config: ProcessDateConfig):\n    if False:\n        i = 10\n    date = config.date\n    context.log.info(f'processing data for {date}')",
+            "@op\ndef process_data_for_date(context: OpExecutionContext, config: ProcessDateConfig):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    date = config.date\n    context.log.info(f'processing data for {date}')",
+            "@op\ndef process_data_for_date(context: OpExecutionContext, config: ProcessDateConfig):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    date = config.date\n    context.log.info(f'processing data for {date}')",
+            "@op\ndef process_data_for_date(context: OpExecutionContext, config: ProcessDateConfig):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    date = config.date\n    context.log.info(f'processing data for {date}')",
+            "@op\ndef process_data_for_date(context: OpExecutionContext, config: ProcessDateConfig):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    date = config.date\n    context.log.info(f'processing data for {date}')"
+        ]
+    },
+    {
+        "func_name": "do_stuff",
+        "original": "@job\ndef do_stuff():\n    process_data_for_date()",
+        "mutated": [
+            "@job\ndef do_stuff():\n    if False:\n        i = 10\n    process_data_for_date()",
+            "@job\ndef do_stuff():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    process_data_for_date()",
+            "@job\ndef do_stuff():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    process_data_for_date()",
+            "@job\ndef do_stuff():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    process_data_for_date()",
+            "@job\ndef do_stuff():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    process_data_for_date()"
+        ]
+    }
+]

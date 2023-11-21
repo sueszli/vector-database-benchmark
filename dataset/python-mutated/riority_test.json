@@ -1,0 +1,68 @@
+[
+    {
+        "func_name": "priority",
+        "original": "@property\ndef priority(self):\n    return self.prio",
+        "mutated": [
+            "@property\ndef priority(self):\n    if False:\n        i = 10\n    return self.prio",
+            "@property\ndef priority(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return self.prio",
+            "@property\ndef priority(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return self.prio",
+            "@property\ndef priority(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return self.prio",
+            "@property\ndef priority(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return self.prio"
+        ]
+    },
+    {
+        "func_name": "requires",
+        "original": "def requires(self):\n    if self.prio > 10:\n        return PrioTask(self.prio - 10)",
+        "mutated": [
+            "def requires(self):\n    if False:\n        i = 10\n    if self.prio > 10:\n        return PrioTask(self.prio - 10)",
+            "def requires(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    if self.prio > 10:\n        return PrioTask(self.prio - 10)",
+            "def requires(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    if self.prio > 10:\n        return PrioTask(self.prio - 10)",
+            "def requires(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    if self.prio > 10:\n        return PrioTask(self.prio - 10)",
+            "def requires(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    if self.prio > 10:\n        return PrioTask(self.prio - 10)"
+        ]
+    },
+    {
+        "func_name": "run",
+        "original": "def run(self):\n    self.t = PrioTask.run_counter\n    PrioTask.run_counter += 1",
+        "mutated": [
+            "def run(self):\n    if False:\n        i = 10\n    self.t = PrioTask.run_counter\n    PrioTask.run_counter += 1",
+            "def run(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    self.t = PrioTask.run_counter\n    PrioTask.run_counter += 1",
+            "def run(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    self.t = PrioTask.run_counter\n    PrioTask.run_counter += 1",
+            "def run(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    self.t = PrioTask.run_counter\n    PrioTask.run_counter += 1",
+            "def run(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    self.t = PrioTask.run_counter\n    PrioTask.run_counter += 1"
+        ]
+    },
+    {
+        "func_name": "complete",
+        "original": "def complete(self):\n    return hasattr(self, 't')",
+        "mutated": [
+            "def complete(self):\n    if False:\n        i = 10\n    return hasattr(self, 't')",
+            "def complete(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return hasattr(self, 't')",
+            "def complete(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return hasattr(self, 't')",
+            "def complete(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return hasattr(self, 't')",
+            "def complete(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return hasattr(self, 't')"
+        ]
+    },
+    {
+        "func_name": "test_priority",
+        "original": "def test_priority(self):\n    (p, q, r) = (PrioTask(1), PrioTask(2), PrioTask(3))\n    luigi.build([p, q, r], local_scheduler=True)\n    self.assertTrue(r.t < q.t < p.t)",
+        "mutated": [
+            "def test_priority(self):\n    if False:\n        i = 10\n    (p, q, r) = (PrioTask(1), PrioTask(2), PrioTask(3))\n    luigi.build([p, q, r], local_scheduler=True)\n    self.assertTrue(r.t < q.t < p.t)",
+            "def test_priority(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    (p, q, r) = (PrioTask(1), PrioTask(2), PrioTask(3))\n    luigi.build([p, q, r], local_scheduler=True)\n    self.assertTrue(r.t < q.t < p.t)",
+            "def test_priority(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    (p, q, r) = (PrioTask(1), PrioTask(2), PrioTask(3))\n    luigi.build([p, q, r], local_scheduler=True)\n    self.assertTrue(r.t < q.t < p.t)",
+            "def test_priority(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    (p, q, r) = (PrioTask(1), PrioTask(2), PrioTask(3))\n    luigi.build([p, q, r], local_scheduler=True)\n    self.assertTrue(r.t < q.t < p.t)",
+            "def test_priority(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    (p, q, r) = (PrioTask(1), PrioTask(2), PrioTask(3))\n    luigi.build([p, q, r], local_scheduler=True)\n    self.assertTrue(r.t < q.t < p.t)"
+        ]
+    },
+    {
+        "func_name": "test_priority_w_dep",
+        "original": "def test_priority_w_dep(self):\n    (x, y, z) = (PrioTask(25), PrioTask(15), PrioTask(5))\n    (a, b, c) = (PrioTask(24), PrioTask(14), PrioTask(4))\n    luigi.build([a, b, c, x, y, z], local_scheduler=True)\n    self.assertTrue(z.t < y.t < x.t < c.t < b.t < a.t)",
+        "mutated": [
+            "def test_priority_w_dep(self):\n    if False:\n        i = 10\n    (x, y, z) = (PrioTask(25), PrioTask(15), PrioTask(5))\n    (a, b, c) = (PrioTask(24), PrioTask(14), PrioTask(4))\n    luigi.build([a, b, c, x, y, z], local_scheduler=True)\n    self.assertTrue(z.t < y.t < x.t < c.t < b.t < a.t)",
+            "def test_priority_w_dep(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    (x, y, z) = (PrioTask(25), PrioTask(15), PrioTask(5))\n    (a, b, c) = (PrioTask(24), PrioTask(14), PrioTask(4))\n    luigi.build([a, b, c, x, y, z], local_scheduler=True)\n    self.assertTrue(z.t < y.t < x.t < c.t < b.t < a.t)",
+            "def test_priority_w_dep(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    (x, y, z) = (PrioTask(25), PrioTask(15), PrioTask(5))\n    (a, b, c) = (PrioTask(24), PrioTask(14), PrioTask(4))\n    luigi.build([a, b, c, x, y, z], local_scheduler=True)\n    self.assertTrue(z.t < y.t < x.t < c.t < b.t < a.t)",
+            "def test_priority_w_dep(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    (x, y, z) = (PrioTask(25), PrioTask(15), PrioTask(5))\n    (a, b, c) = (PrioTask(24), PrioTask(14), PrioTask(4))\n    luigi.build([a, b, c, x, y, z], local_scheduler=True)\n    self.assertTrue(z.t < y.t < x.t < c.t < b.t < a.t)",
+            "def test_priority_w_dep(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    (x, y, z) = (PrioTask(25), PrioTask(15), PrioTask(5))\n    (a, b, c) = (PrioTask(24), PrioTask(14), PrioTask(4))\n    luigi.build([a, b, c, x, y, z], local_scheduler=True)\n    self.assertTrue(z.t < y.t < x.t < c.t < b.t < a.t)"
+        ]
+    }
+]

@@ -1,0 +1,24 @@
+[
+    {
+        "func_name": "softplus",
+        "original": "def softplus(x):\n    return np.log1p(np.exp(x))",
+        "mutated": [
+            "def softplus(x):\n    if False:\n        i = 10\n    return np.log1p(np.exp(x))",
+            "def softplus(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return np.log1p(np.exp(x))",
+            "def softplus(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return np.log1p(np.exp(x))",
+            "def softplus(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return np.log1p(np.exp(x))",
+            "def softplus(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return np.log1p(np.exp(x))"
+        ]
+    },
+    {
+        "func_name": "forward",
+        "original": "def forward(x, W1, W2):\n    hidden = np.tanh(x.dot(W1))\n    output = hidden.dot(W2)\n    mean = output[:2]\n    stddev = softplus(output[2:])\n    return (mean, stddev)",
+        "mutated": [
+            "def forward(x, W1, W2):\n    if False:\n        i = 10\n    hidden = np.tanh(x.dot(W1))\n    output = hidden.dot(W2)\n    mean = output[:2]\n    stddev = softplus(output[2:])\n    return (mean, stddev)",
+            "def forward(x, W1, W2):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    hidden = np.tanh(x.dot(W1))\n    output = hidden.dot(W2)\n    mean = output[:2]\n    stddev = softplus(output[2:])\n    return (mean, stddev)",
+            "def forward(x, W1, W2):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    hidden = np.tanh(x.dot(W1))\n    output = hidden.dot(W2)\n    mean = output[:2]\n    stddev = softplus(output[2:])\n    return (mean, stddev)",
+            "def forward(x, W1, W2):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    hidden = np.tanh(x.dot(W1))\n    output = hidden.dot(W2)\n    mean = output[:2]\n    stddev = softplus(output[2:])\n    return (mean, stddev)",
+            "def forward(x, W1, W2):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    hidden = np.tanh(x.dot(W1))\n    output = hidden.dot(W2)\n    mean = output[:2]\n    stddev = softplus(output[2:])\n    return (mean, stddev)"
+        ]
+    }
+]

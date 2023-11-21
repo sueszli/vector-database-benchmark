@@ -1,0 +1,35 @@
+[
+    {
+        "func_name": "mapper",
+        "original": "def mapper(self, _, line):\n    yield (line, 1)",
+        "mutated": [
+            "def mapper(self, _, line):\n    if False:\n        i = 10\n    yield (line, 1)",
+            "def mapper(self, _, line):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    yield (line, 1)",
+            "def mapper(self, _, line):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    yield (line, 1)",
+            "def mapper(self, _, line):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    yield (line, 1)",
+            "def mapper(self, _, line):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    yield (line, 1)"
+        ]
+    },
+    {
+        "func_name": "reducer",
+        "original": "def reducer(self, key, values):\n    total = sum(values)\n    if total == 1:\n        yield (key, total)",
+        "mutated": [
+            "def reducer(self, key, values):\n    if False:\n        i = 10\n    total = sum(values)\n    if total == 1:\n        yield (key, total)",
+            "def reducer(self, key, values):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    total = sum(values)\n    if total == 1:\n        yield (key, total)",
+            "def reducer(self, key, values):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    total = sum(values)\n    if total == 1:\n        yield (key, total)",
+            "def reducer(self, key, values):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    total = sum(values)\n    if total == 1:\n        yield (key, total)",
+            "def reducer(self, key, values):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    total = sum(values)\n    if total == 1:\n        yield (key, total)"
+        ]
+    },
+    {
+        "func_name": "steps",
+        "original": "def steps(self):\n    \"\"\"Run the map and reduce steps.\"\"\"\n    return [self.mr(mapper=self.mapper, reducer=self.reducer)]",
+        "mutated": [
+            "def steps(self):\n    if False:\n        i = 10\n    'Run the map and reduce steps.'\n    return [self.mr(mapper=self.mapper, reducer=self.reducer)]",
+            "def steps(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    'Run the map and reduce steps.'\n    return [self.mr(mapper=self.mapper, reducer=self.reducer)]",
+            "def steps(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    'Run the map and reduce steps.'\n    return [self.mr(mapper=self.mapper, reducer=self.reducer)]",
+            "def steps(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    'Run the map and reduce steps.'\n    return [self.mr(mapper=self.mapper, reducer=self.reducer)]",
+            "def steps(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    'Run the map and reduce steps.'\n    return [self.mr(mapper=self.mapper, reducer=self.reducer)]"
+        ]
+    }
+]

@@ -1,0 +1,46 @@
+[
+    {
+        "func_name": "widgets",
+        "original": "@renderer\ndef widgets(self, request, tag):\n    for widget in self.widgetData:\n        yield WidgetElement(TagLoader(tag), widget)",
+        "mutated": [
+            "@renderer\ndef widgets(self, request, tag):\n    if False:\n        i = 10\n    for widget in self.widgetData:\n        yield WidgetElement(TagLoader(tag), widget)",
+            "@renderer\ndef widgets(self, request, tag):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    for widget in self.widgetData:\n        yield WidgetElement(TagLoader(tag), widget)",
+            "@renderer\ndef widgets(self, request, tag):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    for widget in self.widgetData:\n        yield WidgetElement(TagLoader(tag), widget)",
+            "@renderer\ndef widgets(self, request, tag):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    for widget in self.widgetData:\n        yield WidgetElement(TagLoader(tag), widget)",
+            "@renderer\ndef widgets(self, request, tag):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    for widget in self.widgetData:\n        yield WidgetElement(TagLoader(tag), widget)"
+        ]
+    },
+    {
+        "func_name": "__init__",
+        "original": "def __init__(self, loader, name):\n    Element.__init__(self, loader)\n    self._name = name",
+        "mutated": [
+            "def __init__(self, loader, name):\n    if False:\n        i = 10\n    Element.__init__(self, loader)\n    self._name = name",
+            "def __init__(self, loader, name):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    Element.__init__(self, loader)\n    self._name = name",
+            "def __init__(self, loader, name):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    Element.__init__(self, loader)\n    self._name = name",
+            "def __init__(self, loader, name):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    Element.__init__(self, loader)\n    self._name = name",
+            "def __init__(self, loader, name):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    Element.__init__(self, loader)\n    self._name = name"
+        ]
+    },
+    {
+        "func_name": "name",
+        "original": "@renderer\ndef name(self, request, tag):\n    return tag(self._name)",
+        "mutated": [
+            "@renderer\ndef name(self, request, tag):\n    if False:\n        i = 10\n    return tag(self._name)",
+            "@renderer\ndef name(self, request, tag):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return tag(self._name)",
+            "@renderer\ndef name(self, request, tag):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return tag(self._name)",
+            "@renderer\ndef name(self, request, tag):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return tag(self._name)",
+            "@renderer\ndef name(self, request, tag):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return tag(self._name)"
+        ]
+    },
+    {
+        "func_name": "printResult",
+        "original": "def printResult(result):\n    print(result)",
+        "mutated": [
+            "def printResult(result):\n    if False:\n        i = 10\n    print(result)",
+            "def printResult(result):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    print(result)",
+            "def printResult(result):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    print(result)",
+            "def printResult(result):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    print(result)",
+            "def printResult(result):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    print(result)"
+        ]
+    }
+]

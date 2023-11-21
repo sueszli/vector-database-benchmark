@@ -1,0 +1,24 @@
+[
+    {
+        "func_name": "slow_function",
+        "original": "@lru_cache(maxsize=None)\ndef slow_function(message, timeout):\n    \"\"\"This function is slow.\"\"\"\n    print(message)",
+        "mutated": [
+            "@lru_cache(maxsize=None)\ndef slow_function(message, timeout):\n    if False:\n        i = 10\n    'This function is slow.'\n    print(message)",
+            "@lru_cache(maxsize=None)\ndef slow_function(message, timeout):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    'This function is slow.'\n    print(message)",
+            "@lru_cache(maxsize=None)\ndef slow_function(message, timeout):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    'This function is slow.'\n    print(message)",
+            "@lru_cache(maxsize=None)\ndef slow_function(message, timeout):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    'This function is slow.'\n    print(message)",
+            "@lru_cache(maxsize=None)\ndef slow_function(message, timeout):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    'This function is slow.'\n    print(message)"
+        ]
+    },
+    {
+        "func_name": "feeling_good",
+        "original": "@contextmanager\ndef feeling_good(x: int, y: int) -> Generator:\n    \"\"\"You'll feel better in this context!\"\"\"\n    yield",
+        "mutated": [
+            "@contextmanager\ndef feeling_good(x: int, y: int) -> Generator:\n    if False:\n        i = 10\n    \"You'll feel better in this context!\"\n    yield",
+            "@contextmanager\ndef feeling_good(x: int, y: int) -> Generator:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    \"You'll feel better in this context!\"\n    yield",
+            "@contextmanager\ndef feeling_good(x: int, y: int) -> Generator:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    \"You'll feel better in this context!\"\n    yield",
+            "@contextmanager\ndef feeling_good(x: int, y: int) -> Generator:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    \"You'll feel better in this context!\"\n    yield",
+            "@contextmanager\ndef feeling_good(x: int, y: int) -> Generator:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    \"You'll feel better in this context!\"\n    yield"
+        ]
+    }
+]

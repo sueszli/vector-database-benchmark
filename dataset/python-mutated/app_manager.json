@@ -1,0 +1,35 @@
+[
+    {
+        "func_name": "__init__",
+        "original": "def __init__(self, app: Optional[QApplication]=None):\n    self.quitting_app = False\n    if app is not None:\n        connect(app.aboutToQuit, self.on_about_to_quit)",
+        "mutated": [
+            "def __init__(self, app: Optional[QApplication]=None):\n    if False:\n        i = 10\n    self.quitting_app = False\n    if app is not None:\n        connect(app.aboutToQuit, self.on_about_to_quit)",
+            "def __init__(self, app: Optional[QApplication]=None):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    self.quitting_app = False\n    if app is not None:\n        connect(app.aboutToQuit, self.on_about_to_quit)",
+            "def __init__(self, app: Optional[QApplication]=None):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    self.quitting_app = False\n    if app is not None:\n        connect(app.aboutToQuit, self.on_about_to_quit)",
+            "def __init__(self, app: Optional[QApplication]=None):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    self.quitting_app = False\n    if app is not None:\n        connect(app.aboutToQuit, self.on_about_to_quit)",
+            "def __init__(self, app: Optional[QApplication]=None):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    self.quitting_app = False\n    if app is not None:\n        connect(app.aboutToQuit, self.on_about_to_quit)"
+        ]
+    },
+    {
+        "func_name": "on_about_to_quit",
+        "original": "def on_about_to_quit(self):\n    self.quitting_app = True",
+        "mutated": [
+            "def on_about_to_quit(self):\n    if False:\n        i = 10\n    self.quitting_app = True",
+            "def on_about_to_quit(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    self.quitting_app = True",
+            "def on_about_to_quit(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    self.quitting_app = True",
+            "def on_about_to_quit(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    self.quitting_app = True",
+            "def on_about_to_quit(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    self.quitting_app = True"
+        ]
+    },
+    {
+        "func_name": "quit_application",
+        "original": "def quit_application(self):\n    if not self.quitting_app:\n        self.quitting_app = True\n        QApplication.quit()",
+        "mutated": [
+            "def quit_application(self):\n    if False:\n        i = 10\n    if not self.quitting_app:\n        self.quitting_app = True\n        QApplication.quit()",
+            "def quit_application(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    if not self.quitting_app:\n        self.quitting_app = True\n        QApplication.quit()",
+            "def quit_application(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    if not self.quitting_app:\n        self.quitting_app = True\n        QApplication.quit()",
+            "def quit_application(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    if not self.quitting_app:\n        self.quitting_app = True\n        QApplication.quit()",
+            "def quit_application(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    if not self.quitting_app:\n        self.quitting_app = True\n        QApplication.quit()"
+        ]
+    }
+]

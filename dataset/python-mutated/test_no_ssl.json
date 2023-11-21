@@ -1,0 +1,46 @@
+[
+    {
+        "func_name": "setup_class",
+        "original": "@classmethod\ndef setup_class(cls) -> None:\n    sys.modules.pop('ssl', None)\n    sys.modules.pop('_ssl', None)\n    module_stash.stash()\n    sys.meta_path.insert(0, ssl_blocker)",
+        "mutated": [
+            "@classmethod\ndef setup_class(cls) -> None:\n    if False:\n        i = 10\n    sys.modules.pop('ssl', None)\n    sys.modules.pop('_ssl', None)\n    module_stash.stash()\n    sys.meta_path.insert(0, ssl_blocker)",
+            "@classmethod\ndef setup_class(cls) -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    sys.modules.pop('ssl', None)\n    sys.modules.pop('_ssl', None)\n    module_stash.stash()\n    sys.meta_path.insert(0, ssl_blocker)",
+            "@classmethod\ndef setup_class(cls) -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    sys.modules.pop('ssl', None)\n    sys.modules.pop('_ssl', None)\n    module_stash.stash()\n    sys.meta_path.insert(0, ssl_blocker)",
+            "@classmethod\ndef setup_class(cls) -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    sys.modules.pop('ssl', None)\n    sys.modules.pop('_ssl', None)\n    module_stash.stash()\n    sys.meta_path.insert(0, ssl_blocker)",
+            "@classmethod\ndef setup_class(cls) -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    sys.modules.pop('ssl', None)\n    sys.modules.pop('_ssl', None)\n    module_stash.stash()\n    sys.meta_path.insert(0, ssl_blocker)"
+        ]
+    },
+    {
+        "func_name": "teardown_class",
+        "original": "@classmethod\ndef teardown_class(cls) -> None:\n    sys.meta_path.remove(ssl_blocker)\n    module_stash.pop()",
+        "mutated": [
+            "@classmethod\ndef teardown_class(cls) -> None:\n    if False:\n        i = 10\n    sys.meta_path.remove(ssl_blocker)\n    module_stash.pop()",
+            "@classmethod\ndef teardown_class(cls) -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    sys.meta_path.remove(ssl_blocker)\n    module_stash.pop()",
+            "@classmethod\ndef teardown_class(cls) -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    sys.meta_path.remove(ssl_blocker)\n    module_stash.pop()",
+            "@classmethod\ndef teardown_class(cls) -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    sys.meta_path.remove(ssl_blocker)\n    module_stash.pop()",
+            "@classmethod\ndef teardown_class(cls) -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    sys.meta_path.remove(ssl_blocker)\n    module_stash.pop()"
+        ]
+    },
+    {
+        "func_name": "test_cannot_import_ssl",
+        "original": "def test_cannot_import_ssl(self) -> None:\n    with pytest.raises(ImportError):\n        import ssl",
+        "mutated": [
+            "def test_cannot_import_ssl(self) -> None:\n    if False:\n        i = 10\n    with pytest.raises(ImportError):\n        import ssl",
+            "def test_cannot_import_ssl(self) -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    with pytest.raises(ImportError):\n        import ssl",
+            "def test_cannot_import_ssl(self) -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    with pytest.raises(ImportError):\n        import ssl",
+            "def test_cannot_import_ssl(self) -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    with pytest.raises(ImportError):\n        import ssl",
+            "def test_cannot_import_ssl(self) -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    with pytest.raises(ImportError):\n        import ssl"
+        ]
+    },
+    {
+        "func_name": "test_import_urllib3",
+        "original": "def test_import_urllib3(self) -> None:\n    import urllib3",
+        "mutated": [
+            "def test_import_urllib3(self) -> None:\n    if False:\n        i = 10\n    import urllib3",
+            "def test_import_urllib3(self) -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    import urllib3",
+            "def test_import_urllib3(self) -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    import urllib3",
+            "def test_import_urllib3(self) -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    import urllib3",
+            "def test_import_urllib3(self) -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    import urllib3"
+        ]
+    }
+]

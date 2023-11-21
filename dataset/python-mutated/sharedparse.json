@@ -1,0 +1,24 @@
+[
+    {
+        "func_name": "special_function_elide_names",
+        "original": "def special_function_elide_names(name: str) -> bool:\n    return name in MAGIC_METHODS_POS_ARGS_ONLY",
+        "mutated": [
+            "def special_function_elide_names(name: str) -> bool:\n    if False:\n        i = 10\n    return name in MAGIC_METHODS_POS_ARGS_ONLY",
+            "def special_function_elide_names(name: str) -> bool:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return name in MAGIC_METHODS_POS_ARGS_ONLY",
+            "def special_function_elide_names(name: str) -> bool:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return name in MAGIC_METHODS_POS_ARGS_ONLY",
+            "def special_function_elide_names(name: str) -> bool:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return name in MAGIC_METHODS_POS_ARGS_ONLY",
+            "def special_function_elide_names(name: str) -> bool:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return name in MAGIC_METHODS_POS_ARGS_ONLY"
+        ]
+    },
+    {
+        "func_name": "argument_elide_name",
+        "original": "def argument_elide_name(name: str | None) -> bool:\n    return name is not None and name.startswith('__') and (not name.endswith('__'))",
+        "mutated": [
+            "def argument_elide_name(name: str | None) -> bool:\n    if False:\n        i = 10\n    return name is not None and name.startswith('__') and (not name.endswith('__'))",
+            "def argument_elide_name(name: str | None) -> bool:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return name is not None and name.startswith('__') and (not name.endswith('__'))",
+            "def argument_elide_name(name: str | None) -> bool:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return name is not None and name.startswith('__') and (not name.endswith('__'))",
+            "def argument_elide_name(name: str | None) -> bool:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return name is not None and name.startswith('__') and (not name.endswith('__'))",
+            "def argument_elide_name(name: str | None) -> bool:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return name is not None and name.startswith('__') and (not name.endswith('__'))"
+        ]
+    }
+]

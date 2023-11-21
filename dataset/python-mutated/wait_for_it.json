@@ -1,0 +1,35 @@
+[
+    {
+        "func_name": "__init__",
+        "original": "def __init__(self):\n    Element.__init__(self, loader=sample)\n    self.deferred = Deferred()",
+        "mutated": [
+            "def __init__(self):\n    if False:\n        i = 10\n    Element.__init__(self, loader=sample)\n    self.deferred = Deferred()",
+            "def __init__(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    Element.__init__(self, loader=sample)\n    self.deferred = Deferred()",
+            "def __init__(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    Element.__init__(self, loader=sample)\n    self.deferred = Deferred()",
+            "def __init__(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    Element.__init__(self, loader=sample)\n    self.deferred = Deferred()",
+            "def __init__(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    Element.__init__(self, loader=sample)\n    self.deferred = Deferred()"
+        ]
+    },
+    {
+        "func_name": "wait",
+        "original": "@renderer\ndef wait(self, request, tag):\n    return self.deferred.addCallback(lambda aValue: tag('A value: ' + repr(aValue)))",
+        "mutated": [
+            "@renderer\ndef wait(self, request, tag):\n    if False:\n        i = 10\n    return self.deferred.addCallback(lambda aValue: tag('A value: ' + repr(aValue)))",
+            "@renderer\ndef wait(self, request, tag):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return self.deferred.addCallback(lambda aValue: tag('A value: ' + repr(aValue)))",
+            "@renderer\ndef wait(self, request, tag):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return self.deferred.addCallback(lambda aValue: tag('A value: ' + repr(aValue)))",
+            "@renderer\ndef wait(self, request, tag):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return self.deferred.addCallback(lambda aValue: tag('A value: ' + repr(aValue)))",
+            "@renderer\ndef wait(self, request, tag):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return self.deferred.addCallback(lambda aValue: tag('A value: ' + repr(aValue)))"
+        ]
+    },
+    {
+        "func_name": "done",
+        "original": "def done(ignore):\n    print('[[[Deferred fired.]]]')",
+        "mutated": [
+            "def done(ignore):\n    if False:\n        i = 10\n    print('[[[Deferred fired.]]]')",
+            "def done(ignore):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    print('[[[Deferred fired.]]]')",
+            "def done(ignore):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    print('[[[Deferred fired.]]]')",
+            "def done(ignore):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    print('[[[Deferred fired.]]]')",
+            "def done(ignore):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    print('[[[Deferred fired.]]]')"
+        ]
+    }
+]

@@ -1,0 +1,24 @@
+[
+    {
+        "func_name": "test_asyncio_iscoroutinefunction",
+        "original": "def test_asyncio_iscoroutinefunction():\n\n    @inject\n    async def foo():\n        ...\n    assert asyncio.iscoroutinefunction(foo)",
+        "mutated": [
+            "def test_asyncio_iscoroutinefunction():\n    if False:\n        i = 10\n\n    @inject\n    async def foo():\n        ...\n    assert asyncio.iscoroutinefunction(foo)",
+            "def test_asyncio_iscoroutinefunction():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n\n    @inject\n    async def foo():\n        ...\n    assert asyncio.iscoroutinefunction(foo)",
+            "def test_asyncio_iscoroutinefunction():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n    @inject\n    async def foo():\n        ...\n    assert asyncio.iscoroutinefunction(foo)",
+            "def test_asyncio_iscoroutinefunction():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n\n    @inject\n    async def foo():\n        ...\n    assert asyncio.iscoroutinefunction(foo)",
+            "def test_asyncio_iscoroutinefunction():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n\n    @inject\n    async def foo():\n        ...\n    assert asyncio.iscoroutinefunction(foo)"
+        ]
+    },
+    {
+        "func_name": "test_inspect_iscoroutinefunction",
+        "original": "def test_inspect_iscoroutinefunction():\n\n    @inject\n    async def foo():\n        ...\n    assert inspect.iscoroutinefunction(foo)",
+        "mutated": [
+            "def test_inspect_iscoroutinefunction():\n    if False:\n        i = 10\n\n    @inject\n    async def foo():\n        ...\n    assert inspect.iscoroutinefunction(foo)",
+            "def test_inspect_iscoroutinefunction():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n\n    @inject\n    async def foo():\n        ...\n    assert inspect.iscoroutinefunction(foo)",
+            "def test_inspect_iscoroutinefunction():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n    @inject\n    async def foo():\n        ...\n    assert inspect.iscoroutinefunction(foo)",
+            "def test_inspect_iscoroutinefunction():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n\n    @inject\n    async def foo():\n        ...\n    assert inspect.iscoroutinefunction(foo)",
+            "def test_inspect_iscoroutinefunction():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n\n    @inject\n    async def foo():\n        ...\n    assert inspect.iscoroutinefunction(foo)"
+        ]
+    }
+]

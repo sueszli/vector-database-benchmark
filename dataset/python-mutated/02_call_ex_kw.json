@@ -1,0 +1,79 @@
+[
+    {
+        "func_name": "showparams",
+        "original": "def showparams(c, test, **extra_args):\n    return {'c': c, **extra_args, 'test': test}",
+        "mutated": [
+            "def showparams(c, test, **extra_args):\n    if False:\n        i = 10\n    return {'c': c, **extra_args, 'test': test}",
+            "def showparams(c, test, **extra_args):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return {'c': c, **extra_args, 'test': test}",
+            "def showparams(c, test, **extra_args):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return {'c': c, **extra_args, 'test': test}",
+            "def showparams(c, test, **extra_args):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return {'c': c, **extra_args, 'test': test}",
+            "def showparams(c, test, **extra_args):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return {'c': c, **extra_args, 'test': test}"
+        ]
+    },
+    {
+        "func_name": "f",
+        "original": "def f(c, **extra_args):\n    return showparams(c, test='A', **extra_args)",
+        "mutated": [
+            "def f(c, **extra_args):\n    if False:\n        i = 10\n    return showparams(c, test='A', **extra_args)",
+            "def f(c, **extra_args):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return showparams(c, test='A', **extra_args)",
+            "def f(c, **extra_args):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return showparams(c, test='A', **extra_args)",
+            "def f(c, **extra_args):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return showparams(c, test='A', **extra_args)",
+            "def f(c, **extra_args):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return showparams(c, test='A', **extra_args)"
+        ]
+    },
+    {
+        "func_name": "f1",
+        "original": "def f1(c, d, **extra_args):\n    return showparams(c, test='B', **extra_args)",
+        "mutated": [
+            "def f1(c, d, **extra_args):\n    if False:\n        i = 10\n    return showparams(c, test='B', **extra_args)",
+            "def f1(c, d, **extra_args):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return showparams(c, test='B', **extra_args)",
+            "def f1(c, d, **extra_args):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return showparams(c, test='B', **extra_args)",
+            "def f1(c, d, **extra_args):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return showparams(c, test='B', **extra_args)",
+            "def f1(c, d, **extra_args):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return showparams(c, test='B', **extra_args)"
+        ]
+    },
+    {
+        "func_name": "f2",
+        "original": "def f2(**extra_args):\n    return showparams(1, test='C', **extra_args)",
+        "mutated": [
+            "def f2(**extra_args):\n    if False:\n        i = 10\n    return showparams(1, test='C', **extra_args)",
+            "def f2(**extra_args):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return showparams(1, test='C', **extra_args)",
+            "def f2(**extra_args):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return showparams(1, test='C', **extra_args)",
+            "def f2(**extra_args):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return showparams(1, test='C', **extra_args)",
+            "def f2(**extra_args):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return showparams(1, test='C', **extra_args)"
+        ]
+    },
+    {
+        "func_name": "f3",
+        "original": "def f3(c, *args, **extra_args):\n    return showparams(c, *args, **extra_args)",
+        "mutated": [
+            "def f3(c, *args, **extra_args):\n    if False:\n        i = 10\n    return showparams(c, *args, **extra_args)",
+            "def f3(c, *args, **extra_args):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return showparams(c, *args, **extra_args)",
+            "def f3(c, *args, **extra_args):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return showparams(c, *args, **extra_args)",
+            "def f3(c, *args, **extra_args):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return showparams(c, *args, **extra_args)",
+            "def f3(c, *args, **extra_args):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return showparams(c, *args, **extra_args)"
+        ]
+    },
+    {
+        "func_name": "posonly_sum",
+        "original": "def posonly_sum(pos_arg1, *arg, **kwarg):\n    return pos_arg1 + sum(arg) + sum(kwarg.values())",
+        "mutated": [
+            "def posonly_sum(pos_arg1, *arg, **kwarg):\n    if False:\n        i = 10\n    return pos_arg1 + sum(arg) + sum(kwarg.values())",
+            "def posonly_sum(pos_arg1, *arg, **kwarg):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return pos_arg1 + sum(arg) + sum(kwarg.values())",
+            "def posonly_sum(pos_arg1, *arg, **kwarg):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return pos_arg1 + sum(arg) + sum(kwarg.values())",
+            "def posonly_sum(pos_arg1, *arg, **kwarg):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return pos_arg1 + sum(arg) + sum(kwarg.values())",
+            "def posonly_sum(pos_arg1, *arg, **kwarg):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return pos_arg1 + sum(arg) + sum(kwarg.values())"
+        ]
+    },
+    {
+        "func_name": "f",
+        "original": "def f(a, b: 1, c: 2, d, e: 3=4, f=5, *g: 6, h: 7, i=8, j: 9=10, **k: 11) -> 12:\n    pass",
+        "mutated": [
+            "def f(a, b: 1, c: 2, d, e: 3=4, f=5, *g: 6, h: 7, i=8, j: 9=10, **k: 11) -> 12:\n    if False:\n        i = 10\n    pass",
+            "def f(a, b: 1, c: 2, d, e: 3=4, f=5, *g: 6, h: 7, i=8, j: 9=10, **k: 11) -> 12:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    pass",
+            "def f(a, b: 1, c: 2, d, e: 3=4, f=5, *g: 6, h: 7, i=8, j: 9=10, **k: 11) -> 12:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    pass",
+            "def f(a, b: 1, c: 2, d, e: 3=4, f=5, *g: 6, h: 7, i=8, j: 9=10, **k: 11) -> 12:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    pass",
+            "def f(a, b: 1, c: 2, d, e: 3=4, f=5, *g: 6, h: 7, i=8, j: 9=10, **k: 11) -> 12:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    pass"
+        ]
+    }
+]

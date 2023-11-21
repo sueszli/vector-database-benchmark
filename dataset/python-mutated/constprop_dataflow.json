@@ -1,0 +1,46 @@
+[
+    {
+        "func_name": "test1",
+        "original": "def test1():\n    x = 'x'\n    foo(x)\n    y = 'y'\n    foo(y)\n    t = x + y\n    foo(t)",
+        "mutated": [
+            "def test1():\n    if False:\n        i = 10\n    x = 'x'\n    foo(x)\n    y = 'y'\n    foo(y)\n    t = x + y\n    foo(t)",
+            "def test1():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    x = 'x'\n    foo(x)\n    y = 'y'\n    foo(y)\n    t = x + y\n    foo(t)",
+            "def test1():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    x = 'x'\n    foo(x)\n    y = 'y'\n    foo(y)\n    t = x + y\n    foo(t)",
+            "def test1():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    x = 'x'\n    foo(x)\n    y = 'y'\n    foo(y)\n    t = x + y\n    foo(t)",
+            "def test1():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    x = 'x'\n    foo(x)\n    y = 'y'\n    foo(y)\n    t = x + y\n    foo(t)"
+        ]
+    },
+    {
+        "func_name": "test2",
+        "original": "def test2(c):\n    if c:\n        a = 'a'\n        foo(a)\n    else:\n        a = 'b'\n        foo(a)\n    foo(a)",
+        "mutated": [
+            "def test2(c):\n    if False:\n        i = 10\n    if c:\n        a = 'a'\n        foo(a)\n    else:\n        a = 'b'\n        foo(a)\n    foo(a)",
+            "def test2(c):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    if c:\n        a = 'a'\n        foo(a)\n    else:\n        a = 'b'\n        foo(a)\n    foo(a)",
+            "def test2(c):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    if c:\n        a = 'a'\n        foo(a)\n    else:\n        a = 'b'\n        foo(a)\n    foo(a)",
+            "def test2(c):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    if c:\n        a = 'a'\n        foo(a)\n    else:\n        a = 'b'\n        foo(a)\n    foo(a)",
+            "def test2(c):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    if c:\n        a = 'a'\n        foo(a)\n    else:\n        a = 'b'\n        foo(a)\n    foo(a)"
+        ]
+    },
+    {
+        "func_name": "test3",
+        "original": "def test3(c):\n    if c:\n        x = 'hi'\n    foo(x)",
+        "mutated": [
+            "def test3(c):\n    if False:\n        i = 10\n    if c:\n        x = 'hi'\n    foo(x)",
+            "def test3(c):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    if c:\n        x = 'hi'\n    foo(x)",
+            "def test3(c):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    if c:\n        x = 'hi'\n    foo(x)",
+            "def test3(c):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    if c:\n        x = 'hi'\n    foo(x)",
+            "def test3(c):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    if c:\n        x = 'hi'\n    foo(x)"
+        ]
+    },
+    {
+        "func_name": "test4",
+        "original": "def test4(c):\n    x = 'hi'\n    foo(x)\n    while c:\n        x = x + ' hi'\n        foo(x)\n    foo(x)",
+        "mutated": [
+            "def test4(c):\n    if False:\n        i = 10\n    x = 'hi'\n    foo(x)\n    while c:\n        x = x + ' hi'\n        foo(x)\n    foo(x)",
+            "def test4(c):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    x = 'hi'\n    foo(x)\n    while c:\n        x = x + ' hi'\n        foo(x)\n    foo(x)",
+            "def test4(c):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    x = 'hi'\n    foo(x)\n    while c:\n        x = x + ' hi'\n        foo(x)\n    foo(x)",
+            "def test4(c):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    x = 'hi'\n    foo(x)\n    while c:\n        x = x + ' hi'\n        foo(x)\n    foo(x)",
+            "def test4(c):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    x = 'hi'\n    foo(x)\n    while c:\n        x = x + ' hi'\n        foo(x)\n    foo(x)"
+        ]
+    }
+]

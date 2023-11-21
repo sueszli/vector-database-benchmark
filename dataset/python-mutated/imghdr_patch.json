@@ -1,0 +1,35 @@
+[
+    {
+        "func_name": "test_jpeg1",
+        "original": "def test_jpeg1(h, f):\n    \"\"\"JPEG data in JFIF format\"\"\"\n    if b'JFIF' in h[:23]:\n        return 'jpeg'",
+        "mutated": [
+            "def test_jpeg1(h, f):\n    if False:\n        i = 10\n    'JPEG data in JFIF format'\n    if b'JFIF' in h[:23]:\n        return 'jpeg'",
+            "def test_jpeg1(h, f):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    'JPEG data in JFIF format'\n    if b'JFIF' in h[:23]:\n        return 'jpeg'",
+            "def test_jpeg1(h, f):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    'JPEG data in JFIF format'\n    if b'JFIF' in h[:23]:\n        return 'jpeg'",
+            "def test_jpeg1(h, f):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    'JPEG data in JFIF format'\n    if b'JFIF' in h[:23]:\n        return 'jpeg'",
+            "def test_jpeg1(h, f):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    'JPEG data in JFIF format'\n    if b'JFIF' in h[:23]:\n        return 'jpeg'"
+        ]
+    },
+    {
+        "func_name": "test_jpeg2",
+        "original": "def test_jpeg2(h, f):\n    \"\"\"JPEG with small header\"\"\"\n    if len(h) >= 32 and h[5] == 67 and (h[:32] == JPEG_MARK):\n        return 'jpeg'",
+        "mutated": [
+            "def test_jpeg2(h, f):\n    if False:\n        i = 10\n    'JPEG with small header'\n    if len(h) >= 32 and h[5] == 67 and (h[:32] == JPEG_MARK):\n        return 'jpeg'",
+            "def test_jpeg2(h, f):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    'JPEG with small header'\n    if len(h) >= 32 and h[5] == 67 and (h[:32] == JPEG_MARK):\n        return 'jpeg'",
+            "def test_jpeg2(h, f):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    'JPEG with small header'\n    if len(h) >= 32 and h[5] == 67 and (h[:32] == JPEG_MARK):\n        return 'jpeg'",
+            "def test_jpeg2(h, f):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    'JPEG with small header'\n    if len(h) >= 32 and h[5] == 67 and (h[:32] == JPEG_MARK):\n        return 'jpeg'",
+            "def test_jpeg2(h, f):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    'JPEG with small header'\n    if len(h) >= 32 and h[5] == 67 and (h[:32] == JPEG_MARK):\n        return 'jpeg'"
+        ]
+    },
+    {
+        "func_name": "test_jpeg3",
+        "original": "def test_jpeg3(h, f):\n    \"\"\"JPEG data in JFIF or Exif format\"\"\"\n    if h[6:10] in (b'JFIF', b'Exif') or h[:2] == b'\\xff\\xd8':\n        return 'jpeg'",
+        "mutated": [
+            "def test_jpeg3(h, f):\n    if False:\n        i = 10\n    'JPEG data in JFIF or Exif format'\n    if h[6:10] in (b'JFIF', b'Exif') or h[:2] == b'\\xff\\xd8':\n        return 'jpeg'",
+            "def test_jpeg3(h, f):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    'JPEG data in JFIF or Exif format'\n    if h[6:10] in (b'JFIF', b'Exif') or h[:2] == b'\\xff\\xd8':\n        return 'jpeg'",
+            "def test_jpeg3(h, f):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    'JPEG data in JFIF or Exif format'\n    if h[6:10] in (b'JFIF', b'Exif') or h[:2] == b'\\xff\\xd8':\n        return 'jpeg'",
+            "def test_jpeg3(h, f):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    'JPEG data in JFIF or Exif format'\n    if h[6:10] in (b'JFIF', b'Exif') or h[:2] == b'\\xff\\xd8':\n        return 'jpeg'",
+            "def test_jpeg3(h, f):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    'JPEG data in JFIF or Exif format'\n    if h[6:10] in (b'JFIF', b'Exif') or h[:2] == b'\\xff\\xd8':\n        return 'jpeg'"
+        ]
+    }
+]

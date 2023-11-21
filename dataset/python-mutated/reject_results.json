@@ -1,0 +1,24 @@
+[
+    {
+        "func_name": "_verify_subtask",
+        "original": "def _verify_subtask(*_, **__):\n    return False",
+        "mutated": [
+            "def _verify_subtask(*_, **__):\n    if False:\n        i = 10\n    return False",
+            "def _verify_subtask(*_, **__):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return False",
+            "def _verify_subtask(*_, **__):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return False",
+            "def _verify_subtask(*_, **__):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return False",
+            "def _verify_subtask(*_, **__):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return False"
+        ]
+    },
+    {
+        "func_name": "ts_init",
+        "original": "def ts_init(self, *args, **kwargs):\n    original_init(self, *args, **kwargs)\n\n    def _verify_subtask(*_, **__):\n        return False\n    self.task_manager.verify_subtask = _verify_subtask",
+        "mutated": [
+            "def ts_init(self, *args, **kwargs):\n    if False:\n        i = 10\n    original_init(self, *args, **kwargs)\n\n    def _verify_subtask(*_, **__):\n        return False\n    self.task_manager.verify_subtask = _verify_subtask",
+            "def ts_init(self, *args, **kwargs):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    original_init(self, *args, **kwargs)\n\n    def _verify_subtask(*_, **__):\n        return False\n    self.task_manager.verify_subtask = _verify_subtask",
+            "def ts_init(self, *args, **kwargs):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    original_init(self, *args, **kwargs)\n\n    def _verify_subtask(*_, **__):\n        return False\n    self.task_manager.verify_subtask = _verify_subtask",
+            "def ts_init(self, *args, **kwargs):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    original_init(self, *args, **kwargs)\n\n    def _verify_subtask(*_, **__):\n        return False\n    self.task_manager.verify_subtask = _verify_subtask",
+            "def ts_init(self, *args, **kwargs):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    original_init(self, *args, **kwargs)\n\n    def _verify_subtask(*_, **__):\n        return False\n    self.task_manager.verify_subtask = _verify_subtask"
+        ]
+    }
+]

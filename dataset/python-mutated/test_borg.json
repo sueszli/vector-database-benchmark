@@ -1,0 +1,57 @@
+[
+    {
+        "func_name": "setUp",
+        "original": "def setUp(self):\n    self.b1 = Borg()\n    self.b2 = Borg()\n    self.ib1 = YourBorg()",
+        "mutated": [
+            "def setUp(self):\n    if False:\n        i = 10\n    self.b1 = Borg()\n    self.b2 = Borg()\n    self.ib1 = YourBorg()",
+            "def setUp(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    self.b1 = Borg()\n    self.b2 = Borg()\n    self.ib1 = YourBorg()",
+            "def setUp(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    self.b1 = Borg()\n    self.b2 = Borg()\n    self.ib1 = YourBorg()",
+            "def setUp(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    self.b1 = Borg()\n    self.b2 = Borg()\n    self.ib1 = YourBorg()",
+            "def setUp(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    self.b1 = Borg()\n    self.b2 = Borg()\n    self.ib1 = YourBorg()"
+        ]
+    },
+    {
+        "func_name": "tearDown",
+        "original": "def tearDown(self):\n    self.ib1.state = 'Init'",
+        "mutated": [
+            "def tearDown(self):\n    if False:\n        i = 10\n    self.ib1.state = 'Init'",
+            "def tearDown(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    self.ib1.state = 'Init'",
+            "def tearDown(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    self.ib1.state = 'Init'",
+            "def tearDown(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    self.ib1.state = 'Init'",
+            "def tearDown(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    self.ib1.state = 'Init'"
+        ]
+    },
+    {
+        "func_name": "test_initial_borg_state_shall_be_init",
+        "original": "def test_initial_borg_state_shall_be_init(self):\n    b = Borg()\n    self.assertEqual(b.state, 'Init')",
+        "mutated": [
+            "def test_initial_borg_state_shall_be_init(self):\n    if False:\n        i = 10\n    b = Borg()\n    self.assertEqual(b.state, 'Init')",
+            "def test_initial_borg_state_shall_be_init(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    b = Borg()\n    self.assertEqual(b.state, 'Init')",
+            "def test_initial_borg_state_shall_be_init(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    b = Borg()\n    self.assertEqual(b.state, 'Init')",
+            "def test_initial_borg_state_shall_be_init(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    b = Borg()\n    self.assertEqual(b.state, 'Init')",
+            "def test_initial_borg_state_shall_be_init(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    b = Borg()\n    self.assertEqual(b.state, 'Init')"
+        ]
+    },
+    {
+        "func_name": "test_changing_instance_attribute_shall_change_borg_state",
+        "original": "def test_changing_instance_attribute_shall_change_borg_state(self):\n    self.b1.state = 'Running'\n    self.assertEqual(self.b1.state, 'Running')\n    self.assertEqual(self.b2.state, 'Running')\n    self.assertEqual(self.ib1.state, 'Running')",
+        "mutated": [
+            "def test_changing_instance_attribute_shall_change_borg_state(self):\n    if False:\n        i = 10\n    self.b1.state = 'Running'\n    self.assertEqual(self.b1.state, 'Running')\n    self.assertEqual(self.b2.state, 'Running')\n    self.assertEqual(self.ib1.state, 'Running')",
+            "def test_changing_instance_attribute_shall_change_borg_state(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    self.b1.state = 'Running'\n    self.assertEqual(self.b1.state, 'Running')\n    self.assertEqual(self.b2.state, 'Running')\n    self.assertEqual(self.ib1.state, 'Running')",
+            "def test_changing_instance_attribute_shall_change_borg_state(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    self.b1.state = 'Running'\n    self.assertEqual(self.b1.state, 'Running')\n    self.assertEqual(self.b2.state, 'Running')\n    self.assertEqual(self.ib1.state, 'Running')",
+            "def test_changing_instance_attribute_shall_change_borg_state(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    self.b1.state = 'Running'\n    self.assertEqual(self.b1.state, 'Running')\n    self.assertEqual(self.b2.state, 'Running')\n    self.assertEqual(self.ib1.state, 'Running')",
+            "def test_changing_instance_attribute_shall_change_borg_state(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    self.b1.state = 'Running'\n    self.assertEqual(self.b1.state, 'Running')\n    self.assertEqual(self.b2.state, 'Running')\n    self.assertEqual(self.ib1.state, 'Running')"
+        ]
+    },
+    {
+        "func_name": "test_instances_shall_have_own_ids",
+        "original": "def test_instances_shall_have_own_ids(self):\n    self.assertNotEqual(id(self.b1), id(self.b2), id(self.ib1))",
+        "mutated": [
+            "def test_instances_shall_have_own_ids(self):\n    if False:\n        i = 10\n    self.assertNotEqual(id(self.b1), id(self.b2), id(self.ib1))",
+            "def test_instances_shall_have_own_ids(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    self.assertNotEqual(id(self.b1), id(self.b2), id(self.ib1))",
+            "def test_instances_shall_have_own_ids(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    self.assertNotEqual(id(self.b1), id(self.b2), id(self.ib1))",
+            "def test_instances_shall_have_own_ids(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    self.assertNotEqual(id(self.b1), id(self.b2), id(self.ib1))",
+            "def test_instances_shall_have_own_ids(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    self.assertNotEqual(id(self.b1), id(self.b2), id(self.ib1))"
+        ]
+    }
+]

@@ -1,0 +1,46 @@
+[
+    {
+        "func_name": "__enter__",
+        "original": "def __enter__(self):\n    print('Enter')",
+        "mutated": [
+            "def __enter__(self):\n    if False:\n        i = 10\n    print('Enter')",
+            "def __enter__(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    print('Enter')",
+            "def __enter__(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    print('Enter')",
+            "def __enter__(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    print('Enter')",
+            "def __enter__(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    print('Enter')"
+        ]
+    },
+    {
+        "func_name": "__exit__",
+        "original": "def __exit__(self, *args):\n    print('Exit')",
+        "mutated": [
+            "def __exit__(self, *args):\n    if False:\n        i = 10\n    print('Exit')",
+            "def __exit__(self, *args):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    print('Exit')",
+            "def __exit__(self, *args):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    print('Exit')",
+            "def __exit__(self, *args):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    print('Exit')",
+            "def __exit__(self, *args):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    print('Exit')"
+        ]
+    },
+    {
+        "func_name": "bar",
+        "original": "def bar(x):\n    with foo():\n        while True:\n            x += 1\n            yield x",
+        "mutated": [
+            "def bar(x):\n    if False:\n        i = 10\n    with foo():\n        while True:\n            x += 1\n            yield x",
+            "def bar(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    with foo():\n        while True:\n            x += 1\n            yield x",
+            "def bar(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    with foo():\n        while True:\n            x += 1\n            yield x",
+            "def bar(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    with foo():\n        while True:\n            x += 1\n            yield x",
+            "def bar(x):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    with foo():\n        while True:\n            x += 1\n            yield x"
+        ]
+    },
+    {
+        "func_name": "func",
+        "original": "def func():\n    g = bar(0)\n    for _ in range(3):\n        print(next(g))",
+        "mutated": [
+            "def func():\n    if False:\n        i = 10\n    g = bar(0)\n    for _ in range(3):\n        print(next(g))",
+            "def func():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    g = bar(0)\n    for _ in range(3):\n        print(next(g))",
+            "def func():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    g = bar(0)\n    for _ in range(3):\n        print(next(g))",
+            "def func():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    g = bar(0)\n    for _ in range(3):\n        print(next(g))",
+            "def func():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    g = bar(0)\n    for _ in range(3):\n        print(next(g))"
+        ]
+    }
+]

@@ -1,0 +1,13 @@
+[
+    {
+        "func_name": "test_reexecution_results",
+        "original": "def test_reexecution_results():\n    assert not initial_result.success\n    assert from_failure_result.success\n    assert result.success",
+        "mutated": [
+            "def test_reexecution_results():\n    if False:\n        i = 10\n    assert not initial_result.success\n    assert from_failure_result.success\n    assert result.success",
+            "def test_reexecution_results():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    assert not initial_result.success\n    assert from_failure_result.success\n    assert result.success",
+            "def test_reexecution_results():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    assert not initial_result.success\n    assert from_failure_result.success\n    assert result.success",
+            "def test_reexecution_results():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    assert not initial_result.success\n    assert from_failure_result.success\n    assert result.success",
+            "def test_reexecution_results():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    assert not initial_result.success\n    assert from_failure_result.success\n    assert result.success"
+        ]
+    }
+]

@@ -1,0 +1,13 @@
+[
+    {
+        "func_name": "test_isfile",
+        "original": "def test_isfile(self):\n    \"\"\"Test if all ``.pyi`` files are properly installed.\"\"\"\n    for file in FILES:\n        assert_(os.path.isfile(file))",
+        "mutated": [
+            "def test_isfile(self):\n    if False:\n        i = 10\n    'Test if all ``.pyi`` files are properly installed.'\n    for file in FILES:\n        assert_(os.path.isfile(file))",
+            "def test_isfile(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    'Test if all ``.pyi`` files are properly installed.'\n    for file in FILES:\n        assert_(os.path.isfile(file))",
+            "def test_isfile(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    'Test if all ``.pyi`` files are properly installed.'\n    for file in FILES:\n        assert_(os.path.isfile(file))",
+            "def test_isfile(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    'Test if all ``.pyi`` files are properly installed.'\n    for file in FILES:\n        assert_(os.path.isfile(file))",
+            "def test_isfile(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    'Test if all ``.pyi`` files are properly installed.'\n    for file in FILES:\n        assert_(os.path.isfile(file))"
+        ]
+    }
+]

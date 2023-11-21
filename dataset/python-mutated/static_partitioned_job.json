@@ -1,0 +1,35 @@
+[
+    {
+        "func_name": "continent_config",
+        "original": "@static_partitioned_config(partition_keys=CONTINENTS)\ndef continent_config(partition_key: str):\n    return {'ops': {'continent_op': {'config': {'continent_name': partition_key}}}}",
+        "mutated": [
+            "@static_partitioned_config(partition_keys=CONTINENTS)\ndef continent_config(partition_key: str):\n    if False:\n        i = 10\n    return {'ops': {'continent_op': {'config': {'continent_name': partition_key}}}}",
+            "@static_partitioned_config(partition_keys=CONTINENTS)\ndef continent_config(partition_key: str):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return {'ops': {'continent_op': {'config': {'continent_name': partition_key}}}}",
+            "@static_partitioned_config(partition_keys=CONTINENTS)\ndef continent_config(partition_key: str):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return {'ops': {'continent_op': {'config': {'continent_name': partition_key}}}}",
+            "@static_partitioned_config(partition_keys=CONTINENTS)\ndef continent_config(partition_key: str):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return {'ops': {'continent_op': {'config': {'continent_name': partition_key}}}}",
+            "@static_partitioned_config(partition_keys=CONTINENTS)\ndef continent_config(partition_key: str):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return {'ops': {'continent_op': {'config': {'continent_name': partition_key}}}}"
+        ]
+    },
+    {
+        "func_name": "continent_op",
+        "original": "@op\ndef continent_op(context: OpExecutionContext, config: ContinentOpConfig):\n    context.log.info(config.continent_name)",
+        "mutated": [
+            "@op\ndef continent_op(context: OpExecutionContext, config: ContinentOpConfig):\n    if False:\n        i = 10\n    context.log.info(config.continent_name)",
+            "@op\ndef continent_op(context: OpExecutionContext, config: ContinentOpConfig):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    context.log.info(config.continent_name)",
+            "@op\ndef continent_op(context: OpExecutionContext, config: ContinentOpConfig):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    context.log.info(config.continent_name)",
+            "@op\ndef continent_op(context: OpExecutionContext, config: ContinentOpConfig):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    context.log.info(config.continent_name)",
+            "@op\ndef continent_op(context: OpExecutionContext, config: ContinentOpConfig):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    context.log.info(config.continent_name)"
+        ]
+    },
+    {
+        "func_name": "continent_job",
+        "original": "@job(config=continent_config)\ndef continent_job():\n    continent_op()",
+        "mutated": [
+            "@job(config=continent_config)\ndef continent_job():\n    if False:\n        i = 10\n    continent_op()",
+            "@job(config=continent_config)\ndef continent_job():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    continent_op()",
+            "@job(config=continent_config)\ndef continent_job():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    continent_op()",
+            "@job(config=continent_config)\ndef continent_job():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    continent_op()",
+            "@job(config=continent_config)\ndef continent_job():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    continent_op()"
+        ]
+    }
+]

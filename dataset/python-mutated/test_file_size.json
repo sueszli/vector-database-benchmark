@@ -1,0 +1,35 @@
+[
+    {
+        "func_name": "setUp",
+        "original": "def setUp(self):\n    self.tmp_dir = MyPath.make_temp_dir()",
+        "mutated": [
+            "def setUp(self):\n    if False:\n        i = 10\n    self.tmp_dir = MyPath.make_temp_dir()",
+            "def setUp(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    self.tmp_dir = MyPath.make_temp_dir()",
+            "def setUp(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    self.tmp_dir = MyPath.make_temp_dir()",
+            "def setUp(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    self.tmp_dir = MyPath.make_temp_dir()",
+            "def setUp(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    self.tmp_dir = MyPath.make_temp_dir()"
+        ]
+    },
+    {
+        "func_name": "test",
+        "original": "def test(self):\n    make_file(self.tmp_dir / 'a-file', '123')\n    result = fs.file_size(self.tmp_dir / 'a-file')\n    assert 3 == result",
+        "mutated": [
+            "def test(self):\n    if False:\n        i = 10\n    make_file(self.tmp_dir / 'a-file', '123')\n    result = fs.file_size(self.tmp_dir / 'a-file')\n    assert 3 == result",
+            "def test(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    make_file(self.tmp_dir / 'a-file', '123')\n    result = fs.file_size(self.tmp_dir / 'a-file')\n    assert 3 == result",
+            "def test(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    make_file(self.tmp_dir / 'a-file', '123')\n    result = fs.file_size(self.tmp_dir / 'a-file')\n    assert 3 == result",
+            "def test(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    make_file(self.tmp_dir / 'a-file', '123')\n    result = fs.file_size(self.tmp_dir / 'a-file')\n    assert 3 == result",
+            "def test(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    make_file(self.tmp_dir / 'a-file', '123')\n    result = fs.file_size(self.tmp_dir / 'a-file')\n    assert 3 == result"
+        ]
+    },
+    {
+        "func_name": "tearDown",
+        "original": "def tearDown(self):\n    self.tmp_dir.clean_up()",
+        "mutated": [
+            "def tearDown(self):\n    if False:\n        i = 10\n    self.tmp_dir.clean_up()",
+            "def tearDown(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    self.tmp_dir.clean_up()",
+            "def tearDown(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    self.tmp_dir.clean_up()",
+            "def tearDown(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    self.tmp_dir.clean_up()",
+            "def tearDown(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    self.tmp_dir.clean_up()"
+        ]
+    }
+]

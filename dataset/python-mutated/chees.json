@@ -1,0 +1,46 @@
+[
+    {
+        "func_name": "__cinit__",
+        "original": "def __cinit__(self):\n    self.cheeses = []",
+        "mutated": [
+            "def __cinit__(self):\n    if False:\n        i = 10\n    self.cheeses = []",
+            "def __cinit__(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    self.cheeses = []",
+            "def __cinit__(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    self.cheeses = []",
+            "def __cinit__(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    self.cheeses = []",
+            "def __cinit__(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    self.cheeses = []"
+        ]
+    },
+    {
+        "func_name": "cheese",
+        "original": "@property\ndef cheese(self):\n    return \"We don't have: %s\" % self.cheeses",
+        "mutated": [
+            "@property\ndef cheese(self):\n    if False:\n        i = 10\n    return \"We don't have: %s\" % self.cheeses",
+            "@property\ndef cheese(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return \"We don't have: %s\" % self.cheeses",
+            "@property\ndef cheese(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return \"We don't have: %s\" % self.cheeses",
+            "@property\ndef cheese(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return \"We don't have: %s\" % self.cheeses",
+            "@property\ndef cheese(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return \"We don't have: %s\" % self.cheeses"
+        ]
+    },
+    {
+        "func_name": "cheese",
+        "original": "@cheese.setter\ndef cheese(self, value):\n    self.cheeses.append(value)",
+        "mutated": [
+            "@cheese.setter\ndef cheese(self, value):\n    if False:\n        i = 10\n    self.cheeses.append(value)",
+            "@cheese.setter\ndef cheese(self, value):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    self.cheeses.append(value)",
+            "@cheese.setter\ndef cheese(self, value):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    self.cheeses.append(value)",
+            "@cheese.setter\ndef cheese(self, value):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    self.cheeses.append(value)",
+            "@cheese.setter\ndef cheese(self, value):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    self.cheeses.append(value)"
+        ]
+    },
+    {
+        "func_name": "cheese",
+        "original": "@cheese.deleter\ndef cheese(self):\n    del self.cheeses[:]",
+        "mutated": [
+            "@cheese.deleter\ndef cheese(self):\n    if False:\n        i = 10\n    del self.cheeses[:]",
+            "@cheese.deleter\ndef cheese(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    del self.cheeses[:]",
+            "@cheese.deleter\ndef cheese(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    del self.cheeses[:]",
+            "@cheese.deleter\ndef cheese(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    del self.cheeses[:]",
+            "@cheese.deleter\ndef cheese(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    del self.cheeses[:]"
+        ]
+    }
+]

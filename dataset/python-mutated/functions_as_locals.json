@@ -1,0 +1,101 @@
+[
+    {
+        "func_name": "foo",
+        "original": "def foo(arg):\n    _test_sink(arg)",
+        "mutated": [
+            "def foo(arg):\n    if False:\n        i = 10\n    _test_sink(arg)",
+            "def foo(arg):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    _test_sink(arg)",
+            "def foo(arg):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    _test_sink(arg)",
+            "def foo(arg):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    _test_sink(arg)",
+            "def foo(arg):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    _test_sink(arg)"
+        ]
+    },
+    {
+        "func_name": "foo_as_local",
+        "original": "def foo_as_local():\n    x = _test_source()\n    f = foo\n    foo(x)\n    f(x)",
+        "mutated": [
+            "def foo_as_local():\n    if False:\n        i = 10\n    x = _test_source()\n    f = foo\n    foo(x)\n    f(x)",
+            "def foo_as_local():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    x = _test_source()\n    f = foo\n    foo(x)\n    f(x)",
+            "def foo_as_local():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    x = _test_source()\n    f = foo\n    foo(x)\n    f(x)",
+            "def foo_as_local():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    x = _test_source()\n    f = foo\n    foo(x)\n    f(x)",
+            "def foo_as_local():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    x = _test_source()\n    f = foo\n    foo(x)\n    f(x)"
+        ]
+    },
+    {
+        "func_name": "local_tito",
+        "original": "def local_tito(arg):\n    f = foo\n    f(arg)",
+        "mutated": [
+            "def local_tito(arg):\n    if False:\n        i = 10\n    f = foo\n    f(arg)",
+            "def local_tito(arg):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    f = foo\n    f(arg)",
+            "def local_tito(arg):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    f = foo\n    f(arg)",
+            "def local_tito(arg):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    f = foo\n    f(arg)",
+            "def local_tito(arg):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    f = foo\n    f(arg)"
+        ]
+    },
+    {
+        "func_name": "m",
+        "original": "def m(self, arg):\n    _test_sink(arg)",
+        "mutated": [
+            "def m(self, arg):\n    if False:\n        i = 10\n    _test_sink(arg)",
+            "def m(self, arg):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    _test_sink(arg)",
+            "def m(self, arg):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    _test_sink(arg)",
+            "def m(self, arg):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    _test_sink(arg)",
+            "def m(self, arg):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    _test_sink(arg)"
+        ]
+    },
+    {
+        "func_name": "local_function_with_method_sink",
+        "original": "def local_function_with_method_sink(c: C):\n    f = c.m\n    x = _test_source()\n    c.m(x)\n    f(x)",
+        "mutated": [
+            "def local_function_with_method_sink(c: C):\n    if False:\n        i = 10\n    f = c.m\n    x = _test_source()\n    c.m(x)\n    f(x)",
+            "def local_function_with_method_sink(c: C):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    f = c.m\n    x = _test_source()\n    c.m(x)\n    f(x)",
+            "def local_function_with_method_sink(c: C):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    f = c.m\n    x = _test_source()\n    c.m(x)\n    f(x)",
+            "def local_function_with_method_sink(c: C):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    f = c.m\n    x = _test_source()\n    c.m(x)\n    f(x)",
+            "def local_function_with_method_sink(c: C):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    f = c.m\n    x = _test_source()\n    c.m(x)\n    f(x)"
+        ]
+    },
+    {
+        "func_name": "method_tito",
+        "original": "def method_tito(c: C, arg):\n    f = c.m\n    f(arg)",
+        "mutated": [
+            "def method_tito(c: C, arg):\n    if False:\n        i = 10\n    f = c.m\n    f(arg)",
+            "def method_tito(c: C, arg):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    f = c.m\n    f(arg)",
+            "def method_tito(c: C, arg):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    f = c.m\n    f(arg)",
+            "def method_tito(c: C, arg):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    f = c.m\n    f(arg)",
+            "def method_tito(c: C, arg):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    f = c.m\n    f(arg)"
+        ]
+    },
+    {
+        "func_name": "barA",
+        "original": "def barA(arg1: str, arg2: str):\n    _test_sink(arg1)",
+        "mutated": [
+            "def barA(arg1: str, arg2: str):\n    if False:\n        i = 10\n    _test_sink(arg1)",
+            "def barA(arg1: str, arg2: str):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    _test_sink(arg1)",
+            "def barA(arg1: str, arg2: str):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    _test_sink(arg1)",
+            "def barA(arg1: str, arg2: str):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    _test_sink(arg1)",
+            "def barA(arg1: str, arg2: str):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    _test_sink(arg1)"
+        ]
+    },
+    {
+        "func_name": "barB",
+        "original": "def barB(arg1: str, arg2: int):\n    _test_sink(arg2)",
+        "mutated": [
+            "def barB(arg1: str, arg2: int):\n    if False:\n        i = 10\n    _test_sink(arg2)",
+            "def barB(arg1: str, arg2: int):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    _test_sink(arg2)",
+            "def barB(arg1: str, arg2: int):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    _test_sink(arg2)",
+            "def barB(arg1: str, arg2: int):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    _test_sink(arg2)",
+            "def barB(arg1: str, arg2: int):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    _test_sink(arg2)"
+        ]
+    },
+    {
+        "func_name": "a_or_b",
+        "original": "def a_or_b():\n    if 1 > 2:\n        f = barA\n    else:\n        f = barB\n    f(_test_source(), 0)\n    f(0, _test_source())",
+        "mutated": [
+            "def a_or_b():\n    if False:\n        i = 10\n    if 1 > 2:\n        f = barA\n    else:\n        f = barB\n    f(_test_source(), 0)\n    f(0, _test_source())",
+            "def a_or_b():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    if 1 > 2:\n        f = barA\n    else:\n        f = barB\n    f(_test_source(), 0)\n    f(0, _test_source())",
+            "def a_or_b():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    if 1 > 2:\n        f = barA\n    else:\n        f = barB\n    f(_test_source(), 0)\n    f(0, _test_source())",
+            "def a_or_b():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    if 1 > 2:\n        f = barA\n    else:\n        f = barB\n    f(_test_source(), 0)\n    f(0, _test_source())",
+            "def a_or_b():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    if 1 > 2:\n        f = barA\n    else:\n        f = barB\n    f(_test_source(), 0)\n    f(0, _test_source())"
+        ]
+    }
+]

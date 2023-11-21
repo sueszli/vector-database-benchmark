@@ -1,0 +1,57 @@
+[
+    {
+        "func_name": "test_trivial",
+        "original": "def test_trivial(self):\n    self.assertEqual(shlex_split('a b c'), ['a', 'b', 'c'])",
+        "mutated": [
+            "def test_trivial(self):\n    if False:\n        i = 10\n    self.assertEqual(shlex_split('a b c'), ['a', 'b', 'c'])",
+            "def test_trivial(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    self.assertEqual(shlex_split('a b c'), ['a', 'b', 'c'])",
+            "def test_trivial(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    self.assertEqual(shlex_split('a b c'), ['a', 'b', 'c'])",
+            "def test_trivial(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    self.assertEqual(shlex_split('a b c'), ['a', 'b', 'c'])",
+            "def test_trivial(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    self.assertEqual(shlex_split('a b c'), ['a', 'b', 'c'])"
+        ]
+    },
+    {
+        "func_name": "test_unicode",
+        "original": "def test_unicode(self):\n    self.assertEqual(shlex_split(u'a b \u010d'), [u'a', u'b', u'\u010d'])",
+        "mutated": [
+            "def test_unicode(self):\n    if False:\n        i = 10\n    self.assertEqual(shlex_split(u'a b \u010d'), [u'a', u'b', u'\u010d'])",
+            "def test_unicode(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    self.assertEqual(shlex_split(u'a b \u010d'), [u'a', u'b', u'\u010d'])",
+            "def test_unicode(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    self.assertEqual(shlex_split(u'a b \u010d'), [u'a', u'b', u'\u010d'])",
+            "def test_unicode(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    self.assertEqual(shlex_split(u'a b \u010d'), [u'a', u'b', u'\u010d'])",
+            "def test_unicode(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    self.assertEqual(shlex_split(u'a b \u010d'), [u'a', u'b', u'\u010d'])"
+        ]
+    },
+    {
+        "func_name": "test_quoted",
+        "original": "def test_quoted(self):\n    self.assertEqual(shlex_split('\"a b\" c'), ['a b', 'c'])",
+        "mutated": [
+            "def test_quoted(self):\n    if False:\n        i = 10\n    self.assertEqual(shlex_split('\"a b\" c'), ['a b', 'c'])",
+            "def test_quoted(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    self.assertEqual(shlex_split('\"a b\" c'), ['a b', 'c'])",
+            "def test_quoted(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    self.assertEqual(shlex_split('\"a b\" c'), ['a b', 'c'])",
+            "def test_quoted(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    self.assertEqual(shlex_split('\"a b\" c'), ['a b', 'c'])",
+            "def test_quoted(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    self.assertEqual(shlex_split('\"a b\" c'), ['a b', 'c'])"
+        ]
+    },
+    {
+        "func_name": "test_comments",
+        "original": "def test_comments(self):\n    self.assertEqual(shlex_split('\"a b\" c # d', comments=True), ['a b', 'c'])",
+        "mutated": [
+            "def test_comments(self):\n    if False:\n        i = 10\n    self.assertEqual(shlex_split('\"a b\" c # d', comments=True), ['a b', 'c'])",
+            "def test_comments(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    self.assertEqual(shlex_split('\"a b\" c # d', comments=True), ['a b', 'c'])",
+            "def test_comments(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    self.assertEqual(shlex_split('\"a b\" c # d', comments=True), ['a b', 'c'])",
+            "def test_comments(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    self.assertEqual(shlex_split('\"a b\" c # d', comments=True), ['a b', 'c'])",
+            "def test_comments(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    self.assertEqual(shlex_split('\"a b\" c # d', comments=True), ['a b', 'c'])"
+        ]
+    },
+    {
+        "func_name": "test_error",
+        "original": "def test_error(self):\n    self.assertRaises(ValueError, shlex_split, 'a \"b')",
+        "mutated": [
+            "def test_error(self):\n    if False:\n        i = 10\n    self.assertRaises(ValueError, shlex_split, 'a \"b')",
+            "def test_error(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    self.assertRaises(ValueError, shlex_split, 'a \"b')",
+            "def test_error(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    self.assertRaises(ValueError, shlex_split, 'a \"b')",
+            "def test_error(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    self.assertRaises(ValueError, shlex_split, 'a \"b')",
+            "def test_error(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    self.assertRaises(ValueError, shlex_split, 'a \"b')"
+        ]
+    }
+]

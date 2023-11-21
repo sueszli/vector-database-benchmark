@@ -1,0 +1,112 @@
+[
+    {
+        "func_name": "__getattribute__",
+        "original": "def __getattribute__(self, attribute_name):\n    print('Asking context manager attribute', attribute_name)\n    return object.__getattribute__(self, attribute_name)",
+        "mutated": [
+            "def __getattribute__(self, attribute_name):\n    if False:\n        i = 10\n    print('Asking context manager attribute', attribute_name)\n    return object.__getattribute__(self, attribute_name)",
+            "def __getattribute__(self, attribute_name):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    print('Asking context manager attribute', attribute_name)\n    return object.__getattribute__(self, attribute_name)",
+            "def __getattribute__(self, attribute_name):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    print('Asking context manager attribute', attribute_name)\n    return object.__getattribute__(self, attribute_name)",
+            "def __getattribute__(self, attribute_name):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    print('Asking context manager attribute', attribute_name)\n    return object.__getattribute__(self, attribute_name)",
+            "def __getattribute__(self, attribute_name):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    print('Asking context manager attribute', attribute_name)\n    return object.__getattribute__(self, attribute_name)"
+        ]
+    },
+    {
+        "func_name": "__enter__",
+        "original": "def __enter__(self):\n    global x\n    x += 1\n    print('Entered context manager with counter value', x)\n    return x",
+        "mutated": [
+            "def __enter__(self):\n    if False:\n        i = 10\n    global x\n    x += 1\n    print('Entered context manager with counter value', x)\n    return x",
+            "def __enter__(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    global x\n    x += 1\n    print('Entered context manager with counter value', x)\n    return x",
+            "def __enter__(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    global x\n    x += 1\n    print('Entered context manager with counter value', x)\n    return x",
+            "def __enter__(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    global x\n    x += 1\n    print('Entered context manager with counter value', x)\n    return x",
+            "def __enter__(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    global x\n    x += 1\n    print('Entered context manager with counter value', x)\n    return x"
+        ]
+    },
+    {
+        "func_name": "__exit__",
+        "original": "def __exit__(self, exc_type, exc_value, traceback):\n    print('Context manager exit sees', exc_type, exc_value, traceback)\n    print('Published to context manager exit is', sys.exc_info())\n    return False",
+        "mutated": [
+            "def __exit__(self, exc_type, exc_value, traceback):\n    if False:\n        i = 10\n    print('Context manager exit sees', exc_type, exc_value, traceback)\n    print('Published to context manager exit is', sys.exc_info())\n    return False",
+            "def __exit__(self, exc_type, exc_value, traceback):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    print('Context manager exit sees', exc_type, exc_value, traceback)\n    print('Published to context manager exit is', sys.exc_info())\n    return False",
+            "def __exit__(self, exc_type, exc_value, traceback):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    print('Context manager exit sees', exc_type, exc_value, traceback)\n    print('Published to context manager exit is', sys.exc_info())\n    return False",
+            "def __exit__(self, exc_type, exc_value, traceback):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    print('Context manager exit sees', exc_type, exc_value, traceback)\n    print('Published to context manager exit is', sys.exc_info())\n    return False",
+            "def __exit__(self, exc_type, exc_value, traceback):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    print('Context manager exit sees', exc_type, exc_value, traceback)\n    print('Published to context manager exit is', sys.exc_info())\n    return False"
+        ]
+    },
+    {
+        "func_name": "returnFromContextBlock",
+        "original": "def returnFromContextBlock():\n    with MyContextManager() as x:\n        return 7",
+        "mutated": [
+            "def returnFromContextBlock():\n    if False:\n        i = 10\n    with MyContextManager() as x:\n        return 7",
+            "def returnFromContextBlock():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    with MyContextManager() as x:\n        return 7",
+            "def returnFromContextBlock():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    with MyContextManager() as x:\n        return 7",
+            "def returnFromContextBlock():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    with MyContextManager() as x:\n        return 7",
+            "def returnFromContextBlock():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    with MyContextManager() as x:\n        return 7"
+        ]
+    },
+    {
+        "func_name": "__enter__",
+        "original": "def __enter__(self):\n    return self",
+        "mutated": [
+            "def __enter__(self):\n    if False:\n        i = 10\n    return self",
+            "def __enter__(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return self",
+            "def __enter__(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return self",
+            "def __enter__(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return self",
+            "def __enter__(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return self"
+        ]
+    },
+    {
+        "func_name": "__exit__",
+        "original": "def __exit__(self):\n    return self",
+        "mutated": [
+            "def __exit__(self):\n    if False:\n        i = 10\n    return self",
+            "def __exit__(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return self",
+            "def __exit__(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return self",
+            "def __exit__(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return self",
+            "def __exit__(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return self"
+        ]
+    },
+    {
+        "func_name": "__enter__",
+        "original": "def __enter__(self):\n    raise ValueError(\"Nah, I won't play\")",
+        "mutated": [
+            "def __enter__(self):\n    if False:\n        i = 10\n    raise ValueError(\"Nah, I won't play\")",
+            "def __enter__(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    raise ValueError(\"Nah, I won't play\")",
+            "def __enter__(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    raise ValueError(\"Nah, I won't play\")",
+            "def __enter__(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    raise ValueError(\"Nah, I won't play\")",
+            "def __enter__(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    raise ValueError(\"Nah, I won't play\")"
+        ]
+    },
+    {
+        "func_name": "__exit__",
+        "original": "def __exit__(self):\n    print('Called exit, yes')",
+        "mutated": [
+            "def __exit__(self):\n    if False:\n        i = 10\n    print('Called exit, yes')",
+            "def __exit__(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    print('Called exit, yes')",
+            "def __exit__(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    print('Called exit, yes')",
+            "def __exit__(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    print('Called exit, yes')",
+            "def __exit__(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    print('Called exit, yes')"
+        ]
+    },
+    {
+        "func_name": "__enter__",
+        "original": "def __enter__(self):\n    pass",
+        "mutated": [
+            "def __enter__(self):\n    if False:\n        i = 10\n    pass",
+            "def __enter__(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    pass",
+            "def __enter__(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    pass",
+            "def __enter__(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    pass",
+            "def __enter__(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    pass"
+        ]
+    },
+    {
+        "func_name": "__exit__",
+        "original": "def __exit__(self, exc_type, exc_value, traceback):\n    return True",
+        "mutated": [
+            "def __exit__(self, exc_type, exc_value, traceback):\n    if False:\n        i = 10\n    return True",
+            "def __exit__(self, exc_type, exc_value, traceback):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return True",
+            "def __exit__(self, exc_type, exc_value, traceback):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return True",
+            "def __exit__(self, exc_type, exc_value, traceback):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return True",
+            "def __exit__(self, exc_type, exc_value, traceback):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return True"
+        ]
+    }
+]

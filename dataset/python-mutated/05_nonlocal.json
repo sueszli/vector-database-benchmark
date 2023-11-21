@@ -1,0 +1,24 @@
+[
+    {
+        "func_name": "register",
+        "original": "def register():\n    nonlocal cache_token\n    return cache_token == 5",
+        "mutated": [
+            "def register():\n    if False:\n        i = 10\n    nonlocal cache_token\n    return cache_token == 5",
+            "def register():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    nonlocal cache_token\n    return cache_token == 5",
+            "def register():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    nonlocal cache_token\n    return cache_token == 5",
+            "def register():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    nonlocal cache_token\n    return cache_token == 5",
+            "def register():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    nonlocal cache_token\n    return cache_token == 5"
+        ]
+    },
+    {
+        "func_name": "not_bug",
+        "original": "def not_bug():\n    cache_token = 5\n\n    def register():\n        nonlocal cache_token\n        return cache_token == 5\n    return register()",
+        "mutated": [
+            "def not_bug():\n    if False:\n        i = 10\n    cache_token = 5\n\n    def register():\n        nonlocal cache_token\n        return cache_token == 5\n    return register()",
+            "def not_bug():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    cache_token = 5\n\n    def register():\n        nonlocal cache_token\n        return cache_token == 5\n    return register()",
+            "def not_bug():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    cache_token = 5\n\n    def register():\n        nonlocal cache_token\n        return cache_token == 5\n    return register()",
+            "def not_bug():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    cache_token = 5\n\n    def register():\n        nonlocal cache_token\n        return cache_token == 5\n    return register()",
+            "def not_bug():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    cache_token = 5\n\n    def register():\n        nonlocal cache_token\n        return cache_token == 5\n    return register()"
+        ]
+    }
+]

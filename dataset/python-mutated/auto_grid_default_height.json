@@ -1,0 +1,68 @@
+[
+    {
+        "func_name": "compose",
+        "original": "def compose(self) -> ComposeResult:\n    yield Header()\n    yield Vertical(Label('Select a container to test (see footer)'), id='sandbox')\n    yield Footer()",
+        "mutated": [
+            "def compose(self) -> ComposeResult:\n    if False:\n        i = 10\n    yield Header()\n    yield Vertical(Label('Select a container to test (see footer)'), id='sandbox')\n    yield Footer()",
+            "def compose(self) -> ComposeResult:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    yield Header()\n    yield Vertical(Label('Select a container to test (see footer)'), id='sandbox')\n    yield Footer()",
+            "def compose(self) -> ComposeResult:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    yield Header()\n    yield Vertical(Label('Select a container to test (see footer)'), id='sandbox')\n    yield Footer()",
+            "def compose(self) -> ComposeResult:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    yield Header()\n    yield Vertical(Label('Select a container to test (see footer)'), id='sandbox')\n    yield Footer()",
+            "def compose(self) -> ComposeResult:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    yield Header()\n    yield Vertical(Label('Select a container to test (see footer)'), id='sandbox')\n    yield Footer()"
+        ]
+    },
+    {
+        "func_name": "build",
+        "original": "def build(self, out_of: Type[Container | Grid | Horizontal | Vertical]) -> None:\n    self.query('#sandbox > *').remove()\n    self.query_one('#sandbox', Vertical).mount(Label('Here is some text before the grid'), out_of(*[Label(f'Cell #{n}') for n in range(9)], id='test-area'), Label('Here is some text after the grid'))",
+        "mutated": [
+            "def build(self, out_of: Type[Container | Grid | Horizontal | Vertical]) -> None:\n    if False:\n        i = 10\n    self.query('#sandbox > *').remove()\n    self.query_one('#sandbox', Vertical).mount(Label('Here is some text before the grid'), out_of(*[Label(f'Cell #{n}') for n in range(9)], id='test-area'), Label('Here is some text after the grid'))",
+            "def build(self, out_of: Type[Container | Grid | Horizontal | Vertical]) -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    self.query('#sandbox > *').remove()\n    self.query_one('#sandbox', Vertical).mount(Label('Here is some text before the grid'), out_of(*[Label(f'Cell #{n}') for n in range(9)], id='test-area'), Label('Here is some text after the grid'))",
+            "def build(self, out_of: Type[Container | Grid | Horizontal | Vertical]) -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    self.query('#sandbox > *').remove()\n    self.query_one('#sandbox', Vertical).mount(Label('Here is some text before the grid'), out_of(*[Label(f'Cell #{n}') for n in range(9)], id='test-area'), Label('Here is some text after the grid'))",
+            "def build(self, out_of: Type[Container | Grid | Horizontal | Vertical]) -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    self.query('#sandbox > *').remove()\n    self.query_one('#sandbox', Vertical).mount(Label('Here is some text before the grid'), out_of(*[Label(f'Cell #{n}') for n in range(9)], id='test-area'), Label('Here is some text after the grid'))",
+            "def build(self, out_of: Type[Container | Grid | Horizontal | Vertical]) -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    self.query('#sandbox > *').remove()\n    self.query_one('#sandbox', Vertical).mount(Label('Here is some text before the grid'), out_of(*[Label(f'Cell #{n}') for n in range(9)], id='test-area'), Label('Here is some text after the grid'))"
+        ]
+    },
+    {
+        "func_name": "action_grid",
+        "original": "def action_grid(self):\n    self.build(Grid)",
+        "mutated": [
+            "def action_grid(self):\n    if False:\n        i = 10\n    self.build(Grid)",
+            "def action_grid(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    self.build(Grid)",
+            "def action_grid(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    self.build(Grid)",
+            "def action_grid(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    self.build(Grid)",
+            "def action_grid(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    self.build(Grid)"
+        ]
+    },
+    {
+        "func_name": "action_vertical",
+        "original": "def action_vertical(self):\n    self.build(Vertical)",
+        "mutated": [
+            "def action_vertical(self):\n    if False:\n        i = 10\n    self.build(Vertical)",
+            "def action_vertical(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    self.build(Vertical)",
+            "def action_vertical(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    self.build(Vertical)",
+            "def action_vertical(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    self.build(Vertical)",
+            "def action_vertical(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    self.build(Vertical)"
+        ]
+    },
+    {
+        "func_name": "action_horizontal",
+        "original": "def action_horizontal(self):\n    self.build(Horizontal)",
+        "mutated": [
+            "def action_horizontal(self):\n    if False:\n        i = 10\n    self.build(Horizontal)",
+            "def action_horizontal(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    self.build(Horizontal)",
+            "def action_horizontal(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    self.build(Horizontal)",
+            "def action_horizontal(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    self.build(Horizontal)",
+            "def action_horizontal(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    self.build(Horizontal)"
+        ]
+    },
+    {
+        "func_name": "action_container",
+        "original": "def action_container(self):\n    self.build(Container)",
+        "mutated": [
+            "def action_container(self):\n    if False:\n        i = 10\n    self.build(Container)",
+            "def action_container(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    self.build(Container)",
+            "def action_container(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    self.build(Container)",
+            "def action_container(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    self.build(Container)",
+            "def action_container(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    self.build(Container)"
+        ]
+    }
+]

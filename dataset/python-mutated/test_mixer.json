@@ -1,0 +1,46 @@
+[
+    {
+        "func_name": "setUp",
+        "original": "def setUp(self):\n    self.listener = mixer.MixerListener()",
+        "mutated": [
+            "def setUp(self):\n    if False:\n        i = 10\n    self.listener = mixer.MixerListener()",
+            "def setUp(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    self.listener = mixer.MixerListener()",
+            "def setUp(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    self.listener = mixer.MixerListener()",
+            "def setUp(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    self.listener = mixer.MixerListener()",
+            "def setUp(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    self.listener = mixer.MixerListener()"
+        ]
+    },
+    {
+        "func_name": "test_on_event_forwards_to_specific_handler",
+        "original": "def test_on_event_forwards_to_specific_handler(self):\n    self.listener.volume_changed = mock.Mock()\n    self.listener.on_event('volume_changed', volume=60)\n    self.listener.volume_changed.assert_called_with(volume=60)",
+        "mutated": [
+            "def test_on_event_forwards_to_specific_handler(self):\n    if False:\n        i = 10\n    self.listener.volume_changed = mock.Mock()\n    self.listener.on_event('volume_changed', volume=60)\n    self.listener.volume_changed.assert_called_with(volume=60)",
+            "def test_on_event_forwards_to_specific_handler(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    self.listener.volume_changed = mock.Mock()\n    self.listener.on_event('volume_changed', volume=60)\n    self.listener.volume_changed.assert_called_with(volume=60)",
+            "def test_on_event_forwards_to_specific_handler(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    self.listener.volume_changed = mock.Mock()\n    self.listener.on_event('volume_changed', volume=60)\n    self.listener.volume_changed.assert_called_with(volume=60)",
+            "def test_on_event_forwards_to_specific_handler(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    self.listener.volume_changed = mock.Mock()\n    self.listener.on_event('volume_changed', volume=60)\n    self.listener.volume_changed.assert_called_with(volume=60)",
+            "def test_on_event_forwards_to_specific_handler(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    self.listener.volume_changed = mock.Mock()\n    self.listener.on_event('volume_changed', volume=60)\n    self.listener.volume_changed.assert_called_with(volume=60)"
+        ]
+    },
+    {
+        "func_name": "test_listener_has_default_impl_for_volume_changed",
+        "original": "def test_listener_has_default_impl_for_volume_changed(self):\n    self.listener.volume_changed(volume=60)",
+        "mutated": [
+            "def test_listener_has_default_impl_for_volume_changed(self):\n    if False:\n        i = 10\n    self.listener.volume_changed(volume=60)",
+            "def test_listener_has_default_impl_for_volume_changed(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    self.listener.volume_changed(volume=60)",
+            "def test_listener_has_default_impl_for_volume_changed(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    self.listener.volume_changed(volume=60)",
+            "def test_listener_has_default_impl_for_volume_changed(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    self.listener.volume_changed(volume=60)",
+            "def test_listener_has_default_impl_for_volume_changed(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    self.listener.volume_changed(volume=60)"
+        ]
+    },
+    {
+        "func_name": "test_listener_has_default_impl_for_mute_changed",
+        "original": "def test_listener_has_default_impl_for_mute_changed(self):\n    self.listener.mute_changed(mute=True)",
+        "mutated": [
+            "def test_listener_has_default_impl_for_mute_changed(self):\n    if False:\n        i = 10\n    self.listener.mute_changed(mute=True)",
+            "def test_listener_has_default_impl_for_mute_changed(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    self.listener.mute_changed(mute=True)",
+            "def test_listener_has_default_impl_for_mute_changed(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    self.listener.mute_changed(mute=True)",
+            "def test_listener_has_default_impl_for_mute_changed(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    self.listener.mute_changed(mute=True)",
+            "def test_listener_has_default_impl_for_mute_changed(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    self.listener.mute_changed(mute=True)"
+        ]
+    }
+]

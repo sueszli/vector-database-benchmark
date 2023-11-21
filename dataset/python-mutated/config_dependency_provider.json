@@ -1,0 +1,24 @@
+[
+    {
+        "func_name": "foo_enabled",
+        "original": "@property\ndef foo_enabled(self):\n    return self.config.get('FOO_FEATURE_ENABLED', False)",
+        "mutated": [
+            "@property\ndef foo_enabled(self):\n    if False:\n        i = 10\n    return self.config.get('FOO_FEATURE_ENABLED', False)",
+            "@property\ndef foo_enabled(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return self.config.get('FOO_FEATURE_ENABLED', False)",
+            "@property\ndef foo_enabled(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return self.config.get('FOO_FEATURE_ENABLED', False)",
+            "@property\ndef foo_enabled(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return self.config.get('FOO_FEATURE_ENABLED', False)",
+            "@property\ndef foo_enabled(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return self.config.get('FOO_FEATURE_ENABLED', False)"
+        ]
+    },
+    {
+        "func_name": "foo",
+        "original": "@http('GET', '/foo')\ndef foo(self, request):\n    if not self.foo_enabled:\n        return (403, 'FeatureNotEnabled')\n    return 'foo'",
+        "mutated": [
+            "@http('GET', '/foo')\ndef foo(self, request):\n    if False:\n        i = 10\n    if not self.foo_enabled:\n        return (403, 'FeatureNotEnabled')\n    return 'foo'",
+            "@http('GET', '/foo')\ndef foo(self, request):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    if not self.foo_enabled:\n        return (403, 'FeatureNotEnabled')\n    return 'foo'",
+            "@http('GET', '/foo')\ndef foo(self, request):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    if not self.foo_enabled:\n        return (403, 'FeatureNotEnabled')\n    return 'foo'",
+            "@http('GET', '/foo')\ndef foo(self, request):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    if not self.foo_enabled:\n        return (403, 'FeatureNotEnabled')\n    return 'foo'",
+            "@http('GET', '/foo')\ndef foo(self, request):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    if not self.foo_enabled:\n        return (403, 'FeatureNotEnabled')\n    return 'foo'"
+        ]
+    }
+]

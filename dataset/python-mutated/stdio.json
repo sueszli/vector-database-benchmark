@@ -1,0 +1,24 @@
+[
+    {
+        "func_name": "__enter__",
+        "original": "def __enter__(self, *a, **kw) -> None:\n    self.queue.append((sys.stdin, sys.stdout, sys.stderr))\n    sys.stdin = sys.__stdin__\n    sys.stdout = sys.__stdout__\n    sys.stderr = sys.__stderr__",
+        "mutated": [
+            "def __enter__(self, *a, **kw) -> None:\n    if False:\n        i = 10\n    self.queue.append((sys.stdin, sys.stdout, sys.stderr))\n    sys.stdin = sys.__stdin__\n    sys.stdout = sys.__stdout__\n    sys.stderr = sys.__stderr__",
+            "def __enter__(self, *a, **kw) -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    self.queue.append((sys.stdin, sys.stdout, sys.stderr))\n    sys.stdin = sys.__stdin__\n    sys.stdout = sys.__stdout__\n    sys.stderr = sys.__stderr__",
+            "def __enter__(self, *a, **kw) -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    self.queue.append((sys.stdin, sys.stdout, sys.stderr))\n    sys.stdin = sys.__stdin__\n    sys.stdout = sys.__stdout__\n    sys.stderr = sys.__stderr__",
+            "def __enter__(self, *a, **kw) -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    self.queue.append((sys.stdin, sys.stdout, sys.stderr))\n    sys.stdin = sys.__stdin__\n    sys.stdout = sys.__stdout__\n    sys.stderr = sys.__stderr__",
+            "def __enter__(self, *a, **kw) -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    self.queue.append((sys.stdin, sys.stdout, sys.stderr))\n    sys.stdin = sys.__stdin__\n    sys.stdout = sys.__stdout__\n    sys.stderr = sys.__stderr__"
+        ]
+    },
+    {
+        "func_name": "__exit__",
+        "original": "def __exit__(self, *a, **kw) -> None:\n    (sys.stdin, sys.stdout, sys.stderr) = self.queue.pop()",
+        "mutated": [
+            "def __exit__(self, *a, **kw) -> None:\n    if False:\n        i = 10\n    (sys.stdin, sys.stdout, sys.stderr) = self.queue.pop()",
+            "def __exit__(self, *a, **kw) -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    (sys.stdin, sys.stdout, sys.stderr) = self.queue.pop()",
+            "def __exit__(self, *a, **kw) -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    (sys.stdin, sys.stdout, sys.stderr) = self.queue.pop()",
+            "def __exit__(self, *a, **kw) -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    (sys.stdin, sys.stdout, sys.stderr) = self.queue.pop()",
+            "def __exit__(self, *a, **kw) -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    (sys.stdin, sys.stdout, sys.stderr) = self.queue.pop()"
+        ]
+    }
+]

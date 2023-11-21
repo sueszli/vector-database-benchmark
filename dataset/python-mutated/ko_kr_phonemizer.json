@@ -1,0 +1,79 @@
+[
+    {
+        "func_name": "__init__",
+        "original": "def __init__(self, punctuations=_DEF_KO_PUNCS, keep_puncs=True, **kwargs):\n    super().__init__(self.language, punctuations=punctuations, keep_puncs=keep_puncs)",
+        "mutated": [
+            "def __init__(self, punctuations=_DEF_KO_PUNCS, keep_puncs=True, **kwargs):\n    if False:\n        i = 10\n    super().__init__(self.language, punctuations=punctuations, keep_puncs=keep_puncs)",
+            "def __init__(self, punctuations=_DEF_KO_PUNCS, keep_puncs=True, **kwargs):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    super().__init__(self.language, punctuations=punctuations, keep_puncs=keep_puncs)",
+            "def __init__(self, punctuations=_DEF_KO_PUNCS, keep_puncs=True, **kwargs):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    super().__init__(self.language, punctuations=punctuations, keep_puncs=keep_puncs)",
+            "def __init__(self, punctuations=_DEF_KO_PUNCS, keep_puncs=True, **kwargs):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    super().__init__(self.language, punctuations=punctuations, keep_puncs=keep_puncs)",
+            "def __init__(self, punctuations=_DEF_KO_PUNCS, keep_puncs=True, **kwargs):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    super().__init__(self.language, punctuations=punctuations, keep_puncs=keep_puncs)"
+        ]
+    },
+    {
+        "func_name": "name",
+        "original": "@staticmethod\ndef name():\n    return 'ko_kr_phonemizer'",
+        "mutated": [
+            "@staticmethod\ndef name():\n    if False:\n        i = 10\n    return 'ko_kr_phonemizer'",
+            "@staticmethod\ndef name():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return 'ko_kr_phonemizer'",
+            "@staticmethod\ndef name():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return 'ko_kr_phonemizer'",
+            "@staticmethod\ndef name():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return 'ko_kr_phonemizer'",
+            "@staticmethod\ndef name():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return 'ko_kr_phonemizer'"
+        ]
+    },
+    {
+        "func_name": "_phonemize",
+        "original": "def _phonemize(self, text: str, separator: str='', character: str='hangeul') -> str:\n    ph = korean_text_to_phonemes(text, character=character)\n    if separator is not None or separator != '':\n        return separator.join(ph)\n    return ph",
+        "mutated": [
+            "def _phonemize(self, text: str, separator: str='', character: str='hangeul') -> str:\n    if False:\n        i = 10\n    ph = korean_text_to_phonemes(text, character=character)\n    if separator is not None or separator != '':\n        return separator.join(ph)\n    return ph",
+            "def _phonemize(self, text: str, separator: str='', character: str='hangeul') -> str:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    ph = korean_text_to_phonemes(text, character=character)\n    if separator is not None or separator != '':\n        return separator.join(ph)\n    return ph",
+            "def _phonemize(self, text: str, separator: str='', character: str='hangeul') -> str:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    ph = korean_text_to_phonemes(text, character=character)\n    if separator is not None or separator != '':\n        return separator.join(ph)\n    return ph",
+            "def _phonemize(self, text: str, separator: str='', character: str='hangeul') -> str:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    ph = korean_text_to_phonemes(text, character=character)\n    if separator is not None or separator != '':\n        return separator.join(ph)\n    return ph",
+            "def _phonemize(self, text: str, separator: str='', character: str='hangeul') -> str:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    ph = korean_text_to_phonemes(text, character=character)\n    if separator is not None or separator != '':\n        return separator.join(ph)\n    return ph"
+        ]
+    },
+    {
+        "func_name": "phonemize",
+        "original": "def phonemize(self, text: str, separator: str='', character: str='hangeul', language=None) -> str:\n    return self._phonemize(text, separator, character)",
+        "mutated": [
+            "def phonemize(self, text: str, separator: str='', character: str='hangeul', language=None) -> str:\n    if False:\n        i = 10\n    return self._phonemize(text, separator, character)",
+            "def phonemize(self, text: str, separator: str='', character: str='hangeul', language=None) -> str:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return self._phonemize(text, separator, character)",
+            "def phonemize(self, text: str, separator: str='', character: str='hangeul', language=None) -> str:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return self._phonemize(text, separator, character)",
+            "def phonemize(self, text: str, separator: str='', character: str='hangeul', language=None) -> str:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return self._phonemize(text, separator, character)",
+            "def phonemize(self, text: str, separator: str='', character: str='hangeul', language=None) -> str:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return self._phonemize(text, separator, character)"
+        ]
+    },
+    {
+        "func_name": "supported_languages",
+        "original": "@staticmethod\ndef supported_languages() -> Dict:\n    return {'ko-kr': 'hangeul(korean)'}",
+        "mutated": [
+            "@staticmethod\ndef supported_languages() -> Dict:\n    if False:\n        i = 10\n    return {'ko-kr': 'hangeul(korean)'}",
+            "@staticmethod\ndef supported_languages() -> Dict:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return {'ko-kr': 'hangeul(korean)'}",
+            "@staticmethod\ndef supported_languages() -> Dict:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return {'ko-kr': 'hangeul(korean)'}",
+            "@staticmethod\ndef supported_languages() -> Dict:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return {'ko-kr': 'hangeul(korean)'}",
+            "@staticmethod\ndef supported_languages() -> Dict:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return {'ko-kr': 'hangeul(korean)'}"
+        ]
+    },
+    {
+        "func_name": "version",
+        "original": "def version(self) -> str:\n    return '0.0.2'",
+        "mutated": [
+            "def version(self) -> str:\n    if False:\n        i = 10\n    return '0.0.2'",
+            "def version(self) -> str:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return '0.0.2'",
+            "def version(self) -> str:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return '0.0.2'",
+            "def version(self) -> str:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return '0.0.2'",
+            "def version(self) -> str:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return '0.0.2'"
+        ]
+    },
+    {
+        "func_name": "is_available",
+        "original": "def is_available(self) -> bool:\n    return True",
+        "mutated": [
+            "def is_available(self) -> bool:\n    if False:\n        i = 10\n    return True",
+            "def is_available(self) -> bool:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return True",
+            "def is_available(self) -> bool:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return True",
+            "def is_available(self) -> bool:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return True",
+            "def is_available(self) -> bool:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return True"
+        ]
+    }
+]

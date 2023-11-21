@@ -1,0 +1,167 @@
+[
+    {
+        "func_name": "requires",
+        "original": "def requires(self):\n    return [ErrorTask1(), ErrorTask2(), SuccessTask1(), DynamicErrorTaskSubmitter()]",
+        "mutated": [
+            "def requires(self):\n    if False:\n        i = 10\n    return [ErrorTask1(), ErrorTask2(), SuccessTask1(), DynamicErrorTaskSubmitter()]",
+            "def requires(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return [ErrorTask1(), ErrorTask2(), SuccessTask1(), DynamicErrorTaskSubmitter()]",
+            "def requires(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return [ErrorTask1(), ErrorTask2(), SuccessTask1(), DynamicErrorTaskSubmitter()]",
+            "def requires(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return [ErrorTask1(), ErrorTask2(), SuccessTask1(), DynamicErrorTaskSubmitter()]",
+            "def requires(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return [ErrorTask1(), ErrorTask2(), SuccessTask1(), DynamicErrorTaskSubmitter()]"
+        ]
+    },
+    {
+        "func_name": "output",
+        "original": "def output(self):\n    return luigi.LocalTarget(path='/tmp/_docs-%s.ldj' % self.task_id)",
+        "mutated": [
+            "def output(self):\n    if False:\n        i = 10\n    return luigi.LocalTarget(path='/tmp/_docs-%s.ldj' % self.task_id)",
+            "def output(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return luigi.LocalTarget(path='/tmp/_docs-%s.ldj' % self.task_id)",
+            "def output(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return luigi.LocalTarget(path='/tmp/_docs-%s.ldj' % self.task_id)",
+            "def output(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return luigi.LocalTarget(path='/tmp/_docs-%s.ldj' % self.task_id)",
+            "def output(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return luigi.LocalTarget(path='/tmp/_docs-%s.ldj' % self.task_id)"
+        ]
+    },
+    {
+        "func_name": "run",
+        "original": "def run(self):\n    self.retry += 1\n    raise Exception('Test Exception. Retry Index %s for %s' % (self.retry, self.task_family))",
+        "mutated": [
+            "def run(self):\n    if False:\n        i = 10\n    self.retry += 1\n    raise Exception('Test Exception. Retry Index %s for %s' % (self.retry, self.task_family))",
+            "def run(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    self.retry += 1\n    raise Exception('Test Exception. Retry Index %s for %s' % (self.retry, self.task_family))",
+            "def run(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    self.retry += 1\n    raise Exception('Test Exception. Retry Index %s for %s' % (self.retry, self.task_family))",
+            "def run(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    self.retry += 1\n    raise Exception('Test Exception. Retry Index %s for %s' % (self.retry, self.task_family))",
+            "def run(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    self.retry += 1\n    raise Exception('Test Exception. Retry Index %s for %s' % (self.retry, self.task_family))"
+        ]
+    },
+    {
+        "func_name": "output",
+        "original": "def output(self):\n    return luigi.LocalTarget(path='/tmp/_docs-%s.ldj' % self.task_id)",
+        "mutated": [
+            "def output(self):\n    if False:\n        i = 10\n    return luigi.LocalTarget(path='/tmp/_docs-%s.ldj' % self.task_id)",
+            "def output(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return luigi.LocalTarget(path='/tmp/_docs-%s.ldj' % self.task_id)",
+            "def output(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return luigi.LocalTarget(path='/tmp/_docs-%s.ldj' % self.task_id)",
+            "def output(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return luigi.LocalTarget(path='/tmp/_docs-%s.ldj' % self.task_id)",
+            "def output(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return luigi.LocalTarget(path='/tmp/_docs-%s.ldj' % self.task_id)"
+        ]
+    },
+    {
+        "func_name": "run",
+        "original": "def run(self):\n    self.retry += 1\n    raise Exception('Test Exception. Retry Index %s for %s' % (self.retry, self.task_family))",
+        "mutated": [
+            "def run(self):\n    if False:\n        i = 10\n    self.retry += 1\n    raise Exception('Test Exception. Retry Index %s for %s' % (self.retry, self.task_family))",
+            "def run(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    self.retry += 1\n    raise Exception('Test Exception. Retry Index %s for %s' % (self.retry, self.task_family))",
+            "def run(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    self.retry += 1\n    raise Exception('Test Exception. Retry Index %s for %s' % (self.retry, self.task_family))",
+            "def run(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    self.retry += 1\n    raise Exception('Test Exception. Retry Index %s for %s' % (self.retry, self.task_family))",
+            "def run(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    self.retry += 1\n    raise Exception('Test Exception. Retry Index %s for %s' % (self.retry, self.task_family))"
+        ]
+    },
+    {
+        "func_name": "output",
+        "original": "def output(self):\n    return luigi.LocalTarget(path='/tmp/_docs-%s.ldj' % self.task_id)",
+        "mutated": [
+            "def output(self):\n    if False:\n        i = 10\n    return luigi.LocalTarget(path='/tmp/_docs-%s.ldj' % self.task_id)",
+            "def output(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return luigi.LocalTarget(path='/tmp/_docs-%s.ldj' % self.task_id)",
+            "def output(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return luigi.LocalTarget(path='/tmp/_docs-%s.ldj' % self.task_id)",
+            "def output(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return luigi.LocalTarget(path='/tmp/_docs-%s.ldj' % self.task_id)",
+            "def output(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return luigi.LocalTarget(path='/tmp/_docs-%s.ldj' % self.task_id)"
+        ]
+    },
+    {
+        "func_name": "run",
+        "original": "def run(self):\n    target = (yield DynamicErrorTask1())\n    if target.exists():\n        with self.output().open('w') as output:\n            output.write('SUCCESS DynamicErrorTaskSubmitter\\n')",
+        "mutated": [
+            "def run(self):\n    if False:\n        i = 10\n    target = (yield DynamicErrorTask1())\n    if target.exists():\n        with self.output().open('w') as output:\n            output.write('SUCCESS DynamicErrorTaskSubmitter\\n')",
+            "def run(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    target = (yield DynamicErrorTask1())\n    if target.exists():\n        with self.output().open('w') as output:\n            output.write('SUCCESS DynamicErrorTaskSubmitter\\n')",
+            "def run(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    target = (yield DynamicErrorTask1())\n    if target.exists():\n        with self.output().open('w') as output:\n            output.write('SUCCESS DynamicErrorTaskSubmitter\\n')",
+            "def run(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    target = (yield DynamicErrorTask1())\n    if target.exists():\n        with self.output().open('w') as output:\n            output.write('SUCCESS DynamicErrorTaskSubmitter\\n')",
+            "def run(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    target = (yield DynamicErrorTask1())\n    if target.exists():\n        with self.output().open('w') as output:\n            output.write('SUCCESS DynamicErrorTaskSubmitter\\n')"
+        ]
+    },
+    {
+        "func_name": "output",
+        "original": "def output(self):\n    return luigi.LocalTarget(path='/tmp/_docs-%s.ldj' % self.task_id)",
+        "mutated": [
+            "def output(self):\n    if False:\n        i = 10\n    return luigi.LocalTarget(path='/tmp/_docs-%s.ldj' % self.task_id)",
+            "def output(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return luigi.LocalTarget(path='/tmp/_docs-%s.ldj' % self.task_id)",
+            "def output(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return luigi.LocalTarget(path='/tmp/_docs-%s.ldj' % self.task_id)",
+            "def output(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return luigi.LocalTarget(path='/tmp/_docs-%s.ldj' % self.task_id)",
+            "def output(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return luigi.LocalTarget(path='/tmp/_docs-%s.ldj' % self.task_id)"
+        ]
+    },
+    {
+        "func_name": "run",
+        "original": "def run(self):\n    self.retry += 1\n    raise Exception('Test Exception. Retry Index %s for %s' % (self.retry, self.task_family))",
+        "mutated": [
+            "def run(self):\n    if False:\n        i = 10\n    self.retry += 1\n    raise Exception('Test Exception. Retry Index %s for %s' % (self.retry, self.task_family))",
+            "def run(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    self.retry += 1\n    raise Exception('Test Exception. Retry Index %s for %s' % (self.retry, self.task_family))",
+            "def run(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    self.retry += 1\n    raise Exception('Test Exception. Retry Index %s for %s' % (self.retry, self.task_family))",
+            "def run(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    self.retry += 1\n    raise Exception('Test Exception. Retry Index %s for %s' % (self.retry, self.task_family))",
+            "def run(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    self.retry += 1\n    raise Exception('Test Exception. Retry Index %s for %s' % (self.retry, self.task_family))"
+        ]
+    },
+    {
+        "func_name": "output",
+        "original": "def output(self):\n    return luigi.LocalTarget(path='/tmp/_docs-%s.ldj' % self.task_id)",
+        "mutated": [
+            "def output(self):\n    if False:\n        i = 10\n    return luigi.LocalTarget(path='/tmp/_docs-%s.ldj' % self.task_id)",
+            "def output(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return luigi.LocalTarget(path='/tmp/_docs-%s.ldj' % self.task_id)",
+            "def output(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return luigi.LocalTarget(path='/tmp/_docs-%s.ldj' % self.task_id)",
+            "def output(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return luigi.LocalTarget(path='/tmp/_docs-%s.ldj' % self.task_id)",
+            "def output(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return luigi.LocalTarget(path='/tmp/_docs-%s.ldj' % self.task_id)"
+        ]
+    },
+    {
+        "func_name": "requires",
+        "original": "def requires(self):\n    return [SuccessSubTask1()]",
+        "mutated": [
+            "def requires(self):\n    if False:\n        i = 10\n    return [SuccessSubTask1()]",
+            "def requires(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return [SuccessSubTask1()]",
+            "def requires(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return [SuccessSubTask1()]",
+            "def requires(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return [SuccessSubTask1()]",
+            "def requires(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return [SuccessSubTask1()]"
+        ]
+    },
+    {
+        "func_name": "run",
+        "original": "def run(self):\n    with self.output().open('w') as output:\n        output.write('SUCCESS Test Task 4\\n')",
+        "mutated": [
+            "def run(self):\n    if False:\n        i = 10\n    with self.output().open('w') as output:\n        output.write('SUCCESS Test Task 4\\n')",
+            "def run(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    with self.output().open('w') as output:\n        output.write('SUCCESS Test Task 4\\n')",
+            "def run(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    with self.output().open('w') as output:\n        output.write('SUCCESS Test Task 4\\n')",
+            "def run(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    with self.output().open('w') as output:\n        output.write('SUCCESS Test Task 4\\n')",
+            "def run(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    with self.output().open('w') as output:\n        output.write('SUCCESS Test Task 4\\n')"
+        ]
+    },
+    {
+        "func_name": "output",
+        "original": "def output(self):\n    return luigi.LocalTarget(path='/tmp/_docs-%s.ldj' % self.task_id)",
+        "mutated": [
+            "def output(self):\n    if False:\n        i = 10\n    return luigi.LocalTarget(path='/tmp/_docs-%s.ldj' % self.task_id)",
+            "def output(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return luigi.LocalTarget(path='/tmp/_docs-%s.ldj' % self.task_id)",
+            "def output(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return luigi.LocalTarget(path='/tmp/_docs-%s.ldj' % self.task_id)",
+            "def output(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return luigi.LocalTarget(path='/tmp/_docs-%s.ldj' % self.task_id)",
+            "def output(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return luigi.LocalTarget(path='/tmp/_docs-%s.ldj' % self.task_id)"
+        ]
+    },
+    {
+        "func_name": "run",
+        "original": "def run(self):\n    with self.output().open('w') as output:\n        output.write('SUCCESS Test Task 4.1\\n')",
+        "mutated": [
+            "def run(self):\n    if False:\n        i = 10\n    with self.output().open('w') as output:\n        output.write('SUCCESS Test Task 4.1\\n')",
+            "def run(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    with self.output().open('w') as output:\n        output.write('SUCCESS Test Task 4.1\\n')",
+            "def run(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    with self.output().open('w') as output:\n        output.write('SUCCESS Test Task 4.1\\n')",
+            "def run(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    with self.output().open('w') as output:\n        output.write('SUCCESS Test Task 4.1\\n')",
+            "def run(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    with self.output().open('w') as output:\n        output.write('SUCCESS Test Task 4.1\\n')"
+        ]
+    },
+    {
+        "func_name": "output",
+        "original": "def output(self):\n    return luigi.LocalTarget(path='/tmp/_docs-%s.ldj' % self.task_id)",
+        "mutated": [
+            "def output(self):\n    if False:\n        i = 10\n    return luigi.LocalTarget(path='/tmp/_docs-%s.ldj' % self.task_id)",
+            "def output(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return luigi.LocalTarget(path='/tmp/_docs-%s.ldj' % self.task_id)",
+            "def output(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return luigi.LocalTarget(path='/tmp/_docs-%s.ldj' % self.task_id)",
+            "def output(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return luigi.LocalTarget(path='/tmp/_docs-%s.ldj' % self.task_id)",
+            "def output(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return luigi.LocalTarget(path='/tmp/_docs-%s.ldj' % self.task_id)"
+        ]
+    }
+]

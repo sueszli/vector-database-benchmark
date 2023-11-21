@@ -1,0 +1,156 @@
+[
+    {
+        "func_name": "__init__",
+        "original": "def __init__(self, name):\n    self.name = name",
+        "mutated": [
+            "def __init__(self, name):\n    if False:\n        i = 10\n    self.name = name",
+            "def __init__(self, name):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    self.name = name",
+            "def __init__(self, name):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    self.name = name",
+            "def __init__(self, name):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    self.name = name",
+            "def __init__(self, name):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    self.name = name"
+        ]
+    },
+    {
+        "func_name": "get_spam",
+        "original": "def get_spam(name):\n    if name not in _spam_cache:\n        s = Spam(name)\n        _spam_cache[name] = s\n    else:\n        s = _spam_cache[name]\n    return s",
+        "mutated": [
+            "def get_spam(name):\n    if False:\n        i = 10\n    if name not in _spam_cache:\n        s = Spam(name)\n        _spam_cache[name] = s\n    else:\n        s = _spam_cache[name]\n    return s",
+            "def get_spam(name):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    if name not in _spam_cache:\n        s = Spam(name)\n        _spam_cache[name] = s\n    else:\n        s = _spam_cache[name]\n    return s",
+            "def get_spam(name):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    if name not in _spam_cache:\n        s = Spam(name)\n        _spam_cache[name] = s\n    else:\n        s = _spam_cache[name]\n    return s",
+            "def get_spam(name):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    if name not in _spam_cache:\n        s = Spam(name)\n        _spam_cache[name] = s\n    else:\n        s = _spam_cache[name]\n    return s",
+            "def get_spam(name):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    if name not in _spam_cache:\n        s = Spam(name)\n        _spam_cache[name] = s\n    else:\n        s = _spam_cache[name]\n    return s"
+        ]
+    },
+    {
+        "func_name": "__new__",
+        "original": "def __new__(cls, name):\n    print('Spam1__new__')\n    if name in cls._spam_cache:\n        return cls._spam_cache[name]\n    else:\n        self = super().__new__(cls)\n        cls._spam_cache[name] = self\n        return self",
+        "mutated": [
+            "def __new__(cls, name):\n    if False:\n        i = 10\n    print('Spam1__new__')\n    if name in cls._spam_cache:\n        return cls._spam_cache[name]\n    else:\n        self = super().__new__(cls)\n        cls._spam_cache[name] = self\n        return self",
+            "def __new__(cls, name):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    print('Spam1__new__')\n    if name in cls._spam_cache:\n        return cls._spam_cache[name]\n    else:\n        self = super().__new__(cls)\n        cls._spam_cache[name] = self\n        return self",
+            "def __new__(cls, name):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    print('Spam1__new__')\n    if name in cls._spam_cache:\n        return cls._spam_cache[name]\n    else:\n        self = super().__new__(cls)\n        cls._spam_cache[name] = self\n        return self",
+            "def __new__(cls, name):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    print('Spam1__new__')\n    if name in cls._spam_cache:\n        return cls._spam_cache[name]\n    else:\n        self = super().__new__(cls)\n        cls._spam_cache[name] = self\n        return self",
+            "def __new__(cls, name):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    print('Spam1__new__')\n    if name in cls._spam_cache:\n        return cls._spam_cache[name]\n    else:\n        self = super().__new__(cls)\n        cls._spam_cache[name] = self\n        return self"
+        ]
+    },
+    {
+        "func_name": "__init__",
+        "original": "def __init__(self, name):\n    print('Initializing Spam')\n    self.name = name",
+        "mutated": [
+            "def __init__(self, name):\n    if False:\n        i = 10\n    print('Initializing Spam')\n    self.name = name",
+            "def __init__(self, name):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    print('Initializing Spam')\n    self.name = name",
+            "def __init__(self, name):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    print('Initializing Spam')\n    self.name = name",
+            "def __init__(self, name):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    print('Initializing Spam')\n    self.name = name",
+            "def __init__(self, name):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    print('Initializing Spam')\n    self.name = name"
+        ]
+    },
+    {
+        "func_name": "__init__",
+        "original": "def __init__(self):\n    self._cache = weakref.WeakValueDictionary()",
+        "mutated": [
+            "def __init__(self):\n    if False:\n        i = 10\n    self._cache = weakref.WeakValueDictionary()",
+            "def __init__(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    self._cache = weakref.WeakValueDictionary()",
+            "def __init__(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    self._cache = weakref.WeakValueDictionary()",
+            "def __init__(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    self._cache = weakref.WeakValueDictionary()",
+            "def __init__(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    self._cache = weakref.WeakValueDictionary()"
+        ]
+    },
+    {
+        "func_name": "get_spam",
+        "original": "def get_spam(self, name):\n    if name not in self._cache:\n        s = Spam(name)\n        self._cache[name] = s\n    else:\n        s = self._cache[name]\n    return s",
+        "mutated": [
+            "def get_spam(self, name):\n    if False:\n        i = 10\n    if name not in self._cache:\n        s = Spam(name)\n        self._cache[name] = s\n    else:\n        s = self._cache[name]\n    return s",
+            "def get_spam(self, name):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    if name not in self._cache:\n        s = Spam(name)\n        self._cache[name] = s\n    else:\n        s = self._cache[name]\n    return s",
+            "def get_spam(self, name):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    if name not in self._cache:\n        s = Spam(name)\n        self._cache[name] = s\n    else:\n        s = self._cache[name]\n    return s",
+            "def get_spam(self, name):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    if name not in self._cache:\n        s = Spam(name)\n        self._cache[name] = s\n    else:\n        s = self._cache[name]\n    return s",
+            "def get_spam(self, name):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    if name not in self._cache:\n        s = Spam(name)\n        self._cache[name] = s\n    else:\n        s = self._cache[name]\n    return s"
+        ]
+    },
+    {
+        "func_name": "clear",
+        "original": "def clear(self):\n    self._cache.clear()",
+        "mutated": [
+            "def clear(self):\n    if False:\n        i = 10\n    self._cache.clear()",
+            "def clear(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    self._cache.clear()",
+            "def clear(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    self._cache.clear()",
+            "def clear(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    self._cache.clear()",
+            "def clear(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    self._cache.clear()"
+        ]
+    },
+    {
+        "func_name": "__init__",
+        "original": "def __init__(self, name):\n    self.name = name",
+        "mutated": [
+            "def __init__(self, name):\n    if False:\n        i = 10\n    self.name = name",
+            "def __init__(self, name):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    self.name = name",
+            "def __init__(self, name):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    self.name = name",
+            "def __init__(self, name):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    self.name = name",
+            "def __init__(self, name):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    self.name = name"
+        ]
+    },
+    {
+        "func_name": "get_spam",
+        "original": "def get_spam(name):\n    return Spam2.manager.get_spam(name)",
+        "mutated": [
+            "def get_spam(name):\n    if False:\n        i = 10\n    return Spam2.manager.get_spam(name)",
+            "def get_spam(name):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return Spam2.manager.get_spam(name)",
+            "def get_spam(name):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return Spam2.manager.get_spam(name)",
+            "def get_spam(name):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return Spam2.manager.get_spam(name)",
+            "def get_spam(name):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return Spam2.manager.get_spam(name)"
+        ]
+    },
+    {
+        "func_name": "__init__",
+        "original": "def __init__(self):\n    self._cache = weakref.WeakValueDictionary()",
+        "mutated": [
+            "def __init__(self):\n    if False:\n        i = 10\n    self._cache = weakref.WeakValueDictionary()",
+            "def __init__(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    self._cache = weakref.WeakValueDictionary()",
+            "def __init__(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    self._cache = weakref.WeakValueDictionary()",
+            "def __init__(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    self._cache = weakref.WeakValueDictionary()",
+            "def __init__(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    self._cache = weakref.WeakValueDictionary()"
+        ]
+    },
+    {
+        "func_name": "get_spam",
+        "original": "def get_spam(self, name):\n    if name not in self._cache:\n        temp = Spam3._new(name)\n        self._cache[name] = temp\n    else:\n        temp = self._cache[name]\n    return temp",
+        "mutated": [
+            "def get_spam(self, name):\n    if False:\n        i = 10\n    if name not in self._cache:\n        temp = Spam3._new(name)\n        self._cache[name] = temp\n    else:\n        temp = self._cache[name]\n    return temp",
+            "def get_spam(self, name):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    if name not in self._cache:\n        temp = Spam3._new(name)\n        self._cache[name] = temp\n    else:\n        temp = self._cache[name]\n    return temp",
+            "def get_spam(self, name):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    if name not in self._cache:\n        temp = Spam3._new(name)\n        self._cache[name] = temp\n    else:\n        temp = self._cache[name]\n    return temp",
+            "def get_spam(self, name):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    if name not in self._cache:\n        temp = Spam3._new(name)\n        self._cache[name] = temp\n    else:\n        temp = self._cache[name]\n    return temp",
+            "def get_spam(self, name):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    if name not in self._cache:\n        temp = Spam3._new(name)\n        self._cache[name] = temp\n    else:\n        temp = self._cache[name]\n    return temp"
+        ]
+    },
+    {
+        "func_name": "clear",
+        "original": "def clear(self):\n    self._cache.clear()",
+        "mutated": [
+            "def clear(self):\n    if False:\n        i = 10\n    self._cache.clear()",
+            "def clear(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    self._cache.clear()",
+            "def clear(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    self._cache.clear()",
+            "def clear(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    self._cache.clear()",
+            "def clear(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    self._cache.clear()"
+        ]
+    },
+    {
+        "func_name": "__init__",
+        "original": "def __init__(self, *args, **kwargs):\n    raise RuntimeError(\"Can't instantiate directly\")",
+        "mutated": [
+            "def __init__(self, *args, **kwargs):\n    if False:\n        i = 10\n    raise RuntimeError(\"Can't instantiate directly\")",
+            "def __init__(self, *args, **kwargs):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    raise RuntimeError(\"Can't instantiate directly\")",
+            "def __init__(self, *args, **kwargs):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    raise RuntimeError(\"Can't instantiate directly\")",
+            "def __init__(self, *args, **kwargs):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    raise RuntimeError(\"Can't instantiate directly\")",
+            "def __init__(self, *args, **kwargs):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    raise RuntimeError(\"Can't instantiate directly\")"
+        ]
+    },
+    {
+        "func_name": "_new",
+        "original": "@classmethod\ndef _new(cls, name):\n    self = cls.__new__(cls)\n    self.name = name\n    return self",
+        "mutated": [
+            "@classmethod\ndef _new(cls, name):\n    if False:\n        i = 10\n    self = cls.__new__(cls)\n    self.name = name\n    return self",
+            "@classmethod\ndef _new(cls, name):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    self = cls.__new__(cls)\n    self.name = name\n    return self",
+            "@classmethod\ndef _new(cls, name):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    self = cls.__new__(cls)\n    self.name = name\n    return self",
+            "@classmethod\ndef _new(cls, name):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    self = cls.__new__(cls)\n    self.name = name\n    return self",
+            "@classmethod\ndef _new(cls, name):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    self = cls.__new__(cls)\n    self.name = name\n    return self"
+        ]
+    }
+]

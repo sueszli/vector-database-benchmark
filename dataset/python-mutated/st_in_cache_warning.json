@@ -1,0 +1,35 @@
+[
+    {
+        "func_name": "cached_write",
+        "original": "@st.cache\ndef cached_write(value):\n    st.write(value)",
+        "mutated": [
+            "@st.cache\ndef cached_write(value):\n    if False:\n        i = 10\n    st.write(value)",
+            "@st.cache\ndef cached_write(value):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    st.write(value)",
+            "@st.cache\ndef cached_write(value):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    st.write(value)",
+            "@st.cache\ndef cached_write(value):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    st.write(value)",
+            "@st.cache\ndef cached_write(value):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    st.write(value)"
+        ]
+    },
+    {
+        "func_name": "cached_write_nowarn",
+        "original": "@st.cache(suppress_st_warning=True)\ndef cached_write_nowarn(value):\n    st.write(value)",
+        "mutated": [
+            "@st.cache(suppress_st_warning=True)\ndef cached_write_nowarn(value):\n    if False:\n        i = 10\n    st.write(value)",
+            "@st.cache(suppress_st_warning=True)\ndef cached_write_nowarn(value):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    st.write(value)",
+            "@st.cache(suppress_st_warning=True)\ndef cached_write_nowarn(value):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    st.write(value)",
+            "@st.cache(suppress_st_warning=True)\ndef cached_write_nowarn(value):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    st.write(value)",
+            "@st.cache(suppress_st_warning=True)\ndef cached_write_nowarn(value):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    st.write(value)"
+        ]
+    },
+    {
+        "func_name": "cached_widget",
+        "original": "@st.cache\ndef cached_widget(name):\n    st.button(name)",
+        "mutated": [
+            "@st.cache\ndef cached_widget(name):\n    if False:\n        i = 10\n    st.button(name)",
+            "@st.cache\ndef cached_widget(name):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    st.button(name)",
+            "@st.cache\ndef cached_widget(name):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    st.button(name)",
+            "@st.cache\ndef cached_widget(name):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    st.button(name)",
+            "@st.cache\ndef cached_widget(name):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    st.button(name)"
+        ]
+    }
+]

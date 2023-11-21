@@ -1,0 +1,24 @@
+[
+    {
+        "func_name": "compose",
+        "original": "def compose(self) -> ComposeResult:\n    self.widget = Static(TEXT)\n    yield self.widget",
+        "mutated": [
+            "def compose(self) -> ComposeResult:\n    if False:\n        i = 10\n    self.widget = Static(TEXT)\n    yield self.widget",
+            "def compose(self) -> ComposeResult:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    self.widget = Static(TEXT)\n    yield self.widget",
+            "def compose(self) -> ComposeResult:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    self.widget = Static(TEXT)\n    yield self.widget",
+            "def compose(self) -> ComposeResult:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    self.widget = Static(TEXT)\n    yield self.widget",
+            "def compose(self) -> ComposeResult:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    self.widget = Static(TEXT)\n    yield self.widget"
+        ]
+    },
+    {
+        "func_name": "on_mount",
+        "original": "def on_mount(self) -> None:\n    self.widget.styles.background = 'purple'\n    self.widget.styles.width = 30\n    self.widget.styles.padding = 2",
+        "mutated": [
+            "def on_mount(self) -> None:\n    if False:\n        i = 10\n    self.widget.styles.background = 'purple'\n    self.widget.styles.width = 30\n    self.widget.styles.padding = 2",
+            "def on_mount(self) -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    self.widget.styles.background = 'purple'\n    self.widget.styles.width = 30\n    self.widget.styles.padding = 2",
+            "def on_mount(self) -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    self.widget.styles.background = 'purple'\n    self.widget.styles.width = 30\n    self.widget.styles.padding = 2",
+            "def on_mount(self) -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    self.widget.styles.background = 'purple'\n    self.widget.styles.width = 30\n    self.widget.styles.padding = 2",
+            "def on_mount(self) -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    self.widget.styles.background = 'purple'\n    self.widget.styles.width = 30\n    self.widget.styles.padding = 2"
+        ]
+    }
+]

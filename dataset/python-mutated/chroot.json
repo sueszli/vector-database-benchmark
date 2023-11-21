@@ -1,0 +1,57 @@
+[
+    {
+        "func_name": "__init__",
+        "original": "def __init__(self, backing_transport):\n    pathfilter.PathFilteringServer.__init__(self, backing_transport, None)",
+        "mutated": [
+            "def __init__(self, backing_transport):\n    if False:\n        i = 10\n    pathfilter.PathFilteringServer.__init__(self, backing_transport, None)",
+            "def __init__(self, backing_transport):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    pathfilter.PathFilteringServer.__init__(self, backing_transport, None)",
+            "def __init__(self, backing_transport):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    pathfilter.PathFilteringServer.__init__(self, backing_transport, None)",
+            "def __init__(self, backing_transport):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    pathfilter.PathFilteringServer.__init__(self, backing_transport, None)",
+            "def __init__(self, backing_transport):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    pathfilter.PathFilteringServer.__init__(self, backing_transport, None)"
+        ]
+    },
+    {
+        "func_name": "_factory",
+        "original": "def _factory(self, url):\n    return ChrootTransport(self, url)",
+        "mutated": [
+            "def _factory(self, url):\n    if False:\n        i = 10\n    return ChrootTransport(self, url)",
+            "def _factory(self, url):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return ChrootTransport(self, url)",
+            "def _factory(self, url):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return ChrootTransport(self, url)",
+            "def _factory(self, url):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return ChrootTransport(self, url)",
+            "def _factory(self, url):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return ChrootTransport(self, url)"
+        ]
+    },
+    {
+        "func_name": "start_server",
+        "original": "def start_server(self):\n    self.scheme = 'chroot-%d:///' % id(self)\n    register_transport(self.scheme, self._factory)",
+        "mutated": [
+            "def start_server(self):\n    if False:\n        i = 10\n    self.scheme = 'chroot-%d:///' % id(self)\n    register_transport(self.scheme, self._factory)",
+            "def start_server(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    self.scheme = 'chroot-%d:///' % id(self)\n    register_transport(self.scheme, self._factory)",
+            "def start_server(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    self.scheme = 'chroot-%d:///' % id(self)\n    register_transport(self.scheme, self._factory)",
+            "def start_server(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    self.scheme = 'chroot-%d:///' % id(self)\n    register_transport(self.scheme, self._factory)",
+            "def start_server(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    self.scheme = 'chroot-%d:///' % id(self)\n    register_transport(self.scheme, self._factory)"
+        ]
+    },
+    {
+        "func_name": "_filter",
+        "original": "def _filter(self, relpath):\n    return self._relpath_from_server_root(relpath)",
+        "mutated": [
+            "def _filter(self, relpath):\n    if False:\n        i = 10\n    return self._relpath_from_server_root(relpath)",
+            "def _filter(self, relpath):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return self._relpath_from_server_root(relpath)",
+            "def _filter(self, relpath):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return self._relpath_from_server_root(relpath)",
+            "def _filter(self, relpath):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return self._relpath_from_server_root(relpath)",
+            "def _filter(self, relpath):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return self._relpath_from_server_root(relpath)"
+        ]
+    },
+    {
+        "func_name": "get_test_permutations",
+        "original": "def get_test_permutations():\n    \"\"\"Return the permutations to be used in testing.\"\"\"\n    from bzrlib.tests import test_server\n    return [(ChrootTransport, test_server.TestingChrootServer)]",
+        "mutated": [
+            "def get_test_permutations():\n    if False:\n        i = 10\n    'Return the permutations to be used in testing.'\n    from bzrlib.tests import test_server\n    return [(ChrootTransport, test_server.TestingChrootServer)]",
+            "def get_test_permutations():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    'Return the permutations to be used in testing.'\n    from bzrlib.tests import test_server\n    return [(ChrootTransport, test_server.TestingChrootServer)]",
+            "def get_test_permutations():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    'Return the permutations to be used in testing.'\n    from bzrlib.tests import test_server\n    return [(ChrootTransport, test_server.TestingChrootServer)]",
+            "def get_test_permutations():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    'Return the permutations to be used in testing.'\n    from bzrlib.tests import test_server\n    return [(ChrootTransport, test_server.TestingChrootServer)]",
+            "def get_test_permutations():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    'Return the permutations to be used in testing.'\n    from bzrlib.tests import test_server\n    return [(ChrootTransport, test_server.TestingChrootServer)]"
+        ]
+    }
+]

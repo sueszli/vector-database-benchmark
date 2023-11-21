@@ -1,0 +1,68 @@
+[
+    {
+        "func_name": "intentional_fail",
+        "original": "@ray.remote\ndef intentional_fail() -> str:\n    raise RuntimeError('oops')",
+        "mutated": [
+            "@ray.remote\ndef intentional_fail() -> str:\n    if False:\n        i = 10\n    raise RuntimeError('oops')",
+            "@ray.remote\ndef intentional_fail() -> str:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    raise RuntimeError('oops')",
+            "@ray.remote\ndef intentional_fail() -> str:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    raise RuntimeError('oops')",
+            "@ray.remote\ndef intentional_fail() -> str:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    raise RuntimeError('oops')",
+            "@ray.remote\ndef intentional_fail() -> str:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    raise RuntimeError('oops')"
+        ]
+    },
+    {
+        "func_name": "cry",
+        "original": "@ray.remote\ndef cry(error: Exception) -> None:\n    print('Sadly', error)",
+        "mutated": [
+            "@ray.remote\ndef cry(error: Exception) -> None:\n    if False:\n        i = 10\n    print('Sadly', error)",
+            "@ray.remote\ndef cry(error: Exception) -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    print('Sadly', error)",
+            "@ray.remote\ndef cry(error: Exception) -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    print('Sadly', error)",
+            "@ray.remote\ndef cry(error: Exception) -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    print('Sadly', error)",
+            "@ray.remote\ndef cry(error: Exception) -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    print('Sadly', error)"
+        ]
+    },
+    {
+        "func_name": "celebrate",
+        "original": "@ray.remote\ndef celebrate(result: str) -> None:\n    print('Success!', result)",
+        "mutated": [
+            "@ray.remote\ndef celebrate(result: str) -> None:\n    if False:\n        i = 10\n    print('Success!', result)",
+            "@ray.remote\ndef celebrate(result: str) -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    print('Success!', result)",
+            "@ray.remote\ndef celebrate(result: str) -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    print('Success!', result)",
+            "@ray.remote\ndef celebrate(result: str) -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    print('Success!', result)",
+            "@ray.remote\ndef celebrate(result: str) -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    print('Success!', result)"
+        ]
+    },
+    {
+        "func_name": "send_email",
+        "original": "@ray.remote\ndef send_email(result: str) -> None:\n    print('Sending email', result)",
+        "mutated": [
+            "@ray.remote\ndef send_email(result: str) -> None:\n    if False:\n        i = 10\n    print('Sending email', result)",
+            "@ray.remote\ndef send_email(result: str) -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    print('Sending email', result)",
+            "@ray.remote\ndef send_email(result: str) -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    print('Sending email', result)",
+            "@ray.remote\ndef send_email(result: str) -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    print('Sending email', result)",
+            "@ray.remote\ndef send_email(result: str) -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    print('Sending email', result)"
+        ]
+    },
+    {
+        "func_name": "exit_handler",
+        "original": "@ray.remote\ndef exit_handler(res: Tuple[Optional[str], Optional[Exception]]) -> None:\n    (result, error) = res\n    email = send_email.bind(f'Raw result: {result}, {error}')\n    if error:\n        handler = cry.bind(error)\n    else:\n        handler = celebrate.bind(result)\n    return workflow.continuation(wait_all.bind(handler, email))",
+        "mutated": [
+            "@ray.remote\ndef exit_handler(res: Tuple[Optional[str], Optional[Exception]]) -> None:\n    if False:\n        i = 10\n    (result, error) = res\n    email = send_email.bind(f'Raw result: {result}, {error}')\n    if error:\n        handler = cry.bind(error)\n    else:\n        handler = celebrate.bind(result)\n    return workflow.continuation(wait_all.bind(handler, email))",
+            "@ray.remote\ndef exit_handler(res: Tuple[Optional[str], Optional[Exception]]) -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    (result, error) = res\n    email = send_email.bind(f'Raw result: {result}, {error}')\n    if error:\n        handler = cry.bind(error)\n    else:\n        handler = celebrate.bind(result)\n    return workflow.continuation(wait_all.bind(handler, email))",
+            "@ray.remote\ndef exit_handler(res: Tuple[Optional[str], Optional[Exception]]) -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    (result, error) = res\n    email = send_email.bind(f'Raw result: {result}, {error}')\n    if error:\n        handler = cry.bind(error)\n    else:\n        handler = celebrate.bind(result)\n    return workflow.continuation(wait_all.bind(handler, email))",
+            "@ray.remote\ndef exit_handler(res: Tuple[Optional[str], Optional[Exception]]) -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    (result, error) = res\n    email = send_email.bind(f'Raw result: {result}, {error}')\n    if error:\n        handler = cry.bind(error)\n    else:\n        handler = celebrate.bind(result)\n    return workflow.continuation(wait_all.bind(handler, email))",
+            "@ray.remote\ndef exit_handler(res: Tuple[Optional[str], Optional[Exception]]) -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    (result, error) = res\n    email = send_email.bind(f'Raw result: {result}, {error}')\n    if error:\n        handler = cry.bind(error)\n    else:\n        handler = celebrate.bind(result)\n    return workflow.continuation(wait_all.bind(handler, email))"
+        ]
+    },
+    {
+        "func_name": "wait_all",
+        "original": "@ray.remote\ndef wait_all(*deps):\n    return 'done'",
+        "mutated": [
+            "@ray.remote\ndef wait_all(*deps):\n    if False:\n        i = 10\n    return 'done'",
+            "@ray.remote\ndef wait_all(*deps):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return 'done'",
+            "@ray.remote\ndef wait_all(*deps):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return 'done'",
+            "@ray.remote\ndef wait_all(*deps):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return 'done'",
+            "@ray.remote\ndef wait_all(*deps):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return 'done'"
+        ]
+    }
+]

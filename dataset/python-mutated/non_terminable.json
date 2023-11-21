@@ -1,0 +1,24 @@
+[
+    {
+        "func_name": "log",
+        "original": "def log(msg, *extra_streams):\n    for stream in (sys.stdout,) + extra_streams:\n        stream.write(msg + '\\n')\n        stream.flush()",
+        "mutated": [
+            "def log(msg, *extra_streams):\n    if False:\n        i = 10\n    for stream in (sys.stdout,) + extra_streams:\n        stream.write(msg + '\\n')\n        stream.flush()",
+            "def log(msg, *extra_streams):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    for stream in (sys.stdout,) + extra_streams:\n        stream.write(msg + '\\n')\n        stream.flush()",
+            "def log(msg, *extra_streams):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    for stream in (sys.stdout,) + extra_streams:\n        stream.write(msg + '\\n')\n        stream.flush()",
+            "def log(msg, *extra_streams):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    for stream in (sys.stdout,) + extra_streams:\n        stream.write(msg + '\\n')\n        stream.flush()",
+            "def log(msg, *extra_streams):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    for stream in (sys.stdout,) + extra_streams:\n        stream.write(msg + '\\n')\n        stream.flush()"
+        ]
+    },
+    {
+        "func_name": "ignorer",
+        "original": "def ignorer(signum, frame):\n    log('Ignoring signal %d.' % signum)",
+        "mutated": [
+            "def ignorer(signum, frame):\n    if False:\n        i = 10\n    log('Ignoring signal %d.' % signum)",
+            "def ignorer(signum, frame):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    log('Ignoring signal %d.' % signum)",
+            "def ignorer(signum, frame):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    log('Ignoring signal %d.' % signum)",
+            "def ignorer(signum, frame):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    log('Ignoring signal %d.' % signum)",
+            "def ignorer(signum, frame):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    log('Ignoring signal %d.' % signum)"
+        ]
+    }
+]

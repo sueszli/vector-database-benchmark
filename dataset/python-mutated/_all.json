@@ -1,0 +1,35 @@
+[
+    {
+        "func_name": "filter",
+        "original": "def filter(v: _T):\n    return not predicate(v)",
+        "mutated": [
+            "def filter(v: _T):\n    if False:\n        i = 10\n    return not predicate(v)",
+            "def filter(v: _T):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return not predicate(v)",
+            "def filter(v: _T):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return not predicate(v)",
+            "def filter(v: _T):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return not predicate(v)",
+            "def filter(v: _T):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return not predicate(v)"
+        ]
+    },
+    {
+        "func_name": "mapping",
+        "original": "def mapping(b: bool) -> bool:\n    return not b",
+        "mutated": [
+            "def mapping(b: bool) -> bool:\n    if False:\n        i = 10\n    return not b",
+            "def mapping(b: bool) -> bool:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return not b",
+            "def mapping(b: bool) -> bool:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return not b",
+            "def mapping(b: bool) -> bool:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return not b",
+            "def mapping(b: bool) -> bool:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return not b"
+        ]
+    },
+    {
+        "func_name": "all_",
+        "original": "def all_(predicate: Predicate[_T]) -> Callable[[Observable[_T]], Observable[bool]]:\n\n    def filter(v: _T):\n        return not predicate(v)\n\n    def mapping(b: bool) -> bool:\n        return not b\n    return compose(ops.filter(filter), ops.some(), ops.map(mapping))",
+        "mutated": [
+            "def all_(predicate: Predicate[_T]) -> Callable[[Observable[_T]], Observable[bool]]:\n    if False:\n        i = 10\n\n    def filter(v: _T):\n        return not predicate(v)\n\n    def mapping(b: bool) -> bool:\n        return not b\n    return compose(ops.filter(filter), ops.some(), ops.map(mapping))",
+            "def all_(predicate: Predicate[_T]) -> Callable[[Observable[_T]], Observable[bool]]:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n\n    def filter(v: _T):\n        return not predicate(v)\n\n    def mapping(b: bool) -> bool:\n        return not b\n    return compose(ops.filter(filter), ops.some(), ops.map(mapping))",
+            "def all_(predicate: Predicate[_T]) -> Callable[[Observable[_T]], Observable[bool]]:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n    def filter(v: _T):\n        return not predicate(v)\n\n    def mapping(b: bool) -> bool:\n        return not b\n    return compose(ops.filter(filter), ops.some(), ops.map(mapping))",
+            "def all_(predicate: Predicate[_T]) -> Callable[[Observable[_T]], Observable[bool]]:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n\n    def filter(v: _T):\n        return not predicate(v)\n\n    def mapping(b: bool) -> bool:\n        return not b\n    return compose(ops.filter(filter), ops.some(), ops.map(mapping))",
+            "def all_(predicate: Predicate[_T]) -> Callable[[Observable[_T]], Observable[bool]]:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n\n    def filter(v: _T):\n        return not predicate(v)\n\n    def mapping(b: bool) -> bool:\n        return not b\n    return compose(ops.filter(filter), ops.some(), ops.map(mapping))"
+        ]
+    }
+]

@@ -1,0 +1,46 @@
+[
+    {
+        "func_name": "test_event_set_in_sync_context_before_wait",
+        "original": "def test_event_set_in_sync_context_before_wait():\n    event = Event()\n    event.set()\n\n    async def main():\n        with anyio.fail_after(1):\n            await event.wait()\n    anyio.run(main)",
+        "mutated": [
+            "def test_event_set_in_sync_context_before_wait():\n    if False:\n        i = 10\n    event = Event()\n    event.set()\n\n    async def main():\n        with anyio.fail_after(1):\n            await event.wait()\n    anyio.run(main)",
+            "def test_event_set_in_sync_context_before_wait():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    event = Event()\n    event.set()\n\n    async def main():\n        with anyio.fail_after(1):\n            await event.wait()\n    anyio.run(main)",
+            "def test_event_set_in_sync_context_before_wait():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    event = Event()\n    event.set()\n\n    async def main():\n        with anyio.fail_after(1):\n            await event.wait()\n    anyio.run(main)",
+            "def test_event_set_in_sync_context_before_wait():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    event = Event()\n    event.set()\n\n    async def main():\n        with anyio.fail_after(1):\n            await event.wait()\n    anyio.run(main)",
+            "def test_event_set_in_sync_context_before_wait():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    event = Event()\n    event.set()\n\n    async def main():\n        with anyio.fail_after(1):\n            await event.wait()\n    anyio.run(main)"
+        ]
+    },
+    {
+        "func_name": "create_event",
+        "original": "def create_event():\n    return Event()",
+        "mutated": [
+            "def create_event():\n    if False:\n        i = 10\n    return Event()",
+            "def create_event():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return Event()",
+            "def create_event():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return Event()",
+            "def create_event():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return Event()",
+            "def create_event():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return Event()"
+        ]
+    },
+    {
+        "func_name": "set_event_in_new_loop",
+        "original": "def set_event_in_new_loop():\n    anyio.run(set_event)",
+        "mutated": [
+            "def set_event_in_new_loop():\n    if False:\n        i = 10\n    anyio.run(set_event)",
+            "def set_event_in_new_loop():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    anyio.run(set_event)",
+            "def set_event_in_new_loop():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    anyio.run(set_event)",
+            "def set_event_in_new_loop():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    anyio.run(set_event)",
+            "def set_event_in_new_loop():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    anyio.run(set_event)"
+        ]
+    },
+    {
+        "func_name": "set_event_in_new_loop",
+        "original": "def set_event_in_new_loop():\n    anyio.run(set_event)",
+        "mutated": [
+            "def set_event_in_new_loop():\n    if False:\n        i = 10\n    anyio.run(set_event)",
+            "def set_event_in_new_loop():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    anyio.run(set_event)",
+            "def set_event_in_new_loop():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    anyio.run(set_event)",
+            "def set_event_in_new_loop():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    anyio.run(set_event)",
+            "def set_event_in_new_loop():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    anyio.run(set_event)"
+        ]
+    }
+]

@@ -1,0 +1,13 @@
+[
+    {
+        "func_name": "find_difference",
+        "original": "def find_difference(s, t):\n    ret = 0\n    for ch in s + t:\n        ret = ret ^ ord(ch)\n    return chr(ret)",
+        "mutated": [
+            "def find_difference(s, t):\n    if False:\n        i = 10\n    ret = 0\n    for ch in s + t:\n        ret = ret ^ ord(ch)\n    return chr(ret)",
+            "def find_difference(s, t):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    ret = 0\n    for ch in s + t:\n        ret = ret ^ ord(ch)\n    return chr(ret)",
+            "def find_difference(s, t):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    ret = 0\n    for ch in s + t:\n        ret = ret ^ ord(ch)\n    return chr(ret)",
+            "def find_difference(s, t):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    ret = 0\n    for ch in s + t:\n        ret = ret ^ ord(ch)\n    return chr(ret)",
+            "def find_difference(s, t):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    ret = 0\n    for ch in s + t:\n        ret = ret ^ ord(ch)\n    return chr(ret)"
+        ]
+    }
+]

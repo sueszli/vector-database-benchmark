@@ -1,0 +1,79 @@
+[
+    {
+        "func_name": "countdown",
+        "original": "def countdown(n):\n    while n > 0:\n        print('T-minus', n)\n        n -= 1\n        time.sleep(5)",
+        "mutated": [
+            "def countdown(n):\n    if False:\n        i = 10\n    while n > 0:\n        print('T-minus', n)\n        n -= 1\n        time.sleep(5)",
+            "def countdown(n):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    while n > 0:\n        print('T-minus', n)\n        n -= 1\n        time.sleep(5)",
+            "def countdown(n):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    while n > 0:\n        print('T-minus', n)\n        n -= 1\n        time.sleep(5)",
+            "def countdown(n):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    while n > 0:\n        print('T-minus', n)\n        n -= 1\n        time.sleep(5)",
+            "def countdown(n):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    while n > 0:\n        print('T-minus', n)\n        n -= 1\n        time.sleep(5)"
+        ]
+    },
+    {
+        "func_name": "__init__",
+        "original": "def __init__(self):\n    self._running = True",
+        "mutated": [
+            "def __init__(self):\n    if False:\n        i = 10\n    self._running = True",
+            "def __init__(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    self._running = True",
+            "def __init__(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    self._running = True",
+            "def __init__(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    self._running = True",
+            "def __init__(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    self._running = True"
+        ]
+    },
+    {
+        "func_name": "terminate",
+        "original": "def terminate(self):\n    self._running = False",
+        "mutated": [
+            "def terminate(self):\n    if False:\n        i = 10\n    self._running = False",
+            "def terminate(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    self._running = False",
+            "def terminate(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    self._running = False",
+            "def terminate(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    self._running = False",
+            "def terminate(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    self._running = False"
+        ]
+    },
+    {
+        "func_name": "run",
+        "original": "def run(self, n):\n    while self._running and n > 0:\n        print('T-minus', n)\n        n -= 1\n        time.sleep(5)",
+        "mutated": [
+            "def run(self, n):\n    if False:\n        i = 10\n    while self._running and n > 0:\n        print('T-minus', n)\n        n -= 1\n        time.sleep(5)",
+            "def run(self, n):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    while self._running and n > 0:\n        print('T-minus', n)\n        n -= 1\n        time.sleep(5)",
+            "def run(self, n):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    while self._running and n > 0:\n        print('T-minus', n)\n        n -= 1\n        time.sleep(5)",
+            "def run(self, n):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    while self._running and n > 0:\n        print('T-minus', n)\n        n -= 1\n        time.sleep(5)",
+            "def run(self, n):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    while self._running and n > 0:\n        print('T-minus', n)\n        n -= 1\n        time.sleep(5)"
+        ]
+    },
+    {
+        "func_name": "terminate",
+        "original": "def terminate(self):\n    sock.settimeout(5)\n    while self._running:\n        try:\n            data = sock.recv(8192)\n            break\n        except socket.timeout:\n            continue\n    return",
+        "mutated": [
+            "def terminate(self):\n    if False:\n        i = 10\n    sock.settimeout(5)\n    while self._running:\n        try:\n            data = sock.recv(8192)\n            break\n        except socket.timeout:\n            continue\n    return",
+            "def terminate(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    sock.settimeout(5)\n    while self._running:\n        try:\n            data = sock.recv(8192)\n            break\n        except socket.timeout:\n            continue\n    return",
+            "def terminate(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    sock.settimeout(5)\n    while self._running:\n        try:\n            data = sock.recv(8192)\n            break\n        except socket.timeout:\n            continue\n    return",
+            "def terminate(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    sock.settimeout(5)\n    while self._running:\n        try:\n            data = sock.recv(8192)\n            break\n        except socket.timeout:\n            continue\n    return",
+            "def terminate(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    sock.settimeout(5)\n    while self._running:\n        try:\n            data = sock.recv(8192)\n            break\n        except socket.timeout:\n            continue\n    return"
+        ]
+    },
+    {
+        "func_name": "__init__",
+        "original": "def __init__(self, n):\n    super().__init__()\n    self.n = n",
+        "mutated": [
+            "def __init__(self, n):\n    if False:\n        i = 10\n    super().__init__()\n    self.n = n",
+            "def __init__(self, n):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    super().__init__()\n    self.n = n",
+            "def __init__(self, n):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    super().__init__()\n    self.n = n",
+            "def __init__(self, n):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    super().__init__()\n    self.n = n",
+            "def __init__(self, n):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    super().__init__()\n    self.n = n"
+        ]
+    },
+    {
+        "func_name": "run",
+        "original": "def run(self):\n    while self.n > 0:\n        print('T-minus', self.n)\n        self.n -= 1\n        time.sleep(5)",
+        "mutated": [
+            "def run(self):\n    if False:\n        i = 10\n    while self.n > 0:\n        print('T-minus', self.n)\n        self.n -= 1\n        time.sleep(5)",
+            "def run(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    while self.n > 0:\n        print('T-minus', self.n)\n        self.n -= 1\n        time.sleep(5)",
+            "def run(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    while self.n > 0:\n        print('T-minus', self.n)\n        self.n -= 1\n        time.sleep(5)",
+            "def run(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    while self.n > 0:\n        print('T-minus', self.n)\n        self.n -= 1\n        time.sleep(5)",
+            "def run(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    while self.n > 0:\n        print('T-minus', self.n)\n        self.n -= 1\n        time.sleep(5)"
+        ]
+    }
+]

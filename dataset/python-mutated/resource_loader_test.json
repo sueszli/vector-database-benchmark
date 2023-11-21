@@ -1,0 +1,24 @@
+[
+    {
+        "func_name": "test_exception",
+        "original": "def test_exception(self):\n    with self.assertRaises(IOError):\n        resource_loader.load_resource('/fake/file/path/dne')",
+        "mutated": [
+            "def test_exception(self):\n    if False:\n        i = 10\n    with self.assertRaises(IOError):\n        resource_loader.load_resource('/fake/file/path/dne')",
+            "def test_exception(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    with self.assertRaises(IOError):\n        resource_loader.load_resource('/fake/file/path/dne')",
+            "def test_exception(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    with self.assertRaises(IOError):\n        resource_loader.load_resource('/fake/file/path/dne')",
+            "def test_exception(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    with self.assertRaises(IOError):\n        resource_loader.load_resource('/fake/file/path/dne')",
+            "def test_exception(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    with self.assertRaises(IOError):\n        resource_loader.load_resource('/fake/file/path/dne')"
+        ]
+    },
+    {
+        "func_name": "test_exists",
+        "original": "def test_exists(self):\n    contents = resource_loader.load_resource('python/platform/resource_loader.py')\n    self.assertIn(b'tensorflow', contents)",
+        "mutated": [
+            "def test_exists(self):\n    if False:\n        i = 10\n    contents = resource_loader.load_resource('python/platform/resource_loader.py')\n    self.assertIn(b'tensorflow', contents)",
+            "def test_exists(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    contents = resource_loader.load_resource('python/platform/resource_loader.py')\n    self.assertIn(b'tensorflow', contents)",
+            "def test_exists(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    contents = resource_loader.load_resource('python/platform/resource_loader.py')\n    self.assertIn(b'tensorflow', contents)",
+            "def test_exists(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    contents = resource_loader.load_resource('python/platform/resource_loader.py')\n    self.assertIn(b'tensorflow', contents)",
+            "def test_exists(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    contents = resource_loader.load_resource('python/platform/resource_loader.py')\n    self.assertIn(b'tensorflow', contents)"
+        ]
+    }
+]

@@ -1,0 +1,134 @@
+[
+    {
+        "func_name": "attr",
+        "original": "@setter\ndef attr(self, value):\n    return value * 2",
+        "mutated": [
+            "@setter\ndef attr(self, value):\n    if False:\n        i = 10\n    return value * 2",
+            "@setter\ndef attr(self, value):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return value * 2",
+            "@setter\ndef attr(self, value):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return value * 2",
+            "@setter\ndef attr(self, value):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return value * 2",
+            "@setter\ndef attr(self, value):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return value * 2"
+        ]
+    },
+    {
+        "func_name": "with_doc",
+        "original": "@setter\ndef with_doc(self, value):\n    \"\"\"The doc string.\"\"\"\n    return value",
+        "mutated": [
+            "@setter\ndef with_doc(self, value):\n    if False:\n        i = 10\n    'The doc string.'\n    return value",
+            "@setter\ndef with_doc(self, value):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    'The doc string.'\n    return value",
+            "@setter\ndef with_doc(self, value):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    'The doc string.'\n    return value",
+            "@setter\ndef with_doc(self, value):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    'The doc string.'\n    return value",
+            "@setter\ndef with_doc(self, value):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    'The doc string.'\n    return value"
+        ]
+    },
+    {
+        "func_name": "setUp",
+        "original": "def setUp(self):\n    self.item = Example()",
+        "mutated": [
+            "def setUp(self):\n    if False:\n        i = 10\n    self.item = Example()",
+            "def setUp(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    self.item = Example()",
+            "def setUp(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    self.item = Example()",
+            "def setUp(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    self.item = Example()",
+            "def setUp(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    self.item = Example()"
+        ]
+    },
+    {
+        "func_name": "test_setting",
+        "original": "def test_setting(self):\n    self.item.attr = 1\n    assert_equal(self.item.attr, 2)",
+        "mutated": [
+            "def test_setting(self):\n    if False:\n        i = 10\n    self.item.attr = 1\n    assert_equal(self.item.attr, 2)",
+            "def test_setting(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    self.item.attr = 1\n    assert_equal(self.item.attr, 2)",
+            "def test_setting(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    self.item.attr = 1\n    assert_equal(self.item.attr, 2)",
+            "def test_setting(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    self.item.attr = 1\n    assert_equal(self.item.attr, 2)",
+            "def test_setting(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    self.item.attr = 1\n    assert_equal(self.item.attr, 2)"
+        ]
+    },
+    {
+        "func_name": "test_notset",
+        "original": "def test_notset(self):\n    assert_raises(AttributeError, getattr, self.item, 'attr')",
+        "mutated": [
+            "def test_notset(self):\n    if False:\n        i = 10\n    assert_raises(AttributeError, getattr, self.item, 'attr')",
+            "def test_notset(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    assert_raises(AttributeError, getattr, self.item, 'attr')",
+            "def test_notset(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    assert_raises(AttributeError, getattr, self.item, 'attr')",
+            "def test_notset(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    assert_raises(AttributeError, getattr, self.item, 'attr')",
+            "def test_notset(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    assert_raises(AttributeError, getattr, self.item, 'attr')"
+        ]
+    },
+    {
+        "func_name": "test_set_other_attr",
+        "original": "def test_set_other_attr(self):\n    self.item.other_attr = 1\n    assert_equal(self.item.other_attr, 1)",
+        "mutated": [
+            "def test_set_other_attr(self):\n    if False:\n        i = 10\n    self.item.other_attr = 1\n    assert_equal(self.item.other_attr, 1)",
+            "def test_set_other_attr(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    self.item.other_attr = 1\n    assert_equal(self.item.other_attr, 1)",
+            "def test_set_other_attr(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    self.item.other_attr = 1\n    assert_equal(self.item.other_attr, 1)",
+            "def test_set_other_attr(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    self.item.other_attr = 1\n    assert_equal(self.item.other_attr, 1)",
+            "def test_set_other_attr(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    self.item.other_attr = 1\n    assert_equal(self.item.other_attr, 1)"
+        ]
+    },
+    {
+        "func_name": "test_copy_doc",
+        "original": "def test_copy_doc(self):\n    assert_equal(type(self.item).attr.__doc__, None)\n    assert_equal(type(self.item).with_doc.__doc__, 'The doc string.')",
+        "mutated": [
+            "def test_copy_doc(self):\n    if False:\n        i = 10\n    assert_equal(type(self.item).attr.__doc__, None)\n    assert_equal(type(self.item).with_doc.__doc__, 'The doc string.')",
+            "def test_copy_doc(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    assert_equal(type(self.item).attr.__doc__, None)\n    assert_equal(type(self.item).with_doc.__doc__, 'The doc string.')",
+            "def test_copy_doc(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    assert_equal(type(self.item).attr.__doc__, None)\n    assert_equal(type(self.item).with_doc.__doc__, 'The doc string.')",
+            "def test_copy_doc(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    assert_equal(type(self.item).attr.__doc__, None)\n    assert_equal(type(self.item).with_doc.__doc__, 'The doc string.')",
+            "def test_copy_doc(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    assert_equal(type(self.item).attr.__doc__, None)\n    assert_equal(type(self.item).with_doc.__doc__, 'The doc string.')"
+        ]
+    },
+    {
+        "func_name": "setUp",
+        "original": "def setUp(self):\n    self.item = ExampleWithSlots()",
+        "mutated": [
+            "def setUp(self):\n    if False:\n        i = 10\n    self.item = ExampleWithSlots()",
+            "def setUp(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    self.item = ExampleWithSlots()",
+            "def setUp(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    self.item = ExampleWithSlots()",
+            "def setUp(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    self.item = ExampleWithSlots()",
+            "def setUp(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    self.item = ExampleWithSlots()"
+        ]
+    },
+    {
+        "func_name": "test_set_other_attr",
+        "original": "def test_set_other_attr(self):\n    assert_raises(AttributeError, setattr, self.item, 'other_attr', 1)",
+        "mutated": [
+            "def test_set_other_attr(self):\n    if False:\n        i = 10\n    assert_raises(AttributeError, setattr, self.item, 'other_attr', 1)",
+            "def test_set_other_attr(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    assert_raises(AttributeError, setattr, self.item, 'other_attr', 1)",
+            "def test_set_other_attr(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    assert_raises(AttributeError, setattr, self.item, 'other_attr', 1)",
+            "def test_set_other_attr(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    assert_raises(AttributeError, setattr, self.item, 'other_attr', 1)",
+            "def test_set_other_attr(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    assert_raises(AttributeError, setattr, self.item, 'other_attr', 1)"
+        ]
+    },
+    {
+        "func_name": "__init__",
+        "original": "def __init__(self, x, y):\n    self.x = x\n    self.y = y",
+        "mutated": [
+            "def __init__(self, x, y):\n    if False:\n        i = 10\n    self.x = x\n    self.y = y",
+            "def __init__(self, x, y):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    self.x = x\n    self.y = y",
+            "def __init__(self, x, y):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    self.x = x\n    self.y = y",
+            "def __init__(self, x, y):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    self.x = x\n    self.y = y",
+            "def __init__(self, x, y):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    self.x = x\n    self.y = y"
+        ]
+    },
+    {
+        "func_name": "y",
+        "original": "@setter\ndef y(self, y):\n    return y.upper()",
+        "mutated": [
+            "@setter\ndef y(self, y):\n    if False:\n        i = 10\n    return y.upper()",
+            "@setter\ndef y(self, y):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return y.upper()",
+            "@setter\ndef y(self, y):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return y.upper()",
+            "@setter\ndef y(self, y):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return y.upper()",
+            "@setter\ndef y(self, y):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return y.upper()"
+        ]
+    },
+    {
+        "func_name": "test_slots_as_tuple",
+        "original": "def test_slots_as_tuple(self):\n\n    class XY(metaclass=SetterAwareType):\n        __slots__ = ('x',)\n\n        def __init__(self, x, y):\n            self.x = x\n            self.y = y\n\n        @setter\n        def y(self, y):\n            return y.upper()\n    xy = XY('x', 'y')\n    assert_equal((xy.x, xy.y), ('x', 'Y'))\n    assert_raises(AttributeError, setattr, xy, 'z', 'z')",
+        "mutated": [
+            "def test_slots_as_tuple(self):\n    if False:\n        i = 10\n\n    class XY(metaclass=SetterAwareType):\n        __slots__ = ('x',)\n\n        def __init__(self, x, y):\n            self.x = x\n            self.y = y\n\n        @setter\n        def y(self, y):\n            return y.upper()\n    xy = XY('x', 'y')\n    assert_equal((xy.x, xy.y), ('x', 'Y'))\n    assert_raises(AttributeError, setattr, xy, 'z', 'z')",
+            "def test_slots_as_tuple(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n\n    class XY(metaclass=SetterAwareType):\n        __slots__ = ('x',)\n\n        def __init__(self, x, y):\n            self.x = x\n            self.y = y\n\n        @setter\n        def y(self, y):\n            return y.upper()\n    xy = XY('x', 'y')\n    assert_equal((xy.x, xy.y), ('x', 'Y'))\n    assert_raises(AttributeError, setattr, xy, 'z', 'z')",
+            "def test_slots_as_tuple(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n    class XY(metaclass=SetterAwareType):\n        __slots__ = ('x',)\n\n        def __init__(self, x, y):\n            self.x = x\n            self.y = y\n\n        @setter\n        def y(self, y):\n            return y.upper()\n    xy = XY('x', 'y')\n    assert_equal((xy.x, xy.y), ('x', 'Y'))\n    assert_raises(AttributeError, setattr, xy, 'z', 'z')",
+            "def test_slots_as_tuple(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n\n    class XY(metaclass=SetterAwareType):\n        __slots__ = ('x',)\n\n        def __init__(self, x, y):\n            self.x = x\n            self.y = y\n\n        @setter\n        def y(self, y):\n            return y.upper()\n    xy = XY('x', 'y')\n    assert_equal((xy.x, xy.y), ('x', 'Y'))\n    assert_raises(AttributeError, setattr, xy, 'z', 'z')",
+            "def test_slots_as_tuple(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n\n    class XY(metaclass=SetterAwareType):\n        __slots__ = ('x',)\n\n        def __init__(self, x, y):\n            self.x = x\n            self.y = y\n\n        @setter\n        def y(self, y):\n            return y.upper()\n    xy = XY('x', 'y')\n    assert_equal((xy.x, xy.y), ('x', 'Y'))\n    assert_raises(AttributeError, setattr, xy, 'z', 'z')"
+        ]
+    }
+]

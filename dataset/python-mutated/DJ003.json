@@ -1,0 +1,57 @@
+[
+    {
+        "func_name": "test_view1",
+        "original": "def test_view1(request):\n    return render(request, 'index.html', locals())",
+        "mutated": [
+            "def test_view1(request):\n    if False:\n        i = 10\n    return render(request, 'index.html', locals())",
+            "def test_view1(request):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return render(request, 'index.html', locals())",
+            "def test_view1(request):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return render(request, 'index.html', locals())",
+            "def test_view1(request):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return render(request, 'index.html', locals())",
+            "def test_view1(request):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return render(request, 'index.html', locals())"
+        ]
+    },
+    {
+        "func_name": "test_view2",
+        "original": "def test_view2(request):\n    return render(request, 'index.html', context=locals())",
+        "mutated": [
+            "def test_view2(request):\n    if False:\n        i = 10\n    return render(request, 'index.html', context=locals())",
+            "def test_view2(request):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return render(request, 'index.html', context=locals())",
+            "def test_view2(request):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return render(request, 'index.html', context=locals())",
+            "def test_view2(request):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return render(request, 'index.html', context=locals())",
+            "def test_view2(request):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return render(request, 'index.html', context=locals())"
+        ]
+    },
+    {
+        "func_name": "test_view3",
+        "original": "def test_view3(request):\n    return render(request, 'index.html')",
+        "mutated": [
+            "def test_view3(request):\n    if False:\n        i = 10\n    return render(request, 'index.html')",
+            "def test_view3(request):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return render(request, 'index.html')",
+            "def test_view3(request):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return render(request, 'index.html')",
+            "def test_view3(request):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return render(request, 'index.html')",
+            "def test_view3(request):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return render(request, 'index.html')"
+        ]
+    },
+    {
+        "func_name": "test_view4",
+        "original": "def test_view4(request):\n    return render(request, 'index.html', {})",
+        "mutated": [
+            "def test_view4(request):\n    if False:\n        i = 10\n    return render(request, 'index.html', {})",
+            "def test_view4(request):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return render(request, 'index.html', {})",
+            "def test_view4(request):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return render(request, 'index.html', {})",
+            "def test_view4(request):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return render(request, 'index.html', {})",
+            "def test_view4(request):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return render(request, 'index.html', {})"
+        ]
+    },
+    {
+        "func_name": "test_view5",
+        "original": "def test_view5(request):\n    return render(request, 'index.html', context={})",
+        "mutated": [
+            "def test_view5(request):\n    if False:\n        i = 10\n    return render(request, 'index.html', context={})",
+            "def test_view5(request):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return render(request, 'index.html', context={})",
+            "def test_view5(request):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return render(request, 'index.html', context={})",
+            "def test_view5(request):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return render(request, 'index.html', context={})",
+            "def test_view5(request):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return render(request, 'index.html', context={})"
+        ]
+    }
+]

@@ -1,0 +1,46 @@
+[
+    {
+        "func_name": "my_op",
+        "original": "@op\ndef my_op():\n    return 'Hello World!'",
+        "mutated": [
+            "@op\ndef my_op():\n    if False:\n        i = 10\n    return 'Hello World!'",
+            "@op\ndef my_op():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return 'Hello World!'",
+            "@op\ndef my_op():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return 'Hello World!'",
+            "@op\ndef my_op():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return 'Hello World!'",
+            "@op\ndef my_op():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return 'Hello World!'"
+        ]
+    },
+    {
+        "func_name": "my_job_with_metadata",
+        "original": "@job(metadata={'owner': 'data team', 'docs': MetadataValue.url('https://docs.dagster.io')})\ndef my_job_with_metadata():\n    my_op()",
+        "mutated": [
+            "@job(metadata={'owner': 'data team', 'docs': MetadataValue.url('https://docs.dagster.io')})\ndef my_job_with_metadata():\n    if False:\n        i = 10\n    my_op()",
+            "@job(metadata={'owner': 'data team', 'docs': MetadataValue.url('https://docs.dagster.io')})\ndef my_job_with_metadata():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    my_op()",
+            "@job(metadata={'owner': 'data team', 'docs': MetadataValue.url('https://docs.dagster.io')})\ndef my_job_with_metadata():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    my_op()",
+            "@job(metadata={'owner': 'data team', 'docs': MetadataValue.url('https://docs.dagster.io')})\ndef my_job_with_metadata():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    my_op()",
+            "@job(metadata={'owner': 'data team', 'docs': MetadataValue.url('https://docs.dagster.io')})\ndef my_job_with_metadata():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    my_op()"
+        ]
+    },
+    {
+        "func_name": "my_graph",
+        "original": "@graph\ndef my_graph():\n    my_op()",
+        "mutated": [
+            "@graph\ndef my_graph():\n    if False:\n        i = 10\n    my_op()",
+            "@graph\ndef my_graph():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    my_op()",
+            "@graph\ndef my_graph():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    my_op()",
+            "@graph\ndef my_graph():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    my_op()",
+            "@graph\ndef my_graph():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    my_op()"
+        ]
+    },
+    {
+        "func_name": "my_job_with_tags",
+        "original": "@job(tags={'foo': 'bar'})\ndef my_job_with_tags():\n    my_op()",
+        "mutated": [
+            "@job(tags={'foo': 'bar'})\ndef my_job_with_tags():\n    if False:\n        i = 10\n    my_op()",
+            "@job(tags={'foo': 'bar'})\ndef my_job_with_tags():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    my_op()",
+            "@job(tags={'foo': 'bar'})\ndef my_job_with_tags():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    my_op()",
+            "@job(tags={'foo': 'bar'})\ndef my_job_with_tags():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    my_op()",
+            "@job(tags={'foo': 'bar'})\ndef my_job_with_tags():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    my_op()"
+        ]
+    }
+]

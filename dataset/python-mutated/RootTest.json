@@ -1,0 +1,68 @@
+[
+    {
+        "func_name": "test_class",
+        "original": "def test_class(self):\n    assert isinstance(Root, aspectclass)\n    assert issubclass(Root, aspectbase)",
+        "mutated": [
+            "def test_class(self):\n    if False:\n        i = 10\n    assert isinstance(Root, aspectclass)\n    assert issubclass(Root, aspectbase)",
+            "def test_class(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    assert isinstance(Root, aspectclass)\n    assert issubclass(Root, aspectbase)",
+            "def test_class(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    assert isinstance(Root, aspectclass)\n    assert issubclass(Root, aspectbase)",
+            "def test_class(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    assert isinstance(Root, aspectclass)\n    assert issubclass(Root, aspectbase)",
+            "def test_class(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    assert isinstance(Root, aspectclass)\n    assert issubclass(Root, aspectbase)"
+        ]
+    },
+    {
+        "func_name": "test_class_subaspects",
+        "original": "def test_class_subaspects(self):\n    assert isinstance(Root.subaspects, dict)",
+        "mutated": [
+            "def test_class_subaspects(self):\n    if False:\n        i = 10\n    assert isinstance(Root.subaspects, dict)",
+            "def test_class_subaspects(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    assert isinstance(Root.subaspects, dict)",
+            "def test_class_subaspects(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    assert isinstance(Root.subaspects, dict)",
+            "def test_class_subaspects(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    assert isinstance(Root.subaspects, dict)",
+            "def test_class_subaspects(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    assert isinstance(Root.subaspects, dict)"
+        ]
+    },
+    {
+        "func_name": "test_class_parent",
+        "original": "def test_class_parent(self):\n    assert Root.parent is None",
+        "mutated": [
+            "def test_class_parent(self):\n    if False:\n        i = 10\n    assert Root.parent is None",
+            "def test_class_parent(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    assert Root.parent is None",
+            "def test_class_parent(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    assert Root.parent is None",
+            "def test_class_parent(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    assert Root.parent is None",
+            "def test_class_parent(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    assert Root.parent is None"
+        ]
+    },
+    {
+        "func_name": "test_class_tastes",
+        "original": "def test_class_tastes(self):\n    assert Root.tastes == {}",
+        "mutated": [
+            "def test_class_tastes(self):\n    if False:\n        i = 10\n    assert Root.tastes == {}",
+            "def test_class_tastes(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    assert Root.tastes == {}",
+            "def test_class_tastes(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    assert Root.tastes == {}",
+            "def test_class_tastes(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    assert Root.tastes == {}",
+            "def test_class_tastes(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    assert Root.tastes == {}"
+        ]
+    },
+    {
+        "func_name": "test__eq__",
+        "original": "def test__eq__(self, RootAspect):\n    assert Root('py') == Root('py')\n    assert not Root('py') == RootAspect('py')",
+        "mutated": [
+            "def test__eq__(self, RootAspect):\n    if False:\n        i = 10\n    assert Root('py') == Root('py')\n    assert not Root('py') == RootAspect('py')",
+            "def test__eq__(self, RootAspect):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    assert Root('py') == Root('py')\n    assert not Root('py') == RootAspect('py')",
+            "def test__eq__(self, RootAspect):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    assert Root('py') == Root('py')\n    assert not Root('py') == RootAspect('py')",
+            "def test__eq__(self, RootAspect):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    assert Root('py') == Root('py')\n    assert not Root('py') == RootAspect('py')",
+            "def test__eq__(self, RootAspect):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    assert Root('py') == Root('py')\n    assert not Root('py') == RootAspect('py')"
+        ]
+    },
+    {
+        "func_name": "test__ne__",
+        "original": "def test__ne__(self, RootAspect):\n    assert not Root('py') != Root('py')\n    assert Root('py') != RootAspect('py')",
+        "mutated": [
+            "def test__ne__(self, RootAspect):\n    if False:\n        i = 10\n    assert not Root('py') != Root('py')\n    assert Root('py') != RootAspect('py')",
+            "def test__ne__(self, RootAspect):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    assert not Root('py') != Root('py')\n    assert Root('py') != RootAspect('py')",
+            "def test__ne__(self, RootAspect):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    assert not Root('py') != Root('py')\n    assert Root('py') != RootAspect('py')",
+            "def test__ne__(self, RootAspect):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    assert not Root('py') != Root('py')\n    assert Root('py') != RootAspect('py')",
+            "def test__ne__(self, RootAspect):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    assert not Root('py') != Root('py')\n    assert Root('py') != RootAspect('py')"
+        ]
+    }
+]

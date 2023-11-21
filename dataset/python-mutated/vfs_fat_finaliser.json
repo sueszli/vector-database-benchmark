@@ -1,0 +1,46 @@
+[
+    {
+        "func_name": "__init__",
+        "original": "def __init__(self, blocks, sec_size=512):\n    self.sec_size = sec_size\n    self.data = bytearray(blocks * self.sec_size)",
+        "mutated": [
+            "def __init__(self, blocks, sec_size=512):\n    if False:\n        i = 10\n    self.sec_size = sec_size\n    self.data = bytearray(blocks * self.sec_size)",
+            "def __init__(self, blocks, sec_size=512):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    self.sec_size = sec_size\n    self.data = bytearray(blocks * self.sec_size)",
+            "def __init__(self, blocks, sec_size=512):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    self.sec_size = sec_size\n    self.data = bytearray(blocks * self.sec_size)",
+            "def __init__(self, blocks, sec_size=512):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    self.sec_size = sec_size\n    self.data = bytearray(blocks * self.sec_size)",
+            "def __init__(self, blocks, sec_size=512):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    self.sec_size = sec_size\n    self.data = bytearray(blocks * self.sec_size)"
+        ]
+    },
+    {
+        "func_name": "readblocks",
+        "original": "def readblocks(self, n, buf):\n    for i in range(len(buf)):\n        buf[i] = self.data[n * self.sec_size + i]",
+        "mutated": [
+            "def readblocks(self, n, buf):\n    if False:\n        i = 10\n    for i in range(len(buf)):\n        buf[i] = self.data[n * self.sec_size + i]",
+            "def readblocks(self, n, buf):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    for i in range(len(buf)):\n        buf[i] = self.data[n * self.sec_size + i]",
+            "def readblocks(self, n, buf):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    for i in range(len(buf)):\n        buf[i] = self.data[n * self.sec_size + i]",
+            "def readblocks(self, n, buf):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    for i in range(len(buf)):\n        buf[i] = self.data[n * self.sec_size + i]",
+            "def readblocks(self, n, buf):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    for i in range(len(buf)):\n        buf[i] = self.data[n * self.sec_size + i]"
+        ]
+    },
+    {
+        "func_name": "writeblocks",
+        "original": "def writeblocks(self, n, buf):\n    for i in range(len(buf)):\n        self.data[n * self.sec_size + i] = buf[i]",
+        "mutated": [
+            "def writeblocks(self, n, buf):\n    if False:\n        i = 10\n    for i in range(len(buf)):\n        self.data[n * self.sec_size + i] = buf[i]",
+            "def writeblocks(self, n, buf):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    for i in range(len(buf)):\n        self.data[n * self.sec_size + i] = buf[i]",
+            "def writeblocks(self, n, buf):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    for i in range(len(buf)):\n        self.data[n * self.sec_size + i] = buf[i]",
+            "def writeblocks(self, n, buf):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    for i in range(len(buf)):\n        self.data[n * self.sec_size + i] = buf[i]",
+            "def writeblocks(self, n, buf):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    for i in range(len(buf)):\n        self.data[n * self.sec_size + i] = buf[i]"
+        ]
+    },
+    {
+        "func_name": "ioctl",
+        "original": "def ioctl(self, op, arg):\n    if op == 4:\n        return len(self.data) // self.sec_size\n    if op == 5:\n        return self.sec_size",
+        "mutated": [
+            "def ioctl(self, op, arg):\n    if False:\n        i = 10\n    if op == 4:\n        return len(self.data) // self.sec_size\n    if op == 5:\n        return self.sec_size",
+            "def ioctl(self, op, arg):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    if op == 4:\n        return len(self.data) // self.sec_size\n    if op == 5:\n        return self.sec_size",
+            "def ioctl(self, op, arg):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    if op == 4:\n        return len(self.data) // self.sec_size\n    if op == 5:\n        return self.sec_size",
+            "def ioctl(self, op, arg):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    if op == 4:\n        return len(self.data) // self.sec_size\n    if op == 5:\n        return self.sec_size",
+            "def ioctl(self, op, arg):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    if op == 4:\n        return len(self.data) // self.sec_size\n    if op == 5:\n        return self.sec_size"
+        ]
+    }
+]

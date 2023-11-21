@@ -1,0 +1,145 @@
+[
+    {
+        "func_name": "ref_softplus",
+        "original": "def ref_softplus(x, beta, threshold):\n    x_beta = beta * x\n    out = np.select([x_beta <= threshold, x_beta > threshold], [np.log(1 + np.exp(x_beta)) / beta, x])\n    return out",
+        "mutated": [
+            "def ref_softplus(x, beta, threshold):\n    if False:\n        i = 10\n    x_beta = beta * x\n    out = np.select([x_beta <= threshold, x_beta > threshold], [np.log(1 + np.exp(x_beta)) / beta, x])\n    return out",
+            "def ref_softplus(x, beta, threshold):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    x_beta = beta * x\n    out = np.select([x_beta <= threshold, x_beta > threshold], [np.log(1 + np.exp(x_beta)) / beta, x])\n    return out",
+            "def ref_softplus(x, beta, threshold):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    x_beta = beta * x\n    out = np.select([x_beta <= threshold, x_beta > threshold], [np.log(1 + np.exp(x_beta)) / beta, x])\n    return out",
+            "def ref_softplus(x, beta, threshold):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    x_beta = beta * x\n    out = np.select([x_beta <= threshold, x_beta > threshold], [np.log(1 + np.exp(x_beta)) / beta, x])\n    return out",
+            "def ref_softplus(x, beta, threshold):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    x_beta = beta * x\n    out = np.select([x_beta <= threshold, x_beta > threshold], [np.log(1 + np.exp(x_beta)) / beta, x])\n    return out"
+        ]
+    },
+    {
+        "func_name": "setUp",
+        "original": "def setUp(self):\n    self.op_type = 'softplus'\n    self.beta = 1\n    self.threshold = 20\n    self.config()\n    self.set_dtype()\n    self.attrs = {'use_mkldnn': True, 'beta': self.beta}\n    self.x = np.random.random(self.x_shape)\n    self.out = ref_softplus(self.x, self.beta, self.threshold)\n    if self.dtype != np.float32:\n        self.x = convert_float_to_uint16(self.x)\n    self.inputs = {'X': self.out}\n    self.outputs = {'Out': ref_softplus(self.out, self.beta, self.threshold)}",
+        "mutated": [
+            "def setUp(self):\n    if False:\n        i = 10\n    self.op_type = 'softplus'\n    self.beta = 1\n    self.threshold = 20\n    self.config()\n    self.set_dtype()\n    self.attrs = {'use_mkldnn': True, 'beta': self.beta}\n    self.x = np.random.random(self.x_shape)\n    self.out = ref_softplus(self.x, self.beta, self.threshold)\n    if self.dtype != np.float32:\n        self.x = convert_float_to_uint16(self.x)\n    self.inputs = {'X': self.out}\n    self.outputs = {'Out': ref_softplus(self.out, self.beta, self.threshold)}",
+            "def setUp(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    self.op_type = 'softplus'\n    self.beta = 1\n    self.threshold = 20\n    self.config()\n    self.set_dtype()\n    self.attrs = {'use_mkldnn': True, 'beta': self.beta}\n    self.x = np.random.random(self.x_shape)\n    self.out = ref_softplus(self.x, self.beta, self.threshold)\n    if self.dtype != np.float32:\n        self.x = convert_float_to_uint16(self.x)\n    self.inputs = {'X': self.out}\n    self.outputs = {'Out': ref_softplus(self.out, self.beta, self.threshold)}",
+            "def setUp(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    self.op_type = 'softplus'\n    self.beta = 1\n    self.threshold = 20\n    self.config()\n    self.set_dtype()\n    self.attrs = {'use_mkldnn': True, 'beta': self.beta}\n    self.x = np.random.random(self.x_shape)\n    self.out = ref_softplus(self.x, self.beta, self.threshold)\n    if self.dtype != np.float32:\n        self.x = convert_float_to_uint16(self.x)\n    self.inputs = {'X': self.out}\n    self.outputs = {'Out': ref_softplus(self.out, self.beta, self.threshold)}",
+            "def setUp(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    self.op_type = 'softplus'\n    self.beta = 1\n    self.threshold = 20\n    self.config()\n    self.set_dtype()\n    self.attrs = {'use_mkldnn': True, 'beta': self.beta}\n    self.x = np.random.random(self.x_shape)\n    self.out = ref_softplus(self.x, self.beta, self.threshold)\n    if self.dtype != np.float32:\n        self.x = convert_float_to_uint16(self.x)\n    self.inputs = {'X': self.out}\n    self.outputs = {'Out': ref_softplus(self.out, self.beta, self.threshold)}",
+            "def setUp(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    self.op_type = 'softplus'\n    self.beta = 1\n    self.threshold = 20\n    self.config()\n    self.set_dtype()\n    self.attrs = {'use_mkldnn': True, 'beta': self.beta}\n    self.x = np.random.random(self.x_shape)\n    self.out = ref_softplus(self.x, self.beta, self.threshold)\n    if self.dtype != np.float32:\n        self.x = convert_float_to_uint16(self.x)\n    self.inputs = {'X': self.out}\n    self.outputs = {'Out': ref_softplus(self.out, self.beta, self.threshold)}"
+        ]
+    },
+    {
+        "func_name": "config",
+        "original": "def config(self):\n    self.x_shape = (10, 10)",
+        "mutated": [
+            "def config(self):\n    if False:\n        i = 10\n    self.x_shape = (10, 10)",
+            "def config(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    self.x_shape = (10, 10)",
+            "def config(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    self.x_shape = (10, 10)",
+            "def config(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    self.x_shape = (10, 10)",
+            "def config(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    self.x_shape = (10, 10)"
+        ]
+    },
+    {
+        "func_name": "set_dtype",
+        "original": "def set_dtype(self):\n    self.dtype = np.float32",
+        "mutated": [
+            "def set_dtype(self):\n    if False:\n        i = 10\n    self.dtype = np.float32",
+            "def set_dtype(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    self.dtype = np.float32",
+            "def set_dtype(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    self.dtype = np.float32",
+            "def set_dtype(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    self.dtype = np.float32",
+            "def set_dtype(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    self.dtype = np.float32"
+        ]
+    },
+    {
+        "func_name": "test_check_output",
+        "original": "def test_check_output(self):\n    self.check_output()",
+        "mutated": [
+            "def test_check_output(self):\n    if False:\n        i = 10\n    self.check_output()",
+            "def test_check_output(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    self.check_output()",
+            "def test_check_output(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    self.check_output()",
+            "def test_check_output(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    self.check_output()",
+            "def test_check_output(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    self.check_output()"
+        ]
+    },
+    {
+        "func_name": "config",
+        "original": "def config(self):\n    self.x_shape = (10, 5, 4, 2)",
+        "mutated": [
+            "def config(self):\n    if False:\n        i = 10\n    self.x_shape = (10, 5, 4, 2)",
+            "def config(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    self.x_shape = (10, 5, 4, 2)",
+            "def config(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    self.x_shape = (10, 5, 4, 2)",
+            "def config(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    self.x_shape = (10, 5, 4, 2)",
+            "def config(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    self.x_shape = (10, 5, 4, 2)"
+        ]
+    },
+    {
+        "func_name": "config",
+        "original": "def config(self):\n    self.x_shape = (3, 2, 2, 5, 4, 2)",
+        "mutated": [
+            "def config(self):\n    if False:\n        i = 10\n    self.x_shape = (3, 2, 2, 5, 4, 2)",
+            "def config(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    self.x_shape = (3, 2, 2, 5, 4, 2)",
+            "def config(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    self.x_shape = (3, 2, 2, 5, 4, 2)",
+            "def config(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    self.x_shape = (3, 2, 2, 5, 4, 2)",
+            "def config(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    self.x_shape = (3, 2, 2, 5, 4, 2)"
+        ]
+    },
+    {
+        "func_name": "config",
+        "original": "def config(self):\n    self.x_shape = (3, 5, 2, 5, 4, 2)\n    self.beta = 2.5",
+        "mutated": [
+            "def config(self):\n    if False:\n        i = 10\n    self.x_shape = (3, 5, 2, 5, 4, 2)\n    self.beta = 2.5",
+            "def config(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    self.x_shape = (3, 5, 2, 5, 4, 2)\n    self.beta = 2.5",
+            "def config(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    self.x_shape = (3, 5, 2, 5, 4, 2)\n    self.beta = 2.5",
+            "def config(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    self.x_shape = (3, 5, 2, 5, 4, 2)\n    self.beta = 2.5",
+            "def config(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    self.x_shape = (3, 5, 2, 5, 4, 2)\n    self.beta = 2.5"
+        ]
+    },
+    {
+        "func_name": "config",
+        "original": "def config(self):\n    self.x_shape = (20, 4, 2)\n    self.beta = 0.4",
+        "mutated": [
+            "def config(self):\n    if False:\n        i = 10\n    self.x_shape = (20, 4, 2)\n    self.beta = 0.4",
+            "def config(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    self.x_shape = (20, 4, 2)\n    self.beta = 0.4",
+            "def config(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    self.x_shape = (20, 4, 2)\n    self.beta = 0.4",
+            "def config(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    self.x_shape = (20, 4, 2)\n    self.beta = 0.4",
+            "def config(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    self.x_shape = (20, 4, 2)\n    self.beta = 0.4"
+        ]
+    },
+    {
+        "func_name": "set_dtype",
+        "original": "def set_dtype(self):\n    self.dtype = np.uint16",
+        "mutated": [
+            "def set_dtype(self):\n    if False:\n        i = 10\n    self.dtype = np.uint16",
+            "def set_dtype(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    self.dtype = np.uint16",
+            "def set_dtype(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    self.dtype = np.uint16",
+            "def set_dtype(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    self.dtype = np.uint16",
+            "def set_dtype(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    self.dtype = np.uint16"
+        ]
+    },
+    {
+        "func_name": "set_dtype",
+        "original": "def set_dtype(self):\n    self.dtype = np.uint16",
+        "mutated": [
+            "def set_dtype(self):\n    if False:\n        i = 10\n    self.dtype = np.uint16",
+            "def set_dtype(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    self.dtype = np.uint16",
+            "def set_dtype(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    self.dtype = np.uint16",
+            "def set_dtype(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    self.dtype = np.uint16",
+            "def set_dtype(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    self.dtype = np.uint16"
+        ]
+    },
+    {
+        "func_name": "set_dtype",
+        "original": "def set_dtype(self):\n    self.dtype = np.uint16",
+        "mutated": [
+            "def set_dtype(self):\n    if False:\n        i = 10\n    self.dtype = np.uint16",
+            "def set_dtype(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    self.dtype = np.uint16",
+            "def set_dtype(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    self.dtype = np.uint16",
+            "def set_dtype(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    self.dtype = np.uint16",
+            "def set_dtype(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    self.dtype = np.uint16"
+        ]
+    },
+    {
+        "func_name": "set_dtype",
+        "original": "def set_dtype(self):\n    self.dtype = np.uint16",
+        "mutated": [
+            "def set_dtype(self):\n    if False:\n        i = 10\n    self.dtype = np.uint16",
+            "def set_dtype(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    self.dtype = np.uint16",
+            "def set_dtype(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    self.dtype = np.uint16",
+            "def set_dtype(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    self.dtype = np.uint16",
+            "def set_dtype(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    self.dtype = np.uint16"
+        ]
+    }
+]

@@ -1,0 +1,24 @@
+[
+    {
+        "func_name": "__init__",
+        "original": "def __init__(self, out, clock):\n    self.out = out\n    self.clock = clock",
+        "mutated": [
+            "def __init__(self, out, clock):\n    if False:\n        i = 10\n    self.out = out\n    self.clock = clock",
+            "def __init__(self, out, clock):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    self.out = out\n    self.clock = clock",
+            "def __init__(self, out, clock):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    self.out = out\n    self.clock = clock",
+            "def __init__(self, out, clock):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    self.out = out\n    self.clock = clock",
+            "def __init__(self, out, clock):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    self.out = out\n    self.clock = clock"
+        ]
+    },
+    {
+        "func_name": "run_action",
+        "original": "def run_action(self, args):\n    now_value = self.clock.get_now_value(args.environ)\n    print(now_value.replace(microsecond=0).isoformat(), file=self.out)",
+        "mutated": [
+            "def run_action(self, args):\n    if False:\n        i = 10\n    now_value = self.clock.get_now_value(args.environ)\n    print(now_value.replace(microsecond=0).isoformat(), file=self.out)",
+            "def run_action(self, args):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    now_value = self.clock.get_now_value(args.environ)\n    print(now_value.replace(microsecond=0).isoformat(), file=self.out)",
+            "def run_action(self, args):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    now_value = self.clock.get_now_value(args.environ)\n    print(now_value.replace(microsecond=0).isoformat(), file=self.out)",
+            "def run_action(self, args):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    now_value = self.clock.get_now_value(args.environ)\n    print(now_value.replace(microsecond=0).isoformat(), file=self.out)",
+            "def run_action(self, args):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    now_value = self.clock.get_now_value(args.environ)\n    print(now_value.replace(microsecond=0).isoformat(), file=self.out)"
+        ]
+    }
+]

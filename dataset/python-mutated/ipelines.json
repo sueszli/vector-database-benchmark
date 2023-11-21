@@ -1,0 +1,24 @@
+[
+    {
+        "func_name": "__init__",
+        "original": "def __init__(self):\n    connection = pymongo.Connection(host='localhost', port=27017)\n    db = connection['testwechat']\n    self.posts = db['result']",
+        "mutated": [
+            "def __init__(self):\n    if False:\n        i = 10\n    connection = pymongo.Connection(host='localhost', port=27017)\n    db = connection['testwechat']\n    self.posts = db['result']",
+            "def __init__(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    connection = pymongo.Connection(host='localhost', port=27017)\n    db = connection['testwechat']\n    self.posts = db['result']",
+            "def __init__(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    connection = pymongo.Connection(host='localhost', port=27017)\n    db = connection['testwechat']\n    self.posts = db['result']",
+            "def __init__(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    connection = pymongo.Connection(host='localhost', port=27017)\n    db = connection['testwechat']\n    self.posts = db['result']",
+            "def __init__(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    connection = pymongo.Connection(host='localhost', port=27017)\n    db = connection['testwechat']\n    self.posts = db['result']"
+        ]
+    },
+    {
+        "func_name": "process_item",
+        "original": "def process_item(self, item, spider):\n    self.posts.insert(dict(item))\n    return item",
+        "mutated": [
+            "def process_item(self, item, spider):\n    if False:\n        i = 10\n    self.posts.insert(dict(item))\n    return item",
+            "def process_item(self, item, spider):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    self.posts.insert(dict(item))\n    return item",
+            "def process_item(self, item, spider):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    self.posts.insert(dict(item))\n    return item",
+            "def process_item(self, item, spider):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    self.posts.insert(dict(item))\n    return item",
+            "def process_item(self, item, spider):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    self.posts.insert(dict(item))\n    return item"
+        ]
+    }
+]

@@ -1,0 +1,57 @@
+[
+    {
+        "func_name": "__init__",
+        "original": "def __init__(self, offset: Union[float, timedelta], name: str) -> None:\n    if isinstance(offset, timedelta):\n        self.__offset = offset\n    else:\n        self.__offset = timedelta(minutes=offset)\n    self.__name = name",
+        "mutated": [
+            "def __init__(self, offset: Union[float, timedelta], name: str) -> None:\n    if False:\n        i = 10\n    if isinstance(offset, timedelta):\n        self.__offset = offset\n    else:\n        self.__offset = timedelta(minutes=offset)\n    self.__name = name",
+            "def __init__(self, offset: Union[float, timedelta], name: str) -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    if isinstance(offset, timedelta):\n        self.__offset = offset\n    else:\n        self.__offset = timedelta(minutes=offset)\n    self.__name = name",
+            "def __init__(self, offset: Union[float, timedelta], name: str) -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    if isinstance(offset, timedelta):\n        self.__offset = offset\n    else:\n        self.__offset = timedelta(minutes=offset)\n    self.__name = name",
+            "def __init__(self, offset: Union[float, timedelta], name: str) -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    if isinstance(offset, timedelta):\n        self.__offset = offset\n    else:\n        self.__offset = timedelta(minutes=offset)\n    self.__name = name",
+            "def __init__(self, offset: Union[float, timedelta], name: str) -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    if isinstance(offset, timedelta):\n        self.__offset = offset\n    else:\n        self.__offset = timedelta(minutes=offset)\n    self.__name = name"
+        ]
+    },
+    {
+        "func_name": "__getinitargs__",
+        "original": "def __getinitargs__(self) -> Tuple[timedelta, str]:\n    return (self.__offset, self.__name)",
+        "mutated": [
+            "def __getinitargs__(self) -> Tuple[timedelta, str]:\n    if False:\n        i = 10\n    return (self.__offset, self.__name)",
+            "def __getinitargs__(self) -> Tuple[timedelta, str]:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return (self.__offset, self.__name)",
+            "def __getinitargs__(self) -> Tuple[timedelta, str]:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return (self.__offset, self.__name)",
+            "def __getinitargs__(self) -> Tuple[timedelta, str]:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return (self.__offset, self.__name)",
+            "def __getinitargs__(self) -> Tuple[timedelta, str]:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return (self.__offset, self.__name)"
+        ]
+    },
+    {
+        "func_name": "utcoffset",
+        "original": "def utcoffset(self, dt: Optional[datetime]) -> timedelta:\n    return self.__offset",
+        "mutated": [
+            "def utcoffset(self, dt: Optional[datetime]) -> timedelta:\n    if False:\n        i = 10\n    return self.__offset",
+            "def utcoffset(self, dt: Optional[datetime]) -> timedelta:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return self.__offset",
+            "def utcoffset(self, dt: Optional[datetime]) -> timedelta:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return self.__offset",
+            "def utcoffset(self, dt: Optional[datetime]) -> timedelta:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return self.__offset",
+            "def utcoffset(self, dt: Optional[datetime]) -> timedelta:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return self.__offset"
+        ]
+    },
+    {
+        "func_name": "tzname",
+        "original": "def tzname(self, dt: Optional[datetime]) -> str:\n    return self.__name",
+        "mutated": [
+            "def tzname(self, dt: Optional[datetime]) -> str:\n    if False:\n        i = 10\n    return self.__name",
+            "def tzname(self, dt: Optional[datetime]) -> str:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return self.__name",
+            "def tzname(self, dt: Optional[datetime]) -> str:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return self.__name",
+            "def tzname(self, dt: Optional[datetime]) -> str:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return self.__name",
+            "def tzname(self, dt: Optional[datetime]) -> str:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return self.__name"
+        ]
+    },
+    {
+        "func_name": "dst",
+        "original": "def dst(self, dt: Optional[datetime]) -> timedelta:\n    return ZERO",
+        "mutated": [
+            "def dst(self, dt: Optional[datetime]) -> timedelta:\n    if False:\n        i = 10\n    return ZERO",
+            "def dst(self, dt: Optional[datetime]) -> timedelta:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return ZERO",
+            "def dst(self, dt: Optional[datetime]) -> timedelta:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return ZERO",
+            "def dst(self, dt: Optional[datetime]) -> timedelta:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return ZERO",
+            "def dst(self, dt: Optional[datetime]) -> timedelta:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return ZERO"
+        ]
+    }
+]

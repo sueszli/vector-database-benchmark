@@ -1,0 +1,24 @@
+[
+    {
+        "func_name": "read",
+        "original": "@classmethod\ndef read(cls, data: BytesIO, signed: bool=True, *args: Any) -> int:\n    return int.from_bytes(data.read(cls.SIZE), 'little', signed=signed)",
+        "mutated": [
+            "@classmethod\ndef read(cls, data: BytesIO, signed: bool=True, *args: Any) -> int:\n    if False:\n        i = 10\n    return int.from_bytes(data.read(cls.SIZE), 'little', signed=signed)",
+            "@classmethod\ndef read(cls, data: BytesIO, signed: bool=True, *args: Any) -> int:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return int.from_bytes(data.read(cls.SIZE), 'little', signed=signed)",
+            "@classmethod\ndef read(cls, data: BytesIO, signed: bool=True, *args: Any) -> int:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return int.from_bytes(data.read(cls.SIZE), 'little', signed=signed)",
+            "@classmethod\ndef read(cls, data: BytesIO, signed: bool=True, *args: Any) -> int:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return int.from_bytes(data.read(cls.SIZE), 'little', signed=signed)",
+            "@classmethod\ndef read(cls, data: BytesIO, signed: bool=True, *args: Any) -> int:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return int.from_bytes(data.read(cls.SIZE), 'little', signed=signed)"
+        ]
+    },
+    {
+        "func_name": "__new__",
+        "original": "def __new__(cls, value: int, signed: bool=True) -> bytes:\n    return value.to_bytes(cls.SIZE, 'little', signed=signed)",
+        "mutated": [
+            "def __new__(cls, value: int, signed: bool=True) -> bytes:\n    if False:\n        i = 10\n    return value.to_bytes(cls.SIZE, 'little', signed=signed)",
+            "def __new__(cls, value: int, signed: bool=True) -> bytes:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return value.to_bytes(cls.SIZE, 'little', signed=signed)",
+            "def __new__(cls, value: int, signed: bool=True) -> bytes:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return value.to_bytes(cls.SIZE, 'little', signed=signed)",
+            "def __new__(cls, value: int, signed: bool=True) -> bytes:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return value.to_bytes(cls.SIZE, 'little', signed=signed)",
+            "def __new__(cls, value: int, signed: bool=True) -> bytes:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return value.to_bytes(cls.SIZE, 'little', signed=signed)"
+        ]
+    }
+]

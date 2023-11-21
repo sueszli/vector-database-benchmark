@@ -1,0 +1,35 @@
+[
+    {
+        "func_name": "App",
+        "original": "@component\ndef App():\n    return html.div(GoodComponent(), BadComponent())",
+        "mutated": [
+            "@component\ndef App():\n    if False:\n        i = 10\n    return html.div(GoodComponent(), BadComponent())",
+            "@component\ndef App():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return html.div(GoodComponent(), BadComponent())",
+            "@component\ndef App():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return html.div(GoodComponent(), BadComponent())",
+            "@component\ndef App():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return html.div(GoodComponent(), BadComponent())",
+            "@component\ndef App():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return html.div(GoodComponent(), BadComponent())"
+        ]
+    },
+    {
+        "func_name": "GoodComponent",
+        "original": "@component\ndef GoodComponent():\n    return html.p('This component rendered successfully')",
+        "mutated": [
+            "@component\ndef GoodComponent():\n    if False:\n        i = 10\n    return html.p('This component rendered successfully')",
+            "@component\ndef GoodComponent():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return html.p('This component rendered successfully')",
+            "@component\ndef GoodComponent():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return html.p('This component rendered successfully')",
+            "@component\ndef GoodComponent():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return html.p('This component rendered successfully')",
+            "@component\ndef GoodComponent():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return html.p('This component rendered successfully')"
+        ]
+    },
+    {
+        "func_name": "BadComponent",
+        "original": "@component\ndef BadComponent():\n    msg = 'This component raised an error'\n    raise RuntimeError(msg)",
+        "mutated": [
+            "@component\ndef BadComponent():\n    if False:\n        i = 10\n    msg = 'This component raised an error'\n    raise RuntimeError(msg)",
+            "@component\ndef BadComponent():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    msg = 'This component raised an error'\n    raise RuntimeError(msg)",
+            "@component\ndef BadComponent():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    msg = 'This component raised an error'\n    raise RuntimeError(msg)",
+            "@component\ndef BadComponent():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    msg = 'This component raised an error'\n    raise RuntimeError(msg)",
+            "@component\ndef BadComponent():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    msg = 'This component raised an error'\n    raise RuntimeError(msg)"
+        ]
+    }
+]

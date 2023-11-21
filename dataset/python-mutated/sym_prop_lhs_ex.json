@@ -1,0 +1,35 @@
+[
+    {
+        "func_name": "foo",
+        "original": "def foo():\n    foo.Bar.alice = 2 * my_module.UNIT",
+        "mutated": [
+            "def foo():\n    if False:\n        i = 10\n    foo.Bar.alice = 2 * my_module.UNIT",
+            "def foo():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    foo.Bar.alice = 2 * my_module.UNIT",
+            "def foo():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    foo.Bar.alice = 2 * my_module.UNIT",
+            "def foo():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    foo.Bar.alice = 2 * my_module.UNIT",
+            "def foo():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    foo.Bar.alice = 2 * my_module.UNIT"
+        ]
+    },
+    {
+        "func_name": "bar",
+        "original": "def bar():\n    x = foo.Bar\n    x.alice = 3 * my_module.UNIT",
+        "mutated": [
+            "def bar():\n    if False:\n        i = 10\n    x = foo.Bar\n    x.alice = 3 * my_module.UNIT",
+            "def bar():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    x = foo.Bar\n    x.alice = 3 * my_module.UNIT",
+            "def bar():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    x = foo.Bar\n    x.alice = 3 * my_module.UNIT",
+            "def bar():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    x = foo.Bar\n    x.alice = 3 * my_module.UNIT",
+            "def bar():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    x = foo.Bar\n    x.alice = 3 * my_module.UNIT"
+        ]
+    },
+    {
+        "func_name": "alice",
+        "original": "def alice():\n    x = foo.Bar\n    y = x\n    y.alice = 4 * my_module.UNIT",
+        "mutated": [
+            "def alice():\n    if False:\n        i = 10\n    x = foo.Bar\n    y = x\n    y.alice = 4 * my_module.UNIT",
+            "def alice():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    x = foo.Bar\n    y = x\n    y.alice = 4 * my_module.UNIT",
+            "def alice():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    x = foo.Bar\n    y = x\n    y.alice = 4 * my_module.UNIT",
+            "def alice():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    x = foo.Bar\n    y = x\n    y.alice = 4 * my_module.UNIT",
+            "def alice():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    x = foo.Bar\n    y = x\n    y.alice = 4 * my_module.UNIT"
+        ]
+    }
+]

@@ -1,0 +1,24 @@
+[
+    {
+        "func_name": "__init__",
+        "original": "def __init__(self) -> None:\n    self.task = None\n    self.ticks = []",
+        "mutated": [
+            "def __init__(self) -> None:\n    if False:\n        i = 10\n    self.task = None\n    self.ticks = []",
+            "def __init__(self) -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    self.task = None\n    self.ticks = []",
+            "def __init__(self) -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    self.task = None\n    self.ticks = []",
+            "def __init__(self) -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    self.task = None\n    self.ticks = []",
+            "def __init__(self) -> None:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    self.task = None\n    self.ticks = []"
+        ]
+    },
+    {
+        "func_name": "async_with_run_inside",
+        "original": "def async_with_run_inside(self):\n\n    async def inner():\n        await asyncio.sleep(0.1)\n        return 'Works'\n    return asyncio.run(inner())",
+        "mutated": [
+            "def async_with_run_inside(self):\n    if False:\n        i = 10\n\n    async def inner():\n        await asyncio.sleep(0.1)\n        return 'Works'\n    return asyncio.run(inner())",
+            "def async_with_run_inside(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n\n    async def inner():\n        await asyncio.sleep(0.1)\n        return 'Works'\n    return asyncio.run(inner())",
+            "def async_with_run_inside(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n    async def inner():\n        await asyncio.sleep(0.1)\n        return 'Works'\n    return asyncio.run(inner())",
+            "def async_with_run_inside(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n\n    async def inner():\n        await asyncio.sleep(0.1)\n        return 'Works'\n    return asyncio.run(inner())",
+            "def async_with_run_inside(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n\n    async def inner():\n        await asyncio.sleep(0.1)\n        return 'Works'\n    return asyncio.run(inner())"
+        ]
+    }
+]

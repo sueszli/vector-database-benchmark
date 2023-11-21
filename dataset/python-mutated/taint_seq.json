@@ -1,0 +1,46 @@
+[
+    {
+        "func_name": "test1",
+        "original": "def test1():\n    sink('tainted')",
+        "mutated": [
+            "def test1():\n    if False:\n        i = 10\n    sink('tainted')",
+            "def test1():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    sink('tainted')",
+            "def test1():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    sink('tainted')",
+            "def test1():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    sink('tainted')",
+            "def test1():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    sink('tainted')"
+        ]
+    },
+    {
+        "func_name": "test2",
+        "original": "def test2():\n    x = 'safe'\n    a = x\n    x = 'tainted'\n    y = x\n    z = y\n    sink(z)\n    sink(a)\n    safe(z)",
+        "mutated": [
+            "def test2():\n    if False:\n        i = 10\n    x = 'safe'\n    a = x\n    x = 'tainted'\n    y = x\n    z = y\n    sink(z)\n    sink(a)\n    safe(z)",
+            "def test2():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    x = 'safe'\n    a = x\n    x = 'tainted'\n    y = x\n    z = y\n    sink(z)\n    sink(a)\n    safe(z)",
+            "def test2():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    x = 'safe'\n    a = x\n    x = 'tainted'\n    y = x\n    z = y\n    sink(z)\n    sink(a)\n    safe(z)",
+            "def test2():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    x = 'safe'\n    a = x\n    x = 'tainted'\n    y = x\n    z = y\n    sink(z)\n    sink(a)\n    safe(z)",
+            "def test2():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    x = 'safe'\n    a = x\n    x = 'tainted'\n    y = x\n    z = y\n    sink(z)\n    sink(a)\n    safe(z)"
+        ]
+    },
+    {
+        "func_name": "test3",
+        "original": "def test3():\n    sink(sanitize('tainted'))",
+        "mutated": [
+            "def test3():\n    if False:\n        i = 10\n    sink(sanitize('tainted'))",
+            "def test3():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    sink(sanitize('tainted'))",
+            "def test3():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    sink(sanitize('tainted'))",
+            "def test3():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    sink(sanitize('tainted'))",
+            "def test3():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    sink(sanitize('tainted'))"
+        ]
+    },
+    {
+        "func_name": "test4",
+        "original": "def test4():\n    x = 'tainted'\n    x = sanitize(x)\n    sink(x)",
+        "mutated": [
+            "def test4():\n    if False:\n        i = 10\n    x = 'tainted'\n    x = sanitize(x)\n    sink(x)",
+            "def test4():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    x = 'tainted'\n    x = sanitize(x)\n    sink(x)",
+            "def test4():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    x = 'tainted'\n    x = sanitize(x)\n    sink(x)",
+            "def test4():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    x = 'tainted'\n    x = sanitize(x)\n    sink(x)",
+            "def test4():\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    x = 'tainted'\n    x = sanitize(x)\n    sink(x)"
+        ]
+    }
+]

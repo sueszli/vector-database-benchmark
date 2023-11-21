@@ -1,0 +1,24 @@
+[
+    {
+        "func_name": "create_queue",
+        "original": "@task\ndef create_queue(queue_name) -> str:\n    return SqsHook().create_queue(queue_name=queue_name)['QueueUrl']",
+        "mutated": [
+            "@task\ndef create_queue(queue_name) -> str:\n    if False:\n        i = 10\n    return SqsHook().create_queue(queue_name=queue_name)['QueueUrl']",
+            "@task\ndef create_queue(queue_name) -> str:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return SqsHook().create_queue(queue_name=queue_name)['QueueUrl']",
+            "@task\ndef create_queue(queue_name) -> str:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return SqsHook().create_queue(queue_name=queue_name)['QueueUrl']",
+            "@task\ndef create_queue(queue_name) -> str:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return SqsHook().create_queue(queue_name=queue_name)['QueueUrl']",
+            "@task\ndef create_queue(queue_name) -> str:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return SqsHook().create_queue(queue_name=queue_name)['QueueUrl']"
+        ]
+    },
+    {
+        "func_name": "delete_queue",
+        "original": "@task(trigger_rule=TriggerRule.ALL_DONE)\ndef delete_queue(queue_url):\n    SqsHook().conn.delete_queue(QueueUrl=queue_url)",
+        "mutated": [
+            "@task(trigger_rule=TriggerRule.ALL_DONE)\ndef delete_queue(queue_url):\n    if False:\n        i = 10\n    SqsHook().conn.delete_queue(QueueUrl=queue_url)",
+            "@task(trigger_rule=TriggerRule.ALL_DONE)\ndef delete_queue(queue_url):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    SqsHook().conn.delete_queue(QueueUrl=queue_url)",
+            "@task(trigger_rule=TriggerRule.ALL_DONE)\ndef delete_queue(queue_url):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    SqsHook().conn.delete_queue(QueueUrl=queue_url)",
+            "@task(trigger_rule=TriggerRule.ALL_DONE)\ndef delete_queue(queue_url):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    SqsHook().conn.delete_queue(QueueUrl=queue_url)",
+            "@task(trigger_rule=TriggerRule.ALL_DONE)\ndef delete_queue(queue_url):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    SqsHook().conn.delete_queue(QueueUrl=queue_url)"
+        ]
+    }
+]

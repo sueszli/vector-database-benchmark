@@ -1,0 +1,35 @@
+[
+    {
+        "func_name": "a",
+        "original": "@logger.catch()\ndef a(n):\n    1 / n\n    a(n - 1)",
+        "mutated": [
+            "@logger.catch()\ndef a(n):\n    if False:\n        i = 10\n    1 / n\n    a(n - 1)",
+            "@logger.catch()\ndef a(n):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    1 / n\n    a(n - 1)",
+            "@logger.catch()\ndef a(n):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    1 / n\n    a(n - 1)",
+            "@logger.catch()\ndef a(n):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    1 / n\n    a(n - 1)",
+            "@logger.catch()\ndef a(n):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    1 / n\n    a(n - 1)"
+        ]
+    },
+    {
+        "func_name": "b",
+        "original": "def b(n):\n    1 / n\n    with logger.catch():\n        b(n - 1)",
+        "mutated": [
+            "def b(n):\n    if False:\n        i = 10\n    1 / n\n    with logger.catch():\n        b(n - 1)",
+            "def b(n):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    1 / n\n    with logger.catch():\n        b(n - 1)",
+            "def b(n):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    1 / n\n    with logger.catch():\n        b(n - 1)",
+            "def b(n):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    1 / n\n    with logger.catch():\n        b(n - 1)",
+            "def b(n):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    1 / n\n    with logger.catch():\n        b(n - 1)"
+        ]
+    },
+    {
+        "func_name": "c",
+        "original": "def c(n):\n    1 / n\n    try:\n        c(n - 1)\n    except ZeroDivisionError:\n        logger.exception('')",
+        "mutated": [
+            "def c(n):\n    if False:\n        i = 10\n    1 / n\n    try:\n        c(n - 1)\n    except ZeroDivisionError:\n        logger.exception('')",
+            "def c(n):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    1 / n\n    try:\n        c(n - 1)\n    except ZeroDivisionError:\n        logger.exception('')",
+            "def c(n):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    1 / n\n    try:\n        c(n - 1)\n    except ZeroDivisionError:\n        logger.exception('')",
+            "def c(n):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    1 / n\n    try:\n        c(n - 1)\n    except ZeroDivisionError:\n        logger.exception('')",
+            "def c(n):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    1 / n\n    try:\n        c(n - 1)\n    except ZeroDivisionError:\n        logger.exception('')"
+        ]
+    }
+]

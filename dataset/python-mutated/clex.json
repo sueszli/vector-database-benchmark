@@ -1,0 +1,57 @@
+[
+    {
+        "func_name": "t_NEWLINE",
+        "original": "def t_NEWLINE(t):\n    \"\"\"\\\\n+\"\"\"\n    t.lexer.lineno += t.value.count('\\n')",
+        "mutated": [
+            "def t_NEWLINE(t):\n    if False:\n        i = 10\n    '\\\\n+'\n    t.lexer.lineno += t.value.count('\\n')",
+            "def t_NEWLINE(t):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    '\\\\n+'\n    t.lexer.lineno += t.value.count('\\n')",
+            "def t_NEWLINE(t):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    '\\\\n+'\n    t.lexer.lineno += t.value.count('\\n')",
+            "def t_NEWLINE(t):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    '\\\\n+'\n    t.lexer.lineno += t.value.count('\\n')",
+            "def t_NEWLINE(t):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    '\\\\n+'\n    t.lexer.lineno += t.value.count('\\n')"
+        ]
+    },
+    {
+        "func_name": "t_ID",
+        "original": "def t_ID(t):\n    \"\"\"[A-Za-z_][\\\\w_]*\"\"\"\n    t.type = reserved_map.get(t.value, 'ID')\n    return t",
+        "mutated": [
+            "def t_ID(t):\n    if False:\n        i = 10\n    '[A-Za-z_][\\\\w_]*'\n    t.type = reserved_map.get(t.value, 'ID')\n    return t",
+            "def t_ID(t):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    '[A-Za-z_][\\\\w_]*'\n    t.type = reserved_map.get(t.value, 'ID')\n    return t",
+            "def t_ID(t):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    '[A-Za-z_][\\\\w_]*'\n    t.type = reserved_map.get(t.value, 'ID')\n    return t",
+            "def t_ID(t):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    '[A-Za-z_][\\\\w_]*'\n    t.type = reserved_map.get(t.value, 'ID')\n    return t",
+            "def t_ID(t):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    '[A-Za-z_][\\\\w_]*'\n    t.type = reserved_map.get(t.value, 'ID')\n    return t"
+        ]
+    },
+    {
+        "func_name": "t_comment",
+        "original": "def t_comment(t):\n    \"\"\"/\\\\*(.|\\\\n)*?\\\\*/\"\"\"\n    t.lexer.lineno += t.value.count('\\n')",
+        "mutated": [
+            "def t_comment(t):\n    if False:\n        i = 10\n    '/\\\\*(.|\\\\n)*?\\\\*/'\n    t.lexer.lineno += t.value.count('\\n')",
+            "def t_comment(t):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    '/\\\\*(.|\\\\n)*?\\\\*/'\n    t.lexer.lineno += t.value.count('\\n')",
+            "def t_comment(t):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    '/\\\\*(.|\\\\n)*?\\\\*/'\n    t.lexer.lineno += t.value.count('\\n')",
+            "def t_comment(t):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    '/\\\\*(.|\\\\n)*?\\\\*/'\n    t.lexer.lineno += t.value.count('\\n')",
+            "def t_comment(t):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    '/\\\\*(.|\\\\n)*?\\\\*/'\n    t.lexer.lineno += t.value.count('\\n')"
+        ]
+    },
+    {
+        "func_name": "t_preprocessor",
+        "original": "def t_preprocessor(t):\n    \"\"\"\\\\#(.)*?\\\\n\"\"\"\n    t.lexer.lineno += 1",
+        "mutated": [
+            "def t_preprocessor(t):\n    if False:\n        i = 10\n    '\\\\#(.)*?\\\\n'\n    t.lexer.lineno += 1",
+            "def t_preprocessor(t):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    '\\\\#(.)*?\\\\n'\n    t.lexer.lineno += 1",
+            "def t_preprocessor(t):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    '\\\\#(.)*?\\\\n'\n    t.lexer.lineno += 1",
+            "def t_preprocessor(t):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    '\\\\#(.)*?\\\\n'\n    t.lexer.lineno += 1",
+            "def t_preprocessor(t):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    '\\\\#(.)*?\\\\n'\n    t.lexer.lineno += 1"
+        ]
+    },
+    {
+        "func_name": "t_error",
+        "original": "def t_error(t):\n    print('Illegal character %s' % repr(t.value[0]))\n    t.lexer.skip(1)",
+        "mutated": [
+            "def t_error(t):\n    if False:\n        i = 10\n    print('Illegal character %s' % repr(t.value[0]))\n    t.lexer.skip(1)",
+            "def t_error(t):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    print('Illegal character %s' % repr(t.value[0]))\n    t.lexer.skip(1)",
+            "def t_error(t):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    print('Illegal character %s' % repr(t.value[0]))\n    t.lexer.skip(1)",
+            "def t_error(t):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    print('Illegal character %s' % repr(t.value[0]))\n    t.lexer.skip(1)",
+            "def t_error(t):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    print('Illegal character %s' % repr(t.value[0]))\n    t.lexer.skip(1)"
+        ]
+    }
+]

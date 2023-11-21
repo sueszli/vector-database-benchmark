@@ -1,0 +1,123 @@
+[
+    {
+        "func_name": "do_test_match",
+        "original": "def do_test_match(self, routingKey, shouldMatch, *tuples):\n    raise NotImplementedError",
+        "mutated": [
+            "def do_test_match(self, routingKey, shouldMatch, *tuples):\n    if False:\n        i = 10\n    raise NotImplementedError",
+            "def do_test_match(self, routingKey, shouldMatch, *tuples):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    raise NotImplementedError",
+            "def do_test_match(self, routingKey, shouldMatch, *tuples):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    raise NotImplementedError",
+            "def do_test_match(self, routingKey, shouldMatch, *tuples):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    raise NotImplementedError",
+            "def do_test_match(self, routingKey, shouldMatch, *tuples):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    raise NotImplementedError"
+        ]
+    },
+    {
+        "func_name": "test_simple_tuple_match",
+        "original": "def test_simple_tuple_match(self):\n    return self.do_test_match(('abc',), True, ('abc',))",
+        "mutated": [
+            "def test_simple_tuple_match(self):\n    if False:\n        i = 10\n    return self.do_test_match(('abc',), True, ('abc',))",
+            "def test_simple_tuple_match(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return self.do_test_match(('abc',), True, ('abc',))",
+            "def test_simple_tuple_match(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return self.do_test_match(('abc',), True, ('abc',))",
+            "def test_simple_tuple_match(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return self.do_test_match(('abc',), True, ('abc',))",
+            "def test_simple_tuple_match(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return self.do_test_match(('abc',), True, ('abc',))"
+        ]
+    },
+    {
+        "func_name": "test_simple_tuple_no_match",
+        "original": "def test_simple_tuple_no_match(self):\n    return self.do_test_match(('abc',), False, ('def',))",
+        "mutated": [
+            "def test_simple_tuple_no_match(self):\n    if False:\n        i = 10\n    return self.do_test_match(('abc',), False, ('def',))",
+            "def test_simple_tuple_no_match(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return self.do_test_match(('abc',), False, ('def',))",
+            "def test_simple_tuple_no_match(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return self.do_test_match(('abc',), False, ('def',))",
+            "def test_simple_tuple_no_match(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return self.do_test_match(('abc',), False, ('def',))",
+            "def test_simple_tuple_no_match(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return self.do_test_match(('abc',), False, ('def',))"
+        ]
+    },
+    {
+        "func_name": "test_multiple_tuple_match",
+        "original": "def test_multiple_tuple_match(self):\n    return self.do_test_match(('a', 'b', 'c'), True, ('a', 'b', 'c'))",
+        "mutated": [
+            "def test_multiple_tuple_match(self):\n    if False:\n        i = 10\n    return self.do_test_match(('a', 'b', 'c'), True, ('a', 'b', 'c'))",
+            "def test_multiple_tuple_match(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return self.do_test_match(('a', 'b', 'c'), True, ('a', 'b', 'c'))",
+            "def test_multiple_tuple_match(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return self.do_test_match(('a', 'b', 'c'), True, ('a', 'b', 'c'))",
+            "def test_multiple_tuple_match(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return self.do_test_match(('a', 'b', 'c'), True, ('a', 'b', 'c'))",
+            "def test_multiple_tuple_match(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return self.do_test_match(('a', 'b', 'c'), True, ('a', 'b', 'c'))"
+        ]
+    },
+    {
+        "func_name": "test_multiple_tuple_match_tuple_prefix",
+        "original": "def test_multiple_tuple_match_tuple_prefix(self):\n    return self.do_test_match(('a', 'b', 'c'), False, ('a', 'b'))",
+        "mutated": [
+            "def test_multiple_tuple_match_tuple_prefix(self):\n    if False:\n        i = 10\n    return self.do_test_match(('a', 'b', 'c'), False, ('a', 'b'))",
+            "def test_multiple_tuple_match_tuple_prefix(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return self.do_test_match(('a', 'b', 'c'), False, ('a', 'b'))",
+            "def test_multiple_tuple_match_tuple_prefix(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return self.do_test_match(('a', 'b', 'c'), False, ('a', 'b'))",
+            "def test_multiple_tuple_match_tuple_prefix(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return self.do_test_match(('a', 'b', 'c'), False, ('a', 'b'))",
+            "def test_multiple_tuple_match_tuple_prefix(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return self.do_test_match(('a', 'b', 'c'), False, ('a', 'b'))"
+        ]
+    },
+    {
+        "func_name": "test_multiple_tuple_match_tuple_suffix",
+        "original": "def test_multiple_tuple_match_tuple_suffix(self):\n    return self.do_test_match(('a', 'b', 'c'), False, ('b', 'c'))",
+        "mutated": [
+            "def test_multiple_tuple_match_tuple_suffix(self):\n    if False:\n        i = 10\n    return self.do_test_match(('a', 'b', 'c'), False, ('b', 'c'))",
+            "def test_multiple_tuple_match_tuple_suffix(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return self.do_test_match(('a', 'b', 'c'), False, ('b', 'c'))",
+            "def test_multiple_tuple_match_tuple_suffix(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return self.do_test_match(('a', 'b', 'c'), False, ('b', 'c'))",
+            "def test_multiple_tuple_match_tuple_suffix(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return self.do_test_match(('a', 'b', 'c'), False, ('b', 'c'))",
+            "def test_multiple_tuple_match_tuple_suffix(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return self.do_test_match(('a', 'b', 'c'), False, ('b', 'c'))"
+        ]
+    },
+    {
+        "func_name": "test_multiple_tuple_match_rk_prefix",
+        "original": "def test_multiple_tuple_match_rk_prefix(self):\n    return self.do_test_match(('a', 'b'), False, ('a', 'b', 'c'))",
+        "mutated": [
+            "def test_multiple_tuple_match_rk_prefix(self):\n    if False:\n        i = 10\n    return self.do_test_match(('a', 'b'), False, ('a', 'b', 'c'))",
+            "def test_multiple_tuple_match_rk_prefix(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return self.do_test_match(('a', 'b'), False, ('a', 'b', 'c'))",
+            "def test_multiple_tuple_match_rk_prefix(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return self.do_test_match(('a', 'b'), False, ('a', 'b', 'c'))",
+            "def test_multiple_tuple_match_rk_prefix(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return self.do_test_match(('a', 'b'), False, ('a', 'b', 'c'))",
+            "def test_multiple_tuple_match_rk_prefix(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return self.do_test_match(('a', 'b'), False, ('a', 'b', 'c'))"
+        ]
+    },
+    {
+        "func_name": "test_multiple_tuple_match_rk_suffix",
+        "original": "def test_multiple_tuple_match_rk_suffix(self):\n    return self.do_test_match(('b', 'c'), False, ('a', 'b', 'c'))",
+        "mutated": [
+            "def test_multiple_tuple_match_rk_suffix(self):\n    if False:\n        i = 10\n    return self.do_test_match(('b', 'c'), False, ('a', 'b', 'c'))",
+            "def test_multiple_tuple_match_rk_suffix(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return self.do_test_match(('b', 'c'), False, ('a', 'b', 'c'))",
+            "def test_multiple_tuple_match_rk_suffix(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return self.do_test_match(('b', 'c'), False, ('a', 'b', 'c'))",
+            "def test_multiple_tuple_match_rk_suffix(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return self.do_test_match(('b', 'c'), False, ('a', 'b', 'c'))",
+            "def test_multiple_tuple_match_rk_suffix(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return self.do_test_match(('b', 'c'), False, ('a', 'b', 'c'))"
+        ]
+    },
+    {
+        "func_name": "test_None_match",
+        "original": "def test_None_match(self):\n    return self.do_test_match(('a', 'b', 'c'), True, ('a', None, 'c'))",
+        "mutated": [
+            "def test_None_match(self):\n    if False:\n        i = 10\n    return self.do_test_match(('a', 'b', 'c'), True, ('a', None, 'c'))",
+            "def test_None_match(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return self.do_test_match(('a', 'b', 'c'), True, ('a', None, 'c'))",
+            "def test_None_match(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return self.do_test_match(('a', 'b', 'c'), True, ('a', None, 'c'))",
+            "def test_None_match(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return self.do_test_match(('a', 'b', 'c'), True, ('a', None, 'c'))",
+            "def test_None_match(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return self.do_test_match(('a', 'b', 'c'), True, ('a', None, 'c'))"
+        ]
+    },
+    {
+        "func_name": "test_None_match_empty",
+        "original": "def test_None_match_empty(self):\n    return self.do_test_match(('a', '', 'c'), True, ('a', None, 'c'))",
+        "mutated": [
+            "def test_None_match_empty(self):\n    if False:\n        i = 10\n    return self.do_test_match(('a', '', 'c'), True, ('a', None, 'c'))",
+            "def test_None_match_empty(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return self.do_test_match(('a', '', 'c'), True, ('a', None, 'c'))",
+            "def test_None_match_empty(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return self.do_test_match(('a', '', 'c'), True, ('a', None, 'c'))",
+            "def test_None_match_empty(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return self.do_test_match(('a', '', 'c'), True, ('a', None, 'c'))",
+            "def test_None_match_empty(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return self.do_test_match(('a', '', 'c'), True, ('a', None, 'c'))"
+        ]
+    },
+    {
+        "func_name": "test_None_no_match",
+        "original": "def test_None_no_match(self):\n    return self.do_test_match(('a', 'b', 'c'), False, ('a', None, 'x'))",
+        "mutated": [
+            "def test_None_no_match(self):\n    if False:\n        i = 10\n    return self.do_test_match(('a', 'b', 'c'), False, ('a', None, 'x'))",
+            "def test_None_no_match(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return self.do_test_match(('a', 'b', 'c'), False, ('a', None, 'x'))",
+            "def test_None_no_match(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return self.do_test_match(('a', 'b', 'c'), False, ('a', None, 'x'))",
+            "def test_None_no_match(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return self.do_test_match(('a', 'b', 'c'), False, ('a', None, 'x'))",
+            "def test_None_no_match(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return self.do_test_match(('a', 'b', 'c'), False, ('a', None, 'x'))"
+        ]
+    }
+]

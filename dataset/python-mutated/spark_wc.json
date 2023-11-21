@@ -1,0 +1,68 @@
+[
+    {
+        "func_name": "input",
+        "original": "def input(self):\n    return S3Target('s3n://bucket.example.org/wordcount.input')",
+        "mutated": [
+            "def input(self):\n    if False:\n        i = 10\n    return S3Target('s3n://bucket.example.org/wordcount.input')",
+            "def input(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return S3Target('s3n://bucket.example.org/wordcount.input')",
+            "def input(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return S3Target('s3n://bucket.example.org/wordcount.input')",
+            "def input(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return S3Target('s3n://bucket.example.org/wordcount.input')",
+            "def input(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return S3Target('s3n://bucket.example.org/wordcount.input')"
+        ]
+    },
+    {
+        "func_name": "output",
+        "original": "def output(self):\n    return S3Target('s3n://bucket.example.org/wordcount.output')",
+        "mutated": [
+            "def output(self):\n    if False:\n        i = 10\n    return S3Target('s3n://bucket.example.org/wordcount.output')",
+            "def output(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return S3Target('s3n://bucket.example.org/wordcount.output')",
+            "def output(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return S3Target('s3n://bucket.example.org/wordcount.output')",
+            "def output(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return S3Target('s3n://bucket.example.org/wordcount.output')",
+            "def output(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return S3Target('s3n://bucket.example.org/wordcount.output')"
+        ]
+    },
+    {
+        "func_name": "main",
+        "original": "def main(self, sc, *args):\n    sc.textFile(self.input().path).flatMap(lambda line: line.split()).map(lambda word: (word, 1)).reduceByKey(lambda a, b: a + b).saveAsTextFile(self.output().path)",
+        "mutated": [
+            "def main(self, sc, *args):\n    if False:\n        i = 10\n    sc.textFile(self.input().path).flatMap(lambda line: line.split()).map(lambda word: (word, 1)).reduceByKey(lambda a, b: a + b).saveAsTextFile(self.output().path)",
+            "def main(self, sc, *args):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    sc.textFile(self.input().path).flatMap(lambda line: line.split()).map(lambda word: (word, 1)).reduceByKey(lambda a, b: a + b).saveAsTextFile(self.output().path)",
+            "def main(self, sc, *args):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    sc.textFile(self.input().path).flatMap(lambda line: line.split()).map(lambda word: (word, 1)).reduceByKey(lambda a, b: a + b).saveAsTextFile(self.output().path)",
+            "def main(self, sc, *args):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    sc.textFile(self.input().path).flatMap(lambda line: line.split()).map(lambda word: (word, 1)).reduceByKey(lambda a, b: a + b).saveAsTextFile(self.output().path)",
+            "def main(self, sc, *args):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    sc.textFile(self.input().path).flatMap(lambda line: line.split()).map(lambda word: (word, 1)).reduceByKey(lambda a, b: a + b).saveAsTextFile(self.output().path)"
+        ]
+    },
+    {
+        "func_name": "app_options",
+        "original": "def app_options(self):\n    return [self.input().path, self.output().path]",
+        "mutated": [
+            "def app_options(self):\n    if False:\n        i = 10\n    return [self.input().path, self.output().path]",
+            "def app_options(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return [self.input().path, self.output().path]",
+            "def app_options(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return [self.input().path, self.output().path]",
+            "def app_options(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return [self.input().path, self.output().path]",
+            "def app_options(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return [self.input().path, self.output().path]"
+        ]
+    },
+    {
+        "func_name": "input",
+        "original": "def input(self):\n    return S3Target('s3n://bucket.example.org/wordcount.input')",
+        "mutated": [
+            "def input(self):\n    if False:\n        i = 10\n    return S3Target('s3n://bucket.example.org/wordcount.input')",
+            "def input(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return S3Target('s3n://bucket.example.org/wordcount.input')",
+            "def input(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return S3Target('s3n://bucket.example.org/wordcount.input')",
+            "def input(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return S3Target('s3n://bucket.example.org/wordcount.input')",
+            "def input(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return S3Target('s3n://bucket.example.org/wordcount.input')"
+        ]
+    },
+    {
+        "func_name": "output",
+        "original": "def output(self):\n    return S3Target('s3n://bucket.example.org/wordcount.output')",
+        "mutated": [
+            "def output(self):\n    if False:\n        i = 10\n    return S3Target('s3n://bucket.example.org/wordcount.output')",
+            "def output(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return S3Target('s3n://bucket.example.org/wordcount.output')",
+            "def output(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return S3Target('s3n://bucket.example.org/wordcount.output')",
+            "def output(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return S3Target('s3n://bucket.example.org/wordcount.output')",
+            "def output(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return S3Target('s3n://bucket.example.org/wordcount.output')"
+        ]
+    }
+]

@@ -1,0 +1,13 @@
+[
+    {
+        "func_name": "is_on",
+        "original": "@property\ndef is_on(self) -> bool:\n    \"\"\"Get whether the siren is in on state.\"\"\"\n    return self.executor.select_state(OverkizState.CORE_ON_OFF) == OverkizCommandParam.ON",
+        "mutated": [
+            "@property\ndef is_on(self) -> bool:\n    if False:\n        i = 10\n    'Get whether the siren is in on state.'\n    return self.executor.select_state(OverkizState.CORE_ON_OFF) == OverkizCommandParam.ON",
+            "@property\ndef is_on(self) -> bool:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    'Get whether the siren is in on state.'\n    return self.executor.select_state(OverkizState.CORE_ON_OFF) == OverkizCommandParam.ON",
+            "@property\ndef is_on(self) -> bool:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    'Get whether the siren is in on state.'\n    return self.executor.select_state(OverkizState.CORE_ON_OFF) == OverkizCommandParam.ON",
+            "@property\ndef is_on(self) -> bool:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    'Get whether the siren is in on state.'\n    return self.executor.select_state(OverkizState.CORE_ON_OFF) == OverkizCommandParam.ON",
+            "@property\ndef is_on(self) -> bool:\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    'Get whether the siren is in on state.'\n    return self.executor.select_state(OverkizState.CORE_ON_OFF) == OverkizCommandParam.ON"
+        ]
+    }
+]

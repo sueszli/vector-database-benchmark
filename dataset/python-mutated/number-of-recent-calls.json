@@ -1,0 +1,24 @@
+[
+    {
+        "func_name": "__init__",
+        "original": "def __init__(self):\n    self.__q = collections.deque()",
+        "mutated": [
+            "def __init__(self):\n    if False:\n        i = 10\n    self.__q = collections.deque()",
+            "def __init__(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    self.__q = collections.deque()",
+            "def __init__(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    self.__q = collections.deque()",
+            "def __init__(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    self.__q = collections.deque()",
+            "def __init__(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    self.__q = collections.deque()"
+        ]
+    },
+    {
+        "func_name": "ping",
+        "original": "def ping(self, t):\n    \"\"\"\n        :type t: int\n        :rtype: int\n        \"\"\"\n    self.__q.append(t)\n    while self.__q[0] < t - 3000:\n        self.__q.popleft()\n    return len(self.__q)",
+        "mutated": [
+            "def ping(self, t):\n    if False:\n        i = 10\n    '\\n        :type t: int\\n        :rtype: int\\n        '\n    self.__q.append(t)\n    while self.__q[0] < t - 3000:\n        self.__q.popleft()\n    return len(self.__q)",
+            "def ping(self, t):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    '\\n        :type t: int\\n        :rtype: int\\n        '\n    self.__q.append(t)\n    while self.__q[0] < t - 3000:\n        self.__q.popleft()\n    return len(self.__q)",
+            "def ping(self, t):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    '\\n        :type t: int\\n        :rtype: int\\n        '\n    self.__q.append(t)\n    while self.__q[0] < t - 3000:\n        self.__q.popleft()\n    return len(self.__q)",
+            "def ping(self, t):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    '\\n        :type t: int\\n        :rtype: int\\n        '\n    self.__q.append(t)\n    while self.__q[0] < t - 3000:\n        self.__q.popleft()\n    return len(self.__q)",
+            "def ping(self, t):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    '\\n        :type t: int\\n        :rtype: int\\n        '\n    self.__q.append(t)\n    while self.__q[0] < t - 3000:\n        self.__q.popleft()\n    return len(self.__q)"
+        ]
+    }
+]

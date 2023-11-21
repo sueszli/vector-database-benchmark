@@ -1,0 +1,101 @@
+[
+    {
+        "func_name": "contains",
+        "original": "@register_test\ndef contains(func, size):\n    for val in lists[size][::100]:\n        assert func(val)",
+        "mutated": [
+            "@register_test\ndef contains(func, size):\n    if False:\n        i = 10\n    for val in lists[size][::100]:\n        assert func(val)",
+            "@register_test\ndef contains(func, size):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    for val in lists[size][::100]:\n        assert func(val)",
+            "@register_test\ndef contains(func, size):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    for val in lists[size][::100]:\n        assert func(val)",
+            "@register_test\ndef contains(func, size):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    for val in lists[size][::100]:\n        assert func(val)",
+            "@register_test\ndef contains(func, size):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    for val in lists[size][::100]:\n        assert func(val)"
+        ]
+    },
+    {
+        "func_name": "getitem",
+        "original": "@register_test\ndef getitem(func, size):\n    for val in lists[size][::100]:\n        assert func(val) == -val",
+        "mutated": [
+            "@register_test\ndef getitem(func, size):\n    if False:\n        i = 10\n    for val in lists[size][::100]:\n        assert func(val) == -val",
+            "@register_test\ndef getitem(func, size):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    for val in lists[size][::100]:\n        assert func(val) == -val",
+            "@register_test\ndef getitem(func, size):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    for val in lists[size][::100]:\n        assert func(val) == -val",
+            "@register_test\ndef getitem(func, size):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    for val in lists[size][::100]:\n        assert func(val) == -val",
+            "@register_test\ndef getitem(func, size):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    for val in lists[size][::100]:\n        assert func(val) == -val"
+        ]
+    },
+    {
+        "func_name": "setitem",
+        "original": "@register_test\ndef setitem(func, size):\n    for val in lists[size][::100]:\n        func(val, -val)",
+        "mutated": [
+            "@register_test\ndef setitem(func, size):\n    if False:\n        i = 10\n    for val in lists[size][::100]:\n        func(val, -val)",
+            "@register_test\ndef setitem(func, size):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    for val in lists[size][::100]:\n        func(val, -val)",
+            "@register_test\ndef setitem(func, size):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    for val in lists[size][::100]:\n        func(val, -val)",
+            "@register_test\ndef setitem(func, size):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    for val in lists[size][::100]:\n        func(val, -val)",
+            "@register_test\ndef setitem(func, size):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    for val in lists[size][::100]:\n        func(val, -val)"
+        ]
+    },
+    {
+        "func_name": "setitem_existing",
+        "original": "@register_test\ndef setitem_existing(func, size):\n    for val in lists[size][::100]:\n        func(val, -val)",
+        "mutated": [
+            "@register_test\ndef setitem_existing(func, size):\n    if False:\n        i = 10\n    for val in lists[size][::100]:\n        func(val, -val)",
+            "@register_test\ndef setitem_existing(func, size):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    for val in lists[size][::100]:\n        func(val, -val)",
+            "@register_test\ndef setitem_existing(func, size):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    for val in lists[size][::100]:\n        func(val, -val)",
+            "@register_test\ndef setitem_existing(func, size):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    for val in lists[size][::100]:\n        func(val, -val)",
+            "@register_test\ndef setitem_existing(func, size):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    for val in lists[size][::100]:\n        func(val, -val)"
+        ]
+    },
+    {
+        "func_name": "delitem",
+        "original": "@register_test\ndef delitem(func, size):\n    for val in lists[size][::100]:\n        func(val)",
+        "mutated": [
+            "@register_test\ndef delitem(func, size):\n    if False:\n        i = 10\n    for val in lists[size][::100]:\n        func(val)",
+            "@register_test\ndef delitem(func, size):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    for val in lists[size][::100]:\n        func(val)",
+            "@register_test\ndef delitem(func, size):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    for val in lists[size][::100]:\n        func(val)",
+            "@register_test\ndef delitem(func, size):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    for val in lists[size][::100]:\n        func(val)",
+            "@register_test\ndef delitem(func, size):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    for val in lists[size][::100]:\n        func(val)"
+        ]
+    },
+    {
+        "func_name": "iter",
+        "original": "@register_test\ndef iter(func, size):\n    assert all((idx == val for (idx, val) in enumerate(func())))",
+        "mutated": [
+            "@register_test\ndef iter(func, size):\n    if False:\n        i = 10\n    assert all((idx == val for (idx, val) in enumerate(func())))",
+            "@register_test\ndef iter(func, size):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    assert all((idx == val for (idx, val) in enumerate(func())))",
+            "@register_test\ndef iter(func, size):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    assert all((idx == val for (idx, val) in enumerate(func())))",
+            "@register_test\ndef iter(func, size):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    assert all((idx == val for (idx, val) in enumerate(func())))",
+            "@register_test\ndef iter(func, size):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    assert all((idx == val for (idx, val) in enumerate(func())))"
+        ]
+    },
+    {
+        "func_name": "init",
+        "original": "@register_test\ndef init(func, size):\n    func(((val, -val) for val in lists[size]))",
+        "mutated": [
+            "@register_test\ndef init(func, size):\n    if False:\n        i = 10\n    func(((val, -val) for val in lists[size]))",
+            "@register_test\ndef init(func, size):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    func(((val, -val) for val in lists[size]))",
+            "@register_test\ndef init(func, size):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    func(((val, -val) for val in lists[size]))",
+            "@register_test\ndef init(func, size):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    func(((val, -val) for val in lists[size]))",
+            "@register_test\ndef init(func, size):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    func(((val, -val) for val in lists[size]))"
+        ]
+    },
+    {
+        "func_name": "do_nothing",
+        "original": "def do_nothing(obj, size):\n    pass",
+        "mutated": [
+            "def do_nothing(obj, size):\n    if False:\n        i = 10\n    pass",
+            "def do_nothing(obj, size):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    pass",
+            "def do_nothing(obj, size):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    pass",
+            "def do_nothing(obj, size):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    pass",
+            "def do_nothing(obj, size):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    pass"
+        ]
+    },
+    {
+        "func_name": "fill_values",
+        "original": "def fill_values(obj, size):\n    if hasattr(obj, 'update'):\n        obj.update({val: -val for val in range(size)})\n    else:\n        for val in range(size):\n            obj[val] = -val",
+        "mutated": [
+            "def fill_values(obj, size):\n    if False:\n        i = 10\n    if hasattr(obj, 'update'):\n        obj.update({val: -val for val in range(size)})\n    else:\n        for val in range(size):\n            obj[val] = -val",
+            "def fill_values(obj, size):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    if hasattr(obj, 'update'):\n        obj.update({val: -val for val in range(size)})\n    else:\n        for val in range(size):\n            obj[val] = -val",
+            "def fill_values(obj, size):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    if hasattr(obj, 'update'):\n        obj.update({val: -val for val in range(size)})\n    else:\n        for val in range(size):\n            obj[val] = -val",
+            "def fill_values(obj, size):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    if hasattr(obj, 'update'):\n        obj.update({val: -val for val in range(size)})\n    else:\n        for val in range(size):\n            obj[val] = -val",
+            "def fill_values(obj, size):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    if hasattr(obj, 'update'):\n        obj.update({val: -val for val in range(size)})\n    else:\n        for val in range(size):\n            obj[val] = -val"
+        ]
+    }
+]

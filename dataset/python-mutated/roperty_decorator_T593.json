@@ -1,0 +1,57 @@
+[
+    {
+        "func_name": "prop",
+        "original": "@property\ndef prop(self):\n    print(\"GETTING '%s'\" % self._value)\n    return self._value",
+        "mutated": [
+            "@property\ndef prop(self):\n    if False:\n        i = 10\n    print(\"GETTING '%s'\" % self._value)\n    return self._value",
+            "@property\ndef prop(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    print(\"GETTING '%s'\" % self._value)\n    return self._value",
+            "@property\ndef prop(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    print(\"GETTING '%s'\" % self._value)\n    return self._value",
+            "@property\ndef prop(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    print(\"GETTING '%s'\" % self._value)\n    return self._value",
+            "@property\ndef prop(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    print(\"GETTING '%s'\" % self._value)\n    return self._value"
+        ]
+    },
+    {
+        "func_name": "prop",
+        "original": "@prop.setter\ndef prop(self, value):\n    print(\"SETTING '%s' (previously: '%s')\" % (value, self._value))\n    self._value = value",
+        "mutated": [
+            "@prop.setter\ndef prop(self, value):\n    if False:\n        i = 10\n    print(\"SETTING '%s' (previously: '%s')\" % (value, self._value))\n    self._value = value",
+            "@prop.setter\ndef prop(self, value):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    print(\"SETTING '%s' (previously: '%s')\" % (value, self._value))\n    self._value = value",
+            "@prop.setter\ndef prop(self, value):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    print(\"SETTING '%s' (previously: '%s')\" % (value, self._value))\n    self._value = value",
+            "@prop.setter\ndef prop(self, value):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    print(\"SETTING '%s' (previously: '%s')\" % (value, self._value))\n    self._value = value",
+            "@prop.setter\ndef prop(self, value):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    print(\"SETTING '%s' (previously: '%s')\" % (value, self._value))\n    self._value = value"
+        ]
+    },
+    {
+        "func_name": "prop",
+        "original": "@prop.deleter\ndef prop(self):\n    print(\"DELETING (previously: '%s')\" % self._value)\n    self._value = None",
+        "mutated": [
+            "@prop.deleter\ndef prop(self):\n    if False:\n        i = 10\n    print(\"DELETING (previously: '%s')\" % self._value)\n    self._value = None",
+            "@prop.deleter\ndef prop(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    print(\"DELETING (previously: '%s')\" % self._value)\n    self._value = None",
+            "@prop.deleter\ndef prop(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    print(\"DELETING (previously: '%s')\" % self._value)\n    self._value = None",
+            "@prop.deleter\ndef prop(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    print(\"DELETING (previously: '%s')\" % self._value)\n    self._value = None",
+            "@prop.deleter\ndef prop(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    print(\"DELETING (previously: '%s')\" % self._value)\n    self._value = None"
+        ]
+    },
+    {
+        "func_name": "my_prop",
+        "original": "@my_property\ndef my_prop(self):\n    print(\"GETTING 'my_prop'\")\n    return 389",
+        "mutated": [
+            "@my_property\ndef my_prop(self):\n    if False:\n        i = 10\n    print(\"GETTING 'my_prop'\")\n    return 389",
+            "@my_property\ndef my_prop(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    print(\"GETTING 'my_prop'\")\n    return 389",
+            "@my_property\ndef my_prop(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    print(\"GETTING 'my_prop'\")\n    return 389",
+            "@my_property\ndef my_prop(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    print(\"GETTING 'my_prop'\")\n    return 389",
+            "@my_property\ndef my_prop(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    print(\"GETTING 'my_prop'\")\n    return 389"
+        ]
+    },
+    {
+        "func_name": "generator_prop",
+        "original": "@property\ndef generator_prop(self):\n    yield 42",
+        "mutated": [
+            "@property\ndef generator_prop(self):\n    if False:\n        i = 10\n    yield 42",
+            "@property\ndef generator_prop(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    yield 42",
+            "@property\ndef generator_prop(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    yield 42",
+            "@property\ndef generator_prop(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    yield 42",
+            "@property\ndef generator_prop(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    yield 42"
+        ]
+    }
+]

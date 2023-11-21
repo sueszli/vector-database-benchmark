@@ -1,0 +1,46 @@
+[
+    {
+        "func_name": "eig",
+        "original": "@to_ivy_arrays_and_back\ndef eig(a):\n    return ivy.eig(a)",
+        "mutated": [
+            "@to_ivy_arrays_and_back\ndef eig(a):\n    if False:\n        i = 10\n    return ivy.eig(a)",
+            "@to_ivy_arrays_and_back\ndef eig(a):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return ivy.eig(a)",
+            "@to_ivy_arrays_and_back\ndef eig(a):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return ivy.eig(a)",
+            "@to_ivy_arrays_and_back\ndef eig(a):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return ivy.eig(a)",
+            "@to_ivy_arrays_and_back\ndef eig(a):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return ivy.eig(a)"
+        ]
+    },
+    {
+        "func_name": "eigh",
+        "original": "@to_ivy_arrays_and_back\n@from_zero_dim_arrays_to_scalar\ndef eigh(a, /, UPLO='L'):\n    return ivy.eigh(a, UPLO=UPLO)",
+        "mutated": [
+            "@to_ivy_arrays_and_back\n@from_zero_dim_arrays_to_scalar\ndef eigh(a, /, UPLO='L'):\n    if False:\n        i = 10\n    return ivy.eigh(a, UPLO=UPLO)",
+            "@to_ivy_arrays_and_back\n@from_zero_dim_arrays_to_scalar\ndef eigh(a, /, UPLO='L'):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return ivy.eigh(a, UPLO=UPLO)",
+            "@to_ivy_arrays_and_back\n@from_zero_dim_arrays_to_scalar\ndef eigh(a, /, UPLO='L'):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return ivy.eigh(a, UPLO=UPLO)",
+            "@to_ivy_arrays_and_back\n@from_zero_dim_arrays_to_scalar\ndef eigh(a, /, UPLO='L'):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return ivy.eigh(a, UPLO=UPLO)",
+            "@to_ivy_arrays_and_back\n@from_zero_dim_arrays_to_scalar\ndef eigh(a, /, UPLO='L'):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return ivy.eigh(a, UPLO=UPLO)"
+        ]
+    },
+    {
+        "func_name": "eigvals",
+        "original": "@to_ivy_arrays_and_back\ndef eigvals(a):\n    return ivy.eig(a)[0]",
+        "mutated": [
+            "@to_ivy_arrays_and_back\ndef eigvals(a):\n    if False:\n        i = 10\n    return ivy.eig(a)[0]",
+            "@to_ivy_arrays_and_back\ndef eigvals(a):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return ivy.eig(a)[0]",
+            "@to_ivy_arrays_and_back\ndef eigvals(a):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return ivy.eig(a)[0]",
+            "@to_ivy_arrays_and_back\ndef eigvals(a):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return ivy.eig(a)[0]",
+            "@to_ivy_arrays_and_back\ndef eigvals(a):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return ivy.eig(a)[0]"
+        ]
+    },
+    {
+        "func_name": "eigvalsh",
+        "original": "@to_ivy_arrays_and_back\n@from_zero_dim_arrays_to_scalar\ndef eigvalsh(a, /, UPLO='L'):\n    return ivy.eigvalsh(a, UPLO=UPLO)",
+        "mutated": [
+            "@to_ivy_arrays_and_back\n@from_zero_dim_arrays_to_scalar\ndef eigvalsh(a, /, UPLO='L'):\n    if False:\n        i = 10\n    return ivy.eigvalsh(a, UPLO=UPLO)",
+            "@to_ivy_arrays_and_back\n@from_zero_dim_arrays_to_scalar\ndef eigvalsh(a, /, UPLO='L'):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    return ivy.eigvalsh(a, UPLO=UPLO)",
+            "@to_ivy_arrays_and_back\n@from_zero_dim_arrays_to_scalar\ndef eigvalsh(a, /, UPLO='L'):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    return ivy.eigvalsh(a, UPLO=UPLO)",
+            "@to_ivy_arrays_and_back\n@from_zero_dim_arrays_to_scalar\ndef eigvalsh(a, /, UPLO='L'):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    return ivy.eigvalsh(a, UPLO=UPLO)",
+            "@to_ivy_arrays_and_back\n@from_zero_dim_arrays_to_scalar\ndef eigvalsh(a, /, UPLO='L'):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    return ivy.eigvalsh(a, UPLO=UPLO)"
+        ]
+    }
+]

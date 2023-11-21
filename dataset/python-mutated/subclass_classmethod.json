@@ -1,0 +1,35 @@
+[
+    {
+        "func_name": "foo",
+        "original": "@classmethod\ndef foo(cls):\n    print(cls.__name__)",
+        "mutated": [
+            "@classmethod\ndef foo(cls):\n    if False:\n        i = 10\n    print(cls.__name__)",
+            "@classmethod\ndef foo(cls):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    print(cls.__name__)",
+            "@classmethod\ndef foo(cls):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    print(cls.__name__)",
+            "@classmethod\ndef foo(cls):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    print(cls.__name__)",
+            "@classmethod\ndef foo(cls):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    print(cls.__name__)"
+        ]
+    },
+    {
+        "func_name": "bar",
+        "original": "@classmethod\ndef bar(cls):\n    print(cls.foo)",
+        "mutated": [
+            "@classmethod\ndef bar(cls):\n    if False:\n        i = 10\n    print(cls.foo)",
+            "@classmethod\ndef bar(cls):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    print(cls.foo)",
+            "@classmethod\ndef bar(cls):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    print(cls.foo)",
+            "@classmethod\ndef bar(cls):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    print(cls.foo)",
+            "@classmethod\ndef bar(cls):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    print(cls.foo)"
+        ]
+    },
+    {
+        "func_name": "baz",
+        "original": "def baz(self):\n    print(self.foo)",
+        "mutated": [
+            "def baz(self):\n    if False:\n        i = 10\n    print(self.foo)",
+            "def baz(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n    print(self.foo)",
+            "def baz(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n    print(self.foo)",
+            "def baz(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        n = 10\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n    print(self.foo)",
+            "def baz(self):\n    if False:\n        i = 10\n        while True:\n            print('Mutation')\n        dp = [0, 1]\n        for i in range(2, n + 1):\n            dp.append(dp[i - 1] + dp[i - 2])\n        print(dp[n])\n\n        def dfs(node):\n            if node == None:\n                return []\n            left = dfs(node.left)\n            right = dfs(node.right)\n        length = 15\n        if length <= 0:\n            return []\n        elif length == 1:\n            return [0]\n        sequence = [0, 1]\n        while len(sequence) < length:\n            next_value = sequence[-1] + sequence[-2]\n            sequence.append(next_value)\n        return sequence\n    print(self.foo)"
+        ]
+    }
+]
