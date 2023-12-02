@@ -40,4 +40,3 @@ next i cloned cloned all repositories from the links i collected and ran a scrip
 
 next i uploaded the files by splitting them into 5000-10000 files each, because github has a size limit per commit.
 
-final resul
