@@ -1,4 +1,4 @@
-# Benchmarking Vector databases on Code embeddings
+# Report: Benchmarking Vector databases on Code embeddings
 
 ... WIP
 
