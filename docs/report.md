@@ -1,15 +1,24 @@
 # Benchmarking Vector databases on Code embeddings
 
-_Topics: information retrieval, databases, measurement & performance analysis._
+Topics: information retrieval, databases, measurement & performance analysis.
+
+Repository: https://github.com/sueszli/vector-database-benchmark
+
+Authors:
+
+- Raymond Chang, rkchang@uwaterloo.ca
+- Vikram N. Subramanian, vnsubram@uwaterloo.ca
+- Yahya Jabary, yahya.jabary@uwaterloo.ca
 
 ---
 
 Since the 1970ies relational databases have been very useful for information retrieval on sparse representation vectors using inverted indexes.
 
-But because of the recent discovery of learning encoders called “transformers” and their dense representation vectors called "embeddings", we require more sophisticated data structures to be able to search our encodings – such as Hierarchical Navigable Small-World Networks (HNSW).
+But because of the recent discovery of learning encoders called “transformers” and their dense representation vectors called "embeddings", we require more sophisticated data structures to be able to search our encodings – such as Hierarchical Navigable Small-World Networks (HNSW) to be able to search based proxmity. Proximity matters most in encodings, as dimensions capture some "latent semantic space".
 
 While many modern "vector databases" already deliver performant CRUD operations and convenient wrappers for HNSW-operations, traditional databases like Postgres or established search engines like Apache Lucene (as of December 2023) yet have to catch up.
 
+By benchmarking these modern databases, specifically for the semantic search of Code-documents, we want to shine some light on the 
 
 ## Step 1) Generating a corpus of code documents
 
