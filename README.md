@@ -118,9 +118,7 @@ So, if you're choosing a database for a task that requires fast read speeds, you
 
 ![write speeds](https://github.com/sueszli/vector-database-benchmark/assets/61852663/783c3aff-d146-42c5-8726-e89ee89f3fa2)
 
-- **MvusDB and Chroma DB**: As the number of threads increases, the time it takes to write data also increases. This isn't ideal.
-
-- **WaveDB and Redis**: The write speed remains relatively constant regardless of the number of threads. This means they scale well.
+Write operations scale better for **WaveDB and Redis** than for **MvusDB and Chroma DB**, as the write speed should idealy stay at least partially proportional to the number of threads used and not decrease with them.
 
 ### Recall speeds
 
