@@ -56,6 +56,32 @@ Finally, the files were uploaded by splitting them into 5000-10000 files each, b
 
 ## Step 2) Mutating documents to create clusters
 
+Next we wanted to generate clusters of data through a process called mutation. The goal is to create **semantically similar code blocks** that can be grouped together. The mutation process involves inserting blocks of dead code into each function. We generate five mutated versions for each function, with each successive mutation increasing in complexity.
+
+This can be achieved by mutating each function and inserting some dead code, thus preserving the semantics. For each function, we generate five mutated versions such that each successive mutant is more complex than the previous. Mutations have to be similar but not too similar to ensure recall drops. 
+
+Here's an example of a mutation:
+
+```python
+# Original
+def foo():
+    ...
+
+# Mutated
+def foo():
+    if False:
+        i = 0
+    ...
+```
+
+We were initially unsure about how complicated these mutations would have to be, so we built a fairly general solution. We start by parsing each function and generating an Abstract Syntax Tree (AST). We then traverse the AST and upon finding a function, insert some dead code right at the beginning. We then dump these mutations and their originals into JSON files to be parsed later.
+
+One of the measurements we generated was how recall was affected by load on the database. We wanted to make sure that recall would actually decrease, so we had to make sure the mutations actually affected the **(cosine) similarity**. We did this by converting some mutations into embeddings and measuring them. 
+
+We first had to determine a baseline, which was the largest difference in similarity we would encounter. We did this by comparing the similarity of the two largest functions, which are fairly likely to be the most different semantically, and got a **cosine similarity of 0.68**. We then checked the similarity of the smallest function with its mutations as well as the largest function and found that their similarity does actually differ. The smallest function had a similarity range of **0.82 to 0.92** with its mutations, while the largest function had a range of **0.85 to 0.91**. 
+
+This analysis confirms that our mutation process is effective in generating semantically similar but distinct functions, which is crucial for our goal of data clustering.
+
 
 ## Step 3) Encoding corpus to generate embeddings
 
