@@ -14,11 +14,11 @@ Authors:
 
 Since the 1970ies relational databases have been very useful for information retrieval on sparse representation vectors using inverted indexes.
 
-But because of the recent discovery of learning encoders called “transformers” and their dense representation vectors called "embeddings", we require more sophisticated data structures to be able to search our encodings – such as Hierarchical Navigable Small-World Networks (HNSW). HNSW are so important, because they allow us to find vectors which are close / "semantically similar" to our query vector.
+But because of the recent discovery of learning encoders called “transformers” and their dense representation vectors called "embeddings", we require more sophisticated data structures to be able to search our encodings – such as Hierarchical Navigable Small-World Networks (HNSW). HNSW are important, because they allow us to find vectors that are close and "semantically similar" to our query vector.
 
-While many modern "vector databases" already deliver performant CRUD operations and convenient wrappers for HNSW-operations, traditional databases like Postgres or established search engines like Apache Lucene (as of December 2023) yet have to catch up.
+While many modern "vector databases" already deliver performant CRUD operations and entire HNSW-operations, traditional databases like Postgres or established search engines like Apache Lucene (as of December 2023) yet have to catch up both in terms of performance and convenience [1].
 
-By benchmarking these modern databases, specifically for the semantic search of Code-documents, we want to shine some light on the 
+Through simple benchmarks of these modern databases, specifically for the semantic search of Code-documents, we want to support developers in
 
 ## Step 1) Generating a corpus of code documents
 
@@ -29,3 +29,5 @@ By benchmarking these modern databases, specifically for the semantic search of 
 ## Step 4) Retrieving embeddings through HNSW
 
 The goal of the retrieval problem is to search the top-k passage embeddings with the largest dot products for a given query embedding.
+
+[^1]: https://doi.org/10.48550/arXiv.2308.14963
