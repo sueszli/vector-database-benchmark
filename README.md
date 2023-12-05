@@ -6,9 +6,9 @@ Course: CS 854, Performance Engineering, Fall 2023 – Ali Mashtizadeh
 
 Authors:
 
-- Raymond Chang, rkchang@uwaterloo.ca, https://github.com/rkchang
-- Vikram N. Subramanian, vnsubram@uwaterloo.ca, https://github.com/vikramsubramanian
-- Yahya Jabary, yahya.jabary@uwaterloo.ca, https://github.com/sueszli
+- Raymond Chang, rkchang@uwaterloo.ca / https://github.com/rkchang
+- Vikram N. Subramanian, vnsubram@uwaterloo.ca / https://github.com/vikramsubramanian
+- Yahya Jabary, yahya.jabary@uwaterloo.ca / https://github.com/sueszli
 
 ---
 
