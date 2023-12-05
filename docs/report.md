@@ -12,13 +12,17 @@ Authors:
 
 ---
 
+## Abstract
+
+## Why another database?
+
 Since the 1970ies relational databases have been very useful for information retrieval on sparse representation vectors using inverted indexes.
 
 But because of the recent discovery of learning encoders called “transformers” and their dense representation vectors called "embeddings", we require more sophisticated data structures to be able to search our encodings – such as Hierarchical Navigable Small-World Networks (HNSW). HNSW are important, because they allow us to find vectors that are close and "semantically similar" to our query vector.
 
 While many modern "vector databases" already deliver performant CRUD operations and HNSW-search, traditional databases like Postgres or established search engines like Apache Lucene (as of December 2023) yet have to catch up both in terms of performance and convenience [^1].
 
-Through simple benchmarks we want to create an initial support to decide between these new vector database products, specifically for Code-embeddings.
+Through simple benchmarks we want to create an initial support to decide between new vector database products, specifically for Code-embeddings.
 
 ## Step 1) Generating a corpus of code documents
 
