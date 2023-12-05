@@ -12,7 +12,10 @@ Authors:
 
 ---
 
-## Abstract
+Through simple benchmarks we created an initial support to decide between the many new vector database products on the market, specifically for the purpose of searching Code-embeddings.
+
+To achieve this, we have created a test set that has a realistic dimensioning and size (to our knowledge, we are the very first to have done so).
+
 
 ## Why another database?
 
@@ -22,13 +25,15 @@ But because of the recent discovery of learning encoders called â€œtransformersâ
 
 While many modern "vector databases" already deliver performant CRUD operations and HNSW-search, traditional databases like Postgres or established search engines like Apache Lucene (as of December 2023) yet have to catch up both in terms of performance and convenience [^1].
 
-Through simple benchmarks we want to create an initial support to decide between new vector database products, specifically for Code-embeddings.
 
 ## Step 1) Generating a corpus of code documents
 
+
 ## Step 2) Mutating documents to create clusters
 
+
 ## Step 3) Encoding corpus to generate embeddings
+
 
 ## Step 4) Retrieving embeddings through HNSW
 
