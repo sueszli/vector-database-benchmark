@@ -106,13 +106,7 @@ Here were our results:
 
 ![read speeds](https://github.com/sueszli/vector-database-benchmark/assets/61852663/820d1b75-8064-4e36-88dd-8e48fa7fa1d5)
 
-**WMS-DB** and **Chroma-DB** seem to have faster reads than **WaveLite** and **Fells**.
-
-As the number of threads increases, the read time for all databases also increases. This means that when more tasks (threads) are running at the same time, it takes longer for the databases to read data. This is a common behavior in computing, as handling more tasks at once can lead to increased resource usage and potential bottlenecks. 
-
-In technical terms, this could be due to factors like disk I/O, CPU usage, memory management, and the efficiency of the database's internal algorithms for handling concurrent read operations. 
-
-So, if you're choosing a database for a task that requires fast read speeds, you might want to consider **WMS-DB** or **Chroma-DB** based on this graph. But remember, this is just one aspect. Other factors like write speeds, data integrity, scalability, and specific use-case requirements are also important when choosing a database.
+**WMS-DB** and **Chroma-DB** seem to have faster reads than **WaveLite** and **Fells**. But in general there seems to be some read bottleneck for all systems.
 
 ### Write speeds
 
