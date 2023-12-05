@@ -2,7 +2,7 @@
 
 Topics: information retrieval, databases, measurement & performance analysis.
 
-Course: CS 854, Performance Engineering, Fall 2023 – Ali Mashtizadeh, https://github.com/mashtizadeh
+Course: CS 854, Performance Engineering, Fall 2023 – Ali Mashtizadeh
 
 Authors:
 
