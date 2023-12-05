@@ -14,7 +14,7 @@ Authors:
 
 Through simple benchmarks we created an initial support to decide between the many new vector database products on the market, specifically for the purpose of searching Code-embeddings.
 
-To achieve this, we have created a test set that has a realistic dimensioning and size (to our knowledge, we are the very first to have done so).
+To achieve this, we have created a test set that has a realistic dimensioning and size (to our knowledge, we are the very first to have done so). This has enabled us to simulate a realistic workload.
 
 
 ## Why another database?
