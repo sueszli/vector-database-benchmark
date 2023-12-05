@@ -16,6 +16,7 @@ Through simple benchmarks we created an initial support to decide between the ma
 
 To achieve this, we have created a test set that has a realistic dimensioning and size (to our knowledge, we are the very first to have done so). This has enabled us to simulate a realistic workload.
 
+<br><br>
 
 ## Why another database?
 
@@ -25,6 +26,7 @@ But because of the recent discovery of learning encoders called â€œtransformersâ
 
 While many modern "vector databases" already deliver performant CRUD operations and HNSW-search, traditional databases like Postgres or established search engines like Apache Lucene (as of December 2023) yet have to catch up both in terms of performance and convenience [^1].
 
+<br><br>
 
 ## Step 1) Generating a corpus of code documents
 
@@ -53,6 +55,7 @@ Next, all repositories from the collected links were cloned and a script was run
 
 Finally, the files were uploaded by splitting them into 5000-10000 files each, because GitHub has a size limit per commit (otherwise you have to pay for GitHub LFS). This process allowed for the successful scraping of half a million files of code.
 
+<br><br>
 
 ## Step 2) Mutating documents to create clusters
 
@@ -82,11 +85,13 @@ We first had to determine a baseline, which was the largest difference in simila
 
 This analysis confirms that our mutation process is effective in generating semantically similar but distinct functions, which is crucial for our goal of data clustering.
 
+<br><br>
 
 ## Step 3) Encoding corpus to generate embeddings
 
 Next we encoded the corpus into embeddings by using transformers.
 
+<br><br>
 
 ## Step 4) Benchmark: Retrieving embeddings through HNSW
 
