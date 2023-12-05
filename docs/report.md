@@ -2,8 +2,6 @@
 
 Topics: information retrieval, databases, measurement & performance analysis.
 
-Repository: https://github.com/sueszli/vector-database-benchmark
-
 Authors:
 
 - Raymond Chang, rkchang@uwaterloo.ca
