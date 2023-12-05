@@ -106,12 +106,7 @@ Here were our results:
 
 ![read speeds](https://github.com/sueszli/vector-database-benchmark/assets/61852663/820d1b75-8064-4e36-88dd-8e48fa7fa1d5)
 
-The graph shows the read speeds of four different vector databases: **WMS-DB**, **Chroma-DB**, **WaveLite**, and **Fells**. The x-axis represents the number of threads, while the y-axis represents the read time in milliseconds. 
-
-Here's a simple breakdown:
-
-- **WMS-DB** and **Chroma-DB** (represented by blue and orange lines) are the fastest. This means they can read data quickly.
-- **WaveLite** and **Fells** (represented by gray and yellow lines) are slower. They take more time to read data.
+**WMS-DB** and **Chroma-DB** seem to have faster reads than **WaveLite** and **Fells**.
 
 As the number of threads increases, the read time for all databases also increases. This means that when more tasks (threads) are running at the same time, it takes longer for the databases to read data. This is a common behavior in computing, as handling more tasks at once can lead to increased resource usage and potential bottlenecks. 
 
@@ -123,32 +118,15 @@ So, if you're choosing a database for a task that requires fast read speeds, you
 
 ![write speeds](https://github.com/sueszli/vector-database-benchmark/assets/61852663/783c3aff-d146-42c5-8726-e89ee89f3fa2)
 
-The graph you're looking at compares the write speeds of four different vector databases: MvusDB, Chroma DB, WaveDB, and Redis. Here's a simple breakdown:
+- **MvusDB and Chroma DB**: As the number of threads increases, the time it takes to write data also increases. This isn't ideal.
 
-- The x-axis of the graph shows the number of threads. Threads are like workers in a factory, each doing a part of the job. More threads usually mean faster work, but not always.
-- The y-axis shows time in milliseconds. This is how long it takes to write data to the database. Less time is better.
-
-Now, let's look at each database:
-
-1. **MvusDB and Chroma DB**: As the number of threads increases, the time it takes to write data also increases. This means these databases take more time to write data as more threads are used. This isn't ideal because we usually want things to get faster with more threads, not slower.
-
-2. **WaveDB and Redis**: These databases show a different pattern. The write speed remains relatively constant regardless of the number of threads. This means they can handle more threads without slowing down, which is a good thing.
-
-In conclusion, WaveDB and Redis seem to handle multiple threads better than MvusDB and Chroma DB when it comes to writing data. However, remember that this is just one aspect of database performance. Other factors like read speed, data integrity, and scalability are also important when choosing a database.
+- **WaveDB and Redis**: The write speed remains relatively constant regardless of the number of threads. This means they scale well.
 
 ### Recall speeds
 
 ![recall](https://github.com/sueszli/vector-database-benchmark/assets/61852663/4d722bd2-55f5-43b6-8195-937f0232cc29)
 
-The graph compares the recall performance of four vector databases: **MinusDB**, **ChromaDB**, **Wavetree**, and **Redis**. 
-
-Here's what we can see:
-- The x-axis shows the number of threads. Threads are like workers in a factory, each doing a part of the job.
-- The y-axis shows the recall. Recall is like a memory test, it shows how many relevant items are retrieved out of all relevant items.
-- **MinusDB** and **ChromaDB** (shown in orange and blue) are the top performers. They have the highest recall, which means they are good at retrieving relevant items.
-- **Wavetree** and **Redis** (shown in gray and red) have lower recall. This means they might miss some relevant items.
-
-In simple terms, if you're choosing a database and recall is important to you, **MinusDB** or **ChromaDB** might be your best bet. But remember, this is just one aspect. There are other factors to consider when choosing a database.
+**MinusDB** and **ChromaDB** seem to have higher recall (which means they are good at retrieving relevant items) than **Wavetree** and **Redis**.
 
 ---
 
