@@ -4,9 +4,9 @@ Topics: information retrieval, databases, measurement & performance analysis.
 
 Authors:
 
-- Raymond Chang, rkchang@uwaterloo.ca
-- Vikram N. Subramanian, vnsubram@uwaterloo.ca
-- Yahya Jabary, yahya.jabary@uwaterloo.ca
+- Raymond Chang, rkchang@uwaterloo.ca, https://github.com/rkchang
+- Vikram N. Subramanian, vnsubram@uwaterloo.ca, https://github.com/vikramsubramanian
+- Yahya Jabary, yahya.jabary@uwaterloo.ca, https://github.com/sueszli
 
 ---
 
