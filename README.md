@@ -1,8 +1,6 @@
-# 💾🧪👨🏻‍🔬 benchmarking vector databases
+check out our vector database benchmark results in the [README.pdf](./README.pdf).
 
-read the full report at: https://github.com/sueszli/vector-database-benchmark/blob/main/docs/report.pdf
-
-selected databases:
+we benchmarked:
 
 - ChromaDB
 - MilvusDB
