@@ -1,6 +1,6 @@
 # diary
 
-## 1) scraping half a million files of code
+scraping half a million files of code
 
 there are 2 ways to scrape github:
 
