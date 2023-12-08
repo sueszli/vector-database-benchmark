@@ -1,5 +1,5 @@
-# check out the: [vector database benchmark](README.pdf) 🔥💾👨🏻‍🔬
+# Check out our: [vector database benchmark](README.pdf) 🔥💾👨🏻‍🔬
 
-databases: ChromaDB, MilvusDB, Weavite, Redis
+Databases: ChromaDB, MilvusDB, Weavite, Redis
 
-embeddings: python code files
+Embeddings: python code files
