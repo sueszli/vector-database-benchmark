@@ -1,4 +1,0 @@
-/*
-This is a dummy file that does nothing. Exists only to
-accomodate premake.
-*/

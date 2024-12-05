@@ -1,2 +1,0 @@
-#include <asm/syscall.h>
-

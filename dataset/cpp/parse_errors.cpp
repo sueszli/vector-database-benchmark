@@ -1,2 +1,0 @@
-r#"class VecOfPaths {
-public:"#;

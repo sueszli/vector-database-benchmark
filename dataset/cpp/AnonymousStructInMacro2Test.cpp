@@ -1,6 +1,0 @@
-#define macro(name) \
-    struct { int x; } name
-
-macro(myAnonStruct);
-macro(myAnonStruct2);
-

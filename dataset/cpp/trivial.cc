@@ -1,4 +1,0 @@
-// comment
-// another comment
-//
-main(){}
